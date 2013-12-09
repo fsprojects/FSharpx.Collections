@@ -2,28 +2,9 @@
 
 namespace FSharpx.Collections
 
-module internal Literals = 
-
-    [<Literal>]
-    let internal blockSizeShift = 5 // TODO: what can we do in 64Bit case?
-
-    [<Literal>]
-    let internal blockSize = 32
-
-    [<Literal>]
-    let internal blockIndexMask = 0x01f
-
-open FSharpx
+open FSharpx.Collections
 open System.Threading
 
-type Node(thread,array:obj[]) =
-    let thread = thread
-    new() = Node(ref null,Array.create Literals.blockSize null)
-    with
-        static member InCurrentThread() = Node(ref Thread.CurrentThread,Array.create Literals.blockSize null)
-        member this.Array = array
-        member this.Thread = thread
-        member this.SetThread t = thread := t
 
 type TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[]) =
     let mutable count = count
