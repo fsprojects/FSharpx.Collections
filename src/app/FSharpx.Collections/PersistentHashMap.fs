@@ -42,6 +42,20 @@ type PersistentHashMap<[<EqualityConditionalOn>]'T when 'T : equality> (count,ro
         if root = Unchecked.defaultof<BitmapIndexNode> then false else
         root.Find(0, hash(key), key) <> null
 
+    member this.Add(key, value) =
+        if key = Unchecked.defaultof<'T> then
+            if hasNull && value = nullValue then this else
+            let count = if hasNull then count else count + 1
+            PersistentHashMap<'T>(count, root, true, value)
+        else 
+            failwith "Not implemented"
+//            Box addedLeaf = new Box(null);
+//            INode newroot = (root == null ? BitmapIndexedNode.EMPTY : root) 
+//                            .assoc(0, hash(key), key, val, addedLeaf);
+//            if(newroot == root)
+//                    return this;
+//            return new PersistentHashMap(meta(), addedLeaf.val == null ? count : count + 1, newroot, hasNull, nullValue)
+
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module PersistentHashMap = 
@@ -53,3 +67,6 @@ module PersistentHashMap =
 
     ///O(log32n), returns if the key exists in the map
     let containsKey key (map:PersistentHashMap<'T>) = map.ContainsKey key
+
+    ///O(log32n), adds an element to the map
+    let add key value (map:PersistentHashMap<'T>) = map.Add(key,value)
