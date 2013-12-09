@@ -43,15 +43,45 @@ type NodeHelpers =
     static member createNode( shift, key1, val1, key2hash, key2, val2) =
         let key1hash = hash(key1)
 
-        if key1hash = key2hash then
-            failwith "collision not implemented"
-            //return new HashCollisionNode(null, key1hash, 2, new Object[] {key1, val1, key2, val2});
+        if key1hash = key2hash then HashCollisionNode(ref null, key1hash, 2, [|key1; val1; key2; val2|]) :> INode else 
+        
         let addedLeaf = Box(null)
         let edit = ref null
         (BitmapIndexedNode() :> INode)
             .assoc(shift, key1hash, key1, val1, addedLeaf) // edit
             .assoc(shift, key2hash, key2, val2, addedLeaf) // edit
 
+and HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
+    let findIndex key =
+        let i = ref 0
+        while (!i < 2*count) && (key <> array.[!i]) do
+            i := !i + 2
+        if key = array.[!i] then !i else -1
+        
+    with
+    
+        interface INode with
+            member this.assoc(shift, hashKey, key, value, addedLeaf) : INode = 
+                if hashKey = hashCollisionKey then
+                    let idx = findIndex(key)
+                    if idx <> -1 then
+                        if array.[idx + 1] = value then this :> INode else
+                        HashCollisionNode(ref null, hashKey, count, NodeHelpers.cloneAndSet(array, idx + 1, value)) :> INode
+                    else
+                        let newArray = Array.create (2 * (count + 1)) null
+                        System.Array.Copy(array, 0, newArray, 0, 2 * count)
+                        newArray.[2 * count] <- key;
+                        newArray.[2 * count + 1] <- value
+                        addedLeaf.Value <- addedLeaf :> obj
+                        HashCollisionNode(thread, hashKey, count + 1, newArray) :> INode
+                else
+                    (BitmapIndexedNode(ref null, NodeHelpers.bitpos(hashCollisionKey, shift), [| null; this |]) :> INode)
+                        .assoc(shift, hashKey, key, value, addedLeaf)
+
+            member this.find(shift, hash, key) =
+                let idx = findIndex(key)
+                if idx < 0 then null else
+                if key = array.[idx] then array.[idx+1] else null
 
 and ArrayNode(thread,count,array:INode[]) =
     let x = 1
@@ -107,7 +137,7 @@ and BitmapIndexedNode(thread,bitmap,array:obj[]) =
                         if key = keyOrNull then
                             if value = valOrNode then this  :> INode else BitmapIndexedNode(ref null, bitmap, NodeHelpers.cloneAndSet(array, 2*idx+1, value)) :> INode
                         else
-                            addedLeaf.Value <- addedLeaf :> obj
+                            addedLeaf.Value <- addedLeaf
                             BitmapIndexedNode(ref null, bitmap, NodeHelpers.cloneAndSet2(array, 2*idx, null, 2*idx+1, NodeHelpers.createNode(shift + 5, keyOrNull, valOrNode, hashKey, key, value))) :> INode
                 else
                     let n = NodeHelpers.NumberOfSetBits(bitmap)

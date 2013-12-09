@@ -57,3 +57,49 @@ let ``can add tons of integers to empty map``() =
 
     for i in 0 .. counter do 
         !x |> containsKey i |> should equal true
+
+[<CustomComparison; CustomEquality>]
+type AlwaysSameHash = 
+    { Name  : string; }
+
+    interface System.IComparable<AlwaysSameHash> with
+        member this.CompareTo { Name = name } =
+            compare this.Name name
+
+    interface IComparable with
+        member this.CompareTo obj =
+            match obj with
+            | :? AlwaysSameHash as other -> (this :> IComparable<_>).CompareTo other
+            | _                    -> invalidArg "obj" "not a AlwaysSameHash"
+
+    interface IEquatable<AlwaysSameHash> with
+        member this.Equals { Name = name  } = this.Name = name
+
+    override this.Equals obj =
+        match obj with
+        | :? AlwaysSameHash as other -> (this :> IEquatable<_>).Equals other
+        | _                    -> invalidArg "obj" "not a AlwaysSameHash"
+
+    override this.GetHashCode () = 42
+
+[<Test>]
+let ``two AlwaysSameHash have same hase``() =
+    hash { Name = "Test"} |> should equal (hash { Name = "Test"})
+    { Name = "Test"} |> should equal { Name = "Test"}
+    hash { Name = "Test"} |> should equal (hash { Name = "Test1"})
+    { Name = "Test"} |> shouldNotEqual { Name = "Test1"}
+
+
+[<Test>]
+let ``can add keys with colliding hashes to empty map``() =
+    let x = { Name = "Test"}
+    let y = { Name = "Test1"}
+    let map = 
+        empty 
+        |> add x x.Name 
+        |> add y y.Name
+    
+    map |> containsKey x |> should equal true
+    map |> containsKey y |> should equal true
+
+    empty |> containsKey y |> should equal false
