@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>LazyList - FSharpx.Collections</title>
+    <title>IVector<'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,53 +35,98 @@
 
 
 
-<h1>LazyList</h1>
+<h1>IVector<'T></h1>
 <div class="xmldoc">
 </div>
-
-<!-- Render nested types and modules, if there are any -->
-
-  <h3>Functions and values</h3>
+  <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Function or value</td><td>Description</td></tr>
+      <tr><td>Instance member</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '804', 804)" onmouseover="showTip(event, '804', 804)">
-            drop n xs
+          <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
+            AssocN(arg1, arg2)
           </code>
-          <div class="tip" id="804">
-            <strong>Signature:</strong>n:int -&gt; xs:LazyList&lt;&#39;?10869&gt; -&gt; LazyList&lt;&#39;?10869&gt;<br />
-                          <strong>Type parameters:</strong> '?10869          </div>
+          <div class="tip" id="928">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; IVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc"><p>Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.</p>
+</td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '805', 805)" onmouseover="showTip(event, '805', 805)">
-            rev r
+          <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
+            Conj(arg1)
           </code>
-          <div class="tip" id="805">
-            <strong>Signature:</strong>r:LazyList&lt;&#39;?10867&gt; -&gt; LazyList&lt;&#39;?10867&gt;<br />
-                          <strong>Type parameters:</strong> '?10867          </div>
+          <div class="tip" id="930">
+            <strong>Signature:</strong>&#39;T -&gt; IVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc"><p>Returns a new vector with the element 'added' at the end.</p>
+</td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '806', 806)" onmouseover="showTip(event, '806', 806)">
-            split ll n
+          <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
+            Count()
           </code>
-          <div class="tip" id="806">
-            <strong>Signature:</strong>ll:LazyList&lt;&#39;T&gt; -&gt; n:int -&gt; List&lt;&#39;T&gt; * LazyList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="931">
+            <strong>Signature:</strong>unit -&gt; int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc"><p>Returns the number of items in the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
+            [arg1]
+          </code>
+          <div class="tip" id="932">
+            <strong>Signature:</strong>int -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Returns the value at the index. If the index is out of bounds it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
+            Peek()
+          </code>
+          <div class="tip" id="933">
+            <strong>Signature:</strong>unit -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
+            Pop()
+          </code>
+          <div class="tip" id="934">
+            <strong>Signature:</strong>unit -&gt; IVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+</td>
       </tr>
     </tbody>
   </table>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IVector<'T> - FSharpx.Collections</title>
+    <title>IQueue<'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,7 +35,7 @@
 
 
 
-<h1>IVector<'T></h1>
+<h1>IQueue<'T></h1>
 <div class="xmldoc">
 </div>
   <h3>Instance members</h3>
@@ -47,85 +47,140 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1170', 1170)" onmouseover="showTip(event, '1170', 1170)">
-            AssocN(arg1, arg2)
-          </code>
-          <div class="tip" id="1170">
-            <strong>Signature:</strong>(int * &#39;T) -&gt; IVector&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1171', 1171)" onmouseover="showTip(event, '1171', 1171)">
-            Conj(arg1)
-          </code>
-          <div class="tip" id="1171">
-            <strong>Signature:</strong>&#39;T -&gt; IVector&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns a new vector with the element 'added' at the end.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1172', 1172)" onmouseover="showTip(event, '1172', 1172)">
+          <code onmouseout="hideTip(event, '1032', 1032)" onmouseover="showTip(event, '1032', 1032)">
             Count()
           </code>
-          <div class="tip" id="1172">
+          <div class="tip" id="1032">
             <strong>Signature:</strong>unit -&gt; int<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns the number of items in the collection.</p>
+        <td class="xmldoc"><p>returns the count of elememts</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1173', 1173)" onmouseover="showTip(event, '1173', 1173)">
-            [arg1]
+          <code onmouseout="hideTip(event, '1033', 1033)" onmouseover="showTip(event, '1033', 1033)">
+            Head
           </code>
-          <div class="tip" id="1173">
-            <strong>Signature:</strong>int -&gt; &#39;T<br />
+          <div class="tip" id="1033">
+            <strong>Signature:</strong>&#39;T<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns the value at the index. If the index is out of bounds it throws an exception.</p>
+        <td class="xmldoc"><p>returns the first element</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1174', 1174)" onmouseover="showTip(event, '1174', 1174)">
-            Peek()
+          <code onmouseout="hideTip(event, '1034', 1034)" onmouseover="showTip(event, '1034', 1034)">
+            IsEmpty
           </code>
-          <div class="tip" id="1174">
-            <strong>Signature:</strong>unit -&gt; &#39;T<br />
+          <div class="tip" id="1034">
+            <strong>Signature:</strong>bool<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+        <td class="xmldoc"><p>returns true if the queue has no elements</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1175', 1175)" onmouseover="showTip(event, '1175', 1175)">
-            Pop()
+          <code onmouseout="hideTip(event, '1035', 1035)" onmouseover="showTip(event, '1035', 1035)">
+            Length()
           </code>
-          <div class="tip" id="1175">
-            <strong>Signature:</strong>unit -&gt; IVector&lt;&#39;T&gt;<br />
+          <div class="tip" id="1035">
+            <strong>Signature:</strong>unit -&gt; int<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+        <td class="xmldoc"><p>returns the count of elememts</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1036', 1036)" onmouseover="showTip(event, '1036', 1036)">
+            Snoc(arg1)
+          </code>
+          <div class="tip" id="1036">
+            <strong>Signature:</strong>&#39;T -&gt; IQueue&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns a new queue with the element added to the end</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1037', 1037)" onmouseover="showTip(event, '1037', 1037)">
+            Tail
+          </code>
+          <div class="tip" id="1037">
+            <strong>Signature:</strong>IQueue&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns a new queue of the elements trailing the first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1038', 1038)" onmouseover="showTip(event, '1038', 1038)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1038">
+            <strong>Signature:</strong>&#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns option first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1039', 1039)" onmouseover="showTip(event, '1039', 1039)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1039">
+            <strong>Signature:</strong>IQueue&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns option queue of the elements trailing the first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1040', 1040)" onmouseover="showTip(event, '1040', 1040)">
+            TryUncons
+          </code>
+          <div class="tip" id="1040">
+            <strong>Signature:</strong>(&#39;T * IQueue&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1041', 1041)" onmouseover="showTip(event, '1041', 1041)">
+            Uncons
+          </code>
+          <div class="tip" id="1041">
+            <strong>Signature:</strong>&#39;T * IQueue&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns the first element and tail</p>
 </td>
       </tr>
     </tbody>

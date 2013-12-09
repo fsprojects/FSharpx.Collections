@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IQueue<'T> - FSharpx.Collections</title>
+    <title>IRandomAccessList<'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,7 +35,7 @@
 
 
 
-<h1>IQueue<'T></h1>
+<h1>IRandomAccessList<'T></h1>
 <div class="xmldoc">
 </div>
   <h3>Instance members</h3>
@@ -47,10 +47,24 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1124', 1124)" onmouseover="showTip(event, '1124', 1124)">
+          <code onmouseout="hideTip(event, '959', 959)" onmouseover="showTip(event, '959', 959)">
+            Cons(arg1)
+          </code>
+          <div class="tip" id="959">
+            <strong>Signature:</strong>&#39;T -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns a new random access list with the element added to the beginning</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '960', 960)" onmouseover="showTip(event, '960', 960)">
             Count()
           </code>
-          <div class="tip" id="1124">
+          <div class="tip" id="960">
             <strong>Signature:</strong>unit -&gt; int<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
@@ -61,10 +75,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1125', 1125)" onmouseover="showTip(event, '1125', 1125)">
+          <code onmouseout="hideTip(event, '961', 961)" onmouseover="showTip(event, '961', 961)">
             Head
           </code>
-          <div class="tip" id="1125">
+          <div class="tip" id="961">
             <strong>Signature:</strong>&#39;T<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
@@ -75,24 +89,24 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1126', 1126)" onmouseover="showTip(event, '1126', 1126)">
+          <code onmouseout="hideTip(event, '962', 962)" onmouseover="showTip(event, '962', 962)">
             IsEmpty
           </code>
-          <div class="tip" id="1126">
+          <div class="tip" id="962">
             <strong>Signature:</strong>bool<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns true if the queue has no elements</p>
+        <td class="xmldoc"><p>returns true if the random access list has no elements</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1127', 1127)" onmouseover="showTip(event, '1127', 1127)">
+          <code onmouseout="hideTip(event, '963', 963)" onmouseover="showTip(event, '963', 963)">
             Length()
           </code>
-          <div class="tip" id="1127">
+          <div class="tip" id="963">
             <strong>Signature:</strong>unit -&gt; int<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
@@ -103,38 +117,52 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1128', 1128)" onmouseover="showTip(event, '1128', 1128)">
-            Snoc(arg1)
+          <code onmouseout="hideTip(event, '964', 964)" onmouseover="showTip(event, '964', 964)">
+            Lookup(arg1)
           </code>
-          <div class="tip" id="1128">
-            <strong>Signature:</strong>&#39;T -&gt; IQueue&lt;&#39;T&gt;<br />
+          <div class="tip" id="964">
+            <strong>Signature:</strong>int -&gt; &#39;T<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns a new queue with the element added to the end</p>
+        <td class="xmldoc"><p>returns element by index</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1129', 1129)" onmouseover="showTip(event, '1129', 1129)">
+          <code onmouseout="hideTip(event, '965', 965)" onmouseover="showTip(event, '965', 965)">
+            Rev()
+          </code>
+          <div class="tip" id="965">
+            <strong>Signature:</strong>unit -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns random access list reversed</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '966', 966)" onmouseover="showTip(event, '966', 966)">
             Tail
           </code>
-          <div class="tip" id="1129">
-            <strong>Signature:</strong>IQueue&lt;&#39;T&gt;<br />
+          <div class="tip" id="966">
+            <strong>Signature:</strong>IRandomAccessList&lt;&#39;T&gt;<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns a new queue of the elements trailing the first element</p>
+        <td class="xmldoc"><p>returns a new random access list of the elements trailing the first element</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1130', 1130)" onmouseover="showTip(event, '1130', 1130)">
+          <code onmouseout="hideTip(event, '967', 967)" onmouseover="showTip(event, '967', 967)">
             TryGetHead
           </code>
-          <div class="tip" id="1130">
+          <div class="tip" id="967">
             <strong>Signature:</strong>&#39;T option<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
@@ -145,42 +173,85 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1131', 1131)" onmouseover="showTip(event, '1131', 1131)">
+          <code onmouseout="hideTip(event, '968', 968)" onmouseover="showTip(event, '968', 968)">
             TryGetTail
           </code>
-          <div class="tip" id="1131">
-            <strong>Signature:</strong>IQueue&lt;&#39;T&gt; option<br />
+          <div class="tip" id="968">
+            <strong>Signature:</strong>IRandomAccessList&lt;&#39;T&gt; option<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns option queue of the elements trailing the first element</p>
+        <td class="xmldoc"><p>returns a option random access list of the elements trailing the first element</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1132', 1132)" onmouseover="showTip(event, '1132', 1132)">
-            TryUncons
+          <code onmouseout="hideTip(event, '969', 969)" onmouseover="showTip(event, '969', 969)">
+            TryLookup(arg1)
           </code>
-          <div class="tip" id="1132">
-            <strong>Signature:</strong>(&#39;T * IQueue&lt;&#39;T&gt;) option<br />
+          <div class="tip" id="969">
+            <strong>Signature:</strong>int -&gt; &#39;T option<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc"><p>returns option element by index</p>
+</td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1133', 1133)" onmouseover="showTip(event, '1133', 1133)">
+          <code onmouseout="hideTip(event, '970', 970)" onmouseover="showTip(event, '970', 970)">
+            TryUncons
+          </code>
+          <div class="tip" id="970">
+            <strong>Signature:</strong>(&#39;T * IRandomAccessList&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns the option first element and tail</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '971', 971)" onmouseover="showTip(event, '971', 971)">
+            TryUpdate(arg1 arg2)
+          </code>
+          <div class="tip" id="971">
+            <strong>Signature:</strong>int -&gt; &#39;T -&gt; IRandomAccessList&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns option random access list with element updated by index</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '972', 972)" onmouseover="showTip(event, '972', 972)">
             Uncons
           </code>
-          <div class="tip" id="1133">
-            <strong>Signature:</strong>&#39;T * IQueue&lt;&#39;T&gt;<br />
+          <div class="tip" id="972">
+            <strong>Signature:</strong>&#39;T * IRandomAccessList&lt;&#39;T&gt;<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc"><p>returns the first element and tail</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '973', 973)" onmouseover="showTip(event, '973', 973)">
+            Update(arg1 arg2)
+          </code>
+          <div class="tip" id="973">
+            <strong>Signature:</strong>int -&gt; &#39;T -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns random access list with element updated by index</p>
 </td>
       </tr>
     </tbody>

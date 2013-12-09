@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IHeap<'T> - FSharpx.Collections</title>
+    <title>IPriorityQueue<'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,7 +35,7 @@
 
 
 
-<h1>IHeap<'T></h1>
+<h1>IPriorityQueue<'T></h1>
 <div class="xmldoc">
 </div>
   <h3>Instance members</h3>
@@ -47,86 +47,85 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1345', 1345)" onmouseover="showTip(event, '1345', 1345)">
-            Count()
+          <code onmouseout="hideTip(event, '974', 974)" onmouseover="showTip(event, '974', 974)">
+            Insert(arg1)
           </code>
-          <div class="tip" id="1345">
-            <strong>Signature:</strong>unit -&gt; int<br />
+          <div class="tip" id="974">
+            <strong>Signature:</strong>&#39;T -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns the count of elememts</p>
+        <td class="xmldoc"><p>returns a new queue with the element added to the end</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1346', 1346)" onmouseover="showTip(event, '1346', 1346)">
-            Head()
+          <code onmouseout="hideTip(event, '975', 975)" onmouseover="showTip(event, '975', 975)">
+            IsEmpty
           </code>
-          <div class="tip" id="1346">
+          <div class="tip" id="975">
+            <strong>Signature:</strong>bool<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns true if the queue has no elements</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '976', 976)" onmouseover="showTip(event, '976', 976)">
+            Peek()
+          </code>
+          <div class="tip" id="976">
             <strong>Signature:</strong>unit -&gt; &#39;T<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns the min or max element</p>
+        <td class="xmldoc"><p>returns the first element</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1347', 1347)" onmouseover="showTip(event, '1347', 1347)">
-            IsDescending
+          <code onmouseout="hideTip(event, '977', 977)" onmouseover="showTip(event, '977', 977)">
+            Pop()
           </code>
-          <div class="tip" id="1347">
-            <strong>Signature:</strong>bool<br />
+          <div class="tip" id="977">
+            <strong>Signature:</strong>unit -&gt; &#39;T * IPriorityQueue&lt;&#39;T&gt;<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns true if the heap has max element at head</p>
+        <td class="xmldoc"><p>returns the first element and tail</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1348', 1348)" onmouseover="showTip(event, '1348', 1348)">
-            IsEmpty
+          <code onmouseout="hideTip(event, '978', 978)" onmouseover="showTip(event, '978', 978)">
+            TryPeek()
           </code>
-          <div class="tip" id="1348">
-            <strong>Signature:</strong>bool<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>returns true if the heap has no elements</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1349', 1349)" onmouseover="showTip(event, '1349', 1349)">
-            Length()
-          </code>
-          <div class="tip" id="1349">
-            <strong>Signature:</strong>unit -&gt; int<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>returns the count of elememts</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1350', 1350)" onmouseover="showTip(event, '1350', 1350)">
-            TryGetHead()
-          </code>
-          <div class="tip" id="1350">
+          <div class="tip" id="978">
             <strong>Signature:</strong>unit -&gt; &#39;T option<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>returns option first min or max element</p>
+        <td class="xmldoc"><p>returns option first element</p>
 </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '979', 979)" onmouseover="showTip(event, '979', 979)">
+            TryPop()
+          </code>
+          <div class="tip" id="979">
+            <strong>Signature:</strong>unit -&gt; (&#39;T * IPriorityQueue&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
       </tr>
     </tbody>
   </table>

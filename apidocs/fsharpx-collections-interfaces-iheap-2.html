@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IPriorityQueue<'T> - FSharpx.Collections</title>
+    <title>IHeap<'c, 'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,11 +35,8 @@
 
 
 
-<h1>IPriorityQueue<'T></h1>
+<h1>IHeap<'c, 'T></h1>
 <div class="xmldoc">
-<p>Priority queue is like a queue or stack data structure, but with an ascending or descending 
-ordering of the elements. Depending on the ordering peek retrieves either the highest or lowest 
-ordered element in the queue.</p>
 </div>
   <h3>Instance members</h3>
   <table class="table table-bordered member-list">
@@ -50,85 +47,99 @@ ordered element in the queue.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
+          <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
             Insert(arg1)
           </code>
-          <div class="tip" id="926">
-            <strong>Signature:</strong>&#39;T -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns a new queue with the element added to the end.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '927', 927)" onmouseover="showTip(event, '927', 927)">
-            IsEmpty
-          </code>
-          <div class="tip" id="927">
-            <strong>Signature:</strong>bool<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>O(1). Returns true if the queue has no elements.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '928', 928)" onmouseover="showTip(event, '928', 928)">
-            Peek
-          </code>
-          <div class="tip" id="928">
-            <strong>Signature:</strong>&#39;T<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>O(1). Returns the first element.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '929', 929)" onmouseover="showTip(event, '929', 929)">
-            Pop()
-          </code>
           <div class="tip" id="929">
-            <strong>Signature:</strong>unit -&gt; &#39;T * IPriorityQueue&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong>&#39;T -&gt; &#39;c<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns the first element and tail.</p>
+        <td class="xmldoc"><p>returns a new heap with the element inserted</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '930', 930)" onmouseover="showTip(event, '930', 930)">
-            TryPeek
+          <code onmouseout="hideTip(event, '951', 951)" onmouseover="showTip(event, '951', 951)">
+            Merge(arg1)
           </code>
-          <div class="tip" id="930">
-            <strong>Signature:</strong>&#39;T option<br />
+          <div class="tip" id="951">
+            <strong>Signature:</strong>&#39;c -&gt; &#39;c<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>O(1). Returns option first element.</p>
+        <td class="xmldoc"><p>returns heap from merging two heaps, both must have same isDescending</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
-            TryPop()
+          <code onmouseout="hideTip(event, '952', 952)" onmouseover="showTip(event, '952', 952)">
+            Tail()
           </code>
-          <div class="tip" id="931">
-            <strong>Signature:</strong>unit -&gt; (&#39;T * IPriorityQueue&lt;&#39;T&gt;) option<br />
+          <div class="tip" id="952">
+            <strong>Signature:</strong>unit -&gt; &#39;c<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns the option first element and tail.</p>
+        <td class="xmldoc"><p>returns a new heap of the elements trailing the head</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '953', 953)" onmouseover="showTip(event, '953', 953)">
+            TryGetTail()
+          </code>
+          <div class="tip" id="953">
+            <strong>Signature:</strong>unit -&gt; &#39;c option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns option heap of the elements trailing the head</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '954', 954)" onmouseover="showTip(event, '954', 954)">
+            TryMerge(arg1)
+          </code>
+          <div class="tip" id="954">
+            <strong>Signature:</strong>&#39;c -&gt; &#39;c option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns heap option from merging two heaps</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '955', 955)" onmouseover="showTip(event, '955', 955)">
+            TryUncons()
+          </code>
+          <div class="tip" id="955">
+            <strong>Signature:</strong>unit -&gt; (&#39;T * &#39;c) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns option head element and tail</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '956', 956)" onmouseover="showTip(event, '956', 956)">
+            Uncons()
+          </code>
+          <div class="tip" id="956">
+            <strong>Signature:</strong>unit -&gt; &#39;T * &#39;c<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>returns the head element and tail</p>
 </td>
       </tr>
     </tbody>
