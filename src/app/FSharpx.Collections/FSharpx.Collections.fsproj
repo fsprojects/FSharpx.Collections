@@ -62,35 +62,6 @@
     <Compile Include="Collections\Queue.fs" />
     <Compile Include="Collections\Vector.fsi" />
     <Compile Include="Collections\Vector.fs" />
-    <Compile Include="Interfaces.fs" />
-    <Compile Include="Infrastructure.fs" />
-    <Compile Include="DList.fs" />
-    <Compile Include="Vector.fs" />
-    <Compile Include="RingBuffer.fs" />
-    <Compile Include="TimeSeries.fs" />
-    <Compile Include="BootstrappedQueue.fs" />
-    <Compile Include="ImplicitQueue.fs" />
-    <Compile Include="RealTimeQueue.fs" />
-    <Compile Include="RealTimeDeque.fs" />
-    <Compile Include="BankersDeque.fs" />
-    <Compile Include="BatchedDeque.fs" />
-    <Compile Include="Deque.fs" />
-    <Compile Include="BottomUpMergeSort.fs" />
-    <Compile Include="AltBinaryRandomAccessList.fs" />
-    <Compile Include="BinaryRandomAccessList.fs" />
-    <Compile Include="SkewBinaryRandomAccessList.fs" />
-    <Compile Include="LeftistHeap.fs" />
-    <Compile Include="BinomialHeap.fs" />
-    <Compile Include="PairingHeap.fs" />
-    <Compile Include="HeapPriorityQueue.fs" />
-    <Compile Include="BinaryTreeZipper.fs" />
-    <Compile Include="ListZipper.fs" />
-    <Compile Include="BankersQueue.fs" />
-    <Compile Include="BatchedQueue.fs" />
-    <Compile Include="PhysicistQueue.fs" />
-    <Compile Include="HoodMelvilleQueue.fs" />
-    <Compile Include="IntMap.fs" />
-    <Compile Include="BKTree.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
