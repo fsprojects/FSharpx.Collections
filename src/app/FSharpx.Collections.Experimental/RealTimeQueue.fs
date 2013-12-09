@@ -1,4 +1,4 @@
-﻿// RealTime queue from Chris Okasaki’s “Purely functional data structures”
+﻿// RealTime queue from Chris Okasaki’s "Purely functional data structures"
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/real-time-queue
 module FSharpx.Collections.Experimental.RealTimeQueue
 
