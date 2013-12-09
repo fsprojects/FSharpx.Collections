@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LeftistHeap<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>LeftistHeap<'T></h1>
+<div class="xmldoc">
+</div>
+  <h3>Union Cases</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Union Case</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2143', 2143)" onmouseover="showTip(event, '2143', 2143)">
+            E
+          </code>
+          <div class="tip" id="2143">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2144', 2144)" onmouseover="showTip(event, '2144', 2144)">
+            T
+          </code>
+          <div class="tip" id="2144">
+            <strong>Signature:</strong>bool * int * int * &#39;T * LeftistHeap&lt;&#39;T&gt; * LeftistHeap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2228', 2228)" onmouseover="showTip(event, '2228', 2228)">
+            Head
+          </code>
+          <div class="tip" id="2228">
+            <strong>Signature:</strong>&#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the min or max element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2229', 2229)" onmouseover="showTip(event, '2229', 2229)">
+            Insert(x)
+          </code>
+          <div class="tip" id="2229">
+            <strong>Signature:</strong>x:&#39;T -&gt; LeftistHeap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns a new heap with the element inserted.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2230', 2230)" onmouseover="showTip(event, '2230', 2230)">
+            IsDescending
+          </code>
+          <div class="tip" id="2230">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the heap has max element at head.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2231', 2231)" onmouseover="showTip(event, '2231', 2231)">
+            IsEmpty
+          </code>
+          <div class="tip" id="2231">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the heap has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2232', 2232)" onmouseover="showTip(event, '2232', 2232)">
+            Length
+          </code>
+          <div class="tip" id="2232">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the count of elememts.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2233', 2233)" onmouseover="showTip(event, '2233', 2233)">
+            Merge(xs)
+          </code>
+          <div class="tip" id="2233">
+            <strong>Signature:</strong>xs:LeftistHeap&lt;&#39;T&gt; -&gt; LeftistHeap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns heap from merging two heaps, both must have same isDescending.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2234', 2234)" onmouseover="showTip(event, '2234', 2234)">
+            Tail()
+          </code>
+          <div class="tip" id="2234">
+            <strong>Signature:</strong>unit -&gt; LeftistHeap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n) Returns a new heap of the elements trailing the head.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2235', 2235)" onmouseover="showTip(event, '2235', 2235)">
+            TryGetHead
+          </code>
+          <div class="tip" id="2235">
+            <strong>Signature:</strong>&#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option first min or max element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2236', 2236)" onmouseover="showTip(event, '2236', 2236)">
+            TryGetTail()
+          </code>
+          <div class="tip" id="2236">
+            <strong>Signature:</strong>unit -&gt; LeftistHeap&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns option heap of the elements trailing the head.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2237', 2237)" onmouseover="showTip(event, '2237', 2237)">
+            TryMerge(xs)
+          </code>
+          <div class="tip" id="2237">
+            <strong>Signature:</strong>xs:LeftistHeap&lt;&#39;T&gt; -&gt; LeftistHeap&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns heap option from merging two heaps</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2238', 2238)" onmouseover="showTip(event, '2238', 2238)">
+            TryUncons()
+          </code>
+          <div class="tip" id="2238">
+            <strong>Signature:</strong>unit -&gt; (&#39;T * LeftistHeap&lt;&#39;T&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns option head element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2239', 2239)" onmouseover="showTip(event, '2239', 2239)">
+            Uncons()
+          </code>
+          <div class="tip" id="2239">
+            <strong>Signature:</strong>unit -&gt; &#39;T * LeftistHeap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Returns the head element and tail.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HoodMelvilleQueue - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>HoodMelvilleQueue</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1264', 1264)" onmouseover="showTip(event, '1264', 1264)">
+            empty ()
+          </code>
+          <div class="tip" id="1264">
+            <strong>Signature:</strong>unit -&gt; HoodMelvilleQueue&lt;&#39;?16120&gt;<br />
+                          <strong>Type parameters:</strong> '?16120          </div>
+        </td>
+        <td class="xmldoc"><p>returns queue of no elements</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1265', 1265)" onmouseover="showTip(event, '1265', 1265)">
+            fold f state q
+          </code>
+          <div class="tip" id="1265">
+            <strong>Signature:</strong>f:(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; state:&#39;State -&gt; q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>applies a function to each element of the queue, threading an accumulator argument through the computation, left to right</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1266', 1266)" onmouseover="showTip(event, '1266', 1266)">
+            foldBack f q state
+          </code>
+          <div class="tip" id="1266">
+            <strong>Signature:</strong>f:(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; state:&#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>applies a function to each element of the queue, threading an accumulator argument through the computation, right to left</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1267', 1267)" onmouseover="showTip(event, '1267', 1267)">
+            head q
+          </code>
+          <div class="tip" id="1267">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns the first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1268', 1268)" onmouseover="showTip(event, '1268', 1268)">
+            isEmpty q
+          </code>
+          <div class="tip" id="1268">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns true if the queue has no elements</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1269', 1269)" onmouseover="showTip(event, '1269', 1269)">
+            length q
+          </code>
+          <div class="tip" id="1269">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns the count of elememts</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1270', 1270)" onmouseover="showTip(event, '1270', 1270)">
+            ofList xs
+          </code>
+          <div class="tip" id="1270">
+            <strong>Signature:</strong>xs:seq&lt;&#39;?16136&gt; -&gt; HoodMelvilleQueue&lt;&#39;?16136&gt;<br />
+                          <strong>Type parameters:</strong> '?16136          </div>
+        </td>
+        <td class="xmldoc"><p>returns a queue of the list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1271', 1271)" onmouseover="showTip(event, '1271', 1271)">
+            ofSeq xs
+          </code>
+          <div class="tip" id="1271">
+            <strong>Signature:</strong>xs:seq&lt;&#39;?16138&gt; -&gt; HoodMelvilleQueue&lt;&#39;?16138&gt;<br />
+                          <strong>Type parameters:</strong> '?16138          </div>
+        </td>
+        <td class="xmldoc"><p>returns a queue of the seq</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1272', 1272)" onmouseover="showTip(event, '1272', 1272)">
+            snoc x q
+          </code>
+          <div class="tip" id="1272">
+            <strong>Signature:</strong>x:&#39;T -&gt; q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; HoodMelvilleQueue&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns a new queue with the element added to the end</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1273', 1273)" onmouseover="showTip(event, '1273', 1273)">
+            tail q
+          </code>
+          <div class="tip" id="1273">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; HoodMelvilleQueue&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns a new queue of the elements trailing the first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1274', 1274)" onmouseover="showTip(event, '1274', 1274)">
+            tryGetHead q
+          </code>
+          <div class="tip" id="1274">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns option first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1275', 1275)" onmouseover="showTip(event, '1275', 1275)">
+            tryGetTail q
+          </code>
+          <div class="tip" id="1275">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; HoodMelvilleQueue&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns option queue of the elements trailing the first element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1276', 1276)" onmouseover="showTip(event, '1276', 1276)">
+            tryUncons q
+          </code>
+          <div class="tip" id="1276">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; (&#39;T * HoodMelvilleQueue&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns option first element and tail</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1277', 1277)" onmouseover="showTip(event, '1277', 1277)">
+            uncons q
+          </code>
+          <div class="tip" id="1277">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; &#39;T * HoodMelvilleQueue&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>returns the first element and tail</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1288', 1288)" onmouseover="showTip(event, '1288', 1288)">
+            ( |Cons|Nil| ) q
+          </code>
+          <div class="tip" id="1288">
+            <strong>Signature:</strong>q:HoodMelvilleQueue&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * HoodMelvilleQueue&lt;&#39;T&gt;),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

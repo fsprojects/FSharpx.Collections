@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vector<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Vector<'T></h1>
+<div class="xmldoc">
+<p>Vector is an ordered linear structure implementing the inverse of the List signature, 
+(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
+(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
+Ordering is by insertion history.
+Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1525', 1525)" onmouseover="showTip(event, '1525', 1525)">
+            Conj(arg1)
+          </code>
+          <div class="tip" id="1525">
+            <strong>Signature:</strong>&#39;T -&gt; Vector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a new vector with the element added at the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1527', 1527)" onmouseover="showTip(event, '1527', 1527)">
+            Initial
+          </code>
+          <div class="tip" id="1527">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1528', 1528)" onmouseover="showTip(event, '1528', 1528)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1528">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the vector has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1529', 1529)" onmouseover="showTip(event, '1529', 1529)">
+            [arg1]
+          </code>
+          <div class="tip" id="1529">
+            <strong>Signature:</strong>int -&gt; &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns vector element at the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1530', 1530)" onmouseover="showTip(event, '1530', 1530)">
+            Last
+          </code>
+          <div class="tip" id="1530">
+            <strong>Signature:</strong>&#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1531', 1531)" onmouseover="showTip(event, '1531', 1531)">
+            Length
+          </code>
+          <div class="tip" id="1531">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the number of items in the vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1532', 1532)" onmouseover="showTip(event, '1532', 1532)">
+            Rev()
+          </code>
+          <div class="tip" id="1532">
+            <strong>Signature:</strong>unit -&gt; Vector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns random access list reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1533', 1533)" onmouseover="showTip(event, '1533', 1533)">
+            TryInitial
+          </code>
+          <div class="tip" id="1533">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns option vector without the last item.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1534', 1534)" onmouseover="showTip(event, '1534', 1534)">
+            TryLast
+          </code>
+          <div class="tip" id="1534">
+            <strong>Signature:</strong>&#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option last element in the vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1535', 1535)" onmouseover="showTip(event, '1535', 1535)">
+            TryUnconj
+          </code>
+          <div class="tip" id="1535">
+            <strong>Signature:</strong>(Vector&lt;&#39;T&gt; * &#39;T) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option tuple last element and vector without last item</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1536', 1536)" onmouseover="showTip(event, '1536', 1536)">
+            TryUpdate(arg1, arg2)
+          </code>
+          <div class="tip" id="1536">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; Vector&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns option vector that contains the given value at the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1537', 1537)" onmouseover="showTip(event, '1537', 1537)">
+            Unconj
+          </code>
+          <div class="tip" id="1537">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; * &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns tuple last element and vector without last item</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1538', 1538)" onmouseover="showTip(event, '1538', 1538)">
+            Update(arg1, arg2)
+          </code>
+          <div class="tip" id="1538">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; Vector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns a new vector that contains the given value at the index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

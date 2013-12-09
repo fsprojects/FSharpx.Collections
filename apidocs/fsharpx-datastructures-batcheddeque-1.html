@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BatchedDeque<'a> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>BatchedDeque<'a></h1>
+<div class="xmldoc">
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1677', 1677)" onmouseover="showTip(event, '1677', 1677)">
+            new(front, rBack)
+          </code>
+          <div class="tip" id="1677">
+            <strong>Signature:</strong>(front:&#39;a list * rBack:&#39;a list) -&gt; BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1724', 1724)" onmouseover="showTip(event, '1724', 1724)">
+            Cons(x)
+          </code>
+          <div class="tip" id="1724">
+            <strong>Signature:</strong>x:&#39;a -&gt; BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a new deque with the element added to the beginning.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1725', 1725)" onmouseover="showTip(event, '1725', 1725)">
+            Head
+          </code>
+          <div class="tip" id="1725">
+            <strong>Signature:</strong>&#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1726', 1726)" onmouseover="showTip(event, '1726', 1726)">
+            Init
+          </code>
+          <div class="tip" id="1726">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1727', 1727)" onmouseover="showTip(event, '1727', 1727)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1727">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the deque has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1728', 1728)" onmouseover="showTip(event, '1728', 1728)">
+            Last
+          </code>
+          <div class="tip" id="1728">
+            <strong>Signature:</strong>&#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1729', 1729)" onmouseover="showTip(event, '1729', 1729)">
+            Length
+          </code>
+          <div class="tip" id="1729">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the count of elememts.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1730', 1730)" onmouseover="showTip(event, '1730', 1730)">
+            Lookup(i)
+          </code>
+          <div class="tip" id="1730">
+            <strong>Signature:</strong>i:int -&gt; &#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1731', 1731)" onmouseover="showTip(event, '1731', 1731)">
+            Remove(i)
+          </code>
+          <div class="tip" id="1731">
+            <strong>Signature:</strong>i:int -&gt; BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1732', 1732)" onmouseover="showTip(event, '1732', 1732)">
+            Rev
+          </code>
+          <div class="tip" id="1732">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns deque reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1733', 1733)" onmouseover="showTip(event, '1733', 1733)">
+            Snoc(x)
+          </code>
+          <div class="tip" id="1733">
+            <strong>Signature:</strong>x:&#39;a -&gt; BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a new deque with the element added to the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1734', 1734)" onmouseover="showTip(event, '1734', 1734)">
+            Tail
+          </code>
+          <div class="tip" id="1734">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1735', 1735)" onmouseover="showTip(event, '1735', 1735)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1735">
+            <strong>Signature:</strong>&#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns option first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1736', 1736)" onmouseover="showTip(event, '1736', 1736)">
+            TryGetInit
+          </code>
+          <div class="tip" id="1736">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1737', 1737)" onmouseover="showTip(event, '1737', 1737)">
+            TryGetLast
+          </code>
+          <div class="tip" id="1737">
+            <strong>Signature:</strong>&#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns option last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1738', 1738)" onmouseover="showTip(event, '1738', 1738)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1738">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1739', 1739)" onmouseover="showTip(event, '1739', 1739)">
+            TryLookup(i)
+          </code>
+          <div class="tip" id="1739">
+            <strong>Signature:</strong>i:int -&gt; &#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1740', 1740)" onmouseover="showTip(event, '1740', 1740)">
+            TryRemove(i)
+          </code>
+          <div class="tip" id="1740">
+            <strong>Signature:</strong>i:int -&gt; BatchedDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1741', 1741)" onmouseover="showTip(event, '1741', 1741)">
+            TryUncons
+          </code>
+          <div class="tip" id="1741">
+            <strong>Signature:</strong>(&#39;a * BatchedDeque&lt;&#39;a&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns option first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1742', 1742)" onmouseover="showTip(event, '1742', 1742)">
+            TryUnsnoc
+          </code>
+          <div class="tip" id="1742">
+            <strong>Signature:</strong>(BatchedDeque&lt;&#39;a&gt; * &#39;a) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns option init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1743', 1743)" onmouseover="showTip(event, '1743', 1743)">
+            TryUpdate(i y)
+          </code>
+          <div class="tip" id="1743">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; BatchedDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option deque with element updated by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1744', 1744)" onmouseover="showTip(event, '1744', 1744)">
+            Uncons
+          </code>
+          <div class="tip" id="1744">
+            <strong>Signature:</strong>&#39;a * BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns the first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1745', 1745)" onmouseover="showTip(event, '1745', 1745)">
+            Unsnoc
+          </code>
+          <div class="tip" id="1745">
+            <strong>Signature:</strong>BatchedDeque&lt;&#39;a&gt; * &#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1) amortized, O(n), worst case. Returns init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1746', 1746)" onmouseover="showTip(event, '1746', 1746)">
+            Update(i y)
+          </code>
+          <div class="tip" id="1746">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; BatchedDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns deque with element updated by index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

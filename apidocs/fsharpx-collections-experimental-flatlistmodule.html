@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FlatList - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>FlatList</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1132', 1132)" onmouseover="showTip(event, '1132', 1132)">
+            append arg1 arg2
+          </code>
+          <div class="tip" id="1132">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist that contains the elements of one flatlist followed by the elements of another flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1133', 1133)" onmouseover="showTip(event, '1133', 1133)">
+            collect arg1 arg2
+          </code>
+          <div class="tip" id="1133">
+            <strong>Signature:</strong>(&#39;T -&gt; FlatList&lt;&#39;T&gt;) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies the supplied function to each element of a flatlist, concatenates the results, and returns the combined flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1134', 1134)" onmouseover="showTip(event, '1134', 1134)">
+            concat arg1
+          </code>
+          <div class="tip" id="1134">
+            <strong>Signature:</strong>FlatList&lt;&#39;T []&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist that contains the elements of each of the supplied sequence of flatlists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1135', 1135)" onmouseover="showTip(event, '1135', 1135)">
+            empty 
+          </code>
+          <div class="tip" id="1135">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns flatlist of no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1136', 1136)" onmouseover="showTip(event, '1136', 1136)">
+            exists arg1 arg2
+          </code>
+          <div class="tip" id="1136">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n) worst case. Tests whether any element of a flatlist satisfies the supplied predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1137', 1137)" onmouseover="showTip(event, '1137', 1137)">
+            filter arg1 arg2
+          </code>
+          <div class="tip" id="1137">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a flatlist that contains only the elements of the supplied flatlist for which the supplied condition returns true.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1138', 1138)" onmouseover="showTip(event, '1138', 1138)">
+            fold arg1 arg2 arg3
+          </code>
+          <div class="tip" id="1138">
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies a function to each element of a flatlist from left to right (first to last), threading an accumulator argument through the computation.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1139', 1139)" onmouseover="showTip(event, '1139', 1139)">
+            fold2 arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="1139">
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T1 -&gt; &#39;T2 -&gt; &#39;State) -&gt; &#39;State -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies a function to pairs of elements from two supplied flatlists, left-to-right, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1140', 1140)" onmouseover="showTip(event, '1140', 1140)">
+            foldBack arg1 arg2 arg3
+          </code>
+          <div class="tip" id="1140">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies a function to each element of a flatlist from right to left (last to first), threading an accumulator argument through the computation.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1141', 1141)" onmouseover="showTip(event, '1141', 1141)">
+            foldBack2 arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="1141">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; &#39;State -&gt; &#39;State) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies a function to pairs of elements from two supplied flatlists, right-to-left, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1142', 1142)" onmouseover="showTip(event, '1142', 1142)">
+            forall arg1 arg2
+          </code>
+          <div class="tip" id="1142">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Tests whether all elements of a flatlist satisfy the supplied condition.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1143', 1143)" onmouseover="showTip(event, '1143', 1143)">
+            forall2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="1143">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; bool) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Tests whether all corresponding elements of two supplied flatlists satisfy a supplied condition.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1144', 1144)" onmouseover="showTip(event, '1144', 1144)">
+            init arg1 f
+          </code>
+          <div class="tip" id="1144">
+            <strong>Signature:</strong>int -&gt; f:(int -&gt; &#39;T) -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Uses a supplied function to create a flatlist of the supplied dimension.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1145', 1145)" onmouseover="showTip(event, '1145', 1145)">
+            isEmpty arg1
+          </code>
+          <div class="tip" id="1145">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). O(1). Returns true if the flatlist has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1146', 1146)" onmouseover="showTip(event, '1146', 1146)">
+            iter arg1 arg2
+          </code>
+          <div class="tip" id="1146">
+            <strong>Signature:</strong>(&#39;T -&gt; unit) -&gt; FlatList&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies the supplied function to each element of a flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1147', 1147)" onmouseover="showTip(event, '1147', 1147)">
+            iter2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="1147">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; unit) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies the supplied function to a pair of elements from matching indexes in two flatlists, also passing the index of the elements. The two flatlists must have the same lengths; otherwise, an ArgumentException is raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1148', 1148)" onmouseover="showTip(event, '1148', 1148)">
+            iteri arg1 arg2
+          </code>
+          <div class="tip" id="1148">
+            <strong>Signature:</strong>(int -&gt; &#39;T -&gt; unit) -&gt; FlatList&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Applies the supplied function to each element of a flatlist. The integer passed to the function indicates the index of the element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1149', 1149)" onmouseover="showTip(event, '1149', 1149)">
+            length arg1
+          </code>
+          <div class="tip" id="1149">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the number of items in the flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1150', 1150)" onmouseover="showTip(event, '1150', 1150)">
+            map arg1 arg2
+          </code>
+          <div class="tip" id="1150">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1151', 1151)" onmouseover="showTip(event, '1151', 1151)">
+            map2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="1151">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; &#39;T3) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; FlatList&lt;&#39;T3&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'T3          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to the corresponding elements of two supplied flatlists. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1152', 1152)" onmouseover="showTip(event, '1152', 1152)">
+            mapi arg1 arg2
+          </code>
+          <div class="tip" id="1152">
+            <strong>Signature:</strong>(int -&gt; &#39;T1 -&gt; &#39;T2) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist. An integer index passed to the function indicates the index of the element being transformed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1153', 1153)" onmouseover="showTip(event, '1153', 1153)">
+            ofList arg1
+          </code>
+          <div class="tip" id="1153">
+            <strong>Signature:</strong>&#39;T list -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist from the supplied list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1154', 1154)" onmouseover="showTip(event, '1154', 1154)">
+            ofSeq arg1
+          </code>
+          <div class="tip" id="1154">
+            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Creates a flatlist from the supplied enumerable object.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1155', 1155)" onmouseover="showTip(event, '1155', 1155)">
+            partition arg1 arg2
+          </code>
+          <div class="tip" id="1155">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; * FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Splits a flatlist into two flatlists, one containing the elements for which the supplied condition returns true, and the other containing those for which it returns false.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1156', 1156)" onmouseover="showTip(event, '1156', 1156)">
+            physicalEquality arg1 arg2
+          </code>
+          <div class="tip" id="1156">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). True if the flatlists are reference-equal, false otherwise</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1157', 1157)" onmouseover="showTip(event, '1157', 1157)">
+            rev arg1
+          </code>
+          <div class="tip" id="1157">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Reverses the order of the elements in a supplied array.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1158', 1158)" onmouseover="showTip(event, '1158', 1158)">
+            singleton arg1
+          </code>
+          <div class="tip" id="1158">
+            <strong>Signature:</strong>&#39;T -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a flatlist of one element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1159', 1159)" onmouseover="showTip(event, '1159', 1159)">
+            sum arg1
+          </code>
+          <div class="tip" id="1159">
+            <strong>Signature:</strong>FlatList&lt;int&gt; -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns the sum of the elements in the flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1160', 1160)" onmouseover="showTip(event, '1160', 1160)">
+            sumBy arg1 arg2
+          </code>
+          <div class="tip" id="1160">
+            <strong>Signature:</strong>(&#39;T -&gt; int) -&gt; FlatList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns the sum of the results generated by applying a function to each element of a flatlist.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1161', 1161)" onmouseover="showTip(event, '1161', 1161)">
+            toList arg1
+          </code>
+          <div class="tip" id="1161">
+            <strong>Signature:</strong>FlatList&lt;&#39;T&gt; -&gt; &#39;T list<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Converts the supplied flatlist to a list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1162', 1162)" onmouseover="showTip(event, '1162', 1162)">
+            toMap arg1
+          </code>
+          <div class="tip" id="1162">
+            <strong>Signature:</strong>FlatList&lt;&#39;Key * &#39;T&gt; -&gt; Map&lt;&#39;Key,&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'Key, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Converts the supplied flatlist of tuple pairs to a map.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1163', 1163)" onmouseover="showTip(event, '1163', 1163)">
+            tryFind arg1 arg2
+          </code>
+          <div class="tip" id="1163">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns the first element in the supplied flatlist for which the supplied function returns true. Returns None if no such element exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1164', 1164)" onmouseover="showTip(event, '1164', 1164)">
+            unzip arg1
+          </code>
+          <div class="tip" id="1164">
+            <strong>Signature:</strong>FlatList&lt;&#39;T1 * &#39;T2&gt; -&gt; FlatList&lt;&#39;T1&gt; * FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Splits a flatlist of tuple pairs into a tuple of two flatlists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1165', 1165)" onmouseover="showTip(event, '1165', 1165)">
+            zip arg1 arg2
+          </code>
+          <div class="tip" id="1165">
+            <strong>Signature:</strong>FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; FlatList&lt;&#39;T1 * &#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Combines two flatlists into a flatlist of tuples that have two elements. The two flatlists must have equal lengths; otherwise, ArgumentException is raised.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

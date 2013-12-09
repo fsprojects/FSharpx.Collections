@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BankersDeque<'a> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>BankersDeque<'a></h1>
+<div class="xmldoc">
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1678', 1678)" onmouseover="showTip(event, '1678', 1678)">
+            new(...)
+          </code>
+          <div class="tip" id="1678">
+            <strong>Signature:</strong>(c:int * frontLength:int * front:LazyList&lt;&#39;a&gt; * rBackLength:int * rBack:LazyList&lt;&#39;a&gt;) -&gt; BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1699', 1699)" onmouseover="showTip(event, '1699', 1699)">
+            Cons(x)
+          </code>
+          <div class="tip" id="1699">
+            <strong>Signature:</strong>x:&#39;a -&gt; BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns a new deque with the element added to the beginning.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1700', 1700)" onmouseover="showTip(event, '1700', 1700)">
+            Head
+          </code>
+          <div class="tip" id="1700">
+            <strong>Signature:</strong>&#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1701', 1701)" onmouseover="showTip(event, '1701', 1701)">
+            Init
+          </code>
+          <div class="tip" id="1701">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns a new deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1702', 1702)" onmouseover="showTip(event, '1702', 1702)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1702">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the deque has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1703', 1703)" onmouseover="showTip(event, '1703', 1703)">
+            Last
+          </code>
+          <div class="tip" id="1703">
+            <strong>Signature:</strong>&#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1704', 1704)" onmouseover="showTip(event, '1704', 1704)">
+            Length
+          </code>
+          <div class="tip" id="1704">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the count of elememts.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1705', 1705)" onmouseover="showTip(event, '1705', 1705)">
+            Lookup(i)
+          </code>
+          <div class="tip" id="1705">
+            <strong>Signature:</strong>i:int -&gt; &#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1706', 1706)" onmouseover="showTip(event, '1706', 1706)">
+            Remove(i)
+          </code>
+          <div class="tip" id="1706">
+            <strong>Signature:</strong>i:int -&gt; BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1707', 1707)" onmouseover="showTip(event, '1707', 1707)">
+            Rev
+          </code>
+          <div class="tip" id="1707">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns deque reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1708', 1708)" onmouseover="showTip(event, '1708', 1708)">
+            Snoc(x)
+          </code>
+          <div class="tip" id="1708">
+            <strong>Signature:</strong>x:&#39;a -&gt; BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns a new deque with the element added to the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1709', 1709)" onmouseover="showTip(event, '1709', 1709)">
+            Tail
+          </code>
+          <div class="tip" id="1709">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns a new deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1710', 1710)" onmouseover="showTip(event, '1710', 1710)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1710">
+            <strong>Signature:</strong>&#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1711', 1711)" onmouseover="showTip(event, '1711', 1711)">
+            TryGetInit
+          </code>
+          <div class="tip" id="1711">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1712', 1712)" onmouseover="showTip(event, '1712', 1712)">
+            TryGetLast
+          </code>
+          <div class="tip" id="1712">
+            <strong>Signature:</strong>&#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1713', 1713)" onmouseover="showTip(event, '1713', 1713)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1713">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1714', 1714)" onmouseover="showTip(event, '1714', 1714)">
+            TryLookup(i)
+          </code>
+          <div class="tip" id="1714">
+            <strong>Signature:</strong>i:int -&gt; &#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1715', 1715)" onmouseover="showTip(event, '1715', 1715)">
+            TryRemove(i)
+          </code>
+          <div class="tip" id="1715">
+            <strong>Signature:</strong>i:int -&gt; BankersDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1716', 1716)" onmouseover="showTip(event, '1716', 1716)">
+            TryUncons
+          </code>
+          <div class="tip" id="1716">
+            <strong>Signature:</strong>(&#39;a * BankersDeque&lt;&#39;a&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1717', 1717)" onmouseover="showTip(event, '1717', 1717)">
+            TryUnsnoc
+          </code>
+          <div class="tip" id="1717">
+            <strong>Signature:</strong>(BankersDeque&lt;&#39;a&gt; * &#39;a) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns option init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1718', 1718)" onmouseover="showTip(event, '1718', 1718)">
+            TryUpdate(i y)
+          </code>
+          <div class="tip" id="1718">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; BankersDeque&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns option deque with element updated by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1719', 1719)" onmouseover="showTip(event, '1719', 1719)">
+            Uncons
+          </code>
+          <div class="tip" id="1719">
+            <strong>Signature:</strong>&#39;a * BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns the first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1720', 1720)" onmouseover="showTip(event, '1720', 1720)">
+            Unsnoc
+          </code>
+          <div class="tip" id="1720">
+            <strong>Signature:</strong>BankersDeque&lt;&#39;a&gt; * &#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), amortized. Returns init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1721', 1721)" onmouseover="showTip(event, '1721', 1721)">
+            Update(i y)
+          </code>
+          <div class="tip" id="1721">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; BankersDeque&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Returns deque with element updated by index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SkewBinaryRandomAccessList<'a> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>SkewBinaryRandomAccessList<'a></h1>
+<div class="xmldoc">
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1842', 1842)" onmouseover="showTip(event, '1842', 1842)">
+            new(randomAccessList)
+          </code>
+          <div class="tip" id="1842">
+            <strong>Signature:</strong>(randomAccessList:(int * TreeSBRAL&lt;&#39;a&gt;) list) -&gt; SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1874', 1874)" onmouseover="showTip(event, '1874', 1874)">
+            Cons(x)
+          </code>
+          <div class="tip" id="1874">
+            <strong>Signature:</strong>x:&#39;a -&gt; SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new random access list with the element added to the beginning.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1875', 1875)" onmouseover="showTip(event, '1875', 1875)">
+            Head
+          </code>
+          <div class="tip" id="1875">
+            <strong>Signature:</strong>&#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1876', 1876)" onmouseover="showTip(event, '1876', 1876)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1876">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the random access list has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1877', 1877)" onmouseover="showTip(event, '1877', 1877)">
+            Length()
+          </code>
+          <div class="tip" id="1877">
+            <strong>Signature:</strong>unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n) Returns the count of elememts.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1878', 1878)" onmouseover="showTip(event, '1878', 1878)">
+            Lookup(i)
+          </code>
+          <div class="tip" id="1878">
+            <strong>Signature:</strong>i:int -&gt; &#39;a<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n), worst case. Returns element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1879', 1879)" onmouseover="showTip(event, '1879', 1879)">
+            randomAccessList
+          </code>
+          <div class="tip" id="1879">
+            <strong>Signature:</strong>(int * TreeSBRAL&lt;&#39;a&gt;) list<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1880', 1880)" onmouseover="showTip(event, '1880', 1880)">
+            Rev()
+          </code>
+          <div class="tip" id="1880">
+            <strong>Signature:</strong>unit -&gt; SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns random access list reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1881', 1881)" onmouseover="showTip(event, '1881', 1881)">
+            Tail
+          </code>
+          <div class="tip" id="1881">
+            <strong>Signature:</strong>SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new random access list of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1882', 1882)" onmouseover="showTip(event, '1882', 1882)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1882">
+            <strong>Signature:</strong>&#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1883', 1883)" onmouseover="showTip(event, '1883', 1883)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1883">
+            <strong>Signature:</strong>SkewBinaryRandomAccessList&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a option random access list of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1884', 1884)" onmouseover="showTip(event, '1884', 1884)">
+            TryLookup(i)
+          </code>
+          <div class="tip" id="1884">
+            <strong>Signature:</strong>i:int -&gt; &#39;a option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n), worst case. Returns option element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1885', 1885)" onmouseover="showTip(event, '1885', 1885)">
+            TryUncons
+          </code>
+          <div class="tip" id="1885">
+            <strong>Signature:</strong>(&#39;a * SkewBinaryRandomAccessList&lt;&#39;a&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the option first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1886', 1886)" onmouseover="showTip(event, '1886', 1886)">
+            TryUpdate(i y)
+          </code>
+          <div class="tip" id="1886">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; SkewBinaryRandomAccessList&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n), worst case. Returns option random access list with element updated by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1887', 1887)" onmouseover="showTip(event, '1887', 1887)">
+            Uncons
+          </code>
+          <div class="tip" id="1887">
+            <strong>Signature:</strong>&#39;a * SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1888', 1888)" onmouseover="showTip(event, '1888', 1888)">
+            Update(i y)
+          </code>
+          <div class="tip" id="1888">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; SkewBinaryRandomAccessList&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>O(log n), worst case. Returns random access list with element updated by index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1902', 1902)" onmouseover="showTip(event, '1902', 1902)">
+            tryUpdate(i y)
+          </code>
+          <div class="tip" id="1902">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; (int * TreeSBRAL&lt;&#39;a&gt;) list -&gt; (int * TreeSBRAL&lt;&#39;a&gt;) list option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1903', 1903)" onmouseover="showTip(event, '1903', 1903)">
+            tryUpdateTree
+          </code>
+          <div class="tip" id="1903">
+            <strong>Signature:</strong>int * int * &#39;a * TreeSBRAL&lt;&#39;a&gt; -&gt; TreeSBRAL&lt;&#39;a&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1904', 1904)" onmouseover="showTip(event, '1904', 1904)">
+            update(i y)
+          </code>
+          <div class="tip" id="1904">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;a -&gt; (int * TreeSBRAL&lt;&#39;a&gt;) list -&gt; (int * TreeSBRAL&lt;&#39;a&gt;) list<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1905', 1905)" onmouseover="showTip(event, '1905', 1905)">
+            updateTree
+          </code>
+          <div class="tip" id="1905">
+            <strong>Signature:</strong>int * int * &#39;a * TreeSBRAL&lt;&#39;a&gt; -&gt; TreeSBRAL&lt;&#39;a&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

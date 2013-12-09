@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BinaryTreeZipper - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>BinaryTreeZipper</h1>
+<div class="xmldoc">
+<p>TreeZipper
+original implementation taken from http://blog.xquant.net/?p=156</p>
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-experimental-binarytreezipper-binarytree-1.html">BinaryTree<'T></a>
+          </td>
+          <td class="xmldoc"><p>A simple binary tree</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-experimental-binarytreezipper-binarytreezipper-1.html">BinaryTreeZipper<'T></a>
+          </td>
+          <td class="xmldoc"><p>The zipper datastructure for binary trees</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-experimental-binarytreezipper-treedirection.html">TreeDirection</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1078', 1078)" onmouseover="showTip(event, '1078', 1078)">
+            branch x
+          </code>
+          <div class="tip" id="1078">
+            <strong>Signature:</strong>x:&#39;?16666 -&gt; BinaryTree&lt;&#39;?16666&gt;<br />
+                          <strong>Type parameters:</strong> '?16666          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a new branch with the label x and two leafs as subbranches</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1079', 1079)" onmouseover="showTip(event, '1079', 1079)">
+            getMove direction
+          </code>
+          <div class="tip" id="1079">
+            <strong>Signature:</strong>direction:TreeZipperDirection -&gt; BinaryTreeZipper&lt;&#39;?16718&gt; -&gt; BinaryTreeZipper&lt;&#39;?16718&gt;<br />
+                          <strong>Type parameters:</strong> '?16718          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1080', 1080)" onmouseover="showTip(event, '1080', 1080)">
+            left z
+          </code>
+          <div class="tip" id="1080">
+            <strong>Signature:</strong>z:BinaryTreeZipper&lt;&#39;?16700&gt; -&gt; BinaryTreeZipper&lt;&#39;?16700&gt;<br />
+                          <strong>Type parameters:</strong> '?16700          </div>
+        </td>
+        <td class="xmldoc"><p>Moves the zipper to the left</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1081', 1081)" onmouseover="showTip(event, '1081', 1081)">
+            move directions z
+          </code>
+          <div class="tip" id="1081">
+            <strong>Signature:</strong>directions:seq&lt;TreeZipperDirection&gt; -&gt; z:BinaryTreeZipper&lt;&#39;T&gt; -&gt; BinaryTreeZipper&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Moves the zipper in the directions of the given list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1082', 1082)" onmouseover="showTip(event, '1082', 1082)">
+            right z
+          </code>
+          <div class="tip" id="1082">
+            <strong>Signature:</strong>z:BinaryTreeZipper&lt;&#39;?16702&gt; -&gt; BinaryTreeZipper&lt;&#39;?16702&gt;<br />
+                          <strong>Type parameters:</strong> '?16702          </div>
+        </td>
+        <td class="xmldoc"><p>Moves the zipper to the right</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1083', 1083)" onmouseover="showTip(event, '1083', 1083)">
+            setFocus newFocus zipper
+          </code>
+          <div class="tip" id="1083">
+            <strong>Signature:</strong>newFocus:BinaryTree&lt;&#39;?16704&gt; -&gt; zipper:BinaryTreeZipper&lt;&#39;?16704&gt; -&gt; BinaryTreeZipper&lt;&#39;?16704&gt;<br />
+                          <strong>Type parameters:</strong> '?16704          </div>
+        </td>
+        <td class="xmldoc"><p>Modifies the current focus inside the zipper</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1084', 1084)" onmouseover="showTip(event, '1084', 1084)">
+            top z
+          </code>
+          <div class="tip" id="1084">
+            <strong>Signature:</strong>z:BinaryTreeZipper&lt;&#39;?16698&gt; -&gt; BinaryTreeZipper&lt;&#39;?16698&gt;<br />
+                          <strong>Type parameters:</strong> '?16698          </div>
+        </td>
+        <td class="xmldoc"><p>Moves the zipper to the top</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1085', 1085)" onmouseover="showTip(event, '1085', 1085)">
+            up z
+          </code>
+          <div class="tip" id="1085">
+            <strong>Signature:</strong>z:BinaryTreeZipper&lt;&#39;?16696&gt; -&gt; BinaryTreeZipper&lt;&#39;?16696&gt;<br />
+                          <strong>Type parameters:</strong> '?16696          </div>
+        </td>
+        <td class="xmldoc"><p>Moves the zipper one level up</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1086', 1086)" onmouseover="showTip(event, '1086', 1086)">
+            zipper t
+          </code>
+          <div class="tip" id="1086">
+            <strong>Signature:</strong>t:BinaryTree&lt;&#39;?16706&gt; -&gt; BinaryTreeZipper&lt;&#39;?16706&gt;<br />
+                          <strong>Type parameters:</strong> '?16706          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a zipper from a tree</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

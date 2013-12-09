@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vector - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Vector</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '305', 305)" onmouseover="showTip(event, '305', 305)">
+            append arg1 arg2
+          </code>
+          <div class="tip" id="305">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a new vector with the elements of the second vector added at the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '307', 307)" onmouseover="showTip(event, '307', 307)">
+            conj arg1 arg2
+          </code>
+          <div class="tip" id="307">
+            <strong>Signature:</strong>&#39;T -&gt; Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a new vector with the element added at the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '308', 308)" onmouseover="showTip(event, '308', 308)">
+            empty 
+          </code>
+          <div class="tip" id="308">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns vector of no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '309', 309)" onmouseover="showTip(event, '309', 309)">
+            flatten arg1
+          </code>
+          <div class="tip" id="309">
+            <strong>Signature:</strong>Vector&lt;Vector&lt;&#39;T&gt;&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(m,n). Returns a seq from a vector of vectors.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '310', 310)" onmouseover="showTip(event, '310', 310)">
+            fold arg1 arg2 arg3
+          </code>
+          <div class="tip" id="310">
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; Vector&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a state from the supplied state and a function operating from left to right.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '311', 311)" onmouseover="showTip(event, '311', 311)">
+            foldBack arg1 arg2 arg3
+          </code>
+          <div class="tip" id="311">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; Vector&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a state from the supplied state and a function operating from right to left.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '312', 312)" onmouseover="showTip(event, '312', 312)">
+            init arg1 arg2
+          </code>
+          <div class="tip" id="312">
+            <strong>Signature:</strong>int -&gt; (int -&gt; &#39;T) -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a vector of the supplied length using the supplied function operating on the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '313', 313)" onmouseover="showTip(event, '313', 313)">
+            initial arg1
+          </code>
+          <div class="tip" id="313">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '314', 314)" onmouseover="showTip(event, '314', 314)">
+            isEmpty arg1
+          </code>
+          <div class="tip" id="314">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the vector has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '315', 315)" onmouseover="showTip(event, '315', 315)">
+            last arg1
+          </code>
+          <div class="tip" id="315">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '316', 316)" onmouseover="showTip(event, '316', 316)">
+            length arg1
+          </code>
+          <div class="tip" id="316">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the number of items in the vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '317', 317)" onmouseover="showTip(event, '317', 317)">
+            map arg1 arg2
+          </code>
+          <div class="tip" id="317">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;T1) -&gt; Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T1&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'T1          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a vector whose elements are the results of applying the supplied function to each of the elements of a supplied vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '318', 318)" onmouseover="showTip(event, '318', 318)">
+            nth arg1 arg2
+          </code>
+          <div class="tip" id="318">
+            <strong>Signature:</strong>int -&gt; Vector&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns the value at the index. If the index is out of bounds it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '319', 319)" onmouseover="showTip(event, '319', 319)">
+            nthNth arg1 arg2 arg3
+          </code>
+          <div class="tip" id="319">
+            <strong>Signature:</strong>int -&gt; int -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32(m,n)). Returns the value at the  outer index, inner index. If either index is out of bounds it throws an exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '320', 320)" onmouseover="showTip(event, '320', 320)">
+            ofSeq arg1
+          </code>
+          <div class="tip" id="320">
+            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a vector of the seq.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '321', 321)" onmouseover="showTip(event, '321', 321)">
+            rev arg1
+          </code>
+          <div class="tip" id="321">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns vector reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '322', 322)" onmouseover="showTip(event, '322', 322)">
+            singleton arg1
+          </code>
+          <div class="tip" id="322">
+            <strong>Signature:</strong>&#39;T -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a new vector of one element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '323', 323)" onmouseover="showTip(event, '323', 323)">
+            toSeq arg1
+          </code>
+          <div class="tip" id="323">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Views the given vector as a sequence.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '324', 324)" onmouseover="showTip(event, '324', 324)">
+            tryInitial arg1
+          </code>
+          <div class="tip" id="324">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns option vector without the last item.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '325', 325)" onmouseover="showTip(event, '325', 325)">
+            tryLast arg1
+          </code>
+          <div class="tip" id="325">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option last element in the vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '326', 326)" onmouseover="showTip(event, '326', 326)">
+            tryNth arg1 arg2
+          </code>
+          <div class="tip" id="326">
+            <strong>Signature:</strong>int -&gt; Vector&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns option value at the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '327', 327)" onmouseover="showTip(event, '327', 327)">
+            tryNthNth arg1 arg2 arg3
+          </code>
+          <div class="tip" id="327">
+            <strong>Signature:</strong>int -&gt; int -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32(m,n)). Returns option value at the indices.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '328', 328)" onmouseover="showTip(event, '328', 328)">
+            tryUnconj arg1
+          </code>
+          <div class="tip" id="328">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; (Vector&lt;&#39;T&gt; * &#39;T) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option tuple last element and vector without last item</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '329', 329)" onmouseover="showTip(event, '329', 329)">
+            tryUpdate arg1 arg2 arg3
+          </code>
+          <div class="tip" id="329">
+            <strong>Signature:</strong>int -&gt; &#39;T -&gt; Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns option vector that contains the given value at the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '330', 330)" onmouseover="showTip(event, '330', 330)">
+            tryUpdateNth arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="330">
+            <strong>Signature:</strong>int -&gt; int -&gt; &#39;T -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt; -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32(m,n)). Returns option vector that contains the given value at the indices.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '331', 331)" onmouseover="showTip(event, '331', 331)">
+            unconj arg1
+          </code>
+          <div class="tip" id="331">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt; * &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns tuple last element and vector without last item</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '332', 332)" onmouseover="showTip(event, '332', 332)">
+            update arg1 arg2 arg3
+          </code>
+          <div class="tip" id="332">
+            <strong>Signature:</strong>int -&gt; &#39;T -&gt; Vector&lt;&#39;T&gt; -&gt; Vector&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32n). Returns a new vector that contains the given value at the index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '333', 333)" onmouseover="showTip(event, '333', 333)">
+            updateNth arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="333">
+            <strong>Signature:</strong>int -&gt; int -&gt; &#39;T -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt; -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(log32(m,n)). Returns a new vector of vectors that contains the given value at the indices.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '334', 334)" onmouseover="showTip(event, '334', 334)">
+            windowSeq arg1 arg2
+          </code>
+          <div class="tip" id="334">
+            <strong>Signature:</strong>int -&gt; seq&lt;&#39;T&gt; -&gt; Vector&lt;Vector&lt;&#39;T&gt;&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a vector of vectors of given length from the seq. Result may be a jagged vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '578', 578)" onmouseover="showTip(event, '578', 578)">
+            ( |Conj|Nil| ) arg1
+          </code>
+          <div class="tip" id="578">
+            <strong>Signature:</strong>Vector&lt;&#39;T&gt; -&gt; Choice&lt;(Vector&lt;&#39;T&gt; * &#39;T),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IntMap - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>IntMap</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1173', 1173)" onmouseover="showTip(event, '1173', 1173)">
+            adjust f k m
+          </code>
+          <div class="tip" id="1173">
+            <strong>Signature:</strong>f:(&#39;?15790 -&gt; &#39;?15790) -&gt; k:int -&gt; m:IntMap&lt;&#39;?15790&gt; -&gt; IntMap&lt;&#39;?15790&gt;<br />
+                          <strong>Type parameters:</strong> '?15790          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1174', 1174)" onmouseover="showTip(event, '1174', 1174)">
+            adjustWithKey f k m
+          </code>
+          <div class="tip" id="1174">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15788 -&gt; &#39;?15788) -&gt; k:int -&gt; m:IntMap&lt;&#39;?15788&gt; -&gt; IntMap&lt;&#39;?15788&gt;<br />
+                          <strong>Type parameters:</strong> '?15788          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1175', 1175)" onmouseover="showTip(event, '1175', 1175)">
+            alter f k t
+          </code>
+          <div class="tip" id="1175">
+            <strong>Signature:</strong>f:(&#39;?15794 option -&gt; &#39;?15794 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?15794&gt; -&gt; IntMap&lt;&#39;?15794&gt;<br />
+                          <strong>Type parameters:</strong> '?15794          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). The expression (alter f k map) alters the value x at k, or absence thereof. alter can be used to insert, delete, or update a value in an IntMap. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1176', 1176)" onmouseover="showTip(event, '1176', 1176)">
+            append m1 m2
+          </code>
+          <div class="tip" id="1176">
+            <strong>Signature:</strong>m1:IntMap&lt;&#39;?15804&gt; -&gt; m2:IntMap&lt;&#39;?15804&gt; -&gt; IntMap&lt;&#39;?15804&gt;<br />
+                          <strong>Type parameters:</strong> '?15804          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1177', 1177)" onmouseover="showTip(event, '1177', 1177)">
+            appendWith f m1 m2
+          </code>
+          <div class="tip" id="1177">
+            <strong>Signature:</strong>f:(&#39;?15808 -&gt; &#39;?15808 -&gt; &#39;?15808) -&gt; m1:IntMap&lt;&#39;?15808&gt; -&gt; m2:IntMap&lt;&#39;?15808&gt; -&gt; IntMap&lt;&#39;?15808&gt;<br />
+                          <strong>Type parameters:</strong> '?15808          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1178', 1178)" onmouseover="showTip(event, '1178', 1178)">
+            appendWithKey f m1 m2
+          </code>
+          <div class="tip" id="1178">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15806 -&gt; &#39;?15806 -&gt; &#39;?15806) -&gt; m1:IntMap&lt;&#39;?15806&gt; -&gt; m2:IntMap&lt;&#39;?15806&gt; -&gt; IntMap&lt;&#39;?15806&gt;<br />
+                          <strong>Type parameters:</strong> '?15806          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1179', 1179)" onmouseover="showTip(event, '1179', 1179)">
+            concat xs
+          </code>
+          <div class="tip" id="1179">
+            <strong>Signature:</strong>xs:IntMap&lt;&#39;?15810&gt; list -&gt; IntMap&lt;&#39;?15810&gt;<br />
+                          <strong>Type parameters:</strong> '?15810          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1180', 1180)" onmouseover="showTip(event, '1180', 1180)">
+            concatWith f xs
+          </code>
+          <div class="tip" id="1180">
+            <strong>Signature:</strong>f:(&#39;?15812 -&gt; &#39;?15812 -&gt; &#39;?15812) -&gt; xs:IntMap&lt;&#39;?15812&gt; list -&gt; IntMap&lt;&#39;?15812&gt;<br />
+                          <strong>Type parameters:</strong> '?15812          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1181', 1181)" onmouseover="showTip(event, '1181', 1181)">
+            delete k t
+          </code>
+          <div class="tip" id="1181">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15782&gt; -&gt; IntMap&lt;&#39;?15782&gt;<br />
+                          <strong>Type parameters:</strong> '?15782          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Delete a key and its value from the map. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1182', 1182)" onmouseover="showTip(event, '1182', 1182)">
+            deleteFindMax t
+          </code>
+          <div class="tip" id="1182">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15854&gt; -&gt; (int * &#39;?15854) * IntMap&lt;&#39;?15854&gt;<br />
+                          <strong>Type parameters:</strong> '?15854          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Retrieves the maximal key of the map, and the map stripped from that element. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1183', 1183)" onmouseover="showTip(event, '1183', 1183)">
+            deleteFindMin t
+          </code>
+          <div class="tip" id="1183">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15856&gt; -&gt; (int * &#39;?15856) * IntMap&lt;&#39;?15856&gt;<br />
+                          <strong>Type parameters:</strong> '?15856          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Retrieves the minimal key of the map, and the map stripped from that element. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1184', 1184)" onmouseover="showTip(event, '1184', 1184)">
+            deleteMax t
+          </code>
+          <div class="tip" id="1184">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15864&gt; -&gt; IntMap&lt;&#39;?15864&gt;<br />
+                          <strong>Type parameters:</strong> '?15864          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Delete the maximal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1185', 1185)" onmouseover="showTip(event, '1185', 1185)">
+            deleteMin t
+          </code>
+          <div class="tip" id="1185">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15862&gt; -&gt; IntMap&lt;&#39;?15862&gt;<br />
+                          <strong>Type parameters:</strong> '?15862          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Delete the minimal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1186', 1186)" onmouseover="showTip(event, '1186', 1186)">
+            difference m1 m2
+          </code>
+          <div class="tip" id="1186">
+            <strong>Signature:</strong>m1:IntMap&lt;&#39;?15814&gt; -&gt; m2:IntMap&lt;&#39;?15815&gt; -&gt; IntMap&lt;&#39;?15814&gt;<br />
+                          <strong>Type parameters:</strong> '?15814, '?15815          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Difference between two maps (based on keys). Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1187', 1187)" onmouseover="showTip(event, '1187', 1187)">
+            differenceWith f m1 m2
+          </code>
+          <div class="tip" id="1187">
+            <strong>Signature:</strong>f:(&#39;?15820 -&gt; &#39;?15821 -&gt; &#39;?15820 option) -&gt; m1:IntMap&lt;&#39;?15820&gt; -&gt; m2:IntMap&lt;&#39;?15821&gt; -&gt; IntMap&lt;&#39;?15820&gt;<br />
+                          <strong>Type parameters:</strong> '?15820, '?15821          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Difference with a combining function. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1188', 1188)" onmouseover="showTip(event, '1188', 1188)">
+            differenceWithKey f m1 m2
+          </code>
+          <div class="tip" id="1188">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15817 -&gt; &#39;?15818 -&gt; &#39;?15817 option) -&gt; m1:IntMap&lt;&#39;?15817&gt; -&gt; m2:IntMap&lt;&#39;?15818&gt; -&gt; IntMap&lt;&#39;?15817&gt;<br />
+                          <strong>Type parameters:</strong> '?15817, '?15818          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Difference with a combining function. When two equal keys are encountered, the combining function is applied to the key and both values. If it returns Nothing, the element is discarded (proper set difference). If it returns (Just y), the element is updated with a new value y. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1189', 1189)" onmouseover="showTip(event, '1189', 1189)">
+            empty 
+          </code>
+          <div class="tip" id="1189">
+            <strong>Signature:</strong>IntMap&lt;&#39;?15770&gt;<br />
+                          <strong>Type parameters:</strong> '?15770          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). The empty map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1190', 1190)" onmouseover="showTip(event, '1190', 1190)">
+            exists k _arg1
+          </code>
+          <div class="tip" id="1190">
+            <strong>Signature:</strong>k:int -&gt; _arg1:IntMap&lt;&#39;?15750&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15750          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Is the key a member of the map? Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1191', 1191)" onmouseover="showTip(event, '1191', 1191)">
+            filter p m
+          </code>
+          <div class="tip" id="1191">
+            <strong>Signature:</strong>p:(&#39;?15886 -&gt; bool) -&gt; m:IntMap&lt;&#39;?15886&gt; -&gt; IntMap&lt;&#39;?15886&gt;<br />
+                          <strong>Type parameters:</strong> '?15886          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Filter all values that satisfy some predicate. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1192', 1192)" onmouseover="showTip(event, '1192', 1192)">
+            filterWithKey predicate _arg1
+          </code>
+          <div class="tip" id="1192">
+            <strong>Signature:</strong>predicate:(int -&gt; &#39;?15884 -&gt; bool) -&gt; _arg1:IntMap&lt;&#39;?15884&gt; -&gt; IntMap&lt;&#39;?15884&gt;<br />
+                          <strong>Type parameters:</strong> '?15884          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Filter all keys/values that satisfy some predicate. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1193', 1193)" onmouseover="showTip(event, '1193', 1193)">
+            find k m
+          </code>
+          <div class="tip" id="1193">
+            <strong>Signature:</strong>k:int -&gt; m:IntMap&lt;&#39;?15754&gt; -&gt; &#39;?15754<br />
+                          <strong>Type parameters:</strong> '?15754          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Lookup the value at a key in the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1194', 1194)" onmouseover="showTip(event, '1194', 1194)">
+            findMax t
+          </code>
+          <div class="tip" id="1194">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15860&gt; -&gt; int * &#39;?15860<br />
+                          <strong>Type parameters:</strong> '?15860          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). The maximal key of the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1195', 1195)" onmouseover="showTip(event, '1195', 1195)">
+            findMin t
+          </code>
+          <div class="tip" id="1195">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15858&gt; -&gt; int * &#39;?15858<br />
+                          <strong>Type parameters:</strong> '?15858          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). The minimal key of the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1196', 1196)" onmouseover="showTip(event, '1196', 1196)">
+            findWithDefault def k _arg1
+          </code>
+          <div class="tip" id="1196">
+            <strong>Signature:</strong>def:&#39;?15756 -&gt; k:int -&gt; _arg1:IntMap&lt;&#39;?15756&gt; -&gt; &#39;?15756<br />
+                          <strong>Type parameters:</strong> '?15756          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). The expression (findWithDefault def k map) returns the value at key k or returns def when the key is not an element of the map.  Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1197', 1197)" onmouseover="showTip(event, '1197', 1197)">
+            fold f z
+          </code>
+          <div class="tip" id="1197">
+            <strong>Signature:</strong>f:(&#39;?15913 -&gt; &#39;?15914 -&gt; &#39;?15913) -&gt; z:&#39;?15913 -&gt; IntMap&lt;&#39;?15914&gt; -&gt; &#39;?15913<br />
+                          <strong>Type parameters:</strong> '?15913, '?15914          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Fold the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1198', 1198)" onmouseover="showTip(event, '1198', 1198)">
+            foldBack f z
+          </code>
+          <div class="tip" id="1198">
+            <strong>Signature:</strong>f:(&#39;?15910 -&gt; &#39;?15911 -&gt; &#39;?15911) -&gt; z:&#39;?15911 -&gt; IntMap&lt;&#39;?15910&gt; -&gt; &#39;?15911<br />
+                          <strong>Type parameters:</strong> '?15910, '?15911          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). FoldBack the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1199', 1199)" onmouseover="showTip(event, '1199', 1199)">
+            foldBackWithKey f z t
+          </code>
+          <div class="tip" id="1199">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15916 -&gt; &#39;?15917 -&gt; &#39;?15917) -&gt; z:&#39;?15917 -&gt; t:IntMap&lt;&#39;?15916&gt; -&gt; &#39;?15917<br />
+                          <strong>Type parameters:</strong> '?15916, '?15917          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). FoldBack the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1200', 1200)" onmouseover="showTip(event, '1200', 1200)">
+            foldWithKey f z
+          </code>
+          <div class="tip" id="1200">
+            <strong>Signature:</strong>f:(&#39;?15919 -&gt; int -&gt; &#39;?15920 -&gt; &#39;?15919) -&gt; z:&#39;?15919 -&gt; IntMap&lt;&#39;?15920&gt; -&gt; &#39;?15919<br />
+                          <strong>Type parameters:</strong> '?15919, '?15920          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Fold the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1201', 1201)" onmouseover="showTip(event, '1201', 1201)">
+            insert k x t
+          </code>
+          <div class="tip" id="1201">
+            <strong>Signature:</strong>k:int -&gt; x:&#39;?15774 -&gt; t:IntMap&lt;&#39;?15774&gt; -&gt; IntMap&lt;&#39;?15774&gt;<br />
+                          <strong>Type parameters:</strong> '?15774          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Insert a new key/value pair in the map. If the key is already present in the map, the associated value is replaced with the supplied value, i.e. insert is equivalent to insertWith const. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1202', 1202)" onmouseover="showTip(event, '1202', 1202)">
+            insertTryFindWithKey f k x t
+          </code>
+          <div class="tip" id="1202">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15780 -&gt; &#39;?15780 -&gt; &#39;?15780) -&gt; k:int -&gt; x:&#39;?15780 -&gt; t:IntMap&lt;&#39;?15780&gt; -&gt; &#39;?15780 option * IntMap&lt;&#39;?15780&gt;<br />
+                          <strong>Type parameters:</strong> '?15780          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). The expression (insertLookupWithKey f k x map) is a pair where the first element is equal to (lookup k map) and the second element equal to (insertWithKey f k x map). Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1203', 1203)" onmouseover="showTip(event, '1203', 1203)">
+            insertWith f k x t
+          </code>
+          <div class="tip" id="1203">
+            <strong>Signature:</strong>f:(&#39;?15778 -&gt; &#39;?15778 -&gt; &#39;?15778) -&gt; k:int -&gt; x:&#39;?15778 -&gt; t:IntMap&lt;&#39;?15778&gt; -&gt; IntMap&lt;&#39;?15778&gt;<br />
+                          <strong>Type parameters:</strong> '?15778          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Insert with a combining function. insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f new<em>value old</em>value. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1204', 1204)" onmouseover="showTip(event, '1204', 1204)">
+            insertWithKey f k x t
+          </code>
+          <div class="tip" id="1204">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15776 -&gt; &#39;?15776 -&gt; &#39;?15776) -&gt; k:int -&gt; x:&#39;?15776 -&gt; t:IntMap&lt;&#39;?15776&gt; -&gt; IntMap&lt;&#39;?15776&gt;<br />
+                          <strong>Type parameters:</strong> '?15776          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Insert with a combining function. insertWithKey f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f key new<em>value old</em>value. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1205', 1205)" onmouseover="showTip(event, '1205', 1205)">
+            intersection m1 m2
+          </code>
+          <div class="tip" id="1205">
+            <strong>Signature:</strong>m1:IntMap&lt;&#39;?15823&gt; -&gt; m2:IntMap&lt;&#39;?15824&gt; -&gt; IntMap&lt;&#39;?15823&gt;<br />
+                          <strong>Type parameters:</strong> '?15823, '?15824          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). The (left-biased) intersection of two maps (based on keys). Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1206', 1206)" onmouseover="showTip(event, '1206', 1206)">
+            intersectionWith f m1 m2
+          </code>
+          <div class="tip" id="1206">
+            <strong>Signature:</strong>f:(&#39;?15830 -&gt; &#39;?15831 -&gt; &#39;?15832) -&gt; m1:IntMap&lt;&#39;?15830&gt; -&gt; m2:IntMap&lt;&#39;?15831&gt; -&gt; IntMap&lt;&#39;?15832&gt;<br />
+                          <strong>Type parameters:</strong> '?15830, '?15831, '?15832          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). The intersection with a combining function. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1207', 1207)" onmouseover="showTip(event, '1207', 1207)">
+            intersectionWithKey f m1 m2
+          </code>
+          <div class="tip" id="1207">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15826 -&gt; &#39;?15827 -&gt; &#39;?15828) -&gt; m1:IntMap&lt;&#39;?15826&gt; -&gt; m2:IntMap&lt;&#39;?15827&gt; -&gt; IntMap&lt;&#39;?15828&gt;<br />
+                          <strong>Type parameters:</strong> '?15826, '?15827, '?15828          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). The intersection with a combining function. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1208', 1208)" onmouseover="showTip(event, '1208', 1208)">
+            isEmpty _arg1
+          </code>
+          <div class="tip" id="1208">
+            <strong>Signature:</strong>_arg1:IntMap&lt;&#39;?15744&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15744          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Map is empty.  Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1209', 1209)" onmouseover="showTip(event, '1209', 1209)">
+            isProperSubmapOf m1 m2
+          </code>
+          <div class="tip" id="1209">
+            <strong>Signature:</strong>m1:IntMap&lt;&#39;?15975&gt; -&gt; m2:IntMap&lt;&#39;?15975&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15975          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Is this a proper submap? (ie. a submap but not equal). Defined as (isProperSubmapOf = isProperSubmapOfBy (==)). Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1210', 1210)" onmouseover="showTip(event, '1210', 1210)">
+            isProperSubmapOfBy predicate t1 t2
+          </code>
+          <div class="tip" id="1210">
+            <strong>Signature:</strong>predicate:(&#39;?15972 -&gt; &#39;?15973 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?15972&gt; -&gt; t2:IntMap&lt;&#39;?15973&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15972, '?15973          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Is this a proper submap? (ie. a submap but not equal). The expression (isProperSubmapOfBy f m1 m2) returns True when m1 and m2 are not equal, all keys in m1 are in m2, and when f returns True when applied to their respective values.  Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1211', 1211)" onmouseover="showTip(event, '1211', 1211)">
+            isSubmapOf m1 m2
+          </code>
+          <div class="tip" id="1211">
+            <strong>Signature:</strong>m1:IntMap&lt;&#39;?15957&gt; -&gt; m2:IntMap&lt;&#39;?15957&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15957          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). Is this a submap? Defined as (isSubmapOf = isSubmapOfBy (==)). Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1212', 1212)" onmouseover="showTip(event, '1212', 1212)">
+            isSubmapOfBy predicate t1 t2
+          </code>
+          <div class="tip" id="1212">
+            <strong>Signature:</strong>predicate:(&#39;?15954 -&gt; &#39;?15955 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?15954&gt; -&gt; t2:IntMap&lt;&#39;?15955&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15954, '?15955          </div>
+        </td>
+        <td class="xmldoc"><p>O(n+m). The expression (isSubmapOfBy f m1 m2) returns True if all keys in m1 are in m2, and when f returns True when applied to their respective values. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1213', 1213)" onmouseover="showTip(event, '1213', 1213)">
+            keys m
+          </code>
+          <div class="tip" id="1213">
+            <strong>Signature:</strong>m:IntMap&lt;&#39;?15924&gt; -&gt; int list<br />
+                          <strong>Type parameters:</strong> '?15924          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Return all keys of the map in ascending order. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1214', 1214)" onmouseover="showTip(event, '1214', 1214)">
+            map f _arg1
+          </code>
+          <div class="tip" id="1214">
+            <strong>Signature:</strong>f:(&#39;?15869 -&gt; &#39;?15870) -&gt; _arg1:IntMap&lt;&#39;?15869&gt; -&gt; IntMap&lt;&#39;?15870&gt;<br />
+                          <strong>Type parameters:</strong> '?15869, '?15870          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map a function over all values in the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1215', 1215)" onmouseover="showTip(event, '1215', 1215)">
+            mapAccum f
+          </code>
+          <div class="tip" id="1215">
+            <strong>Signature:</strong>f:(&#39;?15880 -&gt; &#39;?15881 -&gt; &#39;?15880 * &#39;?15882) -&gt; &#39;?15880 -&gt; IntMap&lt;&#39;?15881&gt; -&gt; &#39;?15880 * IntMap&lt;&#39;?15882&gt;<br />
+                          <strong>Type parameters:</strong> '?15880, '?15881, '?15882          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). The function mapAccumWithKey threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1216', 1216)" onmouseover="showTip(event, '1216', 1216)">
+            mapAccumWithKey f a t
+          </code>
+          <div class="tip" id="1216">
+            <strong>Signature:</strong>f:(&#39;?15876 -&gt; int -&gt; &#39;?15877 -&gt; &#39;?15876 * &#39;?15878) -&gt; a:&#39;?15876 -&gt; t:IntMap&lt;&#39;?15877&gt; -&gt; &#39;?15876 * IntMap&lt;&#39;?15878&gt;<br />
+                          <strong>Type parameters:</strong> '?15876, '?15877, '?15878          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). The function mapAccum threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1217', 1217)" onmouseover="showTip(event, '1217', 1217)">
+            mapChoice f
+          </code>
+          <div class="tip" id="1217">
+            <strong>Signature:</strong>f:(&#39;?15902 -&gt; Choice&lt;&#39;?15903,&#39;?15904&gt;) -&gt; IntMap&lt;&#39;?15902&gt; -&gt; IntMap&lt;&#39;?15903&gt; * IntMap&lt;&#39;?15904&gt;<br />
+                          <strong>Type parameters:</strong> '?15902, '?15903, '?15904          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map values and separate the Left and Right results. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1218', 1218)" onmouseover="showTip(event, '1218', 1218)">
+            mapChoiceWithKey f _arg1
+          </code>
+          <div class="tip" id="1218">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15898 -&gt; Choice&lt;&#39;?15899,&#39;?15900&gt;) -&gt; _arg1:IntMap&lt;&#39;?15898&gt; -&gt; IntMap&lt;&#39;?15899&gt; * IntMap&lt;&#39;?15900&gt;<br />
+                          <strong>Type parameters:</strong> '?15898, '?15899, '?15900          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map keys/values and separate the Left and Right results. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1219', 1219)" onmouseover="showTip(event, '1219', 1219)">
+            mapKeys f
+          </code>
+          <div class="tip" id="1219">
+            <strong>Signature:</strong>f:(int -&gt; int) -&gt; IntMap&lt;&#39;?15950&gt; -&gt; IntMap&lt;&#39;?15950&gt;<br />
+                          <strong>Type parameters:</strong> '?15950          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). mapKeys f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the value at the greatest of the original keys is retained. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1220', 1220)" onmouseover="showTip(event, '1220', 1220)">
+            mapKeysWith c f
+          </code>
+          <div class="tip" id="1220">
+            <strong>Signature:</strong>c:(&#39;?15952 -&gt; &#39;?15952 -&gt; &#39;?15952) -&gt; f:(int -&gt; int) -&gt; IntMap&lt;&#39;?15952&gt; -&gt; IntMap&lt;&#39;?15952&gt;<br />
+                          <strong>Type parameters:</strong> '?15952          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*log n). mapKeysWith c f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the associated values will be combined using c. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1221', 1221)" onmouseover="showTip(event, '1221', 1221)">
+            mapOption f
+          </code>
+          <div class="tip" id="1221">
+            <strong>Signature:</strong>f:(&#39;?15895 -&gt; &#39;?15896 option) -&gt; IntMap&lt;&#39;?15895&gt; -&gt; IntMap&lt;&#39;?15896&gt;<br />
+                          <strong>Type parameters:</strong> '?15895, '?15896          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map values and collect the Just results. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1222', 1222)" onmouseover="showTip(event, '1222', 1222)">
+            mapOptionWithKey f _arg1
+          </code>
+          <div class="tip" id="1222">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15892 -&gt; &#39;?15893 option) -&gt; _arg1:IntMap&lt;&#39;?15892&gt; -&gt; IntMap&lt;&#39;?15893&gt;<br />
+                          <strong>Type parameters:</strong> '?15892, '?15893          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map keys/values and collect the Just results. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1223', 1223)" onmouseover="showTip(event, '1223', 1223)">
+            mapWithKey f _arg1
+          </code>
+          <div class="tip" id="1223">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15866 -&gt; &#39;?15867) -&gt; _arg1:IntMap&lt;&#39;?15866&gt; -&gt; IntMap&lt;&#39;?15867&gt;<br />
+                          <strong>Type parameters:</strong> '?15866, '?15867          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Map a function over all values in the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1224', 1224)" onmouseover="showTip(event, '1224', 1224)">
+            maxView t
+          </code>
+          <div class="tip" id="1224">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15850&gt; -&gt; (&#39;?15850 * IntMap&lt;&#39;?15850&gt;) option<br />
+                          <strong>Type parameters:</strong> '?15850          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Retrieves the maximal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1225', 1225)" onmouseover="showTip(event, '1225', 1225)">
+            maxViewWithKey t
+          </code>
+          <div class="tip" id="1225">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15838&gt; -&gt; ((int * &#39;?15838) * IntMap&lt;&#39;?15838&gt;) option<br />
+                          <strong>Type parameters:</strong> '?15838          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Retrieves the maximal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1226', 1226)" onmouseover="showTip(event, '1226', 1226)">
+            mergeWithKey f g1 g2
+          </code>
+          <div class="tip" id="1226">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15800 -&gt; &#39;?15801 -&gt; &#39;?15802 option) -&gt; g1:(IntMap&lt;&#39;?15800&gt; -&gt; IntMap&lt;&#39;?15802&gt;) -&gt; g2:(IntMap&lt;&#39;?15801&gt; -&gt; IntMap&lt;&#39;?15802&gt;) -&gt; IntMap&lt;&#39;?15800&gt; -&gt; IntMap&lt;&#39;?15801&gt; -&gt; IntMap&lt;&#39;?15802&gt;<br />
+                          <strong>Type parameters:</strong> '?15800, '?15801, '?15802          </div>
+        </td>
+        <td class="xmldoc"><p>Refer to Haskell documentation. Unexpected code growth or corruption of the data structure can occure from wrong use. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1227', 1227)" onmouseover="showTip(event, '1227', 1227)">
+            minView t
+          </code>
+          <div class="tip" id="1227">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15852&gt; -&gt; (&#39;?15852 * IntMap&lt;&#39;?15852&gt;) option<br />
+                          <strong>Type parameters:</strong> '?15852          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Retrieves the minimal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1228', 1228)" onmouseover="showTip(event, '1228', 1228)">
+            minViewWithKey t
+          </code>
+          <div class="tip" id="1228">
+            <strong>Signature:</strong>t:IntMap&lt;&#39;?15840&gt; -&gt; ((int * &#39;?15840) * IntMap&lt;&#39;?15840&gt;) option<br />
+                          <strong>Type parameters:</strong> '?15840          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Retrieves the minimal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1229', 1229)" onmouseover="showTip(event, '1229', 1229)">
+            notExists k m
+          </code>
+          <div class="tip" id="1229">
+            <strong>Signature:</strong>k:int -&gt; m:IntMap&lt;&#39;?15752&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?15752          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Is the key not a member of the map? Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1230', 1230)" onmouseover="showTip(event, '1230', 1230)">
+            ofArray xs
+          </code>
+          <div class="tip" id="1230">
+            <strong>Signature:</strong>xs:(int * &#39;?15944) [] -&gt; IntMap&lt;&#39;?15944&gt;<br />
+                          <strong>Type parameters:</strong> '?15944          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from an array of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1231', 1231)" onmouseover="showTip(event, '1231', 1231)">
+            ofArrayWith f xs
+          </code>
+          <div class="tip" id="1231">
+            <strong>Signature:</strong>f:(&#39;?15948 -&gt; &#39;?15948 -&gt; &#39;?15948) -&gt; xs:(int * &#39;?15948) [] -&gt; IntMap&lt;&#39;?15948&gt;<br />
+                          <strong>Type parameters:</strong> '?15948          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from an array of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1232', 1232)" onmouseover="showTip(event, '1232', 1232)">
+            ofArrayWithKey f xs
+          </code>
+          <div class="tip" id="1232">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15946 -&gt; &#39;?15946 -&gt; &#39;?15946) -&gt; xs:(int * &#39;?15946) [] -&gt; IntMap&lt;&#39;?15946&gt;<br />
+                          <strong>Type parameters:</strong> '?15946          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Build a map from an array of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1233', 1233)" onmouseover="showTip(event, '1233', 1233)">
+            ofList xs
+          </code>
+          <div class="tip" id="1233">
+            <strong>Signature:</strong>xs:(int * &#39;?15932) list -&gt; IntMap&lt;&#39;?15932&gt;<br />
+                          <strong>Type parameters:</strong> '?15932          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from a list of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1234', 1234)" onmouseover="showTip(event, '1234', 1234)">
+            ofListWith f xs
+          </code>
+          <div class="tip" id="1234">
+            <strong>Signature:</strong>f:(&#39;?15936 -&gt; &#39;?15936 -&gt; &#39;?15936) -&gt; xs:(int * &#39;?15936) list -&gt; IntMap&lt;&#39;?15936&gt;<br />
+                          <strong>Type parameters:</strong> '?15936          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from a list of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1235', 1235)" onmouseover="showTip(event, '1235', 1235)">
+            ofListWithKey f xs
+          </code>
+          <div class="tip" id="1235">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15934 -&gt; &#39;?15934 -&gt; &#39;?15934) -&gt; xs:(int * &#39;?15934) list -&gt; IntMap&lt;&#39;?15934&gt;<br />
+                          <strong>Type parameters:</strong> '?15934          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Build a map from a list of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1236', 1236)" onmouseover="showTip(event, '1236', 1236)">
+            ofSeq xs
+          </code>
+          <div class="tip" id="1236">
+            <strong>Signature:</strong>xs:seq&lt;int * &#39;?15938&gt; -&gt; IntMap&lt;&#39;?15938&gt;<br />
+                          <strong>Type parameters:</strong> '?15938          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from a seq of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1237', 1237)" onmouseover="showTip(event, '1237', 1237)">
+            ofSeqWith f xs
+          </code>
+          <div class="tip" id="1237">
+            <strong>Signature:</strong>f:(&#39;?15942 -&gt; &#39;?15942 -&gt; &#39;?15942) -&gt; xs:seq&lt;int * &#39;?15942&gt; -&gt; IntMap&lt;&#39;?15942&gt;<br />
+                          <strong>Type parameters:</strong> '?15942          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Create a map from a seq of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1238', 1238)" onmouseover="showTip(event, '1238', 1238)">
+            ofSeqWithKey f xs
+          </code>
+          <div class="tip" id="1238">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15940 -&gt; &#39;?15940 -&gt; &#39;?15940) -&gt; xs:seq&lt;int * &#39;?15940&gt; -&gt; IntMap&lt;&#39;?15940&gt;<br />
+                          <strong>Type parameters:</strong> '?15940          </div>
+        </td>
+        <td class="xmldoc"><p>O(n*min(n,W)). Build a map from a seq of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1239', 1239)" onmouseover="showTip(event, '1239', 1239)">
+            partition p m
+          </code>
+          <div class="tip" id="1239">
+            <strong>Signature:</strong>p:(&#39;?15890 -&gt; bool) -&gt; m:IntMap&lt;&#39;?15890&gt; -&gt; IntMap&lt;&#39;?15890&gt; * IntMap&lt;&#39;?15890&gt;<br />
+                          <strong>Type parameters:</strong> '?15890          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1240', 1240)" onmouseover="showTip(event, '1240', 1240)">
+            partitionWithKey predicate t
+          </code>
+          <div class="tip" id="1240">
+            <strong>Signature:</strong>predicate:(int -&gt; &#39;?15888 -&gt; bool) -&gt; t:IntMap&lt;&#39;?15888&gt; -&gt; IntMap&lt;&#39;?15888&gt; * IntMap&lt;&#39;?15888&gt;<br />
+                          <strong>Type parameters:</strong> '?15888          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1241', 1241)" onmouseover="showTip(event, '1241', 1241)">
+            singleton k x
+          </code>
+          <div class="tip" id="1241">
+            <strong>Signature:</strong>k:int -&gt; x:&#39;?15772 -&gt; IntMap&lt;&#39;?15772&gt;<br />
+                          <strong>Type parameters:</strong> '?15772          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). A map of one element. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1242', 1242)" onmouseover="showTip(event, '1242', 1242)">
+            size _arg1
+          </code>
+          <div class="tip" id="1242">
+            <strong>Signature:</strong>_arg1:IntMap&lt;&#39;?15746&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?15746          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Number of elements in the map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1243', 1243)" onmouseover="showTip(event, '1243', 1243)">
+            split k t
+          </code>
+          <div class="tip" id="1243">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15906&gt; -&gt; IntMap&lt;&#39;?15906&gt; * IntMap&lt;&#39;?15906&gt;<br />
+                          <strong>Type parameters:</strong> '?15906          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). The expression (split k map) is a pair (map1,map2) where all keys in map1 are lower than k and all keys in map2 larger than k. Any key equal to k is found in neither map1 nor map2. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1244', 1244)" onmouseover="showTip(event, '1244', 1244)">
+            splitTryFind k t
+          </code>
+          <div class="tip" id="1244">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15908&gt; -&gt; IntMap&lt;&#39;?15908&gt; * &#39;?15908 option * IntMap&lt;&#39;?15908&gt;<br />
+                          <strong>Type parameters:</strong> '?15908          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Performs a split but also returns whether the pivot key was found in the original map. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1245', 1245)" onmouseover="showTip(event, '1245', 1245)">
+            toArray m
+          </code>
+          <div class="tip" id="1245">
+            <strong>Signature:</strong>m:IntMap&lt;&#39;?15930&gt; -&gt; (int * &#39;?15930) []<br />
+                          <strong>Type parameters:</strong> '?15930          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Convert the map to an array of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1246', 1246)" onmouseover="showTip(event, '1246', 1246)">
+            toList m
+          </code>
+          <div class="tip" id="1246">
+            <strong>Signature:</strong>m:IntMap&lt;&#39;?15926&gt; -&gt; (int * &#39;?15926) list<br />
+                          <strong>Type parameters:</strong> '?15926          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Convert the map to a list of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1247', 1247)" onmouseover="showTip(event, '1247', 1247)">
+            toSeq m
+          </code>
+          <div class="tip" id="1247">
+            <strong>Signature:</strong>m:IntMap&lt;&#39;?15928&gt; -&gt; seq&lt;int * &#39;?15928&gt;<br />
+                          <strong>Type parameters:</strong> '?15928          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Convert the map to a seq of key/value pairs. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1248', 1248)" onmouseover="showTip(event, '1248', 1248)">
+            tryFind k _arg1
+          </code>
+          <div class="tip" id="1248">
+            <strong>Signature:</strong>k:int -&gt; _arg1:IntMap&lt;&#39;?15748&gt; -&gt; &#39;?15748 option<br />
+                          <strong>Type parameters:</strong> '?15748          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Lookup the value at a key in the map. Returns 'T option. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1249', 1249)" onmouseover="showTip(event, '1249', 1249)">
+            tryFindGE k t
+          </code>
+          <div class="tip" id="1249">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15768&gt; -&gt; (int * &#39;?15768) option<br />
+                          <strong>Type parameters:</strong> '?15768          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Find smallest key greater or equal to the given one and return the corresponding (key, value) pair Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1250', 1250)" onmouseover="showTip(event, '1250', 1250)">
+            tryFindGT k t
+          </code>
+          <div class="tip" id="1250">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15764&gt; -&gt; (int * &#39;?15764) option<br />
+                          <strong>Type parameters:</strong> '?15764          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Find smallest key greater than the given one and return the corresponding (key, value) pair. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1251', 1251)" onmouseover="showTip(event, '1251', 1251)">
+            tryFindLE k t
+          </code>
+          <div class="tip" id="1251">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15766&gt; -&gt; (int * &#39;?15766) option<br />
+                          <strong>Type parameters:</strong> '?15766          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Find largest key smaller or equal to the given one and return the corresponding (key, value) pair. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1252', 1252)" onmouseover="showTip(event, '1252', 1252)">
+            tryFindLT k t
+          </code>
+          <div class="tip" id="1252">
+            <strong>Signature:</strong>k:int -&gt; t:IntMap&lt;&#39;?15760&gt; -&gt; (int * &#39;?15760) option<br />
+                          <strong>Type parameters:</strong> '?15760          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Find largest key smaller than the given one and return the corresponding (key, value) pair.  Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1253', 1253)" onmouseover="showTip(event, '1253', 1253)">
+            update f k m
+          </code>
+          <div class="tip" id="1253">
+            <strong>Signature:</strong>f:(&#39;?15786 -&gt; &#39;?15786 option) -&gt; k:int -&gt; m:IntMap&lt;&#39;?15786&gt; -&gt; IntMap&lt;&#39;?15786&gt;<br />
+                          <strong>Type parameters:</strong> '?15786          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1254', 1254)" onmouseover="showTip(event, '1254', 1254)">
+            updateMax f
+          </code>
+          <div class="tip" id="1254">
+            <strong>Signature:</strong>f:(&#39;?15842 -&gt; &#39;?15842 option) -&gt; IntMap&lt;&#39;?15842&gt; -&gt; IntMap&lt;&#39;?15842&gt;<br />
+                          <strong>Type parameters:</strong> '?15842          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Update the value at the maximal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1255', 1255)" onmouseover="showTip(event, '1255', 1255)">
+            updateMaxWithKey f t
+          </code>
+          <div class="tip" id="1255">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15836 -&gt; &#39;?15836 option) -&gt; t:IntMap&lt;&#39;?15836&gt; -&gt; IntMap&lt;&#39;?15836&gt;<br />
+                          <strong>Type parameters:</strong> '?15836          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Update the value at the maximal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1256', 1256)" onmouseover="showTip(event, '1256', 1256)">
+            updateMin f
+          </code>
+          <div class="tip" id="1256">
+            <strong>Signature:</strong>f:(&#39;?15844 -&gt; &#39;?15844 option) -&gt; IntMap&lt;&#39;?15844&gt; -&gt; IntMap&lt;&#39;?15844&gt;<br />
+                          <strong>Type parameters:</strong> '?15844          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Update the value at the minimal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1257', 1257)" onmouseover="showTip(event, '1257', 1257)">
+            updateMinWithKey f t
+          </code>
+          <div class="tip" id="1257">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15834 -&gt; &#39;?15834 option) -&gt; t:IntMap&lt;&#39;?15834&gt; -&gt; IntMap&lt;&#39;?15834&gt;<br />
+                          <strong>Type parameters:</strong> '?15834          </div>
+        </td>
+        <td class="xmldoc"><p>O(log n). Update the value at the minimal key. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1258', 1258)" onmouseover="showTip(event, '1258', 1258)">
+            updateTryFindWithKey f k t
+          </code>
+          <div class="tip" id="1258">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15792 -&gt; &#39;?15792 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?15792&gt; -&gt; &#39;?15792 option * IntMap&lt;&#39;?15792&gt;<br />
+                          <strong>Type parameters:</strong> '?15792          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). Lookup and update. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1259', 1259)" onmouseover="showTip(event, '1259', 1259)">
+            updateWithKey f k t
+          </code>
+          <div class="tip" id="1259">
+            <strong>Signature:</strong>f:(int -&gt; &#39;?15784 -&gt; &#39;?15784 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?15784&gt; -&gt; IntMap&lt;&#39;?15784&gt;<br />
+                          <strong>Type parameters:</strong> '?15784          </div>
+        </td>
+        <td class="xmldoc"><p>O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f k x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1260', 1260)" onmouseover="showTip(event, '1260', 1260)">
+            values m
+          </code>
+          <div class="tip" id="1260">
+            <strong>Signature:</strong>m:IntMap&lt;&#39;?15922&gt; -&gt; &#39;?15922 list<br />
+                          <strong>Type parameters:</strong> '?15922          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Return all elements of the map in the ascending order of their keys. Credit: Haskell.org</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

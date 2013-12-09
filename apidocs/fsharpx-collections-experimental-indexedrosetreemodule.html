@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IndexedRoseTree - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>IndexedRoseTree</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1278', 1278)" onmouseover="showTip(event, '1278', 1278)">
+            ap x f
+          </code>
+          <div class="tip" id="1278">
+            <strong>Signature:</strong>x:IndexedRoseTree&lt;&#39;?15990&gt; -&gt; f:IndexedRoseTree&lt;(&#39;?15990 -&gt; &#39;?15991)&gt; -&gt; IndexedRoseTree&lt;&#39;?15991&gt;<br />
+                          <strong>Type parameters:</strong> '?15990, '?15991          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1279', 1279)" onmouseover="showTip(event, '1279', 1279)">
+            bind f x
+          </code>
+          <div class="tip" id="1279">
+            <strong>Signature:</strong>f:(&#39;?15997 -&gt; IndexedRoseTree&lt;&#39;?15998&gt;) -&gt; x:IndexedRoseTree&lt;&#39;?15997&gt; -&gt; IndexedRoseTree&lt;&#39;?15998&gt;<br />
+                          <strong>Type parameters:</strong> '?15997, '?15998          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1280', 1280)" onmouseover="showTip(event, '1280', 1280)">
+            create root children
+          </code>
+          <div class="tip" id="1280">
+            <strong>Signature:</strong>root:&#39;?15983 -&gt; children:Vector&lt;IndexedRoseTree&lt;&#39;?15983&gt;&gt; -&gt; IndexedRoseTree&lt;&#39;?15983&gt;<br />
+                          <strong>Type parameters:</strong> '?15983          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1281', 1281)" onmouseover="showTip(event, '1281', 1281)">
+            lift2 f a b
+          </code>
+          <div class="tip" id="1281">
+            <strong>Signature:</strong>f:(&#39;?15993 -&gt; &#39;?15994 -&gt; &#39;?15995) -&gt; a:IndexedRoseTree&lt;&#39;?15993&gt; -&gt; b:IndexedRoseTree&lt;&#39;?15994&gt; -&gt; IndexedRoseTree&lt;&#39;?15995&gt;<br />
+                          <strong>Type parameters:</strong> '?15993, '?15994, '?15995          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1282', 1282)" onmouseover="showTip(event, '1282', 1282)">
+            map f x
+          </code>
+          <div class="tip" id="1282">
+            <strong>Signature:</strong>f:(&#39;?15987 -&gt; &#39;?15988) -&gt; x:IndexedRoseTree&lt;&#39;?15987&gt; -&gt; IndexedRoseTree&lt;&#39;?15988&gt;<br />
+                          <strong>Type parameters:</strong> '?15987, '?15988          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1283', 1283)" onmouseover="showTip(event, '1283', 1283)">
+            postOrder x
+          </code>
+          <div class="tip" id="1283">
+            <strong>Signature:</strong>x:IndexedRoseTree&lt;&#39;?16002&gt; -&gt; seq&lt;&#39;?16002&gt;<br />
+                          <strong>Type parameters:</strong> '?16002          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1284', 1284)" onmouseover="showTip(event, '1284', 1284)">
+            preOrder x
+          </code>
+          <div class="tip" id="1284">
+            <strong>Signature:</strong>x:IndexedRoseTree&lt;&#39;?16000&gt; -&gt; seq&lt;&#39;?16000&gt;<br />
+                          <strong>Type parameters:</strong> '?16000          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1285', 1285)" onmouseover="showTip(event, '1285', 1285)">
+            singleton x
+          </code>
+          <div class="tip" id="1285">
+            <strong>Signature:</strong>x:&#39;?15985 -&gt; IndexedRoseTree&lt;&#39;?15985&gt;<br />
+                          <strong>Type parameters:</strong> '?15985          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1286', 1286)" onmouseover="showTip(event, '1286', 1286)">
+            unfold f seed
+          </code>
+          <div class="tip" id="1286">
+            <strong>Signature:</strong>f:(&#39;?16004 -&gt; &#39;?16005 * &#39;?16006) -&gt; seed:&#39;?16004 -&gt; IndexedRoseTree&lt;&#39;?16005&gt;<br />
+                          <strong>Type parameters:</strong> '?16004, '?16005, '?16006          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1287', 1287)" onmouseover="showTip(event, '1287', 1287)">
+            unfoldForest f
+          </code>
+          <div class="tip" id="1287">
+            <strong>Signature:</strong>f:(&#39;?16008 -&gt; &#39;?16009 * &#39;?16010) -&gt; &#39;?16010 -&gt; Vector&lt;IndexedRoseTree&lt;&#39;?16009&gt;&gt;<br />
+                          <strong>Type parameters:</strong> '?16008, '?16009, '?16010          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

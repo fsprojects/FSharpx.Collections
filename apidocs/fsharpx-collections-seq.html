@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Seq - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Seq</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '274', 274)" onmouseover="showTip(event, '274', 274)">
+            asCircular values
+          </code>
+          <div class="tip" id="274">
+            <strong>Signature:</strong>values:seq&lt;&#39;?11920&gt; -&gt; seq&lt;&#39;?11920&gt;<br />
+                          <strong>Type parameters:</strong> '?11920          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a infinite sequences of the given values</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '275', 275)" onmouseover="showTip(event, '275', 275)">
+            asCircularOnLoop f values
+          </code>
+          <div class="tip" id="275">
+            <strong>Signature:</strong>f:(unit -&gt; unit) -&gt; values:seq&lt;&#39;?11922&gt; -&gt; seq&lt;&#39;?11922&gt;<br />
+                          <strong>Type parameters:</strong> '?11922          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '276', 276)" onmouseover="showTip(event, '276', 276)">
+            asCircularWithBreak values
+          </code>
+          <div class="tip" id="276">
+            <strong>Signature:</strong>values:seq&lt;&#39;?11924&gt; -&gt; seq&lt;&#39;?11924 option&gt;<br />
+                          <strong>Type parameters:</strong> '?11924          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a infinite sequences of the given values returning None everytime the given seq is exhausted</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '277', 277)" onmouseover="showTip(event, '277', 277)">
+            combine f a b
+          </code>
+          <div class="tip" id="277">
+            <strong>Signature:</strong>f:(&#39;?11940 -&gt; &#39;?11941 -&gt; &#39;?11942) -&gt; a:seq&lt;&#39;?11940&gt; -&gt; b:seq&lt;&#39;?11941&gt; -&gt; seq&lt;&#39;?11942&gt;<br />
+                          <strong>Type parameters:</strong> '?11940, '?11941, '?11942          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences. 
+Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '278', 278)" onmouseover="showTip(event, '278', 278)">
+            contract n source
+          </code>
+          <div class="tip" id="278">
+            <strong>Signature:</strong>n:int -&gt; source:seq&lt;&#39;?11938&gt; -&gt; seq&lt;&#39;?11938&gt;<br />
+                          <strong>Type parameters:</strong> '?11938          </div>
+        </td>
+        <td class="xmldoc"><p>Contracts a seq selecting every n values</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '279', 279)" onmouseover="showTip(event, '279', 279)">
+            grow n
+          </code>
+          <div class="tip" id="279">
+            <strong>Signature:</strong>n:int -&gt; seq&lt;&#39;?11944&gt; -&gt; seq&lt;&#39;?11944&gt;<br />
+                          <strong>Type parameters:</strong> '?11944          </div>
+        </td>
+        <td class="xmldoc"><p>Replicates each element in the seq n-times</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
+            index a
+          </code>
+          <div class="tip" id="280">
+            <strong>Signature:</strong>a:seq&lt;&#39;?11903&gt; -&gt; seq&lt;int * &#39;?11903&gt;<br />
+                          <strong>Type parameters:</strong> '?11903          </div>
+        </td>
+        <td class="xmldoc"><p>Adds an index to a sequence</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
+            intersperse sep list
+          </code>
+          <div class="tip" id="281">
+            <strong>Signature:</strong>sep:&#39;a -&gt; list:seq&lt;&#39;a&gt; -&gt; seq&lt;&#39;a&gt;<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
+            iterBreak f seq
+          </code>
+          <div class="tip" id="282">
+            <strong>Signature:</strong>f:(&#39;T -&gt; bool) -&gt; seq:seq&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Will iterate the current sequence until the given predicate is statisfied</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
+            lift2 f l1 l2
+          </code>
+          <div class="tip" id="283">
+            <strong>Signature:</strong>f:(&#39;?11907 -&gt; &#39;?11908 -&gt; &#39;?11909) -&gt; l1:seq&lt;&#39;?11907&gt; -&gt; l2:seq&lt;&#39;?11908&gt; -&gt; seq&lt;&#39;?11909&gt;<br />
+                          <strong>Type parameters:</strong> '?11907, '?11908, '?11909          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
+            ofStreamByByte stream
+          </code>
+          <div class="tip" id="284">
+            <strong>Signature:</strong>stream:Stream -&gt; seq&lt;int&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Converts a Stream into a sequence of bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '285', 285)" onmouseover="showTip(event, '285', 285)">
+            ofStreamByChunk chunkSize stream
+          </code>
+          <div class="tip" id="285">
+            <strong>Signature:</strong>chunkSize:int -&gt; stream:Stream -&gt; seq&lt;byte []&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Converts a stream into a seq of byte[] where the array is of the length given
+Note: the last chunk maybe less than the given chunk size</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '286', 286)" onmouseover="showTip(event, '286', 286)">
+            ofStreamReader streamReader
+          </code>
+          <div class="tip" id="286">
+            <strong>Signature:</strong>streamReader:StreamReader -&gt; seq&lt;string&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc"><p>Converts a streamReader into a seq yielding on each line</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '287', 287)" onmouseover="showTip(event, '287', 287)">
+            page page pageSize source
+          </code>
+          <div class="tip" id="287">
+            <strong>Signature:</strong>page:int -&gt; pageSize:int -&gt; source:seq&lt;&#39;?11946&gt; -&gt; seq&lt;&#39;?11946&gt;<br />
+                          <strong>Type parameters:</strong> '?11946          </div>
+        </td>
+        <td class="xmldoc"><p>Pages the underlying sequence</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '288', 288)" onmouseover="showTip(event, '288', 288)">
+            prependToAll sep list
+          </code>
+          <div class="tip" id="288">
+            <strong>Signature:</strong>sep:&#39;?11948 -&gt; list:seq&lt;&#39;?11948&gt; -&gt; seq&lt;&#39;?11948&gt;<br />
+                          <strong>Type parameters:</strong> '?11948          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '289', 289)" onmouseover="showTip(event, '289', 289)">
+            repeat a
+          </code>
+          <div class="tip" id="289">
+            <strong>Signature:</strong>a:&#39;?11936 -&gt; seq&lt;&#39;?11936&gt;<br />
+                          <strong>Type parameters:</strong> '?11936          </div>
+        </td>
+        <td class="xmldoc"><p>Creates an infinite sequence of the given value</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '290', 290)" onmouseover="showTip(event, '290', 290)">
+            skipNoFail count source
+          </code>
+          <div class="tip" id="290">
+            <strong>Signature:</strong>count:int -&gt; source:seq&lt;&#39;?11934&gt; -&gt; IEnumerable&lt;&#39;?11934&gt;<br />
+                          <strong>Type parameters:</strong> '?11934          </div>
+        </td>
+        <td class="xmldoc"><p>The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
+Alias for Enumerable.Skip</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '291', 291)" onmouseover="showTip(event, '291', 291)">
+            splitAt n seq
+          </code>
+          <div class="tip" id="291">
+            <strong>Signature:</strong>n:int -&gt; seq:seq&lt;&#39;?11915&gt; -&gt; seq&lt;&#39;?11915&gt; * seq&lt;&#39;?11915&gt;<br />
+                          <strong>Type parameters:</strong> '?11915          </div>
+        </td>
+        <td class="xmldoc"><p>Splits a sequences at the given index</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '292', 292)" onmouseover="showTip(event, '292', 292)">
+            tail source
+          </code>
+          <div class="tip" id="292">
+            <strong>Signature:</strong>source:seq&lt;&#39;?11928&gt; -&gt; seq&lt;&#39;?11928&gt;<br />
+                          <strong>Type parameters:</strong> '?11928          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '293', 293)" onmouseover="showTip(event, '293', 293)">
+            tailNoFail source
+          </code>
+          <div class="tip" id="293">
+            <strong>Signature:</strong>source:seq&lt;&#39;?11930&gt; -&gt; seq&lt;&#39;?11930&gt;<br />
+                          <strong>Type parameters:</strong> '?11930          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '294', 294)" onmouseover="showTip(event, '294', 294)">
+            tryAverage seq
+          </code>
+          <div class="tip" id="294">
+            <strong>Signature:</strong>seq:seq&lt;^a&gt; -&gt; ^a option<br />
+                          <strong>Type parameters:</strong> ^a          </div>
+        </td>
+        <td class="xmldoc"><p>The same as Seq.average except will return None if the seq is empty</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '295', 295)" onmouseover="showTip(event, '295', 295)">
+            tryFindWithIndex pred l
+          </code>
+          <div class="tip" id="295">
+            <strong>Signature:</strong>pred:(&#39;?11905 -&gt; bool) -&gt; l:seq&lt;&#39;?11905&gt; -&gt; (int * &#39;?11905) option<br />
+                          <strong>Type parameters:</strong> '?11905          </div>
+        </td>
+        <td class="xmldoc"><p>Returns the first element (with its index) for which the given function returns true.
+Return None if no such element exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '296', 296)" onmouseover="showTip(event, '296', 296)">
+            tryHead source
+          </code>
+          <div class="tip" id="296">
+            <strong>Signature:</strong>source:seq&lt;&#39;?11926&gt; -&gt; &#39;?11926 option<br />
+                          <strong>Type parameters:</strong> '?11926          </div>
+        </td>
+        <td class="xmldoc"><p>A safe version of seq head</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '297', 297)" onmouseover="showTip(event, '297', 297)">
+            tryNth index source
+          </code>
+          <div class="tip" id="297">
+            <strong>Signature:</strong>index:int -&gt; source:seq&lt;&#39;?11932&gt; -&gt; &#39;?11932 option<br />
+                          <strong>Type parameters:</strong> '?11932          </div>
+        </td>
+        <td class="xmldoc"><p>The same as Seq.nth except returns None if the sequence is empty or does not have enough elements</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

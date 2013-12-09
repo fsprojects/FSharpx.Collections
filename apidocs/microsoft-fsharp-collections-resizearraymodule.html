@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ResizeArray - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>ResizeArray</h1>
+<div class="xmldoc">
+<p>Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.</p>
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '817', 817)" onmouseover="showTip(event, '817', 817)">
+            append arg1 arg2
+          </code>
+          <div class="tip" id="817">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array that contains the elements of the first array followed by the elements of the second array</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '818', 818)" onmouseover="showTip(event, '818', 818)">
+            blit arg1 arg2 arg3 arg4 arg5
+          </code>
+          <div class="tip" id="818">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; int -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Read a range of elements from the first array and write them into the second.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '819', 819)" onmouseover="showTip(event, '819', 819)">
+            choose arg1 arg2
+          </code>
+          <div class="tip" id="819">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;U option) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to each element of the array. Return
+the array comprised of the results "x" for each element where
+the function returns Some(x)</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '820', 820)" onmouseover="showTip(event, '820', 820)">
+            concat arg1
+          </code>
+          <div class="tip" id="820">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; list -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array that contains the elements of each of the given list of arrays</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '821', 821)" onmouseover="showTip(event, '821', 821)">
+            copy arg1
+          </code>
+          <div class="tip" id="821">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array that contains the elements of the given array</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '822', 822)" onmouseover="showTip(event, '822', 822)">
+            create arg1 arg2
+          </code>
+          <div class="tip" id="822">
+            <strong>Signature:</strong>int -&gt; &#39;T -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Create an array whose elements are all initially the given value.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '823', 823)" onmouseover="showTip(event, '823', 823)">
+            exists arg1 arg2
+          </code>
+          <div class="tip" id="823">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Test if any element of the array satisfies the given predicate.
+If the input function is <c>f</c> and the elements are <c>i0...iN</c> 
+then computes <c>p i0 or ... or p iN</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '824', 824)" onmouseover="showTip(event, '824', 824)">
+            exists2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="824">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; bool) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Test elements of the two arrays pairwise to see if any pair of element satisfies the given predicate.
+Raise ArgumentException if the arrays have different lengths.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '825', 825)" onmouseover="showTip(event, '825', 825)">
+            fill arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="825">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; int -&gt; &#39;T -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Fill a range of the collection with the given element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '826', 826)" onmouseover="showTip(event, '826', 826)">
+            filter arg1 arg2
+          </code>
+          <div class="tip" id="826">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return a new collection containing only the elements of the collection
+for which the given predicate returns <c>true</c></p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '827', 827)" onmouseover="showTip(event, '827', 827)">
+            find arg1 arg2
+          </code>
+          <div class="tip" id="827">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the first element for which the given function returns <c>true</c>.
+Raise <c>KeyNotFoundException</c> if no such element exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '828', 828)" onmouseover="showTip(event, '828', 828)">
+            findIndex arg1 arg2
+          </code>
+          <div class="tip" id="828">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the index of the first element in the array
+that satisfies the given predicate. Raise <c>KeyNotFoundException</c> if 
+none of the elements satisfy the predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '829', 829)" onmouseover="showTip(event, '829', 829)">
+            findIndexi arg1 arg2
+          </code>
+          <div class="tip" id="829">
+            <strong>Signature:</strong>(int -&gt; &#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the index of the first element in the array
+that satisfies the given predicate. Raise <c>KeyNotFoundException</c> if 
+none of the elements satisfy the predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '830', 830)" onmouseover="showTip(event, '830', 830)">
+            fold arg1 arg2 arg3
+          </code>
+          <div class="tip" id="830">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;T) -&gt; &#39;T -&gt; ResizeArray&lt;&#39;State&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to each element of the collection, threading an accumulator argument
+through the computation. If the input function is <c>f</c> and the elements are <c>i0...iN</c> 
+then computes <c>f (... (f s i0)...) iN</c></p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '831', 831)" onmouseover="showTip(event, '831', 831)">
+            fold2 arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="831">
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T1 -&gt; &#39;T2 -&gt; &#39;State) -&gt; &#39;State -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to pairs of elements drawn from the two collections, 
+left-to-right, threading an accumulator argument
+through the computation.  The two input
+arrays must have the same lengths, otherwise an <c>ArgumentException</c> is
+raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '832', 832)" onmouseover="showTip(event, '832', 832)">
+            foldBack arg1 arg2 arg3
+          </code>
+          <div class="tip" id="832">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to each element of the array, threading an accumulator argument
+through the computation. If the input function is <c>f</c> and the elements are <c>i0...iN</c> then 
+computes <c>f i0 (...(f iN s))</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '833', 833)" onmouseover="showTip(event, '833', 833)">
+            foldBack2 arg1 arg2 arg3 arg4
+          </code>
+          <div class="tip" id="833">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; &#39;State -&gt; &#39;State) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to pairs of elements drawn from the two collections, right-to-left, 
+threading an accumulator argument through the computation.  The two input
+arrays must have the same lengths, otherwise an <c>ArgumentException</c> is
+raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '834', 834)" onmouseover="showTip(event, '834', 834)">
+            forall arg1 arg2
+          </code>
+          <div class="tip" id="834">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Test if all elements of the array satisfy the given predicate.
+If the input function is <c>f</c> and the elements are <c>i0...iN</c> and "j0...jN"
+then computes <c>p i0 &amp;&amp; ... &amp;&amp; p iN</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '835', 835)" onmouseover="showTip(event, '835', 835)">
+            forall2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="835">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; bool) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Test elements of the two arrays pairwise to see if all pairs of elements satisfy the given predicate.
+Raise ArgumentException if the arrays have different lengths.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '836', 836)" onmouseover="showTip(event, '836', 836)">
+            get arg1 arg2
+          </code>
+          <div class="tip" id="836">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Fetch an element from the collection.  You can also use the syntax <c>arr.[idx]</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '837', 837)" onmouseover="showTip(event, '837', 837)">
+            init arg1 arg2
+          </code>
+          <div class="tip" id="837">
+            <strong>Signature:</strong>int -&gt; (int -&gt; &#39;T) -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Create an array by calling the given generator on each index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '838', 838)" onmouseover="showTip(event, '838', 838)">
+            isEmpty arg1
+          </code>
+          <div class="tip" id="838">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return true if the given array is empty, otherwise false</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '839', 839)" onmouseover="showTip(event, '839', 839)">
+            iter arg1 arg2
+          </code>
+          <div class="tip" id="839">
+            <strong>Signature:</strong>(&#39;T -&gt; unit) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to each element of the array.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '840', 840)" onmouseover="showTip(event, '840', 840)">
+            iter2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="840">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; unit) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to two arrays simultaneously. The
+two arrays must have the same lengths, otherwise an Invalid_argument exception is
+raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '841', 841)" onmouseover="showTip(event, '841', 841)">
+            iteri arg1 arg2
+          </code>
+          <div class="tip" id="841">
+            <strong>Signature:</strong>(int -&gt; &#39;T -&gt; unit) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to each element of the array.  The integer passed to the
+function indicates the index of element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '842', 842)" onmouseover="showTip(event, '842', 842)">
+            iteri2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="842">
+            <strong>Signature:</strong>(int -&gt; &#39;T1 -&gt; &#39;T2 -&gt; unit) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to pair of elements drawn from matching indices in two arrays,
+also passing the index of the elements. The two arrays must have the same lengths, 
+otherwise an <c>ArgumentException</c> is raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '843', 843)" onmouseover="showTip(event, '843', 843)">
+            length arg1
+          </code>
+          <div class="tip" id="843">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the length of the collection.  You can also use property <c>arr.Length</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '844', 844)" onmouseover="showTip(event, '844', 844)">
+            map arg1 arg2
+          </code>
+          <div class="tip" id="844">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;U) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array whose elements are the results of applying the given function
+to each of the elements of the array.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '845', 845)" onmouseover="showTip(event, '845', 845)">
+            map2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="845">
+            <strong>Signature:</strong>(&#39;T1 -&gt; &#39;T2 -&gt; &#39;U) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; ResizeArray&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new collection whose elements are the results of applying the given function
+to the corresponding elements of the two collections pairwise.  The two input
+arrays must have the same lengths.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '846', 846)" onmouseover="showTip(event, '846', 846)">
+            mapi arg1 arg2
+          </code>
+          <div class="tip" id="846">
+            <strong>Signature:</strong>(int -&gt; &#39;T -&gt; &#39;U) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array whose elements are the results of applying the given function
+to each of the elements of the array. The integer index passed to the
+function indicates the index of element being transformed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '847', 847)" onmouseover="showTip(event, '847', 847)">
+            mapi2 arg1 arg2 arg3
+          </code>
+          <div class="tip" id="847">
+            <strong>Signature:</strong>(int -&gt; &#39;T1 -&gt; &#39;T2 -&gt; &#39;U) -&gt; ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; ResizeArray&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new collection whose elements are the results of applying the given function
+to the corresponding elements of the two collections pairwise.  The two input
+arrays must have the same lengths, otherwise an <c>ArgumentException</c> is
+raised.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '848', 848)" onmouseover="showTip(event, '848', 848)">
+            ofArray arg1
+          </code>
+          <div class="tip" id="848">
+            <strong>Signature:</strong>&#39;T [] -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a ResizeArray from the given elements</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '849', 849)" onmouseover="showTip(event, '849', 849)">
+            ofList arg1
+          </code>
+          <div class="tip" id="849">
+            <strong>Signature:</strong>&#39;T list -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build an array from the given list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '850', 850)" onmouseover="showTip(event, '850', 850)">
+            ofSeq arg1
+          </code>
+          <div class="tip" id="850">
+            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build and array from the given seq</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '851', 851)" onmouseover="showTip(event, '851', 851)">
+            partition arg1 arg2
+          </code>
+          <div class="tip" id="851">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt; * ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Split the collection into two collections, containing the 
+elements for which the given predicate returns <c>true</c> and <c>false</c>
+respectively</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '852', 852)" onmouseover="showTip(event, '852', 852)">
+            reduce arg1 arg2
+          </code>
+          <div class="tip" id="852">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;T -&gt; &#39;T) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to each element of the array, threading an accumulator argument
+through the computation. If the input function is <c>f</c> and the elements are <c>i0...iN</c> 
+then computes <c>f (... (f i0 i1)...) iN</c>. Raises ArgumentException if the array has size zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '853', 853)" onmouseover="showTip(event, '853', 853)">
+            reduceBack arg1 arg2
+          </code>
+          <div class="tip" id="853">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;T -&gt; &#39;T) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Apply a function to each element of the array, threading an accumulator argument
+through the computation. If the input function is <c>f</c> and the elements are <c>i0...iN</c> then 
+computes <c>f i0 (...(f iN-1 iN))</c>. Raises ArgumentException if the array has size zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '854', 854)" onmouseover="showTip(event, '854', 854)">
+            rev arg1
+          </code>
+          <div class="tip" id="854">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return a new array with the elements in reverse order</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '855', 855)" onmouseover="showTip(event, '855', 855)">
+            scan arg1 arg2 arg3
+          </code>
+          <div class="tip" id="855">
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; ResizeArray&lt;&#39;T&gt; -&gt; ResizeArray&lt;&#39;State&gt;<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Like <c>fold</c>, but return the intermediary and final results</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '856', 856)" onmouseover="showTip(event, '856', 856)">
+            scanBack arg1 arg2 arg3
+          </code>
+          <div class="tip" id="856">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;State -&gt; ResizeArray&lt;&#39;State&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc"><p>Like <c>foldBack</c>, but return both the intermediary and final results</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '857', 857)" onmouseover="showTip(event, '857', 857)">
+            set arg1 arg2 arg3
+          </code>
+          <div class="tip" id="857">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; &#39;T -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Set the value of an element in the collection. You can also use the syntax <c>arr.[idx] <- e</c>.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '858', 858)" onmouseover="showTip(event, '858', 858)">
+            singleton arg1
+          </code>
+          <div class="tip" id="858">
+            <strong>Signature:</strong>&#39;T -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return an array containing the given element</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '859', 859)" onmouseover="showTip(event, '859', 859)">
+            sort arg1 arg2
+          </code>
+          <div class="tip" id="859">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;T -&gt; int) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Sort the elements using the given comparison function</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
+            sortBy arg1 arg2
+          </code>
+          <div class="tip" id="860">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;Key) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T, 'Key          </div>
+        </td>
+        <td class="xmldoc"><p>Sort the elements using the key extractor and generic comparison on the keys</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '861', 861)" onmouseover="showTip(event, '861', 861)">
+            sub arg1 arg2 arg3
+          </code>
+          <div class="tip" id="861">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; int -&gt; int -&gt; ResizeArray&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a new array that contains the given subrange specified by
+starting index and length.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '862', 862)" onmouseover="showTip(event, '862', 862)">
+            toArray arg1
+          </code>
+          <div class="tip" id="862">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; &#39;T []<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return a fixed-length array containing the elements of the input ResizeArray</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '863', 863)" onmouseover="showTip(event, '863', 863)">
+            toList arg1
+          </code>
+          <div class="tip" id="863">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; &#39;T list<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Build a list from the given array</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '864', 864)" onmouseover="showTip(event, '864', 864)">
+            toSeq arg1
+          </code>
+          <div class="tip" id="864">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return a view of the array as an enumerable object</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
+            tryFind arg1 arg2
+          </code>
+          <div class="tip" id="865">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the first element for which the given function returns <c>true</c>.
+Return None if no such element exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
+            tryFindIndex arg1 arg2
+          </code>
+          <div class="tip" id="866">
+            <strong>Signature:</strong>(&#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; int option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the index of the first element in the array
+that satisfies the given predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
+            tryFindIndexi arg1 arg2
+          </code>
+          <div class="tip" id="867">
+            <strong>Signature:</strong>(int -&gt; &#39;T -&gt; bool) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; int option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>Return the index of the first element in the array
+that satisfies the given predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
+            tryPick arg1 arg2
+          </code>
+          <div class="tip" id="868">
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;U option) -&gt; ResizeArray&lt;&#39;T&gt; -&gt; &#39;U option<br />
+                          <strong>Type parameters:</strong> 'T, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>Apply the given function to successive elements, returning the first
+result where function returns "Some(x)" for some x.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
+            unzip arg1
+          </code>
+          <div class="tip" id="869">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T1 * &#39;T2&gt; -&gt; ResizeArray&lt;&#39;T1&gt; * ResizeArray&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Split an array of pairs into two arrays</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+            zip arg1 arg2
+          </code>
+          <div class="tip" id="870">
+            <strong>Signature:</strong>ResizeArray&lt;&#39;T1&gt; -&gt; ResizeArray&lt;&#39;T2&gt; -&gt; ResizeArray&lt;&#39;T1 * &#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>Combine the two arrays into an array of pairs. The two arrays must have equal lengths, otherwise an <c>ArgumentException</c> is
+raised..</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

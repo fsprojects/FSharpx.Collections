@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RealTimeDeque - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>RealTimeDeque</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1352', 1352)" onmouseover="showTip(event, '1352', 1352)">
+            append xs ys
+          </code>
+          <div class="tip" id="1352">
+            <strong>Signature:</strong>xs:RealTimeDeque&lt;&#39;T&gt; -&gt; ys:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two deques concatenated, front-back stream ratio constant defaulted to 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1353', 1353)" onmouseover="showTip(event, '1353', 1353)">
+            appendC c xs ys
+          </code>
+          <div class="tip" id="1353">
+            <strong>Signature:</strong>c:int -&gt; xs:RealTimeDeque&lt;&#39;T&gt; -&gt; ys:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two deques concatenated, c is front-back stream ratio constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1354', 1354)" onmouseover="showTip(event, '1354', 1354)">
+            cons x q
+          </code>
+          <div class="tip" id="1354">
+            <strong>Signature:</strong>x:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new deque with the element added to the beginning.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1355', 1355)" onmouseover="showTip(event, '1355', 1355)">
+            empty c
+          </code>
+          <div class="tip" id="1355">
+            <strong>Signature:</strong>c:int -&gt; RealTimeDeque&lt;&#39;?15052&gt;<br />
+                          <strong>Type parameters:</strong> '?15052          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns deque of no elements, c is front-back stream ration constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1356', 1356)" onmouseover="showTip(event, '1356', 1356)">
+            head q
+          </code>
+          <div class="tip" id="1356">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1357', 1357)" onmouseover="showTip(event, '1357', 1357)">
+            init q
+          </code>
+          <div class="tip" id="1357">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1358', 1358)" onmouseover="showTip(event, '1358', 1358)">
+            isEmpty q
+          </code>
+          <div class="tip" id="1358">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns true if the deque has no elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1359', 1359)" onmouseover="showTip(event, '1359', 1359)">
+            last q
+          </code>
+          <div class="tip" id="1359">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1360', 1360)" onmouseover="showTip(event, '1360', 1360)">
+            length q
+          </code>
+          <div class="tip" id="1360">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns the count of elememts.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1361', 1361)" onmouseover="showTip(event, '1361', 1361)">
+            lookup i q
+          </code>
+          <div class="tip" id="1361">
+            <strong>Signature:</strong>i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns option element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1362', 1362)" onmouseover="showTip(event, '1362', 1362)">
+            ofCatLists xs ys
+          </code>
+          <div class="tip" id="1362">
+            <strong>Signature:</strong>xs:&#39;?15074 list -&gt; ys:&#39;?15074 list -&gt; RealTimeDeque&lt;&#39;?15074&gt;<br />
+                          <strong>Type parameters:</strong> '?15074          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two lists concatenated, front-back stream ratio constant defaulted to 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1363', 1363)" onmouseover="showTip(event, '1363', 1363)">
+            ofCatListsC c xs ys
+          </code>
+          <div class="tip" id="1363">
+            <strong>Signature:</strong>c:int -&gt; xs:&#39;?15076 list -&gt; ys:&#39;?15076 list -&gt; RealTimeDeque&lt;&#39;?15076&gt;<br />
+                          <strong>Type parameters:</strong> '?15076          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two lists concatenated, c is front-back stream ration constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1364', 1364)" onmouseover="showTip(event, '1364', 1364)">
+            ofCatSeqs xs ys
+          </code>
+          <div class="tip" id="1364">
+            <strong>Signature:</strong>xs:seq&lt;&#39;?15078&gt; -&gt; ys:seq&lt;&#39;?15078&gt; -&gt; RealTimeDeque&lt;&#39;?15078&gt;<br />
+                          <strong>Type parameters:</strong> '?15078          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two seqs concatenated, front-back stream ratio constant defaulted to 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1365', 1365)" onmouseover="showTip(event, '1365', 1365)">
+            ofCatSeqsC c xs ys
+          </code>
+          <div class="tip" id="1365">
+            <strong>Signature:</strong>c:int -&gt; xs:seq&lt;&#39;?15080&gt; -&gt; ys:seq&lt;&#39;?15080&gt; -&gt; RealTimeDeque&lt;&#39;?15080&gt;<br />
+                          <strong>Type parameters:</strong> '?15080          </div>
+        </td>
+        <td class="xmldoc"><p>O(|ys-xs|). Returns a deque of the two seqs concatenated, c is front-back stream ratio constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1366', 1366)" onmouseover="showTip(event, '1366', 1366)">
+            ofSeq xs
+          </code>
+          <div class="tip" id="1366">
+            <strong>Signature:</strong>xs:seq&lt;&#39;?15082&gt; -&gt; RealTimeDeque&lt;&#39;?15082&gt;<br />
+                          <strong>Type parameters:</strong> '?15082          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a deque of the seq, front-back stream ratio constant defaulted to 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1367', 1367)" onmouseover="showTip(event, '1367', 1367)">
+            ofSeqC c xs
+          </code>
+          <div class="tip" id="1367">
+            <strong>Signature:</strong>c:int -&gt; xs:seq&lt;&#39;?15084&gt; -&gt; RealTimeDeque&lt;&#39;?15084&gt;<br />
+                          <strong>Type parameters:</strong> '?15084          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Returns a deque of the seq, c is front-back stream ratio constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1368', 1368)" onmouseover="showTip(event, '1368', 1368)">
+            remove i q
+          </code>
+          <div class="tip" id="1368">
+            <strong>Signature:</strong>i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1369', 1369)" onmouseover="showTip(event, '1369', 1369)">
+            rev q
+          </code>
+          <div class="tip" id="1369">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns deque reversed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1370', 1370)" onmouseover="showTip(event, '1370', 1370)">
+            singleton x
+          </code>
+          <div class="tip" id="1370">
+            <strong>Signature:</strong>x:&#39;?15092 -&gt; RealTimeDeque&lt;&#39;?15092&gt;<br />
+                          <strong>Type parameters:</strong> '?15092          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a deque of one element, front-back stream ratio constant defaulted to 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1371', 1371)" onmouseover="showTip(event, '1371', 1371)">
+            singletonC c x
+          </code>
+          <div class="tip" id="1371">
+            <strong>Signature:</strong>c:int -&gt; x:&#39;?15094 -&gt; RealTimeDeque&lt;&#39;?15094&gt;<br />
+                          <strong>Type parameters:</strong> '?15094          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns a deque of one element, c is front-back stream ratio constant, should be at least 2.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1372', 1372)" onmouseover="showTip(event, '1372', 1372)">
+            snoc x q
+          </code>
+          <div class="tip" id="1372">
+            <strong>Signature:</strong>x:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new deque with the element added to the end.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1373', 1373)" onmouseover="showTip(event, '1373', 1373)">
+            tail q
+          </code>
+          <div class="tip" id="1373">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns a new deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1374', 1374)" onmouseover="showTip(event, '1374', 1374)">
+            tryGetHead q
+          </code>
+          <div class="tip" id="1374">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1375', 1375)" onmouseover="showTip(event, '1375', 1375)">
+            tryGetInit q
+          </code>
+          <div class="tip" id="1375">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option deque of the elements before the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1376', 1376)" onmouseover="showTip(event, '1376', 1376)">
+            tryGetLast q
+          </code>
+          <div class="tip" id="1376">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1377', 1377)" onmouseover="showTip(event, '1377', 1377)">
+            tryGetTail q
+          </code>
+          <div class="tip" id="1377">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option deque of the elements trailing the first element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1378', 1378)" onmouseover="showTip(event, '1378', 1378)">
+            tryLookup i q
+          </code>
+          <div class="tip" id="1378">
+            <strong>Signature:</strong>i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns option element by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1379', 1379)" onmouseover="showTip(event, '1379', 1379)">
+            tryRemove i q
+          </code>
+          <div class="tip" id="1379">
+            <strong>Signature:</strong>i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns option deque with element removed by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1380', 1380)" onmouseover="showTip(event, '1380', 1380)">
+            tryUncons q
+          </code>
+          <div class="tip" id="1380">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; (&#39;T * RealTimeDeque&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1381', 1381)" onmouseover="showTip(event, '1381', 1381)">
+            tryUnsnoc q
+          </code>
+          <div class="tip" id="1381">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; (RealTimeDeque&lt;&#39;T&gt; * &#39;T) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns option init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1382', 1382)" onmouseover="showTip(event, '1382', 1382)">
+            tryUpdate i y q
+          </code>
+          <div class="tip" id="1382">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns option deque with element updated by index.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1383', 1383)" onmouseover="showTip(event, '1383', 1383)">
+            uncons q
+          </code>
+          <div class="tip" id="1383">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T * RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns the first element and tail.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1384', 1384)" onmouseover="showTip(event, '1384', 1384)">
+            unsnoc q
+          </code>
+          <div class="tip" id="1384">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; * &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1), worst case. Returns init and the last element.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1385', 1385)" onmouseover="showTip(event, '1385', 1385)">
+            update i y q
+          </code>
+          <div class="tip" id="1385">
+            <strong>Signature:</strong>i:int -&gt; y:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n/2), worst case. Returns deque with element updated by index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1403', 1403)" onmouseover="showTip(event, '1403', 1403)">
+            ( |Cons|Nil| ) q
+          </code>
+          <div class="tip" id="1403">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * RealTimeDeque&lt;&#39;T&gt;),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1404', 1404)" onmouseover="showTip(event, '1404', 1404)">
+            ( |Snoc|Nil| ) q
+          </code>
+          <div class="tip" id="1404">
+            <strong>Signature:</strong>q:RealTimeDeque&lt;&#39;T&gt; -&gt; Choice&lt;(RealTimeDeque&lt;&#39;T&gt; * &#39;T),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

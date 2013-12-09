@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Prelude - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Prelude</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+            curry f a b
+          </code>
+          <div class="tip" id="5">
+            <strong>Signature:</strong>f:(&#39;?4951 * &#39;?4952 -&gt; &#39;?4953) -&gt; a:&#39;?4951 -&gt; b:&#39;?4952 -&gt; &#39;?4953<br />
+                          <strong>Type parameters:</strong> '?4951, '?4952, '?4953          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            fix f x
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong>f:((&#39;?4994 -&gt; &#39;?4995) -&gt; &#39;?4994 -&gt; &#39;?4995) -&gt; x:&#39;?4994 -&gt; &#39;?4995<br />
+                          <strong>Type parameters:</strong> '?4994, '?4995          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
+            fix2 f x y
+          </code>
+          <div class="tip" id="50">
+            <strong>Signature:</strong>f:((&#39;?4997 -&gt; &#39;?4998 -&gt; &#39;?4999) -&gt; &#39;?4997 -&gt; &#39;?4998 -&gt; &#39;?4999) -&gt; x:&#39;?4997 -&gt; y:&#39;?4998 -&gt; &#39;?4999<br />
+                          <strong>Type parameters:</strong> '?4997, '?4998, '?4999          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+            fix3 f x y z
+          </code>
+          <div class="tip" id="51">
+            <strong>Signature:</strong>f:((&#39;?5001 -&gt; &#39;?5002 -&gt; &#39;?5003 -&gt; &#39;?5004) -&gt; &#39;?5001 -&gt; &#39;?5002 -&gt; &#39;?5003 -&gt; &#39;?5004) -&gt; x:&#39;?5001 -&gt; y:&#39;?5002 -&gt; z:&#39;?5003 -&gt; &#39;?5004<br />
+                          <strong>Type parameters:</strong> '?5001, '?5002, '?5003, '?5004          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
+            flip f a b
+          </code>
+          <div class="tip" id="52">
+            <strong>Signature:</strong>f:(&#39;?4947 -&gt; &#39;?4948 -&gt; &#39;?4949) -&gt; a:&#39;?4948 -&gt; b:&#39;?4947 -&gt; &#39;?4949<br />
+                          <strong>Type parameters:</strong> '?4947, '?4948, '?4949          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+            konst a arg2
+          </code>
+          <div class="tip" id="53">
+            <strong>Signature:</strong>a:&#39;?4962 -&gt; &#39;?4963 -&gt; &#39;?4962<br />
+                          <strong>Type parameters:</strong> '?4962, '?4963          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+            konst2 a arg2 arg3
+          </code>
+          <div class="tip" id="54">
+            <strong>Signature:</strong>a:&#39;?4965 -&gt; &#39;?4966 -&gt; &#39;?4967 -&gt; &#39;?4965<br />
+                          <strong>Type parameters:</strong> '?4965, '?4966, '?4967          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+            swap (a, b)
+          </code>
+          <div class="tip" id="55">
+            <strong>Signature:</strong>(a:&#39;?4959 * b:&#39;?4960) -&gt; &#39;?4960 * &#39;?4959<br />
+                          <strong>Type parameters:</strong> '?4959, '?4960          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+            tuple2 a b
+          </code>
+          <div class="tip" id="56">
+            <strong>Signature:</strong>a:&#39;?4969 -&gt; b:&#39;?4970 -&gt; &#39;?4969 * &#39;?4970<br />
+                          <strong>Type parameters:</strong> '?4969, '?4970          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a pair</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
+            tuple3 a b c
+          </code>
+          <div class="tip" id="57">
+            <strong>Signature:</strong>a:&#39;?4972 -&gt; b:&#39;?4973 -&gt; c:&#39;?4974 -&gt; &#39;?4972 * &#39;?4973 * &#39;?4974<br />
+                          <strong>Type parameters:</strong> '?4972, '?4973, '?4974          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a 3-tuple</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+            tuple4 a b c d
+          </code>
+          <div class="tip" id="58">
+            <strong>Signature:</strong>a:&#39;?4976 -&gt; b:&#39;?4977 -&gt; c:&#39;?4978 -&gt; d:&#39;?4979 -&gt; &#39;?4976 * &#39;?4977 * &#39;?4978 * &#39;?4979<br />
+                          <strong>Type parameters:</strong> '?4976, '?4977, '?4978, '?4979          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a 4-tuple</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+            tuple5 a b c d e
+          </code>
+          <div class="tip" id="59">
+            <strong>Signature:</strong>a:&#39;?4981 -&gt; b:&#39;?4982 -&gt; c:&#39;?4983 -&gt; d:&#39;?4984 -&gt; e:&#39;?4985 -&gt; &#39;?4981 * &#39;?4982 * &#39;?4983 * &#39;?4984 * &#39;?4985<br />
+                          <strong>Type parameters:</strong> '?4981, '?4982, '?4983, '?4984, '?4985          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a 5-tuple</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+            tuple6 a b c d e f
+          </code>
+          <div class="tip" id="60">
+            <strong>Signature:</strong>a:&#39;?4987 -&gt; b:&#39;?4988 -&gt; c:&#39;?4989 -&gt; d:&#39;?4990 -&gt; e:&#39;?4991 -&gt; f:&#39;?4992 -&gt; &#39;?4987 * &#39;?4988 * &#39;?4989 * &#39;?4990 * &#39;?4991 * &#39;?4992<br />
+                          <strong>Type parameters:</strong> '?4987, '?4988, '?4989, '?4990, '?4991, '?4992          </div>
+        </td>
+        <td class="xmldoc"><p>Creates a 6-tuple</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+            uncurry f (a, b)
+          </code>
+          <div class="tip" id="61">
+            <strong>Signature:</strong>f:(&#39;?4955 -&gt; &#39;?4956 -&gt; &#39;?4957) -&gt; (a:&#39;?4955 * b:&#39;?4956) -&gt; &#39;?4957<br />
+                          <strong>Type parameters:</strong> '?4955, '?4956, '?4957          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Type extensions</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Type extension</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '204', 204)" onmouseover="showTip(event, '204', 204)">
+            parse(x)
+          </code>
+          <div class="tip" id="204">
+            <strong>Signature:</strong>x:string -&gt; bool option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '206', 206)" onmouseover="showTip(event, '206', 206)">
+            parse(x)
+          </code>
+          <div class="tip" id="206">
+            <strong>Signature:</strong>x:string -&gt; int16 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '207', 207)" onmouseover="showTip(event, '207', 207)">
+            parse(x)
+          </code>
+          <div class="tip" id="207">
+            <strong>Signature:</strong>x:string -&gt; int option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '208', 208)" onmouseover="showTip(event, '208', 208)">
+            parse(x)
+          </code>
+          <div class="tip" id="208">
+            <strong>Signature:</strong>x:string -&gt; decimal option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
+            parse(x)
+          </code>
+          <div class="tip" id="209">
+            <strong>Signature:</strong>x:string -&gt; byte option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '210', 210)" onmouseover="showTip(event, '210', 210)">
+            parse(x)
+          </code>
+          <div class="tip" id="210">
+            <strong>Signature:</strong>x:string -&gt; int64 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '211', 211)" onmouseover="showTip(event, '211', 211)">
+            parse(x)
+          </code>
+          <div class="tip" id="211">
+            <strong>Signature:</strong>x:string -&gt; float32 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '212', 212)" onmouseover="showTip(event, '212', 212)">
+            parse(x)
+          </code>
+          <div class="tip" id="212">
+            <strong>Signature:</strong>x:string -&gt; float option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '213', 213)" onmouseover="showTip(event, '213', 213)">
+            parse(x)
+          </code>
+          <div class="tip" id="213">
+            <strong>Signature:</strong>x:string -&gt; DateTime option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '214', 214)" onmouseover="showTip(event, '214', 214)">
+            parse(x)
+          </code>
+          <div class="tip" id="214">
+            <strong>Signature:</strong>x:string -&gt; DateTimeOffset option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
+            parseExact(formats x)
+          </code>
+          <div class="tip" id="215">
+            <strong>Signature:</strong>(formats:string []) -&gt; x:string -&gt; DateTime option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
+            parseExact(formats x)
+          </code>
+          <div class="tip" id="216">
+            <strong>Signature:</strong>(formats:string []) -&gt; x:string -&gt; DateTimeOffset option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
+            parseExactWithOptions(...)
+          </code>
+          <div class="tip" id="217">
+            <strong>Signature:</strong>style:DateTimeStyles -&gt; provider:IFormatProvider -&gt; (formats:string []) -&gt; x:string -&gt; DateTime option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+            parseExactWithOptions(...)
+          </code>
+          <div class="tip" id="218">
+            <strong>Signature:</strong>style:DateTimeStyles -&gt; provider:IFormatProvider -&gt; (formats:string []) -&gt; x:string -&gt; DateTimeOffset option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="219">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; int16 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="220">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; int option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="221">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; decimal option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="222">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; byte option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="223">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; int64 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="224">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; float32 option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="225">
+            <strong>Signature:</strong>style:NumberStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; float option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="226">
+            <strong>Signature:</strong>style:DateTimeStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; DateTime option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
+            parseWithOptions(style provider x)
+          </code>
+          <div class="tip" id="227">
+            <strong>Signature:</strong>style:DateTimeStyles -&gt; provider:IFormatProvider -&gt; x:string -&gt; DateTimeOffset option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '300', 300)" onmouseover="showTip(event, '300', 300)">
+            ( |Boolean|_| ) arg00
+          </code>
+          <div class="tip" id="300">
+            <strong>Signature:</strong>arg00:string -&gt; bool option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '301', 301)" onmouseover="showTip(event, '301', 301)">
+            ( |Double|_| ) arg00
+          </code>
+          <div class="tip" id="301">
+            <strong>Signature:</strong>arg00:string -&gt; float option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '302', 302)" onmouseover="showTip(event, '302', 302)">
+            ( |Int32|_| ) arg00
+          </code>
+          <div class="tip" id="302">
+            <strong>Signature:</strong>arg00:string -&gt; int option<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

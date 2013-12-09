@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>List - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>List</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+            cons hd tl
+          </code>
+          <div class="tip" id="185">
+            <strong>Signature:</strong>hd:&#39;?12212 -&gt; tl:&#39;?12212 list -&gt; &#39;?12212 list<br />
+                          <strong>Type parameters:</strong> '?12212          </div>
+        </td>
+        <td class="xmldoc"><p>Curried cons</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+            fill total elem list
+          </code>
+          <div class="tip" id="186">
+            <strong>Signature:</strong>total:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '187', 187)" onmouseover="showTip(event, '187', 187)">
+            lift2 f l1 l2
+          </code>
+          <div class="tip" id="187">
+            <strong>Signature:</strong>f:(&#39;?12216 -&gt; &#39;?12217 -&gt; &#39;?12218) -&gt; l1:&#39;?12216 list -&gt; l2:&#39;?12217 list -&gt; &#39;?12218 list<br />
+                          <strong>Type parameters:</strong> '?12216, '?12217, '?12218          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '188', 188)" onmouseover="showTip(event, '188', 188)">
+            mapAccum f s l
+          </code>
+          <div class="tip" id="188">
+            <strong>Signature:</strong>f:(&#39;?12240 -&gt; &#39;?12241 -&gt; &#39;?12240 * &#39;?12242) -&gt; s:&#39;?12240 -&gt; l:&#39;?12241 list -&gt; &#39;?12240 * &#39;?12242 list<br />
+                          <strong>Type parameters:</strong> '?12240, '?12241, '?12242          </div>
+        </td>
+        <td class="xmldoc"><p>Behaves like a combination of map and fold; 
+it applies a function to each element of a list, 
+passing an accumulating parameter from left to right, 
+and returning a final value of this accumulator together with the new list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
+            mapIf pred f
+          </code>
+          <div class="tip" id="189">
+            <strong>Signature:</strong>pred:(&#39;?12238 -&gt; bool) -&gt; f:(&#39;?12238 -&gt; &#39;?12238) -&gt; &#39;?12238 list -&gt; &#39;?12238 list<br />
+                          <strong>Type parameters:</strong> '?12238          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '190', 190)" onmouseover="showTip(event, '190', 190)">
+            merge a b
+          </code>
+          <div class="tip" id="190">
+            <strong>Signature:</strong>a:&#39;?12249 list -&gt; b:&#39;?12249 list -&gt; &#39;?12249 list<br />
+                          <strong>Type parameters:</strong> '?12249          </div>
+        </td>
+        <td class="xmldoc"><p>Merges two sequences by the default comparer for 'T</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '191', 191)" onmouseover="showTip(event, '191', 191)">
+            mergeBy f a b
+          </code>
+          <div class="tip" id="191">
+            <strong>Signature:</strong>f:(&#39;?12246 -&gt; &#39;?12247) -&gt; a:&#39;?12246 list -&gt; b:&#39;?12246 list -&gt; &#39;?12246 list<br />
+                          <strong>Type parameters:</strong> '?12246, '?12247          </div>
+        </td>
+        <td class="xmldoc"><p>Merges to sequences using the given function to transform the elements for comparision</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '192', 192)" onmouseover="showTip(event, '192', 192)">
+            pad amt elem list
+          </code>
+          <div class="tip" id="192">
+            <strong>Signature:</strong>amt:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '193', 193)" onmouseover="showTip(event, '193', 193)">
+            singleton x
+          </code>
+          <div class="tip" id="193">
+            <strong>Signature:</strong>x:&#39;?12214 -&gt; &#39;?12214 list<br />
+                          <strong>Type parameters:</strong> '?12214          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '194', 194)" onmouseover="showTip(event, '194', 194)">
+            skip n l
+          </code>
+          <div class="tip" id="194">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?12234 list -&gt; &#39;?12234 list<br />
+                          <strong>Type parameters:</strong> '?12234          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '195', 195)" onmouseover="showTip(event, '195', 195)">
+            skipUntil pred l
+          </code>
+          <div class="tip" id="195">
+            <strong>Signature:</strong>pred:(&#39;?12226 -&gt; bool) -&gt; l:&#39;?12226 list -&gt; &#39;?12226 list<br />
+                          <strong>Type parameters:</strong> '?12226          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '196', 196)" onmouseover="showTip(event, '196', 196)">
+            skipWhile pred l
+          </code>
+          <div class="tip" id="196">
+            <strong>Signature:</strong>pred:(&#39;?12224 -&gt; bool) -&gt; l:&#39;?12224 list -&gt; &#39;?12224 list<br />
+                          <strong>Type parameters:</strong> '?12224          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '197', 197)" onmouseover="showTip(event, '197', 197)">
+            span pred l
+          </code>
+          <div class="tip" id="197">
+            <strong>Signature:</strong>pred:(&#39;?12220 -&gt; bool) -&gt; l:&#39;?12220 list -&gt; &#39;?12220 list * &#39;?12220 list<br />
+                          <strong>Type parameters:</strong> '?12220          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '198', 198)" onmouseover="showTip(event, '198', 198)">
+            split pred l
+          </code>
+          <div class="tip" id="198">
+            <strong>Signature:</strong>pred:(&#39;?12222 -&gt; bool) -&gt; l:&#39;?12222 list -&gt; &#39;?12222 list * &#39;?12222 list<br />
+                          <strong>Type parameters:</strong> '?12222          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '199', 199)" onmouseover="showTip(event, '199', 199)">
+            splitAt n l
+          </code>
+          <div class="tip" id="199">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?12232 list -&gt; &#39;?12232 list * &#39;?12232 list<br />
+                          <strong>Type parameters:</strong> '?12232          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '200', 200)" onmouseover="showTip(event, '200', 200)">
+            take n l
+          </code>
+          <div class="tip" id="200">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?12236 list -&gt; &#39;?12236 list<br />
+                          <strong>Type parameters:</strong> '?12236          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '201', 201)" onmouseover="showTip(event, '201', 201)">
+            takeUntil pred l
+          </code>
+          <div class="tip" id="201">
+            <strong>Signature:</strong>pred:(&#39;?12230 -&gt; bool) -&gt; l:&#39;?12230 list -&gt; &#39;?12230 list<br />
+                          <strong>Type parameters:</strong> '?12230          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+            takeWhile pred l
+          </code>
+          <div class="tip" id="202">
+            <strong>Signature:</strong>pred:(&#39;?12228 -&gt; bool) -&gt; l:&#39;?12228 list -&gt; &#39;?12228 list<br />
+                          <strong>Type parameters:</strong> '?12228          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+            transpose lst
+          </code>
+          <div class="tip" id="203">
+            <strong>Signature:</strong>lst:&#39;?12244 list list -&gt; &#39;?12244 list list<br />
+                          <strong>Type parameters:</strong> '?12244          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

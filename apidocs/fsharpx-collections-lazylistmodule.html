@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>LazyList - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>LazyList</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            append arg1 source
+          </code>
+          <div class="tip" id="62">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the list which contains on demand the elements of the first list followed
+ by the elements of the second list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+            concat arg1
+          </code>
+          <div class="tip" id="63">
+            <strong>Signature:</strong>LazyList&lt;LazyList&lt;&#39;T&gt;&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the list which contains on demand the list of elements of the list of lazy lists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+            cons arg1 arg2
+          </code>
+          <div class="tip" id="64">
+            <strong>Signature:</strong>&#39;T -&gt; LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a new list which contains the given item followed by the
+ given list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+            consDelayed arg1 arg2
+          </code>
+          <div class="tip" id="65">
+            <strong>Signature:</strong>&#39;T -&gt; (unit -&gt; LazyList&lt;&#39;T&gt;) -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a new list which on consumption contains the given item 
+ followed by the list returned by the given computation.  The</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            delayed arg1
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong>(unit -&gt; LazyList&lt;&#39;T&gt;) -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a list that is in effect the list returned by the given computation.
+ The given computation is not executed until the first element on the list is
+ consumed.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+            empty 
+          </code>
+          <div class="tip" id="67">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Evaluates to the list that contains no items</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+            filter predicate source
+          </code>
+          <div class="tip" id="68">
+            <strong>Signature:</strong>predicate:(&#39;T -&gt; bool) -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a new collection which on consumption will consist of only the elements of the collection
+ for which the given predicate returns "true"</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+            find predicate source
+          </code>
+          <div class="tip" id="69">
+            <strong>Signature:</strong>predicate:(&#39;T -&gt; bool) -&gt; source:LazyList&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Return the first element for which the given function returns <c>true</c>.
+ Raise <c>KeyNotFoundException</c> if no such element exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
+            head arg1
+          </code>
+          <div class="tip" id="70">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
+            isEmpty arg1
+          </code>
+          <div class="tip" id="71">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Test if a list is empty.  Forces the evaluation of
+ the first element of the stream if it is not already evaluated.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
+            iter action list
+          </code>
+          <div class="tip" id="72">
+            <strong>Signature:</strong>action:(&#39;T -&gt; unit) -&gt; list:LazyList&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Apply the given function to each element of the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
+            length list
+          </code>
+          <div class="tip" id="73">
+            <strong>Signature:</strong>list:LazyList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Return the length of the list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+            map mapping source
+          </code>
+          <div class="tip" id="74">
+            <strong>Signature:</strong>mapping:(&#39;T -&gt; &#39;U) -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Build a new collection whose elements are the results of applying the given function
+ to each of the elements of the collection.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
+            map2 mapping arg2 arg3
+          </code>
+          <div class="tip" id="75">
+            <strong>Signature:</strong>mapping:(&#39;T1 -&gt; &#39;T2 -&gt; &#39;U) -&gt; LazyList&lt;&#39;T1&gt; -&gt; LazyList&lt;&#39;T2&gt; -&gt; LazyList&lt;&#39;U&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'U          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Build a new collection whose elements are the results of applying the given function
+ to the corresponding elements of the two collections pairwise.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
+            mapAccum f s l
+          </code>
+          <div class="tip" id="76">
+            <strong>Signature:</strong>f:(&#39;T1 -&gt; &#39;T2 -&gt; &#39;T1 * &#39;T3) -&gt; s:&#39;T1 -&gt; l:LazyList&lt;&#39;T2&gt; -&gt; &#39;T1 * LazyList&lt;&#39;T3&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'T3          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Behaves like a combination of map and fold; 
+ it applies a function to each element of a list, 
+ passing an accumulating parameter from left to right, 
+ and returning a final value of this accumulator together with the new list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
+            ofArray arg1
+          </code>
+          <div class="tip" id="77">
+            <strong>Signature:</strong>&#39;T array -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Build a collection from the given array. This function will eagerly evaluate all of the 
+ list (and thus may not terminate).</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '78', 78)" onmouseover="showTip(event, '78', 78)">
+            ofList arg1
+          </code>
+          <div class="tip" id="78">
+            <strong>Signature:</strong>&#39;T list -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Build a collection from the given list. This function will eagerly evaluate all of the 
+ list (and thus may not terminate).</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '79', 79)" onmouseover="showTip(event, '79', 79)">
+            ofSeq arg1
+          </code>
+          <div class="tip" id="79">
+            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Build a new collection from the given enumerable object</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
+            repeat arg1
+          </code>
+          <div class="tip" id="80">
+            <strong>Signature:</strong>&#39;T -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the list which on consumption will consist of an infinite sequence of 
+ the given item</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '81', 81)" onmouseover="showTip(event, '81', 81)">
+            scan folder arg2 source
+          </code>
+          <div class="tip" id="81">
+            <strong>Signature:</strong>folder:(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;State&gt;<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a new list consisting of the results of applying the given accumulating function
+ to successive elements of the list</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
+            skip count source
+          </code>
+          <div class="tip" id="82">
+            <strong>Signature:</strong>count:int -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), where n is count. Return the list which on consumption will skip the first 'n' elements of 
+ the input list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
+            tail arg1
+          </code>
+          <div class="tip" id="83">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '84', 84)" onmouseover="showTip(event, '84', 84)">
+            take count source
+          </code>
+          <div class="tip" id="84">
+            <strong>Signature:</strong>count:int -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), where n is count. Return the list which on consumption will consist of at most 'n' elements of 
+ the input list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '85', 85)" onmouseover="showTip(event, '85', 85)">
+            toArray arg1
+          </code>
+          <div class="tip" id="85">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; &#39;T array<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Build an array from the given collection</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '86', 86)" onmouseover="showTip(event, '86', 86)">
+            toList arg1
+          </code>
+          <div class="tip" id="86">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; &#39;T list<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Build a non-lazy list from the given collection. This function will eagerly evaluate all of the 
+ list (and thus may not terminate).</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '87', 87)" onmouseover="showTip(event, '87', 87)">
+            toSeq arg1
+          </code>
+          <div class="tip" id="87">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n). Return a view of the collection as an enumerable object</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '88', 88)" onmouseover="showTip(event, '88', 88)">
+            tryFind predicate source
+          </code>
+          <div class="tip" id="88">
+            <strong>Signature:</strong>predicate:(&#39;T -&gt; bool) -&gt; source:LazyList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), worst case. Apply the given function to successive elements of the list, returning the first
+ result where function returns <c>Some(x)</c> for some x. If the function never returns
+ true, 'None' is returned.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '89', 89)" onmouseover="showTip(event, '89', 89)">
+            tryHead arg1
+          </code>
+          <div class="tip" id="89">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return option the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '90', 90)" onmouseover="showTip(event, '90', 90)">
+            trySkip count source
+          </code>
+          <div class="tip" id="90">
+            <strong>Signature:</strong>count:int -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), where n is count. Return option the list which skips the first 'n' elements of 
+ the input list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
+            tryTail arg1
+          </code>
+          <div class="tip" id="91">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return option the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
+            tryTake count source
+          </code>
+          <div class="tip" id="92">
+            <strong>Signature:</strong>count:int -&gt; source:LazyList&lt;&#39;T&gt; -&gt; LazyList&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(n), where n is count. Return the list which on consumption will consist of at most 'n' elements of 
+ the input list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
+            tryUncons arg1
+          </code>
+          <div class="tip" id="93">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; (&#39;T * LazyList&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns option tuple of head element and tail of the list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
+            uncons arg1
+          </code>
+          <div class="tip" id="94">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; &#39;T * LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Returns tuple of head element and tail of the list.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
+            unfold arg1 arg2
+          </code>
+          <div class="tip" id="95">
+            <strong>Signature:</strong>(&#39;State -&gt; (&#39;T * &#39;State) option) -&gt; &#39;State -&gt; LazyList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return a list that contains the elements returned by the given computation.
+ The given computation is not executed until the first element on the list is
+ consumed.  The given argument is passed to the computation.  Subsequent elements
+ in the list are generated by again applying the residual 'b to the computation.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
+            zip arg1 arg2
+          </code>
+          <div class="tip" id="96">
+            <strong>Signature:</strong>LazyList&lt;&#39;T1&gt; -&gt; LazyList&lt;&#39;T2&gt; -&gt; LazyList&lt;&#39;T1 * &#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2          </div>
+        </td>
+        <td class="xmldoc"><p>O(1). Return the list which contains on demand the pair of elements of the first and second list</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '273', 273)" onmouseover="showTip(event, '273', 273)">
+            ( |Cons|Nil| ) arg1
+          </code>
+          <div class="tip" id="273">
+            <strong>Signature:</strong>LazyList&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * LazyList&lt;&#39;T&gt;),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

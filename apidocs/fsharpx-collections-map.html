@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Map - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="http://forki.github.io/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="http://forki.github.io/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+        </ul>
+        <h3 class="muted">FSharpx.Collections</h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Map</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '114', 114)" onmouseover="showTip(event, '114', 114)">
+            choose f map
+          </code>
+          <div class="tip" id="114">
+            <strong>Signature:</strong>f:(&#39;T -&gt; &#39;b -&gt; &#39;c option) -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;c&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'b, 'c          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '115', 115)" onmouseover="showTip(event, '115', 115)">
+            findOrDefault key defaultValue map
+          </code>
+          <div class="tip" id="115">
+            <strong>Signature:</strong>key:&#39;T -&gt; defaultValue:&#39;b -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; &#39;b<br />
+                          <strong>Type parameters:</strong> 'T, 'b          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '116', 116)" onmouseover="showTip(event, '116', 116)">
+            insertWith f key value map
+          </code>
+          <div class="tip" id="116">
+            <strong>Signature:</strong>f:(&#39;?12183 -&gt; &#39;?12183 -&gt; &#39;?12183) -&gt; key:&#39;?12184 -&gt; value:&#39;?12183 -&gt; map:Map&lt;&#39;?12184,&#39;?12183&gt; -&gt; Map&lt;&#39;?12184,&#39;?12183&gt;<br />
+                          <strong>Type parameters:</strong> '?12183, '?12184          </div>
+        </td>
+        <td class="xmldoc"><p>insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. 
+ If the key does exist, the function will insert f new<em>value old</em>value.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '117', 117)" onmouseover="showTip(event, '117', 117)">
+            keys map
+          </code>
+          <div class="tip" id="117">
+            <strong>Signature:</strong>map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'b          </div>
+        </td>
+        <td class="xmldoc"><p>Retrieves the keys from a Map</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '118', 118)" onmouseover="showTip(event, '118', 118)">
+            removeMany keys map
+          </code>
+          <div class="tip" id="118">
+            <strong>Signature:</strong>keys:seq&lt;&#39;T&gt; -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'b          </div>
+        </td>
+        <td class="xmldoc"><p>Allows to remove many keys from a Map</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '119', 119)" onmouseover="showTip(event, '119', 119)">
+            spanWithKey pred map
+          </code>
+          <div class="tip" id="119">
+            <strong>Signature:</strong>pred:(&#39;?12177 -&gt; bool) -&gt; map:Map&lt;&#39;?12177,&#39;?12178&gt; -&gt; Map&lt;&#39;?12177,&#39;?12178&gt; * Map&lt;&#39;?12177,&#39;?12178&gt;<br />
+                          <strong>Type parameters:</strong> '?12177, '?12178          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '120', 120)" onmouseover="showTip(event, '120', 120)">
+            splitWithKey pred d
+          </code>
+          <div class="tip" id="120">
+            <strong>Signature:</strong>pred:(&#39;?12180 -&gt; bool) -&gt; d:Map&lt;&#39;?12180,&#39;?12181&gt; -&gt; Map&lt;&#39;?12180,&#39;?12181&gt; * Map&lt;&#39;?12180,&#39;?12181&gt;<br />
+                          <strong>Type parameters:</strong> '?12180, '?12181          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '121', 121)" onmouseover="showTip(event, '121', 121)">
+            union map1 map2
+          </code>
+          <div class="tip" id="121">
+            <strong>Signature:</strong>map1:Map&lt;&#39;?12192,&#39;?12193&gt; -&gt; map2:Map&lt;&#39;?12192,&#39;?12193&gt; -&gt; Map&lt;&#39;?12192,&#39;?12193&gt;<br />
+                          <strong>Type parameters:</strong> '?12192, '?12193          </div>
+        </td>
+        <td class="xmldoc"><p>Combines the two Maps into a single Map</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
+            updateWith f key map
+          </code>
+          <div class="tip" id="122">
+            <strong>Signature:</strong>f:(&#39;?12186 -&gt; &#39;?12186 option) -&gt; key:&#39;?12187 -&gt; map:Map&lt;&#39;?12187,&#39;?12186&gt; -&gt; Map&lt;&#39;?12187,&#39;?12186&gt;<br />
+                          <strong>Type parameters:</strong> '?12186, '?12187          </div>
+        </td>
+        <td class="xmldoc"><p>update f k map updates the value x at key k (if it is in the map). 
+ If f x is None, the element is deleted. 
+ If it is Some y, the key is bound to the new value y.</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '123', 123)" onmouseover="showTip(event, '123', 123)">
+            valueList map
+          </code>
+          <div class="tip" id="123">
+            <strong>Signature:</strong>map:Map&lt;&#39;?12189,&#39;?12190&gt; -&gt; &#39;?12190 list<br />
+                          <strong>Type parameters:</strong> '?12189, '?12190          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
+            values map
+          </code>
+          <div class="tip" id="124">
+            <strong>Signature:</strong>map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'b          </div>
+        </td>
+        <td class="xmldoc"><p>Retrieves the values from a Map</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FAKE - F# Make</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://nuget.org/packages/Fake">Get FAKE via NuGet</a></li>
+            <li><a href="http://github.com/fsharp/fake">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/contributing.html">Contributing to FAKE</a></li>
+            <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
+            <li class="nav-header">Articles</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/nuget.html">NuGet package restore</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/fxcop.html">Using FxCop in a build</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/assemblyinfo.html">Generating AssemblyInfo</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/create-nuget-package.html">Create NuGet packages</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/specifictargets.html">Running specific targets</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/commandline.html">Running FAKE from command line</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/customtasks.html">Creating custom tasks</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/teamcity.html">TeamCity integration</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/octopusdeploy.html">Octopus Deploy</a></li>
+            <li class="divider"></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/deploy.html">Fake.Deploy</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
