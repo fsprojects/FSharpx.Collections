@@ -9,7 +9,7 @@ open FsCheck.NUnit
 open FSharpx.Collections.Tests.Properties
 open FsUnit
 
-let tree a b = IndexedRoseTree.create a (Vector.ofSeq b)
+let tree a b = IndexedRoseTree.create a (PersistentVector.ofSeq b)
 
 let atree = tree 1 [tree 2 [tree 3 []]; tree 4 [tree 5 [tree 6 []]]]
 let ctree = tree "f" [tree "b" [tree "a" []; tree "d" [tree "c" []; tree "e" []]]; tree "g" [tree "i" [tree "h" []]]]
@@ -37,7 +37,7 @@ let ``fold via preOrder``() =
 
 [<Test>]
 let unfold() =
-    let a = IndexedRoseTree.unfold (fun i -> i, Vector.ofSeq {i+1..3}) 0
+    let a = IndexedRoseTree.unfold (fun i -> i, PersistentVector.ofSeq {i+1..3}) 0
     let expected = tree 0 [tree 1 [tree 2 [tree 3 []]; tree 3 []]; tree 2 [tree 3 []]; tree 3 []]
     Assert.AreEqual(expected, a)
 
@@ -71,7 +71,7 @@ let finiteIndexedRoseTreeForest() =
     gen {
         let! n = Gen.length1thru 5
         let! l = Gen.listOfLength n Arb.generate<int>
-        return Seq.fold (fun (s : list<IndexedRoseTree<int>>) (t : int) -> (IndexedRoseTree.singleton t)::s) [] l |> Vector.ofSeq
+        return Seq.fold (fun (s : list<IndexedRoseTree<int>>) (t : int) -> (IndexedRoseTree.singleton t)::s) [] l |> PersistentVector.ofSeq
     }
 
 type IndexedRoseTreeGen =
@@ -80,7 +80,7 @@ type IndexedRoseTreeGen =
             gen {
                 let! root = Arb.generate<int>
                 // need to set these frequencies to avoid blowing the stack
-                let! children = Gen.frequency [70, gen.Return Vector.empty; 1, finiteIndexedRoseTreeForest()]
+                let! children = Gen.frequency [70, gen.Return PersistentVector.empty; 1, finiteIndexedRoseTreeForest()]
                 return IndexedRoseTree.create root children
             }
         Arb.fromGen (IndexedRoseTreeGen())
@@ -92,13 +92,13 @@ let equality() =
     registerGen.Force()
     checkEquality<int IndexedRoseTree> "IndexedRoseTree"
 
-let iRTF l = List.fold (fun (s : list<IndexedRoseTree<int>>) (t : int) -> (IndexedRoseTree.singleton t)::s) [] l |> Vector.ofSeq
+let iRTF l = List.fold (fun (s : list<IndexedRoseTree<int>>) (t : int) -> (IndexedRoseTree.singleton t)::s) [] l |> PersistentVector.ofSeq
 let iRTF2 = 
-    let rec loop (v : Vector<IndexedRoseTree<int>>) dec =
+    let rec loop (v : PersistentVector<IndexedRoseTree<int>>) dec =
         match dec with
         | 0 -> v
         | _ -> loop (v.Conj (IndexedRoseTree.create 1 (iRTF [1..5]))) (dec - 1)
-    loop Vector.empty 5
+    loop PersistentVector.empty 5
 
 
 let iRT = IndexedRoseTree.create 1 iRTF2
@@ -126,7 +126,7 @@ let ``monad laws``() =
     let inline (>>=) m f = IndexedRoseTree.bind f m
     let ret = IndexedRoseTree.singleton
 
-    let myF x = IndexedRoseTree.create x (Vector.empty |> Vector.conj (IndexedRoseTree.singleton x) |> Vector.conj  (IndexedRoseTree.singleton x))
+    let myF x = IndexedRoseTree.create x (PersistentVector.empty |> PersistentVector.conj (IndexedRoseTree.singleton x) |> PersistentVector.conj  (IndexedRoseTree.singleton x))
     let a = 1
 
     //left identity 
@@ -137,7 +137,7 @@ let ``monad laws``() =
     singleRT >>= ret = singleRT |> should equal true
 
     //associativity 
-    let myG x = IndexedRoseTree.create (x=x) (Vector.empty |> Vector.conj (IndexedRoseTree.singleton (x=x)) |> Vector.conj  (IndexedRoseTree.singleton (x=x)))
+    let myG x = IndexedRoseTree.create (x=x) (PersistentVector.empty |> PersistentVector.conj (IndexedRoseTree.singleton (x=x)) |> PersistentVector.conj  (IndexedRoseTree.singleton (x=x)))
 
     let a' = (iRT >>= myF) >>= myG
     let b' = iRT >>= (fun x -> myF x >>= myG)

@@ -2,7 +2,7 @@
 
 open System
 open FSharpx.Collections
-open FSharpx.Collections.Vector
+open FSharpx.Collections.PersistentVector
 open NUnit.Framework
 open FsUnit
 

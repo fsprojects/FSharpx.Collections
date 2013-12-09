@@ -5,7 +5,7 @@
 [<AutoOpen>]
 module FSharpx.Collections.Interfaces
 
-type IVector<'T> =
+type IPersistentVector<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
 
@@ -13,7 +13,7 @@ type IVector<'T> =
     abstract member Item  : int -> 'T with get
 
     /// Returns a new vector with the element 'added' at the end.
-    abstract member Conj : 'T -> IVector<'T>
+    abstract member Conj : 'T -> IPersistentVector<'T>
 
     /// Returns the number of items in the collection.
     abstract member Count : unit -> int
@@ -22,10 +22,10 @@ type IVector<'T> =
     abstract member Peek : unit -> 'T
 
     /// Returns a new vector without the last item. If the collection is empty it throws an exception.
-    abstract member Pop : unit -> IVector<'T>
+    abstract member Pop : unit -> IPersistentVector<'T>
 
     /// Returns a new vector that contains the given value at the index. Note - index must be <= vector.Count.
-    abstract member AssocN : int*'T -> IVector<'T>
+    abstract member AssocN : int*'T -> IPersistentVector<'T>
 
 type IDeque<'T> =
     inherit System.Collections.IEnumerable

@@ -122,12 +122,12 @@ type TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[
                 i := !i + 1 
             }
 
-    member this.persistent() : Vector<'T> =
+    member this.persistent() : PersistentVector<'T> =
         this.EnsureEditable()
         root.SetThread null
         let l = count - this.TailOff()
         let trimmedTail = Array.init l (fun i -> tail.[i])
-        Vector(count, shift, root, trimmedTail)
+        PersistentVector(count, shift, root, trimmedTail)
 
     member internal this.EnsureEditable() =
         if !root.Thread = Thread.CurrentThread then () else
@@ -148,13 +148,13 @@ type TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator 
 
-and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root:Node,tail:obj[])  =
+and PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root:Node,tail:obj[])  =
     let hashCode = ref None
     let tailOff = 
         if count < Literals.blockSize then 0 else
         ((count - 1) >>> Literals.blockSizeShift) <<< Literals.blockSizeShift
 
-    static member Empty() : Vector<'T> = Vector<'T>(0,Literals.blockSizeShift,Node(),[||])
+    static member Empty() : PersistentVector<'T> = PersistentVector<'T>(0,Literals.blockSizeShift,Node(),[||])
 
     static member ofSeq(items:'T seq) =
         let mutable ret = TransientVector()
@@ -174,7 +174,7 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
 
     override this.Equals(other) =
         match other with
-        | :? Vector<'T> as y -> 
+        | :? PersistentVector<'T> as y -> 
             if this.Length <> y.Length then false else
             if this.GetHashCode() <> y.GetHashCode() then false else
             Seq.forall2 (Unchecked.equals) this y
@@ -263,7 +263,7 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
     member this.Conj (x : 'T) = 
         if count - tailOff < Literals.blockSize then
             let newTail = Array.append tail [|x:>obj|]
-            Vector<'T>(count + 1,shift,root,newTail) 
+            PersistentVector<'T>(count + 1,shift,root,newTail) 
         else
             //full tail, push into tree
             let tailNode = Node(root.Thread,tail)
@@ -274,14 +274,14 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
                 let newRoot = Node()
                 newRoot.Array.[0] <- root :> obj
                 newRoot.Array.[1] <- this.NewPath(shift,tailNode) :> obj
-                Vector<'T>(count + 1,shift + Literals.blockSizeShift,newRoot,[| x |])
+                PersistentVector<'T>(count + 1,shift + Literals.blockSizeShift,newRoot,[| x |])
             else
                 let newRoot = this.PushTail(shift,root,tailNode)
-                Vector<'T>(count + 1,shift,newRoot,[| x |])
+                PersistentVector<'T>(count + 1,shift,newRoot,[| x |])
 
     member this.Initial =
         if count = 0 then failwith "Can't initial empty vector" else
-        if count = 1 then Vector<'T>.Empty() else
+        if count = 1 then PersistentVector<'T>.Empty() else
 
         if count - tailOff > 1 then 
             let mutable newroot = Node(ref Thread.CurrentThread, root.Array.Clone() :?> obj[])
@@ -299,7 +299,7 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
                 newroot <- newroot.Array.[0] :?> Node
                 newshift <- newshift - Literals.blockSizeShift
 
-            Vector(count - 1, newshift, newroot, newtail)
+            PersistentVector(count - 1, newshift, newroot, newtail)
 
     member this.TryInitial = if count = 0 then None else Some(this.Initial)
 
@@ -317,7 +317,7 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
     member this.Length : int = count    
 
     member this.Rev() =
-        if count = 0 then Vector.Empty() :> Vector<'T>
+        if count = 0 then PersistentVector.Empty() :> PersistentVector<'T>
         else
             let i = ref (count - 1)
             let array = ref (this.ArrayFor !i)
@@ -347,9 +347,9 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
             if i >= tailOff then
                 let newTail = Array.copy tail
                 newTail.[i &&& Literals.blockIndexMask] <- x :> obj
-                Vector(count, shift, root, newTail)
+                PersistentVector(count, shift, root, newTail)
             else
-                Vector(count, shift, this.doAssoc(shift, root, i, x),tail)
+                PersistentVector(count, shift, this.doAssoc(shift, root, i, x),tail)
         elif i = count then this.Conj x 
         else raise (new System.IndexOutOfRangeException())
 
@@ -367,11 +367,11 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
             :> System.Collections.IEnumerator
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module Vector = 
+module PersistentVector = 
     //pattern discriminators  (active pattern)
-    let (|Conj|Nil|) (v : Vector<'T>) = match v.TryUnconj with Some(a,b) -> Conj(a,b) | None -> Nil
+    let (|Conj|Nil|) (v : PersistentVector<'T>) = match v.TryUnconj with Some(a,b) -> Conj(a,b) | None -> Nil
      
-    let append (vectorA : Vector<'T>) (vectorB : Vector<'T>) = 
+    let append (vectorA : PersistentVector<'T>) (vectorB : PersistentVector<'T>) = 
         let mutable ret = TransientVector()
         for i in 0..(vectorA.Length - 1) do
             ret <- ret.conj vectorA.[i]
@@ -379,89 +379,89 @@ module Vector =
             ret <- ret.conj vectorB.[i]
         ret.persistent() 
 
-    let inline conj (x : 'T) (vector : Vector<'T>) = vector.Conj x
+    let inline conj (x : 'T) (vector : PersistentVector<'T>) = vector.Conj x
 
-    let empty<'T when 'T : equality> = Vector.Empty() :> Vector<'T>
+    let empty<'T when 'T : equality> = PersistentVector.Empty() :> PersistentVector<'T>
 
-    let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : Vector<'T>) = 
-        let rec loop state' (v' : Vector<'T>) count =
+    let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : PersistentVector<'T>) = 
+        let rec loop state' (v' : PersistentVector<'T>) count =
             match count with
             | _ when count = v'.Length -> state'
             | _ -> loop (f state' v'.[count]) v' (count + 1)  
         loop state v 0
 
-    let inline flatten (v : Vector<Vector<'T>>) =
-        fold (fun (s : seq<'T>) (v' : Vector<'T>) -> Seq.append s v') Seq.empty<'T> v
+    let inline flatten (v : PersistentVector<PersistentVector<'T>>) =
+        fold (fun (s : seq<'T>) (v' : PersistentVector<'T>) -> Seq.append s v') Seq.empty<'T> v
 
-    let inline foldBack (f : ('T -> 'State -> 'State)) (v : Vector<'T>) (state : 'State) =  
-        let rec loop state' (v' : Vector<'T>) count =
+    let inline foldBack (f : ('T -> 'State -> 'State)) (v : PersistentVector<'T>) (state : 'State) =  
+        let rec loop state' (v' : PersistentVector<'T>) count =
             match count with
             | -1 -> state'
             | _ -> loop (f v'.[count] state') v' (count - 1)  
         loop state v (v.Length - 1)
 
-    let init count (f: int -> 'T) : Vector<'T> =
+    let init count (f: int -> 'T) : PersistentVector<'T> =
         let mutable ret = TransientVector()
         for i in 0..(count-1) do
             ret <- ret.conj(f i)
         ret.persistent() 
 
-    let inline initial (vector: Vector<'T>) = vector.Initial
+    let inline initial (vector: PersistentVector<'T>) = vector.Initial
 
-    let inline tryInitial (vector: Vector<'T>) = vector.TryInitial
+    let inline tryInitial (vector: PersistentVector<'T>) = vector.TryInitial
 
-    let inline isEmpty (vector: Vector<'T>) = vector.IsEmpty
+    let inline isEmpty (vector: PersistentVector<'T>) = vector.IsEmpty
 
-    let inline last (vector: Vector<'T>) = vector.Last
+    let inline last (vector: PersistentVector<'T>) = vector.Last
 
-    let inline tryLast (vector: Vector<'T>) = vector.TryLast
+    let inline tryLast (vector: PersistentVector<'T>) = vector.TryLast
 
-    let inline length (vector: Vector<'T>) : int = vector.Length
+    let inline length (vector: PersistentVector<'T>) : int = vector.Length
 
-    let map (f : 'T -> 'T1) (vector: Vector<'T>) : 'T1 Vector = 
+    let map (f : 'T -> 'T1) (vector: PersistentVector<'T>) : 'T1 PersistentVector = 
         let mutable ret = TransientVector()
         for item in vector do
             ret <- ret.conj(f item)
         ret.persistent() 
 
-    let inline nth i (vector: Vector<'T>) : 'T = vector.[i]
+    let inline nth i (vector: PersistentVector<'T>) : 'T = vector.[i]
 
-    let inline nthNth i j (vector: Vector<Vector<'T>>) : 'T = vector.[i] |> nth j
+    let inline nthNth i j (vector: PersistentVector<PersistentVector<'T>>) : 'T = vector.[i] |> nth j
  
-    let inline tryNth i (vector: Vector<'T>) =
+    let inline tryNth i (vector: PersistentVector<'T>) =
         if i >= 0 && i < vector.Length then Some(vector.[i])
         else None
 
-    let inline tryNthNth i j (vector: Vector<Vector<'T>>) =
+    let inline tryNthNth i j (vector: PersistentVector<PersistentVector<'T>>) =
         match tryNth i vector with
         | Some v' -> tryNth j v'
         | None -> None    
 
-    let ofSeq (items : 'T seq) = Vector.ofSeq items 
+    let ofSeq (items : 'T seq) = PersistentVector.ofSeq items 
 
-    let inline rev (vector: Vector<'T>) = vector.Rev()
+    let inline rev (vector: PersistentVector<'T>) = vector.Rev()
 
     let inline singleton (x : 'T) = empty |> conj x
 
-    let inline toSeq (vector: Vector<'T>) = vector :> seq<'T>
+    let inline toSeq (vector: PersistentVector<'T>) = vector :> seq<'T>
 
-    let inline unconj (vector: Vector<'T>) = vector.Unconj
+    let inline unconj (vector: PersistentVector<'T>) = vector.Unconj
 
-    let inline tryUnconj (vector: Vector<'T>) = vector.TryUnconj
+    let inline tryUnconj (vector: PersistentVector<'T>) = vector.TryUnconj
 
-    let inline update i (x : 'T) (vector : Vector<'T>) : Vector<'T> = vector.Update(i, x)
+    let inline update i (x : 'T) (vector : PersistentVector<'T>) : PersistentVector<'T> = vector.Update(i, x)
 
-    let inline updateNth i j (x : 'T) (vector : Vector<Vector<'T>>) : Vector<Vector<'T>> = vector.Update(i, (vector.[i].Update(j, x)))
+    let inline updateNth i j (x : 'T) (vector : PersistentVector<PersistentVector<'T>>) : PersistentVector<PersistentVector<'T>> = vector.Update(i, (vector.[i].Update(j, x)))
 
-    let inline tryUpdate i (x : 'T) (vector : Vector<'T>) = vector.TryUpdate(i, x)
+    let inline tryUpdate i (x : 'T) (vector : PersistentVector<'T>) = vector.TryUpdate(i, x)
 
-    let inline tryUpdateNth i  j (x : 'T) (vector : Vector<Vector<'T>>) = 
+    let inline tryUpdateNth i  j (x : 'T) (vector : PersistentVector<PersistentVector<'T>>) = 
         if i >= 0 && i < vector.Length && j >= 0 && j < vector.[i].Length
         then Some(updateNth i j x vector)
         else None
 
     let inline windowFun windowLength = 
-        fun (v : Vector<Vector<'T>>) x ->
+        fun (v : PersistentVector<PersistentVector<'T>>) x ->
         if v.Last.Length = windowLength 
         then 
             v 
