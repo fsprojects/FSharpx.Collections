@@ -5,9 +5,7 @@
 /// The qualities of the Queue structure make elements first in, first out (fifo).
 /// "head" inspects the first or left-most element in the structure, while "conj" 
 /// inserts an element at the end, or right of the structure.
-/// Purely functional (immutable) Queue based on Okasaki's batched queue. 
-/// Value and function naming standard based on consistent List-like naming: http://jackfoxy.com/semantics-and-list-like-data-structures
-/// Original F# implementation http://lepensemoi.free.fr/index.php/2009/12/10/batched-queue
+/// Purely functional (immutable) Queue based on Okasaki's batched queue.
 [<Class>]
 type Queue<'T> =
 
