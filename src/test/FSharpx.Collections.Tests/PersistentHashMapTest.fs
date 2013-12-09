@@ -33,7 +33,7 @@ let ``can add empty string as key to empty map``() =
     x |> add "" "Hello" |> containsKey "" |> should equal true
 
 [<Test>]
-let ``can add some intergers to empty map``() =
+let ``can add some integers to empty map``() =
     let x =
         empty
         |> add 1 "h"
@@ -45,3 +45,15 @@ let ``can add some intergers to empty map``() =
     x |> containsKey 1 |> should equal true
     x |> containsKey 5 |> should equal true
     x |> containsKey 6 |> should equal false
+
+
+[<Test>]
+let ``can add tons of integers to empty map``() =
+    let x = ref empty
+    let counter = 1000
+
+    for i in 0 .. counter do 
+        x := add i i !x
+
+    for i in 0 .. counter do 
+        !x |> containsKey i |> should equal true
