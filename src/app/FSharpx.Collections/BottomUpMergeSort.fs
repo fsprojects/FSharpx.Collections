@@ -34,11 +34,11 @@ let rec addSeg seg segs size =
     else
         addSeg (merge seg (List.head segs)) (List.tail segs) (size / 2)
 
-let add x y = { Size = y.Size + 1; Segments = lazy addSeg [x] (Lazy.force y.Segments) y.Size }
+let add x y = { Size = y.Size + 1; Segments = lazy addSeg [x] (y.Segments.Force()) y.Size }
 
 let rec mergeAll xs ys =
     match xs, ys with
     | xs, [] -> xs
     | xs, seg::segs -> mergeAll (merge xs seg) segs
 
-let sort x = mergeAll [] (Lazy.force x.Segments)
+let sort x = mergeAll [] (x.Segments.Force())

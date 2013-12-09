@@ -29,7 +29,7 @@ type ImplicitQueue<'a> with
         | Shallow Zero -> Shallow (One x)
         | Shallow (One y) -> Deep (Two (y, x), lazy empty, Zero)
         | Deep(f, m, Zero) -> Deep(f, m, One x)
-        | Deep(f, m, One y) -> Deep(f, lazy ImplicitQueue.snoc (y, x) (Lazy.force m), Zero)
+        | Deep(f, m, One y) -> Deep(f, lazy ImplicitQueue.snoc (y, x) (m.Force()), Zero)
         | _ -> failwith "should not get there"
 
     static member head : ImplicitQueue<'a> -> 'a = function
@@ -51,7 +51,7 @@ type ImplicitQueue<'a> with
         | Shallow (One x) -> empty
         | Deep(Two(x, y), m, r) -> Deep(One y, m, r)
         | Deep(One x, q, r) ->
-            let q' = Lazy.force q
+            let q' = q.Force()
             if isEmpty q' then Shallow r else
             let y, z = ImplicitQueue.head q'
             Deep(Two(y, z), lazy ImplicitQueue.tail q', r)
@@ -62,7 +62,7 @@ type ImplicitQueue<'a> with
         | Shallow (One x) -> Some empty
         | Deep(Two(x, y), m, r) -> Some(Deep(One y, m, r))
         | Deep(One x, q, r) ->
-            let q' = Lazy.force q
+            let q' = q.Force()
             if isEmpty q' then Some(Shallow r) else
             let y, z = ImplicitQueue.head q'
             Some(Deep(Two(y, z), lazy ImplicitQueue.tail q', r))

@@ -41,7 +41,6 @@
     <Compile Include="Prelude.fs" />
     <Compile Include="Linq\Linq.fsi" />
     <Compile Include="Linq\Linq.fs" />
-    <Compile Include="Lazy.fs" />
     <Compile Include="Collections\LazyList.fsi" />
     <Compile Include="Collections\LazyList.fs" />
     <Compile Include="Collections\ResizeArray.fsi" />

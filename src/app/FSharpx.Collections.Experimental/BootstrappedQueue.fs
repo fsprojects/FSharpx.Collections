@@ -36,7 +36,7 @@ and BootstrappedQueue<'T> =
         match q.Front, q.Suspensions with
         | [], Empty -> Empty
         | [], m ->
-            let f = BootstrappedQueue.head m |> Lazy.force
+            let f = (BootstrappedQueue.head m).Force()
             let susp = BootstrappedQueue.tail m
             NonEmpty <| NonEmptyBootstrappedQueue<'T>.create q.FrontAndSuspensionsLength f susp q.RBackLength q.RBack
         | _ -> NonEmpty q
