@@ -46,10 +46,10 @@
     <Compile Include="ResizeArray.fsi" />
     <Compile Include="ResizeArray.fs" />
     <Compile Include="Collections.fs" />
-    <Compile Include="Deque2.fsi" />
-    <Compile Include="Deque2.fs" />
-    <Compile Include="DList2.fsi" />
-    <Compile Include="DList2.fs" />
+    <Compile Include="Deque.fsi" />
+    <Compile Include="Deque.fs" />
+    <Compile Include="DList.fsi" />
+    <Compile Include="DList.fs" />
     <Compile Include="ByteString.fs" />
     <Compile Include="CircularBuffer.fs" />
     <Compile Include="Heap.fsi" />
