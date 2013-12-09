@@ -14,12 +14,34 @@ let ``empty map should be empty``() =
 
 [<Test>]
 let ``empty map should not contain key 0``() =
-    let x = empty<int>
+    let x = empty
     x |> containsKey 1 |> should equal false
 
 [<Test>]
 let ``can add null entry to empty map``() =
-    let x = empty<string>
+    let x = empty
     x |> containsKey "value" |> should equal false
     x |> containsKey null |> should equal false
     x |> add null "Hello" |> containsKey null |> should equal true
+
+
+[<Test>]
+let ``can add empty string as key to empty map``() =
+    let x = empty
+    x |> containsKey "" |> should equal false
+    x |> add "" "Hello" |> containsKey null |> should equal false
+    x |> add "" "Hello" |> containsKey "" |> should equal true
+
+[<Test>]
+let ``can add some intergers to empty map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+            
+    x |> containsKey 1 |> should equal true
+    x |> containsKey 5 |> should equal true
+    x |> containsKey 6 |> should equal false
