@@ -15,7 +15,7 @@ module Seq =
     /// Adds an index to a sequence
     /// </summary>
     /// <param name="a"></param>
-    let inline index a = Seq.mapi tuple2 a
+    let inline index a = Seq.mapi (fun a b -> a,b) a
 
     /// <summary>
     /// Returns the first element (with its index) for which the given function returns true.

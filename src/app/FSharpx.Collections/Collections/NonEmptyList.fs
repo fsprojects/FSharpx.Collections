@@ -86,12 +86,12 @@ module NonEmptyList =
 
     [<CompiledName("Last")>]
     let inline last list = 
-        reduce (konst id) list
+        reduce ((fun x _ -> x) id) list
 
     [<CompiledName("Reverse")>]
     [<Extension>]
     let rev list =
-        List.fold (flip cons) (singleton (head list)) (tail list)
+        List.fold (fun a b -> cons b a) (singleton (head list)) (tail list)
 
     [<CompiledName("SelectMany")>]
     let collect mapping list =

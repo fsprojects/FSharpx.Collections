@@ -242,7 +242,7 @@ let ``test intersectionWithKey``() =
 
 [<Test>]
 let ``test map``() =
-    IntMap.map (flip (+) "x") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.ofList [(3, "bx"); (5, "ax")])
+    IntMap.map ((fun f a b -> f b a) (+) "x") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.ofList [(3, "bx"); (5, "ax")])
 
 [<Test>]
 let ``test mapWithKey``() =
@@ -263,7 +263,7 @@ let ``test mapAccumWithKey``() =
 
 [<Test>]
 let ``test mapKeys``() =
-    IntMap.mapKeys (flip (+) 1) (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.ofList [(4, "b"); (6, "a")])
+    IntMap.mapKeys ((fun f a b -> f b a) (+) 1) (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.ofList [(4, "b"); (6, "a")])
     IntMap.mapKeys (fun _ -> 1) (IntMap.ofList [(1,"b"); (2,"a"); (3,"d"); (4,"c")]) |> should equal (IntMap.singleton 1 "c")
     IntMap.mapKeys (fun _ -> 3) (IntMap.ofList [(1,"b"); (2,"a"); (3,"d"); (4,"c")]) |> should equal (IntMap.singleton 3 "c")
 
@@ -312,9 +312,9 @@ let ``test ofListWithKey``() =
 
 [<Test>]
 let ``test filter``() =
-    IntMap.filter (flip (>) "a") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.singleton 3 "b")
-    IntMap.filter (flip (>) "x") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal IntMap.empty
-    IntMap.filter (flip (<) "a") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal IntMap.empty
+    IntMap.filter ((fun f a b -> f b a) (>) "a") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal (IntMap.singleton 3 "b")
+    IntMap.filter ((fun f a b -> f b a) (>) "x") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal IntMap.empty
+    IntMap.filter ((fun f a b -> f b a) (<) "a") (IntMap.ofList [(5,"a"); (3,"b")]) |> should equal IntMap.empty
 
 [<Test>]
 let ``test filteWithKey``() =
@@ -322,13 +322,13 @@ let ``test filteWithKey``() =
 
 [<Test>]
 let ``test partition``() =
-    let left, right = IntMap.partition (flip (>) "a") (IntMap.ofList [(5,"a"); (3,"b")])
+    let left, right = IntMap.partition ((fun f a b -> f b a) (>) "a") (IntMap.ofList [(5,"a"); (3,"b")])
     left |> should equal (IntMap.singleton 3 "b")
     right |> should equal (IntMap.singleton 5 "a")
-    let left, right = IntMap.partition (flip (<) "x") (IntMap.ofList [(5,"a"); (3,"b")])
+    let left, right = IntMap.partition ((fun f a b -> f b a) (<) "x") (IntMap.ofList [(5,"a"); (3,"b")])
     left |> should equal (IntMap.ofList [(3, "b"); (5, "a")])
     right |> should equal IntMap.empty
-    let left, right = IntMap.partition (flip (>) "x") (IntMap.ofList [(5,"a"); (3,"b")])
+    let left, right = IntMap.partition ((fun f a b -> f b a) (>) "x") (IntMap.ofList [(5,"a"); (3,"b")])
     left |> should equal IntMap.empty
     right |> should equal (IntMap.ofList [(3, "b"); (5, "a")])
 

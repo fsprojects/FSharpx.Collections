@@ -19,7 +19,7 @@ type RoseTree =
 
     [<Extension>]
     static member SelectMany (o, f: Func<_,_>, mapper: Func<_,_,_>) =
-        let mapper = RoseTree.lift2 (curry mapper.Invoke)
+        let mapper = RoseTree.lift2 (fun a b -> mapper.Invoke(a,b))
         let v = RoseTree.bind f.Invoke o
         mapper o v
 

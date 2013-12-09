@@ -38,7 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Prelude.fs" />
     <Compile Include="Linq\Linq.fsi" />
     <Compile Include="Linq\Linq.fs" />
     <Compile Include="Collections\LazyList.fsi" />

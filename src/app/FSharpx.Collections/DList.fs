@@ -147,6 +147,6 @@ module DList =
             | t::ts -> walk ts t xs
         in walk [] l seed
 
-    let toList l = fold (flip FSharpx.Collections.List.cons) [] l
+    let toList l = fold (fun a b -> FSharpx.Collections.List.cons b a) [] l
 
     let toArray l = l |> toList |> Array.ofList

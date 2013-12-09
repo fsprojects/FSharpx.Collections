@@ -89,7 +89,7 @@ module BKTree =
             |> List.collect (toListDistance distance n a)
             |> if d <= n then List.cons b else id
 
-    let private ofCollection pred distance xs = xs |> pred (flip (add distance)) empty
+    let private ofCollection pred distance xs = xs |> pred ((fun f a b -> f b a) (add distance)) empty
 
     let private ofList distance xs = ofCollection List.fold distance xs
 

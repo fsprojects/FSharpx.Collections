@@ -21,4 +21,4 @@ let fsCheck name testable =
     FsCheck.Check.One (name, nUnitConfig, testable)
 
 module Gen = 
-    let ap x = flip Gen.apply x
+    let ap x y = Gen.apply y x

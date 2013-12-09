@@ -362,6 +362,7 @@ module IntMap =
                 | Some x -> Tip(k1, x)
         mergeWithKey' bin combine g1 g2
 
+    let inline konst a _ = a
     let append m1 m2 = mergeWithKey' (fun x y m1' m2' -> Bin(x, y, m1', m2')) konst id id m1 m2
 
     let appendWithKey f m1 m2 =
