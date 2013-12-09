@@ -129,7 +129,7 @@ Target "GenerateDocs" (fun _ ->
 
     if isLocalBuild then  // TODO: this needs to be fixed in FSharp.Formatting
         MetadataFormat.Generate ( 
-          ["./build/FSharpx.Collections.dll"; "./build/FSharpx.Collections.Experimental.dll"], 
+          ["./build/FSharpx.Collections.dll"], 
           apidocsDir, 
           ["./help/templates/"; "./help/templates/reference/"], 
           parameters = projInfo)
