@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FSharpx</RootNamespace>
+    <AssemblyName>FSharpx.Core</AssemblyName>
+    <Name>FSharpx.Core</Name>
+    <TargetFrameworkProfile />
+    <FSharpTargetsPath Condition="'$(FSharpTargetsPath)' == '' And '$(OS)' != 'Windows_NT'">..\..\..\tools\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+    <FSharpTargetsPath Condition="'$(FSharpTargetsPath)' == '' And '$(VisualStudioVersion)' != '11.0' And Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+    <FSharpTargetsPath Condition="'$(FSharpTargetsPath)' == '' And Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+    <FSharpTargetsPath Condition="'$(FSharpTargetsPath)' == ''">..\..\..\tools\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+    <FscToolPath Condition="'$(FSharpTargetsPath)' == '..\..\..\tools\FSharp\Microsoft.FSharp.Targets'">..\..\..\tools\FSharp\</FscToolPath>
+    <FscToolExe>Fsc.exe</FscToolExe>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\Debug\FSharpx.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>..\..\..\build\FSharpx.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Prelude.fs" />
+    <Compile Include="Pluralizer.fs" />
+    <Compile Include="Strings.fs" />
+    <Compile Include="JSON.fs" />
+    <Compile Include="StateMachine.fs" />
+    <Compile Include="IO.fs" />
+    <Compile Include="Linq\Linq.fsi" />
+    <Compile Include="Linq\Linq.fs" />
+    <Compile Include="Lazy.fs" />
+    <Compile Include="Collections\LazyList.fsi" />
+    <Compile Include="Collections\LazyList.fs" />
+    <Compile Include="Collections\ResizeArray.fsi" />
+    <Compile Include="Collections\ResizeArray.fs" />
+    <Compile Include="Collections\Collections.fs" />
+    <Compile Include="Collections\Deque2.fsi" />
+    <Compile Include="Collections\Deque2.fs" />
+    <Compile Include="Collections\DList2.fsi" />
+    <Compile Include="Collections\DList2.fs" />
+    <Compile Include="Collections\ByteString.fs" />
+    <Compile Include="Collections\CircularBuffer.fs" />
+    <Compile Include="Collections\IPriorityQueue.fs" />
+    <Compile Include="Collections\Heap.fsi" />
+    <Compile Include="Collections\Heap.fs" />
+    <Compile Include="Collections\NonEmptyList.fs" />
+    <Compile Include="Collections\PriorityQueue.fs" />
+    <Compile Include="Collections\RandomAccessList.fsi" />
+    <Compile Include="Collections\RandomAccessList.fs" />
+    <Compile Include="Collections\Queue.fsi" />
+    <Compile Include="Collections\Queue.fs" />
+    <Compile Include="Collections\Vector.fsi" />
+    <Compile Include="Collections\Vector.fs" />
+    <Compile Include="Interfaces.fs" />
+    <Compile Include="Infrastructure.fs" />
+    <Compile Include="DList.fs" />
+    <Compile Include="Vector.fs" />
+    <Compile Include="RingBuffer.fs" />
+    <Compile Include="TimeSeries.fs" />
+    <Compile Include="BootstrappedQueue.fs" />
+    <Compile Include="ImplicitQueue.fs" />
+    <Compile Include="RealTimeQueue.fs" />
+    <Compile Include="RealTimeDeque.fs" />
+    <Compile Include="BankersDeque.fs" />
+    <Compile Include="BatchedDeque.fs" />
+    <Compile Include="Deque.fs" />
+    <Compile Include="BottomUpMergeSort.fs" />
+    <Compile Include="AltBinaryRandomAccessList.fs" />
+    <Compile Include="BinaryRandomAccessList.fs" />
+    <Compile Include="SkewBinaryRandomAccessList.fs" />
+    <Compile Include="LeftistHeap.fs" />
+    <Compile Include="BinomialHeap.fs" />
+    <Compile Include="PairingHeap.fs" />
+    <Compile Include="HeapPriorityQueue.fs" />
+    <Compile Include="BinaryTreeZipper.fs" />
+    <Compile Include="ListZipper.fs" />
+    <Compile Include="BankersQueue.fs" />
+    <Compile Include="BatchedQueue.fs" />
+    <Compile Include="PhysicistQueue.fs" />
+    <Compile Include="HoodMelvilleQueue.fs" />
+    <Compile Include="IntMap.fs" />
+    <Compile Include="BKTree.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>False</Private>
+      <HintPath>..\..\..\tools\FSharp\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <Import Project="$(FSharpTargetsPath)" />
+</Project>
