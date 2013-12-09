@@ -8,7 +8,7 @@ open FsUnit
 
 [<Test>]
 let ``empty map should be empty``() =
-    let x = empty<int>
+    let x = empty<int,int>
     x |> length |> should equal 0
 
 
@@ -42,10 +42,23 @@ let ``can add some integers to empty map``() =
         |> add 4 "l"
         |> add 5 "o"
             
-    x |> containsKey 1 |> should equal true
-    x |> containsKey 5 |> should equal true
-    x |> containsKey 6 |> should equal false
+    x |> containsKey 1 |> shouldEqual true
+    x |> containsKey 5 |> shouldEqual true
+    x |> containsKey 6 |> shouldEqual false
 
+[<Test>]
+let ``can lookup integers from a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+            
+    x |> find 1 |> shouldEqual "h"
+    x |> find 4 |> shouldEqual "l"
+    x |> find 5 |> shouldEqual "o"
 
 [<Test>]
 let ``can add tons of integers to empty map``() =
@@ -57,6 +70,17 @@ let ``can add tons of integers to empty map``() =
 
     for i in 0 .. counter do 
         !x |> containsKey i |> should equal true
+
+[<Test>]
+let ``can lookup tons of integers form a map``() =
+    let x = ref empty
+    let counter = 1000
+
+    for i in 0 .. counter do 
+        x := add i i !x
+
+    for i in 0 .. counter do 
+        !x |> find i |> shouldEqual i
 
 [<CustomComparison; CustomEquality>]
 type AlwaysSameHash = 
@@ -83,7 +107,7 @@ type AlwaysSameHash =
     override this.GetHashCode () = 42
 
 [<Test>]
-let ``two AlwaysSameHash have same hase``() =
+let ``two AlwaysSameHash have same hash``() =
     hash { Name = "Test"} |> should equal (hash { Name = "Test"})
     { Name = "Test"} |> should equal { Name = "Test"}
     hash { Name = "Test"} |> should equal (hash { Name = "Test1"})
@@ -103,6 +127,20 @@ let ``can add keys with colliding hashes to empty map``() =
     map |> containsKey y |> should equal true
 
     empty |> containsKey y |> should equal false
+
+
+[<Test>]
+let ``can lookup keys with colliding hashes from map``() =
+    let x = { Name = "Test"}
+    let y = { Name = "Test1"}
+    let map = 
+        empty 
+        |> add x x
+        |> add y y
+    
+    map |> find x |> shouldEqual { Name = "Test"}
+    map |> find y |> shouldEqual { Name = "Test1"}
+
 
 [<Test>]
 let ``can add lots of keys with colliding hashes to empty map``() =

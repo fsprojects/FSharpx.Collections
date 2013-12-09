@@ -11,6 +11,7 @@ type Box(value:obj) =
 type INode =
     abstract member assoc : int * int * obj  * obj * Box -> INode
     abstract member find : int * int * obj -> obj
+    abstract member tryFind : int * int * obj -> obj option
 
 
 type NodeHelpers =
@@ -83,6 +84,11 @@ and HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
                 if idx < 0 then null else
                 if key = array.[idx] then array.[idx+1] else null
 
+            member this.tryFind(shift, hash, key) =
+                let idx = findIndex(key)
+                if idx < 0 then None else
+                if key = array.[idx] then Some array.[idx+1] else None
+
 and ArrayNode(thread,count,array:INode[]) =
     let x = 1
     with
@@ -97,12 +103,17 @@ and ArrayNode(thread,count,array:INode[]) =
                     if n = node then this :> INode else
                     ArrayNode(ref null, count, NodeHelpers.cloneAndSet(array, idx, n))  :> INode
 
-
             member this.find(shift, hash, key) =
                 let idx = NodeHelpers.mask(hash, shift)
                 let node = array.[idx]
                 if node = Unchecked.defaultof<INode> then null else
                 node.find(shift + 5, hash, key)
+
+            member this.tryFind(shift, hash, key) =
+                let idx = NodeHelpers.mask(hash, shift)
+                let node = array.[idx]
+                if node = Unchecked.defaultof<INode> then None else
+                Some(node.find(shift + 5, hash, key))
 
 and BitmapIndexedNode(thread,bitmap,array:obj[]) =
     let thread = thread
@@ -123,6 +134,18 @@ and BitmapIndexedNode(thread,bitmap,array:obj[]) =
                     valOrNode
                 else 
                     null
+
+            member this.tryFind(shift, hash, key) =
+                let bit = NodeHelpers.bitpos(hash, shift)
+                if bitmap &&& bit = 0 then None else
+                let idx = NodeHelpers.index(bitmap,bit)
+                let keyOrNull = array.[2*idx]
+                let valOrNode = array.[2*idx+1]
+                if keyOrNull = null then (valOrNode :?> INode).tryFind(shift + 5, hash, key) else
+                if key = keyOrNull then
+                    Some valOrNode
+                else 
+                    None
 
             member this.assoc(shift, hashKey, key, value, addedLeaf) : INode = 
                 let bit = NodeHelpers.bitpos(hashKey, shift)
@@ -165,9 +188,9 @@ and BitmapIndexedNode(thread,bitmap,array:obj[]) =
                         BitmapIndexedNode(ref null, bitmap ||| bit, newArray) :> INode
 
 
-type PersistentHashMap<[<EqualityConditionalOn>]'T when 'T : equality> (count,root:INode,hasNull, nullValue) =
+type PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (count,root:INode,hasNull, nullValue:'S) =
     
-    static member Empty() : PersistentHashMap<'T> = PersistentHashMap(0, Unchecked.defaultof<INode>, false, null)
+    static member Empty() : PersistentHashMap<'T, 'S> = PersistentHashMap(0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
     member this.Length : int = count
 
     member this.ContainsKey (key:'T) =
@@ -175,11 +198,11 @@ type PersistentHashMap<[<EqualityConditionalOn>]'T when 'T : equality> (count,ro
         if root = Unchecked.defaultof<INode> then false else
         root.find(0, hash(key), key) <> null
 
-    member this.Add(key, value) =
+    member this.Add(key:'T, value:'S) =
         if key = Unchecked.defaultof<'T> then
             if hasNull && value = nullValue then this else
             let count = if hasNull then count else count + 1
-            PersistentHashMap<'T>(count, root, true, value)
+            PersistentHashMap<'T, 'S>(count, root, true, value)
         else 
             let addedLeaf = Box(null)
             let newroot =
@@ -190,17 +213,31 @@ type PersistentHashMap<[<EqualityConditionalOn>]'T when 'T : equality> (count,ro
             let count = if addedLeaf.Value = null then count else count + 1
             PersistentHashMap(count, newroot, hasNull, nullValue)
 
+    member this.Item 
+        with get key = 
+            if key = Unchecked.defaultof<'T> then 
+                if hasNull then nullValue else failwith "Key null is not found in the map."
+            else
+                if root = Unchecked.defaultof<INode> then
+                    failwithf "Key %A is not found in the map." key 
+                else 
+                    match root.tryFind(0, hash(key), key) with
+                    | Some value -> value :?> 'S
+                    | _ -> failwithf "Key %A is not found in the map." key 
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module PersistentHashMap = 
     ///O(1), returns an empty PersistentHashMap
-    let empty<'T when 'T : equality> = PersistentHashMap.Empty() :> PersistentHashMap<'T>
+    let empty<'T,'S when 'T : equality and 'S : equality> = PersistentHashMap.Empty() :> PersistentHashMap<'T, 'S>
 
     ///O(1), returns the count of the elements in the PersistentHashMap
-    let length (map:PersistentHashMap<'T>) = map.Length
+    let length (map:PersistentHashMap<'T, 'S>) = map.Length
 
     ///O(log32n), returns if the key exists in the map
-    let containsKey key (map:PersistentHashMap<'T>) = map.ContainsKey key
+    let containsKey key (map:PersistentHashMap<'T, 'S>) = map.ContainsKey key
+
+    ///O(log32n), returns the value if the exists in the map
+    let find key (map:PersistentHashMap<'T, 'S>) = map.[key]
 
     ///O(log32n), adds an element to the map
-    let add key value (map:PersistentHashMap<'T>) = map.Add(key,value)
+    let add key value (map:PersistentHashMap<'T, 'S>) = map.Add(key,value)
