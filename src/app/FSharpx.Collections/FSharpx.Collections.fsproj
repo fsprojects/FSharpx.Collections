@@ -25,7 +25,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\FSharpx.Core.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,7 +34,7 @@
     <OutputPath>..\..\..\build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\..\build\FSharpx.Core.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\build\FSharpx.Collections.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />

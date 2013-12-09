@@ -1,8 +1,20 @@
 #r "./tools/FAKE/tools/FakeLib.dll"
 
-open Fake 
+#I "tools/FSharp.Formatting/lib/net40"
+#I "tools/Microsoft.AspNet.Razor/lib/net40"
+#I "tools/RazorEngine/lib/net40"
+#r "System.Web.dll"
+#r "FSharp.Markdown.dll"
+#r "FSharp.CodeFormat.dll"
+#r "FSharp.Literate.dll"
+#r "FSharp.MetadataFormat.dll"
+#r "System.Web.Razor.dll"
+#r "RazorEngine.dll"
+
+open Fake
+open FSharp.Literate
 open Fake.Git
-open System.IO
+open FSharp.MetadataFormat
 
 RestorePackages()
 
@@ -24,6 +36,7 @@ let packagesDir = "./packages/"
 let testDir = "./test/"
 let deployDir = "./deploy/"
 let docsDir = "./docs/"
+let apidocsDir = "./docs/apidocs/"
 
 let nugetDir package = sprintf "./nuget/%s/" package
 let nugetLibDir package = nugetDir package @@ "lib"
@@ -49,7 +62,7 @@ let testReferences  = !! "./src/test/**/*.*proj"
 
 // targets
 Target "Clean" (fun _ ->       
-    CleanDirs [buildDir; testDir; deployDir; docsDir]
+    CleanDirs [buildDir; testDir; deployDir; docsDir; apidocsDir]
 
     packages
     |> Seq.iter (fun x -> CleanDirs [nugetDir x; nugetLibDir x; nugetDocsDir x])
@@ -99,6 +112,34 @@ Target "Test" (fun _ ->
             OutputFile = testDir + sprintf "TestResults.xml" })
 )
 
+Target "GenerateDocs" (fun _ ->
+    let source = "./help"
+    let template = "./help/templates/template-project.html"
+    let projInfo =
+      [ "page-description", "FSharpx.Collections"
+        "page-author", (separated ", " authors)
+        "project-author", (separated ", " authors)
+        "github-link", "http://github.com/forki/fsharpx.collections"
+        "project-github", "http://github.com/forki/fsharpx.collections"
+        "project-nuget", "https://www.nuget.org/packages/FSharpx.Collections"
+        "root", "http://forki.github.io/FSharpx.Collections"
+        "project-name", "FSharpx.Collections" ]
+
+    Literate.ProcessDirectory (source, template, docsDir, replacements = projInfo)
+
+    if isLocalBuild then  // TODO: this needs to be fixed in FSharp.Formatting
+        MetadataFormat.Generate ( 
+          ["./build/FSharpx.Collections.dll"; "./build/FSharpx.Collections.Experimental.dll"], 
+          apidocsDir, 
+          ["./help/templates/"; "./help/templates/reference/"], 
+          parameters = projInfo)
+
+    WriteStringToFile false "./docs/.nojekyll" ""
+
+    CopyDir (docsDir @@ "content") "help/content" allFiles
+    CopyDir (docsDir @@ "pics") "help/pics" allFiles
+)
+
 Target "PrepareNuget" (fun _ ->
     packages
     |> Seq.iter (fun package ->
@@ -108,7 +149,7 @@ Target "PrepareNuget" (fun _ ->
 
         [for ending in ["dll";"pdb";"xml"] do
             yield sprintf "%sFSharpx.%s.%s" buildDir package ending]
-        |> Seq.filter (fun f -> File.Exists f)
+        |> Seq.filter (fun f -> System.IO.File.Exists f)
         |> CopyTo frameworkSubDir)
 )
 
@@ -140,6 +181,17 @@ Target "DeployZip" (fun _ ->
     |> Zip buildDir (deployDir + sprintf "%s-%s.zip" projectName buildVersion)
 )
 
+Target "ReleaseDocs" (fun _ ->
+    CleanDir "gh-pages"
+    CommandHelper.runSimpleGitCommand "" "clone -b gh-pages --single-branch git@github.com:forki/FSharpx.Collections.git gh-pages" |> printfn "%s"
+    
+    fullclean "gh-pages"
+    CopyRecursive "docs" "gh-pages" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "gh-pages" "add . --all" |> printfn "%s"
+    CommandHelper.runSimpleGitCommand "gh-pages" (sprintf "commit -m \"Update generated documentation %s\"" buildVersion) |> printfn "%s"
+    Branches.push "gh-pages"    
+)
+
 Target "Deploy" DoNothing
 
 // Build order
@@ -148,10 +200,12 @@ Target "Deploy" DoNothing
   ==> "BuildApp"
   ==> "BuildTest"
   ==> "Test"
+  ==> "GenerateDocs"
   ==> "PrepareNuget"
   ==> "Nuget"
   ==> "DeployZip"
   ==> "Deploy"
+  ==> "ReleaseDocs"
 
 // Start build
 RunTargetOrDefault "Deploy"
