@@ -1,19 +1,19 @@
 ﻿module FSharpx.Collections.Experimental.Tests.PersistentVectorTest
 
 open System
-open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.Vector
+open FSharpx.Collections
+open FSharpx.Collections.Vector
 open NUnit.Framework
 open FsUnit
 
 [<Test>]
 let ``empty vector should be empty``() =
     let x = empty<int>
-    x |> count |> should equal 0
+    x |> length |> should equal 0
 
 [<Test>]
 let ``multiple cons to an empty vector should increase the count``() =
-    empty |> conj 1 |> conj 4 |> conj 25 |> count |> should equal 3
+    empty |> conj 1 |> conj 4 |> conj 25 |> length |> should equal 3
 
 [<Test>]
 let ``cons to an empty vector should create a singleton vector``() =
@@ -25,7 +25,7 @@ let ``multiple cons to an empty vector should create a vector``() =
 
 [<Test>]
 let ``multiple assoc to the end should work like cons and create a vector``() =
-    let v = empty |> assocN 0 1 |> assocN 1 4 |> assocN 2 25 
+    let v = empty |> update 0 1 |> update 1 4 |> update 2 25 
     v |> nth 0 |> should equal 1
     v |> nth 1 |> should equal 4
     v |> nth 2 |> should equal 25
@@ -43,7 +43,7 @@ let ``300 cons to an empty vector should create a vector``() =
 let ``assoc an element to a nonempty vector should not change the original vector``() =
     let v = empty |> conj "1" |> conj "4" |> conj "25" 
 
-    v |> assocN 2 "5" |> nth 2 |> should equal "5"
+    v |> update 2 "5" |> nth 2 |> should equal "5"
     v |> nth 2 |> should equal "25"
 
 [<Test>]
@@ -71,7 +71,7 @@ let ``vector with 300 elements should allow assocN``() =
         vector := conj i (!vector)
 
     for i in 1..300 do
-        vector := assocN (i-1) (i*2) (!vector)
+        vector := update (i-1) (i*2) (!vector)
 
     let a = !vector |> Seq.toArray 
     for i in 1..300 do i * 2 |> should equal a.[i-1]
@@ -79,18 +79,18 @@ let ``vector with 300 elements should allow assocN``() =
 [<Test>]
 let ``can peek elements from a vector``() =
     let vector = empty |> conj 1 |> conj 4 |> conj 25 
-    vector |> peek |> should equal 25
+    vector |> last |> should equal 25
     
 [<Test>]
 let ``can pop elements from a vector``() =
     let vector = empty |> conj 1 |> conj 4 |> conj 25 
-    vector |> peek |> should equal 25
-    vector |> pop |> peek |> should equal 4
-    vector |> pop |> pop |> peek |> should equal 1
+    vector |> last |> should equal 25
+    vector |> initial |> last |> should equal 4
+    vector |> initial |> initial |> last |> should equal 1
 
-    vector |> count |> should equal 3
-    vector |> pop |> count |> should equal 2
-    vector |> pop |> pop |> count |> should equal 1
+    vector |> length |> should equal 3
+    vector |> initial |> length |> should equal 2
+    vector |> initial |> initial |> length |> should equal 1
 
 [<Test>]
 let ``vector with 300 elements should allow pop``() =
@@ -99,7 +99,7 @@ let ``vector with 300 elements should allow pop``() =
         vector := conj i (!vector)
 
     for i in 1..300 do
-        vector := pop (!vector)
+        vector := initial (!vector)
 
     !vector |> Seq.toList |> should equal []
 

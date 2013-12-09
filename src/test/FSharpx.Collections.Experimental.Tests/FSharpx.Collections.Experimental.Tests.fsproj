@@ -82,7 +82,6 @@
     <Compile Include="ListZipperTest.fs" />
     <Compile Include="NonEmptyListTests.fs" />
     <Compile Include="PairingHeapTest.fs" />
-    <Compile Include="PersistentVectorTest.fs" />
     <Compile Include="RingBufferTest.fs" />
     <Compile Include="SkewBinaryRandomAccessListTest.fs" />
     <Compile Include="RealTimeDequeTest.fs" />

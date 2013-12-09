@@ -5,6 +5,7 @@
 namespace FSharpx.Collections.Experimental
 
 open System.Collections
+open FSharpx.Collections
 open System.Collections.Generic
 
 type LeftistHeap<'T when 'T : comparison> =

@@ -1,6 +1,6 @@
 ﻿module FSharpx.Collections.Experimental.Tests.LeftistHeapTest
 
-open FSharpx
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.LeftistHeap
 open FSharpx.Collections.Tests.Properties

@@ -2,7 +2,7 @@
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
 module FSharpx.Collections.Experimental.BootstrappedQueue
 
-open FSharpx
+open FSharpx.Collections
 
 type NonEmptyBootstrappedQueue<'T> = {
     FrontAndSuspensionsLength : int

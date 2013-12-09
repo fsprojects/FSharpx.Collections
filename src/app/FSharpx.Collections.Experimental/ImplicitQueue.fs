@@ -2,7 +2,7 @@
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/implicit-queue
 module FSharpx.Collections.Experimental.ImplicitQueue
 
-open FSharpx
+open FSharpx.Collections
 
 type Digit<'T> = 
     | Zero 

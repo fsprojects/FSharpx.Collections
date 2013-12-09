@@ -314,7 +314,7 @@ and Vector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root
 
     member this.TryLast = if count > 0 then Some (this.[count - 1]) else None
 
-    member this.Length : int = count
+    member this.Length : int = count    
 
     member this.Rev() =
         if count = 0 then Vector.Empty() :> Vector<'T>

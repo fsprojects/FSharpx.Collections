@@ -304,3 +304,28 @@ module LazyList =
       ofFreshIEnumerator (c.GetEnumerator()) 
       
     let (|Cons|Nil|) l = match getCell l with CellCons(a,b) -> Cons(a,b) | CellEmpty -> Nil
+
+
+    let rec private revAux r acc =
+        match r with
+        | Nil -> acc
+        | Cons(hd, tl) -> revAux tl (cons hd acc)
+
+    let rev r =
+        revAux r empty
+
+    let rec drop n xs =
+        if n < 0 then invalidArg "n" "n was negative"
+        elif n > 0 then
+            match xs with
+            | Cons(x, xs') -> drop (n-1) xs'
+            | _ -> EmptyValue<'T>.Value
+        else
+            xs
+
+    let split (ll:LazyList<'T>) n  =
+        let rec loop z (leftL:'T list) (ll':LazyList<'T>) = 
+            match z with
+            | 0 -> leftL, (ll'.Tail)
+            | _ -> loop (z - 1)  ((ll'.Head)::leftL) (ll'.Tail)
+        loop n [] ll

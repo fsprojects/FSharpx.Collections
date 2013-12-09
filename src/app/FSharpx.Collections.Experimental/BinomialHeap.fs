@@ -7,6 +7,7 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open System.Collections.Generic
+open FSharpx.Collections
 
 type BinomialTree<'T> = Node of (int * 'T * list<BinomialTree<'T>>)
 

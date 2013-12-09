@@ -1,6 +1,7 @@
 ﻿module FSharpx.Collections.Experimental.Tests.BinaryRandomAccessListTest
 
 open System
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.BinaryRandomAccessList
 open NUnit.Framework

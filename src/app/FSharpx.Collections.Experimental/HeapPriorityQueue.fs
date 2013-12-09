@@ -1,6 +1,7 @@
 ﻿namespace FSharpx.Collections.Experimental
 
 open FSharpx.Collections.Experimental.PairingHeap
+open FSharpx.Collections
 
 module HeapPriorityQueue =
 

@@ -6,7 +6,7 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open System.Collections.Generic
-
+open FSharpx.Collections
 
 /// PairingHeap performs extremely well in practice, however (according to Okasaki) it should be avoided for applications taking advantage of persistence.
 /// Also according to Okasaki the time complexity of the heap functions in the PairingHeap implementation have "resisted" time complexity analysis. 

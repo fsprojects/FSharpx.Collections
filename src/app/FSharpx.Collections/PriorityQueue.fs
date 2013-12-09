@@ -13,10 +13,10 @@ module PriorityQueue =
     let inline insert element (pq:IPriorityQueue<'T>) = pq.Insert element
 
     ///O(1). Returns option first element.
-    let inline tryPeek (pq:IPriorityQueue<'T>) = pq.TryPeek
+    let inline tryPeek (pq:IPriorityQueue<'T>) = pq.TryPeek()
 
     ///O(1). Returns the first element.
-    let inline peek (pq:IPriorityQueue<'T>) = pq.Peek
+    let inline peek (pq:IPriorityQueue<'T>) = pq.Peek()
 
     ///O(log n) amortized time. Returns the option first element and tail.
     let inline tryPop (pq:IPriorityQueue<'T>) = pq.TryPop()

@@ -8,6 +8,7 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open System.Collections.Generic
+open FSharpx.Collections
 
 type RotationState<'T> =
     | Idle

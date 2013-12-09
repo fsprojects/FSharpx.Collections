@@ -1,6 +1,7 @@
 ﻿module FSharpx.Collections.Experimental.Tests.BatchDeque
 
 open System
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.BatchedDeque
 open NUnit.Framework

@@ -7,6 +7,7 @@
 namespace FSharpx.Collections.Experimental
 
 open System.Collections
+open FSharpx.Collections
 open System.Collections.Generic
  
 type PhysicistQueue<'T> (prefix : list<'T>, frontLength : int, front : Lazy<list<'T>>, rBackLength : int, rBack : list<'T>) = 

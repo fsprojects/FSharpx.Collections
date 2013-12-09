@@ -9,6 +9,7 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open System.Collections.Generic
+open FSharpx.Collections
 open ListHelpr
 
 type Deque<'T> (front, rBack) = 

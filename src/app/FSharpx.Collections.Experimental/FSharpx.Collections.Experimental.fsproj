@@ -38,7 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Interfaces.fs" />
     <Compile Include="Infrastructure.fs" />
     <Compile Include="AltBinaryRandomAccessList.fs" />
     <Compile Include="BankersDeque.fs" />
@@ -72,7 +71,6 @@
     <Compile Include="RoseTree.fs" />
     <Compile Include="SkewBinaryRandomAccessList.fs" />
     <Compile Include="TimeSeries.fs" />
-    <Compile Include="Vector.fs" />
     <Compile Include="CSharpCompat.fs" />
   </ItemGroup>
   <ItemGroup>

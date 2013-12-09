@@ -159,8 +159,8 @@ type Heap<'T when 'T : comparison>(isDescending : bool, length : int, data : Hea
         with
         member this.IsEmpty = this.IsEmpty
         member this.Insert element = this.Insert element :> IPriorityQueue<'T>
-        member this.TryPeek = this.TryHead
-        member this.Peek = this.Head
+        member this.TryPeek() = this.TryHead
+        member this.Peek() = this.Head
 
         member this.TryPop() = 
             match this.TryUncons() with

@@ -6,6 +6,7 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open System.Collections.Generic
+open FSharpx.Collections
 
 type TreeSBRAL<'T> =
     | Leaf of 'T

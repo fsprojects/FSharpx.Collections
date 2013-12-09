@@ -1,6 +1,7 @@
 ﻿module FSharpx.Collections.Experimental.Tests.RealTimeQueueTest
 
 open System
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.RealTimeQueue
 open NUnit.Framework

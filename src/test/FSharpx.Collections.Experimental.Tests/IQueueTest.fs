@@ -1,8 +1,7 @@
 ﻿module FSharpx.Collections.Experimental.Tests.IQueueTest
 
-open FSharpx
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.Interfaces
 open FSharpx.Collections.Tests.Properties
 open NUnit.Framework
 open FsCheck

@@ -56,9 +56,9 @@
     <Compile Include="QueueTest.fs" />
     <Compile Include="RandomAccessListTest.fs" />
     <Compile Include="SeqTests.fs" />
-    <Compile Include="VectorTest.fs" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <Compile Include="PersistentVectorTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">

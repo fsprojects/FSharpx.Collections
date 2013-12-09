@@ -36,32 +36,34 @@
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>..\..\..\build\FSharpx.Collections.XML</DocumentationFile>
   </PropertyGroup>
+  <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Exceptions.fs" />
+    <Compile Include="Interfaces.fs" />
     <Compile Include="Linq\Linq.fsi" />
     <Compile Include="Linq\Linq.fs" />
-    <Compile Include="Collections\LazyList.fsi" />
-    <Compile Include="Collections\LazyList.fs" />
-    <Compile Include="Collections\ResizeArray.fsi" />
-    <Compile Include="Collections\ResizeArray.fs" />
-    <Compile Include="Collections\Collections.fs" />
-    <Compile Include="Collections\Deque2.fsi" />
-    <Compile Include="Collections\Deque2.fs" />
-    <Compile Include="Collections\DList2.fsi" />
-    <Compile Include="Collections\DList2.fs" />
-    <Compile Include="Collections\ByteString.fs" />
-    <Compile Include="Collections\CircularBuffer.fs" />
-    <Compile Include="Collections\IPriorityQueue.fs" />
-    <Compile Include="Collections\Heap.fsi" />
-    <Compile Include="Collections\Heap.fs" />
-    <Compile Include="Collections\NonEmptyList.fs" />
-    <Compile Include="Collections\PriorityQueue.fs" />
-    <Compile Include="Collections\RandomAccessList.fsi" />
-    <Compile Include="Collections\RandomAccessList.fs" />
-    <Compile Include="Collections\Queue.fsi" />
-    <Compile Include="Collections\Queue.fs" />
-    <Compile Include="Collections\Vector.fsi" />
-    <Compile Include="Collections\Vector.fs" />
+    <Compile Include="LazyList.fsi" />
+    <Compile Include="LazyList.fs" />
+    <Compile Include="ResizeArray.fsi" />
+    <Compile Include="ResizeArray.fs" />
+    <Compile Include="Collections.fs" />
+    <Compile Include="Deque2.fsi" />
+    <Compile Include="Deque2.fs" />
+    <Compile Include="DList2.fsi" />
+    <Compile Include="DList2.fs" />
+    <Compile Include="ByteString.fs" />
+    <Compile Include="CircularBuffer.fs" />
+    <Compile Include="Heap.fsi" />
+    <Compile Include="Heap.fs" />
+    <Compile Include="PriorityQueue.fs" />
+    <Compile Include="NonEmptyList.fs" />
+    <Compile Include="RandomAccessList.fsi" />
+    <Compile Include="RandomAccessList.fs" />
+    <Compile Include="Queue.fsi" />
+    <Compile Include="Queue.fs" />
+    <Compile Include="Vector.fsi" />
+    <Compile Include="Vector.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -74,5 +76,4 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
-  <Import Project="$(FSharpTargetsPath)" />
 </Project>

@@ -89,6 +89,10 @@ module LazyList =
     /// the input list.  
     val take     : count:int -> source:LazyList<'T> -> LazyList<'T>
 
+    ///O(n), where n is count. Return the list which on consumption will remove of at most 'n' elements of 
+    /// the input list.  
+    val drop     : count:int -> source:LazyList<'T> -> LazyList<'T>
+
     ///O(n), where n is count. Return the list which on consumption will consist of at most 'n' elements of 
     /// the input list.  
     val tryTake     : count:int -> source:LazyList<'T> -> LazyList<'T> option
@@ -156,6 +160,9 @@ module LazyList =
     ///O(1). Return the list which contains on demand the list of elements of the list of lazy lists.
     val concat   : LazyList< LazyList<'T>> -> LazyList<'T>
 
+    /// Splits the list at the gicen index.
+    val split   :  LazyList<'T> -> int -> ('T list * LazyList<'T>)
+
     ///O(1). Return a new collection which on consumption will consist of only the elements of the collection
     /// for which the given predicate returns "true"
     val filter   : predicate:('T -> bool) -> source:LazyList<'T> -> LazyList<'T>
@@ -195,6 +202,10 @@ module LazyList =
 
     ///O(1). Build a new collection from the given enumerable object
     val ofSeq: seq<'T> -> LazyList<'T>
+
+    /// Returns the reverse list.
+    val rev: LazyList<'T> -> LazyList<'T>
+
 
     //--------------------------------------------------------------------------
     // Lazy list active patterns

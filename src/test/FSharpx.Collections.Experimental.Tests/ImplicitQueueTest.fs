@@ -1,6 +1,7 @@
 ﻿module FSharpx.Collections.Experimental.Tests.ImplicitQueueTest
 
 open System
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.ImplicitQueue
 open NUnit.Framework
