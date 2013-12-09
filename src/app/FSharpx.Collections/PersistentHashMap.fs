@@ -56,7 +56,7 @@ and HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
         let i = ref 0
         while (!i < 2*count) && (key <> array.[!i]) do
             i := !i + 2
-        if key = array.[!i] then !i else -1
+        if !i < 2*count then !i else -1
         
     with
     

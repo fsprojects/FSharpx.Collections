@@ -103,3 +103,14 @@ let ``can add keys with colliding hashes to empty map``() =
     map |> containsKey y |> should equal true
 
     empty |> containsKey y |> should equal false
+
+[<Test>]
+let ``can add lots of keys with colliding hashes to empty map``() =
+    let x = ref empty
+    let counter = 1000
+
+    for i in 0 .. counter do 
+        x := add { Name = i.ToString() } i !x
+
+    for i in 0 .. counter do 
+        !x |> containsKey { Name = i.ToString() } |> should equal true
