@@ -10,6 +10,7 @@ open System.Diagnostics.Contracts
 open System.Runtime.CompilerServices
 open FSharpx
             
+/// Extensions for F#'s Seq module.
 module Seq =
     /// <summary>
     /// Adds an index to a sequence
@@ -206,6 +207,7 @@ module Seq =
       } 
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+/// Extensions for F#'s Array module.
 module Array = 
     let inline nth i arr = Array.get arr i
     let inline setAt i v arr = Array.set arr i v; arr
@@ -264,6 +266,7 @@ module Array =
                         then None
                         else Some(Array.averageBy Option.get window))
 
+/// Extensions for F#'s List module.
 module List =
     /// Curried cons
     let inline cons hd tl = hd::tl
@@ -356,12 +359,14 @@ module List =
             pad (total - List.length list) elem list
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+/// Extensions for System.Collections.Generic.Dictionary.
 module Dictionary =
     let tryFind key (d: IDictionary<_,_>) =
         match d.TryGetValue key with
         | true,v -> Some v
         | _ -> None
 
+/// Extensions for F#'s Map module.
 module Map =
     let spanWithKey pred map =
         map
@@ -427,6 +432,7 @@ module Map =
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
+/// Extensions for NameValueCollections.
 module NameValueCollection =
     open System.Collections.Specialized
     open System.Linq
