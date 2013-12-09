@@ -41,8 +41,6 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Exceptions.fs" />
     <Compile Include="Interfaces.fs" />
-    <Compile Include="Linq\Linq.fsi" />
-    <Compile Include="Linq\Linq.fs" />
     <Compile Include="LazyList.fsi" />
     <Compile Include="LazyList.fs" />
     <Compile Include="ResizeArray.fsi" />
