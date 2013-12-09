@@ -1,6 +1,6 @@
 # FSharpx.Collections
 
-**FSharpx.COllections** is a collection of datastructures for use with F# and C#. 
+**FSharpx.Collections** is a collection of datastructures for use with F# and C#. 
 
 See [the home page](http://fsharp.github.com/fsharpx) for details. The home page can be [edited, forked or cloned](https://github.com/fsharp/fsharpx/tree/gh-pages).
 
