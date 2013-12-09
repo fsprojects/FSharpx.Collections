@@ -12,6 +12,7 @@ type INode =
     abstract member assoc : int * int * obj  * obj * Box -> INode
     abstract member find : int * int * obj -> obj
     abstract member tryFind : int * int * obj -> obj option
+    abstract member without : int * int * obj -> INode
 
 
 type NodeHelpers =
@@ -40,6 +41,12 @@ type NodeHelpers =
         clone.[i] <- a
         clone.[j] <- b
         clone
+
+    static member removePair(array:obj[], i) =
+        let newArray = Array.create (array.Length - 2) null
+        System.Array.Copy(array, 0, newArray, 0, 2*i)
+        System.Array.Copy(array, 2*(i+1), newArray, 2*i, newArray.Length - 2*i)
+        newArray
 
     static member createNode( shift, key1, val1, key2hash, key2, val2) =
         let key1hash = hash(key1)
@@ -89,8 +96,31 @@ and HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
                 if idx < 0 then None else
                 if key = array.[idx] then Some array.[idx+1] else None
 
+            member this.without(shift, hashKey, key) =
+                let idx = findIndex(key)
+                if idx = -1 then this :> INode else
+                if count = 1 then Unchecked.defaultof<INode> else
+                HashCollisionNode(ref null, hashKey, count - 1, NodeHelpers.removePair(array, idx/2)) :> INode 
+
 and ArrayNode(thread,count,array:INode[]) =
-    let x = 1
+    let pack(thred, idx) =
+        let newArray = Array.create (2*(count - 1)) null
+        let mutable j = 1
+        let mutable bitmap = 0
+        for i in 0 .. idx - 1 do
+            if array.[i] <> Unchecked.defaultof<INode> then
+                newArray.[j] <- array.[i] :> obj
+                bitmap <- bitmap ||| (1 <<< i)
+                j <- j + 2
+            
+        for i in idx + 1 .. array.Length - 1 do
+            if array.[i] <> Unchecked.defaultof<INode> then
+                newArray.[j] <- array.[i] :> obj
+                bitmap <- bitmap ||| (1 <<< i)
+                j <- j + 2
+
+        BitmapIndexedNode(thread, bitmap, newArray)
+                    
     with
         interface INode with
             member this.assoc(shift, hashKey, key, value, addedLeaf) : INode = 
@@ -114,6 +144,20 @@ and ArrayNode(thread,count,array:INode[]) =
                 let node = array.[idx]
                 if node = Unchecked.defaultof<INode> then None else
                 Some(node.find(shift + 5, hash, key))
+
+            member this.without(shift, hashKey, key) =
+                let idx = NodeHelpers.mask(hashKey, shift)
+                let node = array.[idx]
+                if node = Unchecked.defaultof<INode> then this :> INode else
+                let n = node.without(shift + 5, hashKey, key)
+                if n = node then this :> INode else
+                if n = Unchecked.defaultof<INode> then 
+                    if count <= 8 then // shrink
+                        pack(ref null, idx) :> INode
+                    else
+                        ArrayNode(ref null, count - 1, NodeHelpers.cloneAndSet(array, idx, n)) :> INode
+                else
+                    ArrayNode(ref null, count, NodeHelpers.cloneAndSet(array, idx, n)) :> INode
 
 and BitmapIndexedNode(thread,bitmap,array:obj[]) =
     let thread = thread
@@ -187,6 +231,25 @@ and BitmapIndexedNode(thread,bitmap,array:obj[]) =
                         System.Array.Copy(array, 2*idx, newArray, 2*(idx+1), 2*(n-idx))
                         BitmapIndexedNode(ref null, bitmap ||| bit, newArray) :> INode
 
+            member this.without(shift, hashKey, key) =
+                let bit = NodeHelpers.bitpos(hashKey, shift)
+                if (bitmap &&& bit) = 0 then this :> INode else
+                let idx = NodeHelpers.index(bitmap,bit)
+                let keyOrNull = array.[2*idx]
+                let valOrNode = array.[2*idx+1]
+                if keyOrNull = null then
+                    let n = (valOrNode :?> INode).without(shift + 5, hashKey, key)
+                    if n = (valOrNode :?> INode) then this :> INode else
+                    if n <> Unchecked.defaultof<INode> then BitmapIndexedNode(ref null, bitmap, NodeHelpers.cloneAndSet(array, 2*idx+1, n)) :> INode else
+                    if bitmap = bit then Unchecked.defaultof<INode> else
+                    BitmapIndexedNode(ref null, bitmap ^^^ bit, NodeHelpers.removePair(array, idx)) :> INode
+                else
+                    if key = keyOrNull then
+                        // TODO: collapse
+                        BitmapIndexedNode(ref null, bitmap ^^^ bit, NodeHelpers.removePair(array, idx)) :> INode
+                    else
+                        this :> INode
+
 
 type PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (count,root:INode,hasNull, nullValue:'S) =
     
@@ -213,6 +276,15 @@ type PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S
             let count = if addedLeaf.Value = null then count else count + 1
             PersistentHashMap(count, newroot, hasNull, nullValue)
 
+    member this.Remove(key:'T) =
+        if key = Unchecked.defaultof<'T> then
+            if hasNull then PersistentHashMap(count - 1, root, false, Unchecked.defaultof<'S>) else this
+        else 
+            if root = Unchecked.defaultof<INode> then this else
+            let newroot = root.without(0, hash(key), key)
+            if newroot = root then this else
+            PersistentHashMap(count - 1, newroot, hasNull, nullValue)
+
     member this.Item 
         with get key = 
             if key = Unchecked.defaultof<'T> then 
@@ -223,7 +295,7 @@ type PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S
                 else 
                     match root.tryFind(0, hash(key), key) with
                     | Some value -> value :?> 'S
-                    | _ -> failwithf "Key %A is not found in the map." key 
+                    | _ -> failwithf "Key %A is not found in the map." key
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module PersistentHashMap = 
@@ -241,3 +313,6 @@ module PersistentHashMap =
 
     ///O(log32n), adds an element to the map
     let add key value (map:PersistentHashMap<'T, 'S>) = map.Add(key,value)
+
+    ///O(log32n), removes the element with the given key from the map
+    let remove key (map:PersistentHashMap<'T, 'S>) = map.Remove(key)

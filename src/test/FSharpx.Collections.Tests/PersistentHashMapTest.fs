@@ -46,6 +46,24 @@ let ``can add some integers to empty map``() =
     x |> containsKey 5 |> shouldEqual true
     x |> containsKey 6 |> shouldEqual false
 
+
+[<Test>]
+let ``can remove some integers from a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+        |> remove 1
+        |> remove 4
+            
+    x |> containsKey 1 |> shouldEqual false
+    x |> containsKey 4 |> shouldEqual false
+    x |> containsKey 5 |> shouldEqual true
+    x |> containsKey 6 |> shouldEqual false
+
 [<Test>]
 let ``can lookup integers from a map``() =
     let x =
@@ -59,6 +77,23 @@ let ``can lookup integers from a map``() =
     x |> find 1 |> shouldEqual "h"
     x |> find 4 |> shouldEqual "l"
     x |> find 5 |> shouldEqual "o"
+
+
+[<Test>]
+let ``can add the same key multiple to a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+        |> add 3 "a"
+        |> add 4 "a"
+            
+    x |> find 1 |> shouldEqual "h"
+    x |> find 4 |> shouldEqual "a"
+    x |> find 5 |> shouldEqual "o"    
 
 [<Test>]
 let ``can add tons of integers to empty map``() =
@@ -140,7 +175,6 @@ let ``can lookup keys with colliding hashes from map``() =
     
     map |> find x |> shouldEqual { Name = "Test"}
     map |> find y |> shouldEqual { Name = "Test1"}
-
 
 [<Test>]
 let ``can add lots of keys with colliding hashes to empty map``() =
