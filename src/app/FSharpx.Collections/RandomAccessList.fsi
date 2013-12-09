@@ -3,7 +3,7 @@
 /// RandomAccessList is an ordered linear structure implementing the List signature 
 /// (head, tail, cons), as well as inspection (lookup) and update (returning a new 
 /// immutable instance) of any element in the structure by index. Ordering is by insertion history.
-/// Adapted from Steffen Forkmann's F# implementation of Clojure Vector..
+/// While PersistentVector<'T> is appending to the end this version prepends ekements to the list.
 [<Class>]
 type RandomAccessList<[<EqualityConditionalOn>]'T when 'T : equality> =
 

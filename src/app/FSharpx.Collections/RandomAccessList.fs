@@ -1,7 +1,4 @@
-﻿// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/Vector.java
-//RandomAccessList.fs
-
-namespace FSharpx.Collections
+﻿namespace FSharpx.Collections
 
 module internal Literals2 = 
 
