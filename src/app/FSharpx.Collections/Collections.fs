@@ -4,9 +4,6 @@ open System
 open System.Linq
 open System.Collections
 open System.Collections.Generic
-#if NET40
-open System.Diagnostics.Contracts
-#endif
 open System.Runtime.CompilerServices
 open FSharpx
             

@@ -3,10 +3,7 @@ namespace FSharpx.Collections
 open System
 open System.Collections
 open System.Collections.Generic
-#if NET40
 open System.Diagnostics.Contracts
-#endif
-open FSharpx
             
 /// An ArraySegment with structural comparison and equality.
 [<CustomEquality; CustomComparison; SerializableAttribute; StructAttribute>]
@@ -123,27 +120,15 @@ module ByteString =
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
 
     let isEmpty (bs:ByteString) = 
-        #if NET40
         Contract.Requires(bs.Count >= 0)
-        #else
-        assert (bs.Count >= 0)
-        #endif
         bs.Count <= 0
 
     let length (bs:ByteString) = 
-        #if NET40
         Contract.Requires(bs.Count >= 0)
-        #else
-        assert (bs.Count >= 0)
-        #endif
         bs.Count
 
     let index (bs:ByteString) pos =
-        #if NET40
         Contract.Requires(bs.Offset + pos <= bs.Count)
-        #else
-        assert (bs.Offset + pos <= bs.Count)
-        #endif
         bs.Array.[bs.Offset + pos]
 
     let head (bs:ByteString) =
@@ -152,11 +137,7 @@ module ByteString =
         else bs.Array.[bs.Offset]
 
     let tail (bs:ByteString) =
-        #if NET40
         Contract.Requires(bs.Count >= 1)
-        #else
-        assert (bs.Count >= 1)
-        #endif
         if bs.Count = 1 then empty
         else ByteString(bs.Array, bs.Offset+1, bs.Count-1)
     
@@ -202,11 +183,7 @@ module ByteString =
     let span pred bs = split (not << pred) bs
     
     let splitAt n (bs:ByteString) =
-        #if NET40
         Contract.Requires(n >= 0)
-        #else
-        assert (n >= 0)
-        #endif
         if isEmpty bs then empty, empty
         elif n = 0 then empty, bs
         elif n >= bs.Count then bs, empty
