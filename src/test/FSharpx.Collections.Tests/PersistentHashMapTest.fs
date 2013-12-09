@@ -10,3 +10,9 @@ open FsUnit
 let ``empty map should be empty``() =
     let x = empty<int>
     x |> length |> should equal 0
+
+
+[<Test>]
+let ``empty map should not contain key 0``() =
+    let x = empty<int>
+    x |> containsKey 1 |> should equal false

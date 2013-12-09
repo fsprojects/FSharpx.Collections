@@ -61,7 +61,6 @@
     <Compile Include="Queue.fsi" />
     <Compile Include="Queue.fs" />
     <Compile Include="Literals.fs" />
-    <Compile Include="Node.fs" />
     <Compile Include="PersistentVector.fsi" />
     <Compile Include="PersistentVector.fs" />
     <Compile Include="PersistentHashMap.fs" />
