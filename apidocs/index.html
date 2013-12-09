@@ -111,6 +111,17 @@ These may force the computation of elements of the list.</p>
         </tr>
         <tr>
           <td class="type-name">
+            <a href="fsharpx-collections-persistentvector-1.html">PersistentVector<'T></a>
+          </td>
+          <td class="xmldoc"><p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
+(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
+(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
+Ordering is by insertion history.
+Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
+</td>
+        </tr>
+        <tr>
+          <td class="type-name">
             <a href="fsharpx-collections-queue-1.html">Queue<'T></a>
           </td>
           <td class="xmldoc"><p>Queue is an ordered linear data structure where elements are added at the end (right) 
@@ -131,17 +142,6 @@ Original F# implementation http://lepensemoi.free.fr/index.php/2009/12/10/batche
 (head, tail, cons), as well as inspection (lookup) and update (returning a new 
 immutable instance) of any element in the structure by index. Ordering is by insertion history.
 Adapted from Steffen Forkmann's F# implementation of Clojure Vector..</p>
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-vector-1.html">Vector<'T></a>
-          </td>
-          <td class="xmldoc"><p>Vector is an ordered linear structure implementing the inverse of the List signature, 
-(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
-(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
-Ordering is by insertion history.
-Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
 </td>
         </tr>
     </tbody>
@@ -237,6 +237,12 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
         </tr>
         <tr>
           <td class="module-name">
+            <a href="fsharpx-collections-persistentvectormodule.html">PersistentVector</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="module-name">
             <a href="fsharpx-collections-priorityqueue.html">PriorityQueue</a>
           </td>
           <td class="xmldoc"></td>
@@ -256,12 +262,6 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
         <tr>
           <td class="module-name">
             <a href="fsharpx-collections-seq.html">Seq</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-vectormodule.html">Vector</a>
           </td>
           <td class="xmldoc"></td>
         </tr>

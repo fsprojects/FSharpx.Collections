@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Vector<'T> - FSharpx.Collections</title>
+    <title>PersistentVector<'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,9 +35,9 @@
 
 
 
-<h1>Vector<'T></h1>
+<h1>PersistentVector<'T></h1>
 <div class="xmldoc">
-<p>Vector is an ordered linear structure implementing the inverse of the List signature, 
+<p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
 (last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
 (returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
 Ordering is by insertion history.
@@ -52,11 +52,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '500', 500)" onmouseover="showTip(event, '500', 500)">
+          <code onmouseout="hideTip(event, '387', 387)" onmouseover="showTip(event, '387', 387)">
             Conj(arg1)
           </code>
-          <div class="tip" id="500">
-            <strong>Signature:</strong>&#39;T -&gt; Vector&lt;&#39;T&gt;<br />
+          <div class="tip" id="387">
+            <strong>Signature:</strong>&#39;T -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(1). Returns a new vector with the element added at the end.</p>
@@ -65,11 +65,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '501', 501)" onmouseover="showTip(event, '501', 501)">
+          <code onmouseout="hideTip(event, '388', 388)" onmouseover="showTip(event, '388', 388)">
             Initial
           </code>
-          <div class="tip" id="501">
-            <strong>Signature:</strong>Vector&lt;&#39;T&gt;<br />
+          <div class="tip" id="388">
+            <strong>Signature:</strong>PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
@@ -78,10 +78,10 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
+          <code onmouseout="hideTip(event, '389', 389)" onmouseover="showTip(event, '389', 389)">
             IsEmpty
           </code>
-          <div class="tip" id="502">
+          <div class="tip" id="389">
             <strong>Signature:</strong>bool<br />
                       </div>
         </td>
@@ -91,10 +91,10 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
+          <code onmouseout="hideTip(event, '390', 390)" onmouseover="showTip(event, '390', 390)">
             [arg1]
           </code>
-          <div class="tip" id="503">
+          <div class="tip" id="390">
             <strong>Signature:</strong>int -&gt; &#39;T<br />
                       </div>
         </td>
@@ -104,10 +104,10 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
+          <code onmouseout="hideTip(event, '404', 404)" onmouseover="showTip(event, '404', 404)">
             Last
           </code>
-          <div class="tip" id="504">
+          <div class="tip" id="404">
             <strong>Signature:</strong>&#39;T<br />
                       </div>
         </td>
@@ -117,10 +117,10 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
+          <code onmouseout="hideTip(event, '405', 405)" onmouseover="showTip(event, '405', 405)">
             Length
           </code>
-          <div class="tip" id="505">
+          <div class="tip" id="405">
             <strong>Signature:</strong>int<br />
                       </div>
         </td>
@@ -130,11 +130,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
+          <code onmouseout="hideTip(event, '406', 406)" onmouseover="showTip(event, '406', 406)">
             Rev()
           </code>
-          <div class="tip" id="506">
-            <strong>Signature:</strong>unit -&gt; Vector&lt;&#39;T&gt;<br />
+          <div class="tip" id="406">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(n). Returns random access list reversed.</p>
@@ -143,11 +143,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '507', 507)" onmouseover="showTip(event, '507', 507)">
+          <code onmouseout="hideTip(event, '407', 407)" onmouseover="showTip(event, '407', 407)">
             TryInitial
           </code>
-          <div class="tip" id="507">
-            <strong>Signature:</strong>Vector&lt;&#39;T&gt; option<br />
+          <div class="tip" id="407">
+            <strong>Signature:</strong>PersistentVector&lt;&#39;T&gt; option<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(n). Returns option vector without the last item.</p>
@@ -156,10 +156,10 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '508', 508)" onmouseover="showTip(event, '508', 508)">
+          <code onmouseout="hideTip(event, '408', 408)" onmouseover="showTip(event, '408', 408)">
             TryLast
           </code>
-          <div class="tip" id="508">
+          <div class="tip" id="408">
             <strong>Signature:</strong>&#39;T option<br />
                       </div>
         </td>
@@ -169,11 +169,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '509', 509)" onmouseover="showTip(event, '509', 509)">
+          <code onmouseout="hideTip(event, '409', 409)" onmouseover="showTip(event, '409', 409)">
             TryUnconj
           </code>
-          <div class="tip" id="509">
-            <strong>Signature:</strong>(Vector&lt;&#39;T&gt; * &#39;T) option<br />
+          <div class="tip" id="409">
+            <strong>Signature:</strong>(PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(1). Returns option tuple last element and vector without last item</p>
@@ -182,11 +182,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
+          <code onmouseout="hideTip(event, '410', 410)" onmouseover="showTip(event, '410', 410)">
             TryUpdate(arg1, arg2)
           </code>
-          <div class="tip" id="510">
-            <strong>Signature:</strong>(int * &#39;T) -&gt; Vector&lt;&#39;T&gt; option<br />
+          <div class="tip" id="410">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt; option<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(log32n). Returns option vector that contains the given value at the index.</p>
@@ -195,11 +195,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '511', 511)" onmouseover="showTip(event, '511', 511)">
+          <code onmouseout="hideTip(event, '411', 411)" onmouseover="showTip(event, '411', 411)">
             Unconj
           </code>
-          <div class="tip" id="511">
-            <strong>Signature:</strong>Vector&lt;&#39;T&gt; * &#39;T<br />
+          <div class="tip" id="411">
+            <strong>Signature:</strong>PersistentVector&lt;&#39;T&gt; * &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(1). Returns tuple last element and vector without last item</p>
@@ -208,11 +208,11 @@ Original F# adaptation from the clojure implementation by Steffen Forkmann.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '512', 512)" onmouseover="showTip(event, '512', 512)">
+          <code onmouseout="hideTip(event, '412', 412)" onmouseover="showTip(event, '412', 412)">
             Update(arg1, arg2)
           </code>
-          <div class="tip" id="512">
-            <strong>Signature:</strong>(int * &#39;T) -&gt; Vector&lt;&#39;T&gt;<br />
+          <div class="tip" id="412">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc"><p>O(log32n). Returns a new vector that contains the given value at the index.</p>
