@@ -24,9 +24,6 @@ let packagesDir = "./packages/"
 let testDir = "./test/"
 let deployDir = "./deploy/"
 let docsDir = "./docs/"
-let nugetMainDir = "./nuget/"
-
-let targetPlatformDir = getTargetPlatformDir "v4.0.30319"
 
 let nugetDir package = sprintf "./nuget/%s/" package
 let nugetLibDir package = nugetDir package @@ "lib"
@@ -44,18 +41,15 @@ let rec getPackageDesc = function
 // params
 let target = getBuildParamOrDefault "target" "All"
 
-let normalizeFrameworkVersion frameworkVersion =
-    let v = ("[^\\d]" >=> "") frameworkVersion
-    v.Substring(0,2)
+let frameworkVersion = "net40"
 
 // files
 let appReferences = !! "./src/app/**/*.*proj"
-
 let testReferences  = !! "./src/test/**/*.*proj"
 
 // targets
 Target "Clean" (fun _ ->       
-    CleanDirs [buildDir; testDir; deployDir; docsDir; nugetMainDir]
+    CleanDirs [buildDir; testDir; deployDir; docsDir]
 
     packages
     |> Seq.iter (fun x -> CleanDirs [nugetDir x; nugetLibDir x; nugetDocsDir x])
@@ -82,7 +76,7 @@ Target "AssemblyInfo" (fun _ ->
             OutputFileName = "./src/app/FSharpx.Collections.Experimental/AssemblyInfo.fs" })
 )
 
-let buildAppTarget = TargetTemplate (fun frameworkVersion ->
+Target "BuildApp" (fun _ ->
     CleanDir buildDir
 
     appReferences
@@ -90,88 +84,56 @@ let buildAppTarget = TargetTemplate (fun frameworkVersion ->
     |> Log "AppBuild-Output: "
 )
 
-let buildTestTarget = TargetTemplate (fun frameworkVersion ->
+Target "BuildTest" (fun _ ->
     CleanDir testDir
     testReferences
     |> MSBuild testDir "Build" ["Configuration","Debug"] 
     |> Log "TestBuild-Output: "
 )
 
-let testTarget = TargetTemplate (fun frameworkVersion ->
+Target "Test" (fun _ ->
     !! (testDir + "/*.Tests.dll")
     |> NUnit (fun p ->
         {p with
             DisableShadowCopy = true
-            OutputFile = testDir + sprintf "TestResults.%s.xml" frameworkVersion })
+            OutputFile = testDir + sprintf "TestResults.xml" })
 )
 
-let prepareNugetTarget = TargetTemplate (fun frameworkVersion ->
+Target "PrepareNuget" (fun _ ->
     packages
     |> Seq.iter (fun package ->
-        let frameworkSubDir = nugetLibDir package @@ normalizeFrameworkVersion frameworkVersion
+        let frameworkSubDir = nugetLibDir package @@ frameworkVersion
         CleanDir frameworkSubDir
 
 
         [for ending in ["dll";"pdb";"xml"] do
-            yield sprintf "%sFSharpx.%s.%s" buildDir package ending
-            yield sprintf "%sFSharpx.%s.DesignTime.%s" buildDir package ending]
+            yield sprintf "%sFSharpx.%s.%s" buildDir package ending]
         |> Seq.filter (fun f -> File.Exists f)
         |> CopyTo frameworkSubDir)
 )
 
-let buildFrameworkVersionTarget = TargetTemplate (fun frameworkVersion -> ())
 
-let generateTargets() =
-    let frameworkVersion = "net40"
-    tracefn "Generating targets for .NET %s" frameworkVersion
-    let v = normalizeFrameworkVersion frameworkVersion
-    let buildApp = sprintf "BuildApp_%s" v
-    let buildTest = sprintf "BuildTest_%s" v
-    let test = sprintf "Test_%s" v
-    let prepareNuget = sprintf "PrepareNuget_%s" v
-    let buildFrameworkVersion = sprintf "Build_%s" v
+Target "Nuget" (fun _ ->
+    packages
+    |> Seq.iter (fun package ->
+        [ "LICENSE.md" ] |> CopyTo (nugetDir package)
+        NuGet (fun p -> 
+            {p with               
+                Authors = authors
+                Project = projectName + "." + package
+                Description = getPackageDesc package
+                Version = buildVersion
+                OutputPath = nugetDir package
+                AccessKey = getBuildParamOrDefault "nugetkey" ""
+                Dependencies =
+                    if package = "Collections" then p.Dependencies else
+                      [projectName + ".Collections", RequireExactly (NormalizeVersion buildVersion)]
+                Publish = hasBuildParam "nugetkey" })
+            "FSharpx.Collections.nuspec"
 
-    buildAppTarget buildApp frameworkVersion
-    buildTestTarget buildTest frameworkVersion
-    testTarget test frameworkVersion
-    prepareNugetTarget prepareNuget frameworkVersion            
-    buildFrameworkVersionTarget buildFrameworkVersion frameworkVersion
-
-    "AssemblyInfo" ==> buildApp ==> buildTest ==> test ==> prepareNuget ==> buildFrameworkVersion
-
-let nugetTarget = TargetTemplate (fun package ->
-    [ "LICENSE.md" ] |> CopyTo (nugetDir package)
-    NuGet (fun p -> 
-        {p with               
-            Authors = authors
-            Project = projectName + "." + package
-            Description = getPackageDesc package
-            Version = buildVersion
-            OutputPath = nugetDir package
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Dependencies =
-                if package = "Collections" then p.Dependencies else
-                  [projectName + ".Collections", RequireExactly (NormalizeVersion buildVersion)]
-            Publish = hasBuildParam "nugetkey" })
-        "FSharpx.Collections.nuspec"
-
-    !! (nugetDir package + sprintf "FSharpx.%s.*.nupkg" package)
-      |> CopyTo deployDir
+        !! (nugetDir package + sprintf "FSharpx.%s.*.nupkg" package)
+          |> CopyTo deployDir)
 )
-
-Target "TestAll" DoNothing
-
-let generateNugetTargets() =
-    packages 
-    |> Seq.fold
-        (fun dependency package -> 
-            tracefn "Generating nuget target for package %s" package
-            let buildPackage = sprintf "Nuget_%s" package
-            
-            nugetTarget buildPackage package
-
-            dependency ==> buildPackage)
-            "TestAll"
 
 Target "DeployZip" (fun _ ->
     !! (buildDir + "/**/*.*")
@@ -183,9 +145,11 @@ Target "Deploy" DoNothing
 // Build order
 "Clean"
   ==> "AssemblyInfo"
-  ==> (generateTargets())
-  ==> "TestAll"
-  ==> (generateNugetTargets())
+  ==> "BuildApp"
+  ==> "BuildTest"
+  ==> "Test"
+  ==> "PrepareNuget"
+  ==> "Nuget"
   ==> "DeployZip"
   ==> "Deploy"
 

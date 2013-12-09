@@ -8,7 +8,7 @@
     <ProjectGuid>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSharpx</RootNamespace>
-    <AssemblyName>FSharpx.Core</AssemblyName>
+    <AssemblyName>FSharpx.Collections</AssemblyName>
     <Name>FSharpx.Core</Name>
     <TargetFrameworkProfile />
     <FSharpTargetsPath Condition="'$(FSharpTargetsPath)' == '' And '$(OS)' != 'Windows_NT'">..\..\..\tools\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
