@@ -3,8 +3,7 @@
 /// PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
 /// (last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
 /// (returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
-/// Ordering is by insertion history.
-/// Original F# adaptation from the clojure implementation by Steffen Forkmann.
+/// Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
 [<Class>]
 type PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> =
 
