@@ -16,6 +16,10 @@ let equal x = new EqualConstraint(x)
 // like "should equal", but validates same-type
 let shouldEqual (x: 'a) (y: 'a) = Assert.AreEqual(x, y, sprintf "Expected: %A\nActual: %A" x y)
 
+
+// like "should equal", but validates same-type
+let shouldNotEqual (x: 'a) (y: 'a) = Assert.AreNotEqual(x, y, sprintf "Expected: %A\nActual: %A" x y)
+
 // overriding a standard language function is not cool
 //let not x = new NotConstraint(x)
 
