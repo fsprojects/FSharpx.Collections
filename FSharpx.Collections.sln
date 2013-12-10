@@ -27,6 +27,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{560133F0-6E96-4166-9BD1-083F243EC5DA}"
 	ProjectSection(SolutionItems) = preProject
 		help\index.md = help\index.md
+		help\PersistentHashMap.fsx = help\PersistentHashMap.fsx
 	EndProjectSection
 EndProject
 Global
