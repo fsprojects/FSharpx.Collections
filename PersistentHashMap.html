@@ -178,6 +178,9 @@
 <span class="l">31: </span>
 <span class="l">32: </span>
 <span class="l">33: </span>
+<span class="l">34: </span>
+<span class="l">35: </span>
+<span class="l">36: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -206,14 +209,17 @@
 <span onmouseout="hideTip(event, 'fs10', 52)" onmouseover="showTip(event, 'fs10', 52)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">1000000</span>
 
 <span class="fsi">Init with n = 10000</span>
-<span class="fsi">  FSharp.Map.ofSeq 19.0ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add  20.6ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 13.2ms</span>
+<span class="fsi">  FSharp.Map.ofSeq 25.2ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add  22.4ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 12.2ms</span>
 <span class="fsi">Init with n = 100000</span>
-<span class="fsi">  FSharp.Map.ofSeq 235.0ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add  289.8ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 207.0ms</span>
-<span class="fsi">Init with n = 1000000</span></pre>
+<span class="fsi">  FSharp.Map.ofSeq 260.6ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add  309.8ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 214.0ms</span>
+<span class="fsi">Init with n = 1000000</span>
+<span class="fsi">  FSharp.Map.ofSeq 4955.6ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add  5770.4ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 3867.6ms</span></pre>
 </td>
 </tr>
 </table>
