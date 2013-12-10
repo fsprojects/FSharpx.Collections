@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>ByteString - FSharpx.Collections</title>
+    <title>TimeMeasurement - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,116 +35,70 @@
 
 
 
-<h1>ByteString</h1>
+<h1>TimeMeasurement</h1>
 <div class="xmldoc">
-<p>An ArraySegment with structural comparison and equality.</p>
 </div>
-  <h3>Constructors</h3>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
+      <tr><td>Function or value</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '369', 369)" onmouseover="showTip(event, '369', 369)">
-            new(array)
+          <code onmouseout="hideTip(event, '302', 302)" onmouseover="showTip(event, '302', 302)">
+            compareTwoRuntimes (...)
           </code>
-          <div class="tip" id="369">
-            <strong>Signature:</strong>(array:byte []) -&gt; ByteString<br />
-                      </div>
+          <div class="tip" id="302">
+            <strong>Signature:</strong>count:int -&gt; desc1:string -&gt; f1:(unit -&gt; &#39;?5367) -&gt; desc2:string -&gt; f2:(unit -&gt; &#39;?5368) -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?5367, '?5368          </div>
         </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '370', 370)" onmouseover="showTip(event, '370', 370)">
-            new(array, offset, count)
-          </code>
-          <div class="tip" id="370">
-            <strong>Signature:</strong>(array:byte [] * offset:int * count:int) -&gt; ByteString<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '373', 373)" onmouseover="showTip(event, '373', 373)">
-            Array
-          </code>
-          <div class="tip" id="373">
-            <strong>Signature:</strong>byte []<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '374', 374)" onmouseover="showTip(event, '374', 374)">
-            Count
-          </code>
-          <div class="tip" id="374">
-            <strong>Signature:</strong>int<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '375', 375)" onmouseover="showTip(event, '375', 375)">
-            GetEnumerator()
-          </code>
-          <div class="tip" id="375">
-            <strong>Signature:</strong>unit -&gt; IEnumerator&lt;byte&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Gets an enumerator for the bytes stored in the byte string.</p>
+        <td class="xmldoc"><p>Stops the average runtime for the given functions
+Afterwards it reports it with the given descriptions</p>
 </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '376', 376)" onmouseover="showTip(event, '376', 376)">
-            Offset
+          <code onmouseout="hideTip(event, '305', 305)" onmouseover="showTip(event, '305', 305)">
+            stopAndReportAvarageTime count desc f
           </code>
-          <div class="tip" id="376">
-            <strong>Signature:</strong>int<br />
-                      </div>
+          <div class="tip" id="305">
+            <strong>Signature:</strong>count:int -&gt; desc:string -&gt; f:(unit -&gt; &#39;?5365) -&gt; &#39;?5365 list * float<br />
+                          <strong>Type parameters:</strong> '?5365          </div>
         </td>
-        <td class="xmldoc"></td>
+        <td class="xmldoc"><p>Stops the average runtime for a given function and applies it the given count
+Afterwards it reports it with the given description</p>
+</td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '401', 401)" onmouseover="showTip(event, '401', 401)">
-            Compare(a, b)
+          <code onmouseout="hideTip(event, '307', 307)" onmouseover="showTip(event, '307', 307)">
+            stopAverageTime count f
           </code>
-          <div class="tip" id="401">
-            <strong>Signature:</strong>(a:ByteString * b:ByteString) -&gt; int<br />
-                      </div>
+          <div class="tip" id="307">
+            <strong>Signature:</strong>count:int -&gt; f:(unit -&gt; &#39;?5363) -&gt; &#39;?5363 list * float<br />
+                          <strong>Type parameters:</strong> '?5363          </div>
         </td>
-        <td class="xmldoc"><p>Compares two byte strings based on their structure.</p>
+        <td class="xmldoc"><p>Stops the average runtime for a given function and applies it the given count</p>
+</td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '308', 308)" onmouseover="showTip(event, '308', 308)">
+            stopTime f
+          </code>
+          <div class="tip" id="308">
+            <strong>Signature:</strong>f:(unit -&gt; &#39;?5361) -&gt; &#39;?5361 * float<br />
+                          <strong>Type parameters:</strong> '?5361          </div>
+        </td>
+        <td class="xmldoc"><p>Stops the runtime for a given function</p>
 </td>
       </tr>
     </tbody>
