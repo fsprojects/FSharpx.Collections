@@ -32,19 +32,14 @@ module BitCount =
            position1 := !position1 + 1
         bitCounts
 
-    let inline NumberOfSetBits value = bitCounts.[value &&& 65535] + bitCounts.[(value >>> 16) &&& 65535]
+    let inline NumberOfSetBits value =
+        bitCounts.[value &&& 65535] + bitCounts.[(value >>> 16) &&& 65535]
+
+    let inline mask(hash, shift) = (hash >>> shift) &&& 0x01f
+    let inline bitpos(hash, shift) = 1 <<< mask(hash, shift)
+    let inline index(bitmap,bit) = NumberOfSetBits(bitmap &&& (bit - 1))
              
 type private NodeHelpers =
-    
-    static member mask(hash, shift) = (hash >>> shift) &&& 0x01f
-    static member bitpos(hash, shift) = 1 <<< NodeHelpers.mask(hash, shift)
-
-    static member NumberOfSetBits_bug(i) =
-        let i = i - ((i >>> 1) &&& 0x55555555)
-        let i = (i &&& 0x33333333) + ((i >>> 2) &&& 0x33333333)
-        (((i + (i >>> 4)) &&& 0x0F0F0F0F) * 0x01010101) >>> 24
-
-    static member index(bitmap,bit) = BitCount.NumberOfSetBits(bitmap &&& (bit - 1))
 
     static member cloneAndSet(array:INode[], i, a) =
         let clone = Array.copy array
@@ -160,7 +155,7 @@ and private HashCollisionNode(thread,hashCollisionKey,count',array':obj[]) =
                         addedLeaf.Value <- addedLeaf :> obj
                         HashCollisionNode(thread, hashKey, this.count + 1, newArray) :> INode
                 else
-                    (BitmapIndexedNode(ref null, NodeHelpers.bitpos(hashCollisionKey, shift), [| null; this |]) :> INode)
+                    (BitmapIndexedNode(ref null, BitCount.bitpos(hashCollisionKey, shift), [| null; this |]) :> INode)
                         .assoc(shift, hashKey, key, value, addedLeaf)
 
             member this.assoc(thread1, shift, hashKey, key, value, addedLeaf) : INode = 
@@ -183,7 +178,7 @@ and private HashCollisionNode(thread,hashCollisionKey,count',array':obj[]) =
                             this.ensureEditable(thread1, this.count + 1, newArray) :> INode
                 else
                     // nest it in a bitmap node
-                    (BitmapIndexedNode(thread1, NodeHelpers.bitpos(hashCollisionKey, shift), [| null; this; null; null |]) :> INode)
+                    (BitmapIndexedNode(thread1, BitCount.bitpos(hashCollisionKey, shift), [| null; this; null; null |]) :> INode)
                         .assoc(thread1, shift, hashKey, key, value, addedLeaf);
 
             member this.find(shift, hash, key) =
@@ -254,7 +249,7 @@ and private ArrayNode(thread,count',array':INode[]) =
         interface INode with
 
             member this.assoc(shift, hashKey, key, value, addedLeaf) : INode = 
-                let idx = NodeHelpers.mask(hashKey, shift)
+                let idx = BitCount.mask(hashKey, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then
                     ArrayNode(ref null, this.count + 1, NodeHelpers.cloneAndSet(this.array, idx, (BitmapIndexedNode() :> INode).assoc(shift + 5, hashKey, key, value, addedLeaf))) :> INode
@@ -264,7 +259,7 @@ and private ArrayNode(thread,count',array':INode[]) =
                     ArrayNode(ref null, this.count, NodeHelpers.cloneAndSet(this.array, idx, n)) :> INode
 
             member this.assoc(thread1, shift, hashKey, key, value, addedLeaf) : INode = 
-                let idx = NodeHelpers.mask(hashKey, shift)
+                let idx = BitCount.mask(hashKey, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then
                     let editable = this.editAndSet(thread1, idx, (BitmapIndexedNode() :> INode).assoc(thread1, shift + 5, hashKey, key, value, addedLeaf))
@@ -275,19 +270,19 @@ and private ArrayNode(thread,count',array':INode[]) =
                     if n = node then this :> INode else this.editAndSet(thread1, idx, n) :> INode
 
             member this.find(shift, hash, key) =
-                let idx = NodeHelpers.mask(hash, shift)
+                let idx = BitCount.mask(hash, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then null else
                 node.find(shift + 5, hash, key)
 
             member this.tryFind(shift, hash, key) =
-                let idx = NodeHelpers.mask(hash, shift)
+                let idx = BitCount.mask(hash, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then None else
                 Some(node.find(shift + 5, hash, key))
 
             member this.without(shift, hashKey, key) =
-                let idx = NodeHelpers.mask(hashKey, shift)
+                let idx = BitCount.mask(hashKey, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then this :> INode else
                 let n = node.without(shift + 5, hashKey, key)
@@ -301,7 +296,7 @@ and private ArrayNode(thread,count',array':INode[]) =
                     ArrayNode(ref null, this.count, NodeHelpers.cloneAndSet(this.array, idx, n)) :> INode
 
             member this.without(thread1, shift, hashKey, key, removedLeaf) =
-                let idx = NodeHelpers.mask(hashKey, shift)
+                let idx = BitCount.mask(hashKey, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then this :> INode else
                 let n = node.without(thread1, shift + 5, hashKey, key, removedLeaf)
@@ -362,9 +357,9 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
         interface INode with
 
             member this.find(shift, hash, key) =
-                let bit = NodeHelpers.bitpos(hash, shift)
+                let bit = BitCount.bitpos(hash, shift)
                 if this.bitmap &&& bit = 0 then null else
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let idx = BitCount.index(this.bitmap,bit)
                 let keyOrNull = this.array.[2*idx]
                 let valOrNode = this.array.[2*idx+1]
                 if keyOrNull = null then (valOrNode :?> INode).find(shift + 5, hash, key) else
@@ -374,9 +369,9 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                     null
 
             member this.tryFind(shift, hash, key) =
-                let bit = NodeHelpers.bitpos(hash, shift)
+                let bit = BitCount.bitpos(hash, shift)
                 if this.bitmap &&& bit = 0 then None else
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let idx = BitCount.index(this.bitmap,bit)
                 let keyOrNull = this.array.[2*idx]
                 let valOrNode = this.array.[2*idx+1]
                 if keyOrNull = null then (valOrNode :?> INode).tryFind(shift + 5, hash, key) else
@@ -386,8 +381,8 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                     None
 
             member this.assoc(shift, hashKey, key, value, addedLeaf) = 
-                let bit = NodeHelpers.bitpos(hashKey, shift)
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let bit = BitCount.bitpos(hashKey, shift)
+                let idx = BitCount.index(this.bitmap,bit)
                 if (this.bitmap &&& bit) <> 0 then
                     let keyOrNull = this.array.[2*idx]
                     let valOrNode = this.array.[2*idx+1]
@@ -404,7 +399,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                     let n = BitCount.NumberOfSetBits(this.bitmap)
                     if n >= 16 then
                         let nodes = Array.create 32 Unchecked.defaultof<INode>
-                        let jdx = NodeHelpers.mask(hashKey, shift)
+                        let jdx = BitCount.mask(hashKey, shift)
                         nodes.[jdx] <- (BitmapIndexedNode() :> INode).assoc(shift + 5, hashKey, key, value, addedLeaf)
                         let mutable j = 0
                         for i in 0..31 do
@@ -429,8 +424,8 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
 
 
             member this.assoc(thread1, shift, hashKey, key, value, addedLeaf) = 
-                let bit = NodeHelpers.bitpos(hashKey, shift)
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let bit = BitCount.bitpos(hashKey, shift)
+                let idx = BitCount.index(this.bitmap,bit)
                 if (this.bitmap &&& bit) <> 0 then
                     let keyOrNull = this.array.[2*idx]
                     let valOrNode = this.array.[2*idx+1]
@@ -457,7 +452,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                     else
                         if n >= 16 then
                             let nodes = Array.create 32 Unchecked.defaultof<INode>
-                            let jdx = NodeHelpers.mask(hashKey, shift)
+                            let jdx = BitCount.mask(hashKey, shift)
                             nodes.[jdx] <- (BitmapIndexedNode() :> INode).assoc(thread1, shift + 5, hashKey, key, value, addedLeaf)
                             let mutable j = 0
                             for i in 0..31 do
@@ -483,9 +478,9 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                         
 
             member this.without(shift, hashKey, key) =
-                let bit = NodeHelpers.bitpos(hashKey, shift)
+                let bit = BitCount.bitpos(hashKey, shift)
                 if (this.bitmap &&& bit) = 0 then this :> INode else
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let idx = BitCount.index(this.bitmap,bit)
                 let keyOrNull = this.array.[2*idx]
                 let valOrNode = this.array.[2*idx+1]
                 if keyOrNull = null then
@@ -502,9 +497,9 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                         this :> INode
 
             member this.without(thread1, shift, hashKey, key, removedLeaf) =
-                let bit = NodeHelpers.bitpos(hashKey, shift)
+                let bit = BitCount.bitpos(hashKey, shift)
                 if (this.bitmap &&& bit) = 0 then this :> INode else
-                let idx = NodeHelpers.index(this.bitmap,bit)
+                let idx = BitCount.index(this.bitmap,bit)
 
                 let keyOrNull = this.array.[2*idx]
                 let valOrNode = this.array.[2*idx+1]
