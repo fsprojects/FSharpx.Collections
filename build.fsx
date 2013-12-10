@@ -68,25 +68,24 @@ Target "Clean" (fun _ ->
     |> Seq.iter (fun x -> CleanDirs [nugetDir x; nugetLibDir x; nugetDocsDir x])
 )
 
+open Fake.AssemblyInfoFile
 
 Target "AssemblyInfo" (fun _ ->
-    AssemblyInfo (fun p ->
-        {p with 
-            CodeLanguage = FSharp
-            AssemblyVersion = buildVersion
-            AssemblyTitle = projectName
-            AssemblyDescription = getPackageDesc "Collections"
-            Guid = "32DA9CE0-5245-4100-B7B8-6346B753B179"
-            OutputFileName = "./src/app/FSharpx.Collections/AssemblyInfo.fs" })
+    let common = [
+         Attribute.Product "FSharpx.Collections"
+         Attribute.Version buildVersion
+         Attribute.InformationalVersion buildVersion
+         Attribute.FileVersion buildVersion]
+    
+    [Attribute.Title "FSharpx.Collections"
+     Attribute.Description(getPackageDesc "Collections")
+     Attribute.Guid "32DA9CE0-5245-4100-B7B8-6346B753B179"] @ common
+    |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections/AssemblyInfo.fs"
 
-    AssemblyInfo (fun p ->
-        {p with 
-            CodeLanguage = FSharp
-            AssemblyVersion = buildVersion
-            AssemblyTitle = projectName
-            AssemblyDescription = getPackageDesc "Collections.Experimental"
-            Guid = "4C646C09-6925-47D0-B187-8A5C3D061329"
-            OutputFileName = "./src/app/FSharpx.Collections.Experimental/AssemblyInfo.fs" })
+    [Attribute.Title "FSharpx.Collections.Experimental"
+     Attribute.Description(getPackageDesc "Collections.Experimental")
+     Attribute.Guid "4C646C09-6925-47D0-B187-8A5C3D061329"] @ common
+    |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections.Experimental/AssemblyInfo.fs"
 )
 
 Target "BuildApp" (fun _ ->
