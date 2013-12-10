@@ -53,6 +53,13 @@ length m
 length m'
 // [fsi:val it : int = 3]
 
+// remove an element
+let m'' = 
+    m'
+    |> remove 104
+
+length m''
+// [fsi:val it : int = 2]
 
 (** There a couple of interesting operations on HashMaps:
 *)

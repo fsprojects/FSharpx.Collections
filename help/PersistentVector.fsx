@@ -33,7 +33,6 @@ v.[2]
 length v
 // [fsi:val it : int = 3]
 
-
 (**
 PersistentVectorss are immutable and therefor allow to create new version without destruction of the old ones.
 *)
@@ -54,6 +53,12 @@ length v
 // [fsi:val it : int = 3]
 length v'
 // [fsi:val it : int = 4]
+
+// remove the last element from a PersistentVector
+let v'' = initial v'
+
+length v''
+// [fsi:val it : int = 3]
 
 
 (** There a couple of interesting operations on PersistentVectors:
