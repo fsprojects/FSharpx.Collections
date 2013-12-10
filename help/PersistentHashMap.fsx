@@ -5,7 +5,7 @@ open System
 
 (**
 PersistentHashMap
-=============
+=================
 
 A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). count is O(1).
 *)
@@ -57,6 +57,46 @@ stringBasedMap'.["d"]
 // [fsi:val it : int = 16]
 
 (**
-Bulk operations on HashMaps use an internal TransientHashMap in order to get much better performance.
+
+Performance tests
+-----------------
+
+Bulk operations on HashMaps use an internal TransientHashMap in order to get much better performance. The following scripts shows this:
 *)
 
+let trials = 5
+let r = new System.Random()
+
+open FSharpx.Collections.TimeMeasurement
+
+let initFSharpMapAndPersistentMapFromList n =
+    sprintf "Init with n = %d" n |> printInFsiTags
+    let list = [for i in 1..n -> r.Next(),r.Next().ToString()]
+
+    let initpersistentmap list = 
+        let m = ref empty
+        for (key,value) in list do
+            m := add key value !m
+        !m
+
+    compareThreeRuntimes trials
+        "  FSharp.Map.ofSeq" (fun () -> Map.ofSeq list)
+        "  Multiple PersistentHashMap.add" (fun () -> initpersistentmap list)
+        "  PersistentHashMap.ofSeq" (fun () -> ofSeq list)
+
+initFSharpMapAndPersistentMapFromList 10000
+initFSharpMapAndPersistentMapFromList 100000
+initFSharpMapAndPersistentMapFromList 1000000
+
+// [fsi:Init with n = 10000]
+// [fsi:  FSharp.Map.ofSeq 25.2ms]
+// [fsi:  Multiple PersistentHashMap.add 22.4ms]
+// [fsi:  PersistentHashMap.ofSeq 12.2ms]
+// [fsi:Init with n = 100000]
+// [fsi:  FSharp.Map.ofSeq 260.6ms]
+// [fsi:  Multiple PersistentHashMap.add 309.8ms]
+// [fsi:  PersistentHashMap.ofSeq 214.0ms]
+// [fsi:Init with n = 1000000]
+// [fsi:  FSharp.Map.ofSeq 4955.6ms]
+// [fsi:  Multiple PersistentHashMap.add 5770.4ms]
+// [fsi:  PersistentHashMap.ofSeq 3867.6ms]

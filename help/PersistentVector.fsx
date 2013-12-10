@@ -18,10 +18,10 @@ open FSharpx.Collections.PersistentVector
 Performance tests
 -----------------
 
-Bulk operations on HashMaps use an internal TransientHashMap in order to get much better performance. The following scripts shows this.
+Bulk operations on PersistentVector use an internal TransientVector in order to get much better performance. The following scripts shows this:
 *)
 
-let c = 5
+let trials = 5
 let r = new System.Random()
 
 open FSharpx.Collections.TimeMeasurement
@@ -36,9 +36,9 @@ let initArrayAndVectorFromList n =
             v := conj x !v
         !v
 
-    compareThreeRuntimes c
+    compareThreeRuntimes trials
         "  Array.ofSeq" (fun () -> Array.ofSeq list)
-        "  Multiple PersistentVector.conj " (fun () -> initvector list)
+        "  Multiple PersistentVector.conj" (fun () -> initvector list)
         "  PersistentVector.ofSeq" (fun () -> ofSeq list)
 
 let lookupInArrayAndVector n count =
@@ -47,7 +47,7 @@ let lookupInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    compareTwoRuntimes c
+    compareTwoRuntimes trials
         "  Array" (fun () -> for i in 1..count do array.[r.Next n] |> ignore)
         "  PersistentVector" (fun () -> for i in 1..count do nth (r.Next n) vector |> ignore)
 
@@ -58,7 +58,7 @@ let replaceInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    compareTwoRuntimes c
+    compareTwoRuntimes trials
         "  Array" (fun () -> for i in 1..count do array.[r.Next n] <- r.Next())
         "  PersistentVector" (fun () -> for i in 1..count do update (r.Next n) (r.Next()) vector |> ignore)
 
@@ -78,15 +78,15 @@ replaceInArrayAndVector 10000000 10000
 
 // [fsi:Init with n = 10000]
 // [fsi:  Array.ofSeq 0.0ms]
-// [fsi:  Multiple PersistentVector.conj  3.0ms]
+// [fsi:  Multiple PersistentVector.conj 3.0ms]
 // [fsi:  PersistentVector.ofSeq 3.0ms]
 // [fsi:Init with n = 100000]
 // [fsi:  Array.ofSeq 0.4ms]
-// [fsi:  Multiple PersistentVector.conj  38.8ms]
+// [fsi:  Multiple PersistentVector.conj 38.8ms]
 // [fsi:  PersistentVector.ofSeq 17.6ms]
 // [fsi:Init with n = 1000000]
 // [fsi:  Array.ofSeq 5.4ms]
-// [fsi:  Multiple PersistentVector.conj  420.6ms]
+// [fsi:  Multiple PersistentVector.conj 420.6ms]
 // [fsi:  PersistentVector.ofSeq 250.6ms]
 // [fsi:10000 Lookups in size n = 10000]
 // [fsi:  Array 0.0ms]
