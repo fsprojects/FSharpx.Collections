@@ -169,6 +169,14 @@ let ``can convert a seq to a map``() =
     x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
 
 [<Test>]
+let ``a map is always sorter``() =
+    let list = [ 4,"l"; 5,"o"; 2,"a"; 1,"h"; 3,"l"]
+
+    let x = ofSeq list
+
+    x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+
+[<Test>]
 let ``can map a HashMap``() =
     let x =
         empty

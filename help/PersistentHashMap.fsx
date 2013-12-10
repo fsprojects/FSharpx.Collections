@@ -1,5 +1,7 @@
 (*** hide ***)
 #r "../build/FSharpx.Collections.dll"
+#r "../lib/System.Runtime.dll"
+#r "../packages/Microsoft.Bcl.Immutable.1.0.30/lib/portable-net45+win8+wp8/System.Collections.Immutable.dll"
 open System
 
 
@@ -89,28 +91,40 @@ open FSharpx.Collections.TimeMeasurement
 
 let initFSharpMapAndPersistentMapFromList n =
     sprintf "Init with n = %d" n |> printInFsiTags
-    let list = [for i in 1..n -> r.Next(),r.Next().ToString()]
+    
+    let list = List.sortBy snd [for i in 1..n -> i,r.Next().ToString()]
 
-    let initpersistentmap list = 
+    let initPersistentHashMap list = 
         let m = ref empty
         for (key,value) in list do
             m := add key value !m
         !m
 
-    compareThreeRuntimes trials
-        "  FSharp.Map.ofSeq" (fun () -> Map.ofSeq list)
-        "  Multiple PersistentHashMap.add" (fun () -> initpersistentmap list)
-        "  PersistentHashMap.ofSeq" (fun () -> ofSeq list)
+    let initImmutableDictionary list = 
+        let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<int,string>.Empty)
+        for (key,value) in list do
+            d := (!d).Add(key,value)
+        !d
+
+    stopAndReportAvarageTime trials "  FSharp.Map.ofSeq" (fun () -> Map.ofSeq list) |> ignore
+    stopAndReportAvarageTime trials "  Multiple PersistentHashMap.add" (fun () -> initPersistentHashMap list) |> ignore
+    stopAndReportAvarageTime trials "  PersistentHashMap.ofSeq" (fun () -> ofSeq list) |> ignore
+    stopAndReportAvarageTime trials "  Multiple ImmutableSortedDictionay.add" (fun () -> initImmutableDictionary list) |> ignore
 
 let lookupInFSharpMapAndPersistentMap n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
     let list = [for i in 0..n-1 -> i.ToString(),r.Next()]
     let fsharpMap = Map.ofSeq list
     let map = ofSeq list
+    let dict =
+        let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<string,int>.Empty)
+        for (key,value) in list do
+            d := (!d).Add(key,value)
+        !d
 
-    compareTwoRuntimes trials
-        "  FSharp.Map" (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()] |> ignore)
-        "  PersistentHashMap" (fun () -> for i in 1..count do map.[r.Next(n).ToString()] |> ignore)
+    stopAndReportAvarageTime trials "  FSharp.Map" (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()] |> ignore) |> ignore
+    stopAndReportAvarageTime trials "  PersistentHashMap" (fun () -> for i in 1..count do map.[r.Next(n).ToString()] |> ignore) |> ignore
+    stopAndReportAvarageTime trials "  ImmutableSortedDictionay" (fun () -> for i in 1..count do dict.[r.Next(n).ToString()] |> ignore) |> ignore
 
 initFSharpMapAndPersistentMapFromList 10000
 initFSharpMapAndPersistentMapFromList 100000
@@ -122,26 +136,33 @@ lookupInFSharpMapAndPersistentMap 1000000 10000
 lookupInFSharpMapAndPersistentMap 10000000 10000
 
 // [fsi:Init with n = 10000]
-// [fsi:  FSharp.Map.ofSeq 14.4ms]
-// [fsi:  Multiple PersistentHashMap.add 20.2ms]
-// [fsi:  PersistentHashMap.ofSeq 11.6ms]
+// [fsi:  FSharp.Map.ofSeq 22.4ms]
+// [fsi:  Multiple PersistentHashMap.add 19.4ms]
+// [fsi:  PersistentHashMap.ofSeq 12.6ms]
+// [fsi:  Multiple ImmutableSortedDictionay.add 15.8ms]
 // [fsi:Init with n = 100000]
-// [fsi:  FSharp.Map.ofSeq 238.8ms]
-// [fsi:  Multiple PersistentHashMap.add 351.2ms]
-// [fsi:  PersistentHashMap.ofSeq 195.8ms]
+// [fsi:  FSharp.Map.ofSeq 254.4ms]
+// [fsi:  Multiple PersistentHashMap.add 273.6ms]
+// [fsi:  PersistentHashMap.ofSeq 197.6ms]
+// [fsi:  Multiple ImmutableSortedDictionay.add 234.2ms]
 // [fsi:Init with n = 1000000]
-// [fsi:  FSharp.Map.ofSeq 3760.6ms]
-// [fsi:  Multiple PersistentHashMap.add 5912.0ms]
-// [fsi:  PersistentHashMap.ofSeq 3680.2ms]
+// [fsi:  FSharp.Map.ofSeq 5145.2ms]
+// [fsi:  Multiple PersistentHashMap.add 5730.2ms]
+// [fsi:  PersistentHashMap.ofSeq 4392.4ms]
+// [fsi:  Multiple ImmutableSortedDictionay.add 4489.6ms]
 // [fsi:10000 Lookups in size n = 10000]
 // [fsi:  FSharp.Map 8.8ms]
 // [fsi:  PersistentHashMap 8.4ms]
+// [fsi:  ImmutableSortedDictionay 17.0ms]
 // [fsi:10000 Lookups in size n = 100000]
 // [fsi:  FSharp.Map 11.0ms]
 // [fsi:  PersistentHashMap 11.4ms]
+// [fsi:  ImmutableSortedDictionay 22.2ms]
 // [fsi:10000 Lookups in size n = 1000000]
 // [fsi:  FSharp.Map 13.0ms]
 // [fsi:  PersistentHashMap 12.4ms]
+// [fsi:  ImmutableSortedDictionay 31.2ms]
 // [fsi:10000 Lookups in size n = 10000000]
 // [fsi:  FSharp.Map 22.8ms]
 // [fsi:  PersistentHashMap 15.6ms]
+// [fsi:  ImmutableSortedDictionay: System.OutOfMemoryException]

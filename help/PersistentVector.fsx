@@ -97,10 +97,9 @@ let initArrayAndVectorFromList n =
             v := conj x !v
         !v
 
-    compareThreeRuntimes trials
-        "  Array.ofSeq" (fun () -> Array.ofSeq list)
-        "  Multiple PersistentVector.conj" (fun () -> initvector list)
-        "  PersistentVector.ofSeq" (fun () -> ofSeq list)
+    stopAndReportAvarageTime trials "  Array.ofSeq" (fun () -> Array.ofSeq list) |> ignore
+    stopAndReportAvarageTime trials "  Multiple PersistentVector.conj" (fun () -> initvector list) |> ignore
+    stopAndReportAvarageTime trials "  PersistentVector.ofSeq" (fun () -> ofSeq list) |> ignore
 
 let lookupInArrayAndVector n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
