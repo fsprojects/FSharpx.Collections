@@ -79,11 +79,13 @@ Target "AssemblyInfo" (fun _ ->
     
     [Attribute.Title "FSharpx.Collections"
      Attribute.Description(getPackageDesc "Collections")
+     Attribute.InternalsVisibleTo "FSharpx.Collections.Tests"
      Attribute.Guid "32DA9CE0-5245-4100-B7B8-6346B753B179"] @ common
     |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections/AssemblyInfo.fs"
 
     [Attribute.Title "FSharpx.Collections.Experimental"
      Attribute.Description(getPackageDesc "Collections.Experimental")
+     Attribute.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
      Attribute.Guid "4C646C09-6925-47D0-B187-8A5C3D061329"] @ common
     |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections.Experimental/AssemblyInfo.fs"
 )

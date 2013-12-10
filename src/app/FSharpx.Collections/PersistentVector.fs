@@ -14,7 +14,7 @@ type Node(thread,array:obj[]) =
         member this.Thread = thread
         member this.SetThread t = thread := t
 
-type TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[]) =
+type internal TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[]) =
     let mutable count = count
     let mutable root = root
     let mutable tail = tail

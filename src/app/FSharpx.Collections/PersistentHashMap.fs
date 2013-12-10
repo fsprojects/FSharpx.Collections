@@ -504,7 +504,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                     else
                         this :> INode
 
-type TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (thread,count',root':INode,hasNull',nullValue':'S) =
+type internal TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (thread,count',root':INode,hasNull',nullValue':'S) =
     let leafFlag = Box(null)
 
     member val hasNull = hasNull' with get, set
