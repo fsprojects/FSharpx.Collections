@@ -59,6 +59,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <Compile Include="PersistentVectorTest.fs" />
+    <Compile Include="TransientHashMapTest.fs" />
     <Compile Include="PersistentHashMapTest.fs" />
   </ItemGroup>
   <ItemGroup>
