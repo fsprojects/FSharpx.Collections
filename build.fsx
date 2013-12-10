@@ -197,7 +197,7 @@ Target "Deploy" DoNothing
 
 // Build order
 "Clean"
-  =?> ("SetAssemblyInfo",not isLocalBuild) 
+  =?> ("AssemblyInfo",not isLocalBuild) 
   ==> "BuildApp"
   ==> "BuildTest"
   ==> "Test"
