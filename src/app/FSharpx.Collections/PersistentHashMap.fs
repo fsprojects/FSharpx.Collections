@@ -15,6 +15,7 @@ type INode =
     abstract member tryFind : int * int * obj -> obj option
     abstract member without : int * int * obj -> INode
     abstract member without : Thread ref * int * int * obj * Box -> INode
+    abstract member nodeSeq : unit -> (obj*obj) seq
     abstract member SetThread : Thread -> unit
 
 
@@ -70,6 +71,25 @@ type private NodeHelpers =
         (BitmapIndexedNode() :> INode)
             .assoc(ref null, shift, key1hash, key1, val1, addedLeaf)
             .assoc(ref null, shift, key2hash, key2, val2, addedLeaf)
+
+    static member createNodeSeq(array: obj[], i) =
+        seq {
+            let j = ref i
+            while !j < array.Length do                
+                let isNode = array.[!j+1] :? INode
+                
+                if isNode then
+                    let node = array.[!j+1] :?> INode
+                    if node <> Unchecked.defaultof<INode> then
+                        yield! node.nodeSeq()
+                else
+                    if array.[!j] <> null then
+                        yield array.[!j],array.[!j+1]
+            
+                j := !j + 2 }
+
+    static member createNodeSeq(array: obj[]) = NodeHelpers.createNodeSeq(array,0)
+       
 
 and private HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
     let thread = thread
@@ -167,6 +187,8 @@ and private HashCollisionNode(thread,hashCollisionKey,count,array:obj[]) =
                 if idx = -1 then this :> INode else
                 if count = 1 then Unchecked.defaultof<INode> else
                 HashCollisionNode(ref null, hashKey, count - 1, NodeHelpers.removePair(array, idx/2)) :> INode
+
+            member this.nodeSeq() = NodeHelpers.createNodeSeq array
 
             member this.without(thread, shift, hashKey, key, removedLeaf) =
                 let idx = this.findIndex(key)
@@ -282,6 +304,16 @@ and private ArrayNode(thread,count,array:INode[]) =
                 else
                     this.editAndSet(thread1, idx, n) :> INode
 
+            member this.nodeSeq() =
+                 seq {
+                    let j = ref 0
+                    while !j < array.Length do
+                        if array.[!j] <> Unchecked.defaultof<INode> then
+                            yield! array.[!j].nodeSeq()
+            
+                        j := !j + 1 }
+
+
 and private BitmapIndexedNode(thread,bitmap,array:obj[]) =    
     member val array = array with get, set
     member val bitmap = bitmap with get, set
@@ -383,6 +415,8 @@ and private BitmapIndexedNode(thread,bitmap,array:obj[]) =
                         System.Array.Copy(array, 2*idx, newArray, 2*(idx+1), 2*(n-idx))
                         BitmapIndexedNode(ref null, bitmap ||| bit, newArray) :> INode
 
+            member this.nodeSeq() = NodeHelpers.createNodeSeq array
+
 
             member this.assoc(thread1, shift, hashKey, key, value, addedLeaf) = 
                 let bit = NodeHelpers.bitpos(hashKey, shift)
@@ -478,14 +512,14 @@ and private BitmapIndexedNode(thread,bitmap,array:obj[]) =
                     else
                         this :> INode
 
-type TransiententHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (thread,count,root:INode,hasNull,nullValue:'S) =
+type TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (thread,count,root:INode,hasNull,nullValue:'S) =
     let mutable hasNull = hasNull
     let mutable nullValue = nullValue
     let mutable count = count
     let mutable root = root
     let leafFlag = Box(null)
     
-    static member Empty() : TransiententHashMap<'T, 'S> = TransiententHashMap(ref Thread.CurrentThread,0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
+    static member Empty() : TransientHashMap<'T, 'S> = TransientHashMap(ref Thread.CurrentThread,0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
     member this.Length : int = count
 
     member internal this.EnsureEditable() =
@@ -597,22 +631,49 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
                     | Some value -> value :?> 'S
                     | _ -> failwithf "Key %A is not found in the map." key
 
+    member this.Iterator<'T,'S>() : ('T * 'S) seq =
+        seq {            
+            if hasNull then yield Unchecked.defaultof<'T>, nullValue
+            if root <> Unchecked.defaultof<INode> then
+                yield!
+                    root.nodeSeq()
+                    |> Seq.map (fun (key,value) -> key :?> 'T,value :?> 'S)
+        }
+
+    interface System.Collections.Generic.IEnumerable<'T*'S> with
+        member this.GetEnumerator () =
+          this.Iterator().GetEnumerator()
+
+    interface System.Collections.IEnumerable with
+        member this.GetEnumerator () =
+          (this.Iterator().GetEnumerator())
+            :> System.Collections.IEnumerator
+
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module PersistentHashMap = 
     ///O(1), returns an empty PersistentHashMap
     let empty<'T,'S when 'T : equality and 'S : equality> = PersistentHashMap.Empty() :> PersistentHashMap<'T, 'S>
 
     ///O(1), returns the count of the elements in the PersistentHashMap
-    let length (map:PersistentHashMap<'T, 'S>) = map.Length
+    let inline length (map:PersistentHashMap<'T, 'S>) = map.Length
 
     ///O(log32n), returns if the key exists in the map
-    let containsKey key (map:PersistentHashMap<'T, 'S>) = map.ContainsKey key
+    let inline containsKey key (map:PersistentHashMap<'T, 'S>) = map.ContainsKey key
 
     ///O(log32n), returns the value if the exists in the map
-    let find key (map:PersistentHashMap<'T, 'S>) = map.[key]
+    let inline find key (map:PersistentHashMap<'T, 'S>) = map.[key]
 
     ///O(log32n), adds an element to the map
-    let add key value (map:PersistentHashMap<'T, 'S>) = map.Add(key,value)
+    let inline add key value (map:PersistentHashMap<'T, 'S>) = map.Add(key,value)
 
     ///O(log32n), removes the element with the given key from the map
-    let remove key (map:PersistentHashMap<'T, 'S>) = map.Remove(key)
+    let inline remove key (map:PersistentHashMap<'T, 'S>) = map.Remove(key)
+
+    let inline toSeq (map:PersistentHashMap<'T, 'S>) = map :> seq<'T*'S>
+
+    /// O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.
+//    let map (f : 'S -> 'S1) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S1> = 
+//        let mutable ret = TransientHashMap<'T, 'S1>.Empty()
+//        for item in map do
+//            ret <- ret.Add(item,f item)
+//        ret.persistent() 

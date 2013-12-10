@@ -93,8 +93,20 @@ let ``can add the same key multiple to a map``() =
             
     x |> find 1 |> shouldEqual "h"
     x |> find 4 |> shouldEqual "a"
-    x |> find 5 |> shouldEqual "o"    
+    x |> find 5 |> shouldEqual "o"
 
+[<Test>]
+let ``can iterate through a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+            
+    x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+    
 [<Test>]
 let ``can add tons of integers to empty map``() =
     let x = ref empty
