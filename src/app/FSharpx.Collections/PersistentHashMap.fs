@@ -359,9 +359,9 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
             member this.find(shift, hash, key) =
                 let bit = BitCount.bitpos(hash, shift)
                 if this.bitmap &&& bit = 0 then null else
-                let idx = BitCount.index(this.bitmap,bit)
-                let keyOrNull = this.array.[2*idx]
-                let valOrNode = this.array.[2*idx+1]
+                let idx' = BitCount.index(this.bitmap,bit) * 2
+                let keyOrNull = this.array.[idx']
+                let valOrNode = this.array.[idx'+1]
                 if keyOrNull = null then (valOrNode :?> INode).find(shift + 5, hash, key) else
                 if key = keyOrNull then
                     valOrNode
@@ -382,19 +382,19 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
 
             member this.assoc(shift, hashKey, key, value, addedLeaf) = 
                 let bit = BitCount.bitpos(hashKey, shift)
-                let idx = BitCount.index(this.bitmap,bit)
+                let idx' = BitCount.index(this.bitmap,bit) * 2
                 if (this.bitmap &&& bit) <> 0 then
-                    let keyOrNull = this.array.[2*idx]
-                    let valOrNode = this.array.[2*idx+1]
+                    let keyOrNull = this.array.[idx']
+                    let valOrNode = this.array.[idx'+1]
                     if keyOrNull = null then
                         let n = (valOrNode :?> INode).assoc(shift + 5, hashKey, key, value, addedLeaf)
-                        if n = (valOrNode :?> INode) then this :> INode else BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet(this.array, 2*idx+1, n)) :> INode
+                        if n = (valOrNode :?> INode) then this :> INode else BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet(this.array, idx'+1, n)) :> INode
                     else
                         if key = keyOrNull then
-                            if value = valOrNode then this  :> INode else BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet(this.array, 2*idx+1, value)) :> INode
+                            if value = valOrNode then this  :> INode else BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet(this.array, idx'+1, value)) :> INode
                         else
                             addedLeaf.Value <- addedLeaf
-                            BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet2(this.array, 2*idx, null, 2*idx+1, NodeHelpers.createNode(ref null, shift + 5, keyOrNull, valOrNode, hashKey, key, value))) :> INode
+                            BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet2(this.array, idx', null, idx'+1, NodeHelpers.createNode(ref null, shift + 5, keyOrNull, valOrNode, hashKey, key, value))) :> INode
                 else
                     let n = BitCount.NumberOfSetBits(this.bitmap)
                     if n >= 16 then
@@ -413,11 +413,11 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                         ArrayNode(ref null, n + 1, nodes) :> INode
                     else
                         let newArray = Array.create (2*(n+1)) null
-                        System.Array.Copy(this.array, 0, newArray, 0, 2*idx)
-                        newArray.[2*idx] <- key
+                        System.Array.Copy(this.array, 0, newArray, 0, idx')
+                        newArray.[idx'] <- key
                         addedLeaf.Value <- addedLeaf
-                        newArray.[2*idx+1] <- value
-                        System.Array.Copy(this.array, 2*idx, newArray, 2*(idx+1), 2*(n-idx))
+                        newArray.[idx'+1] <- value
+                        System.Array.Copy(this.array, idx', newArray, idx'+2, 2*n-idx')
                         BitmapIndexedNode(ref null, this.bitmap ||| bit, newArray) :> INode
 
             member this.nodeSeq() = NodeHelpers.createNodeSeq this.array
@@ -425,28 +425,29 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
 
             member this.assoc(thread1, shift, hashKey, key, value, addedLeaf) = 
                 let bit = BitCount.bitpos(hashKey, shift)
-                let idx = BitCount.index(this.bitmap,bit)
+                let idx' = BitCount.index(this.bitmap,bit) * 2
                 if (this.bitmap &&& bit) <> 0 then
-                    let keyOrNull = this.array.[2*idx]
-                    let valOrNode = this.array.[2*idx+1]
+                    let keyOrNull = this.array.[idx']
+                    let valOrNode = this.array.[idx'+1]
                     if keyOrNull = null then
                         let n = (valOrNode :?> INode).assoc(thread1, shift + 5, hashKey, key, value, addedLeaf)
-                        if n = (valOrNode :?> INode) then this :> INode else this.editAndSet(thread1, 2*idx+1, n) :> INode
+                        if n = (valOrNode :?> INode) then this :> INode else this.editAndSet(thread1, idx'+1, n) :> INode
                     else
                         if key = keyOrNull then
-                            if value = valOrNode then this :> INode else this.editAndSet(thread1, 2*idx+1, value) :> INode
+                            if value = valOrNode then this :> INode else this.editAndSet(thread1, idx'+1, value) :> INode
                         else
                             addedLeaf.Value <- addedLeaf :> obj
-                            this.editAndSet(thread1, 2*idx, null, 2*idx+1, 
+                            this.editAndSet(thread1, idx', null, idx'+1, 
                                             NodeHelpers.createNode(thread1, shift + 5, keyOrNull, valOrNode, hashKey, key, value)) :> INode
                 else
-                    let n = BitCount.NumberOfSetBits(this.bitmap)
-                    if n*2 < this.array.Length then
+                    let n = BitCount.NumberOfSetBits(this.bitmap) * 2
+                    let n' = n * 2
+                    if n' < this.array.Length then
                         addedLeaf.Value <- addedLeaf :> obj
                         let editable = this.ensureEditable(thread1)
-                        System.Array.Copy(editable.array, 2*idx, editable.array, 2*(idx+1), 2*(n-idx))
-                        editable.array.[2*idx] <- key
-                        editable.array.[2*idx+1] <- value
+                        System.Array.Copy(editable.array, idx', editable.array, idx' + 2, n'-idx')
+                        editable.array.[idx'] <- key
+                        editable.array.[idx'+1] <- value
                         editable.bitmap <- editable.bitmap ||| bit
                         editable :> INode
                     else
@@ -465,12 +466,12 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                                  
                             ArrayNode(thread1, n + 1, nodes) :> INode
                         else
-                            let newArray = Array.create (2*(n+4)) null
-                            System.Array.Copy(this.array, 0, newArray, 0, 2*idx)
-                            newArray.[2*idx] <- key
+                            let newArray = Array.create (n'+8) null
+                            System.Array.Copy(this.array, 0, newArray, 0, idx')
+                            newArray.[idx'] <- key
                             addedLeaf.Value <- addedLeaf :> obj
-                            newArray.[2*idx+1] <- value
-                            System.Array.Copy(this.array, 2*idx, newArray, 2*(idx+1), 2*(n-idx))
+                            newArray.[idx'+1] <- value
+                            System.Array.Copy(this.array, idx', newArray, idx'+2, n'-idx')
                             let editable = this.ensureEditable(thread1)
                             editable.array <- newArray
                             editable.bitmap <- this.bitmap ||| bit
