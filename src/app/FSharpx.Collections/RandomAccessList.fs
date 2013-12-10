@@ -22,7 +22,7 @@ type NodeR(thread,array:obj[]) =
     member this.Thread = thread
     member this.SetThread t = thread := t
 
-type TransientVect<'T when 'T : equality> (count,shift:int,root:NodeR,tail:obj[]) =
+type internal TransientVect<'T when 'T : equality> (count,shift:int,root:NodeR,tail:obj[]) =
     let mutable count = count
     let mutable root = root
     let mutable tail = tail
