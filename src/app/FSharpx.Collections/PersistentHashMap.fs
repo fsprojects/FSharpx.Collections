@@ -17,16 +17,34 @@ type internal INode =
     abstract member without : Thread ref * int * int * obj * Box -> INode
     abstract member nodeSeq : unit -> (obj*obj) seq
 
+module BitCount =
+    let bitCounts = 
+        let bitCounts = Array.create 65536 0
+        let position1 = ref -1
+        let position2 = ref -1
+
+        for i in 1 .. 65535 do
+           if !position1 = !position2 then       
+                position1 := 0
+                position2 := i
+
+           bitCounts.[i] <- bitCounts.[!position1] + 1
+           position1 := !position1 + 1
+        bitCounts
+
+    let inline NumberOfSetBits value = bitCounts.[value &&& 65535] + bitCounts.[(value >>> 16) &&& 65535]
+             
 type private NodeHelpers =
+    
     static member mask(hash, shift) = (hash >>> shift) &&& 0x01f
     static member bitpos(hash, shift) = 1 <<< NodeHelpers.mask(hash, shift)
 
-    static member NumberOfSetBits(i) =
+    static member NumberOfSetBits_bug(i) =
         let i = i - ((i >>> 1) &&& 0x55555555)
         let i = (i &&& 0x33333333) + ((i >>> 2) &&& 0x33333333)
         (((i + (i >>> 4)) &&& 0x0F0F0F0F) * 0x01010101) >>> 24
 
-    static member index(bitmap,bit) = NodeHelpers.NumberOfSetBits(bitmap &&& (bit - 1))
+    static member index(bitmap,bit) = BitCount.NumberOfSetBits(bitmap &&& (bit - 1))
 
     static member cloneAndSet(array:INode[], i, a) =
         let clone = Array.copy array
@@ -316,7 +334,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
     with
         member this.ensureEditable(thread1) =
             if !thread = !thread1 then this else
-            let n = NodeHelpers.NumberOfSetBits(this.bitmap)
+            let n = BitCount.NumberOfSetBits(this.bitmap)
             let newArray = Array.create (if n >= 0 then 2*(n+1) else 4) null // make room for next assoc
             System.Array.Copy(this.array, 0, newArray, 0, 2*n)
             BitmapIndexedNode(thread1, this.bitmap, newArray)
@@ -383,7 +401,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                             addedLeaf.Value <- addedLeaf
                             BitmapIndexedNode(ref null, this.bitmap, NodeHelpers.cloneAndSet2(this.array, 2*idx, null, 2*idx+1, NodeHelpers.createNode(ref null, shift + 5, keyOrNull, valOrNode, hashKey, key, value))) :> INode
                 else
-                    let n = NodeHelpers.NumberOfSetBits(this.bitmap)
+                    let n = BitCount.NumberOfSetBits(this.bitmap)
                     if n >= 16 then
                         let nodes = Array.create 32 Unchecked.defaultof<INode>
                         let jdx = NodeHelpers.mask(hashKey, shift)
@@ -427,7 +445,7 @@ and private BitmapIndexedNode(thread,bitmap',array':obj[]) =
                             this.editAndSet(thread1, 2*idx, null, 2*idx+1, 
                                             NodeHelpers.createNode(thread1, shift + 5, keyOrNull, valOrNode, hashKey, key, value)) :> INode
                 else
-                    let n = NodeHelpers.NumberOfSetBits(this.bitmap)
+                    let n = BitCount.NumberOfSetBits(this.bitmap)
                     if n*2 < this.array.Length then
                         addedLeaf.Value <- addedLeaf :> obj
                         let editable = this.ensureEditable(thread1)

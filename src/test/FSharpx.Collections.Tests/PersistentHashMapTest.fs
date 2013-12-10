@@ -249,3 +249,15 @@ let ``can add lots of keys with colliding hashes to empty map``() =
 
     for i in 0 .. counter do 
         !x |> containsKey { Name = i.ToString() } |> should equal true
+
+[<Test>]
+let ``can find tons of strings in a map``() =
+    let x = ref empty
+    let n = 10000
+    let r = new Random()
+
+    for i in 0 .. n do 
+        x := add (i.ToString()) i !x
+
+    for i in 0 .. 1000000 do 
+        !x |> containsKey ((r.Next n).ToString()) |> should equal true
