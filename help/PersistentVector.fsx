@@ -7,7 +7,8 @@ open System
 PersistentVector
 ================
 
-A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. count is O(1). conj puts the item at the end of the vector. 
+A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. count is O(1). conj puts the item at the end of the vector.
+More details can be found in the [API docs](apidocs/fsharpx-collections-persistentvector-1.html).
 *)
 
 open FSharpx.Collections.PersistentVector
@@ -21,7 +22,7 @@ let v =
 
 // [fsi:val v : FSharpx.Collections.PersistentVector<string>]
 
-// lookup some items and print them to the console
+// lookup some items
 nth 0 v
 // [fsi:val it : string = "hello"]
 nth 1 v

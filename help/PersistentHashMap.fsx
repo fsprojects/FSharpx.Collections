@@ -8,6 +8,7 @@ PersistentHashMap
 =================
 
 A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). count is O(1).
+More details can be found in the [API docs](apidocs/fsharpx-collections-persistenthashmap-2.html).
 *)
 
 open FSharpx.Collections.PersistentHashMap
@@ -19,7 +20,7 @@ let m =
     |> add 99 "world"
 // [fsi:val m : FSharpx.Collections.PersistentHashMap<int,string>]
 
-// lookup some items and print them to the console
+// lookup some items
 find 42 m
 // [fsi:val it : string = "hello"]
 find 99 m
