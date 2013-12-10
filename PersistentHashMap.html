@@ -250,6 +250,16 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 <span class="l">70: </span>
 <span class="l">71: </span>
 <span class="l">72: </span>
+<span class="l">73: </span>
+<span class="l">74: </span>
+<span class="l">75: </span>
+<span class="l">76: </span>
+<span class="l">77: </span>
+<span class="l">78: </span>
+<span class="l">79: </span>
+<span class="l">80: </span>
+<span class="l">81: </span>
+<span class="l">82: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -285,18 +295,24 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
     <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 89)" onmouseover="showTip(event, 'fs36', 89)" class="i">list</span> <span class="o">=</span> [<span class="k">for</span> <span onmouseout="hideTip(event, 'fs18', 90)" onmouseover="showTip(event, 'fs18', 90)" class="i">i</span> <span class="k">in</span> <span class="n">0..</span><span onmouseout="hideTip(event, 'fs12', 91)" onmouseover="showTip(event, 'fs12', 91)" class="i">n</span><span class="o">-</span><span class="n">1</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs18', 92)" onmouseover="showTip(event, 'fs18', 92)" class="i">i</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs37', 93)" onmouseover="showTip(event, 'fs37', 93)" class="i">ToString</span>(),<span onmouseout="hideTip(event, 'fs8', 94)" onmouseover="showTip(event, 'fs8', 94)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 95)" onmouseover="showTip(event, 'fs19', 95)" class="i">Next</span>()]
     <span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 96)" onmouseover="showTip(event, 'fs38', 96)" class="i">fsharpMap</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 97)" onmouseover="showTip(event, 'fs31', 97)" class="i">Map</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs32', 98)" onmouseover="showTip(event, 'fs32', 98)" class="i">ofSeq</span> <span onmouseout="hideTip(event, 'fs36', 99)" onmouseover="showTip(event, 'fs36', 99)" class="i">list</span>
     <span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 100)" onmouseover="showTip(event, 'fs39', 100)" class="i">map</span> <span class="o">=</span> <span class="i">ofSeq</span> <span onmouseout="hideTip(event, 'fs36', 101)" onmouseover="showTip(event, 'fs36', 101)" class="i">list</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 102)" onmouseover="showTip(event, 'fs40', 102)" class="i">dict</span> <span class="o">=</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs41', 103)" onmouseover="showTip(event, 'fs41', 103)" class="i">d</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 104)" onmouseover="showTip(event, 'fs23', 104)" class="i">ref</span> (<span onmouseout="hideTip(event, 'fs9', 105)" onmouseover="showTip(event, 'fs9', 105)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs28', 106)" onmouseover="showTip(event, 'fs28', 106)" class="i">Collections</span><span class="o">.</span><span class="i">Immutable</span><span class="o">.</span><span class="i">ImmutableDictionary</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs30', 107)" onmouseover="showTip(event, 'fs30', 107)" class="i">string</span>,<span onmouseout="hideTip(event, 'fs29', 108)" onmouseover="showTip(event, 'fs29', 108)" class="i">int</span><span class="o">&gt;</span><span class="o">.</span><span class="i">Empty</span>)
+        <span class="k">for</span> (<span onmouseout="hideTip(event, 'fs42', 109)" onmouseover="showTip(event, 'fs42', 109)" class="i">key</span>,<span onmouseout="hideTip(event, 'fs43', 110)" onmouseover="showTip(event, 'fs43', 110)" class="i">value</span>) <span class="k">in</span> <span onmouseout="hideTip(event, 'fs36', 111)" onmouseover="showTip(event, 'fs36', 111)" class="i">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs41', 112)" onmouseover="showTip(event, 'fs41', 112)" class="i">d</span> <span class="o">:=</span> (<span class="o">!</span><span onmouseout="hideTip(event, 'fs41', 113)" onmouseover="showTip(event, 'fs41', 113)" class="i">d</span>)<span class="o">.</span><span class="i">Add</span>(<span onmouseout="hideTip(event, 'fs42', 114)" onmouseover="showTip(event, 'fs42', 114)" class="i">key</span>,<span onmouseout="hideTip(event, 'fs43', 115)" onmouseover="showTip(event, 'fs43', 115)" class="i">value</span>)
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs41', 116)" onmouseover="showTip(event, 'fs41', 116)" class="i">d</span>
 
-    <span class="i">stopAndReportAvarageTime</span> <span onmouseout="hideTip(event, 'fs7', 102)" onmouseover="showTip(event, 'fs7', 102)" class="i">trials</span> <span class="s">&quot;</span><span class="s">  </span><span class="s">FSharp</span><span class="s">.</span><span class="s">Map</span><span class="s">&quot;</span> (<span class="k">fun</span> () <span class="k">-&gt;</span> <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs35', 103)" onmouseover="showTip(event, 'fs35', 103)" class="i">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs38', 104)" onmouseover="showTip(event, 'fs38', 104)" class="i">fsharpMap</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs8', 105)" onmouseover="showTip(event, 'fs8', 105)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 106)" onmouseover="showTip(event, 'fs19', 106)" class="i">Next</span>(<span onmouseout="hideTip(event, 'fs12', 107)" onmouseover="showTip(event, 'fs12', 107)" class="i">n</span>)<span class="o">.</span><span class="i">ToString</span>()] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 108)" onmouseover="showTip(event, 'fs33', 108)" class="i">ignore</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 109)" onmouseover="showTip(event, 'fs33', 109)" class="i">ignore</span>
-    <span class="i">stopAndReportAvarageTime</span> <span onmouseout="hideTip(event, 'fs7', 110)" onmouseover="showTip(event, 'fs7', 110)" class="i">trials</span> <span class="s">&quot;</span><span class="s">  </span><span class="s">PersistentHashMap</span><span class="s">&quot;</span> (<span class="k">fun</span> () <span class="k">-&gt;</span> <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs35', 111)" onmouseover="showTip(event, 'fs35', 111)" class="i">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs39', 112)" onmouseover="showTip(event, 'fs39', 112)" class="i">map</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs8', 113)" onmouseover="showTip(event, 'fs8', 113)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 114)" onmouseover="showTip(event, 'fs19', 114)" class="i">Next</span>(<span onmouseout="hideTip(event, 'fs12', 115)" onmouseover="showTip(event, 'fs12', 115)" class="i">n</span>)<span class="o">.</span><span class="i">ToString</span>()] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 116)" onmouseover="showTip(event, 'fs33', 116)" class="i">ignore</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 117)" onmouseover="showTip(event, 'fs33', 117)" class="i">ignore</span>
+    <span class="i">stopAndReportAvarageTime</span> <span onmouseout="hideTip(event, 'fs7', 117)" onmouseover="showTip(event, 'fs7', 117)" class="i">trials</span> <span class="s">&quot;</span><span class="s">  </span><span class="s">FSharp</span><span class="s">.</span><span class="s">Map</span><span class="s">&quot;</span> (<span class="k">fun</span> () <span class="k">-&gt;</span> <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs35', 118)" onmouseover="showTip(event, 'fs35', 118)" class="i">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs38', 119)" onmouseover="showTip(event, 'fs38', 119)" class="i">fsharpMap</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs8', 120)" onmouseover="showTip(event, 'fs8', 120)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 121)" onmouseover="showTip(event, 'fs19', 121)" class="i">Next</span>(<span onmouseout="hideTip(event, 'fs12', 122)" onmouseover="showTip(event, 'fs12', 122)" class="i">n</span>)<span class="o">.</span><span class="i">ToString</span>()] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 123)" onmouseover="showTip(event, 'fs33', 123)" class="i">ignore</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 124)" onmouseover="showTip(event, 'fs33', 124)" class="i">ignore</span>
+    <span class="i">stopAndReportAvarageTime</span> <span onmouseout="hideTip(event, 'fs7', 125)" onmouseover="showTip(event, 'fs7', 125)" class="i">trials</span> <span class="s">&quot;</span><span class="s">  </span><span class="s">PersistentHashMap</span><span class="s">&quot;</span> (<span class="k">fun</span> () <span class="k">-&gt;</span> <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs35', 126)" onmouseover="showTip(event, 'fs35', 126)" class="i">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs39', 127)" onmouseover="showTip(event, 'fs39', 127)" class="i">map</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs8', 128)" onmouseover="showTip(event, 'fs8', 128)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 129)" onmouseover="showTip(event, 'fs19', 129)" class="i">Next</span>(<span onmouseout="hideTip(event, 'fs12', 130)" onmouseover="showTip(event, 'fs12', 130)" class="i">n</span>)<span class="o">.</span><span class="i">ToString</span>()] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 131)" onmouseover="showTip(event, 'fs33', 131)" class="i">ignore</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 132)" onmouseover="showTip(event, 'fs33', 132)" class="i">ignore</span>
+    <span class="i">stopAndReportAvarageTime</span> <span onmouseout="hideTip(event, 'fs7', 133)" onmouseover="showTip(event, 'fs7', 133)" class="i">trials</span> <span class="s">&quot;</span><span class="s">  </span><span class="s">ImmutableDictionay</span><span class="s">&quot;</span> (<span class="k">fun</span> () <span class="k">-&gt;</span> <span class="k">for</span> <span class="i">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs35', 134)" onmouseover="showTip(event, 'fs35', 134)" class="i">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs40', 135)" onmouseover="showTip(event, 'fs40', 135)" class="i">dict</span><span class="o">.</span>[<span onmouseout="hideTip(event, 'fs8', 136)" onmouseover="showTip(event, 'fs8', 136)" class="i">r</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs19', 137)" onmouseover="showTip(event, 'fs19', 137)" class="i">Next</span>(<span onmouseout="hideTip(event, 'fs12', 138)" onmouseover="showTip(event, 'fs12', 138)" class="i">n</span>)<span class="o">.</span><span class="i">ToString</span>()] <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 139)" onmouseover="showTip(event, 'fs33', 139)" class="i">ignore</span>) <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 140)" onmouseover="showTip(event, 'fs33', 140)" class="i">ignore</span>
 
-<span onmouseout="hideTip(event, 'fs11', 118)" onmouseover="showTip(event, 'fs11', 118)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">10000</span>
-<span onmouseout="hideTip(event, 'fs11', 119)" onmouseover="showTip(event, 'fs11', 119)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">100000</span>
-<span onmouseout="hideTip(event, 'fs11', 120)" onmouseover="showTip(event, 'fs11', 120)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">1000000</span>
+<span onmouseout="hideTip(event, 'fs11', 141)" onmouseover="showTip(event, 'fs11', 141)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs11', 142)" onmouseover="showTip(event, 'fs11', 142)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">100000</span>
+<span onmouseout="hideTip(event, 'fs11', 143)" onmouseover="showTip(event, 'fs11', 143)" class="i">initFSharpMapAndPersistentMapFromList</span> <span class="n">1000000</span>
 
-<span onmouseout="hideTip(event, 'fs34', 121)" onmouseover="showTip(event, 'fs34', 121)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000</span> <span class="n">10000</span>
-<span onmouseout="hideTip(event, 'fs34', 122)" onmouseover="showTip(event, 'fs34', 122)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">100000</span> <span class="n">10000</span>
-<span onmouseout="hideTip(event, 'fs34', 123)" onmouseover="showTip(event, 'fs34', 123)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">1000000</span> <span class="n">10000</span>
-<span onmouseout="hideTip(event, 'fs34', 124)" onmouseover="showTip(event, 'fs34', 124)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs34', 144)" onmouseover="showTip(event, 'fs34', 144)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs34', 145)" onmouseover="showTip(event, 'fs34', 145)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">100000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs34', 146)" onmouseover="showTip(event, 'fs34', 146)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">1000000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs34', 147)" onmouseover="showTip(event, 'fs34', 147)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000000</span> <span class="n">10000</span>
 
 <span class="fsi">Init with n = 10000</span>
 <span class="fsi">  FSharp.Map.ofSeq 22.4ms</span>
@@ -316,15 +332,19 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 <span class="fsi">10000 Lookups in size n = 10000</span>
 <span class="fsi">  FSharp.Map 8.8ms</span>
 <span class="fsi">  PersistentHashMap 8.4ms</span>
+<span class="fsi">  ImmutableDictionay 8.2ms</span>
 <span class="fsi">10000 Lookups in size n = 100000</span>
 <span class="fsi">  FSharp.Map 11.0ms</span>
 <span class="fsi">  PersistentHashMap 11.4ms</span>
+<span class="fsi">  ImmutableDictionay 5.4ms</span>
 <span class="fsi">10000 Lookups in size n = 1000000</span>
 <span class="fsi">  FSharp.Map 13.0ms</span>
 <span class="fsi">  PersistentHashMap 12.4ms</span>
+<span class="fsi">  ImmutableDictionay 8.6ms</span>
 <span class="fsi">10000 Lookups in size n = 10000000</span>
 <span class="fsi">  FSharp.Map 22.8ms</span>
-<span class="fsi">  PersistentHashMap 15.6ms</span></pre>
+<span class="fsi">  PersistentHashMap 15.6ms</span>
+<span class="fsi">  ImmutableDictionary: System.OutOfMemoryException</span></pre>
 </td>
 </tr>
 </table>
@@ -368,6 +388,10 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 <div class="tip" id="fs37">Int32.ToString() : string<br />Int32.ToString(provider: IFormatProvider) : string<br />Int32.ToString(format: string) : string<br />Int32.ToString(format: string, provider: IFormatProvider) : string</div>
 <div class="tip" id="fs38">val fsharpMap : Map&lt;string,int&gt;</div>
 <div class="tip" id="fs39">val map : obj</div>
+<div class="tip" id="fs40">val dict : obj</div>
+<div class="tip" id="fs41">val d : obj ref</div>
+<div class="tip" id="fs42">val key : string</div>
+<div class="tip" id="fs43">val value : int</div>
           
         </div>
         <div class="span3">
