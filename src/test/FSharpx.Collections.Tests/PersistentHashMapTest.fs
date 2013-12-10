@@ -31,6 +31,7 @@ let ``can add empty string as key to empty map``() =
     x |> containsKey "" |> should equal false
     x |> add "" "Hello" |> containsKey null |> should equal false
     x |> add "" "Hello" |> containsKey "" |> should equal true
+    x |> add "" "Hello" |> length |> shouldEqual 1
 
 [<Test>]
 let ``can add some integers to empty map``() =
@@ -41,10 +42,26 @@ let ``can add some integers to empty map``() =
         |> add 3 "l"
         |> add 4 "l"
         |> add 5 "o"
-            
+
     x |> containsKey 1 |> shouldEqual true
     x |> containsKey 5 |> shouldEqual true
     x |> containsKey 6 |> shouldEqual false
+    x |> length |> shouldEqual 5
+
+[<Test>]
+let ``add operates immutable``() =
+    let y =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+    let x =
+        y
+        |> add 4 "l"
+        |> add 5 "o"
+
+    y |> length |> shouldEqual 3
+    x |> length |> shouldEqual 5
 
 
 [<Test>]
@@ -63,6 +80,24 @@ let ``can remove some integers from a map``() =
     x |> containsKey 4 |> shouldEqual false
     x |> containsKey 5 |> shouldEqual true
     x |> containsKey 6 |> shouldEqual false
+    x |> length |> shouldEqual 3
+
+[<Test>]
+let ``remove operates``() =
+    let y =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+    let x =
+        y
+        |> remove 1
+        |> remove 4
+            
+    x |> length |> shouldEqual 3
+    y |> length |> shouldEqual 5
 
 [<Test>]
 let ``can find integers in a map``() =
@@ -108,6 +143,7 @@ let ``can add the same key multiple to a map``() =
     x |> find 1 |> shouldEqual "h"
     x |> find 4 |> shouldEqual "a"
     x |> find 5 |> shouldEqual "o"
+    x |> length |> shouldEqual 5
 
 [<Test>]
 let ``can iterate through a map``() =
