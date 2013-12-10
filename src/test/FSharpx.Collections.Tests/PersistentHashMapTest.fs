@@ -119,6 +119,17 @@ let ``can iterate through a map``() =
         |> add 4 "l"
         |> add 5 "o"
             
+    x |> find 1 |> shouldEqual "h"
+    x |> find 4 |> shouldEqual "l"
+    x |> find 5 |> shouldEqual "o"
+
+
+[<Test>]
+let ``can convert a seq to a map``() =
+    let list = [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+
+    let x = ofSeq list
+
     x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
 
 [<Test>]

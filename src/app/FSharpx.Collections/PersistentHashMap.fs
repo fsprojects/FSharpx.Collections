@@ -589,6 +589,12 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
         if root = Unchecked.defaultof<INode> then false else
         root.find(0, hash(key), key) <> null
 
+    static member ofSeq(items:('T*'S) seq) =
+        let mutable ret = TransientHashMap<'T,'S>.Empty()
+        for (key,value) in items do
+            ret <- ret.Add(key,value)
+        ret.persistent()
+
     member this.Add(key:'T, value:'S) =
         if key = Unchecked.defaultof<'T> then
             if hasNull && value = nullValue then this else
@@ -663,9 +669,13 @@ module PersistentHashMap =
     ///O(log32n), removes the element with the given key from the map
     let inline remove key (map:PersistentHashMap<'T, 'S>) = map.Remove(key)
 
+    ///O(n). Views the given HashMap as a sequence.
     let inline toSeq (map:PersistentHashMap<'T, 'S>) = map :> seq<'T*'S>
 
-    /// O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.
+    ///O(n). Returns a HashMap of the seq.
+    let inline ofSeq (items : ('T*'S) seq) = PersistentHashMap<'T, 'S>.ofSeq items 
+
+    ///O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.
     let map (f : 'S -> 'S1) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S1> = 
         let mutable ret = TransientHashMap<'T, 'S1>.Empty()
         for (key,value) in map do
