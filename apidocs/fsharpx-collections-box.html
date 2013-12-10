@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IPersistentVector<'T> - FSharpx.Collections</title>
+    <title>Box - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,9 +35,29 @@
 
 
 
-<h1>IPersistentVector<'T></h1>
+<h1>Box</h1>
 <div class="xmldoc">
 </div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '406', 406)" onmouseover="showTip(event, '406', 406)">
+            new(value)
+          </code>
+          <div class="tip" id="406">
+            <strong>Signature:</strong>value:obj -&gt; Box<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+    </tbody>
+  </table>
   <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
@@ -47,86 +67,26 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '446', 446)" onmouseover="showTip(event, '446', 446)">
-            AssocN(arg1, arg2)
+          <code onmouseout="hideTip(event, '444', 444)" onmouseover="showTip(event, '444', 444)">
+            Value
           </code>
-          <div class="tip" id="446">
-            <strong>Signature:</strong>(int * &#39;T) -&gt; IPersistentVector&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
+          <div class="tip" id="444">
+            <strong>Signature:</strong>obj<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.</p>
-</td>
+        <td class="xmldoc"></td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '471', 471)" onmouseover="showTip(event, '471', 471)">
-            Conj(arg1)
+          <code onmouseout="hideTip(event, '445', 445)" onmouseover="showTip(event, '445', 445)">
+            Value()
           </code>
-          <div class="tip" id="471">
-            <strong>Signature:</strong>&#39;T -&gt; IPersistentVector&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
+          <div class="tip" id="445">
+            <strong>Signature:</strong>unit -&gt; obj<br />
                       </div>
         </td>
-        <td class="xmldoc"><p>Returns a new vector with the element 'added' at the end.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '472', 472)" onmouseover="showTip(event, '472', 472)">
-            Count()
-          </code>
-          <div class="tip" id="472">
-            <strong>Signature:</strong>unit -&gt; int<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns the number of items in the collection.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '473', 473)" onmouseover="showTip(event, '473', 473)">
-            [arg1]
-          </code>
-          <div class="tip" id="473">
-            <strong>Signature:</strong>int -&gt; &#39;T<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns the value at the index. If the index is out of bounds it throws an exception.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '474', 474)" onmouseover="showTip(event, '474', 474)">
-            Peek()
-          </code>
-          <div class="tip" id="474">
-            <strong>Signature:</strong>unit -&gt; &#39;T<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns the last element in the vector. If the vector is empty it throws an exception.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '475', 475)" onmouseover="showTip(event, '475', 475)">
-            Pop()
-          </code>
-          <div class="tip" id="475">
-            <strong>Signature:</strong>unit -&gt; IPersistentVector&lt;&#39;T&gt;<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc"><p>Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
-</td>
+        <td class="xmldoc"></td>
       </tr>
     </tbody>
   </table>
