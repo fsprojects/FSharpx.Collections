@@ -579,6 +579,8 @@ type internal TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equalit
         thread := null
         PersistentHashMap(this.count, this.root, this.hasNull, this.nullValue)
 
+/// A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
+/// Hash maps provide fast access (log32N hops). count is O(1).
 and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality>  =
    val private count: int
    val private root:INode
