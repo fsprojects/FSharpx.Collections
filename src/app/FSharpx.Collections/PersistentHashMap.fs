@@ -660,6 +660,7 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
             :> System.Collections.IEnumerator
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+/// Defines functions which allow to access and manipulate PersistentHashMaps.
 module PersistentHashMap = 
     ///O(1), returns an empty PersistentHashMap
     let empty<'T,'S when 'T : equality and 'S : equality> = PersistentHashMap.Empty() :> PersistentHashMap<'T, 'S>

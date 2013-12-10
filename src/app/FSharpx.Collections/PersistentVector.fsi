@@ -50,6 +50,7 @@ type PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> =
     member TryUpdate : int * 'T -> PersistentVector<'T> option
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+/// Defines functions which allow to access and manipulate PersistentVectors.
 module PersistentVector = 
     //pattern discriminators (active pattern)
     val (|Conj|Nil|) : PersistentVector<'T> ->  Choice<(PersistentVector<'T> * 'T),unit>

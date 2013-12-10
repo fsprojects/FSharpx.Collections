@@ -50,6 +50,7 @@ type RandomAccessList<[<EqualityConditionalOn>]'T when 'T : equality> =
     member TryUpdate : int * 'T -> RandomAccessList<'T> option
             
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+/// Defines functions which allow to access and manipulate RandomAccessLists.
 module RandomAccessList = 
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : RandomAccessList<'T> ->  Choice<('T * RandomAccessList<'T> ),unit>
