@@ -12,6 +12,51 @@ A Vector is a collection of values indexed by contiguous integers. Vectors suppo
 
 open FSharpx.Collections.PersistentVector
 
+// Create a new vector and add some items to it
+let v = 
+    empty 
+    |> conj "hello"
+    |> conj "world"
+    |> conj "!"
+
+// [fsi:val v : FSharpx.Collections.PersistentVector<string>]
+
+// lookup some items and print them to the console
+nth 0 v
+// [fsi:val it : string = "hello"]
+nth 1 v
+// [fsi:val it : string = "world"]
+v.[2]
+// [fsi:val it : string = "!"]
+
+(**
+PersistentVectorss are immutable and therefor allow to create new version without destruction of the old ones.
+*)
+
+let v' = 
+    v
+    |> conj "!!!" 
+    |> update 0 "hi" // replace existing value
+
+nth 0 v'
+// [fsi:val it : string = "hi"]
+nth 3 v'
+// [fsi:val it : string = "!!!"]
+
+nth 0 v
+// [fsi:val it : string = "hello"]
+
+(** There a couple of interesting operations on PersistentVectors:
+*)
+
+// Convert a sequence of values to a PersistentVectors
+let intVector = ofSeq [1..10]
+// [fsi:val intVector : FSharpx.Collections.PersistentVector<int>]
+
+// Square all values in a PersistentVector
+let intVector' = map (fun x -> x * x) intVector
+intVector'.[3]
+// [fsi:val it : int = 256]
 
 (**
 

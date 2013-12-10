@@ -51,7 +51,7 @@ find 42 m
 let stringBasedMap = ofSeq [("a",1); ("b",2); ("c",3); ("d",4); ("e",5)]
 // [fsi:val stringBaseMap : FSharpx.Collections.PersistentHashMap<string,int>]
 
-// Square all values in a map
+// Square all values in a HashMap
 let stringBasedMap' = map (fun x -> x * x) stringBasedMap
 stringBasedMap'.["d"]
 // [fsi:val it : int = 16]
