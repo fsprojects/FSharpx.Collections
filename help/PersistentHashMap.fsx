@@ -12,7 +12,7 @@ A Map is a collection that maps keys to values. Hash maps require keys that corr
 
 open FSharpx.Collections.PersistentHashMap
 
-// Create a new map and add some items to it
+// Create a new HashMap and add some items to it
 let m = 
     empty 
     |> add 42 "hello"
@@ -26,6 +26,11 @@ find 99 m
 // [fsi:val it : string = "world"]
 m.[99]
 // [fsi:val it : string = "world"]
+
+// Check no. of elements in the HashMap
+length m
+// [fsi:val it : int = 2]
+
 
 (**
 PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.
@@ -43,6 +48,11 @@ find 104 m'
 
 find 42 m
 // [fsi:val it : string = "hello"]
+length m
+// [fsi:val it : int = 2]
+length m'
+// [fsi:val it : int = 3]
+
 
 (** There a couple of interesting operations on HashMaps:
 *)

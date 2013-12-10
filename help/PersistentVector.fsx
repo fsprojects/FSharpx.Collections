@@ -12,7 +12,7 @@ A Vector is a collection of values indexed by contiguous integers. Vectors suppo
 
 open FSharpx.Collections.PersistentVector
 
-// Create a new vector and add some items to it
+// Create a new PersistentVector and add some items to it
 let v = 
     empty 
     |> conj "hello"
@@ -28,6 +28,11 @@ nth 1 v
 // [fsi:val it : string = "world"]
 v.[2]
 // [fsi:val it : string = "!"]
+
+// Check no. of elements in the PersistentVector
+length v
+// [fsi:val it : int = 3]
+
 
 (**
 PersistentVectorss are immutable and therefor allow to create new version without destruction of the old ones.
@@ -45,6 +50,11 @@ nth 3 v'
 
 nth 0 v
 // [fsi:val it : string = "hello"]
+length v
+// [fsi:val it : int = 3]
+length v'
+// [fsi:val it : int = 4]
+
 
 (** There a couple of interesting operations on PersistentVectors:
 *)
