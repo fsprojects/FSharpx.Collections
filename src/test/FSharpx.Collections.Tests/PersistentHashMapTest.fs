@@ -65,7 +65,7 @@ let ``can remove some integers from a map``() =
     x |> containsKey 6 |> shouldEqual false
 
 [<Test>]
-let ``can lookup integers from a map``() =
+let ``can find integers in a map``() =
     let x =
         empty
         |> add 1 "h"
@@ -77,6 +77,20 @@ let ``can lookup integers from a map``() =
     x |> find 1 |> shouldEqual "h"
     x |> find 4 |> shouldEqual "l"
     x |> find 5 |> shouldEqual "o"
+
+[<Test>]
+let ``can lookup integers from a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+            
+    x.[1] |> shouldEqual "h"
+    x.[4] |> shouldEqual "l"
+    x.[5] |> shouldEqual "o"
 
 
 [<Test>]
@@ -93,8 +107,43 @@ let ``can add the same key multiple to a map``() =
             
     x |> find 1 |> shouldEqual "h"
     x |> find 4 |> shouldEqual "a"
-    x |> find 5 |> shouldEqual "o"    
+    x |> find 5 |> shouldEqual "o"
 
+[<Test>]
+let ``can iterate through a map``() =
+    let x =
+        empty
+        |> add 1 "h"
+        |> add 2 "a"
+        |> add 3 "l"
+        |> add 4 "l"
+        |> add 5 "o"
+            
+    x |> find 1 |> shouldEqual "h"
+    x |> find 4 |> shouldEqual "l"
+    x |> find 5 |> shouldEqual "o"
+
+
+[<Test>]
+let ``can convert a seq to a map``() =
+    let list = [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+
+    let x = ofSeq list
+
+    x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+
+[<Test>]
+let ``can map a HashMap``() =
+    let x =
+        empty
+        |> add 1 1
+        |> add 2 2
+        |> add 3 3
+        |> add 4 4
+        |> add 5 5
+            
+    x |> map (fun x -> x + 1) |> Seq.toList |> shouldEqual [1,2; 2,3; 3,4; 4,5; 5,6]
+    
 [<Test>]
 let ``can add tons of integers to empty map``() =
     let x = ref empty
@@ -107,7 +156,7 @@ let ``can add tons of integers to empty map``() =
         !x |> containsKey i |> should equal true
 
 [<Test>]
-let ``can lookup tons of integers form a map``() =
+let ``can find tons of integers in a map``() =
     let x = ref empty
     let counter = 1000
 
@@ -117,37 +166,7 @@ let ``can lookup tons of integers form a map``() =
     for i in 0 .. counter do 
         !x |> find i |> shouldEqual i
 
-[<CustomComparison; CustomEquality>]
-type AlwaysSameHash = 
-    { Name  : string; }
-
-    interface System.IComparable<AlwaysSameHash> with
-        member this.CompareTo { Name = name } =
-            compare this.Name name
-
-    interface IComparable with
-        member this.CompareTo obj =
-            match obj with
-            | :? AlwaysSameHash as other -> (this :> IComparable<_>).CompareTo other
-            | _                    -> invalidArg "obj" "not a AlwaysSameHash"
-
-    interface IEquatable<AlwaysSameHash> with
-        member this.Equals { Name = name  } = this.Name = name
-
-    override this.Equals obj =
-        match obj with
-        | :? AlwaysSameHash as other -> (this :> IEquatable<_>).Equals other
-        | _                    -> invalidArg "obj" "not a AlwaysSameHash"
-
-    override this.GetHashCode () = 42
-
-[<Test>]
-let ``two AlwaysSameHash have same hash``() =
-    hash { Name = "Test"} |> should equal (hash { Name = "Test"})
-    { Name = "Test"} |> should equal { Name = "Test"}
-    hash { Name = "Test"} |> should equal (hash { Name = "Test1"})
-    { Name = "Test"} |> shouldNotEqual { Name = "Test1"}
-
+open FSharpx.Collections.Experimental.Tests.TransientHashMapTest
 
 [<Test>]
 let ``can add keys with colliding hashes to empty map``() =
