@@ -123,15 +123,19 @@
 <span class="l">4: </span>
 <span class="l">5: </span>
 <span class="l">6: </span>
+<span class="l">7: </span>
+<span class="l">8: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// Convert a sequence of key value pairs to a HashMap</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="i">stringBaseMap</span> <span class="o">=</span> <span class="i">ofSeq</span> [(<span class="s">&quot;</span><span class="s">a</span><span class="s">&quot;</span>,<span class="n">1</span>); (<span class="s">&quot;</span><span class="s">b</span><span class="s">&quot;</span>,<span class="n">2</span>); (<span class="s">&quot;</span><span class="s">c</span><span class="s">&quot;</span>,<span class="n">3</span>); (<span class="s">&quot;</span><span class="s">d</span><span class="s">&quot;</span>,<span class="n">4</span>); (<span class="s">&quot;</span><span class="s">e</span><span class="s">&quot;</span>,<span class="n">5</span>)]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="i">stringBasedMap</span> <span class="o">=</span> <span class="i">ofSeq</span> [(<span class="s">&quot;</span><span class="s">a</span><span class="s">&quot;</span>,<span class="n">1</span>); (<span class="s">&quot;</span><span class="s">b</span><span class="s">&quot;</span>,<span class="n">2</span>); (<span class="s">&quot;</span><span class="s">c</span><span class="s">&quot;</span>,<span class="n">3</span>); (<span class="s">&quot;</span><span class="s">d</span><span class="s">&quot;</span>,<span class="n">4</span>); (<span class="s">&quot;</span><span class="s">e</span><span class="s">&quot;</span>,<span class="n">5</span>)]
 <span class="fsi">val stringBaseMap : FSharpx.Collections.PersistentHashMap&lt;string,int&gt;</span>
 
 <span class="c">// Sequare all values in a map</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">stringBaseMap&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="i">stringBaseMap</span></pre>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">stringBasedMap&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="i">stringBasedMap</span>
+<span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="i">stringBasedMap&#39;</span><span class="o">.</span>[<span class="s">&quot;</span><span class="s">d</span><span class="s">&quot;</span>]
+<span class="fsi">val it : int = 16</span></pre>
 </td>
 </tr>
 </table>
@@ -141,8 +145,8 @@
           <div class="tip" id="fs1">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
 <div class="tip" id="fs2">val m : obj<br /><br />Full name: PersistentHashMap.m</div>
 <div class="tip" id="fs3">val m&#39; : obj<br /><br />Full name: PersistentHashMap.m&#39;</div>
-<div class="tip" id="fs4">val stringBaseMap : obj<br /><br />Full name: PersistentHashMap.stringBaseMap</div>
-<div class="tip" id="fs5">val stringBaseMap&#39; : obj<br /><br />Full name: PersistentHashMap.stringBaseMap&#39;</div>
+<div class="tip" id="fs4">val stringBasedMap : obj<br /><br />Full name: PersistentHashMap.stringBasedMap</div>
+<div class="tip" id="fs5">val stringBasedMap&#39; : obj<br /><br />Full name: PersistentHashMap.stringBasedMap&#39;</div>
           
         </div>
         <div class="span3">
