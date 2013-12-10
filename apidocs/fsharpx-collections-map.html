@@ -79,8 +79,8 @@
             insertWith f key value map
           </code>
           <div class="tip" id="165">
-            <strong>Signature:</strong>f:(&#39;?5797 -&gt; &#39;?5797 -&gt; &#39;?5797) -&gt; key:&#39;?5798 -&gt; value:&#39;?5797 -&gt; map:Map&lt;&#39;?5798,&#39;?5797&gt; -&gt; Map&lt;&#39;?5798,&#39;?5797&gt;<br />
-                          <strong>Type parameters:</strong> '?5797, '?5798          </div>
+            <strong>Signature:</strong>f:(&#39;?5800 -&gt; &#39;?5800 -&gt; &#39;?5800) -&gt; key:&#39;?5801 -&gt; value:&#39;?5800 -&gt; map:Map&lt;&#39;?5801,&#39;?5800&gt; -&gt; Map&lt;&#39;?5801,&#39;?5800&gt;<br />
+                          <strong>Type parameters:</strong> '?5800, '?5801          </div>
         </td>
         <td class="xmldoc"><p>insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. 
  If the key does exist, the function will insert f new<em>value old</em>value.</p>
@@ -119,8 +119,8 @@
             spanWithKey pred map
           </code>
           <div class="tip" id="168">
-            <strong>Signature:</strong>pred:(&#39;?5791 -&gt; bool) -&gt; map:Map&lt;&#39;?5791,&#39;?5792&gt; -&gt; Map&lt;&#39;?5791,&#39;?5792&gt; * Map&lt;&#39;?5791,&#39;?5792&gt;<br />
-                          <strong>Type parameters:</strong> '?5791, '?5792          </div>
+            <strong>Signature:</strong>pred:(&#39;?5794 -&gt; bool) -&gt; map:Map&lt;&#39;?5794,&#39;?5795&gt; -&gt; Map&lt;&#39;?5794,&#39;?5795&gt; * Map&lt;&#39;?5794,&#39;?5795&gt;<br />
+                          <strong>Type parameters:</strong> '?5794, '?5795          </div>
         </td>
         <td class="xmldoc"></td>
       </tr>
@@ -131,8 +131,8 @@
             splitWithKey pred d
           </code>
           <div class="tip" id="169">
-            <strong>Signature:</strong>pred:(&#39;?5794 -&gt; bool) -&gt; d:Map&lt;&#39;?5794,&#39;?5795&gt; -&gt; Map&lt;&#39;?5794,&#39;?5795&gt; * Map&lt;&#39;?5794,&#39;?5795&gt;<br />
-                          <strong>Type parameters:</strong> '?5794, '?5795          </div>
+            <strong>Signature:</strong>pred:(&#39;?5797 -&gt; bool) -&gt; d:Map&lt;&#39;?5797,&#39;?5798&gt; -&gt; Map&lt;&#39;?5797,&#39;?5798&gt; * Map&lt;&#39;?5797,&#39;?5798&gt;<br />
+                          <strong>Type parameters:</strong> '?5797, '?5798          </div>
         </td>
         <td class="xmldoc"></td>
       </tr>
@@ -143,8 +143,8 @@
             union map1 map2
           </code>
           <div class="tip" id="170">
-            <strong>Signature:</strong>map1:Map&lt;&#39;?5806,&#39;?5807&gt; -&gt; map2:Map&lt;&#39;?5806,&#39;?5807&gt; -&gt; Map&lt;&#39;?5806,&#39;?5807&gt;<br />
-                          <strong>Type parameters:</strong> '?5806, '?5807          </div>
+            <strong>Signature:</strong>map1:Map&lt;&#39;?5809,&#39;?5810&gt; -&gt; map2:Map&lt;&#39;?5809,&#39;?5810&gt; -&gt; Map&lt;&#39;?5809,&#39;?5810&gt;<br />
+                          <strong>Type parameters:</strong> '?5809, '?5810          </div>
         </td>
         <td class="xmldoc"><p>Combines the two Maps into a single Map</p>
 </td>
@@ -156,8 +156,8 @@
             updateWith f key map
           </code>
           <div class="tip" id="171">
-            <strong>Signature:</strong>f:(&#39;?5800 -&gt; &#39;?5800 option) -&gt; key:&#39;?5801 -&gt; map:Map&lt;&#39;?5801,&#39;?5800&gt; -&gt; Map&lt;&#39;?5801,&#39;?5800&gt;<br />
-                          <strong>Type parameters:</strong> '?5800, '?5801          </div>
+            <strong>Signature:</strong>f:(&#39;?5803 -&gt; &#39;?5803 option) -&gt; key:&#39;?5804 -&gt; map:Map&lt;&#39;?5804,&#39;?5803&gt; -&gt; Map&lt;&#39;?5804,&#39;?5803&gt;<br />
+                          <strong>Type parameters:</strong> '?5803, '?5804          </div>
         </td>
         <td class="xmldoc"><p>update f k map updates the value x at key k (if it is in the map). 
  If f x is None, the element is deleted. 
@@ -171,8 +171,8 @@
             valueList map
           </code>
           <div class="tip" id="172">
-            <strong>Signature:</strong>map:Map&lt;&#39;?5803,&#39;?5804&gt; -&gt; &#39;?5804 list<br />
-                          <strong>Type parameters:</strong> '?5803, '?5804          </div>
+            <strong>Signature:</strong>map:Map&lt;&#39;?5806,&#39;?5807&gt; -&gt; &#39;?5807 list<br />
+                          <strong>Type parameters:</strong> '?5806, '?5807          </div>
         </td>
         <td class="xmldoc"></td>
       </tr>
@@ -201,10 +201,13 @@
             <li><a href="https://github.com/forki/fsharpx.collections">Source Code on GitHub</a></li>       
             <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.md">License (MS-PL)</a></li>
             <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
-            <li class="nav-header">Articles</li>
+            <li class="nav-header">Using from F#</li>
               <li><a href="http://forki.github.io/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="http://forki.github.io/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+              <li><a href="http://forki.github.io/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
             <li class="divider"></li>
+              <li class="nav-header">Using from C#</li>
+              <li><a href="http://forki.github.io/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+
 
             <li class="nav-header">Documentation</li>
             <li><a href="http://forki.github.io/FSharpx.Collections/apidocs/index.html">API Reference</a></li>

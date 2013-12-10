@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <!-- 
-      The FSharpx.Collections
+      The PersistentVector
  parameters will be replaced with the 
       document title extracted from the <h1> element or
       file name, if there is no <h1> heading
     -->
-    <title>FSharpx.Collections
+    <title>PersistentVector
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FSharpx.Collections">
@@ -36,24 +36,12 @@
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h1>FSharpx.Collections</h1>
+          <h1>PersistentVector</h1>
 
-<p><strong>FSharpx.Collections</strong> is a collection of datastructures for use with F# and C#.</p>
+<p>A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. count is O(1). conj puts the item at the end of the vector.</p>
 
-<p>Please contribute to this project. Don't ask for permission, just fork the repository and send pull requests.</p>
-
-<p>Please also join the <a href="http://fsharp.github.com">F# Open Source Group</a></p>
-
-<div class="row">
-  <div class="span1"></div>
-  <div class="span6">
-    <div class="well well-small" id="nuget">
-      The F# DataFrame library can be <a href="https://nuget.org/packages/Deedle">installed from NuGet</a>:
-      <pre>PM> Install-Package Deedle</pre>
-    </div>
-  </div>
-  <div class="span1"></div>
-</div>
+<pre lang="csharp"><span class="c">// Create an empty PersistentVector</span>
+   <span class="k">var</span> v = PersistentVector&lt;<span class="k">int</span>&gt;.Empty();</pre>
 
                     
         </div>
