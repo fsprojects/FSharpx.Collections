@@ -38,7 +38,8 @@
         <div class="span9" id="main">
           <h1>PersistentVector</h1>
 
-<p>A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. count is O(1). conj puts the item at the end of the vector.</p>
+<p>A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. count is O(1). conj puts the item at the end of the vector.
+More details can be found in the <a href="apidocs/fsharpx-collections-persistentvector-1.html">API docs</a>.</p>
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
@@ -77,7 +78,7 @@
 
 <span class="fsi">val v : FSharpx.Collections.PersistentVector&lt;string&gt;</span>
 
-<span class="c">// lookup some items and print them to the console</span>
+<span class="c">// lookup some items</span>
 <span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">v</span>
 <span class="fsi">val it : string = &quot;hello&quot;</span>
 <span class="i">nth</span> <span class="n">1</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">v</span>
