@@ -102,19 +102,46 @@ let initFSharpMapAndPersistentMapFromList n =
         "  Multiple PersistentHashMap.add" (fun () -> initpersistentmap list)
         "  PersistentHashMap.ofSeq" (fun () -> ofSeq list)
 
+let lookupInFSharpMapAndPersistentMap n count =
+    sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
+    let list = [for i in 0..n-1 -> i.ToString(),r.Next()]
+    let fsharpMap = Map.ofSeq list
+    let map = ofSeq list
+
+    compareTwoRuntimes trials
+        "  FSharp.Map" (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()] |> ignore)
+        "  PersistentHashMap" (fun () -> for i in 1..count do map.[r.Next(n).ToString()] |> ignore)
+
 initFSharpMapAndPersistentMapFromList 10000
 initFSharpMapAndPersistentMapFromList 100000
 initFSharpMapAndPersistentMapFromList 1000000
 
+lookupInFSharpMapAndPersistentMap 10000 10000
+lookupInFSharpMapAndPersistentMap 100000 10000
+lookupInFSharpMapAndPersistentMap 1000000 10000
+lookupInFSharpMapAndPersistentMap 10000000 10000
+
 // [fsi:Init with n = 10000]
-// [fsi:  FSharp.Map.ofSeq 25.2ms]
-// [fsi:  Multiple PersistentHashMap.add 22.4ms]
-// [fsi:  PersistentHashMap.ofSeq 12.2ms]
+// [fsi:  FSharp.Map.ofSeq 14.4ms]
+// [fsi:  Multiple PersistentHashMap.add 20.2ms]
+// [fsi:  PersistentHashMap.ofSeq 11.6ms]
 // [fsi:Init with n = 100000]
-// [fsi:  FSharp.Map.ofSeq 260.6ms]
-// [fsi:  Multiple PersistentHashMap.add 309.8ms]
-// [fsi:  PersistentHashMap.ofSeq 214.0ms]
+// [fsi:  FSharp.Map.ofSeq 238.8ms]
+// [fsi:  Multiple PersistentHashMap.add 351.2ms]
+// [fsi:  PersistentHashMap.ofSeq 195.8ms]
 // [fsi:Init with n = 1000000]
-// [fsi:  FSharp.Map.ofSeq 4955.6ms]
-// [fsi:  Multiple PersistentHashMap.add 5770.4ms]
-// [fsi:  PersistentHashMap.ofSeq 3867.6ms]
+// [fsi:  FSharp.Map.ofSeq 3760.6ms]
+// [fsi:  Multiple PersistentHashMap.add 5912.0ms]
+// [fsi:  PersistentHashMap.ofSeq 3680.2ms]
+// [fsi:10000 Lookups in size n = 10000]
+// [fsi:  FSharp.Map 8.8ms]
+// [fsi:  PersistentHashMap 8.4ms]
+// [fsi:10000 Lookups in size n = 100000]
+// [fsi:  FSharp.Map 11.0ms]
+// [fsi:  PersistentHashMap 11.4ms]
+// [fsi:10000 Lookups in size n = 1000000]
+// [fsi:  FSharp.Map 13.0ms]
+// [fsi:  PersistentHashMap 12.4ms]
+// [fsi:10000 Lookups in size n = 10000000]
+// [fsi:  FSharp.Map 22.8ms]
+// [fsi:  PersistentHashMap 15.6ms]
