@@ -59,23 +59,58 @@
 <td class="snippet"><pre class="fssnip">
 <span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Collections</span><span class="o">.</span><span class="i">PersistentHashMap</span>
 
-<span class="c">// Create a new map and add some items</span>
+<span class="c">// Create a new map and add some items to it</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">map</span> <span class="o">=</span> 
     <span class="i">empty</span> 
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">42</span> <span class="s">&quot;</span><span class="s">hallo</span><span class="s">&quot;</span>
+    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">42</span> <span class="s">&quot;</span><span class="s">hello</span><span class="s">&quot;</span>
     <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">99</span> <span class="s">&quot;</span><span class="s">world</span><span class="s">&quot;</span>
 
 <span class="c">// lookup some items and print them to the console</span>
 <span class="i">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">map</span>
-<span class="fsi">val it : string = &quot;hallo&quot;</span>
+<span class="fsi">val it : string = &quot;hello&quot;</span>
 <span class="i">find</span> <span class="n">99</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">map</span>
 <span class="fsi">val it : string = &quot;world&quot;</span></pre>
 </td>
 </tr>
 </table>
 
+<p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip">
+<span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+</pre>
+</td>
+<td class="snippet"><pre class="fssnip">
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">map&#39;</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="i">map</span> 
+    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">104</span> <span class="s">&quot;</span><span class="s">!</span><span class="s">&quot;</span> 
+    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">42</span> <span class="s">&quot;</span><span class="s">hi</span><span class="s">&quot;</span> <span class="c">// replace existing</span>
+
+<span class="i">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">map&#39;</span>
+<span class="fsi">val it : string = &quot;hi&quot;</span>
+<span class="i">find</span> <span class="n">104</span> <span onmouseout="hideTip(event, 'fs3', 8)" onmouseover="showTip(event, 'fs3', 8)" class="i">map&#39;</span>
+<span class="fsi">val it : string = &quot;!&quot;</span>
+
+<span class="i">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs2', 9)" onmouseover="showTip(event, 'fs2', 9)" class="i">map</span>
+<span class="fsi">val it : string = &quot;hello&quot;</span></pre>
+</td>
+</tr>
+</table>
+
           <div class="tip" id="fs1">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
 <div class="tip" id="fs2">val map : obj<br /><br />Full name: PersistentHashMap.map</div>
+<div class="tip" id="fs3">val map&#39; : obj<br /><br />Full name: PersistentHashMap.map&#39;</div>
           
         </div>
         <div class="span3">
