@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PriorityQueue - FSharpx.Collections</title>
+    <title>BitCount - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
@@ -35,7 +35,7 @@
 
 
 
-<h1>PriorityQueue</h1>
+<h1>BitCount</h1>
 <div class="xmldoc">
 </div>
 
@@ -50,93 +50,26 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '213', 213)" onmouseover="showTip(event, '213', 213)">
-            empty isDescending
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+            bitCounts 
           </code>
-          <div class="tip" id="213">
-            <strong>Signature:</strong>isDescending:bool -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="26">
+            <strong>Signature:</strong>int []<br />
+                      </div>
         </td>
-        <td class="xmldoc"><p>O(1). Returns a empty queue, with indicated ordering.</p>
-</td>
+        <td class="xmldoc"></td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '214', 214)" onmouseover="showTip(event, '214', 214)">
-            insert element pq
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            NumberOfSetBits value
           </code>
-          <div class="tip" id="214">
-            <strong>Signature:</strong>element:&#39;T -&gt; pq:IPriorityQueue&lt;&#39;T&gt; -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="27">
+            <strong>Signature:</strong>value:int -&gt; int<br />
+                      </div>
         </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns a new queue with the element added to the end.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
-            isEmpty pq
-          </code>
-          <div class="tip" id="215">
-            <strong>Signature:</strong>pq:IPriorityQueue&lt;&#39;T&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc"><p>O(1). Returns true if the queue has no elements.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
-            peek pq
-          </code>
-          <div class="tip" id="216">
-            <strong>Signature:</strong>pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc"><p>O(1). Returns the first element.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
-            pop pq
-          </code>
-          <div class="tip" id="217">
-            <strong>Signature:</strong>pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T * IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns the first element and tail.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
-            tryPeek pq
-          </code>
-          <div class="tip" id="218">
-            <strong>Signature:</strong>pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc"><p>O(1). Returns option first element.</p>
-</td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
-            tryPop pq
-          </code>
-          <div class="tip" id="219">
-            <strong>Signature:</strong>pq:IPriorityQueue&lt;&#39;T&gt; -&gt; (&#39;T * IPriorityQueue&lt;&#39;T&gt;) option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc"><p>O(log n) amortized time. Returns the option first element and tail.</p>
-</td>
+        <td class="xmldoc"></td>
       </tr>
     </tbody>
   </table>
