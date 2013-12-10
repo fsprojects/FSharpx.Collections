@@ -41,6 +41,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Exceptions.fs" />
     <Compile Include="Interfaces.fs" />
+    <Compile Include="Infrastructure.fs" />
     <Compile Include="LazyList.fsi" />
     <Compile Include="LazyList.fs" />
     <Compile Include="ResizeArray.fsi" />

@@ -34,7 +34,7 @@ PersistentHashMaps are immutable and therefor allow to create new version withou
 let m' = 
     m 
     |> add 104 "!" 
-    |> add 42 "hi" // replace existing
+    |> add 42 "hi" // replace existing value
 
 find 42 m'
 // [fsi:val it : string = "hi"]
@@ -51,7 +51,7 @@ find 42 m
 let stringBasedMap = ofSeq [("a",1); ("b",2); ("c",3); ("d",4); ("e",5)]
 // [fsi:val stringBaseMap : FSharpx.Collections.PersistentHashMap<string,int>]
 
-// Sequare all values in a map
+// Square all values in a map
 let stringBasedMap' = map (fun x -> x * x) stringBasedMap
 stringBasedMap'.["d"]
 // [fsi:val it : int = 16]
