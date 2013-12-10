@@ -17,8 +17,8 @@ Please also join the [F# Open Source Group](http://fsharp.github.com)
   <div class="span1"></div>
   <div class="span6">
     <div class="well well-small" id="nuget">
-      The F# DataFrame library can be <a href="https://nuget.org/packages/Deedle">installed from NuGet</a>:
-      <pre>PM> Install-Package Deedle</pre>
+      The F# DataFrame library can be <a href="https://nuget.org/packages/FSharpx.Collections">installed from NuGet</a>:
+      <pre>PM> Install-Package FSharpx.Collections</pre>
     </div>
   </div>
   <div class="span1"></div>

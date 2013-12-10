@@ -34,7 +34,7 @@ length v
 // [fsi:val it : int = 3]
 
 (**
-PersistentVectorss are immutable and therefor allow to create new version without destruction of the old ones.
+PersistentVectors are immutable and therefor allow to create new version without destruction of the old ones.
 *)
 
 let v' = 
