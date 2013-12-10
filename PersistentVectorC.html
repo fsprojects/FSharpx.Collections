@@ -56,19 +56,19 @@ Console.WriteLine(vector.Length);  <span class="c">// 3</span>
 
 <p>PersistentVectors are immutable and therefor allow to create new version without destruction of the old ones.</p>
 
-<pre lang="csharp">      PersistentVector&lt;<span class="k">string</span>&gt; vector2 = vector.Conj(<span class="s">"!!!"</span>).Update(0,<span class="s">"hi"</span>);
+<pre lang="csharp">PersistentVector&lt;<span class="k">string</span>&gt; vector2 = vector.Conj(<span class="s">"!!!"</span>).Update(0,<span class="s">"hi"</span>);
 
-      Console.WriteLine(vector2[0]); <span class="c">// hi</span>
-      Console.WriteLine(vector[0]);  <span class="c">// hello</span>
-      Console.WriteLine(vector2[3]); <span class="c">// !!!</span>
+Console.WriteLine(vector2[0]); <span class="c">// hi</span>
+Console.WriteLine(vector[0]);  <span class="c">// hello</span>
+Console.WriteLine(vector2[3]); <span class="c">// !!!</span>
 
-      Console.WriteLine(vector.Length);  <span class="c">// 3</span>
-      Console.WriteLine(vector2.Length); <span class="c">// 4</span>
+Console.WriteLine(vector.Length);  <span class="c">// 3</span>
+Console.WriteLine(vector2.Length); <span class="c">// 4</span>
 
-      <span class="c">// remove the last element from a PersistentVector</span>
+<span class="c">// remove the last element from a PersistentVector</span>
 PersistentVector&lt;<span class="k">string</span>&gt; vector3 = vector2.Initial;
 
-      Console.WriteLine(vector3.Length); <span class="c">// 3</span>
+Console.WriteLine(vector3.Length); <span class="c">// 3</span>
 </pre>
 
                     
