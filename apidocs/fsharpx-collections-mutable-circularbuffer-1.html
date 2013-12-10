@@ -47,10 +47,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '520', 520)" onmouseover="showTip(event, '520', 520)">
+          <code onmouseout="hideTip(event, '497', 497)" onmouseover="showTip(event, '497', 497)">
             new(bufferSize)
           </code>
-          <div class="tip" id="520">
+          <div class="tip" id="497">
             <strong>Signature:</strong>bufferSize:int -&gt; CircularBuffer&lt;&#39;T&gt;<br />
                       </div>
         </td>
@@ -67,10 +67,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '540', 540)" onmouseover="showTip(event, '540', 540)">
+          <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
             Count
           </code>
-          <div class="tip" id="540">
+          <div class="tip" id="542">
             <strong>Signature:</strong>int<br />
                       </div>
         </td>
@@ -79,10 +79,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '541', 541)" onmouseover="showTip(event, '541', 541)">
+          <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
             Dequeue(count)
           </code>
-          <div class="tip" id="541">
+          <div class="tip" id="543">
             <strong>Signature:</strong>count:int -&gt; &#39;T []<br />
                       </div>
         </td>
@@ -91,35 +91,11 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '542', 542)" onmouseover="showTip(event, '542', 542)">
-            Enqueue(value)
-          </code>
-          <div class="tip" id="542">
-            <strong>Signature:</strong>value:&#39;T -&gt; unit<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '543', 543)" onmouseover="showTip(event, '543', 543)">
-            Enqueue(value)
-          </code>
-          <div class="tip" id="543">
-            <strong>Signature:</strong>value:ArraySegment&lt;&#39;T&gt; -&gt; unit<br />
-                      </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
           <code onmouseout="hideTip(event, '544', 544)" onmouseover="showTip(event, '544', 544)">
-            Enqueue(value, offset)
+            Enqueue(value)
           </code>
           <div class="tip" id="544">
-            <strong>Signature:</strong>(value:&#39;T [] * offset:int) -&gt; unit<br />
+            <strong>Signature:</strong>value:&#39;T -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -131,7 +107,7 @@
             Enqueue(value)
           </code>
           <div class="tip" id="545">
-            <strong>Signature:</strong>(value:&#39;T []) -&gt; unit<br />
+            <strong>Signature:</strong>value:ArraySegment&lt;&#39;T&gt; -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -140,10 +116,10 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '546', 546)" onmouseover="showTip(event, '546', 546)">
-            Enqueue(value, offset, count)
+            Enqueue(value, offset)
           </code>
           <div class="tip" id="546">
-            <strong>Signature:</strong>(value:&#39;T [] * offset:int * count:int) -&gt; unit<br />
+            <strong>Signature:</strong>(value:&#39;T [] * offset:int) -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc"></td>
@@ -152,9 +128,33 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '547', 547)" onmouseover="showTip(event, '547', 547)">
-            GetEnumerator()
+            Enqueue(value)
           </code>
           <div class="tip" id="547">
+            <strong>Signature:</strong>(value:&#39;T []) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '548', 548)" onmouseover="showTip(event, '548', 548)">
+            Enqueue(value, offset, count)
+          </code>
+          <div class="tip" id="548">
+            <strong>Signature:</strong>(value:&#39;T [] * offset:int * count:int) -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+            GetEnumerator()
+          </code>
+          <div class="tip" id="549">
             <strong>Signature:</strong>unit -&gt; IEnumerator&lt;&#39;T&gt;<br />
                       </div>
         </td>
@@ -173,7 +173,7 @@
             <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.md">License (MS-PL)</a></li>
             <li><a href="http://forki.github.io/FSharpx.Collections/changelog.html">Changelog</a></li>
             <li class="nav-header">Articles</li>
-            <li><a href="http://forki.github.io/FSharpx.Collections/gettingstarted.html">Getting started</a></li>
+            <li><a href="http://forki.github.io/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
             <li class="divider"></li>
 
             <li class="nav-header">Documentation</li>
