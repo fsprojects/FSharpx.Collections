@@ -1,14 +1,14 @@
-﻿/// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentMap.java
+﻿// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentMap.java
 
 namespace FSharpx.Collections
 
 open System.Threading
 open System.Collections.Generic
 
-type Box(value:obj) =
+type internal Box(value:obj) =
     member val Value = value with get, set
 
-type INode =
+type internal INode =
     abstract member assoc : int * int * obj  * obj * Box -> INode
     abstract member assoc : Thread ref * int * int * obj  * obj * Box -> INode
     abstract member find : int * int * obj -> obj
@@ -579,15 +579,25 @@ type internal TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equalit
         thread := null
         PersistentHashMap(this.count, this.root, this.hasNull, this.nullValue)
 
-and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality> (count,root:INode,hasNull, nullValue:'S) =
-    
+and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality>  =
+   val private count: int
+   val private root:INode
+   val private hasNull:bool
+   val private nullValue:'S
+
     static member Empty() : PersistentHashMap<'T, 'S> = PersistentHashMap(0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
-    member this.Length : int = count
+    member this.Length : int = this.count
+
+    internal new (count',root':INode,hasNull', nullValue':'S) = {
+        count = count'
+        root = root'
+        hasNull = hasNull'
+        nullValue = nullValue' }
 
     member this.ContainsKey (key:'T) =
-        if key = Unchecked.defaultof<'T> then hasNull else
-        if root = Unchecked.defaultof<INode> then false else
-        root.find(0, hash(key), key) <> null
+        if key = Unchecked.defaultof<'T> then this.hasNull else
+        if this.root = Unchecked.defaultof<INode> then false else
+        this.root.find(0, hash(key), key) <> null
 
     static member ofSeq(items:('T*'S) seq) =
         let mutable ret = TransientHashMap<'T,'S>.Empty()
@@ -597,46 +607,46 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
 
     member this.Add(key:'T, value:'S) =
         if key = Unchecked.defaultof<'T> then
-            if hasNull && value = nullValue then this else
-            let count = if hasNull then count else count + 1
-            PersistentHashMap<'T, 'S>(count, root, true, value)
+            if this.hasNull && value = this.nullValue then this else
+            let count = if this.hasNull then this.count else this.count + 1
+            PersistentHashMap<'T, 'S>(count, this.root, true, value)
         else 
             let addedLeaf = Box(null)
             let newroot =
-                (if root = Unchecked.defaultof<INode> then BitmapIndexedNode() :> INode else root)
+                (if this.root = Unchecked.defaultof<INode> then BitmapIndexedNode() :> INode else this.root)
                     .assoc(0, hash(key), key, value, addedLeaf) 
 
-            if newroot = root then this else
-            let count = if addedLeaf.Value = null then count else count + 1
-            PersistentHashMap(count, newroot, hasNull, nullValue)
+            if newroot = this.root then this else
+            let count = if addedLeaf.Value = null then this.count else this.count + 1
+            PersistentHashMap(count, newroot, this.hasNull, this.nullValue)
 
     member this.Remove(key:'T) =
         if key = Unchecked.defaultof<'T> then
-            if hasNull then PersistentHashMap(count - 1, root, false, Unchecked.defaultof<'S>) else this
+            if this.hasNull then PersistentHashMap(this.count - 1, this.root, false, Unchecked.defaultof<'S>) else this
         else 
-            if root = Unchecked.defaultof<INode> then this else
-            let newroot = root.without(0, hash(key), key)
-            if newroot = root then this else
-            PersistentHashMap(count - 1, newroot, hasNull, nullValue)
+            if this.root = Unchecked.defaultof<INode> then this else
+            let newroot = this.root.without(0, hash(key), key)
+            if newroot = this.root then this else
+            PersistentHashMap(this.count - 1, newroot, this.hasNull, this.nullValue)
 
     member this.Item 
         with get key = 
             if key = Unchecked.defaultof<'T> then 
-                if hasNull then nullValue else failwith "Key null is not found in the map."
+                if this.hasNull then this.nullValue else failwith "Key null is not found in the map."
             else
-                if root = Unchecked.defaultof<INode> then
+                if this.root = Unchecked.defaultof<INode> then
                     failwithf "Key %A is not found in the map." key 
                 else 
-                    match root.tryFind(0, hash(key), key) with
+                    match this.root.tryFind(0, hash(key), key) with
                     | Some value -> value :?> 'S
                     | _ -> failwithf "Key %A is not found in the map." key
 
     member this.Iterator<'T,'S>() : ('T * 'S) seq =
         seq {            
-            if hasNull then yield Unchecked.defaultof<'T>, nullValue
-            if root <> Unchecked.defaultof<INode> then
+            if this.hasNull then yield Unchecked.defaultof<'T>, this.nullValue
+            if this.root <> Unchecked.defaultof<INode> then
                 yield!
-                    root.nodeSeq()
+                    this.root.nodeSeq()
                     |> Seq.map (fun (key,value) -> key :?> 'T,value :?> 'S)
         }
 
