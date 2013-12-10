@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <!-- 
-      The FSharpx.Collections
+      The PersistentHashMap
  parameters will be replaced with the 
       document title extracted from the <h1> element or
       file name, if there is no <h1> heading
     -->
-    <title>FSharpx.Collections
+    <title>PersistentHashMap
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FSharpx.Collections">
@@ -36,24 +36,39 @@
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h1>FSharpx.Collections</h1>
+          <h1>PersistentHashMap</h1>
 
-<p><strong>FSharpx.Collections</strong> is a collection of datastructures for use with F# and C#.</p>
+<p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). Count is O(1).</p>
 
-<p>Please contribute to this project. Don't ask for permission, just fork the repository and send pull requests.</p>
+<pre lang="csharp"><span class="c">// Create an empty PersistentHashMap and add some elements</span>
+PersistentHashMap&lt;<span class="k">int</span>,<span class="k">string</span>&gt; map =
+    PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt;.Empty()
+  .Add(42,<span class="s">"hello"</span>)
+  .Add(99,<span class="s">"world"</span>);
 
-<p>Please also join the <a href="http://fsharp.github.com">F# Open Source Group</a></p>
+Console.WriteLine(map[42]); <span class="c">// hello</span>
+Console.WriteLine(map[99]); <span class="c">// world</span>
 
-<div class="row">
-  <div class="span1"></div>
-  <div class="span6">
-    <div class="well well-small" id="nuget">
-      The F# DataFrame library can be <a href="https://nuget.org/packages/FSharpx.Collections">installed from NuGet</a>:
-      <pre>PM> Install-Package FSharpx.Collections</pre>
-    </div>
-  </div>
-  <div class="span1"></div>
-</div>
+<span class="c">// Check no. of elements in the PersistentHashMap</span>
+Console.WriteLine(map.Length);  // 2</pre>
+
+<p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
+
+<pre lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map2 = 
+    map
+     .Add(104, <span class="s">"!"</span>)
+     .Add(42, <span class="s">"hi"</span>);  <span class="c">// replace existing value</span>
+
+Console.WriteLine(map2[42]); <span class="c">// hi</span>
+Console.WriteLine(map[42]);  <span class="c">// hello            </span>
+
+Console.WriteLine(map.Length);  <span class="c">// 2</span>
+Console.WriteLine(map2.Length); <span class="c">// 3</span>
+
+<span class="c">// remove the last element from a PersistentHashMap</span>
+PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map3 = map2.Remove(104);
+
+Console.WriteLine(map3.Length); // 2</pre>
 
                     
         </div>

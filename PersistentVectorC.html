@@ -41,28 +41,33 @@
 <p>A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. Count is O(1). Conj puts the item at the end of the vector.</p>
 
 <pre lang="csharp">  <span class="c">// Create an empty PersistentVector and add some elements</span>
-  PersistentVector&lt;<span class="k">string</span>&gt; v =
+  PersistentVector&lt;<span class="k">string</span>&gt; vector =
 PersistentVector&lt;<span class="k">string</span>&gt;.Empty()
     .Conj(<span class="s">"hello"</span>)
     .Conj(<span class="s">"world"</span>)
     .Conj(<span class="s">"!"</span>);
 
-  Console.WriteLine(v[0]); <span class="c">// hello</span>
-  Console.WriteLine(v[2]); <span class="c">// !            </span>
+  Console.WriteLine(vector[0]); <span class="c">// hello</span>
+  Console.WriteLine(vector[2]); <span class="c">// !            </span>
 
   <span class="c">// Check no. of elements in the PersistentVector</span>
-  Console.WriteLine(v.Length);  // 3</pre>
+  Console.WriteLine(vector.Length);  // 3</pre>
 
 <p>PersistentVectors are immutable and therefor allow to create new version without destruction of the old ones.</p>
 
-<pre lang="csharp">PersistentVector&lt;<span class="k">string</span>&gt; v2 = v.Conj(<span class="s">"!!!"</span>).Update(0,<span class="s">"hi"</span>);
+<pre lang="csharp">      PersistentVector&lt;<span class="k">string</span>&gt; vector2 = vector.Conj(<span class="s">"!!!"</span>).Update(0,<span class="s">"hi"</span>);
 
-Console.WriteLine(v2[0]); <span class="c">// hi</span>
-Console.WriteLine(v[0]);  <span class="c">// hello</span>
-Console.WriteLine(v2[3]); <span class="c">// !!!</span>
+      Console.WriteLine(vector2[0]); <span class="c">// hi</span>
+      Console.WriteLine(vector[0]);  <span class="c">// hello</span>
+      Console.WriteLine(vector2[3]); <span class="c">// !!!</span>
 
-Console.WriteLine(v.Length);  <span class="c">// 3</span>
-Console.WriteLine(v2.Length); // 4</pre>
+      Console.WriteLine(vector.Length);  <span class="c">// 3</span>
+      Console.WriteLine(vector2.Length); <span class="c">// 4</span>
+
+      <span class="c">// remove the last element from a PersistentVector</span>
+PersistentVector&lt;<span class="k">string</span>&gt; vector3 = vector2.Initial;
+
+      Console.WriteLine(vector3.Length); // 3</pre>
 
                     
         </div>
@@ -78,8 +83,9 @@ Console.WriteLine(v2.Length); // 4</pre>
             <li class="nav-header">Using from F#</li>
               <li><a href="PersistentVector.html">PersistentVector</a></li>
               <li><a href="PersistentHashMap.html">PersistentHashMap</a></li>
-              <li class="nav-header">Using from C#</li>
-            <li><a href="PersistentVectorC.html">PersistentVector</a></li>
+            <li class="nav-header">Using from C#</li>
+              <li><a href="PersistentVectorC.html">PersistentVector</a></li>
+              <li><a href="PersistentHashMapC.html">PersistentHashMap</a></li>
               <li class="nav-header">Documentation</li>
               <li><a href="apidocs/index.html">API Reference</a></li>
           </ul>
