@@ -132,7 +132,7 @@
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="i">stringBasedMap</span> <span class="o">=</span> <span class="i">ofSeq</span> [(<span class="s">&quot;</span><span class="s">a</span><span class="s">&quot;</span>,<span class="n">1</span>); (<span class="s">&quot;</span><span class="s">b</span><span class="s">&quot;</span>,<span class="n">2</span>); (<span class="s">&quot;</span><span class="s">c</span><span class="s">&quot;</span>,<span class="n">3</span>); (<span class="s">&quot;</span><span class="s">d</span><span class="s">&quot;</span>,<span class="n">4</span>); (<span class="s">&quot;</span><span class="s">e</span><span class="s">&quot;</span>,<span class="n">5</span>)]
 <span class="fsi">val stringBaseMap : FSharpx.Collections.PersistentHashMap&lt;string,int&gt;</span>
 
-<span class="c">// Square all values in a map</span>
+<span class="c">// Square all values in a HashMap</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">stringBasedMap&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="i">stringBasedMap</span>
 <span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="i">stringBasedMap&#39;</span><span class="o">.</span>[<span class="s">&quot;</span><span class="s">d</span><span class="s">&quot;</span>]
 <span class="fsi">val it : int = 16</span></pre>
