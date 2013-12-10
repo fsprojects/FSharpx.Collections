@@ -22,6 +22,9 @@ type PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> =
     /// O(1). Returns true if the vector has no elements.
     member IsEmpty : bool
 
+    /// O(1). Returns a new PersistentVector with no elements.
+    static member Empty : unit -> PersistentVector<'T>
+
     /// O(log32n). Returns vector element at the index.
     member Item : int -> 'T with get
 
