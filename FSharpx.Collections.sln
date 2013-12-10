@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{560133F0-6
 	ProjectSection(SolutionItems) = preProject
 		help\index.fsx = help\index.fsx
 		help\PersistentHashMap.fsx = help\PersistentHashMap.fsx
+		help\PersistentHashMapC.md = help\PersistentHashMapC.md
 		help\PersistentVector.fsx = help\PersistentVector.fsx
 		help\PersistentVectorC.md = help\PersistentVectorC.md
 	EndProjectSection
