@@ -32,11 +32,3 @@ let compareTwoRuntimes count desc1 f1 desc2 f2 =
     let _,time1 = stopAndReportAvarageTime count desc1 f1
     let _,time2 = stopAndReportAvarageTime count desc2 f2
     ()
-
-/// Stops the average runtime for the given functions
-/// Afterwards it reports it with the given descriptions
-let compareThreeRuntimes count desc1 f1 desc2 f2 desc3 f3 =
-    let _,time1 = stopAndReportAvarageTime count desc1 f1
-    let _,time2 = stopAndReportAvarageTime count desc2 f2
-    let _,time3 = stopAndReportAvarageTime count desc3 f3
-    ()
