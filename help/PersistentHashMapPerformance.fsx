@@ -24,7 +24,7 @@ let initFSharpMapAndPersistentMapFromList n =
     
     let list = List.sortBy snd [for i in 1..n -> i,r.Next().ToString()]
 
-    stopAndReportAvarageTime trials "  FSharp.Map.ofSeq" 
+    averageTime trials "  FSharp.Map.ofSeq" 
         (fun () -> Map.ofSeq list)
 
     let initPersistentHashMap list = 
@@ -33,10 +33,10 @@ let initFSharpMapAndPersistentMapFromList n =
             m := add key value !m
         !m
 
-    stopAndReportAvarageTime trials "  Multiple PersistentHashMap.add" 
+    averageTime trials "  Multiple PersistentHashMap.add" 
         (fun () -> initPersistentHashMap list)
 
-    stopAndReportAvarageTime trials "  PersistentHashMap.ofSeq" 
+    averageTime trials "  PersistentHashMap.ofSeq" 
         (fun () -> ofSeq list)
 
     let initImmutableDictionary list = 
@@ -45,7 +45,7 @@ let initFSharpMapAndPersistentMapFromList n =
             d := (!d).Add(key,value)
         !d
 
-    stopAndReportAvarageTime trials "  Multiple ImmutableDictionay.add" 
+    averageTime trials "  Multiple ImmutableDictionay.add" 
         (fun () -> initImmutableDictionary list)
 
     let initImmutableDictionary list = 
@@ -54,7 +54,7 @@ let initFSharpMapAndPersistentMapFromList n =
             d := (!d).Add(key,value)
         !d
 
-    stopAndReportAvarageTime trials "  Multiple ImmutableSortedDictionay.add" 
+    averageTime trials "  Multiple ImmutableSortedDictionay.add" 
         (fun () -> initImmutableDictionary list)
 
 let lookupInFSharpMapAndPersistentMap n count =
@@ -63,10 +63,10 @@ let lookupInFSharpMapAndPersistentMap n count =
     let fsharpMap = Map.ofSeq list
     let map = ofSeq list
 
-    stopAndReportAvarageTime trials "  FSharp.Map" 
+    averageTime trials "  FSharp.Map" 
         (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()])
 
-    stopAndReportAvarageTime trials "  PersistentHashMap" 
+    averageTime trials "  PersistentHashMap" 
         (fun () -> for i in 1..count do map.[r.Next(n).ToString()])
 
     let dict =
@@ -75,7 +75,7 @@ let lookupInFSharpMapAndPersistentMap n count =
             d := (!d).Add(key,value)
         !d
 
-    stopAndReportAvarageTime trials "  ImmutableDictionay" 
+    averageTime trials "  ImmutableDictionay" 
         (fun () -> for i in 1..count do dict.[r.Next(n).ToString()])
 
     let dict' =
@@ -84,7 +84,7 @@ let lookupInFSharpMapAndPersistentMap n count =
             d := (!d).Add(key,value)
         !d
 
-    stopAndReportAvarageTime trials "  ImmutableSortedDictionay" 
+    averageTime trials "  ImmutableSortedDictionay" 
         (fun () -> for i in 1..count do dict'.[r.Next(n).ToString()])
 
 initFSharpMapAndPersistentMapFromList 10000

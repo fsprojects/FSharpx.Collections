@@ -27,13 +27,13 @@ let initArrayAndVectorFromList n =
             v := conj x !v
         !v
 
-    stopAndReportAvarageTime trials "  Array.ofSeq" 
+    averageTime trials "  Array.ofSeq" 
         (fun () -> Array.ofSeq list)
 
-    stopAndReportAvarageTime trials "  Multiple PersistentVector.conj" 
+    averageTime trials "  Multiple PersistentVector.conj" 
         (fun () -> initvector list)
 
-    stopAndReportAvarageTime trials "  PersistentVector.ofSeq" 
+    averageTime trials "  PersistentVector.ofSeq" 
         (fun () -> ofSeq list)
 
 let lookupInArrayAndVector n count =
@@ -42,10 +42,10 @@ let lookupInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    stopAndReportAvarageTime trials "  Array" 
+    averageTime trials "  Array" 
         (fun () -> for i in 1..count do array.[r.Next n])
 
-    stopAndReportAvarageTime trials "  PersistentVector" 
+    averageTime trials "  PersistentVector" 
         (fun () -> for i in 1..count do nth (r.Next n) vector)
 
 
@@ -55,10 +55,10 @@ let replaceInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    stopAndReportAvarageTime trials "  Array" 
+    averageTime trials "  Array" 
         (fun () -> for i in 1..count do array.[r.Next n] <- r.Next())
 
-    stopAndReportAvarageTime trials "  PersistentVector" 
+    averageTime trials "  PersistentVector" 
         (fun () -> for i in 1..count do update (r.Next n) (r.Next()) vector)
 
 initArrayAndVectorFromList 10000

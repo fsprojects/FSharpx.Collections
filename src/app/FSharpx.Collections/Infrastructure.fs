@@ -23,6 +23,6 @@ let printInFsiTags s = printfn " [fsi:%s]" s
 
 /// Stops the average runtime for a given function and applies it the given count
 /// Afterwards it reports it with the given description
-let stopAndReportAvarageTime count desc f =
+let averageTime count desc f =
     let time = stopAverageTime count f
     sprintf "%s %Ams" desc time |> printInFsiTags
