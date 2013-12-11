@@ -10,6 +10,7 @@ let stopTime f =
 
 /// Stops the average runtime for a given function and applies it the given count
 let stopAverageTime count f = 
+    System.GC.Collect() // force garbage collector before testing
     let sw = new System.Diagnostics.Stopwatch()
     let list = [1..count]
     sw.Start()

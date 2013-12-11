@@ -29,8 +29,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{560133F0-6
 		help\index.fsx = help\index.fsx
 		help\PersistentHashMap.fsx = help\PersistentHashMap.fsx
 		help\PersistentHashMapC.md = help\PersistentHashMapC.md
+		help\PersistentHashMapPerformance.fsx = help\PersistentHashMapPerformance.fsx
 		help\PersistentVector.fsx = help\PersistentVector.fsx
 		help\PersistentVectorC.md = help\PersistentVectorC.md
+		help\PersistentVectorPerformance.fsx = help\PersistentVectorPerformance.fsx
+		help\templates\template-project.html = help\templates\template-project.html
+		help\templates\template.cshtml = help\templates\template.cshtml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp", "help\csharp\csharp.csproj", "{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}"
