@@ -27,9 +27,14 @@ let initArrayAndVectorFromList n =
             v := conj x !v
         !v
 
-    stopAndReportAvarageTime trials "  Array.ofSeq" (fun () -> Array.ofSeq list) |> ignore
-    stopAndReportAvarageTime trials "  Multiple PersistentVector.conj" (fun () -> initvector list) |> ignore
-    stopAndReportAvarageTime trials "  PersistentVector.ofSeq" (fun () -> ofSeq list) |> ignore
+    stopAndReportAvarageTime trials "  Array.ofSeq" 
+        (fun () -> Array.ofSeq list)
+
+    stopAndReportAvarageTime trials "  Multiple PersistentVector.conj" 
+        (fun () -> initvector list)
+
+    stopAndReportAvarageTime trials "  PersistentVector.ofSeq" 
+        (fun () -> ofSeq list)
 
 let lookupInArrayAndVector n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
@@ -37,9 +42,11 @@ let lookupInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    compareTwoRuntimes trials
-        "  Array" (fun () -> for i in 1..count do array.[r.Next n] |> ignore)
-        "  PersistentVector" (fun () -> for i in 1..count do nth (r.Next n) vector |> ignore)
+    stopAndReportAvarageTime trials "  Array" 
+        (fun () -> for i in 1..count do array.[r.Next n])
+
+    stopAndReportAvarageTime trials "  PersistentVector" 
+        (fun () -> for i in 1..count do nth (r.Next n) vector)
 
 
 let replaceInArrayAndVector n count =
@@ -48,9 +55,11 @@ let replaceInArrayAndVector n count =
     let array = Array.ofSeq list
     let vector = ofSeq list
 
-    compareTwoRuntimes trials
-        "  Array" (fun () -> for i in 1..count do array.[r.Next n] <- r.Next())
-        "  PersistentVector" (fun () -> for i in 1..count do update (r.Next n) (r.Next()) vector |> ignore)
+    stopAndReportAvarageTime trials "  Array" 
+        (fun () -> for i in 1..count do array.[r.Next n] <- r.Next())
+
+    stopAndReportAvarageTime trials "  PersistentVector" 
+        (fun () -> for i in 1..count do update (r.Next n) (r.Next()) vector)
 
 initArrayAndVectorFromList 10000
 initArrayAndVectorFromList 100000

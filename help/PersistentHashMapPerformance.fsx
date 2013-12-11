@@ -25,7 +25,7 @@ let initFSharpMapAndPersistentMapFromList n =
     let list = List.sortBy snd [for i in 1..n -> i,r.Next().ToString()]
 
     stopAndReportAvarageTime trials "  FSharp.Map.ofSeq" 
-        (fun () -> Map.ofSeq list) |> ignore
+        (fun () -> Map.ofSeq list)
 
     let initPersistentHashMap list = 
         let m = ref empty
@@ -34,10 +34,10 @@ let initFSharpMapAndPersistentMapFromList n =
         !m
 
     stopAndReportAvarageTime trials "  Multiple PersistentHashMap.add" 
-        (fun () -> initPersistentHashMap list) |> ignore
+        (fun () -> initPersistentHashMap list)
 
     stopAndReportAvarageTime trials "  PersistentHashMap.ofSeq" 
-        (fun () -> ofSeq list) |> ignore
+        (fun () -> ofSeq list)
 
     let initImmutableDictionary list = 
         let d = ref (System.Collections.Immutable.ImmutableDictionary<int,string>.Empty)
@@ -46,7 +46,7 @@ let initFSharpMapAndPersistentMapFromList n =
         !d
 
     stopAndReportAvarageTime trials "  Multiple ImmutableDictionay.add" 
-        (fun () -> initImmutableDictionary list) |> ignore
+        (fun () -> initImmutableDictionary list)
 
     let initImmutableDictionary list = 
         let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<int,string>.Empty)
@@ -55,9 +55,7 @@ let initFSharpMapAndPersistentMapFromList n =
         !d
 
     stopAndReportAvarageTime trials "  Multiple ImmutableSortedDictionay.add" 
-        (fun () -> initImmutableDictionary list) |> ignore
-
-
+        (fun () -> initImmutableDictionary list)
 
 let lookupInFSharpMapAndPersistentMap n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
@@ -66,10 +64,10 @@ let lookupInFSharpMapAndPersistentMap n count =
     let map = ofSeq list
 
     stopAndReportAvarageTime trials "  FSharp.Map" 
-        (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()] |> ignore) |> ignore
+        (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()])
 
     stopAndReportAvarageTime trials "  PersistentHashMap" 
-        (fun () -> for i in 1..count do map.[r.Next(n).ToString()] |> ignore) |> ignore
+        (fun () -> for i in 1..count do map.[r.Next(n).ToString()])
 
     let dict =
         let d = ref (System.Collections.Immutable.ImmutableDictionary<string,int>.Empty)
@@ -78,7 +76,7 @@ let lookupInFSharpMapAndPersistentMap n count =
         !d
 
     stopAndReportAvarageTime trials "  ImmutableDictionay" 
-        (fun () -> for i in 1..count do dict.[r.Next(n).ToString()] |> ignore) |> ignore
+        (fun () -> for i in 1..count do dict.[r.Next(n).ToString()])
 
     let dict' =
         let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<string,int>.Empty)
@@ -87,7 +85,7 @@ let lookupInFSharpMapAndPersistentMap n count =
         !d
 
     stopAndReportAvarageTime trials "  ImmutableSortedDictionay" 
-        (fun () -> for i in 1..count do dict'.[r.Next(n).ToString()] |> ignore) |> ignore
+        (fun () -> for i in 1..count do dict'.[r.Next(n).ToString()])
 
 initFSharpMapAndPersistentMapFromList 10000
 initFSharpMapAndPersistentMapFromList 100000
