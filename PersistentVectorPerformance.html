@@ -133,8 +133,6 @@
 <span class="l">90: </span>
 <span class="l">91: </span>
 <span class="l">92: </span>
-<span class="l">93: </span>
-<span class="l">94: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -195,43 +193,41 @@
 <span onmouseout="hideTip(event, 'fs24', 111)" onmouseover="showTip(event, 'fs24', 111)" class="i">replaceInArrayAndVector</span> <span class="n">10000000</span> <span class="n">10000</span>
 
 <span class="fsi">Init with n = 10000</span>
-<span class="fsi">  FSharp.Map.ofSeq 16.0ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 43.6ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 25.4ms</span>
-<span class="fsi">  Multiple ImmutableDictionay.add 29.6ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 15.2ms</span>
+<span class="fsi">  Array.ofSeq 0.0ms</span>
+<span class="fsi">  Multiple PersistentVector.conj 4.2ms</span>
+<span class="fsi">  PersistentVector.ofSeq 2.0ms</span>
 <span class="fsi">Init with n = 100000</span>
-<span class="fsi">  FSharp.Map.ofSeq 233.4ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 293.2ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 217.2ms</span>
-<span class="fsi">  Multiple ImmutableDictionay.add 375.0ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 222.0ms</span>
+<span class="fsi">  Array.ofSeq 0.4ms</span>
+<span class="fsi">  Multiple PersistentVector.conj 43.0ms</span>
+<span class="fsi">  PersistentVector.ofSeq 18.4ms</span>
 <span class="fsi">Init with n = 1000000</span>
-<span class="fsi">  FSharp.Map.ofSeq 5323.8ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 5562.4ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 4489.8ms</span>
-<span class="fsi">  Multiple ImmutableDictionay.add 7061.4ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 4685.0ms</span>
+<span class="fsi">  Array.ofSeq 5.2ms</span>
+<span class="fsi">  Multiple PersistentVector.conj 429.6ms</span>
+<span class="fsi">  PersistentVector.ofSeq 251.2ms</span>
 <span class="fsi">10000 Lookups in size n = 10000</span>
-<span class="fsi">  FSharp.Map 5.2ms</span>
-<span class="fsi">  PersistentHashMap 9.6ms</span>
-<span class="fsi">  ImmutableDictionay 4.2ms</span>
-<span class="fsi">  ImmutableSortedDictionay 15.0ms</span>
+<span class="fsi">  Array 0.2ms</span>
+<span class="fsi">  PersistentVector 0.6ms</span>
 <span class="fsi">10000 Lookups in size n = 100000</span>
-<span class="fsi">  FSharp.Map 7.0ms</span>
-<span class="fsi">  PersistentHashMap 10.8ms</span>
-<span class="fsi">  ImmutableDictionay 5.4ms</span>
-<span class="fsi">  ImmutableSortedDictionay 20.2ms</span>
+<span class="fsi">  Array 0.0ms</span>
+<span class="fsi">  PersistentVector 0.6ms</span>
 <span class="fsi">10000 Lookups in size n = 1000000</span>
-<span class="fsi">  FSharp.Map 12.2ms</span>
-<span class="fsi">  PersistentHashMap 12.4ms</span>
-<span class="fsi">  ImmutableDictionay 8.2ms</span>
-<span class="fsi">  ImmutableSortedDictionay 29.6ms</span>
+<span class="fsi">  Array 0.0ms</span>
+<span class="fsi">  PersistentVector 1.8ms</span>
 <span class="fsi">10000 Lookups in size n = 10000000</span>
-<span class="fsi">  FSharp.Map 19.2ms</span>
-<span class="fsi">  PersistentHashMap 15.4ms</span>
-<span class="fsi">  ImmutableDictionay 13.8ms</span>
-<span class="fsi">  ImmutableSortedDictionay 42.0ms</span></pre>
+<span class="fsi">  Array 0.0ms</span>
+<span class="fsi">  PersistentVector 3.2ms</span>
+<span class="fsi">10000 writes in size n = 10000</span>
+<span class="fsi">  Array 0.2ms</span>
+<span class="fsi">  PersistentVector 6.4ms</span>
+<span class="fsi">10000 writes in size n = 100000</span>
+<span class="fsi">  Array 0.2ms</span>
+<span class="fsi">  PersistentVector 8.2ms</span>
+<span class="fsi">10000 writes in size n = 1000000</span>
+<span class="fsi">  Array 0.4ms</span>
+<span class="fsi">  PersistentVector 11.4ms</span>
+<span class="fsi">10000 writes in size n = 10000000</span>
+<span class="fsi">  Array 1.0ms</span>
+<span class="fsi">  PersistentVector 24.2ms</span></pre>
 </td>
 </tr>
 </table>

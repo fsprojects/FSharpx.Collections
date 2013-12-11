@@ -158,6 +158,13 @@
 <span class="l">115: </span>
 <span class="l">116: </span>
 <span class="l">117: </span>
+<span class="l">118: </span>
+<span class="l">119: </span>
+<span class="l">120: </span>
+<span class="l">121: </span>
+<span class="l">122: </span>
+<span class="l">123: </span>
+<span class="l">124: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
@@ -248,36 +255,43 @@
 <span onmouseout="hideTip(event, 'fs29', 171)" onmouseover="showTip(event, 'fs29', 171)" class="i">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000000</span> <span class="n">10000</span>
 
 <span class="fsi">Init with n = 10000</span>
-<span class="fsi">  FSharp.Map.ofSeq 22.4ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 19.4ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 12.6ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 15.4ms</span>
+<span class="fsi">  FSharp.Map.ofSeq 16.0ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add 43.6ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 25.4ms</span>
+<span class="fsi">  Multiple ImmutableDictionay.add 29.6ms</span>
+<span class="fsi">  Multiple ImmutableSortedDictionay.add 15.2ms</span>
 <span class="fsi">Init with n = 100000</span>
-<span class="fsi">  FSharp.Map.ofSeq 259.0ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 276.8ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 202.0ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 229.4ms</span>
+<span class="fsi">  FSharp.Map.ofSeq 233.4ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add 293.2ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 217.2ms</span>
+<span class="fsi">  Multiple ImmutableDictionay.add 375.0ms</span>
+<span class="fsi">  Multiple ImmutableSortedDictionay.add 222.0ms</span>
 <span class="fsi">Init with n = 1000000</span>
-<span class="fsi">  FSharp.Map.ofSeq 5126.6ms</span>
-<span class="fsi">  Multiple PersistentHashMap.add 5881.2ms</span>
-<span class="fsi">  PersistentHashMap.ofSeq 4237.4ms</span>
-<span class="fsi">  Multiple ImmutableSortedDictionay.add 4488.8ms</span>
+<span class="fsi">  FSharp.Map.ofSeq 5323.8ms</span>
+<span class="fsi">  Multiple PersistentHashMap.add 5562.4ms</span>
+<span class="fsi">  PersistentHashMap.ofSeq 4489.8ms</span>
+<span class="fsi">  Multiple ImmutableDictionay.add 7061.4ms</span>
+<span class="fsi">  Multiple ImmutableSortedDictionay.add 4685.0ms</span>
 <span class="fsi">10000 Lookups in size n = 10000</span>
-<span class="fsi">  FSharp.Map 8.6ms</span>
-<span class="fsi">  PersistentHashMap 11.0ms</span>
-<span class="fsi">  ImmutableSortedDictionay 16.8ms</span>
+<span class="fsi">  FSharp.Map 5.2ms</span>
+<span class="fsi">  PersistentHashMap 9.6ms</span>
+<span class="fsi">  ImmutableDictionay 4.2ms</span>
+<span class="fsi">  ImmutableSortedDictionay 15.0ms</span>
 <span class="fsi">10000 Lookups in size n = 100000</span>
 <span class="fsi">  FSharp.Map 7.0ms</span>
-<span class="fsi">  PersistentHashMap 11.2ms</span>
-<span class="fsi">  ImmutableSortedDictionay 22.4ms</span>
+<span class="fsi">  PersistentHashMap 10.8ms</span>
+<span class="fsi">  ImmutableDictionay 5.4ms</span>
+<span class="fsi">  ImmutableSortedDictionay 20.2ms</span>
 <span class="fsi">10000 Lookups in size n = 1000000</span>
-<span class="fsi">  FSharp.Map 12.8ms</span>
-<span class="fsi">  PersistentHashMap 13.4ms</span>
-<span class="fsi">  ImmutableSortedDictionay 30.8ms</span>
+<span class="fsi">  FSharp.Map 12.2ms</span>
+<span class="fsi">  PersistentHashMap 12.4ms</span>
+<span class="fsi">  ImmutableDictionay 8.2ms</span>
+<span class="fsi">  ImmutableSortedDictionay 29.6ms</span>
 <span class="fsi">10000 Lookups in size n = 10000000</span>
-<span class="fsi">  FSharp.Map 22.8ms</span>
-<span class="fsi">  PersistentHashMap 16.4ms</span>
-<span class="fsi">  ImmutableSortedDictionay: System.OutOfMemoryException</span></pre>
+<span class="fsi">  FSharp.Map 19.2ms</span>
+<span class="fsi">  PersistentHashMap 15.4ms</span>
+<span class="fsi">  ImmutableDictionay 13.8ms</span>
+<span class="fsi">  ImmutableSortedDictionay 42.0ms</span></pre>
 </td>
 </tr>
 </table>
