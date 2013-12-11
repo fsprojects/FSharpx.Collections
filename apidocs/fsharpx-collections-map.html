@@ -51,10 +51,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
+          <code onmouseout="hideTip(event, '119', 119)" onmouseover="showTip(event, '119', 119)">
             choose f map
           </code>
-          <div class="tip" id="163">
+          <div class="tip" id="119">
             <strong>Signature:</strong>f:(&#39;T -&gt; &#39;b -&gt; &#39;c option) -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;c&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b, 'c          </div>
         </td>
@@ -63,10 +63,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
+          <code onmouseout="hideTip(event, '121', 121)" onmouseover="showTip(event, '121', 121)">
             findOrDefault key defaultValue map
           </code>
-          <div class="tip" id="164">
+          <div class="tip" id="121">
             <strong>Signature:</strong>key:&#39;T -&gt; defaultValue:&#39;b -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; &#39;b<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
@@ -75,12 +75,12 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
             insertWith f key value map
           </code>
-          <div class="tip" id="165">
-            <strong>Signature:</strong>f:(&#39;?5792 -&gt; &#39;?5792 -&gt; &#39;?5792) -&gt; key:&#39;?5793 -&gt; value:&#39;?5792 -&gt; map:Map&lt;&#39;?5793,&#39;?5792&gt; -&gt; Map&lt;&#39;?5793,&#39;?5792&gt;<br />
-                          <strong>Type parameters:</strong> '?5792, '?5793          </div>
+          <div class="tip" id="122">
+            <strong>Signature:</strong>f:(&#39;?5789 -&gt; &#39;?5789 -&gt; &#39;?5789) -&gt; key:&#39;?5790 -&gt; value:&#39;?5789 -&gt; map:Map&lt;&#39;?5790,&#39;?5789&gt; -&gt; Map&lt;&#39;?5790,&#39;?5789&gt;<br />
+                          <strong>Type parameters:</strong> '?5789, '?5790          </div>
         </td>
         <td class="xmldoc"><p>insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. 
  If the key does exist, the function will insert f new<em>value old</em>value.</p>
@@ -89,10 +89,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+          <code onmouseout="hideTip(event, '123', 123)" onmouseover="showTip(event, '123', 123)">
             keys map
           </code>
-          <div class="tip" id="166">
+          <div class="tip" id="123">
             <strong>Signature:</strong>map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
@@ -102,10 +102,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+          <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
             removeMany keys map
           </code>
-          <div class="tip" id="167">
+          <div class="tip" id="124">
             <strong>Signature:</strong>keys:seq&lt;&#39;T&gt; -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;b&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
@@ -115,11 +115,23 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+          <code onmouseout="hideTip(event, '125', 125)" onmouseover="showTip(event, '125', 125)">
             spanWithKey pred map
           </code>
-          <div class="tip" id="168">
-            <strong>Signature:</strong>pred:(&#39;?5786 -&gt; bool) -&gt; map:Map&lt;&#39;?5786,&#39;?5787&gt; -&gt; Map&lt;&#39;?5786,&#39;?5787&gt; * Map&lt;&#39;?5786,&#39;?5787&gt;<br />
+          <div class="tip" id="125">
+            <strong>Signature:</strong>pred:(&#39;?5783 -&gt; bool) -&gt; map:Map&lt;&#39;?5783,&#39;?5784&gt; -&gt; Map&lt;&#39;?5783,&#39;?5784&gt; * Map&lt;&#39;?5783,&#39;?5784&gt;<br />
+                          <strong>Type parameters:</strong> '?5783, '?5784          </div>
+        </td>
+        <td class="xmldoc"></td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '126', 126)" onmouseover="showTip(event, '126', 126)">
+            splitWithKey pred d
+          </code>
+          <div class="tip" id="126">
+            <strong>Signature:</strong>pred:(&#39;?5786 -&gt; bool) -&gt; d:Map&lt;&#39;?5786,&#39;?5787&gt; -&gt; Map&lt;&#39;?5786,&#39;?5787&gt; * Map&lt;&#39;?5786,&#39;?5787&gt;<br />
                           <strong>Type parameters:</strong> '?5786, '?5787          </div>
         </td>
         <td class="xmldoc"></td>
@@ -127,24 +139,12 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
-            splitWithKey pred d
-          </code>
-          <div class="tip" id="169">
-            <strong>Signature:</strong>pred:(&#39;?5789 -&gt; bool) -&gt; d:Map&lt;&#39;?5789,&#39;?5790&gt; -&gt; Map&lt;&#39;?5789,&#39;?5790&gt; * Map&lt;&#39;?5789,&#39;?5790&gt;<br />
-                          <strong>Type parameters:</strong> '?5789, '?5790          </div>
-        </td>
-        <td class="xmldoc"></td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+          <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
             union map1 map2
           </code>
-          <div class="tip" id="170">
-            <strong>Signature:</strong>map1:Map&lt;&#39;?5801,&#39;?5802&gt; -&gt; map2:Map&lt;&#39;?5801,&#39;?5802&gt; -&gt; Map&lt;&#39;?5801,&#39;?5802&gt;<br />
-                          <strong>Type parameters:</strong> '?5801, '?5802          </div>
+          <div class="tip" id="127">
+            <strong>Signature:</strong>map1:Map&lt;&#39;?5798,&#39;?5799&gt; -&gt; map2:Map&lt;&#39;?5798,&#39;?5799&gt; -&gt; Map&lt;&#39;?5798,&#39;?5799&gt;<br />
+                          <strong>Type parameters:</strong> '?5798, '?5799          </div>
         </td>
         <td class="xmldoc"><p>Combines the two Maps into a single Map</p>
 </td>
@@ -152,12 +152,12 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
             updateWith f key map
           </code>
-          <div class="tip" id="171">
-            <strong>Signature:</strong>f:(&#39;?5795 -&gt; &#39;?5795 option) -&gt; key:&#39;?5796 -&gt; map:Map&lt;&#39;?5796,&#39;?5795&gt; -&gt; Map&lt;&#39;?5796,&#39;?5795&gt;<br />
-                          <strong>Type parameters:</strong> '?5795, '?5796          </div>
+          <div class="tip" id="128">
+            <strong>Signature:</strong>f:(&#39;?5792 -&gt; &#39;?5792 option) -&gt; key:&#39;?5793 -&gt; map:Map&lt;&#39;?5793,&#39;?5792&gt; -&gt; Map&lt;&#39;?5793,&#39;?5792&gt;<br />
+                          <strong>Type parameters:</strong> '?5792, '?5793          </div>
         </td>
         <td class="xmldoc"><p>update f k map updates the value x at key k (if it is in the map). 
  If f x is None, the element is deleted. 
@@ -167,22 +167,22 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+          <code onmouseout="hideTip(event, '129', 129)" onmouseover="showTip(event, '129', 129)">
             valueList map
           </code>
-          <div class="tip" id="172">
-            <strong>Signature:</strong>map:Map&lt;&#39;?5798,&#39;?5799&gt; -&gt; &#39;?5799 list<br />
-                          <strong>Type parameters:</strong> '?5798, '?5799          </div>
+          <div class="tip" id="129">
+            <strong>Signature:</strong>map:Map&lt;&#39;?5795,&#39;?5796&gt; -&gt; &#39;?5796 list<br />
+                          <strong>Type parameters:</strong> '?5795, '?5796          </div>
         </td>
         <td class="xmldoc"></td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
+          <code onmouseout="hideTip(event, '130', 130)" onmouseover="showTip(event, '130', 130)">
             values map
           </code>
-          <div class="tip" id="173">
+          <div class="tip" id="130">
             <strong>Signature:</strong>map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;b&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
