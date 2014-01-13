@@ -5,7 +5,7 @@
 /// (returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
 /// Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
 [<Class>]
-type PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> =
+type PersistentVector<'T> =
 
     interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
@@ -66,7 +66,7 @@ module PersistentVector =
 
     ///O(1). Returns vector of no elements.
     [<GeneralizableValue>]
-    val empty<'T when 'T : equality> : PersistentVector<'T>
+    val empty<'T> : PersistentVector<'T>
 
     /// O(n). Returns a state from the supplied state and a function operating from left to right.
     val inline fold : ('State -> 'T -> 'State) -> 'State -> PersistentVector<'T> -> 'State

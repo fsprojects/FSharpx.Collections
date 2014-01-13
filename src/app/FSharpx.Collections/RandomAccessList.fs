@@ -22,7 +22,7 @@ type NodeR(thread,array:obj[]) =
     member this.Thread = thread
     member this.SetThread t = thread := t
 
-type internal TransientVect<'T when 'T : equality> (count,shift:int,root:NodeR,tail:obj[]) =
+type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
     let mutable count = count
     let mutable root = root
     let mutable tail = tail
@@ -121,7 +121,7 @@ type internal TransientVect<'T when 'T : equality> (count,shift:int,root:NodeR,t
         if count < Literals2.blockSize then 0 else
         ((count - 1) >>> Literals2.blockSizeShift) <<< Literals2.blockSizeShift
         
-and RandomAccessList<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root:NodeR,tail:obj[])  =
+and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
     let hashCode = ref None
     let tailOff = 
         if count < Literals2.blockSize then 0 else
@@ -337,7 +337,7 @@ module RandomAccessList =
      
     let inline cons (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.Cons x
 
-    let empty<'T when 'T : equality> = RandomAccessList.Empty() :> RandomAccessList<'T>
+    let empty<'T> = RandomAccessList.Empty() :> RandomAccessList<'T>
 
     let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : RandomAccessList<'T>) = 
         let rec loop state' (v' : RandomAccessList<'T>) count =

@@ -14,7 +14,7 @@ type Node(thread,array:obj[]) =
         member this.Thread = thread
         member this.SetThread t = thread := t
 
-type internal TransientVector<'T when 'T : equality> (count,shift:int,root:Node,tail:obj[]) =
+type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     let mutable count = count
     let mutable root = root
     let mutable tail = tail
@@ -137,7 +137,7 @@ type internal TransientVector<'T when 'T : equality> (count,shift:int,root:Node,
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator 
 
-and PersistentVector<[<EqualityConditionalOn>]'T when 'T : equality> (count,shift:int,root:Node,tail:obj[])  =
+and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
     let hashCode = ref None
     let tailOff = 
         if count < Literals.blockSize then 0 else
@@ -370,7 +370,7 @@ module PersistentVector =
 
     let inline conj (x : 'T) (vector : PersistentVector<'T>) = vector.Conj x
 
-    let empty<'T when 'T : equality> = PersistentVector.Empty() :> PersistentVector<'T>
+    let empty<'T> = PersistentVector.Empty() :> PersistentVector<'T>
 
     let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : PersistentVector<'T>) = 
         let rec loop state' (v' : PersistentVector<'T>) count =

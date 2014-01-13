@@ -5,8 +5,7 @@
 /// immutable instance) of any element in the structure by index. Ordering is by insertion history.
 /// While PersistentVector<'T> is appending to the end this version prepends ekements to the list.
 [<Class>]
-type RandomAccessList<[<EqualityConditionalOn>]'T when 'T : equality> =
-
+type RandomAccessList<'T> =
     interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
 
@@ -60,7 +59,7 @@ module RandomAccessList =
 
     ///O(1). Returns random access list of no elements.
     [<GeneralizableValue>]
-    val empty<'T when 'T : equality> : RandomAccessList<'T>
+    val empty<'T> : RandomAccessList<'T>
 
     /// O(n). Returns a state from the supplied state and a function operating from left to right.
     val inline fold : ('State -> 'T -> 'State) -> 'State -> RandomAccessList<'T> -> 'State
