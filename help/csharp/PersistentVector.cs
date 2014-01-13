@@ -6,7 +6,7 @@ namespace CSharp
 {
 	class PersistentVectorSamples
 	{
-		public static void Samples([CallerFilePath] string file = "")
+		public static void Samples()
 		{
 			// ------------------------------------------------------------
 			// Creating PersistentVectors

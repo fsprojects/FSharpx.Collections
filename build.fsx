@@ -54,7 +54,7 @@ let rec getPackageDesc = function
 // params
 let target = getBuildParamOrDefault "target" "All"
 
-let frameworkVersion = "net40"
+let frameworkVersion = "net35"
 
 // files
 let appReferences = !! "./src/app/**/*.*proj"

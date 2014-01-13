@@ -3,7 +3,6 @@ namespace FSharpx.Collections
 open System
 open System.Collections
 open System.Collections.Generic
-open System.Diagnostics.Contracts
             
 /// An ArraySegment with structural comparison and equality.
 [<CustomEquality; CustomComparison; SerializableAttribute; StructAttribute>]
@@ -120,15 +119,12 @@ module ByteString =
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
 
     let isEmpty (bs:ByteString) = 
-        Contract.Requires(bs.Count >= 0)
         bs.Count <= 0
 
     let length (bs:ByteString) = 
-        Contract.Requires(bs.Count >= 0)
         bs.Count
 
     let index (bs:ByteString) pos =
-        Contract.Requires(bs.Offset + pos <= bs.Count)
         bs.Array.[bs.Offset + pos]
 
     let head (bs:ByteString) =
@@ -137,7 +133,6 @@ module ByteString =
         else bs.Array.[bs.Offset]
 
     let tail (bs:ByteString) =
-        Contract.Requires(bs.Count >= 1)
         if bs.Count = 1 then empty
         else ByteString(bs.Array, bs.Offset+1, bs.Count-1)
     
@@ -183,7 +178,6 @@ module ByteString =
     let span pred bs = split (not << pred) bs
     
     let splitAt n (bs:ByteString) =
-        Contract.Requires(n >= 0)
         if isEmpty bs then empty, empty
         elif n = 0 then empty, bs
         elif n >= bs.Count then bs, empty
