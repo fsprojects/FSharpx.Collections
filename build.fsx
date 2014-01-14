@@ -1,212 +1,160 @@
-#r "./tools/FAKE/tools/FakeLib.dll"
+// --------------------------------------------------------------------------------------
+// FAKE build script 
+// --------------------------------------------------------------------------------------
 
-#I "tools/FSharp.Formatting/lib/net40"
-#I "tools/Microsoft.AspNet.Razor/lib/net40"
-#I "tools/RazorEngine/lib/net40"
-#r "System.Web.dll"
-#r "FSharp.Markdown.dll"
-#r "FSharp.CodeFormat.dll"
-#r "FSharp.Literate.dll"
-#r "FSharp.MetadataFormat.dll"
-#r "System.Web.Razor.dll"
-#r "RazorEngine.dll"
-
-open Fake
-open FSharp.Literate
+#r @"packages/FAKE/tools/FakeLib.dll"
+open Fake 
 open Fake.Git
-open FSharp.MetadataFormat
-
-RestorePackages()
-
-// properties
-let currentDate = System.DateTime.UtcNow
-let projectName = "FSharpx"
-
-let coreSummary = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
-let projectSummary = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
-let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford" ]
-let mail = "ryan.riley@panesofglass.org"
-let homepage = "http://github.com/fsharp/fsharpx"
-
-let buildVersion = if isLocalBuild then "0.0.1" else buildVersion
-
-// directories
-let buildDir = "./build/"
-let packagesDir = "./packages/"
-let testDir = "./test/"
-let deployDir = "./deploy/"
-let docsDir = "./docs/"
-let apidocsDir = "./docs/apidocs/"
-
-let nugetDir package = sprintf "./nuget/%s/" package
-let nugetLibDir package = nugetDir package @@ "lib"
-let nugetDocsDir package = nugetDir package @@ "docs"
-
-let packages = ["Collections"; "Collections.Experimental"]
-
-let projectDesc = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library. Its main target is F# but it aims to be compatible with all .NET languages wherever possible."
-
-let rec getPackageDesc = function
-| "Collections.Experimental" -> projectDesc + "\r\n\r\nThis library provides experimental data structures."
-| _ -> projectDesc + "\r\n\r\nIt currently implements:\r\n\r\n" + 
-                       "* Purely functional data structures: Queues, double-ended Queues, BottomUpMergeSort, RandomAccessList, Vector, RoseTree, BKTree\r\n" 
-
-// params
-let target = getBuildParamOrDefault "target" "All"
-
-let frameworkVersion = "net35"
-
-// files
-let appReferences = !! "./src/app/**/*.*proj"
-let testReferences  = !! "./src/test/**/*.*proj"
-
-// targets
-Target "Clean" (fun _ ->       
-    CleanDirs [buildDir; testDir; deployDir; docsDir; apidocsDir]
-
-    packages
-    |> Seq.iter (fun x -> CleanDirs [nugetDir x; nugetLibDir x; nugetDocsDir x])
-)
-
 open Fake.AssemblyInfoFile
+open Fake.ReleaseNotesHelper
+open System
 
+let projects = [|"FSharpx.Collections"; "FSharpx.Collections.Experimental"|]
+
+let summary = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
+let description = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
+let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford"]
+let tags = "F# fsharp fsharpx collections datastructures"
+
+let solutionFile  = "FSharpx.Collections"
+
+let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
+let gitHome = "https://github.com/forki/FSharpx.Collections"
+let gitName = "FSharpx.Collections"
+let cloneUrl = "git@github.com:forki/FSharpx.Collections.git"
+let nugetDir = "./nuget/"
+
+// Read additional information from the release notes document
+Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
+let release = parseReleaseNotes (IO.File.ReadAllLines "RELEASE_NOTES.md")
+
+// Generate assembly info files with the right version & up-to-date information
 Target "AssemblyInfo" (fun _ ->
-    let common = [
-         Attribute.Product "FSharpx.Collections"
-         Attribute.Version buildVersion
-         Attribute.InformationalVersion buildVersion
-         Attribute.FileVersion buildVersion]
-    
-    [Attribute.Title "FSharpx.Collections"
-     Attribute.Description(getPackageDesc "Collections")
-     Attribute.InternalsVisibleTo "FSharpx.Collections.Tests"
-     Attribute.Guid "32DA9CE0-5245-4100-B7B8-6346B753B179"] @ common
-    |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections/AssemblyInfo.fs"
-
-    [Attribute.Title "FSharpx.Collections.Experimental"
-     Attribute.Description(getPackageDesc "Collections.Experimental")
-     Attribute.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
-     Attribute.Guid "4C646C09-6925-47D0-B187-8A5C3D061329"] @ common
-    |> CreateFSharpAssemblyInfo "./src/app/FSharpx.Collections.Experimental/AssemblyInfo.fs"
+  for project in projects do
+    let fileName = "src/" + project + "/AssemblyInfo.fs"
+    CreateFSharpAssemblyInfo fileName
+        [ Attribute.Title project
+          Attribute.Product project
+          Attribute.Description summary
+          Attribute.Version release.AssemblyVersion
+          Attribute.InternalsVisibleTo "FSharpx.Collections.Tests"
+          Attribute.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
+          Attribute.FileVersion release.AssemblyVersion ] 
 )
 
-Target "BuildApp" (fun _ ->
-    CleanDir buildDir
+// --------------------------------------------------------------------------------------
+// Clean build results & restore NuGet packages
 
-    appReferences
-    |> MSBuild buildDir "Rebuild" (["Configuration","Release"])
-    |> Log "AppBuild-Output: "
+Target "RestorePackages" RestorePackages
+
+Target "Clean" (fun _ ->
+    CleanDirs ["bin"; "temp"; nugetDir]
 )
 
-Target "BuildTest" (fun _ ->
-    CleanDir testDir
-    testReferences
-    |> MSBuild testDir "Build" ["Configuration","Debug"] 
-    |> Log "TestBuild-Output: "
+Target "CleanDocs" (fun _ ->
+    CleanDirs ["docs/output"]
 )
 
-Target "Test" (fun _ ->
-    !! (testDir + "/*.Tests.dll")
+// --------------------------------------------------------------------------------------
+// Build library & test project
+
+Target "Build" (fun _ ->
+    !! (solutionFile + ".sln")
+    |> MSBuildRelease "" "Rebuild"
+    |> ignore
+)
+
+// --------------------------------------------------------------------------------------
+// Run the unit tests using test runner & kill test runner when complete
+
+Target "RunTests" (fun _ ->
+    ActivateFinalTarget "CloseTestRunner"
+
+    !! testAssemblies
     |> NUnit (fun p ->
-        {p with
+        { p with
             DisableShadowCopy = true
-            OutputFile = testDir + sprintf "TestResults.xml" })
+            TimeOut = TimeSpan.FromMinutes 20.
+            OutputFile = "TestResults.xml" })
 )
+
+FinalTarget "CloseTestRunner" (fun _ ->  
+    ProcessHelper.killProcess "nunit-agent.exe"
+)
+
+// --------------------------------------------------------------------------------------
+// Build a NuGet package
+
+Target "NuGet" (fun _ ->
+    projects
+    |> Seq.iter (fun project -> 
+          let nugetDocsDir = nugetDir @@ "docs"
+          let nugetlibDir = nugetDir @@ "lib/net35"
+
+          CleanDir nugetDocsDir
+          CleanDir nugetlibDir
+              
+          CopyDir nugetlibDir "bin" (fun file -> file.StartsWith project)
+          CopyDir nugetDocsDir "./docs/output" allFiles
+          
+          NuGet (fun p -> 
+              { p with   
+                  Authors = authors
+                  Project = project
+                  Summary = summary
+                  Description = description
+                  Version = release.NugetVersion
+                  ReleaseNotes = release.Notes |> toLines
+                  Tags = tags
+                  OutputPath = nugetDir
+                  AccessKey = getBuildParamOrDefault "nugetkey" ""
+                  Publish = hasBuildParam "nugetkey"
+                  Dependencies = [] })
+              ("FSharpx.Collections.nuspec"))
+)
+
+// --------------------------------------------------------------------------------------
+// Generate the documentation
 
 Target "GenerateDocs" (fun _ ->
-    let source = "./help"
-    let template = "./help/templates/template-project.html"
-    let projInfo =
-      [ "page-description", "FSharpx.Collections"
-        "page-author", (separated ", " authors)
-        "project-author", (separated ", " authors)
-        "github-link", "http://github.com/forki/fsharpx.collections"
-        "project-github", "http://github.com/forki/fsharpx.collections"
-        "project-nuget", "https://www.nuget.org/packages/FSharpx.Collections"
-        "root", "http://forki.github.io/FSharpx.Collections"
-        "project-name", "FSharpx.Collections" ]
-
-    Literate.ProcessDirectory (source, template, docsDir, replacements = projInfo)
-
-    if isLocalBuild then  // TODO: this needs to be fixed in FSharp.Formatting
-        MetadataFormat.Generate ( 
-          ["./build/FSharpx.Collections.dll"], 
-          apidocsDir, 
-          ["./help/templates/"; "./help/templates/reference/"], 
-          parameters = projInfo)
-
-    WriteStringToFile false "./docs/.nojekyll" ""
-
-    CopyDir (docsDir @@ "content") "help/content" allFiles
-    CopyDir (docsDir @@ "pics") "help/pics" allFiles
+    executeFSIWithArgs "docs/tools" "generate.fsx" ["--define:RELEASE"] [] |> ignore
 )
 
-Target "PrepareNuget" (fun _ ->
-    packages
-    |> Seq.iter (fun package ->
-        let frameworkSubDir = nugetLibDir package @@ frameworkVersion
-        CleanDir frameworkSubDir
-
-
-        [for ending in ["dll";"pdb";"xml"] do
-            yield sprintf "%sFSharpx.%s.%s" buildDir package ending]
-        |> Seq.filter (fun f -> System.IO.File.Exists f)
-        |> CopyTo frameworkSubDir)
-)
-
-
-Target "Nuget" (fun _ ->
-    packages
-    |> Seq.iter (fun package ->
-        [ "LICENSE.md" ] |> CopyTo (nugetDir package)
-        NuGet (fun p -> 
-            {p with               
-                Authors = authors
-                Project = projectName + "." + package
-                Description = getPackageDesc package
-                Version = buildVersion
-                OutputPath = nugetDir package
-                AccessKey = getBuildParamOrDefault "nugetkey" ""
-                Dependencies =
-                    if package = "Collections" then p.Dependencies else
-                      [projectName + ".Collections", RequireExactly (NormalizeVersion buildVersion)]
-                Publish = hasBuildParam "nugetkey" })
-            "FSharpx.Collections.nuspec"
-
-        !! (nugetDir package + sprintf "FSharpx.%s.*.nupkg" package)
-          |> CopyTo deployDir)
-)
-
-Target "DeployZip" (fun _ ->
-    !! (buildDir + "/**/*.*")
-    |> Zip buildDir (deployDir + sprintf "%s-%s.zip" projectName buildVersion)
-)
+// --------------------------------------------------------------------------------------
+// Release Scripts
 
 Target "ReleaseDocs" (fun _ ->
-    CleanDir "gh-pages"
-    CommandHelper.runSimpleGitCommand "" "clone -b gh-pages --single-branch git@github.com:forki/FSharpx.Collections.git gh-pages" |> printfn "%s"
-    
-    fullclean "gh-pages"
-    CopyRecursive "docs" "gh-pages" true |> printfn "%A"
-    CommandHelper.runSimpleGitCommand "gh-pages" "add . --all" |> printfn "%s"
-    CommandHelper.runSimpleGitCommand "gh-pages" (sprintf "commit -m \"Update generated documentation %s\"" buildVersion) |> printfn "%s"
-    Branches.push "gh-pages"    
+    let ghPages      = "gh-pages"
+    let ghPagesLocal = "temp/gh-pages"
+    Repository.clone "temp" (cloneUrl) ghPages
+    Branches.checkoutBranch ghPagesLocal ghPages
+    fullclean "temp/gh-pages"
+    CopyRecursive "docs/output" ghPagesLocal true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand ghPagesLocal "add ." |> printfn "%s"
+    let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
+    CommandHelper.runSimpleGitCommand ghPagesLocal cmd |> printfn "%s"
+    Branches.push ghPagesLocal
 )
 
-Target "Deploy" DoNothing
+Target "Release" DoNothing
 
-// Build order
+// --------------------------------------------------------------------------------------
+// Run all targets by default. Invoke 'build <Target>' to override
+
+Target "All" DoNothing
+
 "Clean"
-  =?> ("AssemblyInfo",not isLocalBuild) 
-  ==> "BuildApp"
-  ==> "BuildTest"
-  ==> "Test"
-  ==> "GenerateDocs"
-  ==> "PrepareNuget"
-  ==> "Nuget"
-  ==> "DeployZip"
-  ==> "Deploy"
-  ==> "ReleaseDocs"
+  ==> "RestorePackages"
+  ==> "AssemblyInfo"
+  ==> "Build"
+  ==> "RunTests"
+  ==> "All"
 
-// Start build
-RunTargetOrDefault "Deploy"
+"All" 
+  ==> "CleanDocs"
+  ==> "GenerateDocs"
+  ==> "ReleaseDocs"
+  ==> "NuGet"
+  ==> "Release"
+
+RunTargetOrDefault "All"
