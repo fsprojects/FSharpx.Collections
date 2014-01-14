@@ -19,9 +19,9 @@ let tags = "F# fsharp fsharpx collections datastructures"
 let solutionFile  = "FSharpx.Collections"
 
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
-let gitHome = "https://github.com/forki/FSharpx.Collections"
+let gitHome = "https://github.com/fsprojects/FSharpx.Collections"
 let gitName = "FSharpx.Collections"
-let cloneUrl = "git@github.com:forki/FSharpx.Collections.git"
+let cloneUrl = "git@github.com:fsprojects/FSharpx.Collections.git"
 let nugetDir = "./nuget/"
 
 // Read additional information from the release notes document
