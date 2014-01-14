@@ -12,7 +12,7 @@ let website = "/FSharpx.Collections"
 let info =
   [ "project-name", "fsprojects/FSharpx.Collections"
     "project-author", "Steffen Forkmann"
-    "project-summary", "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
+    "project-summary", "FSharpx.Collections is a collection of datastructures for use with F# and C#."
     "project-github", "https://github.com/fsprojects/FSharpx.Collections"
     "project-nuget", "https://www.nuget.org/packages/FSharpx.Collections" ]
 

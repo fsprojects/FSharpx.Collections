@@ -11,16 +11,14 @@ open System
 
 let projects = [|"FSharpx.Collections"; "FSharpx.Collections.Experimental"|]
 
-let summary = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
-let description = "FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library."
+let summary = "FSharpx.Collections is a collection of datastructures for use with F# and C#."
+let description = "FSharpx.Collections is a collection of datastructures for use with F# and C#."
 let authors = ["Steffen Forkmann"; "Daniel Mohl"; "Tomas Petricek"; "Ryan Riley"; "Mauricio Scheffer"; "Phil Trelford"]
 let tags = "F# fsharp fsharpx collections datastructures"
 
 let solutionFile  = "FSharpx.Collections"
 
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
-let gitHome = "https://github.com/fsprojects/FSharpx.Collections"
-let gitName = "FSharpx.Collections"
 let cloneUrl = "git@github.com:fsprojects/FSharpx.Collections.git"
 let nugetDir = "./nuget/"
 
@@ -126,7 +124,7 @@ Target "GenerateDocs" (fun _ ->
 Target "ReleaseDocs" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
     CleanDir tempDocsDir
-    Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "gh-pages" tempDocsDir
+    Repository.cloneSingleBranch "" cloneUrl "gh-pages" tempDocsDir
 
     fullclean tempDocsDir
     CopyRecursive "docs/output" tempDocsDir true |> tracefn "%A"
