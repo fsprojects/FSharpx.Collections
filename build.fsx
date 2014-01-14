@@ -94,7 +94,7 @@ Target "NuGet" (fun _ ->
           CleanDir nugetDocsDir
           CleanDir nugetlibDir
               
-          CopyDir nugetlibDir "bin" (fun file -> file.StartsWith project)
+          CopyDir nugetlibDir "bin" (fun file -> file.EndsWith (project + ".dll") || file.EndsWith (project + ".xml"))  
           CopyDir nugetDocsDir "./docs/output" allFiles
           
           NuGet (fun p -> 
