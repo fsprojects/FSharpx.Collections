@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PersistentHashMap - forki/FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/forki/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">forki/FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>PersistentHashMap</h1>
+<div class="xmldoc">
+<p>Defines functions which allow to access and manipulate PersistentHashMaps.</p>
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '146', 146)" onmouseover="showTip(event, '146', 146)">
+            add key value map
+          </code>
+          <div class="tip" id="146">
+            <strong>Signature:</strong>key:&#39;T -&gt; value:&#39;S -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n), adds an element to the map</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '147', 147)" onmouseover="showTip(event, '147', 147)">
+            containsKey key map
+          </code>
+          <div class="tip" id="147">
+            <strong>Signature:</strong>key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n), returns if the key exists in the map</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '148', 148)" onmouseover="showTip(event, '148', 148)">
+            empty 
+          </code>
+          <div class="tip" id="148">
+            <strong>Signature:</strong>PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1), returns an empty PersistentHashMap</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '149', 149)" onmouseover="showTip(event, '149', 149)">
+            find key map
+          </code>
+          <div class="tip" id="149">
+            <strong>Signature:</strong>key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; &#39;S<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n), returns the value if the exists in the map</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '150', 150)" onmouseover="showTip(event, '150', 150)">
+            length map
+          </code>
+          <div class="tip" id="150">
+            <strong>Signature:</strong>map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1), returns the count of the elements in the PersistentHashMap</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
+            map f map
+          </code>
+          <div class="tip" id="151">
+            <strong>Signature:</strong>f:(&#39;S -&gt; &#39;S1) -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S1&gt;<br />
+                          <strong>Type parameters:</strong> 'S, 'S1, 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+            ofSeq items
+          </code>
+          <div class="tip" id="152">
+            <strong>Signature:</strong>items:seq&lt;&#39;T * &#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns a HashMap of the seq.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
+            remove key map
+          </code>
+          <div class="tip" id="153">
+            <strong>Signature:</strong>key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n), removes the element with the given key from the map</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
+            toSeq map
+          </code>
+          <div class="tip" id="154">
+            <strong>Signature:</strong>map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; seq&lt;&#39;T * &#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Views the given HashMap as a sequence.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">forki/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/forki/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

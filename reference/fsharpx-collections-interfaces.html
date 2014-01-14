@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PersistentVector
-</title>
+    <title>Interfaces - forki/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library.">
+    <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
 
     <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
@@ -33,40 +32,67 @@
       <div class="row">
         <div class="span9" id="main">
           
-<h1>PersistentVector</h1>
 
-<p>A Vector is a collection of values indexed by contiguous integers. Vectors support access to items by index in log32N hops. Count is O(1). Conj puts the item at the end of the vector.</p>
 
-<pre lang="csharp"><span class="c">// Create an empty PersistentVector and add some elements</span>
-PersistentVector&lt;<span class="k">string</span>&gt; vector =
-    PersistentVector&lt;<span class="k">string</span>&gt;.Empty()
-        .Conj(<span class="s">"hello"</span>)
-        .Conj(<span class="s">"world"</span>)
-        .Conj(<span class="s">"!"</span>);
 
-Console.WriteLine(vector[0]); <span class="c">// hello</span>
-Console.WriteLine(vector[2]); <span class="c">// !            </span>
+<h1>Interfaces</h1>
+<div class="xmldoc">
+</div>
 
-<span class="c">// Check no. of elements in the PersistentVector</span>
-Console.WriteLine(vector.Length);  <span class="c">// 3</span>
-</pre>
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-ideque-1.html">IDeque<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-iheap-1.html">IHeap<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-iheap-2.html">IHeap<'c, 'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-ipersistentvector-1.html">IPersistentVector<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-ipriorityqueue-1.html">IPriorityQueue<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-iqueue-1.html">IQueue<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="fsharpx-collections-interfaces-irandomaccesslist-1.html">IRandomAccessList<'T></a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+    </tbody>
+  </table>
 
-<p>PersistentVectors are immutable and therefor allow to create new version without destruction of the old ones.</p>
-
-<pre lang="csharp">PersistentVector&lt;<span class="k">string</span>&gt; vector2 = vector.Conj(<span class="s">"!!!"</span>).Update(0,<span class="s">"hi"</span>);
-
-Console.WriteLine(vector2[0]); <span class="c">// hi</span>
-Console.WriteLine(vector[0]);  <span class="c">// hello</span>
-Console.WriteLine(vector2[3]); <span class="c">// !!!</span>
-
-Console.WriteLine(vector.Length);  <span class="c">// 3</span>
-Console.WriteLine(vector2.Length); <span class="c">// 4</span>
-
-<span class="c">// remove the last element from a PersistentVector</span>
-PersistentVector&lt;<span class="k">string</span>&gt; vector3 = vector2.Initial;
-
-Console.WriteLine(vector3.Length); <span class="c">// 3</span>
-</pre>
+  </div>
 
 
         </div>

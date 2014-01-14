@@ -2,23 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <!-- 
-      The PersistentVector - Performance tests
- parameters will be replaced with the 
-      document title extracted from the <h1> element or
-      file name, if there is no <h1> heading
-    -->
     <title>PersistentVector - Performance tests
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FSharpx.Collections">
-    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford">
+    <meta name="description" content="FSharpx is a library for the .NET platform implementing general functional constructs on top of the F# core library.">
+    <meta name="author" content="Steffen Forkmann">
+
     <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
     <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="content/style.css" />
-    <script src="content/tips.js" type="text/javascript"></script>
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,14 +25,15 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/forki/fsharpx.collections">github page</a></li>
+          <li><a href="https://github.com/forki/FSharpx.Collections">github page</a></li>
         </ul>
-        <h3 class="muted">FSharpx.Collections</h3>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">forki/FSharpx.Collections</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h1>PersistentVector - Performance tests</h1>
+          
+<h1>PersistentVector - Performance tests</h1>
 
 <p>Bulk operations on PersistentVector use an internal TransientVector in order to get much better performance. The following scripts shows this:</p>
 
@@ -250,7 +247,7 @@
 </tr>
 </table>
 
-          <div class="tip" id="fs1">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs1">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
 <div class="tip" id="fs2">val trials : int<br /><br />Full name: PersistentVectorPerformance.trials</div>
 <div class="tip" id="fs3">val r : Random<br /><br />Full name: PersistentVectorPerformance.r</div>
 <div class="tip" id="fs4">namespace System</div>
@@ -273,31 +270,23 @@
 <div class="tip" id="fs21">Multiple items<br />val array : int []<br /><br />--------------------<br />type &#39;T array = &#39;T []<br /><br />Full name: Microsoft.FSharp.Core.array&lt;_&gt;</div>
 <div class="tip" id="fs22">val vector : obj</div>
 <div class="tip" id="fs23">val replaceInArrayAndVector : n:int -&gt; count:int -&gt; &#39;a<br /><br />Full name: PersistentVectorPerformance.replaceInArrayAndVector</div>
-          
+
         </div>
         <div class="span3">
-
           <ul class="nav nav-list" id="menu">
-            <li class="nav-header">FSharpx.Collections</li>
-              <li><a href="index.html">Home page</a></li>
-              <li class="divider"></li>
-              <li><a href="http://github.com/forki/fsharpx.collections">Source Code on GitHub</a></li>              
-              <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.md">License (MS-PL)</a></li>
-            <li class="nav-header">Using from F#</li>
-              <li><a href="PersistentVector.html">PersistentVector</a></li>
-              <li><a href="PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-              <li><a href="PersistentVectorC.html">PersistentVector</a></li>
-              <li><a href="PersistentHashMapC.html">PersistentHashMap</a></li>
-              <li class="nav-header">Performance tests</li>
-              <li><a href="PersistentVectorPerformance.html">PersistentVector</a></li>
-              <li><a href="PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-              <li class="nav-header">Documentation</li>
-              <li><a href="apidocs/index.html">API Reference</a></li>
+            <li class="nav-header">forki/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
           </ul>
         </div>
       </div>
     </div>
-    <a href="http://github.com/forki/fsharpx.collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/forki/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   </body>
-</html>
+  </html>

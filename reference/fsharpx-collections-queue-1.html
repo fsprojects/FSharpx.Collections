@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Queue<'T> - forki/FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/forki/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">forki/FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Queue<'T></h1>
+<div class="xmldoc">
+<p>Queue is an ordered linear data structure where elements are added at the end (right) 
+and inspected and removed at the beginning (left). Ordering is by insertion history. 
+The qualities of the Queue structure make elements first in, first out (fifo).
+"head" inspects the first or left-most element in the structure, while "conj" 
+inserts an element at the end, or right of the structure.
+Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '462', 462)" onmouseover="showTip(event, '462', 462)">
+            Conj(arg1)
+          </code>
+          <div class="tip" id="462">
+            <strong>Signature:</strong>&#39;T -&gt; Queue&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns a new queue with the element added to the end. (Enqueue)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '463', 463)" onmouseover="showTip(event, '463', 463)">
+            Head
+          </code>
+          <div class="tip" id="463">
+            <strong>Signature:</strong>&#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns the first element. (Peek)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '464', 464)" onmouseover="showTip(event, '464', 464)">
+            IsEmpty
+          </code>
+          <div class="tip" id="464">
+            <strong>Signature:</strong>bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns true if the queue has no elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '465', 465)" onmouseover="showTip(event, '465', 465)">
+            Length
+          </code>
+          <div class="tip" id="465">
+            <strong>Signature:</strong>int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns the count of elememts.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '466', 466)" onmouseover="showTip(event, '466', 466)">
+            Rev()
+          </code>
+          <div class="tip" id="466">
+            <strong>Signature:</strong>unit -&gt; Queue&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns queue reversed.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '467', 467)" onmouseover="showTip(event, '467', 467)">
+            Tail
+          </code>
+          <div class="tip" id="467">
+            <strong>Signature:</strong>Queue&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n) worst-case. Returns a new queue of the elements trailing the first element. (Dequeue)</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '468', 468)" onmouseover="showTip(event, '468', 468)">
+            TryHead
+          </code>
+          <div class="tip" id="468">
+            <strong>Signature:</strong>&#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns option first element</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '469', 469)" onmouseover="showTip(event, '469', 469)">
+            TryTail
+          </code>
+          <div class="tip" id="469">
+            <strong>Signature:</strong>Queue&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n) worst-case. Returns option queue of the elements trailing the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '470', 470)" onmouseover="showTip(event, '470', 470)">
+            TryUncons
+          </code>
+          <div class="tip" id="470">
+            <strong>Signature:</strong>(&#39;T * Queue&lt;&#39;T&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n) worst-case. Returns option first element and tail.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '471', 471)" onmouseover="showTip(event, '471', 471)">
+            Uncons
+          </code>
+          <div class="tip" id="471">
+            <strong>Signature:</strong>&#39;T * Queue&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n) worst-case. Returns the first element and tail.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">forki/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/forki/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

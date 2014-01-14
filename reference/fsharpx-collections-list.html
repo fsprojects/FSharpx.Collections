@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>List - forki/FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/forki/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">forki/FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>List</h1>
+<div class="xmldoc">
+<p>Extensions for F#'s List module.</p>
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            cons hd tl
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong>hd:&#39;?5821 -&gt; tl:&#39;?5821 list -&gt; &#39;?5821 list<br />
+                          <strong>Type parameters:</strong> '?5821          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Curried cons</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+            fill total elem list
+          </code>
+          <div class="tip" id="60">
+            <strong>Signature:</strong>total:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+            lift2 f l1 l2
+          </code>
+          <div class="tip" id="61">
+            <strong>Signature:</strong>f:(&#39;?5825 -&gt; &#39;?5826 -&gt; &#39;?5827) -&gt; l1:&#39;?5825 list -&gt; l2:&#39;?5826 list -&gt; &#39;?5827 list<br />
+                          <strong>Type parameters:</strong> '?5825, '?5826, '?5827          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            mapAccum f s l
+          </code>
+          <div class="tip" id="62">
+            <strong>Signature:</strong>f:(&#39;?5849 -&gt; &#39;?5850 -&gt; &#39;?5849 * &#39;?5851) -&gt; s:&#39;?5849 -&gt; l:&#39;?5850 list -&gt; &#39;?5849 * &#39;?5851 list<br />
+                          <strong>Type parameters:</strong> '?5849, '?5850, '?5851          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Behaves like a combination of map and fold; 
+it applies a function to each element of a list, 
+passing an accumulating parameter from left to right, 
+and returning a final value of this accumulator together with the new list.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+            mapIf pred f
+          </code>
+          <div class="tip" id="63">
+            <strong>Signature:</strong>pred:(&#39;?5847 -&gt; bool) -&gt; f:(&#39;?5847 -&gt; &#39;?5847) -&gt; &#39;?5847 list -&gt; &#39;?5847 list<br />
+                          <strong>Type parameters:</strong> '?5847          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+            merge a b
+          </code>
+          <div class="tip" id="64">
+            <strong>Signature:</strong>a:&#39;?5858 list -&gt; b:&#39;?5858 list -&gt; &#39;?5858 list<br />
+                          <strong>Type parameters:</strong> '?5858          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Merges two sequences by the default comparer for 'T</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+            mergeBy f a b
+          </code>
+          <div class="tip" id="65">
+            <strong>Signature:</strong>f:(&#39;?5855 -&gt; &#39;?5856) -&gt; a:&#39;?5855 list -&gt; b:&#39;?5855 list -&gt; &#39;?5855 list<br />
+                          <strong>Type parameters:</strong> '?5855, '?5856          </div>
+        </td>
+        <td class="xmldoc">
+        <p>Merges to sequences using the given function to transform the elements for comparision</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            pad amt elem list
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong>amt:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
+                          <strong>Type parameters:</strong> 'a          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+            singleton x
+          </code>
+          <div class="tip" id="67">
+            <strong>Signature:</strong>x:&#39;?5823 -&gt; &#39;?5823 list<br />
+                          <strong>Type parameters:</strong> '?5823          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+            skip n l
+          </code>
+          <div class="tip" id="68">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?5843 list -&gt; &#39;?5843 list<br />
+                          <strong>Type parameters:</strong> '?5843          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+            skipUntil pred l
+          </code>
+          <div class="tip" id="69">
+            <strong>Signature:</strong>pred:(&#39;?5835 -&gt; bool) -&gt; l:&#39;?5835 list -&gt; &#39;?5835 list<br />
+                          <strong>Type parameters:</strong> '?5835          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
+            skipWhile pred l
+          </code>
+          <div class="tip" id="70">
+            <strong>Signature:</strong>pred:(&#39;?5833 -&gt; bool) -&gt; l:&#39;?5833 list -&gt; &#39;?5833 list<br />
+                          <strong>Type parameters:</strong> '?5833          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
+            span pred l
+          </code>
+          <div class="tip" id="71">
+            <strong>Signature:</strong>pred:(&#39;?5829 -&gt; bool) -&gt; l:&#39;?5829 list -&gt; &#39;?5829 list * &#39;?5829 list<br />
+                          <strong>Type parameters:</strong> '?5829          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
+            split pred l
+          </code>
+          <div class="tip" id="72">
+            <strong>Signature:</strong>pred:(&#39;?5831 -&gt; bool) -&gt; l:&#39;?5831 list -&gt; &#39;?5831 list * &#39;?5831 list<br />
+                          <strong>Type parameters:</strong> '?5831          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
+            splitAt n l
+          </code>
+          <div class="tip" id="73">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?5841 list -&gt; &#39;?5841 list * &#39;?5841 list<br />
+                          <strong>Type parameters:</strong> '?5841          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+            take n l
+          </code>
+          <div class="tip" id="74">
+            <strong>Signature:</strong>n:int -&gt; l:&#39;?5845 list -&gt; &#39;?5845 list<br />
+                          <strong>Type parameters:</strong> '?5845          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
+            takeUntil pred l
+          </code>
+          <div class="tip" id="75">
+            <strong>Signature:</strong>pred:(&#39;?5839 -&gt; bool) -&gt; l:&#39;?5839 list -&gt; &#39;?5839 list<br />
+                          <strong>Type parameters:</strong> '?5839          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
+            takeWhile pred l
+          </code>
+          <div class="tip" id="76">
+            <strong>Signature:</strong>pred:(&#39;?5837 -&gt; bool) -&gt; l:&#39;?5837 list -&gt; &#39;?5837 list<br />
+                          <strong>Type parameters:</strong> '?5837          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
+            transpose lst
+          </code>
+          <div class="tip" id="77">
+            <strong>Signature:</strong>lst:&#39;?5853 list list -&gt; &#39;?5853 list list<br />
+                          <strong>Type parameters:</strong> '?5853          </div>
+        </td>
+        <td class="xmldoc">
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">forki/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="https://github.com/forki/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/forki/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
