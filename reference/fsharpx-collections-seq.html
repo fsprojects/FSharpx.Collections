@@ -24,7 +24,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
       </div>
@@ -51,174 +51,185 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
+          <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
             asCircular values
           </code>
-          <div class="tip" id="234">
-            <strong>Signature:</strong>values:seq&lt;&#39;?5376&gt; -&gt; seq&lt;&#39;?5376&gt;<br />
-                          <strong>Type parameters:</strong> '?5376          </div>
+          <div class="tip" id="247">
+            <strong>Signature:</strong>values:seq&lt;&#39;?32715&gt; -&gt; seq&lt;&#39;?32715&gt;<br />
+                          <strong>Type parameters:</strong> '?32715          </div>
         </td>
         <td class="xmldoc">
         <p>Creates a infinite sequences of the given values</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L81-81" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
+          <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
             asCircularOnLoop f values
           </code>
-          <div class="tip" id="235">
-            <strong>Signature:</strong>f:(unit -&gt; unit) -&gt; values:seq&lt;&#39;?5378&gt; -&gt; seq&lt;&#39;?5378&gt;<br />
-                          <strong>Type parameters:</strong> '?5378          </div>
+          <div class="tip" id="248">
+            <strong>Signature:</strong>f:(unit -&gt; unit) -&gt; values:seq&lt;&#39;?32717&gt; -&gt; seq&lt;&#39;?32717&gt;<br />
+                          <strong>Type parameters:</strong> '?32717          </div>
         </td>
         <td class="xmldoc">
         <p>Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L91-91" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
+          <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
             asCircularWithBreak values
           </code>
-          <div class="tip" id="236">
-            <strong>Signature:</strong>values:seq&lt;&#39;?5380&gt; -&gt; seq&lt;&#39;?5380 option&gt;<br />
-                          <strong>Type parameters:</strong> '?5380          </div>
+          <div class="tip" id="249">
+            <strong>Signature:</strong>values:seq&lt;&#39;?32719&gt; -&gt; seq&lt;&#39;?32719 option&gt;<br />
+                          <strong>Type parameters:</strong> '?32719          </div>
         </td>
         <td class="xmldoc">
         <p>Creates a infinite sequences of the given values returning None everytime the given seq is exhausted</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L102-102" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
+          <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
             combine f a b
           </code>
-          <div class="tip" id="237">
-            <strong>Signature:</strong>f:(&#39;?5396 -&gt; &#39;?5397 -&gt; &#39;?5398) -&gt; a:seq&lt;&#39;?5396&gt; -&gt; b:seq&lt;&#39;?5397&gt; -&gt; seq&lt;&#39;?5398&gt;<br />
-                          <strong>Type parameters:</strong> '?5396, '?5397, '?5398          </div>
+          <div class="tip" id="250">
+            <strong>Signature:</strong>f:(&#39;?32735 -&gt; &#39;?32736 -&gt; &#39;?32737) -&gt; a:seq&lt;&#39;?32735&gt; -&gt; b:seq&lt;&#39;?32736&gt; -&gt; seq&lt;&#39;?32737&gt;<br />
+                          <strong>Type parameters:</strong> '?32735, '?32736, '?32737          </div>
         </td>
         <td class="xmldoc">
         <p>Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences. 
 Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L171-171" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
+          <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
             contract n source
           </code>
-          <div class="tip" id="238">
-            <strong>Signature:</strong>n:int -&gt; source:seq&lt;&#39;?5394&gt; -&gt; seq&lt;&#39;?5394&gt;<br />
-                          <strong>Type parameters:</strong> '?5394          </div>
+          <div class="tip" id="251">
+            <strong>Signature:</strong>n:int -&gt; source:seq&lt;&#39;?32733&gt; -&gt; seq&lt;&#39;?32733&gt;<br />
+                          <strong>Type parameters:</strong> '?32733          </div>
         </td>
         <td class="xmldoc">
         <p>Contracts a seq selecting every n values</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L159-159" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+          <code onmouseout="hideTip(event, '252', 252)" onmouseover="showTip(event, '252', 252)">
             grow n
           </code>
-          <div class="tip" id="239">
-            <strong>Signature:</strong>n:int -&gt; seq&lt;&#39;?5400&gt; -&gt; seq&lt;&#39;?5400&gt;<br />
-                          <strong>Type parameters:</strong> '?5400          </div>
+          <div class="tip" id="252">
+            <strong>Signature:</strong>n:int -&gt; seq&lt;&#39;?32739&gt; -&gt; seq&lt;&#39;?32739&gt;<br />
+                          <strong>Type parameters:</strong> '?32739          </div>
         </td>
         <td class="xmldoc">
         <p>Replicates each element in the seq n-times</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L184-184" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+          <code onmouseout="hideTip(event, '253', 253)" onmouseover="showTip(event, '253', 253)">
             index a
           </code>
-          <div class="tip" id="240">
-            <strong>Signature:</strong>a:seq&lt;&#39;?5359&gt; -&gt; seq&lt;int * &#39;?5359&gt;<br />
-                          <strong>Type parameters:</strong> '?5359          </div>
+          <div class="tip" id="253">
+            <strong>Signature:</strong>a:seq&lt;&#39;?32698&gt; -&gt; seq&lt;int * &#39;?32698&gt;<br />
+                          <strong>Type parameters:</strong> '?32698          </div>
         </td>
         <td class="xmldoc">
         <p>Adds an index to a sequence</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L16-16" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+          <code onmouseout="hideTip(event, '254', 254)" onmouseover="showTip(event, '254', 254)">
             intersperse sep list
           </code>
-          <div class="tip" id="241">
+          <div class="tip" id="254">
             <strong>Signature:</strong>sep:&#39;a -&gt; list:seq&lt;&#39;a&gt; -&gt; seq&lt;&#39;a&gt;<br />
                           <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L197-197" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+          <code onmouseout="hideTip(event, '255', 255)" onmouseover="showTip(event, '255', 255)">
             iterBreak f seq
           </code>
-          <div class="tip" id="242">
+          <div class="tip" id="255">
             <strong>Signature:</strong>f:(&#39;T -&gt; bool) -&gt; seq:seq&lt;&#39;T&gt; -&gt; unit<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>Will iterate the current sequence until the given predicate is statisfied</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L34-34" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+          <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
             lift2 f l1 l2
           </code>
-          <div class="tip" id="243">
-            <strong>Signature:</strong>f:(&#39;?5363 -&gt; &#39;?5364 -&gt; &#39;?5365) -&gt; l1:seq&lt;&#39;?5363&gt; -&gt; l2:seq&lt;&#39;?5364&gt; -&gt; seq&lt;&#39;?5365&gt;<br />
-                          <strong>Type parameters:</strong> '?5363, '?5364, '?5365          </div>
+          <div class="tip" id="256">
+            <strong>Signature:</strong>f:(&#39;?32702 -&gt; &#39;?32703 -&gt; &#39;?32704) -&gt; l1:seq&lt;&#39;?32702&gt; -&gt; l2:seq&lt;&#39;?32703&gt; -&gt; seq&lt;&#39;?32704&gt;<br />
+                          <strong>Type parameters:</strong> '?32702, '?32703, '?32704          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L27-27" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
+          <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
             ofStreamByByte stream
           </code>
-          <div class="tip" id="244">
+          <div class="tip" id="257">
             <strong>Signature:</strong>stream:Stream -&gt; seq&lt;int&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
         <p>Converts a Stream into a sequence of bytes</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L65-65" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
+          <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
             ofStreamByChunk chunkSize stream
           </code>
-          <div class="tip" id="245">
+          <div class="tip" id="258">
             <strong>Signature:</strong>chunkSize:int -&gt; stream:Stream -&gt; seq&lt;byte []&gt;<br />
                       </div>
         </td>
@@ -226,185 +237,198 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
         <p>Converts a stream into a seq of byte[] where the array is of the length given
 Note: the last chunk maybe less than the given chunk size</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L73-73" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
+          <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
             ofStreamReader streamReader
           </code>
-          <div class="tip" id="246">
+          <div class="tip" id="259">
             <strong>Signature:</strong>streamReader:StreamReader -&gt; seq&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
         <p>Converts a streamReader into a seq yielding on each line</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L57-57" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
+          <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
             page page pageSize source
           </code>
-          <div class="tip" id="247">
-            <strong>Signature:</strong>page:int -&gt; pageSize:int -&gt; source:seq&lt;&#39;?5402&gt; -&gt; seq&lt;&#39;?5402&gt;<br />
-                          <strong>Type parameters:</strong> '?5402          </div>
+          <div class="tip" id="260">
+            <strong>Signature:</strong>page:int -&gt; pageSize:int -&gt; source:seq&lt;&#39;?32741&gt; -&gt; seq&lt;&#39;?32741&gt;<br />
+                          <strong>Type parameters:</strong> '?32741          </div>
         </td>
         <td class="xmldoc">
         <p>Pages the underlying sequence</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L187-187" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
+          <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
             prependToAll sep list
           </code>
-          <div class="tip" id="248">
-            <strong>Signature:</strong>sep:&#39;?5404 -&gt; list:seq&lt;&#39;?5404&gt; -&gt; seq&lt;&#39;?5404&gt;<br />
-                          <strong>Type parameters:</strong> '?5404          </div>
+          <div class="tip" id="261">
+            <strong>Signature:</strong>sep:&#39;?32743 -&gt; list:seq&lt;&#39;?32743&gt; -&gt; seq&lt;&#39;?32743&gt;<br />
+                          <strong>Type parameters:</strong> '?32743          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L190-190" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
+          <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
             repeat a
           </code>
-          <div class="tip" id="249">
-            <strong>Signature:</strong>a:&#39;?5392 -&gt; seq&lt;&#39;?5392&gt;<br />
-                          <strong>Type parameters:</strong> '?5392          </div>
+          <div class="tip" id="262">
+            <strong>Signature:</strong>a:&#39;?32731 -&gt; seq&lt;&#39;?32731&gt;<br />
+                          <strong>Type parameters:</strong> '?32731          </div>
         </td>
         <td class="xmldoc">
         <p>Creates an infinite sequence of the given value</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L156-156" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
+          <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
             skipNoFail count source
           </code>
-          <div class="tip" id="250">
-            <strong>Signature:</strong>count:int -&gt; source:seq&lt;&#39;?5390&gt; -&gt; IEnumerable&lt;&#39;?5390&gt;<br />
-                          <strong>Type parameters:</strong> '?5390          </div>
+          <div class="tip" id="263">
+            <strong>Signature:</strong>count:int -&gt; source:seq&lt;&#39;?32729&gt; -&gt; IEnumerable&lt;&#39;?32729&gt;<br />
+                          <strong>Type parameters:</strong> '?32729          </div>
         </td>
         <td class="xmldoc">
         <p>The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
 Alias for Enumerable.Skip</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L152-152" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
+          <code onmouseout="hideTip(event, '264', 264)" onmouseover="showTip(event, '264', 264)">
             splitAt n seq
           </code>
-          <div class="tip" id="251">
-            <strong>Signature:</strong>n:int -&gt; seq:seq&lt;&#39;?5371&gt; -&gt; seq&lt;&#39;?5371&gt; * seq&lt;&#39;?5371&gt;<br />
-                          <strong>Type parameters:</strong> '?5371          </div>
+          <div class="tip" id="264">
+            <strong>Signature:</strong>n:int -&gt; seq:seq&lt;&#39;?32710&gt; -&gt; seq&lt;&#39;?32710&gt; * seq&lt;&#39;?32710&gt;<br />
+                          <strong>Type parameters:</strong> '?32710          </div>
         </td>
         <td class="xmldoc">
         <p>Splits a sequences at the given index</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L54-54" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '252', 252)" onmouseover="showTip(event, '252', 252)">
+          <code onmouseout="hideTip(event, '265', 265)" onmouseover="showTip(event, '265', 265)">
             tail source
           </code>
-          <div class="tip" id="252">
-            <strong>Signature:</strong>source:seq&lt;&#39;?5384&gt; -&gt; seq&lt;&#39;?5384&gt;<br />
-                          <strong>Type parameters:</strong> '?5384          </div>
+          <div class="tip" id="265">
+            <strong>Signature:</strong>source:seq&lt;&#39;?32723&gt; -&gt; seq&lt;&#39;?32723&gt;<br />
+                          <strong>Type parameters:</strong> '?32723          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L119-119" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '253', 253)" onmouseover="showTip(event, '253', 253)">
+          <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
             tailNoFail source
           </code>
-          <div class="tip" id="253">
-            <strong>Signature:</strong>source:seq&lt;&#39;?5386&gt; -&gt; seq&lt;&#39;?5386&gt;<br />
-                          <strong>Type parameters:</strong> '?5386          </div>
+          <div class="tip" id="266">
+            <strong>Signature:</strong>source:seq&lt;&#39;?32725&gt; -&gt; seq&lt;&#39;?32725&gt;<br />
+                          <strong>Type parameters:</strong> '?32725          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L129-129" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '254', 254)" onmouseover="showTip(event, '254', 254)">
+          <code onmouseout="hideTip(event, '267', 267)" onmouseover="showTip(event, '267', 267)">
             tryAverage seq
           </code>
-          <div class="tip" id="254">
+          <div class="tip" id="267">
             <strong>Signature:</strong>seq:seq&lt;^a&gt; -&gt; ^a option<br />
                           <strong>Type parameters:</strong> ^a          </div>
         </td>
         <td class="xmldoc">
         <p>The same as Seq.average except will return None if the seq is empty</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L41-41" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '255', 255)" onmouseover="showTip(event, '255', 255)">
+          <code onmouseout="hideTip(event, '268', 268)" onmouseover="showTip(event, '268', 268)">
             tryFindWithIndex pred l
           </code>
-          <div class="tip" id="255">
-            <strong>Signature:</strong>pred:(&#39;?5361 -&gt; bool) -&gt; l:seq&lt;&#39;?5361&gt; -&gt; (int * &#39;?5361) option<br />
-                          <strong>Type parameters:</strong> '?5361          </div>
+          <div class="tip" id="268">
+            <strong>Signature:</strong>pred:(&#39;?32700 -&gt; bool) -&gt; l:seq&lt;&#39;?32700&gt; -&gt; (int * &#39;?32700) option<br />
+                          <strong>Type parameters:</strong> '?32700          </div>
         </td>
         <td class="xmldoc">
         <p>Returns the first element (with its index) for which the given function returns true.
 Return None if no such element exists.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L24-24" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
+          <code onmouseout="hideTip(event, '269', 269)" onmouseover="showTip(event, '269', 269)">
             tryHead source
           </code>
-          <div class="tip" id="256">
-            <strong>Signature:</strong>source:seq&lt;&#39;?5382&gt; -&gt; &#39;?5382 option<br />
-                          <strong>Type parameters:</strong> '?5382          </div>
+          <div class="tip" id="269">
+            <strong>Signature:</strong>source:seq&lt;&#39;?32721&gt; -&gt; &#39;?32721 option<br />
+                          <strong>Type parameters:</strong> '?32721          </div>
         </td>
         <td class="xmldoc">
         <p>A safe version of seq head</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L113-113" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
+          <code onmouseout="hideTip(event, '270', 270)" onmouseover="showTip(event, '270', 270)">
             tryNth index source
           </code>
-          <div class="tip" id="257">
-            <strong>Signature:</strong>index:int -&gt; source:seq&lt;&#39;?5388&gt; -&gt; &#39;?5388 option<br />
-                          <strong>Type parameters:</strong> '?5388          </div>
+          <div class="tip" id="270">
+            <strong>Signature:</strong>index:int -&gt; source:seq&lt;&#39;?32727&gt; -&gt; &#39;?32727 option<br />
+                          <strong>Type parameters:</strong> '?32727          </div>
         </td>
         <td class="xmldoc">
         <p>The same as Seq.nth except returns None if the sequence is empty or does not have enough elements</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L140-140" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
     </tbody>
@@ -417,9 +441,9 @@ Return None if no such element exists.</p>
             <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
               
             <li class="nav-header">Using from F#</li>
             <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
@@ -437,6 +461,6 @@ Return None if no such element exists.</p>
         </div>
       </div>
     </div>
-    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   </body>
   </html>

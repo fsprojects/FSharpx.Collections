@@ -24,7 +24,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
       </div>
@@ -50,376 +50,401 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
             conj arg1 arg2
           </code>
-          <div class="tip" id="10">
+          <div class="tip" id="2">
             <strong>Signature:</strong>&#39;T -&gt; Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns a new deque with the element added to the end.</p>
 
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
-            cons arg1 arg2
-          </code>
-          <div class="tip" id="12">
-            <strong>Signature:</strong>&#39;T -&gt; Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns a new deque with the element added to the beginning.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
-            empty 
-          </code>
-          <div class="tip" id="13">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns deque of no elements.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
-            fold arg1 arg2 arg3
-          </code>
-          <div class="tip" id="14">
-            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; Deque&lt;&#39;T&gt; -&gt; &#39;State<br />
-                          <strong>Type parameters:</strong> 'State, 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, left to right</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
-            foldBack arg1 arg2 arg3
-          </code>
-          <div class="tip" id="15">
-            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; Deque&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
-                          <strong>Type parameters:</strong> 'T, 'State          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, right to left</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
-            head arg1
-          </code>
-          <div class="tip" id="16">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns the first element.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
-            initial arg1
-          </code>
-          <div class="tip" id="17">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
-            isEmpty arg1
-          </code>
-          <div class="tip" id="18">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns true if the deque has no elements.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
-            last arg1
-          </code>
-          <div class="tip" id="19">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns the last element.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
-            length arg1
-          </code>
-          <div class="tip" id="20">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; int<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns the count of elememts.</p>
-
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L166-166" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
-            ofCatLists arg1 arg2
+            cons arg1 arg2
           </code>
           <div class="tip" id="21">
-            <strong>Signature:</strong>&#39;T list -&gt; &#39;T list -&gt; Deque&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong>&#39;T -&gt; Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(n), worst case. Returns a deque of the two lists concatenated.</p>
+        <p>O(1). Returns a new deque with the element added to the beginning.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L168-168" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
-            ofList arg1
+            empty 
           </code>
           <div class="tip" id="22">
-            <strong>Signature:</strong>&#39;T list -&gt; Deque&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(n), worst case. Returns a deque of the list.</p>
+        <p>O(1). Returns deque of no elements.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L170-170" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
-            ofSeq arg1
+            fold arg1 arg2 arg3
           </code>
           <div class="tip" id="23">
-            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; Deque&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(n), worst case. Returns a deque of the seq.</p>
+        <p>O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, left to right</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L172-172" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
-            rev arg1
+            foldBack arg1 arg2 arg3
           </code>
           <div class="tip" id="24">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; Deque&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Returns deque reversed.</p>
+        <p>O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, right to left</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L176-176" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
-            singleton arg1
+            head arg1
           </code>
           <div class="tip" id="25">
-            <strong>Signature:</strong>&#39;T -&gt; Deque&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Returns a deque of one element.</p>
+        <p>O(1) amortized, O(n), worst case. Returns the first element.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L180-180" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
-            tail arg1
+            initial arg1
           </code>
           <div class="tip" id="26">
             <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.</p>
+        <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L184-184" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
-            toSeq arg1
+            isEmpty arg1
           </code>
           <div class="tip" id="27">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; bool<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(n). Views the given deque as a sequence.</p>
+        <p>O(1). Returns true if the deque has no elements.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L188-188" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
-            tryHead arg1
+            last arg1
           </code>
           <div class="tip" id="28">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option first element.</p>
+        <p>O(1) amortized, O(n), worst case. Returns the last element.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L190-190" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
-            tryInitial arg1
+            length arg1
           </code>
           <div class="tip" id="29">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; option<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; int<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.</p>
+        <p>O(1). Returns the count of elememts.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L194-194" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
-            tryLast arg1
+            ofCatLists arg1 arg2
           </code>
           <div class="tip" id="30">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+            <strong>Signature:</strong>&#39;T list -&gt; &#39;T list -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option last element.</p>
+        <p>O(n), worst case. Returns a deque of the two lists concatenated.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L196-196" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
-            tryTail arg1
+            ofList arg1
           </code>
           <div class="tip" id="31">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; option<br />
+            <strong>Signature:</strong>&#39;T list -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.</p>
+        <p>O(n), worst case. Returns a deque of the list.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L198-198" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
-            tryUnconj arg1
+            ofSeq arg1
           </code>
           <div class="tip" id="32">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; (Deque&lt;&#39;T&gt; * &#39;T) option<br />
+            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option init and the last element.</p>
+        <p>O(n), worst case. Returns a deque of the seq.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L200-200" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
-            tryUncons arg1
+            rev arg1
           </code>
           <div class="tip" id="33">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; (&#39;T * Deque&lt;&#39;T&gt;) option<br />
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns option first element and tail.</p>
+        <p>O(1). Returns deque reversed.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L202-202" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
-            unconj arg1
+            singleton arg1
           </code>
           <div class="tip" id="34">
-            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; * &#39;T<br />
+            <strong>Signature:</strong>&#39;T -&gt; Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(1) amortized, O(n), worst case. Returns init and the last element.</p>
+        <p>O(1). Returns a deque of one element.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L204-204" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
-            uncons arg1
+            tail arg1
           </code>
           <div class="tip" id="35">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L206-206" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+            toSeq arg1
+          </code>
+          <div class="tip" id="36">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Views the given deque as a sequence.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L216-216" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
+            tryHead arg1
+          </code>
+          <div class="tip" id="37">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option first element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L182-182" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+            tryInitial arg1
+          </code>
+          <div class="tip" id="38">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L186-186" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+            tryLast arg1
+          </code>
+          <div class="tip" id="39">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option last element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L192-192" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+            tryTail arg1
+          </code>
+          <div class="tip" id="40">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L208-208" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            tryUnconj arg1
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; (Deque&lt;&#39;T&gt; * &#39;T) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option init and the last element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L218-218" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+            tryUncons arg1
+          </code>
+          <div class="tip" id="42">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; (&#39;T * Deque&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns option first element and tail.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L212-212" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            unconj arg1
+          </code>
+          <div class="tip" id="43">
+            <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Deque&lt;&#39;T&gt; * &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1) amortized, O(n), worst case. Returns init and the last element.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L214-214" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+            uncons arg1
+          </code>
+          <div class="tip" id="44">
             <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; &#39;T * Deque&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1) amortized, O(n), worst case. Returns the first element and tail.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L210-210" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
     </tbody>
@@ -433,29 +458,31 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
+          <code onmouseout="hideTip(event, '84', 84)" onmouseover="showTip(event, '84', 84)">
             ( |Conj|Nil| ) arg1
           </code>
-          <div class="tip" id="82">
+          <div class="tip" id="84">
             <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Choice&lt;(Deque&lt;&#39;T&gt; * &#39;T),unit&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L164-164" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
+          <code onmouseout="hideTip(event, '85', 85)" onmouseover="showTip(event, '85', 85)">
             ( |Cons|Nil| ) arg1
           </code>
-          <div class="tip" id="83">
+          <div class="tip" id="85">
             <strong>Signature:</strong>Deque&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * Deque&lt;&#39;T&gt;),unit&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fs#L162-162" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
     </tbody>
@@ -468,9 +495,9 @@
             <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
               
             <li class="nav-header">Using from F#</li>
             <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
@@ -488,6 +515,6 @@
         </div>
       </div>
     </div>
-    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   </body>
   </html>

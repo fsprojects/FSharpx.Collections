@@ -24,7 +24,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
       </div>
@@ -50,241 +50,257 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+          <code onmouseout="hideTip(event, '271', 271)" onmouseover="showTip(event, '271', 271)">
             conj arg1 arg2
           </code>
-          <div class="tip" id="218">
+          <div class="tip" id="271">
             <strong>Signature:</strong>&#39;T -&gt; Queue&lt;&#39;T&gt; -&gt; Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns a new queue with the element added to the end. (enqueue)</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L100-100" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+          <code onmouseout="hideTip(event, '273', 273)" onmouseover="showTip(event, '273', 273)">
             empty 
           </code>
-          <div class="tip" id="219">
+          <div class="tip" id="273">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns queue of no elements.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L102-102" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+          <code onmouseout="hideTip(event, '274', 274)" onmouseover="showTip(event, '274', 274)">
             fold arg1 arg2 arg3
           </code>
-          <div class="tip" id="220">
+          <div class="tip" id="274">
             <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; Queue&lt;&#39;T&gt; -&gt; &#39;State<br />
                           <strong>Type parameters:</strong> 'State, 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, left to right.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L104-104" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+          <code onmouseout="hideTip(event, '275', 275)" onmouseover="showTip(event, '275', 275)">
             foldBack arg1 arg2 arg3
           </code>
-          <div class="tip" id="221">
+          <div class="tip" id="275">
             <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; Queue&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
                           <strong>Type parameters:</strong> 'T, 'State          </div>
         </td>
         <td class="xmldoc">
         <p>O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, right to left.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L108-108" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+          <code onmouseout="hideTip(event, '276', 276)" onmouseover="showTip(event, '276', 276)">
             head arg1
           </code>
-          <div class="tip" id="222">
+          <div class="tip" id="276">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; &#39;T<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns the first element. (peek)</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L112-112" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
+          <code onmouseout="hideTip(event, '277', 277)" onmouseover="showTip(event, '277', 277)">
             isEmpty arg1
           </code>
-          <div class="tip" id="223">
+          <div class="tip" id="277">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; bool<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns true if the queue has no elements.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L116-116" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
+          <code onmouseout="hideTip(event, '278', 278)" onmouseover="showTip(event, '278', 278)">
             length arg1
           </code>
-          <div class="tip" id="224">
+          <div class="tip" id="278">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; int<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns the count of elememts.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L118-118" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
+          <code onmouseout="hideTip(event, '279', 279)" onmouseover="showTip(event, '279', 279)">
             ofList arg1
           </code>
-          <div class="tip" id="225">
+          <div class="tip" id="279">
             <strong>Signature:</strong>&#39;T list -&gt; Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns a queue of the list</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L120-120" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
+          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
             ofSeq arg1
           </code>
-          <div class="tip" id="226">
+          <div class="tip" id="280">
             <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(n). Returns a queue of the seq.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L122-122" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
+          <code onmouseout="hideTip(event, '281', 281)" onmouseover="showTip(event, '281', 281)">
             rev arg1
           </code>
-          <div class="tip" id="227">
+          <div class="tip" id="281">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(n). Returns queue reversed.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L124-124" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
+          <code onmouseout="hideTip(event, '282', 282)" onmouseover="showTip(event, '282', 282)">
             tail arg1
           </code>
-          <div class="tip" id="228">
+          <div class="tip" id="282">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1) amortized, O(n) worst-case. Returns a new queue of the elements trailing the first element. (dequeue)</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L126-126" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
+          <code onmouseout="hideTip(event, '283', 283)" onmouseover="showTip(event, '283', 283)">
             toSeq arg1
           </code>
-          <div class="tip" id="229">
+          <div class="tip" id="283">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(n). Views the given queue as a sequence.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L130-130" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
+          <code onmouseout="hideTip(event, '284', 284)" onmouseover="showTip(event, '284', 284)">
             tryHead arg1
           </code>
-          <div class="tip" id="230">
+          <div class="tip" id="284">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; &#39;T option<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1). Returns option first element.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L114-114" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+          <code onmouseout="hideTip(event, '285', 285)" onmouseover="showTip(event, '285', 285)">
             tryTail arg1
           </code>
-          <div class="tip" id="231">
+          <div class="tip" id="285">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; Queue&lt;&#39;T&gt; option<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1) amortized, O(n) worst-case. Returns option queue of the elements trailing the first element</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L128-128" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
+          <code onmouseout="hideTip(event, '286', 286)" onmouseover="showTip(event, '286', 286)">
             tryUncons arg1
           </code>
-          <div class="tip" id="232">
+          <div class="tip" id="286">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; (&#39;T * Queue&lt;&#39;T&gt;) option<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1) amortized, O(n) worst-case. Returns option first element and tail.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L134-134" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
+          <code onmouseout="hideTip(event, '287', 287)" onmouseover="showTip(event, '287', 287)">
             uncons arg1
           </code>
-          <div class="tip" id="233">
+          <div class="tip" id="287">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; &#39;T * Queue&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         <p>O(1) amortized, O(n) worst-case. Returns the first element and tail.</p>
 
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L132-132" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
     </tbody>
@@ -298,15 +314,16 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '341', 341)" onmouseover="showTip(event, '341', 341)">
+          <code onmouseout="hideTip(event, '346', 346)" onmouseover="showTip(event, '346', 346)">
             ( |Cons|Nil| ) arg1
           </code>
-          <div class="tip" id="341">
+          <div class="tip" id="346">
             <strong>Signature:</strong>Queue&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * Queue&lt;&#39;T&gt;),unit&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
         
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fs#L98-98" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
     </tbody>
@@ -319,9 +336,9 @@
             <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
             <li class="divider"></li>
             <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
               
             <li class="nav-header">Using from F#</li>
             <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
@@ -339,6 +356,6 @@
         </div>
       </div>
     </div>
-    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   </body>
   </html>
