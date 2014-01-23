@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------
 // Builds the documentation from `.fsx` and `.md` files in the 'docs/content' directory
 // (the generated documentation is stored in the 'docs/output' directory)
 // --------------------------------------------------------------------------------------
@@ -8,20 +8,23 @@ let referenceBinaries = [ "FSharpx.Collections.dll" ]
 // Web site location for the generated documentation
 let website = "/FSharpx.Collections"
 
+let githubLink = "http://github.com/fsprojects/FSharpx.Collections"
+
 // Specify more information about your project
 let info =
   [ "project-name", "fsprojects/FSharpx.Collections"
     "project-author", "Steffen Forkmann"
     "project-summary", "FSharpx.Collections is a collection of datastructures for use with F# and C#."
-    "project-github", "https://github.com/fsprojects/FSharpx.Collections"
+    "project-github", githubLink
     "project-nuget", "https://www.nuget.org/packages/FSharpx.Collections" ]
 
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below
 // --------------------------------------------------------------------------------------
 
-#I "../../packages/FSharp.Formatting.2.2.11-beta/lib/net40"
-#I "../../packages/RazorEngine.3.3.0/lib/net40/"
+#I "../../packages/FSharp.Formatting.2.3.5-beta/lib/net40"
+#I "../../packages/RazorEngine.3.3.0/lib/net40"
+#I "../../packages/FSharp.Compiler.Service.0.0.11-alpha/lib/net40"
 #r "../../packages/Microsoft.AspNet.Razor.2.0.30506.0/lib/net40/System.Web.Razor.dll"
 #r "../../packages/FAKE/tools/FakeLib.dll"
 #r "RazorEngine.dll"
@@ -48,7 +51,7 @@ let content    = __SOURCE_DIRECTORY__ @@ "../content"
 let output     = __SOURCE_DIRECTORY__ @@ "../output"
 let files      = __SOURCE_DIRECTORY__ @@ "../files"
 let templates  = __SOURCE_DIRECTORY__ @@ "templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.2.11-beta/"
+let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.3.5-beta/"
 let docTemplate = formatting @@ "templates/docpage.cshtml"
 
 // Where to look for *.csproj templates (in this order)
@@ -69,7 +72,10 @@ let buildReference () =
   for lib in referenceBinaries do
     MetadataFormat.Generate
       ( bin @@ lib, output @@ "reference", layoutRoots, 
-        parameters = ("root", root)::info )
+        parameters = ("root", root)::info,
+        sourceRepo = githubLink @@ "tree/master",
+        sourceFolder = __SOURCE_DIRECTORY__ @@ ".." @@ "..",
+        publicOnly = true )
 
 // Build documentation from `fsx` and `md` files in `docs/content`
 let buildDocumentation () =
