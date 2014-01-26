@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PersistentVector<'T> - fsprojects/FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>PersistentVector<'T></h1>
+<div class="xmldoc">
+<p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
+(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
+(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
+Ordering is by insertion history. The original idea can be found in <a href="http://clojure.org/data_structures">Clojure</a>.</p>
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '514', 514)" onmouseover="showTip(event, '514', 514)">
+            Conj(arg1)
+          </code>
+          <div class="tip" id="514">
+            <strong>Signature:</strong>&#39;T -&gt; PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns a new vector with the element added at the end.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L252-252" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '515', 515)" onmouseover="showTip(event, '515', 515)">
+            Initial(arg1)
+          </code>
+          <div class="tip" id="515">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L271-271" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '516', 516)" onmouseover="showTip(event, '516', 516)">
+            IsEmpty(arg1)
+          </code>
+          <div class="tip" id="516">
+            <strong>Signature:</strong>unit -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns true if the vector has no elements.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '517', 517)" onmouseover="showTip(event, '517', 517)">
+            [arg1]
+          </code>
+          <div class="tip" id="517">
+            <strong>Signature:</strong>int -&gt; &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n). Returns vector element at the index.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L298-298" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '518', 518)" onmouseover="showTip(event, '518', 518)">
+            Last(arg1)
+          </code>
+          <div class="tip" id="518">
+            <strong>Signature:</strong>unit -&gt; &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L302-302" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '519', 519)" onmouseover="showTip(event, '519', 519)">
+            Length(arg1)
+          </code>
+          <div class="tip" id="519">
+            <strong>Signature:</strong>unit -&gt; int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns the number of items in the vector.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '520', 520)" onmouseover="showTip(event, '520', 520)">
+            Rev(arg1)
+          </code>
+          <div class="tip" id="520">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns random access list reversed.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L308-308" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '521', 521)" onmouseover="showTip(event, '521', 521)">
+            TryInitial(arg1)
+          </code>
+          <div class="tip" id="521">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(n). Returns option vector without the last item.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L293-293" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '522', 522)" onmouseover="showTip(event, '522', 522)">
+            TryLast(arg1)
+          </code>
+          <div class="tip" id="522">
+            <strong>Signature:</strong>unit -&gt; &#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns option last element in the vector.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '523', 523)" onmouseover="showTip(event, '523', 523)">
+            TryUnconj(arg1)
+          </code>
+          <div class="tip" id="523">
+            <strong>Signature:</strong>unit -&gt; (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns option tuple last element and vector without last item</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '524', 524)" onmouseover="showTip(event, '524', 524)">
+            TryUpdate(arg1, arg2)
+          </code>
+          <div class="tip" id="524">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n). Returns option vector that contains the given value at the index.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L345-345" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '525', 525)" onmouseover="showTip(event, '525', 525)">
+            Unconj(arg1)
+          </code>
+          <div class="tip" id="525">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt; * &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns tuple last element and vector without last item</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L330-330" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '526', 526)" onmouseover="showTip(event, '526', 526)">
+            Update(arg1, arg2)
+          </code>
+          <div class="tip" id="526">
+            <strong>Signature:</strong>(int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(log32n). Returns a new vector that contains the given value at the index.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L334-334" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '545', 545)" onmouseover="showTip(event, '545', 545)">
+            Empty(arg1)
+          </code>
+          <div class="tip" id="545">
+            <strong>Signature:</strong>unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+        <p>O(1). Returns a new PersistentVector with no elements.</p>
+
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L146-146" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">fsprojects/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
