@@ -237,6 +237,15 @@ let ``uncons 1 element``(x : obj) =
     fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : Heap<int>), (l : int list)) ->    
                                                                             let x, tl = h.Uncons()
                                                                             ((x = l.Head) && (tl.Length = (l.Length - 1))) ))
+[<Test>]
+let ``Tail of large heap does no result in stackoverflow`` () =
+    let rnd = new System.Random()
+    let h = 
+        [1..1000000] 
+        |> Seq.sortBy (fun x -> rnd.Next())
+        |> Heap.ofSeq false
+    
+    Heap.tail h |> ignore
 
 type HeapGen =
     static member Heap() =
