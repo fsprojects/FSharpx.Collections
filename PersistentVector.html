@@ -64,10 +64,10 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">Collections</span><span class="o">.</span><span class="i">PersistentVector</span>
+<span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Collections</span><span class="o">.</span><span class="i">PersistentVector</span>
 
 <span class="c">// Create a new PersistentVector and add some items to it</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">v</span> <span class="o">=</span> 
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">v</span> <span class="o">=</span> 
     <span class="i">empty</span> 
     <span class="o">|&gt;</span> <span class="i">conj</span> <span class="s">&quot;</span><span class="s">hello</span><span class="s">&quot;</span>
     <span class="o">|&gt;</span> <span class="i">conj</span> <span class="s">&quot;</span><span class="s">world</span><span class="s">&quot;</span>
@@ -76,15 +76,15 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 <span class="fsi">val v : FSharpx.Collections.PersistentVector&lt;string&gt;</span>
 
 <span class="c">// lookup some items</span>
-<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">v</span>
+<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">v</span>
 <span class="fsi">val it : string = &quot;hello&quot;</span>
-<span class="i">nth</span> <span class="n">1</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">v</span>
+<span class="i">nth</span> <span class="n">1</span> <span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">v</span>
 <span class="fsi">val it : string = &quot;world&quot;</span>
-<span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="i">v</span><span class="o">.</span>[<span class="n">2</span>]
+<span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="i">v</span><span class="o">.</span>[<span class="n">2</span>]
 <span class="fsi">val it : string = &quot;!&quot;</span>
 
 <span class="c">// Check no. of elements in the PersistentVector</span>
-<span class="i">length</span> <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="i">v</span>
+<span class="i">length</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">v</span>
 <span class="fsi">val it : int = 3</span></pre>
 </td>
 </tr>
@@ -118,27 +118,27 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">v&#39;</span> <span class="o">=</span> 
-    <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="i">v</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">v&#39;</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="i">v</span>
     <span class="o">|&gt;</span> <span class="i">conj</span> <span class="s">&quot;</span><span class="s">!</span><span class="s">!</span><span class="s">!</span><span class="s">&quot;</span> 
     <span class="o">|&gt;</span> <span class="i">update</span> <span class="n">0</span> <span class="s">&quot;</span><span class="s">hi</span><span class="s">&quot;</span> <span class="c">// replace existing value</span>
 
-<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="i">v&#39;</span>
+<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="i">v&#39;</span>
 <span class="fsi">val it : string = &quot;hi&quot;</span>
-<span class="i">nth</span> <span class="n">3</span> <span onmouseout="hideTip(event, 'fs3', 10)" onmouseover="showTip(event, 'fs3', 10)" class="i">v&#39;</span>
+<span class="i">nth</span> <span class="n">3</span> <span onmouseout="hideTip(event, 'fs4', 11)" onmouseover="showTip(event, 'fs4', 11)" class="i">v&#39;</span>
 <span class="fsi">val it : string = &quot;!!!&quot;</span>
 
-<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs2', 11)" onmouseover="showTip(event, 'fs2', 11)" class="i">v</span>
+<span class="i">nth</span> <span class="n">0</span> <span onmouseout="hideTip(event, 'fs3', 12)" onmouseover="showTip(event, 'fs3', 12)" class="i">v</span>
 <span class="fsi">val it : string = &quot;hello&quot;</span>
-<span class="i">length</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="i">v</span>
+<span class="i">length</span> <span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="i">v</span>
 <span class="fsi">val it : int = 3</span>
-<span class="i">length</span> <span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="i">v&#39;</span>
+<span class="i">length</span> <span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="i">v&#39;</span>
 <span class="fsi">val it : int = 4</span>
 
 <span class="c">// remove the last element from a PersistentVector</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="i">v&#39;&#39;</span> <span class="o">=</span> <span class="i">initial</span> <span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="i">v&#39;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 15)" onmouseover="showTip(event, 'fs5', 15)" class="i">v&#39;&#39;</span> <span class="o">=</span> <span class="i">initial</span> <span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="i">v&#39;</span>
 
-<span class="i">length</span> <span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="i">v&#39;&#39;</span>
+<span class="i">length</span> <span onmouseout="hideTip(event, 'fs5', 17)" onmouseover="showTip(event, 'fs5', 17)" class="i">v&#39;&#39;</span>
 <span class="fsi">val it : int = 3</span></pre>
 </td>
 </tr>
@@ -159,23 +159,24 @@ More details can be found in the <a href="apidocs/fsharpx-collections-persistent
 </td>
 <td class="snippet"><pre class="fssnip">
 <span class="c">// Convert a sequence of values to a PersistentVectors</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 17)" onmouseover="showTip(event, 'fs5', 17)" class="i">intVector</span> <span class="o">=</span> <span class="i">ofSeq</span> [<span class="n">1..</span><span class="n">10</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="i">intVector</span> <span class="o">=</span> <span class="i">ofSeq</span> [<span class="n">1..</span><span class="n">10</span>]
 <span class="fsi">val intVector : FSharpx.Collections.PersistentVector&lt;int&gt;</span>
 
 <span class="c">// Square all values in a PersistentVector</span>
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 18)" onmouseover="showTip(event, 'fs6', 18)" class="i">intVector&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span onmouseout="hideTip(event, 'fs5', 19)" onmouseover="showTip(event, 'fs5', 19)" class="i">intVector</span>
-<span onmouseout="hideTip(event, 'fs6', 20)" onmouseover="showTip(event, 'fs6', 20)" class="i">intVector&#39;</span><span class="o">.</span>[<span class="n">3</span>]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 19)" onmouseover="showTip(event, 'fs7', 19)" class="i">intVector&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span onmouseout="hideTip(event, 'fs6', 20)" onmouseover="showTip(event, 'fs6', 20)" class="i">intVector</span>
+<span onmouseout="hideTip(event, 'fs7', 21)" onmouseover="showTip(event, 'fs7', 21)" class="i">intVector&#39;</span><span class="o">.</span>[<span class="n">3</span>]
 <span class="fsi">val it : int = 256</span></pre>
 </td>
 </tr>
 </table>
 
-<div class="tip" id="fs1">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
-<div class="tip" id="fs2">val v : obj<br /><br />Full name: PersistentVector.v</div>
-<div class="tip" id="fs3">val v&#39; : obj<br /><br />Full name: PersistentVector.v&#39;</div>
-<div class="tip" id="fs4">val v&#39;&#39; : obj<br /><br />Full name: PersistentVector.v&#39;&#39;</div>
-<div class="tip" id="fs5">val intVector : obj<br /><br />Full name: PersistentVector.intVector</div>
-<div class="tip" id="fs6">val intVector&#39; : obj<br /><br />Full name: PersistentVector.intVector&#39;</div>
+<div class="tip" id="fs1">namespace System</div>
+<div class="tip" id="fs2">Multiple items<br />namespace System.Collections<br /><br />--------------------<br />namespace Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs3">val v : obj<br /><br />Full name: PersistentVector.v</div>
+<div class="tip" id="fs4">val v&#39; : obj<br /><br />Full name: PersistentVector.v&#39;</div>
+<div class="tip" id="fs5">val v&#39;&#39; : obj<br /><br />Full name: PersistentVector.v&#39;&#39;</div>
+<div class="tip" id="fs6">val intVector : obj<br /><br />Full name: PersistentVector.intVector</div>
+<div class="tip" id="fs7">val intVector&#39; : obj<br /><br />Full name: PersistentVector.intVector&#39;</div>
 
         </div>
         <div class="span3">

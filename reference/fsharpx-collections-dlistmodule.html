@@ -50,289 +50,343 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '113', 113)" onmouseover="showTip(event, '113', 113)">
+          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
             append arg1 arg2
           </code>
-          <div class="tip" id="113">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns a new DList of two lists.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L165-165" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '114', 114)" onmouseover="showTip(event, '114', 114)">
-            conj arg1 arg2
-          </code>
-          <div class="tip" id="114">
-            <strong>Signature:</strong>&#39;T -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns a new DList with the element added to the end.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L190-190" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '115', 115)" onmouseover="showTip(event, '115', 115)">
-            cons arg1 arg2
-          </code>
-          <div class="tip" id="115">
-            <strong>Signature:</strong>&#39;T -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns a new DList with the element added to the beginning.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L167-167" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '116', 116)" onmouseover="showTip(event, '116', 116)">
-            empty 
-          </code>
-          <div class="tip" id="116">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns DList of no elements.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L172-172" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '117', 117)" onmouseover="showTip(event, '117', 117)">
-            fold arg1 arg2 arg3
-          </code>
-          <div class="tip" id="117">
-            <strong>Signature:</strong>(&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; DList&lt;&#39;T&gt; -&gt; &#39;State<br />
-                          <strong>Type parameters:</strong> 'State, 'T          </div>
-        </td>
-        <td class="xmldoc">
-        
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L177-177" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '118', 118)" onmouseover="showTip(event, '118', 118)">
-            foldBack arg1 arg2 arg3
-          </code>
-          <div class="tip" id="118">
-            <strong>Signature:</strong>(&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; DList&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
-                          <strong>Type parameters:</strong> 'T, 'State          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
- See http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L174-174" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '119', 119)" onmouseover="showTip(event, '119', 119)">
-            head arg1
-          </code>
-          <div class="tip" id="119">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; &#39;T<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(log n). Returns the first element.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L180-180" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '120', 120)" onmouseover="showTip(event, '120', 120)">
-            isEmpty arg1
-          </code>
-          <div class="tip" id="120">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns true if the DList has no elements.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L184-184" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '121', 121)" onmouseover="showTip(event, '121', 121)">
-            length arg1
-          </code>
-          <div class="tip" id="121">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; int<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns the count of elememts.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L186-186" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
-            ofSeq arg1
-          </code>
-          <div class="tip" id="122">
-            <strong>Signature:</strong>seq&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Returns a DList of the seq.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L200-200" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '123', 123)" onmouseover="showTip(event, '123', 123)">
-            singleton arg1
-          </code>
-          <div class="tip" id="123">
-            <strong>Signature:</strong>&#39;T -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Returns DList of one elements.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L188-188" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
-            tail arg1
-          </code>
-          <div class="tip" id="124">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L192-192" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '125', 125)" onmouseover="showTip(event, '125', 125)">
-            toList arg1
-          </code>
-          <div class="tip" id="125">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; &#39;T list<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Returns a list of the DList elements.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L202-202" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '126', 126)" onmouseover="showTip(event, '126', 126)">
-            toSeq arg1
-          </code>
-          <div class="tip" id="126">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(n). Returns a seq of the DList elements.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L204-204" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
-            tryHead arg1
-          </code>
-          <div class="tip" id="127">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; &#39;T option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(log n). Returns option first element.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L182-182" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
-            tryTail arg1
-          </code>
           <div class="tip" id="128">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt; option<br />
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(log n). Returns option DList of the elements trailing the first element.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L165-165" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList of two lists.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L194-194" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '129', 129)" onmouseover="showTip(event, '129', 129)">
-            tryUncons arg1
+            conj arg1 arg2
           </code>
           <div class="tip" id="129">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; (&#39;T * DList&lt;&#39;T&gt;) option<br />
+            <strong>Signature:</strong> &#39;T -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(log n). Returns option first element and tail.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L190-190" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList with the element added to the end.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L198-198" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '130', 130)" onmouseover="showTip(event, '130', 130)">
-            uncons arg1
+            cons arg1 arg2
           </code>
           <div class="tip" id="130">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; &#39;T * DList&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong> &#39;T -&gt; DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        <p>O(log n). Returns the first element and tail.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L167-167" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList with the element added to the beginning.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L196-196" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
+            empty 
+          </code>
+          <div class="tip" id="131">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L172-172" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns DList of no elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
+            fold arg1 arg2 arg3
+          </code>
+          <div class="tip" id="132">
+            <strong>Signature:</strong> (&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; DList&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L177-177" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
+            foldBack arg1 arg2 arg3
+          </code>
+          <div class="tip" id="133">
+            <strong>Signature:</strong> (&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; DList&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L174-174" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
+ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068</a></p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
+            head arg1
+          </code>
+          <div class="tip" id="134">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L180-180" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
+            isEmpty arg1
+          </code>
+          <div class="tip" id="135">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L184-184" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the DList has no elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '136', 136)" onmouseover="showTip(event, '136', 136)">
+            length arg1
+          </code>
+          <div class="tip" id="136">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L186-186" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns the count of elememts.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '137', 137)" onmouseover="showTip(event, '137', 137)">
+            ofSeq arg1
+          </code>
+          <div class="tip" id="137">
+            <strong>Signature:</strong> seq&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L200-200" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a DList of the seq.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '138', 138)" onmouseover="showTip(event, '138', 138)">
+            singleton arg1
+          </code>
+          <div class="tip" id="138">
+            <strong>Signature:</strong> &#39;T -&gt; DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L188-188" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns DList of one elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '139', 139)" onmouseover="showTip(event, '139', 139)">
+            tail arg1
+          </code>
+          <div class="tip" id="139">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L192-192" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '140', 140)" onmouseover="showTip(event, '140', 140)">
+            toList arg1
+          </code>
+          <div class="tip" id="140">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; &#39;T list<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L202-202" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a list of the DList elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '141', 141)" onmouseover="showTip(event, '141', 141)">
+            toSeq arg1
+          </code>
+          <div class="tip" id="141">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L204-204" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a seq of the DList elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '142', 142)" onmouseover="showTip(event, '142', 142)">
+            tryHead arg1
+          </code>
+          <div class="tip" id="142">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L182-182" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns option first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '143', 143)" onmouseover="showTip(event, '143', 143)">
+            tryTail arg1
+          </code>
+          <div class="tip" id="143">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; DList&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L194-194" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns option DList of the elements trailing the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '144', 144)" onmouseover="showTip(event, '144', 144)">
+            tryUncons arg1
+          </code>
+          <div class="tip" id="144">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; (&#39;T * DList&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L198-198" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns option first element and tail.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '145', 145)" onmouseover="showTip(event, '145', 145)">
+            uncons arg1
+          </code>
+          <div class="tip" id="145">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; &#39;T * DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L196-196" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns the first element and tail.</p>
+
         </td>
       </tr>
     </tbody>
@@ -346,16 +400,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
+          <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
             ( |Cons|Nil| ) arg1
           </code>
-          <div class="tip" id="215">
-            <strong>Signature:</strong>DList&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * DList&lt;&#39;T&gt;),unit&gt;<br />
+          <div class="tip" id="235">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * DList&lt;&#39;T&gt;),unit&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-        
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L163-163" class="github-link">Go to GitHub source</a>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fs#L163-163" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
         </td>
       </tr>
     </tbody>

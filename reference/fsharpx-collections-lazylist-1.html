@@ -61,134 +61,296 @@ These may force the computation of elements of the list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '496', 496)" onmouseover="showTip(event, '496', 496)">
-            Head(arg1)
+          <code onmouseout="hideTip(event, '491', 491)" onmouseover="showTip(event, '491', 491)">
+            Head
           </code>
-          <div class="tip" id="496">
-            <strong>Signature:</strong>unit -&gt; &#39;T<br />
+          <div class="tip" id="491">
+            <strong>Signature:</strong> &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Return the first element of the list.  Forces the evaluation of
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L46-46" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return the first element of the list.  Forces the evaluation of
  the first cell of the list if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L46-46" class="github-link">Go to GitHub source</a>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '497', 497)" onmouseover="showTip(event, '497', 497)">
-            IsEmpty(arg1)
-          </code>
-          <div class="tip" id="497">
-            <strong>Signature:</strong>unit -&gt; bool<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-        <p>O(1). Test if a list is empty.  Forces the evaluation of
- the first element of the stream if it is not already evaluated.</p>
-
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L41-41" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '498', 498)" onmouseover="showTip(event, '498', 498)">
-            Length(arg1)
+            Head
           </code>
           <div class="tip" id="498">
-            <strong>Signature:</strong>unit -&gt; int<br />
+            <strong>Signature:</strong> &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(n). Return the length of the list</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L46-46" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L56-56" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '499', 499)" onmouseover="showTip(event, '499', 499)">
-            Tail(arg1)
+            IsEmpty
           </code>
           <div class="tip" id="499">
-            <strong>Signature:</strong>unit -&gt; LazyList&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Return the list corresponding to the remaining items in the sequence.<br />
- Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Test if a list is empty.  Forces the evaluation of
+ the first element of the stream if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L64-64" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '500', 500)" onmouseover="showTip(event, '500', 500)">
-            TryHead(arg1)
+            IsEmpty
           </code>
           <div class="tip" id="500">
-            <strong>Signature:</strong>unit -&gt; &#39;T option<br />
+            <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Return option the first element of the list.  Forces the evaluation of
- the first cell of the list if it is not already evaluated.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Test if a list is empty.  Forces the evaluation of
+ the first element of the stream if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L51-51" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '501', 501)" onmouseover="showTip(event, '501', 501)">
-            TryTail(arg1)
+            Length()
           </code>
           <div class="tip" id="501">
-            <strong>Signature:</strong>unit -&gt; LazyList&lt;&#39;T&gt; option<br />
+            <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Return option the list corresponding to the remaining items in the sequence.<br />
- Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L56-56" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Return the length of the list</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L69-69" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
-            TryUncons(arg1)
+            Tail
           </code>
           <div class="tip" id="502">
-            <strong>Signature:</strong>unit -&gt; (&#39;T * LazyList&lt;&#39;T&gt;) option<br />
+            <strong>Signature:</strong> LazyList&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Returns option tuple of head element and tail of the list.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L64-64" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L79-79" class="github-link">Go to GitHub source</a>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
-            Uncons(arg1)
+            Tail
           </code>
           <div class="tip" id="503">
-            <strong>Signature:</strong>unit -&gt; &#39;T * LazyList&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong> LazyList&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-        <p>O(1). Returns tuple of head element and tail of the list.</p>
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L64-64" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
 
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L74-74" class="github-link">Go to GitHub source</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
+            TryHead
+          </code>
+          <div class="tip" id="504">
+            <strong>Signature:</strong> &#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L51-51" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return option the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
+            TryHead
+          </code>
+          <div class="tip" id="505">
+            <strong>Signature:</strong> &#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L51-51" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return option the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
+            TryTail
+          </code>
+          <div class="tip" id="506">
+            <strong>Signature:</strong> LazyList&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L69-69" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return option the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '507', 507)" onmouseover="showTip(event, '507', 507)">
+            TryTail
+          </code>
+          <div class="tip" id="507">
+            <strong>Signature:</strong> LazyList&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L69-69" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Return option the list corresponding to the remaining items in the sequence.<br />
+ Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '508', 508)" onmouseover="showTip(event, '508', 508)">
+            TryUncons
+          </code>
+          <div class="tip" id="508">
+            <strong>Signature:</strong> (&#39;T * LazyList&lt;&#39;T&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L79-79" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns option tuple of head element and tail of the list.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '509', 509)" onmouseover="showTip(event, '509', 509)">
+            TryUncons
+          </code>
+          <div class="tip" id="509">
+            <strong>Signature:</strong> (&#39;T * LazyList&lt;&#39;T&gt;) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L79-79" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns option tuple of head element and tail of the list.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
+            Uncons
+          </code>
+          <div class="tip" id="510">
+            <strong>Signature:</strong> &#39;T * LazyList&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L74-74" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns tuple of head element and tail of the list.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '511', 511)" onmouseover="showTip(event, '511', 511)">
+            Uncons
+          </code>
+          <div class="tip" id="511">
+            <strong>Signature:</strong> &#39;T * LazyList&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fs#L74-74" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns tuple of head element and tail of the list.</p>
+
         </td>
       </tr>
     </tbody>

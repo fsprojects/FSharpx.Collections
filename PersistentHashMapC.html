@@ -37,8 +37,8 @@
 
 <p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). Count is O(1).</p>
 
-<pre lang="csharp"><span class="c">// Create an empty PersistentHashMap and add some elements</span>
-PersistentHashMap&lt;<span class="k">int</span>,<span class="k">string</span>&gt; map =
+<table class="pre"><tr><td><pre lang="csharp"><span class="c">// Create an empty PersistentHashMap and add some elements</span>
+PersistentHashMap&lt;<span class="k">int</span>,<span class="k">string</span>&gt; map <span class="o">=</span>
     PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt;.Empty()
         .Add(42,<span class="s">"hello"</span>)
         .Add(99, <span class="s">"world"</span>);
@@ -48,11 +48,11 @@ Console.WriteLine(map[99]); <span class="c">// world</span>
 
 <span class="c">// Check no. of elements in the PersistentHashMap</span>
 Console.WriteLine(map.Length);  <span class="c">// 2</span>
-</pre>
+</pre></td></tr></table>
 
 <p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
 
-<pre lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map2 = 
+<table class="pre"><tr><td><pre lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map2 <span class="o">=</span> 
     map
      .Add(104, <span class="s">"!"</span>)
      .Add(42, <span class="s">"hi"</span>);  <span class="c">// replace existing value</span>
@@ -64,10 +64,10 @@ Console.WriteLine(map.Length);  <span class="c">// 2</span>
 Console.WriteLine(map2.Length); <span class="c">// 3</span>
 
 <span class="c">// remove the last element from a PersistentHashMap</span>
-PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map3 = map2.Remove(104);
+PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map3 <span class="o">=</span> map2.Remove(104);
 
 Console.WriteLine(map3.Length); <span class="c">// 2</span>
-</pre>
+</pre></td></tr></table>
 
 
         </div>
