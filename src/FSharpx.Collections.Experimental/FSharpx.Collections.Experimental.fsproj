@@ -12,6 +12,7 @@
     <Name>FSharpx.Collections.Experimental</Name>
     <TargetFSharpCoreVersion>2.3.0.0</TargetFSharpCoreVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -114,5 +115,5 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Import Project="..\..\.paket\paket.targets" />
+  <Import Project="$(SolutionDir)\.paket\paket.targets" />
 </Project>
