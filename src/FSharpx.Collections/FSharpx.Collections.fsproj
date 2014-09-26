@@ -28,7 +28,7 @@
     <Optimize>true</Optimize>
     <OutputPath>..\..\bin\net35</OutputPath>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\bin\net35\FSharpx.Collections.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\net35\FSharpx.Collections.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

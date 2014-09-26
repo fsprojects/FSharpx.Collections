@@ -30,7 +30,7 @@
     <OutputPath>..\..\bin\net35</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\bin\net35\FSharpx.Collections.Experimental.XML</DocumentationFile>
+    <DocumentationFile>..\..\bin\net35\FSharpx.Collections.Experimental.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
@@ -105,7 +105,7 @@
     <ProjectReference Include="..\FSharpx.Collections\FSharpx.Collections.fsproj">
       <Name>FSharpx.Collections</Name>
       <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

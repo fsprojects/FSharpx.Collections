@@ -51,7 +51,7 @@
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
   <ItemGroup>
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Condition="'$(TargetFrameworkProfile)' == ''">
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="FSharp.Core" Condition="'$(TargetFrameworkProfile)' != ''">
       <Name>FSharp.Core</Name>
@@ -102,17 +102,17 @@
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
       <Name>FSharpx.Collections.Experimental</Name>
       <Project>{ad3c8e86-f4cf-426f-a31d-015056227777}</Project>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">
       <Name>FSharpx.Collections</Name>
       <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj">
       <Name>FSharpx.Collections.Tests</Name>
       <Project>{b397365b-f6ef-4abc-94f1-8f6ea900bf20}</Project>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

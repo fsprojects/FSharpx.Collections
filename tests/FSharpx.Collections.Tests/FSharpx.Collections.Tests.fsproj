@@ -94,7 +94,7 @@
     <ProjectReference Include="..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">
       <Name>FSharpx.Collections</Name>
       <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
