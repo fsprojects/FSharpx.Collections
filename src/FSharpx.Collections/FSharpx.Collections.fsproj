@@ -95,5 +95,5 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Import Project="$(SolutionDir)\.paket\paket.targets" />
+  <Import Project="..\..\.paket\paket.targets" />
 </Project>
