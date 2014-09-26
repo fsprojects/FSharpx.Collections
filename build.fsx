@@ -155,7 +155,7 @@ Target "All" DoNothing
   ==> "BuildProfile47"
   ==> "Build"
   ==> "RunTests"
-//  ==> "All"
+  ==> "All"
 
 "All" 
   ==> "CleanDocs"
