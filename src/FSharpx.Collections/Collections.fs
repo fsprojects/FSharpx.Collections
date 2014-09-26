@@ -427,6 +427,8 @@ module Map =
     let findOrDefault key defaultValue (map : Map<'T,'b>) =
         defaultArg (map.TryFind key) defaultValue
 
+#if FX_PORTABLE
+#else
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
 /// Extensions for NameValueCollections.
@@ -626,3 +628,4 @@ module NameValueCollection =
             member x.Contains key = this.Get key <> null
             member x.GetEnumerator() = getEnumerator()
             member x.GetEnumerator() = getEnumerator() :> IEnumerator }
+#endif

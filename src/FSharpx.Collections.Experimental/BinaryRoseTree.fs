@@ -44,6 +44,7 @@ type BinaryRoseTree<'T> = //{ Root: 'T; Children: 'T BinaryRoseTree Vector }
                 }
             loop x).GetEnumerator()
         
+    interface System.Collections.IEnumerable with
         member x.GetEnumerator() =
             (x :> seq<'T>).GetEnumerator() :> IEnumerator 
 

@@ -31,6 +31,7 @@ type IntMap<'T> =
         member x.GetEnumerator() =
             (x.ToList() :> (_ * _) seq).GetEnumerator()
         
+    interface System.Collections.IEnumerable with
         member x.GetEnumerator() =
             (x :> _ seq).GetEnumerator() :> IEnumerator
 

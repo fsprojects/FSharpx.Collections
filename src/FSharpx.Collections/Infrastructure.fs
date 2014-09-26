@@ -1,5 +1,7 @@
 ﻿module FSharpx.Collections.TimeMeasurement
 
+#if FX_PORTABLE
+#else
 /// Stops the runtime for a given function
 let stopTime f = 
     let sw = new System.Diagnostics.Stopwatch()
@@ -26,3 +28,4 @@ let printInFsiTags s = printfn " [fsi:%s]" s
 let averageTime count desc f =
     let time = stopAverageTime count f
     sprintf "%s %Ams" desc time |> printInFsiTags
+#endif

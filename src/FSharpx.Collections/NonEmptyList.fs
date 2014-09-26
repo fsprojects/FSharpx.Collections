@@ -18,6 +18,7 @@ type NonEmptyList<'T> =
                 yield x.Head
                 yield! x.Tail }
             e.GetEnumerator()
+    interface System.Collections.IEnumerable with
         member x.GetEnumerator() = (x :> _ seq).GetEnumerator() :> IEnumerator
 
 [<Extension>]

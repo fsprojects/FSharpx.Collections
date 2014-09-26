@@ -5,7 +5,11 @@ open System.Collections
 open System.Collections.Generic
             
 /// An ArraySegment with structural comparison and equality.
+#if FX_PORTABLE
+[<CustomEquality; CustomComparison; StructAttribute>]
+#else
 [<CustomEquality; CustomComparison; SerializableAttribute; StructAttribute>]
+#endif
 type ByteString(array: byte[], offset: int, count: int) =
     new (array: byte[]) = ByteString(array, 0, array.Length)
 
@@ -83,6 +87,8 @@ type ByteString(array: byte[], offset: int, count: int) =
     interface System.Collections.Generic.IEnumerable<byte> with
         /// Gets an enumerator for the bytes stored in the byte string.
         member x.GetEnumerator() = x.GetEnumerator()
+
+    interface System.Collections.IEnumerable with
         /// Gets an enumerator for the bytes stored in the byte string.
         member x.GetEnumerator() = x.GetEnumerator() :> IEnumerator
   
@@ -98,7 +104,15 @@ module ByteString =
     let create arr = ByteString(arr, 0, arr.Length)
 
     let findIndex pred (bs:ByteString) =
+#if FX_PORTABLE
+        let rec loop i = 
+            if i >= bs.Count then -1 
+            elif pred bs.Array.[bs.Offset + i] then i
+            else loop (i+1)
+        loop 0
+#else
         Array.FindIndex(bs.Array, bs.Offset, bs.Count, Predicate<_>(pred))
+#endif
 
     let ofArraySegment (segment:ArraySegment<byte>) = ByteString(segment.Array, segment.Offset, segment.Count)
 
@@ -116,7 +130,10 @@ module ByteString =
 
     let toList (bs:ByteString) = List.ofSeq bs
 
+#if FX_PORTABLE
+#else
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
+#endif
 
     let isEmpty (bs:ByteString) = 
         bs.Count <= 0

@@ -2,6 +2,7 @@
 // FAKE build script 
 // --------------------------------------------------------------------------------------
 
+#I @"packages/FAKE/tools"
 #r @"packages/FAKE/tools/FakeLib.dll"
 open Fake 
 open Fake.Git
@@ -21,6 +22,7 @@ let solutionFile  = "FSharpx.Collections"
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
 let cloneUrl = "git@github.com:fsprojects/FSharpx.Collections.git"
 let nugetDir = "./nuget/"
+let profile47dir = "./bin/portable-net4+sl4+wp71+win8/"
 
 // Read additional information from the release notes document
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
@@ -56,7 +58,17 @@ Target "CleanDocs" (fun _ ->
 
 Target "Build" (fun _ ->
     !! (solutionFile + ".sln")
-    |> MSBuildRelease "" "Rebuild"
+    |> MSBuild "" "Rebuild" (["Configuration","Release"])
+    |> ignore
+)
+
+Target "BuildProfile47" (fun _ ->
+    !! "src/**/*.fsproj"
+    |> MSBuild profile47dir "Rebuild" (["Configuration","Release";
+                                        "TargetFrameworkProfile", "Profile47"
+                                        "TargetFrameworkVersion", "v4.0"
+                                        "TargetFSharpCoreVersion", "2.3.5.0"
+                                        "DefineConstants", "FX_PORTABLE" ])
     |> ignore
 )
 
@@ -85,12 +97,12 @@ Target "NuGet" (fun _ ->
     projects
     |> Seq.iter (fun project -> 
           let nugetDocsDir = nugetDir @@ "docs"
-          let nugetlibDir = nugetDir @@ "lib/net35"
+          let nugetlibDir = nugetDir @@ "lib"
 
           CleanDir nugetDocsDir
           CleanDir nugetlibDir
               
-          CopyDir nugetlibDir "bin" (fun file -> file.EndsWith (project + ".dll") || file.EndsWith (project + ".xml"))  
+          CopyDir nugetlibDir "bin" (fun file -> file.EndsWith (project + ".dll") || file.EndsWith (project + ".xml", StringComparison.InvariantCultureIgnoreCase))  
           CopyDir nugetDocsDir "./docs/output" allFiles
           
           NuGet (fun p -> 
@@ -121,8 +133,8 @@ Target "GenerateDocs" (fun _ ->
 
 Target "ReleaseDocs" (fun _ ->
     let tempDocsDir = "temp/gh-pages"
-    CleanDir tempDocsDir
-    Repository.cloneSingleBranch "" cloneUrl "gh-pages" tempDocsDir
+    if not (System.IO.Directory.Exists tempDocsDir) then 
+       Repository.cloneSingleBranch "" cloneUrl "gh-pages" tempDocsDir
 
     fullclean tempDocsDir
     CopyRecursive "docs/output" tempDocsDir true |> tracefn "%A"
@@ -140,15 +152,16 @@ Target "All" DoNothing
 
 "Clean"
   ==> "AssemblyInfo"
+  ==> "BuildProfile47"
   ==> "Build"
   ==> "RunTests"
-  ==> "All"
+//  ==> "All"
 
 "All" 
   ==> "CleanDocs"
   ==> "GenerateDocs"
-  ==> "ReleaseDocs"
   ==> "NuGet"
+  ==> "ReleaseDocs"
   ==> "Release"
 
 RunTargetOrDefault "All"
