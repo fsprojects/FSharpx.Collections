@@ -57,7 +57,7 @@ Target "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target "Build" (fun _ ->
-    !! (solutionFile + ".sln")
+    !! "src/**/*.fsproj"
     |> MSBuild "" "Rebuild" (["Configuration","Release"])
     |> ignore
 )
@@ -72,8 +72,15 @@ Target "BuildProfile47" (fun _ ->
     |> ignore
 )
 
+Target "BuildTests" (fun _ ->
+    !! "tests/**/*.fsproj"
+    |> MSBuild "" "Rebuild" (["Configuration","Release"])
+    |> ignore
+)
+
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner & kill test runner when complete
+
 
 Target "RunTests" (fun _ ->
     ActivateFinalTarget "CloseTestRunner"
@@ -154,6 +161,7 @@ Target "All" DoNothing
   ==> "AssemblyInfo"
   ==> "BuildProfile47"
   ==> "Build"
+  ==> "BuildTests"
   ==> "RunTests"
   ==> "All"
 

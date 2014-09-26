@@ -12,7 +12,7 @@
     <Name>FSharpx.Collections</Name>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>2.3.0.0</TargetFSharpCoreVersion>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,5 +96,5 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Import Project="$(SolutionDir)\.paket\paket.targets" />
+  <Import Project="$(SolutionDir).paket\paket.targets" />
 </Project>
