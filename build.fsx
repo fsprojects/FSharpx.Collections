@@ -57,25 +57,28 @@ Target "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target "Build" (fun _ ->
-    !! "src/**/*.fsproj"
-    |> MSBuild "" "Rebuild" (["Configuration","Release"])
-    |> ignore
+    for p in projects do 
+        !! ("src/" + p + "/" + p + ".fsproj")
+        |> MSBuild "" "Rebuild" (["Configuration","Release"])
+        |> ignore
 )
 
 Target "BuildProfile47" (fun _ ->
-    !! "src/**/*.fsproj"
-    |> MSBuild profile47dir "Rebuild" (["Configuration","Release";
-                                        "TargetFrameworkProfile", "Profile47"
-                                        "TargetFrameworkVersion", "v4.0"
-                                        "TargetFSharpCoreVersion", "2.3.5.0"
-                                        "DefineConstants", "FX_PORTABLE" ])
-    |> ignore
+    for p in projects do 
+        !! ("src/" + p + "/" + p + ".fsproj")
+        |> MSBuild profile47dir "Rebuild" (["Configuration","Release";
+                                            "TargetFrameworkProfile", "Profile47"
+                                            "TargetFrameworkVersion", "v4.0"
+                                            "TargetFSharpCoreVersion", "2.3.5.0"
+                                            "DefineConstants", "FX_PORTABLE" ])
+        |> ignore
 )
 
 Target "BuildTests" (fun _ ->
-    !! "tests/**/*.fsproj"
-    |> MSBuild "" "Rebuild" (["Configuration","Release"])
-    |> ignore
+    for p in projects do 
+        !! ("tests/" + p + ".Tests" + "/" + p + ".fsproj")
+        |> MSBuild "" "Rebuild" (["Configuration","Release"])
+        |> ignore
 )
 
 // --------------------------------------------------------------------------------------
