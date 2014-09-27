@@ -61,6 +61,18 @@
   <ItemGroup>
     <None Include="paket.references" />
     <None Include="app.config" />
+    <Compile Include="..\FSharpx.Collections.Tests\FsUnit.fs">
+      <Link>FsUnit.fs</Link>
+    </Compile>
+    <Compile Include="..\FSharpx.Collections.Tests\FsCheckRunner.fs">
+      <Link>FsCheckRunner.fs</Link>
+    </Compile>
+    <Compile Include="..\FSharpx.Collections.Tests\FsCheckProperties.fs">
+      <Link>FsCheckProperties.fs</Link>
+    </Compile>
+    <Compile Include="..\FSharpx.Collections.Tests\Utilities.fs">
+      <Link>Utilities.fs</Link>
+    </Compile>
     <Compile Include="QueueGen.fs" />
     <Compile Include="HeapGen.fs" />
     <Compile Include="AltBinaryRandomAccessListTest.fs" />
@@ -104,24 +116,12 @@
       <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj">
-      <Name>FSharpx.Collections.Tests</Name>
-      <Project>{b397365b-f6ef-4abc-94f1-8f6ea900bf20}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-	     Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
   <Import Project="..\..\.paket\paket.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.0' And $(TargetFrameworkProfile) == 'Client'">
