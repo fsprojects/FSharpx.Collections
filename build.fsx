@@ -76,7 +76,7 @@ Target "BuildProfile47" (fun _ ->
 
 Target "BuildTests" (fun _ ->
     for p in projects do 
-        !! ("tests/" + p + ".Tests" + "/" + p + ".fsproj")
+        !! ("tests/" + p + ".Tests" + "/" + p + ".Tests" + ".fsproj")
         |> MSBuild "" "Rebuild" (["Configuration","Release"])
         |> ignore
 )
