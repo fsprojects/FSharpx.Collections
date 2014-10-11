@@ -51,10 +51,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '629', 629)" onmouseover="showTip(event, '629', 629)">
+          <code onmouseout="hideTip(event, '627', 627)" onmouseover="showTip(event, '627', 627)">
             Conj(arg1)
           </code>
-          <div class="tip" id="629">
+          <div class="tip" id="627">
             <strong>Signature:</strong> &#39;T -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
@@ -70,10 +70,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '630', 630)" onmouseover="showTip(event, '630', 630)">
+          <code onmouseout="hideTip(event, '628', 628)" onmouseover="showTip(event, '628', 628)">
             Initial
           </code>
-          <div class="tip" id="630">
+          <div class="tip" id="628">
             <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
@@ -83,6 +83,44 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '629', 629)" onmouseover="showTip(event, '629', 629)">
+            Initial
+          </code>
+          <div class="tip" id="629">
+            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L271-271" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '630', 630)" onmouseover="showTip(event, '630', 630)">
+            IsEmpty
+          </code>
+          <div class="tip" id="630">
+            <strong>Signature:</strong> bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the vector has no elements.</p>
 
         </td>
       </tr>
@@ -90,18 +128,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '631', 631)" onmouseover="showTip(event, '631', 631)">
-            Initial
+            IsEmpty
           </code>
           <div class="tip" id="631">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt;<br />
+            <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L271-271" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+          <p>O(1). Returns true if the vector has no elements.</p>
 
         </td>
       </tr>
@@ -109,18 +147,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '632', 632)" onmouseover="showTip(event, '632', 632)">
-            IsEmpty
+            [arg1]
           </code>
           <div class="tip" id="632">
-            <strong>Signature:</strong> bool<br />
+            <strong>Signature:</strong> int -&gt; &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L298-298" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns true if the vector has no elements.</p>
+          <p>O(log32n). Returns vector element at the index.</p>
 
         </td>
       </tr>
@@ -128,18 +166,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '633', 633)" onmouseover="showTip(event, '633', 633)">
-            IsEmpty
+            [arg1]
           </code>
           <div class="tip" id="633">
-            <strong>Signature:</strong> bool<br />
+            <strong>Signature:</strong> int -&gt; &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L298-298" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns true if the vector has no elements.</p>
+          <p>O(log32n). Returns vector element at the index.</p>
 
         </td>
       </tr>
@@ -147,18 +185,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '634', 634)" onmouseover="showTip(event, '634', 634)">
-            [arg1]
+            Last
           </code>
           <div class="tip" id="634">
-            <strong>Signature:</strong> int -&gt; &#39;T<br />
+            <strong>Signature:</strong> &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L298-298" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L302-302" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns vector element at the index.</p>
+          <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
 
         </td>
       </tr>
@@ -166,18 +204,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '635', 635)" onmouseover="showTip(event, '635', 635)">
-            [arg1]
+            Last
           </code>
           <div class="tip" id="635">
-            <strong>Signature:</strong> int -&gt; &#39;T<br />
+            <strong>Signature:</strong> &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L298-298" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L302-302" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns vector element at the index.</p>
+          <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
 
         </td>
       </tr>
@@ -185,18 +223,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '636', 636)" onmouseover="showTip(event, '636', 636)">
-            Last
+            Length
           </code>
           <div class="tip" id="636">
-            <strong>Signature:</strong> &#39;T<br />
+            <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L302-302" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+          <p>O(1). Returns the number of items in the vector.</p>
 
         </td>
       </tr>
@@ -204,18 +242,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '637', 637)" onmouseover="showTip(event, '637', 637)">
-            Last
+            Length
           </code>
           <div class="tip" id="637">
-            <strong>Signature:</strong> &#39;T<br />
+            <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L302-302" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+          <p>O(1). Returns the number of items in the vector.</p>
 
         </td>
       </tr>
@@ -223,47 +261,9 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '638', 638)" onmouseover="showTip(event, '638', 638)">
-            Length
-          </code>
-          <div class="tip" id="638">
-            <strong>Signature:</strong> int<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns the number of items in the vector.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '639', 639)" onmouseover="showTip(event, '639', 639)">
-            Length
-          </code>
-          <div class="tip" id="639">
-            <strong>Signature:</strong> int<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns the number of items in the vector.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '640', 640)" onmouseover="showTip(event, '640', 640)">
             Rev()
           </code>
-          <div class="tip" id="640">
+          <div class="tip" id="638">
             <strong>Signature:</strong> unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
@@ -279,10 +279,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '641', 641)" onmouseover="showTip(event, '641', 641)">
+          <code onmouseout="hideTip(event, '639', 639)" onmouseover="showTip(event, '639', 639)">
             TryInitial
           </code>
-          <div class="tip" id="641">
+          <div class="tip" id="639">
             <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; option<br />
                       </div>
         </td>
@@ -292,6 +292,44 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns option vector without the last item.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '640', 640)" onmouseover="showTip(event, '640', 640)">
+            TryInitial
+          </code>
+          <div class="tip" id="640">
+            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L293-293" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns option vector without the last item.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '641', 641)" onmouseover="showTip(event, '641', 641)">
+            TryLast
+          </code>
+          <div class="tip" id="641">
+            <strong>Signature:</strong> &#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns option last element in the vector.</p>
 
         </td>
       </tr>
@@ -299,18 +337,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '642', 642)" onmouseover="showTip(event, '642', 642)">
-            TryInitial
+            TryLast
           </code>
           <div class="tip" id="642">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; option<br />
+            <strong>Signature:</strong> &#39;T option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L293-293" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns option vector without the last item.</p>
+          <p>O(1). Returns option last element in the vector.</p>
 
         </td>
       </tr>
@@ -318,18 +356,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '643', 643)" onmouseover="showTip(event, '643', 643)">
-            TryLast
+            TryUnconj
           </code>
           <div class="tip" id="643">
-            <strong>Signature:</strong> &#39;T option<br />
+            <strong>Signature:</strong> (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option last element in the vector.</p>
+          <p>O(1). Returns option tuple last element and vector without last item</p>
 
         </td>
       </tr>
@@ -337,18 +375,18 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '644', 644)" onmouseover="showTip(event, '644', 644)">
-            TryLast
+            TryUnconj
           </code>
           <div class="tip" id="644">
-            <strong>Signature:</strong> &#39;T option<br />
+            <strong>Signature:</strong> (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option last element in the vector.</p>
+          <p>O(1). Returns option tuple last element and vector without last item</p>
 
         </td>
       </tr>
@@ -356,47 +394,9 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '645', 645)" onmouseover="showTip(event, '645', 645)">
-            TryUnconj
-          </code>
-          <div class="tip" id="645">
-            <strong>Signature:</strong> (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns option tuple last element and vector without last item</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '646', 646)" onmouseover="showTip(event, '646', 646)">
-            TryUnconj
-          </code>
-          <div class="tip" id="646">
-            <strong>Signature:</strong> (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns option tuple last element and vector without last item</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '647', 647)" onmouseover="showTip(event, '647', 647)">
             TryUpdate(arg1, arg2)
           </code>
-          <div class="tip" id="647">
+          <div class="tip" id="645">
             <strong>Signature:</strong> (int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt; option<br />
                       </div>
         </td>
@@ -412,48 +412,48 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
       <tr>
         <td class="member-name">
 
+          <code onmouseout="hideTip(event, '646', 646)" onmouseover="showTip(event, '646', 646)">
+            Unconj
+          </code>
+          <div class="tip" id="646">
+            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; * &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L330-330" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns tuple last element and vector without last item</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '647', 647)" onmouseover="showTip(event, '647', 647)">
+            Unconj
+          </code>
+          <div class="tip" id="647">
+            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; * &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L330-330" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns tuple last element and vector without last item</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
           <code onmouseout="hideTip(event, '648', 648)" onmouseover="showTip(event, '648', 648)">
-            Unconj
-          </code>
-          <div class="tip" id="648">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; * &#39;T<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L330-330" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns tuple last element and vector without last item</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '649', 649)" onmouseover="showTip(event, '649', 649)">
-            Unconj
-          </code>
-          <div class="tip" id="649">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; * &#39;T<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L330-330" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns tuple last element and vector without last item</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '650', 650)" onmouseover="showTip(event, '650', 650)">
             Update(arg1, arg2)
           </code>
-          <div class="tip" id="650">
+          <div class="tip" id="648">
             <strong>Signature:</strong> (int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt;<br />
                       </div>
         </td>
