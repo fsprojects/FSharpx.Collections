@@ -8,8 +8,8 @@
     <owners>@authors@</owners>
     <language>en-US</language>
     <summary>@description@</summary>
-    <licenseUrl>http://github.com/fsharp/fsharpx/raw/master/LICENSE.md</licenseUrl>
-    <projectUrl>http://github.com/fsharp/fsharpx</projectUrl>
+    <licenseUrl>https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/fsprojects/FSharpx.Collections</projectUrl>
     <iconUrl>https://raw2.github.com/fsprojects/FSharpx.Collections/master/docs/files/img/logo.png</iconUrl>
     <tags>fsharp csharp interop monad iteratee validation bytestring testing</tags>
     @dependencies@
