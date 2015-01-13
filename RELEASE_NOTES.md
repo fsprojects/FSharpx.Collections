@@ -1,3 +1,6 @@
+#### 1.9.6 - 13.01.2015 
+* Bump version due to broken logo link - https://github.com/fsprojects/FSharpx.Collections/issues/21
+
 #### 1.9.5 - 13.01.2015 
 * Bump version due to broken package meta data - https://github.com/fsprojects/FSharpx.Collections/issues/21
 
