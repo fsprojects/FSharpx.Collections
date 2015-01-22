@@ -1,4 +1,7 @@
-# FSharpx.Collections
+[![Issue Stats](http://issuestats.com/github/fsprojects/FSharpx.Collections/badge/issue)](http://issuestats.com/github/fsprojects/FSharpx.Collections)
+[![Issue Stats](http://issuestats.com/github/fsprojects/FSharpx.Collections/badge/pr)](http://issuestats.com/github/fsprojects/FSharpx.Collections)
+
+# FSharpx.Collections [![NuGet Status](http://img.shields.io/nuget/v/FSharpx.Collections.svg?style=flat)](https://www.nuget.org/packages/FSharpx.Collections/)
 
 **FSharpx.Collections** is a collection of datastructures for use with F# and C#. 
 
