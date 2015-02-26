@@ -10,9 +10,10 @@
     <RootNamespace>FSharpx.Collections</RootNamespace>
     <AssemblyName>FSharpx.Collections</AssemblyName>
     <Name>FSharpx.Collections</Name>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>2.3.0.0</TargetFSharpCoreVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\..\</SolutionDir>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,9 +27,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\net35</OutputPath>
+    <OutputPath>..\..\bin\net40</OutputPath>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\bin\net35\FSharpx.Collections.xml</DocumentationFile>
+    <DocumentationFile>..\..\bin\net40\FSharpx.Collections.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
