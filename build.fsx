@@ -76,13 +76,13 @@ Target "BuildProfile47" (fun _ ->
 )
 
 Target "BuildProfile259" (fun _ ->
+    setEnvironVar "DefineConstants" "FX_PORTABLE;FX_NO_THREAD"
     for p in projects do
         !! ("src/" + p + "/" + p + ".fsproj")
         |> MSBuild profile259dir "Rebuild" (["Configuration","Release";
                                              "TargetFrameworkProfile", "Profile259"
                                              "TargetFrameworkVersion", "v4.5"
-                                             "TargetFSharpCoreVersion", "3.259.3.1"
-                                             "DefineConstants", "FX_PORTABLE;FX_NO_THREAD" ])
+                                             "TargetFSharpCoreVersion", "3.259.3.1"])
         |> ignore
 )
 
