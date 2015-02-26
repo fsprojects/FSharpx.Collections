@@ -1,5 +1,7 @@
 ﻿namespace FSharpx.Collections
 
+#if FX_NO_THREAD
+#else
 /// RandomAccessList is an ordered linear structure implementing the List signature 
 /// (head, tail, cons), as well as inspection (lookup) and update (returning a new 
 /// immutable instance) of any element in the structure by index. Ordering is by insertion history.
@@ -117,3 +119,4 @@ module RandomAccessList =
 
     /// O(log32n). Returns option random access list that contains the given value at the index. 
     val inline tryUpdate : int -> 'T -> RandomAccessList<'T> -> RandomAccessList<'T> option
+#endif

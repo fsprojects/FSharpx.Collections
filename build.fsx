@@ -22,7 +22,8 @@ let solutionFile  = "FSharpx.Collections"
 let testAssemblies = "tests/**/bin/Release/*.Tests*.dll"
 let cloneUrl = "git@github.com:fsprojects/FSharpx.Collections.git"
 let nugetDir = "./nuget/"
-let profile47dir = "./bin/portable-net4+sl4+wp71+win8/"
+let profile47dir = "./bin/portable-net45+sl5+netcore45+MonoAndroid1+MonoTouch1/"
+let profile259dir = "./bin/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/"
 
 // Read additional information from the release notes document
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
@@ -64,13 +65,24 @@ Target "Build" (fun _ ->
 )
 
 Target "BuildProfile47" (fun _ ->
-    for p in projects do 
+    for p in projects do
         !! ("src/" + p + "/" + p + ".fsproj")
         |> MSBuild profile47dir "Rebuild" (["Configuration","Release";
                                             "TargetFrameworkProfile", "Profile47"
                                             "TargetFrameworkVersion", "v4.0"
                                             "TargetFSharpCoreVersion", "2.3.5.0"
                                             "DefineConstants", "FX_PORTABLE" ])
+        |> ignore
+)
+
+Target "BuildProfile259" (fun _ ->
+    for p in projects do
+        !! ("src/" + p + "/" + p + ".fsproj")
+        |> MSBuild profile259dir "Rebuild" (["Configuration","Release";
+                                             "TargetFrameworkProfile", "Profile259"
+                                             "TargetFrameworkVersion", "v4.5"
+                                             "TargetFSharpCoreVersion", "3.259.3.1"
+                                             "DefineConstants", "FX_PORTABLE;FX_NO_THREAD" ])
         |> ignore
 )
 
@@ -163,6 +175,7 @@ Target "All" DoNothing
 "Clean"
   ==> "AssemblyInfo"
   ==> "BuildProfile47"
+  ==> "BuildProfile259"
   ==> "Build"
   ==> "BuildTests"
   ==> "RunTests"

@@ -1,5 +1,7 @@
 ﻿namespace FSharpx.Collections.Experimental
 
+#if FX_NO_THREAD
+#else
 open FSharpx
 open FSharpx.Collections
 open System
@@ -71,3 +73,4 @@ module IndexedRoseTree =
 
     and unfoldForest f =
         PersistentVector.map (unfold f)
+#endif

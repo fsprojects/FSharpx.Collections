@@ -13,7 +13,8 @@ module internal Literals2 =
 
 open FSharpx
 open System.Threading
-
+#if FX_NO_THREAD
+#else
 type NodeR(thread,array:obj[]) =
     let thread = thread
     new() = NodeR(ref null,Array.create Literals2.blockSize null)
@@ -396,3 +397,5 @@ module RandomAccessList =
     let inline update i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.Update(i, x)
 
     let inline tryUpdate i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.TryUpdate(i, x)
+
+#endif

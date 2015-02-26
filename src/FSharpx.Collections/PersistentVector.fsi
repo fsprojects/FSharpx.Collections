@@ -1,5 +1,6 @@
 ﻿namespace FSharpx.Collections
-
+#if FX_NO_THREAD
+#else
 /// PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
 /// (last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
 /// (returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
@@ -145,3 +146,4 @@ module PersistentVector =
 
     /// O(n). Returns a vector of vectors of given length from the seq. Result may be a jagged vector.
     val inline windowSeq : int  -> seq<'T> -> PersistentVector<PersistentVector<'T>>
+#endif

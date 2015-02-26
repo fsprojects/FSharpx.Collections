@@ -2,8 +2,9 @@ source http://nuget.org/api/v2
 
 nuget FAKE
 nuget NUnit.Runners
-nuget FSharp.Formatting
+nuget FSharp.Formatting == 2.6.3
 nuget FsCheck 0.9.2
 nuget FsUnit
 nuget NUnit
 nuget NUget.CommandLine
+nuget FSharp.Core

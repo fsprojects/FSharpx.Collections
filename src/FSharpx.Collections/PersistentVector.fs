@@ -3,6 +3,8 @@
 namespace FSharpx.Collections
 
 open FSharpx.Collections
+#if FX_NO_THREAD
+#else
 open System.Threading
 
 type Node(thread,array:obj[]) =
@@ -462,3 +464,4 @@ module PersistentVector =
     let inline windowSeq windowLength (items : 'T seq) = 
         if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
         else (Seq.fold (windowFun windowLength) (empty.Conj empty<'T>) items)
+#endif
