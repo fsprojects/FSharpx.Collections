@@ -140,7 +140,8 @@ Target "NuGet" (fun _ ->
                   OutputPath = nugetDir
                   AccessKey = getBuildParamOrDefault "nugetkey" ""
                   Publish = hasBuildParam "nugetkey"
-                  Dependencies = [] })
+                  Dependencies = 
+                    ["FSharp.Core", GetPackageVersion "packages" "FSharp.Core" ] })
               ("FSharpx.Collections.nuspec"))
 )
 
