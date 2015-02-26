@@ -84,6 +84,7 @@ Target "BuildProfile259" (fun _ ->
                                              "TargetFrameworkVersion", "v4.5"
                                              "TargetFSharpCoreVersion", "3.259.3.1"])
         |> ignore
+    setEnvironVar "DefineConstants" ""
 )
 
 Target "BuildTests" (fun _ ->

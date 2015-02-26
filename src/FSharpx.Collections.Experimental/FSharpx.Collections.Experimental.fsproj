@@ -29,7 +29,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\bin\net40</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants Condition=" '$(DefineConstants)' == '' ">TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>..\..\bin\net40\FSharpx.Collections.Experimental.xml</DocumentationFile>
   </PropertyGroup>
