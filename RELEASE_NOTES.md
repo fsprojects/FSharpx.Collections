@@ -1,3 +1,6 @@
+#### 1.10.0 - 26.02.2015 
+* Added profile 259 and fixed profile 47 folder name - https://github.com/fsprojects/FSharpx.Collections/pull/26
+
 #### 1.9.6 - 13.01.2015 
 * Bump version due to broken logo link - https://github.com/fsprojects/FSharpx.Collections/issues/21
 
