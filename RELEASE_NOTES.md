@@ -1,3 +1,6 @@
+#### 1.10.1 - 26.02.2015 
+* BUGFIX: Prevent ArrayNode's tryFind from returning Some null - https://github.com/fsprojects/FSharpx.Collections/pull/22
+
 #### 1.10.0 - 26.02.2015 
 * Added profile 259 and fixed profile 47 folder name - https://github.com/fsprojects/FSharpx.Collections/pull/26
 

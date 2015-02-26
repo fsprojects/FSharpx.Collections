@@ -283,7 +283,7 @@ and private ArrayNode(thread,count',array':INode[]) =
                 let idx = mask(hash, shift)
                 let node = this.array.[idx]
                 if node = Unchecked.defaultof<INode> then None else
-                Some(node.find(shift + 5, hash, key))
+                node.tryFind(shift + 5, hash, key)
 
             member this.without(shift, hashKey, key) =
                 let idx = mask(hashKey, shift)
