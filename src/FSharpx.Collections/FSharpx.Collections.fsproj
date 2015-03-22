@@ -27,9 +27,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\net40</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\bin\net40\FSharpx.Collections.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\FSharpx.Collections.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

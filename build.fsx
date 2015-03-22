@@ -81,6 +81,8 @@ Target "AssemblyInfo" (fun _ ->
         [ Attribute.Title (projectName)
           Attribute.Product project
           Attribute.Description summary
+          Attribute.InternalsVisibleTo "FSharpx.Collections.Tests"
+          Attribute.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
           Attribute.Version release.AssemblyVersion
           Attribute.FileVersion release.AssemblyVersion ]
 

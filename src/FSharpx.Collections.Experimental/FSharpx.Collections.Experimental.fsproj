@@ -28,10 +28,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\net40</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <DefineConstants Condition=" '$(DefineConstants)' == '' ">TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>..\..\bin\net40\FSharpx.Collections.Experimental.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\FSharpx.Collections.Experimental.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

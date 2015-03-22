@@ -5,9 +5,9 @@ open System.Runtime.CompilerServices
 [<assembly: AssemblyTitleAttribute("FSharpx.Collections")>]
 [<assembly: AssemblyProductAttribute("FSharpx.Collections")>]
 [<assembly: AssemblyDescriptionAttribute("FSharpx.Collections is a collection of datastructures for use with F# and C#.")>]
-[<assembly: AssemblyVersionAttribute("1.10.1")>]
 [<assembly: InternalsVisibleToAttribute("FSharpx.Collections.Tests")>]
 [<assembly: InternalsVisibleToAttribute("FSharpx.Collections.Experimental.Tests")>]
+[<assembly: AssemblyVersionAttribute("1.10.1")>]
 [<assembly: AssemblyFileVersionAttribute("1.10.1")>]
 do ()
 
