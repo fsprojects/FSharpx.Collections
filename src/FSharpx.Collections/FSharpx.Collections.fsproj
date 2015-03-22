@@ -47,40 +47,6 @@
     <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.Portable.FSharp.Targets</FSharpTargetsPath>
   </PropertyGroup>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Exceptions.fs" />
-    <Compile Include="Interfaces.fs" />
-    <Compile Include="Infrastructure.fs" />
-    <Compile Include="LazyList.fsi" />
-    <Compile Include="LazyList.fs" />
-    <Compile Include="ResizeArray.fsi" />
-    <Compile Include="ResizeArray.fs" />
-    <Compile Include="Collections.fs" />
-    <Compile Include="Deque.fsi" />
-    <Compile Include="Deque.fs" />
-    <Compile Include="DList.fsi" />
-    <Compile Include="DList.fs" />
-    <Compile Include="ByteString.fs" />
-    <Compile Include="CircularBuffer.fs" />
-    <Compile Include="Heap.fsi" />
-    <Compile Include="Heap.fs" />
-    <Compile Include="PriorityQueue.fs" />
-    <Compile Include="NonEmptyList.fs" />
-    <Compile Include="RandomAccessList.fsi" />
-    <Compile Include="RandomAccessList.fs" />
-    <Compile Include="Queue.fsi" />
-    <Compile Include="Queue.fs" />
-    <Compile Include="Literals.fs" />
-    <Compile Include="PersistentVector.fsi" />
-    <Compile Include="PersistentVector.fs" />
-    <Compile Include="PersistentHashMap.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
 	     Other similar extension points exist, see Microsoft.Common.targets.
 	<Target Name="BeforeBuild">
@@ -154,4 +120,39 @@
       </ItemGroup>
     </When>
   </Choose>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Exceptions.fs" />
+    <Compile Include="Interfaces.fs" />
+    <Compile Include="Infrastructure.fs" />
+    <Compile Include="LazyList.fsi" />
+    <Compile Include="LazyList.fs" />
+    <Compile Include="ResizeArray.fsi" />
+    <Compile Include="ResizeArray.fs" />
+    <Compile Include="Collections.fs" />
+    <Compile Include="Deque.fsi" />
+    <Compile Include="Deque.fs" />
+    <Compile Include="DList.fsi" />
+    <Compile Include="DList.fs" />
+    <Compile Include="ByteString.fs" />
+    <Compile Include="CircularBuffer.fs" />
+    <Compile Include="Heap.fsi" />
+    <Compile Include="Heap.fs" />
+    <Compile Include="PriorityQueue.fs" />
+    <Compile Include="NonEmptyList.fs" />
+    <Compile Include="RandomAccessList.fsi" />
+    <Compile Include="RandomAccessList.fs" />
+    <Compile Include="Queue.fsi" />
+    <Compile Include="Queue.fs" />
+    <Compile Include="Literals.fs" />
+    <Compile Include="PersistentVector.fsi" />
+    <Compile Include="PersistentVector.fs" />
+    <Compile Include="PersistentHashMap.fs" />
+    <None Include="paket.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
 </Project>

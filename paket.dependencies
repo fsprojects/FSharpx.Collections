@@ -8,3 +8,6 @@ nuget FsUnit
 nuget NUnit
 nuget NUget.CommandLine
 nuget FSharp.Core
+nuget SourceLink.Fake
+
+github fsharp/FAKE modules/Octokit/Octokit.fsx
