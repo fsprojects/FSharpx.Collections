@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RealTimeDeque - fsprojects/FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>RealTimeDeque</h1>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '776', 776)" onmouseover="showTip(event, '776', 776)">
+            append xs ys
+          </code>
+          <div class="tip" id="776">
+            <strong>Signature:</strong> xs:RealTimeDeque&lt;&#39;T&gt; -&gt; ys:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L452-452" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two deques concatenated, front-back stream ratio constant defaulted to 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '777', 777)" onmouseover="showTip(event, '777', 777)">
+            appendC c xs ys
+          </code>
+          <div class="tip" id="777">
+            <strong>Signature:</strong> c:int -&gt; xs:RealTimeDeque&lt;&#39;T&gt; -&gt; ys:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L455-455" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two deques concatenated, c is front-back stream ratio constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '778', 778)" onmouseover="showTip(event, '778', 778)">
+            cons x q
+          </code>
+          <div class="tip" id="778">
+            <strong>Signature:</strong> x:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L458-458" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns a new deque with the element added to the beginning.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '779', 779)" onmouseover="showTip(event, '779', 779)">
+            empty c
+          </code>
+          <div class="tip" id="779">
+            <strong>Signature:</strong> c:int -&gt; RealTimeDeque&lt;&#39;?10084&gt;<br />
+                          <strong>Type parameters:</strong> '?10084          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L461-461" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns deque of no elements, c is front-back stream ration constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '780', 780)" onmouseover="showTip(event, '780', 780)">
+            head q
+          </code>
+          <div class="tip" id="780">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L464-464" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '781', 781)" onmouseover="showTip(event, '781', 781)">
+            init q
+          </code>
+          <div class="tip" id="781">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L470-470" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns a new deque of the elements before the last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '782', 782)" onmouseover="showTip(event, '782', 782)">
+            isEmpty q
+          </code>
+          <div class="tip" id="782">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L476-476" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the deque has no elements.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '783', 783)" onmouseover="showTip(event, '783', 783)">
+            last q
+          </code>
+          <div class="tip" id="783">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L479-479" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns the last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '784', 784)" onmouseover="showTip(event, '784', 784)">
+            length q
+          </code>
+          <div class="tip" id="784">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L485-485" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns the count of elememts.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '785', 785)" onmouseover="showTip(event, '785', 785)">
+            lookup i q
+          </code>
+          <div class="tip" id="785">
+            <strong>Signature:</strong> i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L488-488" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns option element by index.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '786', 786)" onmouseover="showTip(event, '786', 786)">
+            ofCatLists xs ys
+          </code>
+          <div class="tip" id="786">
+            <strong>Signature:</strong> xs:&#39;?10106 list -&gt; ys:&#39;?10106 list -&gt; RealTimeDeque&lt;&#39;?10106&gt;<br />
+                          <strong>Type parameters:</strong> '?10106          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L494-494" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two lists concatenated, front-back stream ratio constant defaulted to 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '787', 787)" onmouseover="showTip(event, '787', 787)">
+            ofCatListsC c xs ys
+          </code>
+          <div class="tip" id="787">
+            <strong>Signature:</strong> c:int -&gt; xs:&#39;?10108 list -&gt; ys:&#39;?10108 list -&gt; RealTimeDeque&lt;&#39;?10108&gt;<br />
+                          <strong>Type parameters:</strong> '?10108          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L497-497" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two lists concatenated, c is front-back stream ration constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '788', 788)" onmouseover="showTip(event, '788', 788)">
+            ofCatSeqs xs ys
+          </code>
+          <div class="tip" id="788">
+            <strong>Signature:</strong> xs:seq&lt;&#39;?10110&gt; -&gt; ys:seq&lt;&#39;?10110&gt; -&gt; RealTimeDeque&lt;&#39;?10110&gt;<br />
+                          <strong>Type parameters:</strong> '?10110          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L500-500" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two seqs concatenated, front-back stream ratio constant defaulted to 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '789', 789)" onmouseover="showTip(event, '789', 789)">
+            ofCatSeqsC c xs ys
+          </code>
+          <div class="tip" id="789">
+            <strong>Signature:</strong> c:int -&gt; xs:seq&lt;&#39;?10112&gt; -&gt; ys:seq&lt;&#39;?10112&gt; -&gt; RealTimeDeque&lt;&#39;?10112&gt;<br />
+                          <strong>Type parameters:</strong> '?10112          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L503-503" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(|ys-xs|). Returns a deque of the two seqs concatenated, c is front-back stream ratio constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '790', 790)" onmouseover="showTip(event, '790', 790)">
+            ofSeq xs
+          </code>
+          <div class="tip" id="790">
+            <strong>Signature:</strong> xs:seq&lt;&#39;?10114&gt; -&gt; RealTimeDeque&lt;&#39;?10114&gt;<br />
+                          <strong>Type parameters:</strong> '?10114          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L506-506" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a deque of the seq, front-back stream ratio constant defaulted to 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '791', 791)" onmouseover="showTip(event, '791', 791)">
+            ofSeqC c xs
+          </code>
+          <div class="tip" id="791">
+            <strong>Signature:</strong> c:int -&gt; xs:seq&lt;&#39;?10116&gt; -&gt; RealTimeDeque&lt;&#39;?10116&gt;<br />
+                          <strong>Type parameters:</strong> '?10116          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L509-509" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a deque of the seq, c is front-back stream ratio constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '792', 792)" onmouseover="showTip(event, '792', 792)">
+            remove i q
+          </code>
+          <div class="tip" id="792">
+            <strong>Signature:</strong> i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L512-512" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns deque with element removed by index.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '793', 793)" onmouseover="showTip(event, '793', 793)">
+            rev q
+          </code>
+          <div class="tip" id="793">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L518-518" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns deque reversed.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '794', 794)" onmouseover="showTip(event, '794', 794)">
+            singleton x
+          </code>
+          <div class="tip" id="794">
+            <strong>Signature:</strong> x:&#39;?10124 -&gt; RealTimeDeque&lt;&#39;?10124&gt;<br />
+                          <strong>Type parameters:</strong> '?10124          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L521-521" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a deque of one element, front-back stream ratio constant defaulted to 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '795', 795)" onmouseover="showTip(event, '795', 795)">
+            singletonC c x
+          </code>
+          <div class="tip" id="795">
+            <strong>Signature:</strong> c:int -&gt; x:&#39;?10126 -&gt; RealTimeDeque&lt;&#39;?10126&gt;<br />
+                          <strong>Type parameters:</strong> '?10126          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L524-524" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a deque of one element, c is front-back stream ratio constant, should be at least 2.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '796', 796)" onmouseover="showTip(event, '796', 796)">
+            snoc x q
+          </code>
+          <div class="tip" id="796">
+            <strong>Signature:</strong> x:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L527-527" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns a new deque with the element added to the end.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '797', 797)" onmouseover="showTip(event, '797', 797)">
+            tail q
+          </code>
+          <div class="tip" id="797">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L530-530" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns a new deque of the elements trailing the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '798', 798)" onmouseover="showTip(event, '798', 798)">
+            tryGetHead q
+          </code>
+          <div class="tip" id="798">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L467-467" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '799', 799)" onmouseover="showTip(event, '799', 799)">
+            tryGetInit q
+          </code>
+          <div class="tip" id="799">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L473-473" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option deque of the elements before the last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '800', 800)" onmouseover="showTip(event, '800', 800)">
+            tryGetLast q
+          </code>
+          <div class="tip" id="800">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L482-482" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '801', 801)" onmouseover="showTip(event, '801', 801)">
+            tryGetTail q
+          </code>
+          <div class="tip" id="801">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L533-533" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option deque of the elements trailing the first element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '802', 802)" onmouseover="showTip(event, '802', 802)">
+            tryLookup i q
+          </code>
+          <div class="tip" id="802">
+            <strong>Signature:</strong> i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L491-491" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns option element by index.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '803', 803)" onmouseover="showTip(event, '803', 803)">
+            tryRemove i q
+          </code>
+          <div class="tip" id="803">
+            <strong>Signature:</strong> i:int -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L515-515" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns option deque with element removed by index.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '804', 804)" onmouseover="showTip(event, '804', 804)">
+            tryUncons q
+          </code>
+          <div class="tip" id="804">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; (&#39;T * RealTimeDeque&lt;&#39;T&gt;) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L539-539" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option first element and tail.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '805', 805)" onmouseover="showTip(event, '805', 805)">
+            tryUnsnoc q
+          </code>
+          <div class="tip" id="805">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; (RealTimeDeque&lt;&#39;T&gt; * &#39;T) option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L545-545" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns option init and the last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '806', 806)" onmouseover="showTip(event, '806', 806)">
+            tryUpdate i y q
+          </code>
+          <div class="tip" id="806">
+            <strong>Signature:</strong> i:int -&gt; y:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L551-551" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns option deque with element updated by index.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '807', 807)" onmouseover="showTip(event, '807', 807)">
+            uncons q
+          </code>
+          <div class="tip" id="807">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; &#39;T * RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L536-536" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns the first element and tail.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '808', 808)" onmouseover="showTip(event, '808', 808)">
+            unsnoc q
+          </code>
+          <div class="tip" id="808">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt; * &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L542-542" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), worst case. Returns init and the last element.</p>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '809', 809)" onmouseover="showTip(event, '809', 809)">
+            update i y q
+          </code>
+          <div class="tip" id="809">
+            <strong>Signature:</strong> i:int -&gt; y:&#39;T -&gt; q:RealTimeDeque&lt;&#39;T&gt; -&gt; RealTimeDeque&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L548-548" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n/2), worst case. Returns deque with element updated by index.</p>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '810', 810)" onmouseover="showTip(event, '810', 810)">
+            ( |Cons|Nil| ) q
+          </code>
+          <div class="tip" id="810">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * RealTimeDeque&lt;&#39;T&gt;),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L445-445" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '811', 811)" onmouseover="showTip(event, '811', 811)">
+            ( |Snoc|Nil| ) q
+          </code>
+          <div class="tip" id="811">
+            <strong>Signature:</strong> q:RealTimeDeque&lt;&#39;T&gt; -&gt; Choice&lt;(RealTimeDeque&lt;&#39;T&gt; * &#39;T),unit&gt;<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RealTimeDeque.fs#L447-447" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">fsprojects/FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
