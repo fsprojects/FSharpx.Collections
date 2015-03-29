@@ -183,28 +183,6 @@ type IQueue<'T> =
     //returns the option first element and tail
     abstract member TryUncons : ('T * IQueue<'T>) option with get
 
-type IPriorityQueue<'T when 'T : comparison> =
-    inherit System.Collections.IEnumerable
-    inherit System.Collections.Generic.IEnumerable<'T>
-
-    ///returns true if the queue has no elements
-    abstract member IsEmpty : bool with get
-
-    ///returns a new queue with the element added to the end
-    abstract member Insert : 'T -> IPriorityQueue<'T>
-
-    ///returns option first element
-    abstract member TryPeek : unit -> 'T option
-
-    ///returns the first element
-    abstract member Peek : unit -> 'T
-
-    //returns the option first element and tail
-    abstract member TryPop : unit -> ('T * IPriorityQueue<'T>) option
-
-    ///returns the first element and tail
-    abstract member Pop : unit -> 'T * IPriorityQueue<'T> 
-
 type IRandomAccessList<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>

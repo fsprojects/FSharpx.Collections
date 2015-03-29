@@ -136,8 +136,6 @@
     <Compile Include="DList.fs" />
     <Compile Include="ByteString.fs" />
     <Compile Include="CircularBuffer.fs" />
-    <Compile Include="Heap.fsi" />
-    <Compile Include="Heap.fs" />
     <Compile Include="PriorityQueue.fs" />
     <Compile Include="NonEmptyList.fs" />
     <Compile Include="RandomAccessList.fsi" />
