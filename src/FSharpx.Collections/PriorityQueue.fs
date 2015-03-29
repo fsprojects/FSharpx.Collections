@@ -1,4 +1,4 @@
-﻿// based on pairing heap published by Okasaki
+// based on pairing heap published by Okasaki
 // original implementation taken from http://lepensemoi.free.fr/index.php/2009/12/17/pairing-heap
 //J.F. modified
 
@@ -23,6 +23,9 @@ type IPriorityQueue<'T when 'T : comparison> =
 
     ///returns the first element
     abstract member Peek : unit -> 'T
+
+    ///returns the count of the elements
+    abstract member Length : int
 
     //returns the option first element and tail
     abstract member TryPop : unit -> ('T * IPriorityQueue<'T>) option
@@ -212,6 +215,7 @@ type Heap<'T when 'T : comparison>(isDescending : bool, length : int, data : Hea
         member this.Insert element = this.Insert element :> IPriorityQueue<'T>
         member this.TryPeek() = this.TryHead
         member this.Peek() = this.Head
+        member this.Length = this.Length
 
         member this.TryPop() = 
             match this.TryUncons() with
