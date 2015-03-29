@@ -4,7 +4,7 @@
 
 namespace FSharpx.Collections
 
-open FSharpx
+
 open System.Collections
 open System.Collections.Generic
 
