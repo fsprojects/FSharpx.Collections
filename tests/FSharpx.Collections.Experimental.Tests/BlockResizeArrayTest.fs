@@ -1,4 +1,4 @@
-﻿module FSharpx.Collections.Tests.BlockResizeArrayTest
+﻿module FSharpx.Collections.Experimental.Tests.BlockResizeArrayTest
 
 open FSharpx.Collections
 open NUnit.Framework
@@ -30,7 +30,7 @@ let ``random access performance`` () =
     for i in 0..arraySize do bra.Add x
     let b = ref 0UL
     averageTime testIters "ResizeArray random access" (fun () -> for i in access do ra.[i] <- 0UL) 
-    averageTime testIters "Array seqrandom access" (fun () -> for i in access do a.[i] <- 0UL)       
+    averageTime testIters "Array random access" (fun () -> for i in access do a.[i] <- 0UL)       
     averageTime testIters "BlockResizeArray random access" (fun () -> for i in access do bra.Set i 0UL)
 
 [<Test>]
