@@ -221,6 +221,7 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
         member this.Insert element = this.Insert element :> IPriorityQueue<'T>
         member this.TryPeek() = this.TryGetHead()
         member this.Peek() = this.Head()
+        member this.Length = this.Length()
 
         member this.TryPop() = 
             match this.TryUncons() with
