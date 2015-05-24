@@ -158,6 +158,7 @@
     <Compile Include="SkewBinaryRandomAccessList.fs" />
     <Compile Include="TimeSeries.fs" />
     <Compile Include="CSharpCompat.fs" />
+    <Compile Include="BlockResizeArray.fs" />
     <None Include="paket.template" />
   </ItemGroup>
   <ItemGroup>
