@@ -34,7 +34,7 @@ let ``random access performance`` () =
     averageTime testIters "BlockResizeArray random access" (fun () -> for i in access do bra.Set i 0UL)
 
 [<Test>]
-let ``seqential access performance`` () =
+let ``sequential access performance`` () =
     let rand = System.Random()
     let access = [|0..arraySize-1|]
     let a = Array.init arraySize  (fun _ -> x)
