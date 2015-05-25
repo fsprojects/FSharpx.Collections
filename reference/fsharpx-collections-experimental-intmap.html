@@ -54,8 +54,8 @@
             adjust f k m
           </code>
           <div class="tip" id="634">
-            <strong>Signature:</strong> f:(&#39;?10589 -&gt; &#39;?10589) -&gt; k:int -&gt; m:IntMap&lt;&#39;?10589&gt; -&gt; IntMap&lt;&#39;?10589&gt;<br />
-                          <strong>Type parameters:</strong> '?10589          </div>
+            <strong>Signature:</strong> f:(&#39;?11379 -&gt; &#39;?11379) -&gt; k:int -&gt; m:IntMap&lt;&#39;?11379&gt; -&gt; IntMap&lt;&#39;?11379&gt;<br />
+                          <strong>Type parameters:</strong> '?11379          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L267-267" class="github-link">
@@ -63,6 +63,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -73,8 +75,8 @@
             adjustWithKey f k m
           </code>
           <div class="tip" id="635">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10587 -&gt; &#39;?10587) -&gt; k:int -&gt; m:IntMap&lt;&#39;?10587&gt; -&gt; IntMap&lt;&#39;?10587&gt;<br />
-                          <strong>Type parameters:</strong> '?10587          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11377 -&gt; &#39;?11377) -&gt; k:int -&gt; m:IntMap&lt;&#39;?11377&gt; -&gt; IntMap&lt;&#39;?11377&gt;<br />
+                          <strong>Type parameters:</strong> '?11377          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L264-264" class="github-link">
@@ -82,6 +84,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -92,8 +96,8 @@
             alter f k t
           </code>
           <div class="tip" id="636">
-            <strong>Signature:</strong> f:(&#39;?10593 option -&gt; &#39;?10593 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?10593&gt; -&gt; IntMap&lt;&#39;?10593&gt;<br />
-                          <strong>Type parameters:</strong> '?10593          </div>
+            <strong>Signature:</strong> f:(&#39;?11383 option -&gt; &#39;?11383 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?11383&gt; -&gt; IntMap&lt;&#39;?11383&gt;<br />
+                          <strong>Type parameters:</strong> '?11383          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L287-287" class="github-link">
@@ -101,6 +105,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). The expression (alter f k map) alters the value x at k, or absence thereof. alter can be used to insert, delete, or update a value in an IntMap. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -111,8 +117,8 @@
             append m1 m2
           </code>
           <div class="tip" id="637">
-            <strong>Signature:</strong> m1:IntMap&lt;&#39;?10606&gt; -&gt; m2:IntMap&lt;&#39;?10606&gt; -&gt; IntMap&lt;&#39;?10606&gt;<br />
-                          <strong>Type parameters:</strong> '?10606          </div>
+            <strong>Signature:</strong> m1:IntMap&lt;&#39;?11396&gt; -&gt; m2:IntMap&lt;&#39;?11396&gt; -&gt; IntMap&lt;&#39;?11396&gt;<br />
+                          <strong>Type parameters:</strong> '?11396          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L367-367" class="github-link">
@@ -129,8 +135,8 @@
             appendWith f m1 m2
           </code>
           <div class="tip" id="638">
-            <strong>Signature:</strong> f:(&#39;?10610 -&gt; &#39;?10610 -&gt; &#39;?10610) -&gt; m1:IntMap&lt;&#39;?10610&gt; -&gt; m2:IntMap&lt;&#39;?10610&gt; -&gt; IntMap&lt;&#39;?10610&gt;<br />
-                          <strong>Type parameters:</strong> '?10610          </div>
+            <strong>Signature:</strong> f:(&#39;?11400 -&gt; &#39;?11400 -&gt; &#39;?11400) -&gt; m1:IntMap&lt;&#39;?11400&gt; -&gt; m2:IntMap&lt;&#39;?11400&gt; -&gt; IntMap&lt;&#39;?11400&gt;<br />
+                          <strong>Type parameters:</strong> '?11400          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L372-372" class="github-link">
@@ -147,8 +153,8 @@
             appendWithKey f m1 m2
           </code>
           <div class="tip" id="639">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10608 -&gt; &#39;?10608 -&gt; &#39;?10608) -&gt; m1:IntMap&lt;&#39;?10608&gt; -&gt; m2:IntMap&lt;&#39;?10608&gt; -&gt; IntMap&lt;&#39;?10608&gt;<br />
-                          <strong>Type parameters:</strong> '?10608          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11398 -&gt; &#39;?11398 -&gt; &#39;?11398) -&gt; m1:IntMap&lt;&#39;?11398&gt; -&gt; m2:IntMap&lt;&#39;?11398&gt; -&gt; IntMap&lt;&#39;?11398&gt;<br />
+                          <strong>Type parameters:</strong> '?11398          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L369-369" class="github-link">
@@ -165,8 +171,8 @@
             concat xs
           </code>
           <div class="tip" id="640">
-            <strong>Signature:</strong> xs:IntMap&lt;&#39;?10612&gt; list -&gt; IntMap&lt;&#39;?10612&gt;<br />
-                          <strong>Type parameters:</strong> '?10612          </div>
+            <strong>Signature:</strong> xs:IntMap&lt;&#39;?11402&gt; list -&gt; IntMap&lt;&#39;?11402&gt;<br />
+                          <strong>Type parameters:</strong> '?11402          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L374-374" class="github-link">
@@ -183,8 +189,8 @@
             concatWith f xs
           </code>
           <div class="tip" id="641">
-            <strong>Signature:</strong> f:(&#39;?10614 -&gt; &#39;?10614 -&gt; &#39;?10614) -&gt; xs:IntMap&lt;&#39;?10614&gt; list -&gt; IntMap&lt;&#39;?10614&gt;<br />
-                          <strong>Type parameters:</strong> '?10614          </div>
+            <strong>Signature:</strong> f:(&#39;?11404 -&gt; &#39;?11404 -&gt; &#39;?11404) -&gt; xs:IntMap&lt;&#39;?11404&gt; list -&gt; IntMap&lt;&#39;?11404&gt;<br />
+                          <strong>Type parameters:</strong> '?11404          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L376-376" class="github-link">
@@ -201,8 +207,8 @@
             delete k t
           </code>
           <div class="tip" id="642">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10581&gt; -&gt; IntMap&lt;&#39;?10581&gt;<br />
-                          <strong>Type parameters:</strong> '?10581          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11371&gt; -&gt; IntMap&lt;&#39;?11371&gt;<br />
+                          <strong>Type parameters:</strong> '?11371          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L238-238" class="github-link">
@@ -210,6 +216,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Delete a key and its value from the map. When the key is not a member of the map, the original map is returned. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -220,8 +228,8 @@
             deleteFindMax t
           </code>
           <div class="tip" id="643">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10656&gt; -&gt; (int * &#39;?10656) * IntMap&lt;&#39;?10656&gt;<br />
-                          <strong>Type parameters:</strong> '?10656          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11446&gt; -&gt; (int * &#39;?11446) * IntMap&lt;&#39;?11446&gt;<br />
+                          <strong>Type parameters:</strong> '?11446          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L464-464" class="github-link">
@@ -229,6 +237,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Retrieves the maximal key of the map, and the map stripped from that element. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -239,8 +249,8 @@
             deleteFindMin t
           </code>
           <div class="tip" id="644">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10658&gt; -&gt; (int * &#39;?10658) * IntMap&lt;&#39;?10658&gt;<br />
-                          <strong>Type parameters:</strong> '?10658          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11448&gt; -&gt; (int * &#39;?11448) * IntMap&lt;&#39;?11448&gt;<br />
+                          <strong>Type parameters:</strong> '?11448          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L470-470" class="github-link">
@@ -248,6 +258,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Retrieves the minimal key of the map, and the map stripped from that element. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -258,8 +270,8 @@
             deleteMax t
           </code>
           <div class="tip" id="645">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10666&gt; -&gt; IntMap&lt;&#39;?10666&gt;<br />
-                          <strong>Type parameters:</strong> '?10666          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11456&gt; -&gt; IntMap&lt;&#39;?11456&gt;<br />
+                          <strong>Type parameters:</strong> '?11456          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L508-508" class="github-link">
@@ -267,6 +279,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Delete the maximal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -277,8 +291,8 @@
             deleteMin t
           </code>
           <div class="tip" id="646">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10664&gt; -&gt; IntMap&lt;&#39;?10664&gt;<br />
-                          <strong>Type parameters:</strong> '?10664          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11454&gt; -&gt; IntMap&lt;&#39;?11454&gt;<br />
+                          <strong>Type parameters:</strong> '?11454          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L502-502" class="github-link">
@@ -286,6 +300,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Delete the minimal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -296,8 +312,8 @@
             difference m1 m2
           </code>
           <div class="tip" id="647">
-            <strong>Signature:</strong> m1:IntMap&lt;&#39;?10616&gt; -&gt; m2:IntMap&lt;&#39;?10617&gt; -&gt; IntMap&lt;&#39;?10616&gt;<br />
-                          <strong>Type parameters:</strong> '?10616, '?10617          </div>
+            <strong>Signature:</strong> m1:IntMap&lt;&#39;?11406&gt; -&gt; m2:IntMap&lt;&#39;?11407&gt; -&gt; IntMap&lt;&#39;?11406&gt;<br />
+                          <strong>Type parameters:</strong> '?11406, '?11407          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L379-379" class="github-link">
@@ -305,6 +321,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Difference between two maps (based on keys). Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -315,8 +333,8 @@
             differenceWith f m1 m2
           </code>
           <div class="tip" id="648">
-            <strong>Signature:</strong> f:(&#39;?10622 -&gt; &#39;?10623 -&gt; &#39;?10622 option) -&gt; m1:IntMap&lt;&#39;?10622&gt; -&gt; m2:IntMap&lt;&#39;?10623&gt; -&gt; IntMap&lt;&#39;?10622&gt;<br />
-                          <strong>Type parameters:</strong> '?10622, '?10623          </div>
+            <strong>Signature:</strong> f:(&#39;?11412 -&gt; &#39;?11413 -&gt; &#39;?11412 option) -&gt; m1:IntMap&lt;&#39;?11412&gt; -&gt; m2:IntMap&lt;&#39;?11413&gt; -&gt; IntMap&lt;&#39;?11412&gt;<br />
+                          <strong>Type parameters:</strong> '?11412, '?11413          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L385-385" class="github-link">
@@ -324,6 +342,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Difference with a combining function. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -334,8 +354,8 @@
             differenceWithKey f m1 m2
           </code>
           <div class="tip" id="649">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10619 -&gt; &#39;?10620 -&gt; &#39;?10619 option) -&gt; m1:IntMap&lt;&#39;?10619&gt; -&gt; m2:IntMap&lt;&#39;?10620&gt; -&gt; IntMap&lt;&#39;?10619&gt;<br />
-                          <strong>Type parameters:</strong> '?10619, '?10620          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11409 -&gt; &#39;?11410 -&gt; &#39;?11409 option) -&gt; m1:IntMap&lt;&#39;?11409&gt; -&gt; m2:IntMap&lt;&#39;?11410&gt; -&gt; IntMap&lt;&#39;?11409&gt;<br />
+                          <strong>Type parameters:</strong> '?11409, '?11410          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L382-382" class="github-link">
@@ -343,6 +363,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Difference with a combining function. When two equal keys are encountered, the combining function is applied to the key and both values. If it returns Nothing, the element is discarded (proper set difference). If it returns (Just y), the element is updated with a new value y. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -353,8 +375,8 @@
             empty 
           </code>
           <div class="tip" id="650">
-            <strong>Signature:</strong> IntMap&lt;&#39;?10569&gt;<br />
-                          <strong>Type parameters:</strong> '?10569          </div>
+            <strong>Signature:</strong> IntMap&lt;&#39;?11359&gt;<br />
+                          <strong>Type parameters:</strong> '?11359          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L195-195" class="github-link">
@@ -362,6 +384,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). The empty map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -372,8 +396,8 @@
             exists k _arg1
           </code>
           <div class="tip" id="651">
-            <strong>Signature:</strong> k:int -&gt; _arg1:IntMap&lt;&#39;?10549&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10549          </div>
+            <strong>Signature:</strong> k:int -&gt; _arg1:IntMap&lt;&#39;?11339&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11339          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L94-94" class="github-link">
@@ -381,6 +405,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Is the key a member of the map? Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -391,8 +417,8 @@
             filter p m
           </code>
           <div class="tip" id="652">
-            <strong>Signature:</strong> p:(&#39;?10688 -&gt; bool) -&gt; m:IntMap&lt;&#39;?10688&gt; -&gt; IntMap&lt;&#39;?10688&gt;<br />
-                          <strong>Type parameters:</strong> '?10688          </div>
+            <strong>Signature:</strong> p:(&#39;?11478 -&gt; bool) -&gt; m:IntMap&lt;&#39;?11478&gt; -&gt; IntMap&lt;&#39;?11478&gt;<br />
+                          <strong>Type parameters:</strong> '?11478          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L551-551" class="github-link">
@@ -400,6 +426,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Filter all values that satisfy some predicate. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -410,8 +438,8 @@
             filterWithKey predicate _arg1
           </code>
           <div class="tip" id="653">
-            <strong>Signature:</strong> predicate:(int -&gt; &#39;?10686 -&gt; bool) -&gt; _arg1:IntMap&lt;&#39;?10686&gt; -&gt; IntMap&lt;&#39;?10686&gt;<br />
-                          <strong>Type parameters:</strong> '?10686          </div>
+            <strong>Signature:</strong> predicate:(int -&gt; &#39;?11476 -&gt; bool) -&gt; _arg1:IntMap&lt;&#39;?11476&gt; -&gt; IntMap&lt;&#39;?11476&gt;<br />
+                          <strong>Type parameters:</strong> '?11476          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L543-543" class="github-link">
@@ -419,6 +447,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Filter all keys/values that satisfy some predicate. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -429,8 +459,8 @@
             find k m
           </code>
           <div class="tip" id="654">
-            <strong>Signature:</strong> k:int -&gt; m:IntMap&lt;&#39;?10553&gt; -&gt; &#39;?10553<br />
-                          <strong>Type parameters:</strong> '?10553          </div>
+            <strong>Signature:</strong> k:int -&gt; m:IntMap&lt;&#39;?11343&gt; -&gt; &#39;?11343<br />
+                          <strong>Type parameters:</strong> '?11343          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L106-106" class="github-link">
@@ -438,6 +468,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Lookup the value at a key in the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -448,8 +480,8 @@
             findMax t
           </code>
           <div class="tip" id="655">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10662&gt; -&gt; int * &#39;?10662<br />
-                          <strong>Type parameters:</strong> '?10662          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11452&gt; -&gt; int * &#39;?11452<br />
+                          <strong>Type parameters:</strong> '?11452          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L489-489" class="github-link">
@@ -457,6 +489,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). The maximal key of the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -467,8 +501,8 @@
             findMin t
           </code>
           <div class="tip" id="656">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10660&gt; -&gt; int * &#39;?10660<br />
-                          <strong>Type parameters:</strong> '?10660          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11450&gt; -&gt; int * &#39;?11450<br />
+                          <strong>Type parameters:</strong> '?11450          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L476-476" class="github-link">
@@ -476,6 +510,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). The minimal key of the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -486,8 +522,8 @@
             findWithDefault def k _arg1
           </code>
           <div class="tip" id="657">
-            <strong>Signature:</strong> def:&#39;?10555 -&gt; k:int -&gt; _arg1:IntMap&lt;&#39;?10555&gt; -&gt; &#39;?10555<br />
-                          <strong>Type parameters:</strong> '?10555          </div>
+            <strong>Signature:</strong> def:&#39;?11345 -&gt; k:int -&gt; _arg1:IntMap&lt;&#39;?11345&gt; -&gt; &#39;?11345<br />
+                          <strong>Type parameters:</strong> '?11345          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L117-117" class="github-link">
@@ -495,6 +531,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). The expression (findWithDefault def k map) returns the value at key k or returns def when the key is not an element of the map.  Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -505,8 +543,8 @@
             fold f z
           </code>
           <div class="tip" id="658">
-            <strong>Signature:</strong> f:(&#39;?10715 -&gt; &#39;?10716 -&gt; &#39;?10715) -&gt; z:&#39;?10715 -&gt; IntMap&lt;&#39;?10716&gt; -&gt; &#39;?10715<br />
-                          <strong>Type parameters:</strong> '?10715, '?10716          </div>
+            <strong>Signature:</strong> f:(&#39;?11505 -&gt; &#39;?11506 -&gt; &#39;?11505) -&gt; z:&#39;?11505 -&gt; IntMap&lt;&#39;?11506&gt; -&gt; &#39;?11505<br />
+                          <strong>Type parameters:</strong> '?11505, '?11506          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L656-656" class="github-link">
@@ -514,6 +552,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Fold the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -524,8 +564,8 @@
             foldBack f z
           </code>
           <div class="tip" id="659">
-            <strong>Signature:</strong> f:(&#39;?10712 -&gt; &#39;?10713 -&gt; &#39;?10713) -&gt; z:&#39;?10713 -&gt; IntMap&lt;&#39;?10712&gt; -&gt; &#39;?10713<br />
-                          <strong>Type parameters:</strong> '?10712, '?10713          </div>
+            <strong>Signature:</strong> f:(&#39;?11502 -&gt; &#39;?11503 -&gt; &#39;?11503) -&gt; z:&#39;?11503 -&gt; IntMap&lt;&#39;?11502&gt; -&gt; &#39;?11503<br />
+                          <strong>Type parameters:</strong> '?11502, '?11503          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L643-643" class="github-link">
@@ -533,6 +573,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). FoldBack the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -543,8 +585,8 @@
             foldBackWithKey f z t
           </code>
           <div class="tip" id="660">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10718 -&gt; &#39;?10719 -&gt; &#39;?10719) -&gt; z:&#39;?10719 -&gt; t:IntMap&lt;&#39;?10718&gt; -&gt; &#39;?10719<br />
-                          <strong>Type parameters:</strong> '?10718, '?10719          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11508 -&gt; &#39;?11509 -&gt; &#39;?11509) -&gt; z:&#39;?11509 -&gt; t:IntMap&lt;&#39;?11508&gt; -&gt; &#39;?11509<br />
+                          <strong>Type parameters:</strong> '?11508, '?11509          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L669-669" class="github-link">
@@ -552,6 +594,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). FoldBack the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -562,8 +606,8 @@
             foldWithKey f z
           </code>
           <div class="tip" id="661">
-            <strong>Signature:</strong> f:(&#39;?10721 -&gt; int -&gt; &#39;?10722 -&gt; &#39;?10721) -&gt; z:&#39;?10721 -&gt; IntMap&lt;&#39;?10722&gt; -&gt; &#39;?10721<br />
-                          <strong>Type parameters:</strong> '?10721, '?10722          </div>
+            <strong>Signature:</strong> f:(&#39;?11511 -&gt; int -&gt; &#39;?11512 -&gt; &#39;?11511) -&gt; z:&#39;?11511 -&gt; IntMap&lt;&#39;?11512&gt; -&gt; &#39;?11511<br />
+                          <strong>Type parameters:</strong> '?11511, '?11512          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L672-672" class="github-link">
@@ -571,6 +615,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Fold the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -581,8 +627,8 @@
             insert k x t
           </code>
           <div class="tip" id="662">
-            <strong>Signature:</strong> k:int -&gt; x:&#39;?10573 -&gt; t:IntMap&lt;&#39;?10573&gt; -&gt; IntMap&lt;&#39;?10573&gt;<br />
-                          <strong>Type parameters:</strong> '?10573          </div>
+            <strong>Signature:</strong> k:int -&gt; x:&#39;?11363 -&gt; t:IntMap&lt;&#39;?11363&gt; -&gt; IntMap&lt;&#39;?11363&gt;<br />
+                          <strong>Type parameters:</strong> '?11363          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L201-201" class="github-link">
@@ -590,6 +636,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Insert a new key/value pair in the map. If the key is already present in the map, the associated value is replaced with the supplied value, i.e. insert is equivalent to insertWith const. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -600,8 +648,8 @@
             insertTryFindWithKey f k x t
           </code>
           <div class="tip" id="663">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10579 -&gt; &#39;?10579 -&gt; &#39;?10579) -&gt; k:int -&gt; x:&#39;?10579 -&gt; t:IntMap&lt;&#39;?10579&gt; -&gt; &#39;?10579 option * IntMap&lt;&#39;?10579&gt;<br />
-                          <strong>Type parameters:</strong> '?10579          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11369 -&gt; &#39;?11369 -&gt; &#39;?11369) -&gt; k:int -&gt; x:&#39;?11369 -&gt; t:IntMap&lt;&#39;?11369&gt; -&gt; &#39;?11369 option * IntMap&lt;&#39;?11369&gt;<br />
+                          <strong>Type parameters:</strong> '?11369          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L224-224" class="github-link">
@@ -609,6 +657,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). The expression (insertLookupWithKey f k x map) is a pair where the first element is equal to (lookup k map) and the second element equal to (insertWithKey f k x map). Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -619,8 +669,8 @@
             insertWith f k x t
           </code>
           <div class="tip" id="664">
-            <strong>Signature:</strong> f:(&#39;?10577 -&gt; &#39;?10577 -&gt; &#39;?10577) -&gt; k:int -&gt; x:&#39;?10577 -&gt; t:IntMap&lt;&#39;?10577&gt; -&gt; IntMap&lt;&#39;?10577&gt;<br />
-                          <strong>Type parameters:</strong> '?10577          </div>
+            <strong>Signature:</strong> f:(&#39;?11367 -&gt; &#39;?11367 -&gt; &#39;?11367) -&gt; k:int -&gt; x:&#39;?11367 -&gt; t:IntMap&lt;&#39;?11367&gt; -&gt; IntMap&lt;&#39;?11367&gt;<br />
+                          <strong>Type parameters:</strong> '?11367          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L221-221" class="github-link">
@@ -628,6 +678,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Insert with a combining function. insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f new<em>value old</em>value. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -638,8 +690,8 @@
             insertWithKey f k x t
           </code>
           <div class="tip" id="665">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10575 -&gt; &#39;?10575 -&gt; &#39;?10575) -&gt; k:int -&gt; x:&#39;?10575 -&gt; t:IntMap&lt;&#39;?10575&gt; -&gt; IntMap&lt;&#39;?10575&gt;<br />
-                          <strong>Type parameters:</strong> '?10575          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11365 -&gt; &#39;?11365 -&gt; &#39;?11365) -&gt; k:int -&gt; x:&#39;?11365 -&gt; t:IntMap&lt;&#39;?11365&gt; -&gt; IntMap&lt;&#39;?11365&gt;<br />
+                          <strong>Type parameters:</strong> '?11365          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L211-211" class="github-link">
@@ -647,6 +699,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Insert with a combining function. insertWithKey f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f key new<em>value old</em>value. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -657,8 +711,8 @@
             intersection m1 m2
           </code>
           <div class="tip" id="666">
-            <strong>Signature:</strong> m1:IntMap&lt;&#39;?10625&gt; -&gt; m2:IntMap&lt;&#39;?10626&gt; -&gt; IntMap&lt;&#39;?10625&gt;<br />
-                          <strong>Type parameters:</strong> '?10625, '?10626          </div>
+            <strong>Signature:</strong> m1:IntMap&lt;&#39;?11415&gt; -&gt; m2:IntMap&lt;&#39;?11416&gt; -&gt; IntMap&lt;&#39;?11415&gt;<br />
+                          <strong>Type parameters:</strong> '?11415, '?11416          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L388-388" class="github-link">
@@ -666,6 +720,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). The (left-biased) intersection of two maps (based on keys). Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -676,8 +732,8 @@
             intersectionWith f m1 m2
           </code>
           <div class="tip" id="667">
-            <strong>Signature:</strong> f:(&#39;?10632 -&gt; &#39;?10633 -&gt; &#39;?10634) -&gt; m1:IntMap&lt;&#39;?10632&gt; -&gt; m2:IntMap&lt;&#39;?10633&gt; -&gt; IntMap&lt;&#39;?10634&gt;<br />
-                          <strong>Type parameters:</strong> '?10632, '?10633, '?10634          </div>
+            <strong>Signature:</strong> f:(&#39;?11422 -&gt; &#39;?11423 -&gt; &#39;?11424) -&gt; m1:IntMap&lt;&#39;?11422&gt; -&gt; m2:IntMap&lt;&#39;?11423&gt; -&gt; IntMap&lt;&#39;?11424&gt;<br />
+                          <strong>Type parameters:</strong> '?11422, '?11423, '?11424          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L395-395" class="github-link">
@@ -685,6 +741,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). The intersection with a combining function. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -695,8 +753,8 @@
             intersectionWithKey f m1 m2
           </code>
           <div class="tip" id="668">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10628 -&gt; &#39;?10629 -&gt; &#39;?10630) -&gt; m1:IntMap&lt;&#39;?10628&gt; -&gt; m2:IntMap&lt;&#39;?10629&gt; -&gt; IntMap&lt;&#39;?10630&gt;<br />
-                          <strong>Type parameters:</strong> '?10628, '?10629, '?10630          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11418 -&gt; &#39;?11419 -&gt; &#39;?11420) -&gt; m1:IntMap&lt;&#39;?11418&gt; -&gt; m2:IntMap&lt;&#39;?11419&gt; -&gt; IntMap&lt;&#39;?11420&gt;<br />
+                          <strong>Type parameters:</strong> '?11418, '?11419, '?11420          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L391-391" class="github-link">
@@ -704,6 +762,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). The intersection with a combining function. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -714,8 +774,8 @@
             isEmpty _arg1
           </code>
           <div class="tip" id="669">
-            <strong>Signature:</strong> _arg1:IntMap&lt;&#39;?10543&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10543          </div>
+            <strong>Signature:</strong> _arg1:IntMap&lt;&#39;?11333&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11333          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L71-71" class="github-link">
@@ -723,6 +783,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Map is empty.  Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -733,8 +795,8 @@
             isProperSubmapOf m1 m2
           </code>
           <div class="tip" id="670">
-            <strong>Signature:</strong> m1:IntMap&lt;&#39;?10777&gt; -&gt; m2:IntMap&lt;&#39;?10777&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10777          </div>
+            <strong>Signature:</strong> m1:IntMap&lt;&#39;?11567&gt; -&gt; m2:IntMap&lt;&#39;?11567&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11567          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L796-796" class="github-link">
@@ -742,6 +804,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Is this a proper submap? (ie. a submap but not equal). Defined as (isProperSubmapOf = isProperSubmapOfBy (==)). Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -752,8 +816,8 @@
             isProperSubmapOfBy predicate t1 t2
           </code>
           <div class="tip" id="671">
-            <strong>Signature:</strong> predicate:(&#39;?10774 -&gt; &#39;?10775 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?10774&gt; -&gt; t2:IntMap&lt;&#39;?10775&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10774, '?10775          </div>
+            <strong>Signature:</strong> predicate:(&#39;?11564 -&gt; &#39;?11565 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?11564&gt; -&gt; t2:IntMap&lt;&#39;?11565&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11564, '?11565          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L790-790" class="github-link">
@@ -761,6 +825,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Is this a proper submap? (ie. a submap but not equal). The expression (isProperSubmapOfBy f m1 m2) returns True when m1 and m2 are not equal, all keys in m1 are in m2, and when f returns True when applied to their respective values.  Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -771,8 +837,8 @@
             isSubmapOf m1 m2
           </code>
           <div class="tip" id="672">
-            <strong>Signature:</strong> m1:IntMap&lt;&#39;?10759&gt; -&gt; m2:IntMap&lt;&#39;?10759&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10759          </div>
+            <strong>Signature:</strong> m1:IntMap&lt;&#39;?11549&gt; -&gt; m2:IntMap&lt;&#39;?11549&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11549          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L754-754" class="github-link">
@@ -780,6 +846,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). Is this a submap? Defined as (isSubmapOf = isSubmapOfBy (==)). Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -790,8 +858,8 @@
             isSubmapOfBy predicate t1 t2
           </code>
           <div class="tip" id="673">
-            <strong>Signature:</strong> predicate:(&#39;?10756 -&gt; &#39;?10757 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?10756&gt; -&gt; t2:IntMap&lt;&#39;?10757&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10756, '?10757          </div>
+            <strong>Signature:</strong> predicate:(&#39;?11546 -&gt; &#39;?11547 -&gt; bool) -&gt; t1:IntMap&lt;&#39;?11546&gt; -&gt; t2:IntMap&lt;&#39;?11547&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11546, '?11547          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L737-737" class="github-link">
@@ -799,6 +867,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n+m). The expression (isSubmapOfBy f m1 m2) returns True if all keys in m1 are in m2, and when f returns True when applied to their respective values. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -809,8 +879,8 @@
             keys m
           </code>
           <div class="tip" id="674">
-            <strong>Signature:</strong> m:IntMap&lt;&#39;?10726&gt; -&gt; int list<br />
-                          <strong>Type parameters:</strong> '?10726          </div>
+            <strong>Signature:</strong> m:IntMap&lt;&#39;?11516&gt; -&gt; int list<br />
+                          <strong>Type parameters:</strong> '?11516          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L688-688" class="github-link">
@@ -818,6 +888,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Return all keys of the map in ascending order. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -828,8 +900,8 @@
             konst a arg2
           </code>
           <div class="tip" id="675">
-            <strong>Signature:</strong> a:&#39;?10603 -&gt; &#39;?10604 -&gt; &#39;?10603<br />
-                          <strong>Type parameters:</strong> '?10603, '?10604          </div>
+            <strong>Signature:</strong> a:&#39;?11393 -&gt; &#39;?11394 -&gt; &#39;?11393<br />
+                          <strong>Type parameters:</strong> '?11393, '?11394          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L365-365" class="github-link">
@@ -846,8 +918,8 @@
             map f _arg1
           </code>
           <div class="tip" id="676">
-            <strong>Signature:</strong> f:(&#39;?10671 -&gt; &#39;?10672) -&gt; _arg1:IntMap&lt;&#39;?10671&gt; -&gt; IntMap&lt;&#39;?10672&gt;<br />
-                          <strong>Type parameters:</strong> '?10671, '?10672          </div>
+            <strong>Signature:</strong> f:(&#39;?11461 -&gt; &#39;?11462) -&gt; _arg1:IntMap&lt;&#39;?11461&gt; -&gt; IntMap&lt;&#39;?11462&gt;<br />
+                          <strong>Type parameters:</strong> '?11461, '?11462          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L521-521" class="github-link">
@@ -855,6 +927,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map a function over all values in the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -865,8 +939,8 @@
             mapAccum f
           </code>
           <div class="tip" id="677">
-            <strong>Signature:</strong> f:(&#39;?10682 -&gt; &#39;?10683 -&gt; &#39;?10682 * &#39;?10684) -&gt; &#39;?10682 -&gt; IntMap&lt;&#39;?10683&gt; -&gt; &#39;?10682 * IntMap&lt;&#39;?10684&gt;<br />
-                          <strong>Type parameters:</strong> '?10682, '?10683, '?10684          </div>
+            <strong>Signature:</strong> f:(&#39;?11472 -&gt; &#39;?11473 -&gt; &#39;?11472 * &#39;?11474) -&gt; &#39;?11472 -&gt; IntMap&lt;&#39;?11473&gt; -&gt; &#39;?11472 * IntMap&lt;&#39;?11474&gt;<br />
+                          <strong>Type parameters:</strong> '?11472, '?11473, '?11474          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L540-540" class="github-link">
@@ -874,6 +948,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). The function mapAccumWithKey threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -884,8 +960,8 @@
             mapAccumWithKey f a t
           </code>
           <div class="tip" id="678">
-            <strong>Signature:</strong> f:(&#39;?10678 -&gt; int -&gt; &#39;?10679 -&gt; &#39;?10678 * &#39;?10680) -&gt; a:&#39;?10678 -&gt; t:IntMap&lt;&#39;?10679&gt; -&gt; &#39;?10678 * IntMap&lt;&#39;?10680&gt;<br />
-                          <strong>Type parameters:</strong> '?10678, '?10679, '?10680          </div>
+            <strong>Signature:</strong> f:(&#39;?11468 -&gt; int -&gt; &#39;?11469 -&gt; &#39;?11468 * &#39;?11470) -&gt; a:&#39;?11468 -&gt; t:IntMap&lt;&#39;?11469&gt; -&gt; &#39;?11468 * IntMap&lt;&#39;?11470&gt;<br />
+                          <strong>Type parameters:</strong> '?11468, '?11469, '?11470          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L537-537" class="github-link">
@@ -893,6 +969,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). The function mapAccum threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -903,8 +981,8 @@
             mapChoice f
           </code>
           <div class="tip" id="679">
-            <strong>Signature:</strong> f:(&#39;?10704 -&gt; Choice&lt;&#39;?10705,&#39;?10706&gt;) -&gt; IntMap&lt;&#39;?10704&gt; -&gt; IntMap&lt;&#39;?10705&gt; * IntMap&lt;&#39;?10706&gt;<br />
-                          <strong>Type parameters:</strong> '?10704, '?10705, '?10706          </div>
+            <strong>Signature:</strong> f:(&#39;?11494 -&gt; Choice&lt;&#39;?11495,&#39;?11496&gt;) -&gt; IntMap&lt;&#39;?11494&gt; -&gt; IntMap&lt;&#39;?11495&gt; * IntMap&lt;&#39;?11496&gt;<br />
+                          <strong>Type parameters:</strong> '?11494, '?11495, '?11496          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L594-594" class="github-link">
@@ -912,6 +990,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map values and separate the Left and Right results. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -922,8 +1002,8 @@
             mapChoiceWithKey f _arg1
           </code>
           <div class="tip" id="680">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10700 -&gt; Choice&lt;&#39;?10701,&#39;?10702&gt;) -&gt; _arg1:IntMap&lt;&#39;?10700&gt; -&gt; IntMap&lt;&#39;?10701&gt; * IntMap&lt;&#39;?10702&gt;<br />
-                          <strong>Type parameters:</strong> '?10700, '?10701, '?10702          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11490 -&gt; Choice&lt;&#39;?11491,&#39;?11492&gt;) -&gt; _arg1:IntMap&lt;&#39;?11490&gt; -&gt; IntMap&lt;&#39;?11491&gt; * IntMap&lt;&#39;?11492&gt;<br />
+                          <strong>Type parameters:</strong> '?11490, '?11491, '?11492          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L581-581" class="github-link">
@@ -931,6 +1011,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map keys/values and separate the Left and Right results. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -941,8 +1023,8 @@
             mapKeys f
           </code>
           <div class="tip" id="681">
-            <strong>Signature:</strong> f:(int -&gt; int) -&gt; IntMap&lt;&#39;?10752&gt; -&gt; IntMap&lt;&#39;?10752&gt;<br />
-                          <strong>Type parameters:</strong> '?10752          </div>
+            <strong>Signature:</strong> f:(int -&gt; int) -&gt; IntMap&lt;&#39;?11542&gt; -&gt; IntMap&lt;&#39;?11542&gt;<br />
+                          <strong>Type parameters:</strong> '?11542          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L731-731" class="github-link">
@@ -950,6 +1032,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). mapKeys f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the value at the greatest of the original keys is retained. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -960,8 +1044,8 @@
             mapKeysWith c f
           </code>
           <div class="tip" id="682">
-            <strong>Signature:</strong> c:(&#39;?10754 -&gt; &#39;?10754 -&gt; &#39;?10754) -&gt; f:(int -&gt; int) -&gt; IntMap&lt;&#39;?10754&gt; -&gt; IntMap&lt;&#39;?10754&gt;<br />
-                          <strong>Type parameters:</strong> '?10754          </div>
+            <strong>Signature:</strong> c:(&#39;?11544 -&gt; &#39;?11544 -&gt; &#39;?11544) -&gt; f:(int -&gt; int) -&gt; IntMap&lt;&#39;?11544&gt; -&gt; IntMap&lt;&#39;?11544&gt;<br />
+                          <strong>Type parameters:</strong> '?11544          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L734-734" class="github-link">
@@ -969,6 +1053,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*log n). mapKeysWith c f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the associated values will be combined using c. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -979,8 +1065,8 @@
             mapOption f
           </code>
           <div class="tip" id="683">
-            <strong>Signature:</strong> f:(&#39;?10697 -&gt; &#39;?10698 option) -&gt; IntMap&lt;&#39;?10697&gt; -&gt; IntMap&lt;&#39;?10698&gt;<br />
-                          <strong>Type parameters:</strong> '?10697, '?10698          </div>
+            <strong>Signature:</strong> f:(&#39;?11487 -&gt; &#39;?11488 option) -&gt; IntMap&lt;&#39;?11487&gt; -&gt; IntMap&lt;&#39;?11488&gt;<br />
+                          <strong>Type parameters:</strong> '?11487, '?11488          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L578-578" class="github-link">
@@ -988,6 +1074,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map values and collect the Just results. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -998,8 +1086,8 @@
             mapOptionWithKey f _arg1
           </code>
           <div class="tip" id="684">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10694 -&gt; &#39;?10695 option) -&gt; _arg1:IntMap&lt;&#39;?10694&gt; -&gt; IntMap&lt;&#39;?10695&gt;<br />
-                          <strong>Type parameters:</strong> '?10694, '?10695          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11484 -&gt; &#39;?11485 option) -&gt; _arg1:IntMap&lt;&#39;?11484&gt; -&gt; IntMap&lt;&#39;?11485&gt;<br />
+                          <strong>Type parameters:</strong> '?11484, '?11485          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L568-568" class="github-link">
@@ -1007,6 +1095,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map keys/values and collect the Just results. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1017,8 +1107,8 @@
             mapWithKey f _arg1
           </code>
           <div class="tip" id="685">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10668 -&gt; &#39;?10669) -&gt; _arg1:IntMap&lt;&#39;?10668&gt; -&gt; IntMap&lt;&#39;?10669&gt;<br />
-                          <strong>Type parameters:</strong> '?10668, '?10669          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11458 -&gt; &#39;?11459) -&gt; _arg1:IntMap&lt;&#39;?11458&gt; -&gt; IntMap&lt;&#39;?11459&gt;<br />
+                          <strong>Type parameters:</strong> '?11458, '?11459          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L514-514" class="github-link">
@@ -1026,6 +1116,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Map a function over all values in the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1036,8 +1128,8 @@
             maxView t
           </code>
           <div class="tip" id="686">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10652&gt; -&gt; (&#39;?10652 * IntMap&lt;&#39;?10652&gt;) option<br />
-                          <strong>Type parameters:</strong> '?10652          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11442&gt; -&gt; (&#39;?11442 * IntMap&lt;&#39;?11442&gt;) option<br />
+                          <strong>Type parameters:</strong> '?11442          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L458-458" class="github-link">
@@ -1045,6 +1137,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Retrieves the maximal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1055,8 +1149,8 @@
             maxViewWithKey t
           </code>
           <div class="tip" id="687">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10640&gt; -&gt; ((int * &#39;?10640) * IntMap&lt;&#39;?10640&gt;) option<br />
-                          <strong>Type parameters:</strong> '?10640          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11430&gt; -&gt; ((int * &#39;?11430) * IntMap&lt;&#39;?11430&gt;) option<br />
+                          <strong>Type parameters:</strong> '?11430          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L426-426" class="github-link">
@@ -1064,6 +1158,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Retrieves the maximal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1074,8 +1170,8 @@
             mergeWithKey f g1 g2
           </code>
           <div class="tip" id="688">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10599 -&gt; &#39;?10600 -&gt; &#39;?10601 option) -&gt; g1:(IntMap&lt;&#39;?10599&gt; -&gt; IntMap&lt;&#39;?10601&gt;) -&gt; g2:(IntMap&lt;&#39;?10600&gt; -&gt; IntMap&lt;&#39;?10601&gt;) -&gt; IntMap&lt;&#39;?10599&gt; -&gt; IntMap&lt;&#39;?10600&gt; -&gt; IntMap&lt;&#39;?10601&gt;<br />
-                          <strong>Type parameters:</strong> '?10599, '?10600, '?10601          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11389 -&gt; &#39;?11390 -&gt; &#39;?11391 option) -&gt; g1:(IntMap&lt;&#39;?11389&gt; -&gt; IntMap&lt;&#39;?11391&gt;) -&gt; g2:(IntMap&lt;&#39;?11390&gt; -&gt; IntMap&lt;&#39;?11391&gt;) -&gt; IntMap&lt;&#39;?11389&gt; -&gt; IntMap&lt;&#39;?11390&gt; -&gt; IntMap&lt;&#39;?11391&gt;<br />
+                          <strong>Type parameters:</strong> '?11389, '?11390, '?11391          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L357-357" class="github-link">
@@ -1083,6 +1179,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Refer to Haskell documentation. Unexpected code growth or corruption of the data structure can occure from wrong use. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1093,8 +1191,8 @@
             minView t
           </code>
           <div class="tip" id="689">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10654&gt; -&gt; (&#39;?10654 * IntMap&lt;&#39;?10654&gt;) option<br />
-                          <strong>Type parameters:</strong> '?10654          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11444&gt; -&gt; (&#39;?11444 * IntMap&lt;&#39;?11444&gt;) option<br />
+                          <strong>Type parameters:</strong> '?11444          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L461-461" class="github-link">
@@ -1102,6 +1200,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Retrieves the minimal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1112,8 +1212,8 @@
             minViewWithKey t
           </code>
           <div class="tip" id="690">
-            <strong>Signature:</strong> t:IntMap&lt;&#39;?10642&gt; -&gt; ((int * &#39;?10642) * IntMap&lt;&#39;?10642&gt;) option<br />
-                          <strong>Type parameters:</strong> '?10642          </div>
+            <strong>Signature:</strong> t:IntMap&lt;&#39;?11432&gt; -&gt; ((int * &#39;?11432) * IntMap&lt;&#39;?11432&gt;) option<br />
+                          <strong>Type parameters:</strong> '?11432          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L438-438" class="github-link">
@@ -1121,6 +1221,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Retrieves the minimal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1131,8 +1233,8 @@
             notExists k m
           </code>
           <div class="tip" id="691">
-            <strong>Signature:</strong> k:int -&gt; m:IntMap&lt;&#39;?10551&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?10551          </div>
+            <strong>Signature:</strong> k:int -&gt; m:IntMap&lt;&#39;?11341&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?11341          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L103-103" class="github-link">
@@ -1140,6 +1242,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Is the key not a member of the map? Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1150,8 +1254,8 @@
             ofArray xs
           </code>
           <div class="tip" id="692">
-            <strong>Signature:</strong> xs:(int * &#39;?10746) [] -&gt; IntMap&lt;&#39;?10746&gt;<br />
-                          <strong>Type parameters:</strong> '?10746          </div>
+            <strong>Signature:</strong> xs:(int * &#39;?11536) [] -&gt; IntMap&lt;&#39;?11536&gt;<br />
+                          <strong>Type parameters:</strong> '?11536          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L722-722" class="github-link">
@@ -1159,6 +1263,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from an array of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1169,8 +1275,8 @@
             ofArrayWith f xs
           </code>
           <div class="tip" id="693">
-            <strong>Signature:</strong> f:(&#39;?10750 -&gt; &#39;?10750 -&gt; &#39;?10750) -&gt; xs:(int * &#39;?10750) [] -&gt; IntMap&lt;&#39;?10750&gt;<br />
-                          <strong>Type parameters:</strong> '?10750          </div>
+            <strong>Signature:</strong> f:(&#39;?11540 -&gt; &#39;?11540 -&gt; &#39;?11540) -&gt; xs:(int * &#39;?11540) [] -&gt; IntMap&lt;&#39;?11540&gt;<br />
+                          <strong>Type parameters:</strong> '?11540          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L728-728" class="github-link">
@@ -1178,6 +1284,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from an array of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1188,8 +1296,8 @@
             ofArrayWithKey f xs
           </code>
           <div class="tip" id="694">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10748 -&gt; &#39;?10748 -&gt; &#39;?10748) -&gt; xs:(int * &#39;?10748) [] -&gt; IntMap&lt;&#39;?10748&gt;<br />
-                          <strong>Type parameters:</strong> '?10748          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11538 -&gt; &#39;?11538 -&gt; &#39;?11538) -&gt; xs:(int * &#39;?11538) [] -&gt; IntMap&lt;&#39;?11538&gt;<br />
+                          <strong>Type parameters:</strong> '?11538          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L725-725" class="github-link">
@@ -1197,6 +1305,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Build a map from an array of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1207,8 +1317,8 @@
             ofList xs
           </code>
           <div class="tip" id="695">
-            <strong>Signature:</strong> xs:(int * &#39;?10734) list -&gt; IntMap&lt;&#39;?10734&gt;<br />
-                          <strong>Type parameters:</strong> '?10734          </div>
+            <strong>Signature:</strong> xs:(int * &#39;?11524) list -&gt; IntMap&lt;&#39;?11524&gt;<br />
+                          <strong>Type parameters:</strong> '?11524          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L700-700" class="github-link">
@@ -1216,6 +1326,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from a list of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1226,8 +1338,8 @@
             ofListWith f xs
           </code>
           <div class="tip" id="696">
-            <strong>Signature:</strong> f:(&#39;?10738 -&gt; &#39;?10738 -&gt; &#39;?10738) -&gt; xs:(int * &#39;?10738) list -&gt; IntMap&lt;&#39;?10738&gt;<br />
-                          <strong>Type parameters:</strong> '?10738          </div>
+            <strong>Signature:</strong> f:(&#39;?11528 -&gt; &#39;?11528 -&gt; &#39;?11528) -&gt; xs:(int * &#39;?11528) list -&gt; IntMap&lt;&#39;?11528&gt;<br />
+                          <strong>Type parameters:</strong> '?11528          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L710-710" class="github-link">
@@ -1235,6 +1347,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from a list of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1245,8 +1359,8 @@
             ofListWithKey f xs
           </code>
           <div class="tip" id="697">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10736 -&gt; &#39;?10736 -&gt; &#39;?10736) -&gt; xs:(int * &#39;?10736) list -&gt; IntMap&lt;&#39;?10736&gt;<br />
-                          <strong>Type parameters:</strong> '?10736          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11526 -&gt; &#39;?11526 -&gt; &#39;?11526) -&gt; xs:(int * &#39;?11526) list -&gt; IntMap&lt;&#39;?11526&gt;<br />
+                          <strong>Type parameters:</strong> '?11526          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L705-705" class="github-link">
@@ -1254,6 +1368,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Build a map from a list of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1264,8 +1380,8 @@
             ofSeq xs
           </code>
           <div class="tip" id="698">
-            <strong>Signature:</strong> xs:seq&lt;int * &#39;?10740&gt; -&gt; IntMap&lt;&#39;?10740&gt;<br />
-                          <strong>Type parameters:</strong> '?10740          </div>
+            <strong>Signature:</strong> xs:seq&lt;int * &#39;?11530&gt; -&gt; IntMap&lt;&#39;?11530&gt;<br />
+                          <strong>Type parameters:</strong> '?11530          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L713-713" class="github-link">
@@ -1273,6 +1389,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from a seq of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1283,8 +1401,8 @@
             ofSeqWith f xs
           </code>
           <div class="tip" id="699">
-            <strong>Signature:</strong> f:(&#39;?10744 -&gt; &#39;?10744 -&gt; &#39;?10744) -&gt; xs:seq&lt;int * &#39;?10744&gt; -&gt; IntMap&lt;&#39;?10744&gt;<br />
-                          <strong>Type parameters:</strong> '?10744          </div>
+            <strong>Signature:</strong> f:(&#39;?11534 -&gt; &#39;?11534 -&gt; &#39;?11534) -&gt; xs:seq&lt;int * &#39;?11534&gt; -&gt; IntMap&lt;&#39;?11534&gt;<br />
+                          <strong>Type parameters:</strong> '?11534          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L719-719" class="github-link">
@@ -1292,6 +1410,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Create a map from a seq of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1302,8 +1422,8 @@
             ofSeqWithKey f xs
           </code>
           <div class="tip" id="700">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10742 -&gt; &#39;?10742 -&gt; &#39;?10742) -&gt; xs:seq&lt;int * &#39;?10742&gt; -&gt; IntMap&lt;&#39;?10742&gt;<br />
-                          <strong>Type parameters:</strong> '?10742          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11532 -&gt; &#39;?11532 -&gt; &#39;?11532) -&gt; xs:seq&lt;int * &#39;?11532&gt; -&gt; IntMap&lt;&#39;?11532&gt;<br />
+                          <strong>Type parameters:</strong> '?11532          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L716-716" class="github-link">
@@ -1311,6 +1431,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n*min(n,W)). Build a map from a seq of key/value pairs with a combining function. See also fromAscListWithKey'. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1321,8 +1443,8 @@
             partition p m
           </code>
           <div class="tip" id="701">
-            <strong>Signature:</strong> p:(&#39;?10692 -&gt; bool) -&gt; m:IntMap&lt;&#39;?10692&gt; -&gt; IntMap&lt;&#39;?10692&gt; * IntMap&lt;&#39;?10692&gt;<br />
-                          <strong>Type parameters:</strong> '?10692          </div>
+            <strong>Signature:</strong> p:(&#39;?11482 -&gt; bool) -&gt; m:IntMap&lt;&#39;?11482&gt; -&gt; IntMap&lt;&#39;?11482&gt; * IntMap&lt;&#39;?11482&gt;<br />
+                          <strong>Type parameters:</strong> '?11482          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L565-565" class="github-link">
@@ -1330,6 +1452,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1340,8 +1464,8 @@
             partitionWithKey predicate t
           </code>
           <div class="tip" id="702">
-            <strong>Signature:</strong> predicate:(int -&gt; &#39;?10690 -&gt; bool) -&gt; t:IntMap&lt;&#39;?10690&gt; -&gt; IntMap&lt;&#39;?10690&gt; * IntMap&lt;&#39;?10690&gt;<br />
-                          <strong>Type parameters:</strong> '?10690          </div>
+            <strong>Signature:</strong> predicate:(int -&gt; &#39;?11480 -&gt; bool) -&gt; t:IntMap&lt;&#39;?11480&gt; -&gt; IntMap&lt;&#39;?11480&gt; * IntMap&lt;&#39;?11480&gt;<br />
+                          <strong>Type parameters:</strong> '?11480          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L554-554" class="github-link">
@@ -1349,6 +1473,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1359,8 +1485,8 @@
             singleton k x
           </code>
           <div class="tip" id="703">
-            <strong>Signature:</strong> k:int -&gt; x:&#39;?10571 -&gt; IntMap&lt;&#39;?10571&gt;<br />
-                          <strong>Type parameters:</strong> '?10571          </div>
+            <strong>Signature:</strong> k:int -&gt; x:&#39;?11361 -&gt; IntMap&lt;&#39;?11361&gt;<br />
+                          <strong>Type parameters:</strong> '?11361          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L198-198" class="github-link">
@@ -1368,6 +1494,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). A map of one element. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1378,8 +1506,8 @@
             size _arg1
           </code>
           <div class="tip" id="704">
-            <strong>Signature:</strong> _arg1:IntMap&lt;&#39;?10545&gt; -&gt; int<br />
-                          <strong>Type parameters:</strong> '?10545          </div>
+            <strong>Signature:</strong> _arg1:IntMap&lt;&#39;?11335&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?11335          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L77-77" class="github-link">
@@ -1387,6 +1515,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Number of elements in the map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1397,8 +1527,8 @@
             split k t
           </code>
           <div class="tip" id="705">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10708&gt; -&gt; IntMap&lt;&#39;?10708&gt; * IntMap&lt;&#39;?10708&gt;<br />
-                          <strong>Type parameters:</strong> '?10708          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11498&gt; -&gt; IntMap&lt;&#39;?11498&gt; * IntMap&lt;&#39;?11498&gt;<br />
+                          <strong>Type parameters:</strong> '?11498          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L597-597" class="github-link">
@@ -1406,6 +1536,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). The expression (split k map) is a pair (map1,map2) where all keys in map1 are lower than k and all keys in map2 larger than k. Any key equal to k is found in neither map1 nor map2. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1416,8 +1548,8 @@
             splitTryFind k t
           </code>
           <div class="tip" id="706">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10710&gt; -&gt; IntMap&lt;&#39;?10710&gt; * &#39;?10710 option * IntMap&lt;&#39;?10710&gt;<br />
-                          <strong>Type parameters:</strong> '?10710          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11500&gt; -&gt; IntMap&lt;&#39;?11500&gt; * &#39;?11500 option * IntMap&lt;&#39;?11500&gt;<br />
+                          <strong>Type parameters:</strong> '?11500          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L619-619" class="github-link">
@@ -1425,6 +1557,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Performs a split but also returns whether the pivot key was found in the original map. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1435,8 +1569,8 @@
             toArray m
           </code>
           <div class="tip" id="707">
-            <strong>Signature:</strong> m:IntMap&lt;&#39;?10732&gt; -&gt; (int * &#39;?10732) []<br />
-                          <strong>Type parameters:</strong> '?10732          </div>
+            <strong>Signature:</strong> m:IntMap&lt;&#39;?11522&gt; -&gt; (int * &#39;?11522) []<br />
+                          <strong>Type parameters:</strong> '?11522          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L697-697" class="github-link">
@@ -1444,6 +1578,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Convert the map to an array of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1454,8 +1590,8 @@
             toList m
           </code>
           <div class="tip" id="708">
-            <strong>Signature:</strong> m:IntMap&lt;&#39;?10728&gt; -&gt; (int * &#39;?10728) list<br />
-                          <strong>Type parameters:</strong> '?10728          </div>
+            <strong>Signature:</strong> m:IntMap&lt;&#39;?11518&gt; -&gt; (int * &#39;?11518) list<br />
+                          <strong>Type parameters:</strong> '?11518          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L691-691" class="github-link">
@@ -1463,6 +1599,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Convert the map to a list of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1473,8 +1611,8 @@
             toSeq m
           </code>
           <div class="tip" id="709">
-            <strong>Signature:</strong> m:IntMap&lt;&#39;?10730&gt; -&gt; seq&lt;int * &#39;?10730&gt;<br />
-                          <strong>Type parameters:</strong> '?10730          </div>
+            <strong>Signature:</strong> m:IntMap&lt;&#39;?11520&gt; -&gt; seq&lt;int * &#39;?11520&gt;<br />
+                          <strong>Type parameters:</strong> '?11520          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L694-694" class="github-link">
@@ -1482,6 +1620,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Convert the map to a seq of key/value pairs. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1492,8 +1632,8 @@
             tryFind k _arg1
           </code>
           <div class="tip" id="710">
-            <strong>Signature:</strong> k:int -&gt; _arg1:IntMap&lt;&#39;?10547&gt; -&gt; &#39;?10547 option<br />
-                          <strong>Type parameters:</strong> '?10547          </div>
+            <strong>Signature:</strong> k:int -&gt; _arg1:IntMap&lt;&#39;?11337&gt; -&gt; &#39;?11337 option<br />
+                          <strong>Type parameters:</strong> '?11337          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L84-84" class="github-link">
@@ -1501,6 +1641,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Lookup the value at a key in the map. Returns 'T option. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1511,8 +1653,8 @@
             tryFindGE k t
           </code>
           <div class="tip" id="711">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10567&gt; -&gt; (int * &#39;?10567) option<br />
-                          <strong>Type parameters:</strong> '?10567          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11357&gt; -&gt; (int * &#39;?11357) option<br />
+                          <strong>Type parameters:</strong> '?11357          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L181-181" class="github-link">
@@ -1520,6 +1662,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Find smallest key greater or equal to the given one and return the corresponding (key, value) pair Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1530,8 +1674,8 @@
             tryFindGT k t
           </code>
           <div class="tip" id="712">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10563&gt; -&gt; (int * &#39;?10563) option<br />
-                          <strong>Type parameters:</strong> '?10563          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11353&gt; -&gt; (int * &#39;?11353) option<br />
+                          <strong>Type parameters:</strong> '?11353          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L153-153" class="github-link">
@@ -1539,6 +1683,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Find smallest key greater than the given one and return the corresponding (key, value) pair. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1549,8 +1695,8 @@
             tryFindLE k t
           </code>
           <div class="tip" id="713">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10565&gt; -&gt; (int * &#39;?10565) option<br />
-                          <strong>Type parameters:</strong> '?10565          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11355&gt; -&gt; (int * &#39;?11355) option<br />
+                          <strong>Type parameters:</strong> '?11355          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L167-167" class="github-link">
@@ -1558,6 +1704,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Find largest key smaller or equal to the given one and return the corresponding (key, value) pair. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1568,8 +1716,8 @@
             tryFindLT k t
           </code>
           <div class="tip" id="714">
-            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?10559&gt; -&gt; (int * &#39;?10559) option<br />
-                          <strong>Type parameters:</strong> '?10559          </div>
+            <strong>Signature:</strong> k:int -&gt; t:IntMap&lt;&#39;?11349&gt; -&gt; (int * &#39;?11349) option<br />
+                          <strong>Type parameters:</strong> '?11349          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L133-133" class="github-link">
@@ -1577,6 +1725,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Find largest key smaller than the given one and return the corresponding (key, value) pair.  Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1587,8 +1737,8 @@
             update f k m
           </code>
           <div class="tip" id="715">
-            <strong>Signature:</strong> f:(&#39;?10585 -&gt; &#39;?10585 option) -&gt; k:int -&gt; m:IntMap&lt;&#39;?10585&gt; -&gt; IntMap&lt;&#39;?10585&gt;<br />
-                          <strong>Type parameters:</strong> '?10585          </div>
+            <strong>Signature:</strong> f:(&#39;?11375 -&gt; &#39;?11375 option) -&gt; k:int -&gt; m:IntMap&lt;&#39;?11375&gt; -&gt; IntMap&lt;&#39;?11375&gt;<br />
+                          <strong>Type parameters:</strong> '?11375          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L261-261" class="github-link">
@@ -1596,6 +1746,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1606,8 +1758,8 @@
             updateMax f
           </code>
           <div class="tip" id="716">
-            <strong>Signature:</strong> f:(&#39;?10644 -&gt; &#39;?10644 option) -&gt; IntMap&lt;&#39;?10644&gt; -&gt; IntMap&lt;&#39;?10644&gt;<br />
-                          <strong>Type parameters:</strong> '?10644          </div>
+            <strong>Signature:</strong> f:(&#39;?11434 -&gt; &#39;?11434 option) -&gt; IntMap&lt;&#39;?11434&gt; -&gt; IntMap&lt;&#39;?11434&gt;<br />
+                          <strong>Type parameters:</strong> '?11434          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L450-450" class="github-link">
@@ -1615,6 +1767,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Update the value at the maximal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1625,8 +1779,8 @@
             updateMaxWithKey f t
           </code>
           <div class="tip" id="717">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10638 -&gt; &#39;?10638 option) -&gt; t:IntMap&lt;&#39;?10638&gt; -&gt; IntMap&lt;&#39;?10638&gt;<br />
-                          <strong>Type parameters:</strong> '?10638          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11428 -&gt; &#39;?11428 option) -&gt; t:IntMap&lt;&#39;?11428&gt; -&gt; IntMap&lt;&#39;?11428&gt;<br />
+                          <strong>Type parameters:</strong> '?11428          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L412-412" class="github-link">
@@ -1634,6 +1788,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Update the value at the maximal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1644,8 +1800,8 @@
             updateMin f
           </code>
           <div class="tip" id="718">
-            <strong>Signature:</strong> f:(&#39;?10646 -&gt; &#39;?10646 option) -&gt; IntMap&lt;&#39;?10646&gt; -&gt; IntMap&lt;&#39;?10646&gt;<br />
-                          <strong>Type parameters:</strong> '?10646          </div>
+            <strong>Signature:</strong> f:(&#39;?11436 -&gt; &#39;?11436 option) -&gt; IntMap&lt;&#39;?11436&gt; -&gt; IntMap&lt;&#39;?11436&gt;<br />
+                          <strong>Type parameters:</strong> '?11436          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L453-453" class="github-link">
@@ -1653,6 +1809,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Update the value at the minimal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1663,8 +1821,8 @@
             updateMinWithKey f t
           </code>
           <div class="tip" id="719">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10636 -&gt; &#39;?10636 option) -&gt; t:IntMap&lt;&#39;?10636&gt; -&gt; IntMap&lt;&#39;?10636&gt;<br />
-                          <strong>Type parameters:</strong> '?10636          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11426 -&gt; &#39;?11426 option) -&gt; t:IntMap&lt;&#39;?11426&gt; -&gt; IntMap&lt;&#39;?11426&gt;<br />
+                          <strong>Type parameters:</strong> '?11426          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L398-398" class="github-link">
@@ -1672,6 +1830,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Update the value at the minimal key. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1682,8 +1842,8 @@
             updateTryFindWithKey f k t
           </code>
           <div class="tip" id="720">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10591 -&gt; &#39;?10591 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?10591&gt; -&gt; &#39;?10591 option * IntMap&lt;&#39;?10591&gt;<br />
-                          <strong>Type parameters:</strong> '?10591          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11381 -&gt; &#39;?11381 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?11381&gt; -&gt; &#39;?11381 option * IntMap&lt;&#39;?11381&gt;<br />
+                          <strong>Type parameters:</strong> '?11381          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L270-270" class="github-link">
@@ -1691,6 +1851,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). Lookup and update. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1701,8 +1863,8 @@
             updateWithKey f k t
           </code>
           <div class="tip" id="721">
-            <strong>Signature:</strong> f:(int -&gt; &#39;?10583 -&gt; &#39;?10583 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?10583&gt; -&gt; IntMap&lt;&#39;?10583&gt;<br />
-                          <strong>Type parameters:</strong> '?10583          </div>
+            <strong>Signature:</strong> f:(int -&gt; &#39;?11373 -&gt; &#39;?11373 option) -&gt; k:int -&gt; t:IntMap&lt;&#39;?11373&gt; -&gt; IntMap&lt;&#39;?11373&gt;<br />
+                          <strong>Type parameters:</strong> '?11373          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L248-248" class="github-link">
@@ -1710,6 +1872,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f k x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>
@@ -1720,8 +1884,8 @@
             values m
           </code>
           <div class="tip" id="722">
-            <strong>Signature:</strong> m:IntMap&lt;&#39;?10724&gt; -&gt; &#39;?10724 list<br />
-                          <strong>Type parameters:</strong> '?10724          </div>
+            <strong>Signature:</strong> m:IntMap&lt;&#39;?11514&gt; -&gt; &#39;?11514 list<br />
+                          <strong>Type parameters:</strong> '?11514          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L685-685" class="github-link">
@@ -1729,6 +1893,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Return all elements of the map in the ascending order of their keys. Credit: Haskell.org</p>
+
+
 
         </td>
       </tr>

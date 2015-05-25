@@ -54,8 +54,8 @@
             append left right
           </code>
           <div class="tip" id="507">
-            <strong>Signature:</strong> left:DList&lt;&#39;?11236&gt; -&gt; right:DList&lt;&#39;?11236&gt; -&gt; DList&lt;&#39;?11236&gt;<br />
-                          <strong>Type parameters:</strong> '?11236          </div>
+            <strong>Signature:</strong> left:DList&lt;&#39;?12026&gt; -&gt; right:DList&lt;&#39;?12026&gt; -&gt; DList&lt;&#39;?12026&gt;<br />
+                          <strong>Type parameters:</strong> '?12026          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L123-123" class="github-link">
@@ -63,6 +63,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new DList of two lists.</p>
+
+
 
         </td>
       </tr>
@@ -73,8 +75,8 @@
             cons hd tl
           </code>
           <div class="tip" id="508">
-            <strong>Signature:</strong> hd:&#39;?11234 -&gt; tl:DList&lt;&#39;?11234&gt; -&gt; DList&lt;&#39;?11234&gt;<br />
-                          <strong>Type parameters:</strong> '?11234          </div>
+            <strong>Signature:</strong> hd:&#39;?12024 -&gt; tl:DList&lt;&#39;?12024&gt; -&gt; DList&lt;&#39;?12024&gt;<br />
+                          <strong>Type parameters:</strong> '?12024          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L117-117" class="github-link">
@@ -82,6 +84,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new DList with the element added to the beginning.</p>
+
+
 
         </td>
       </tr>
@@ -102,6 +106,8 @@
             </a>
           <p>O(1). Returns DList of no elements.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -111,8 +117,8 @@
             fold f seed l
           </code>
           <div class="tip" id="510">
-            <strong>Signature:</strong> f:(&#39;?11244 -&gt; &#39;?11245 -&gt; &#39;?11244) -&gt; seed:&#39;?11244 -&gt; l:DList&lt;&#39;?11245&gt; -&gt; &#39;?11244<br />
-                          <strong>Type parameters:</strong> '?11244, '?11245          </div>
+            <strong>Signature:</strong> f:(&#39;?12034 -&gt; &#39;?12035 -&gt; &#39;?12034) -&gt; seed:&#39;?12034 -&gt; l:DList&lt;&#39;?12035&gt; -&gt; &#39;?12034<br />
+                          <strong>Type parameters:</strong> '?12034, '?12035          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L141-141" class="github-link">
@@ -121,6 +127,8 @@
             </a>
           <p>Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
 See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068</a></p>
+
+
 
         </td>
       </tr>
@@ -131,8 +139,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             head l
           </code>
           <div class="tip" id="511">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11238&gt; -&gt; &#39;?11238<br />
-                          <strong>Type parameters:</strong> '?11238          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12028&gt; -&gt; &#39;?12028<br />
+                          <strong>Type parameters:</strong> '?12028          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L131-131" class="github-link">
@@ -140,6 +148,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Returns the first element.</p>
+
+
 
         </td>
       </tr>
@@ -150,8 +160,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             isEmpty l
           </code>
           <div class="tip" id="512">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11224&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> '?11224          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12014&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?12014          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L98-98" class="github-link">
@@ -159,6 +169,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns true if the DList has no elements.</p>
+
+
 
         </td>
       </tr>
@@ -169,8 +181,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             length l
           </code>
           <div class="tip" id="513">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11226&gt; -&gt; int<br />
-                          <strong>Type parameters:</strong> '?11226          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12016&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?12016          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L101-101" class="github-link">
@@ -178,6 +190,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns the count of elememts.</p>
+
+
 
         </td>
       </tr>
@@ -188,8 +202,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             ofSeq s
           </code>
           <div class="tip" id="514">
-            <strong>Signature:</strong> s:seq&lt;&#39;?11230&gt; -&gt; DList&lt;&#39;?11230&gt;<br />
-                          <strong>Type parameters:</strong> '?11230          </div>
+            <strong>Signature:</strong> s:seq&lt;&#39;?12020&gt; -&gt; DList&lt;&#39;?12020&gt;<br />
+                          <strong>Type parameters:</strong> '?12020          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L107-107" class="github-link">
@@ -197,6 +211,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns a DList of the seq.</p>
+
+
 
         </td>
       </tr>
@@ -207,8 +223,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             singleton x
           </code>
           <div class="tip" id="515">
-            <strong>Signature:</strong> x:&#39;?11228 -&gt; DList&lt;&#39;?11228&gt;<br />
-                          <strong>Type parameters:</strong> '?11228          </div>
+            <strong>Signature:</strong> x:&#39;?12018 -&gt; DList&lt;&#39;?12018&gt;<br />
+                          <strong>Type parameters:</strong> '?12018          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L104-104" class="github-link">
@@ -216,6 +232,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns DList of one elements.</p>
+
+
 
         </td>
       </tr>
@@ -226,8 +244,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             snoc l x
           </code>
           <div class="tip" id="516">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11240&gt; -&gt; x:&#39;?11240 -&gt; DList&lt;&#39;?11240&gt;<br />
-                          <strong>Type parameters:</strong> '?11240          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12030&gt; -&gt; x:&#39;?12030 -&gt; DList&lt;&#39;?12030&gt;<br />
+                          <strong>Type parameters:</strong> '?12030          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L134-134" class="github-link">
@@ -235,6 +253,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new DList with the element added to the end.</p>
+
+
 
         </td>
       </tr>
@@ -245,8 +265,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             tail l
           </code>
           <div class="tip" id="517">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11242&gt; -&gt; DList&lt;&#39;?11242&gt;<br />
-                          <strong>Type parameters:</strong> '?11242          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12032&gt; -&gt; DList&lt;&#39;?12032&gt;<br />
+                          <strong>Type parameters:</strong> '?12032          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L137-137" class="github-link">
@@ -254,6 +274,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
+
+
 
         </td>
       </tr>
@@ -264,8 +286,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             toArray l
           </code>
           <div class="tip" id="518">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11249&gt; -&gt; &#39;?11249 []<br />
-                          <strong>Type parameters:</strong> '?11249          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12039&gt; -&gt; &#39;?12039 []<br />
+                          <strong>Type parameters:</strong> '?12039          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L155-155" class="github-link">
@@ -282,8 +304,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             toList l
           </code>
           <div class="tip" id="519">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11247&gt; -&gt; &#39;?11247 list<br />
-                          <strong>Type parameters:</strong> '?11247          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12037&gt; -&gt; &#39;?12037 list<br />
+                          <strong>Type parameters:</strong> '?12037          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L153-153" class="github-link">
@@ -300,8 +322,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
             toSeq l
           </code>
           <div class="tip" id="520">
-            <strong>Signature:</strong> l:DList&lt;&#39;?11232&gt; -&gt; seq&lt;&#39;?11232&gt;<br />
-                          <strong>Type parameters:</strong> '?11232          </div>
+            <strong>Signature:</strong> l:DList&lt;&#39;?12022&gt; -&gt; seq&lt;&#39;?12022&gt;<br />
+                          <strong>Type parameters:</strong> '?12022          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L114-114" class="github-link">
@@ -309,6 +331,8 @@ See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns a seq of the DList elements.</p>
+
+
 
         </td>
       </tr>

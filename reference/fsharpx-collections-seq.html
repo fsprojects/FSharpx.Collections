@@ -38,6 +38,8 @@
 <h1>Seq</h1>
 <div class="xmldoc">
 <p>Extensions for F#'s Seq module.</p>
+
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -55,8 +57,8 @@
             asCircular values
           </code>
           <div class="tip" id="287">
-            <strong>Signature:</strong> values:seq&lt;&#39;?6734&gt; -&gt; seq&lt;&#39;?6734&gt;<br />
-                          <strong>Type parameters:</strong> '?6734          </div>
+            <strong>Signature:</strong> values:seq&lt;&#39;?7524&gt; -&gt; seq&lt;&#39;?7524&gt;<br />
+                          <strong>Type parameters:</strong> '?7524          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L81-81" class="github-link">
@@ -64,6 +66,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Creates a infinite sequences of the given values</p>
+
+
 
         </td>
       </tr>
@@ -74,8 +78,8 @@
             asCircularOnLoop f values
           </code>
           <div class="tip" id="288">
-            <strong>Signature:</strong> f:(unit -&gt; unit) -&gt; values:seq&lt;&#39;?6736&gt; -&gt; seq&lt;&#39;?6736&gt;<br />
-                          <strong>Type parameters:</strong> '?6736          </div>
+            <strong>Signature:</strong> f:(unit -&gt; unit) -&gt; values:seq&lt;&#39;?7526&gt; -&gt; seq&lt;&#39;?7526&gt;<br />
+                          <strong>Type parameters:</strong> '?7526          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L91-91" class="github-link">
@@ -83,6 +87,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted</p>
+
+
 
         </td>
       </tr>
@@ -93,8 +99,8 @@
             asCircularWithBreak values
           </code>
           <div class="tip" id="289">
-            <strong>Signature:</strong> values:seq&lt;&#39;?6738&gt; -&gt; seq&lt;&#39;?6738 option&gt;<br />
-                          <strong>Type parameters:</strong> '?6738          </div>
+            <strong>Signature:</strong> values:seq&lt;&#39;?7528&gt; -&gt; seq&lt;&#39;?7528 option&gt;<br />
+                          <strong>Type parameters:</strong> '?7528          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L102-102" class="github-link">
@@ -102,6 +108,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Creates a infinite sequences of the given values returning None everytime the given seq is exhausted</p>
+
+
 
         </td>
       </tr>
@@ -112,8 +120,8 @@
             combine f a b
           </code>
           <div class="tip" id="290">
-            <strong>Signature:</strong> f:(&#39;?6754 -&gt; &#39;?6755 -&gt; &#39;?6756) -&gt; a:seq&lt;&#39;?6754&gt; -&gt; b:seq&lt;&#39;?6755&gt; -&gt; seq&lt;&#39;?6756&gt;<br />
-                          <strong>Type parameters:</strong> '?6754, '?6755, '?6756          </div>
+            <strong>Signature:</strong> f:(&#39;?7544 -&gt; &#39;?7545 -&gt; &#39;?7546) -&gt; a:seq&lt;&#39;?7544&gt; -&gt; b:seq&lt;&#39;?7545&gt; -&gt; seq&lt;&#39;?7546&gt;<br />
+                          <strong>Type parameters:</strong> '?7544, '?7545, '?7546          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L171-171" class="github-link">
@@ -122,6 +130,8 @@
             </a>
           <p>Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences. 
 Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.</p>
+
+
 
         </td>
       </tr>
@@ -132,8 +142,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             contract n source
           </code>
           <div class="tip" id="291">
-            <strong>Signature:</strong> n:int -&gt; source:seq&lt;&#39;?6752&gt; -&gt; seq&lt;&#39;?6752&gt;<br />
-                          <strong>Type parameters:</strong> '?6752          </div>
+            <strong>Signature:</strong> n:int -&gt; source:seq&lt;&#39;?7542&gt; -&gt; seq&lt;&#39;?7542&gt;<br />
+                          <strong>Type parameters:</strong> '?7542          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L159-159" class="github-link">
@@ -141,6 +151,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Contracts a seq selecting every n values</p>
+
+
 
         </td>
       </tr>
@@ -151,8 +163,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             grow n
           </code>
           <div class="tip" id="292">
-            <strong>Signature:</strong> n:int -&gt; seq&lt;&#39;?6758&gt; -&gt; seq&lt;&#39;?6758&gt;<br />
-                          <strong>Type parameters:</strong> '?6758          </div>
+            <strong>Signature:</strong> n:int -&gt; seq&lt;&#39;?7548&gt; -&gt; seq&lt;&#39;?7548&gt;<br />
+                          <strong>Type parameters:</strong> '?7548          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L184-184" class="github-link">
@@ -160,6 +172,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Replicates each element in the seq n-times</p>
+
+
 
         </td>
       </tr>
@@ -170,8 +184,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             index a
           </code>
           <div class="tip" id="293">
-            <strong>Signature:</strong> a:seq&lt;&#39;?6717&gt; -&gt; seq&lt;int * &#39;?6717&gt;<br />
-                          <strong>Type parameters:</strong> '?6717          </div>
+            <strong>Signature:</strong> a:seq&lt;&#39;?7507&gt; -&gt; seq&lt;int * &#39;?7507&gt;<br />
+                          <strong>Type parameters:</strong> '?7507          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L16-16" class="github-link">
@@ -179,6 +193,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Adds an index to a sequence</p>
+
+
 
         </td>
       </tr>
@@ -217,6 +233,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             </a>
           <p>Will iterate the current sequence until the given predicate is statisfied</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -226,8 +244,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             lift2 f l1 l2
           </code>
           <div class="tip" id="296">
-            <strong>Signature:</strong> f:(&#39;?6721 -&gt; &#39;?6722 -&gt; &#39;?6723) -&gt; l1:seq&lt;&#39;?6721&gt; -&gt; l2:seq&lt;&#39;?6722&gt; -&gt; seq&lt;&#39;?6723&gt;<br />
-                          <strong>Type parameters:</strong> '?6721, '?6722, '?6723          </div>
+            <strong>Signature:</strong> f:(&#39;?7511 -&gt; &#39;?7512 -&gt; &#39;?7513) -&gt; l1:seq&lt;&#39;?7511&gt; -&gt; l2:seq&lt;&#39;?7512&gt; -&gt; seq&lt;&#39;?7513&gt;<br />
+                          <strong>Type parameters:</strong> '?7511, '?7512, '?7513          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L27-27" class="github-link">
@@ -254,6 +272,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
             </a>
           <p>Converts a Stream into a sequence of bytes</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -274,6 +294,8 @@ Unlike Seq.map2, if one input sequence is shorter than the other then the remain
           <p>Converts a stream into a seq of byte[] where the array is of the length given
 Note: the last chunk maybe less than the given chunk size</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -293,6 +315,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             </a>
           <p>Converts a streamReader into a seq yielding on each line</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -302,8 +326,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             page page pageSize source
           </code>
           <div class="tip" id="300">
-            <strong>Signature:</strong> page:int -&gt; pageSize:int -&gt; source:seq&lt;&#39;?6760&gt; -&gt; seq&lt;&#39;?6760&gt;<br />
-                          <strong>Type parameters:</strong> '?6760          </div>
+            <strong>Signature:</strong> page:int -&gt; pageSize:int -&gt; source:seq&lt;&#39;?7550&gt; -&gt; seq&lt;&#39;?7550&gt;<br />
+                          <strong>Type parameters:</strong> '?7550          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L187-187" class="github-link">
@@ -311,6 +335,8 @@ Note: the last chunk maybe less than the given chunk size</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Pages the underlying sequence</p>
+
+
 
         </td>
       </tr>
@@ -321,8 +347,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             prependToAll sep list
           </code>
           <div class="tip" id="301">
-            <strong>Signature:</strong> sep:&#39;?6762 -&gt; list:seq&lt;&#39;?6762&gt; -&gt; seq&lt;&#39;?6762&gt;<br />
-                          <strong>Type parameters:</strong> '?6762          </div>
+            <strong>Signature:</strong> sep:&#39;?7552 -&gt; list:seq&lt;&#39;?7552&gt; -&gt; seq&lt;&#39;?7552&gt;<br />
+                          <strong>Type parameters:</strong> '?7552          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L190-190" class="github-link">
@@ -339,8 +365,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             repeat a
           </code>
           <div class="tip" id="302">
-            <strong>Signature:</strong> a:&#39;?6750 -&gt; seq&lt;&#39;?6750&gt;<br />
-                          <strong>Type parameters:</strong> '?6750          </div>
+            <strong>Signature:</strong> a:&#39;?7540 -&gt; seq&lt;&#39;?7540&gt;<br />
+                          <strong>Type parameters:</strong> '?7540          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L156-156" class="github-link">
@@ -348,6 +374,8 @@ Note: the last chunk maybe less than the given chunk size</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Creates an infinite sequence of the given value</p>
+
+
 
         </td>
       </tr>
@@ -358,8 +386,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             skipNoFail count source
           </code>
           <div class="tip" id="303">
-            <strong>Signature:</strong> count:int -&gt; source:seq&lt;&#39;?6748&gt; -&gt; IEnumerable&lt;&#39;?6748&gt;<br />
-                          <strong>Type parameters:</strong> '?6748          </div>
+            <strong>Signature:</strong> count:int -&gt; source:seq&lt;&#39;?7538&gt; -&gt; IEnumerable&lt;&#39;?7538&gt;<br />
+                          <strong>Type parameters:</strong> '?7538          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L152-152" class="github-link">
@@ -368,6 +396,8 @@ Note: the last chunk maybe less than the given chunk size</p>
             </a>
           <p>The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
 Alias for Enumerable.Skip</p>
+
+
 
         </td>
       </tr>
@@ -378,8 +408,8 @@ Alias for Enumerable.Skip</p>
             splitAt n seq
           </code>
           <div class="tip" id="304">
-            <strong>Signature:</strong> n:int -&gt; seq:seq&lt;&#39;?6729&gt; -&gt; seq&lt;&#39;?6729&gt; * seq&lt;&#39;?6729&gt;<br />
-                          <strong>Type parameters:</strong> '?6729          </div>
+            <strong>Signature:</strong> n:int -&gt; seq:seq&lt;&#39;?7519&gt; -&gt; seq&lt;&#39;?7519&gt; * seq&lt;&#39;?7519&gt;<br />
+                          <strong>Type parameters:</strong> '?7519          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L54-54" class="github-link">
@@ -387,6 +417,8 @@ Alias for Enumerable.Skip</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Splits a sequences at the given index</p>
+
+
 
         </td>
       </tr>
@@ -397,8 +429,8 @@ Alias for Enumerable.Skip</p>
             tail source
           </code>
           <div class="tip" id="305">
-            <strong>Signature:</strong> source:seq&lt;&#39;?6742&gt; -&gt; seq&lt;&#39;?6742&gt;<br />
-                          <strong>Type parameters:</strong> '?6742          </div>
+            <strong>Signature:</strong> source:seq&lt;&#39;?7532&gt; -&gt; seq&lt;&#39;?7532&gt;<br />
+                          <strong>Type parameters:</strong> '?7532          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L119-119" class="github-link">
@@ -415,8 +447,8 @@ Alias for Enumerable.Skip</p>
             tailNoFail source
           </code>
           <div class="tip" id="306">
-            <strong>Signature:</strong> source:seq&lt;&#39;?6744&gt; -&gt; seq&lt;&#39;?6744&gt;<br />
-                          <strong>Type parameters:</strong> '?6744          </div>
+            <strong>Signature:</strong> source:seq&lt;&#39;?7534&gt; -&gt; seq&lt;&#39;?7534&gt;<br />
+                          <strong>Type parameters:</strong> '?7534          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L129-129" class="github-link">
@@ -443,6 +475,8 @@ Alias for Enumerable.Skip</p>
             </a>
           <p>The same as Seq.average except will return None if the seq is empty</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -452,8 +486,8 @@ Alias for Enumerable.Skip</p>
             tryFindWithIndex pred l
           </code>
           <div class="tip" id="308">
-            <strong>Signature:</strong> pred:(&#39;?6719 -&gt; bool) -&gt; l:seq&lt;&#39;?6719&gt; -&gt; (int * &#39;?6719) option<br />
-                          <strong>Type parameters:</strong> '?6719          </div>
+            <strong>Signature:</strong> pred:(&#39;?7509 -&gt; bool) -&gt; l:seq&lt;&#39;?7509&gt; -&gt; (int * &#39;?7509) option<br />
+                          <strong>Type parameters:</strong> '?7509          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L24-24" class="github-link">
@@ -462,6 +496,8 @@ Alias for Enumerable.Skip</p>
             </a>
           <p>Returns the first element (with its index) for which the given function returns true.
 Return None if no such element exists.</p>
+
+
 
         </td>
       </tr>
@@ -472,8 +508,8 @@ Return None if no such element exists.</p>
             tryHead source
           </code>
           <div class="tip" id="309">
-            <strong>Signature:</strong> source:seq&lt;&#39;?6740&gt; -&gt; &#39;?6740 option<br />
-                          <strong>Type parameters:</strong> '?6740          </div>
+            <strong>Signature:</strong> source:seq&lt;&#39;?7530&gt; -&gt; &#39;?7530 option<br />
+                          <strong>Type parameters:</strong> '?7530          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L113-113" class="github-link">
@@ -481,6 +517,8 @@ Return None if no such element exists.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>A safe version of seq head</p>
+
+
 
         </td>
       </tr>
@@ -491,8 +529,8 @@ Return None if no such element exists.</p>
             tryNth index source
           </code>
           <div class="tip" id="310">
-            <strong>Signature:</strong> index:int -&gt; source:seq&lt;&#39;?6746&gt; -&gt; &#39;?6746 option<br />
-                          <strong>Type parameters:</strong> '?6746          </div>
+            <strong>Signature:</strong> index:int -&gt; source:seq&lt;&#39;?7536&gt; -&gt; &#39;?7536 option<br />
+                          <strong>Type parameters:</strong> '?7536          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L140-140" class="github-link">
@@ -500,6 +538,8 @@ Return None if no such element exists.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>The same as Seq.nth except returns None if the sequence is empty or does not have enough elements</p>
+
+
 
         </td>
       </tr>

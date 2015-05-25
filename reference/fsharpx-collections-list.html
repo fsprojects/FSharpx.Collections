@@ -38,6 +38,8 @@
 <h1>List</h1>
 <div class="xmldoc">
 <p>Extensions for F#'s List module.</p>
+
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -55,8 +57,8 @@
             cons hd tl
           </code>
           <div class="tip" id="144">
-            <strong>Signature:</strong> hd:&#39;?7179 -&gt; tl:&#39;?7179 list -&gt; &#39;?7179 list<br />
-                          <strong>Type parameters:</strong> '?7179          </div>
+            <strong>Signature:</strong> hd:&#39;?7969 -&gt; tl:&#39;?7969 list -&gt; &#39;?7969 list<br />
+                          <strong>Type parameters:</strong> '?7969          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L269-269" class="github-link">
@@ -64,6 +66,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Curried cons</p>
+
+
 
         </td>
       </tr>
@@ -92,8 +96,8 @@
             lift2 f l1 l2
           </code>
           <div class="tip" id="146">
-            <strong>Signature:</strong> f:(&#39;?7183 -&gt; &#39;?7184 -&gt; &#39;?7185) -&gt; l1:&#39;?7183 list -&gt; l2:&#39;?7184 list -&gt; &#39;?7185 list<br />
-                          <strong>Type parameters:</strong> '?7183, '?7184, '?7185          </div>
+            <strong>Signature:</strong> f:(&#39;?7973 -&gt; &#39;?7974 -&gt; &#39;?7975) -&gt; l1:&#39;?7973 list -&gt; l2:&#39;?7974 list -&gt; &#39;?7975 list<br />
+                          <strong>Type parameters:</strong> '?7973, '?7974, '?7975          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L273-273" class="github-link">
@@ -110,8 +114,8 @@
             mapAccum f s l
           </code>
           <div class="tip" id="147">
-            <strong>Signature:</strong> f:(&#39;?7207 -&gt; &#39;?7208 -&gt; &#39;?7207 * &#39;?7209) -&gt; s:&#39;?7207 -&gt; l:&#39;?7208 list -&gt; &#39;?7207 * &#39;?7209 list<br />
-                          <strong>Type parameters:</strong> '?7207, '?7208, '?7209          </div>
+            <strong>Signature:</strong> f:(&#39;?7997 -&gt; &#39;?7998 -&gt; &#39;?7997 * &#39;?7999) -&gt; s:&#39;?7997 -&gt; l:&#39;?7998 list -&gt; &#39;?7997 * &#39;?7999 list<br />
+                          <strong>Type parameters:</strong> '?7997, '?7998, '?7999          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L317-317" class="github-link">
@@ -123,6 +127,8 @@ it applies a function to each element of a list,
 passing an accumulating parameter from left to right, 
 and returning a final value of this accumulator together with the new list.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -132,8 +138,8 @@ and returning a final value of this accumulator together with the new list.</p>
             mapIf pred f
           </code>
           <div class="tip" id="148">
-            <strong>Signature:</strong> pred:(&#39;?7205 -&gt; bool) -&gt; f:(&#39;?7205 -&gt; &#39;?7205) -&gt; &#39;?7205 list -&gt; &#39;?7205 list<br />
-                          <strong>Type parameters:</strong> '?7205          </div>
+            <strong>Signature:</strong> pred:(&#39;?7995 -&gt; bool) -&gt; f:(&#39;?7995 -&gt; &#39;?7995) -&gt; &#39;?7995 list -&gt; &#39;?7995 list<br />
+                          <strong>Type parameters:</strong> '?7995          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L310-310" class="github-link">
@@ -150,8 +156,8 @@ and returning a final value of this accumulator together with the new list.</p>
             merge a b
           </code>
           <div class="tip" id="149">
-            <strong>Signature:</strong> a:&#39;?7216 list -&gt; b:&#39;?7216 list -&gt; &#39;?7216 list<br />
-                          <strong>Type parameters:</strong> '?7216          </div>
+            <strong>Signature:</strong> a:&#39;?8006 list -&gt; b:&#39;?8006 list -&gt; &#39;?8006 list<br />
+                          <strong>Type parameters:</strong> '?8006          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L345-345" class="github-link">
@@ -159,6 +165,8 @@ and returning a final value of this accumulator together with the new list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Merges two sequences by the default comparer for 'T</p>
+
+
 
         </td>
       </tr>
@@ -169,8 +177,8 @@ and returning a final value of this accumulator together with the new list.</p>
             mergeBy f a b
           </code>
           <div class="tip" id="150">
-            <strong>Signature:</strong> f:(&#39;?7213 -&gt; &#39;?7214) -&gt; a:&#39;?7213 list -&gt; b:&#39;?7213 list -&gt; &#39;?7213 list<br />
-                          <strong>Type parameters:</strong> '?7213, '?7214          </div>
+            <strong>Signature:</strong> f:(&#39;?8003 -&gt; &#39;?8004) -&gt; a:&#39;?8003 list -&gt; b:&#39;?8003 list -&gt; &#39;?8003 list<br />
+                          <strong>Type parameters:</strong> '?8003, '?8004          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L332-332" class="github-link">
@@ -178,6 +186,8 @@ and returning a final value of this accumulator together with the new list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Merges to sequences using the given function to transform the elements for comparision</p>
+
+
 
         </td>
       </tr>
@@ -206,8 +216,8 @@ and returning a final value of this accumulator together with the new list.</p>
             singleton x
           </code>
           <div class="tip" id="152">
-            <strong>Signature:</strong> x:&#39;?7181 -&gt; &#39;?7181 list<br />
-                          <strong>Type parameters:</strong> '?7181          </div>
+            <strong>Signature:</strong> x:&#39;?7971 -&gt; &#39;?7971 list<br />
+                          <strong>Type parameters:</strong> '?7971          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L271-271" class="github-link">
@@ -224,8 +234,8 @@ and returning a final value of this accumulator together with the new list.</p>
             skip n l
           </code>
           <div class="tip" id="153">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?7201 list -&gt; &#39;?7201 list<br />
-                          <strong>Type parameters:</strong> '?7201          </div>
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?7991 list -&gt; &#39;?7991 list<br />
+                          <strong>Type parameters:</strong> '?7991          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L307-307" class="github-link">
@@ -242,8 +252,8 @@ and returning a final value of this accumulator together with the new list.</p>
             skipUntil pred l
           </code>
           <div class="tip" id="154">
-            <strong>Signature:</strong> pred:(&#39;?7193 -&gt; bool) -&gt; l:&#39;?7193 list -&gt; &#39;?7193 list<br />
-                          <strong>Type parameters:</strong> '?7193          </div>
+            <strong>Signature:</strong> pred:(&#39;?7983 -&gt; bool) -&gt; l:&#39;?7983 list -&gt; &#39;?7983 list<br />
+                          <strong>Type parameters:</strong> '?7983          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L292-292" class="github-link">
@@ -260,8 +270,8 @@ and returning a final value of this accumulator together with the new list.</p>
             skipWhile pred l
           </code>
           <div class="tip" id="155">
-            <strong>Signature:</strong> pred:(&#39;?7191 -&gt; bool) -&gt; l:&#39;?7191 list -&gt; &#39;?7191 list<br />
-                          <strong>Type parameters:</strong> '?7191          </div>
+            <strong>Signature:</strong> pred:(&#39;?7981 -&gt; bool) -&gt; l:&#39;?7981 list -&gt; &#39;?7981 list<br />
+                          <strong>Type parameters:</strong> '?7981          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L291-291" class="github-link">
@@ -278,8 +288,8 @@ and returning a final value of this accumulator together with the new list.</p>
             span pred l
           </code>
           <div class="tip" id="156">
-            <strong>Signature:</strong> pred:(&#39;?7187 -&gt; bool) -&gt; l:&#39;?7187 list -&gt; &#39;?7187 list * &#39;?7187 list<br />
-                          <strong>Type parameters:</strong> '?7187          </div>
+            <strong>Signature:</strong> pred:(&#39;?7977 -&gt; bool) -&gt; l:&#39;?7977 list -&gt; &#39;?7977 list * &#39;?7977 list<br />
+                          <strong>Type parameters:</strong> '?7977          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L279-279" class="github-link">
@@ -296,8 +306,8 @@ and returning a final value of this accumulator together with the new list.</p>
             split pred l
           </code>
           <div class="tip" id="157">
-            <strong>Signature:</strong> pred:(&#39;?7189 -&gt; bool) -&gt; l:&#39;?7189 list -&gt; &#39;?7189 list * &#39;?7189 list<br />
-                          <strong>Type parameters:</strong> '?7189          </div>
+            <strong>Signature:</strong> pred:(&#39;?7979 -&gt; bool) -&gt; l:&#39;?7979 list -&gt; &#39;?7979 list * &#39;?7979 list<br />
+                          <strong>Type parameters:</strong> '?7979          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L289-289" class="github-link">
@@ -314,8 +324,8 @@ and returning a final value of this accumulator together with the new list.</p>
             splitAt n l
           </code>
           <div class="tip" id="158">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?7199 list -&gt; &#39;?7199 list * &#39;?7199 list<br />
-                          <strong>Type parameters:</strong> '?7199          </div>
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?7989 list -&gt; &#39;?7989 list * &#39;?7989 list<br />
+                          <strong>Type parameters:</strong> '?7989          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L296-296" class="github-link">
@@ -332,8 +342,8 @@ and returning a final value of this accumulator together with the new list.</p>
             take n l
           </code>
           <div class="tip" id="159">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?7203 list -&gt; &#39;?7203 list<br />
-                          <strong>Type parameters:</strong> '?7203          </div>
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?7993 list -&gt; &#39;?7993 list<br />
+                          <strong>Type parameters:</strong> '?7993          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L308-308" class="github-link">
@@ -350,8 +360,8 @@ and returning a final value of this accumulator together with the new list.</p>
             takeUntil pred l
           </code>
           <div class="tip" id="160">
-            <strong>Signature:</strong> pred:(&#39;?7197 -&gt; bool) -&gt; l:&#39;?7197 list -&gt; &#39;?7197 list<br />
-                          <strong>Type parameters:</strong> '?7197          </div>
+            <strong>Signature:</strong> pred:(&#39;?7987 -&gt; bool) -&gt; l:&#39;?7987 list -&gt; &#39;?7987 list<br />
+                          <strong>Type parameters:</strong> '?7987          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L294-294" class="github-link">
@@ -368,8 +378,8 @@ and returning a final value of this accumulator together with the new list.</p>
             takeWhile pred l
           </code>
           <div class="tip" id="161">
-            <strong>Signature:</strong> pred:(&#39;?7195 -&gt; bool) -&gt; l:&#39;?7195 list -&gt; &#39;?7195 list<br />
-                          <strong>Type parameters:</strong> '?7195          </div>
+            <strong>Signature:</strong> pred:(&#39;?7985 -&gt; bool) -&gt; l:&#39;?7985 list -&gt; &#39;?7985 list<br />
+                          <strong>Type parameters:</strong> '?7985          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L293-293" class="github-link">
@@ -386,8 +396,8 @@ and returning a final value of this accumulator together with the new list.</p>
             transpose lst
           </code>
           <div class="tip" id="162">
-            <strong>Signature:</strong> lst:&#39;?7211 list list -&gt; &#39;?7211 list list<br />
-                          <strong>Type parameters:</strong> '?7211          </div>
+            <strong>Signature:</strong> lst:&#39;?8001 list list -&gt; &#39;?8001 list list<br />
+                          <strong>Type parameters:</strong> '?8001          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L326-326" class="github-link">

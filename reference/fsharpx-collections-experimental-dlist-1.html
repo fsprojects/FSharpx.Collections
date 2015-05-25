@@ -42,8 +42,10 @@ See <a href="http://dl.acm.org/citation.cfm?id=8475">http://dl.acm.org/citation.
 This implementation adds an additional parameter to allow a more
 efficient calculation of the list length.
 Note that an alternate form would represent the DList as:
-type DList<'T> = DList of ('T list -> 'T list)
+type DList<'T> = DList of ('T list -&gt; 'T list)
 An example can be found at <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209</a></p>
+
+
 </div>
   <h3>Union Cases</h3>
   <table class="table table-bordered member-list">
@@ -130,6 +132,8 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
             </a>
           <p>O(log n). Returns the first element.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -148,6 +152,8 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns true if the DList has no elements.</p>
+
+
 
         </td>
       </tr>
@@ -168,6 +174,8 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
             </a>
           <p>O(1). Returns the count of elememts.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -186,6 +194,8 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new DList with the element added to the end.</p>
+
+
 
         </td>
       </tr>
@@ -206,6 +216,8 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
             </a>
           <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
 
+
+
         </td>
       </tr>
     </tbody>
@@ -223,7 +235,7 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
             ( [] )()
           </code>
           <div class="tip" id="1288">
-            <strong>Signature:</strong> unit -&gt; DList&lt;&#39;?8825&gt;<br />
+            <strong>Signature:</strong> unit -&gt; DList&lt;&#39;?9615&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
@@ -241,7 +253,7 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
             ( = )(left, right)
           </code>
           <div class="tip" id="1289">
-            <strong>Signature:</strong> (left:DList&lt;&#39;?8822&gt; * right:DList&lt;&#39;?8822&gt;) -&gt; bool<br />
+            <strong>Signature:</strong> (left:DList&lt;&#39;?9612&gt; * right:DList&lt;&#39;?9612&gt;) -&gt; bool<br />
                       </div>
         </td>
         <td class="xmldoc">

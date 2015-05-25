@@ -38,6 +38,8 @@
 <h1>Map</h1>
 <div class="xmldoc">
 <p>Extensions for F#'s Map module.</p>
+
+
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -91,8 +93,8 @@
             insertWith f key value map
           </code>
           <div class="tip" id="165">
-            <strong>Signature:</strong> f:(&#39;?7146 -&gt; &#39;?7146 -&gt; &#39;?7146) -&gt; key:&#39;?7147 -&gt; value:&#39;?7146 -&gt; map:Map&lt;&#39;?7147,&#39;?7146&gt; -&gt; Map&lt;&#39;?7147,&#39;?7146&gt;<br />
-                          <strong>Type parameters:</strong> '?7146, '?7147          </div>
+            <strong>Signature:</strong> f:(&#39;?7936 -&gt; &#39;?7936 -&gt; &#39;?7936) -&gt; key:&#39;?7937 -&gt; value:&#39;?7936 -&gt; map:Map&lt;&#39;?7937,&#39;?7936&gt; -&gt; Map&lt;&#39;?7937,&#39;?7936&gt;<br />
+                          <strong>Type parameters:</strong> '?7936, '?7937          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L383-383" class="github-link">
@@ -101,6 +103,8 @@
             </a>
           <p>insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. 
  If the key does exist, the function will insert f new<em>value old</em>value.</p>
+
+
 
         </td>
       </tr>
@@ -121,6 +125,8 @@
             </a>
           <p>Retrieves the keys from a Map</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -140,6 +146,8 @@
             </a>
           <p>Allows to remove many keys from a Map</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -149,8 +157,8 @@
             spanWithKey pred map
           </code>
           <div class="tip" id="168">
-            <strong>Signature:</strong> pred:(&#39;?7140 -&gt; bool) -&gt; map:Map&lt;&#39;?7140,&#39;?7141&gt; -&gt; Map&lt;&#39;?7140,&#39;?7141&gt; * Map&lt;&#39;?7140,&#39;?7141&gt;<br />
-                          <strong>Type parameters:</strong> '?7140, '?7141          </div>
+            <strong>Signature:</strong> pred:(&#39;?7930 -&gt; bool) -&gt; map:Map&lt;&#39;?7930,&#39;?7931&gt; -&gt; Map&lt;&#39;?7930,&#39;?7931&gt; * Map&lt;&#39;?7930,&#39;?7931&gt;<br />
+                          <strong>Type parameters:</strong> '?7930, '?7931          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L368-368" class="github-link">
@@ -167,8 +175,8 @@
             splitWithKey pred d
           </code>
           <div class="tip" id="169">
-            <strong>Signature:</strong> pred:(&#39;?7143 -&gt; bool) -&gt; d:Map&lt;&#39;?7143,&#39;?7144&gt; -&gt; Map&lt;&#39;?7143,&#39;?7144&gt; * Map&lt;&#39;?7143,&#39;?7144&gt;<br />
-                          <strong>Type parameters:</strong> '?7143, '?7144          </div>
+            <strong>Signature:</strong> pred:(&#39;?7933 -&gt; bool) -&gt; d:Map&lt;&#39;?7933,&#39;?7934&gt; -&gt; Map&lt;&#39;?7933,&#39;?7934&gt; * Map&lt;&#39;?7933,&#39;?7934&gt;<br />
+                          <strong>Type parameters:</strong> '?7933, '?7934          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L377-377" class="github-link">
@@ -185,8 +193,8 @@
             union map1 map2
           </code>
           <div class="tip" id="170">
-            <strong>Signature:</strong> map1:Map&lt;&#39;?7155,&#39;?7156&gt; -&gt; map2:Map&lt;&#39;?7155,&#39;?7156&gt; -&gt; Map&lt;&#39;?7155,&#39;?7156&gt;<br />
-                          <strong>Type parameters:</strong> '?7155, '?7156          </div>
+            <strong>Signature:</strong> map1:Map&lt;&#39;?7945,&#39;?7946&gt; -&gt; map2:Map&lt;&#39;?7945,&#39;?7946&gt; -&gt; Map&lt;&#39;?7945,&#39;?7946&gt;<br />
+                          <strong>Type parameters:</strong> '?7945, '?7946          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L405-405" class="github-link">
@@ -194,6 +202,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Combines the two Maps into a single Map</p>
+
+
 
         </td>
       </tr>
@@ -204,8 +214,8 @@
             updateWith f key map
           </code>
           <div class="tip" id="171">
-            <strong>Signature:</strong> f:(&#39;?7149 -&gt; &#39;?7149 option) -&gt; key:&#39;?7150 -&gt; map:Map&lt;&#39;?7150,&#39;?7149&gt; -&gt; Map&lt;&#39;?7150,&#39;?7149&gt;<br />
-                          <strong>Type parameters:</strong> '?7149, '?7150          </div>
+            <strong>Signature:</strong> f:(&#39;?7939 -&gt; &#39;?7939 option) -&gt; key:&#39;?7940 -&gt; map:Map&lt;&#39;?7940,&#39;?7939&gt; -&gt; Map&lt;&#39;?7940,&#39;?7939&gt;<br />
+                          <strong>Type parameters:</strong> '?7939, '?7940          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L393-393" class="github-link">
@@ -216,6 +226,8 @@
  If f x is None, the element is deleted. 
  If it is Some y, the key is bound to the new value y.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -225,8 +237,8 @@
             valueList map
           </code>
           <div class="tip" id="172">
-            <strong>Signature:</strong> map:Map&lt;&#39;?7152,&#39;?7153&gt; -&gt; &#39;?7153 list<br />
-                          <strong>Type parameters:</strong> '?7152, '?7153          </div>
+            <strong>Signature:</strong> map:Map&lt;&#39;?7942,&#39;?7943&gt; -&gt; &#39;?7943 list<br />
+                          <strong>Type parameters:</strong> '?7942, '?7943          </div>
         </td>
         <td class="xmldoc">
             <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L402-402" class="github-link">
@@ -252,6 +264,8 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>Retrieves the values from a Map</p>
+
+
 
         </td>
       </tr>

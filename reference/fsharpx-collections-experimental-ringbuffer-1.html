@@ -125,6 +125,8 @@
 Returns the position of the RingBuffer. Throws an ArgumentException if
 the offset is negative.</p>
 
+
+
         </td>
       </tr>
       <tr>
@@ -188,7 +190,7 @@ the offset is negative.</p>
             Insert(op, offset, items)
           </code>
           <div class="tip" id="1415">
-            <strong>Signature:</strong> (op:(&#39;T -&gt; &#39;?8150 -&gt; &#39;T) * offset:int * items:seq&lt;&#39;?8150&gt;) -&gt; unit<br />
+            <strong>Signature:</strong> (op:(&#39;T -&gt; &#39;?8940 -&gt; &#39;T) * offset:int * items:seq&lt;&#39;?8940&gt;) -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
@@ -289,6 +291,8 @@ the offset is negative.</p>
           <p>Tries to advance the position of the RingBuffer by the offset.
 Returns None if offset is negative, otherwise Some containing 
 the position of the RingBuffer.</p>
+
+
 
         </td>
       </tr>
