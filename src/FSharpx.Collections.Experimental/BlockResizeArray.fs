@@ -26,11 +26,9 @@ type BlockResizeArray<'T> () =
         arrays.[count >>> shift].[count &&& smallPart] <- x
         count <- count + 1
 
-    member this.Item i =
-        arrays.[i >>> shift].[i &&& smallPart]
-
-    member this.Set i value =
-        arrays.[i >>> shift].[i &&& smallPart] <- value
+    member this.Item 
+        with get i = arrays.[i >>> shift].[i &&& smallPart]
+        and set i v = arrays.[i >>> shift].[i &&& smallPart] <- v
 
     member this.DeleteBlock i = arrays.[i] <- null
     member this.Count = count

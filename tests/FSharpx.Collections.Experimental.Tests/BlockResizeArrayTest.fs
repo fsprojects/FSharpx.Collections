@@ -31,7 +31,7 @@ let ``random access performance`` () =
     let b = ref 0UL
     averageTime testIters "ResizeArray random access" (fun () -> for i in access do ra.[i] <- 0UL) 
     averageTime testIters "Array random access" (fun () -> for i in access do a.[i] <- 0UL)       
-    averageTime testIters "BlockResizeArray random access" (fun () -> for i in access do bra.Set i 0UL)
+    averageTime testIters "BlockResizeArray random access" (fun () -> for i in access do bra.[i] <- 0UL)
 
 [<Test>]
 let ``sequential access performance`` () =
@@ -45,4 +45,4 @@ let ``sequential access performance`` () =
     let b = ref 0UL
     averageTime testIters "ResizeArray sequential access" (fun () -> for i in access do ra.[i] <- 0UL)    
     averageTime testIters "Array sequential access" (fun () -> for i in access do a.[i] <- 0UL)    
-    averageTime testIters "BlockResize sequential access" (fun () -> for i in access do bra.Set i 0UL)
+    averageTime testIters "BlockResize sequential access" (fun () -> for i in access do bra.[i] <- 0UL)
