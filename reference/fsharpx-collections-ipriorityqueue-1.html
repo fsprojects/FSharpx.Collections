@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PriorityQueue - fsprojects/FSharpx.Collections</title>
+    <title>IPriorityQueue<'T> - fsprojects/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,149 +35,152 @@
 
 
 
-<h1>PriorityQueue</h1>
+<h1>IPriorityQueue<'T></h1>
 <div class="xmldoc">
 </div>
-
-<!-- Render nested types and modules, if there are any -->
-
-  <h3>Functions and values</h3>
+  <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Function or value</td><td>Description</td></tr>
+      <tr><td>Instance member</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
-            empty isDescending
+          <code onmouseout="hideTip(event, '1022', 1022)" onmouseover="showTip(event, '1022', 1022)">
+            Insert(arg1)
           </code>
-          <div class="tip" id="241">
-            <strong>Signature:</strong> isDescending:bool -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1022">
+            <strong>Signature:</strong> &#39;T -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L289-289" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L19-19" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns a empty queue, with indicated ordering.</p>
+          <p>returns a new queue with the element added to the end</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
-            insert element pq
+          <code onmouseout="hideTip(event, '1023', 1023)" onmouseover="showTip(event, '1023', 1023)">
+            IsEmpty
           </code>
-          <div class="tip" id="242">
-            <strong>Signature:</strong> element:&#39;T -&gt; pq:IPriorityQueue&lt;&#39;T&gt; -&gt; IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1023">
+            <strong>Signature:</strong> bool<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L295-295" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L16-16" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n) amortized time. Returns a new queue with the element added to the end.</p>
+          <p>returns true if the queue has no elements</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
-            isEmpty pq
+          <code onmouseout="hideTip(event, '1024', 1024)" onmouseover="showTip(event, '1024', 1024)">
+            Length
           </code>
-          <div class="tip" id="243">
-            <strong>Signature:</strong> pq:IPriorityQueue&lt;&#39;T&gt; -&gt; bool<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1024">
+            <strong>Signature:</strong> int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L292-292" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L28-28" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns true if the queue has no elements.</p>
+          <p>returns the count of the elements</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
-            peek pq
+          <code onmouseout="hideTip(event, '1025', 1025)" onmouseover="showTip(event, '1025', 1025)">
+            Peek()
           </code>
-          <div class="tip" id="244">
-            <strong>Signature:</strong> pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1025">
+            <strong>Signature:</strong> unit -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L301-301" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L25-25" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the first element.</p>
+          <p>returns the first element</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
-            pop pq
+          <code onmouseout="hideTip(event, '1026', 1026)" onmouseover="showTip(event, '1026', 1026)">
+            Pop()
           </code>
-          <div class="tip" id="245">
-            <strong>Signature:</strong> pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T * IPriorityQueue&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1026">
+            <strong>Signature:</strong> unit -&gt; &#39;T * IPriorityQueue&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L307-307" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L34-34" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n) amortized time. Returns the first element and tail.</p>
+          <p>returns the first element and tail</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
-            tryPeek pq
+          <code onmouseout="hideTip(event, '1027', 1027)" onmouseover="showTip(event, '1027', 1027)">
+            TryPeek()
           </code>
-          <div class="tip" id="246">
-            <strong>Signature:</strong> pq:IPriorityQueue&lt;&#39;T&gt; -&gt; &#39;T option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1027">
+            <strong>Signature:</strong> unit -&gt; &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L298-298" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L22-22" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option first element.</p>
+          <p>returns option first element</p>
 
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
-            tryPop pq
+          <code onmouseout="hideTip(event, '1028', 1028)" onmouseover="showTip(event, '1028', 1028)">
+            TryPop()
           </code>
-          <div class="tip" id="247">
-            <strong>Signature:</strong> pq:IPriorityQueue&lt;&#39;T&gt; -&gt; (&#39;T * IPriorityQueue&lt;&#39;T&gt;) option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="1028">
+            <strong>Signature:</strong> unit -&gt; (&#39;T * IPriorityQueue&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L304-304" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L31-31" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n) amortized time. Returns the option first element and tail.</p>
-
+          
         </td>
       </tr>
     </tbody>

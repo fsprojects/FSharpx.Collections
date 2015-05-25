@@ -44,6 +44,32 @@ as an alternate interface.
 According to Okasaki the time complexity of the heap functions in this Heap implementation 
 (based on the "pairing" heap) have "resisted" time complexity analysis.</p>
 </div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1006', 1006)" onmouseover="showTip(event, '1006', 1006)">
+            new(isDescending, length, data)
+          </code>
+          <div class="tip" id="1006">
+            <strong>Signature:</strong> (isDescending:bool * length:int * data:HeapData&lt;&#39;T&gt;) -&gt; Heap&lt;&#39;T&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L42-42" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
@@ -53,15 +79,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1012', 1012)" onmouseover="showTip(event, '1012', 1012)">
+          <code onmouseout="hideTip(event, '1007', 1007)" onmouseover="showTip(event, '1007', 1007)">
             Head
           </code>
-          <div class="tip" id="1012">
+          <div class="tip" id="1007">
             <strong>Signature:</strong> &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L73-73" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L105-105" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -72,15 +98,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1013', 1013)" onmouseover="showTip(event, '1013', 1013)">
-            Insert(arg1)
+          <code onmouseout="hideTip(event, '1008', 1008)" onmouseover="showTip(event, '1008', 1008)">
+            Insert(x)
           </code>
-          <div class="tip" id="1013">
-            <strong>Signature:</strong> &#39;T -&gt; Heap&lt;&#39;T&gt;<br />
+          <div class="tip" id="1008">
+            <strong>Signature:</strong> x:&#39;T -&gt; Heap&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L83-83" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L117-117" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -91,15 +117,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1014', 1014)" onmouseover="showTip(event, '1014', 1014)">
+          <code onmouseout="hideTip(event, '1009', 1009)" onmouseover="showTip(event, '1009', 1009)">
             IsDescending
           </code>
-          <div class="tip" id="1014">
+          <div class="tip" id="1009">
             <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L91-91" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L127-127" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -110,15 +136,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1015', 1015)" onmouseover="showTip(event, '1015', 1015)">
+          <code onmouseout="hideTip(event, '1010', 1010)" onmouseover="showTip(event, '1010', 1010)">
             IsEmpty
           </code>
-          <div class="tip" id="1015">
+          <div class="tip" id="1010">
             <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L86-86" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L121-121" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -129,15 +155,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1016', 1016)" onmouseover="showTip(event, '1016', 1016)">
+          <code onmouseout="hideTip(event, '1011', 1011)" onmouseover="showTip(event, '1011', 1011)">
             Length
           </code>
-          <div class="tip" id="1016">
+          <div class="tip" id="1011">
             <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L93-93" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L130-130" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -148,15 +174,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1017', 1017)" onmouseover="showTip(event, '1017', 1017)">
-            Merge(arg1)
+          <code onmouseout="hideTip(event, '1012', 1012)" onmouseover="showTip(event, '1012', 1012)">
+            Merge(xs)
           </code>
-          <div class="tip" id="1017">
-            <strong>Signature:</strong> Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt;<br />
+          <div class="tip" id="1012">
+            <strong>Signature:</strong> xs:Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L95-95" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L133-133" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -167,15 +193,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1018', 1018)" onmouseover="showTip(event, '1018', 1018)">
+          <code onmouseout="hideTip(event, '1013', 1013)" onmouseover="showTip(event, '1013', 1013)">
             Rev()
           </code>
-          <div class="tip" id="1018">
+          <div class="tip" id="1013">
             <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L103-103" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L143-143" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -186,15 +212,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1019', 1019)" onmouseover="showTip(event, '1019', 1019)">
+          <code onmouseout="hideTip(event, '1014', 1014)" onmouseover="showTip(event, '1014', 1014)">
             Tail()
           </code>
-          <div class="tip" id="1019">
+          <div class="tip" id="1014">
             <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L107-107" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L148-148" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -205,15 +231,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1020', 1020)" onmouseover="showTip(event, '1020', 1020)">
+          <code onmouseout="hideTip(event, '1015', 1015)" onmouseover="showTip(event, '1015', 1015)">
             TryHead
           </code>
-          <div class="tip" id="1020">
+          <div class="tip" id="1015">
             <strong>Signature:</strong> &#39;T option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L78-78" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L111-111" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -224,15 +250,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1021', 1021)" onmouseover="showTip(event, '1021', 1021)">
-            TryMerge(arg1)
+          <code onmouseout="hideTip(event, '1016', 1016)" onmouseover="showTip(event, '1016', 1016)">
+            TryMerge(xs)
           </code>
-          <div class="tip" id="1021">
-            <strong>Signature:</strong> Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt; option<br />
+          <div class="tip" id="1016">
+            <strong>Signature:</strong> xs:Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt; option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L99-99" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L138-138" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -243,15 +269,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1022', 1022)" onmouseover="showTip(event, '1022', 1022)">
+          <code onmouseout="hideTip(event, '1017', 1017)" onmouseover="showTip(event, '1017', 1017)">
             TryTail()
           </code>
-          <div class="tip" id="1022">
+          <div class="tip" id="1017">
             <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt; option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L139-139" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L181-181" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -262,15 +288,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1023', 1023)" onmouseover="showTip(event, '1023', 1023)">
+          <code onmouseout="hideTip(event, '1018', 1018)" onmouseover="showTip(event, '1018', 1018)">
             TryUncons()
           </code>
-          <div class="tip" id="1023">
+          <div class="tip" id="1018">
             <strong>Signature:</strong> unit -&gt; (&#39;T * Heap&lt;&#39;T&gt;) option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L149-149" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L193-193" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -281,15 +307,15 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1024', 1024)" onmouseover="showTip(event, '1024', 1024)">
+          <code onmouseout="hideTip(event, '1019', 1019)" onmouseover="showTip(event, '1019', 1019)">
             Uncons()
           </code>
-          <div class="tip" id="1024">
+          <div class="tip" id="1019">
             <strong>Signature:</strong> unit -&gt; &#39;T * Heap&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Heap.fs#L144-144" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L187-187" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DList<'T> - fsprojects/FSharpx.Collections</title>
+    <title>BlockResizeArray<'T> - fsprojects/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,70 +35,27 @@
 
 
 
-<h1>DList<'T></h1>
+<h1>BlockResizeArray<'T></h1>
 <div class="xmldoc">
-<p>The DList is an implementation of John Hughes' append list.
-See <a href="http://dl.acm.org/citation.cfm?id=8475">http://dl.acm.org/citation.cfm?id=8475</a> for more information.
-This implementation adds an additional parameter to allow a more
-efficient calculation of the list length.
-Note that an alternate form would represent the DList as:
-type DList<'T> = DList of ('T list -> 'T list)
-An example can be found at <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209</a></p>
 </div>
-  <h3>Union Cases</h3>
+  <h3>Constructors</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
+      <tr><td>Constructor</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1280', 1280)" onmouseover="showTip(event, '1280', 1280)">
-            Join(DList&lt;&#39;T&gt;,DList&lt;&#39;T&gt;,int)
+          <code onmouseout="hideTip(event, '1089', 1089)" onmouseover="showTip(event, '1089', 1089)">
+            new()
           </code>
-          <div class="tip" id="1280">
-            <strong>Signature:</strong> DList&lt;&#39;T&gt; * DList&lt;&#39;T&gt; * int<br />
+          <div class="tip" id="1089">
+            <strong>Signature:</strong> unit -&gt; BlockResizeArray&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L17-17" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1281', 1281)" onmouseover="showTip(event, '1281', 1281)">
-            Nil
-          </code>
-          <div class="tip" id="1281">
-            <strong>Signature:</strong> <br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L15-15" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1282', 1282)" onmouseover="showTip(event, '1282', 1282)">
-            Unit(&#39;T)
-          </code>
-          <div class="tip" id="1282">
-            <strong>Signature:</strong> &#39;T<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L16-16" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L7-7" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -116,118 +73,15 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1283', 1283)" onmouseover="showTip(event, '1283', 1283)">
-            Head
+          <code onmouseout="hideTip(event, '1090', 1090)" onmouseover="showTip(event, '1090', 1090)">
+            Add(x)
           </code>
-          <div class="tip" id="1283">
-            <strong>Signature:</strong> &#39;T<br />
+          <div class="tip" id="1090">
+            <strong>Signature:</strong> x:&#39;T -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L41-41" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log n). Returns the first element.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1284', 1284)" onmouseover="showTip(event, '1284', 1284)">
-            IsEmpty
-          </code>
-          <div class="tip" id="1284">
-            <strong>Signature:</strong> bool<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L38-38" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns true if the DList has no elements.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1285', 1285)" onmouseover="showTip(event, '1285', 1285)">
-            Length
-          </code>
-          <div class="tip" id="1285">
-            <strong>Signature:</strong> int<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L31-31" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns the count of elememts.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1286', 1286)" onmouseover="showTip(event, '1286', 1286)">
-            snoc(a)
-          </code>
-          <div class="tip" id="1286">
-            <strong>Signature:</strong> a:&#39;T -&gt; DList&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L48-48" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns a new DList with the element added to the end.</p>
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1287', 1287)" onmouseover="showTip(event, '1287', 1287)">
-            Tail
-          </code>
-          <div class="tip" id="1287">
-            <strong>Signature:</strong> DList&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L57-57" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1288', 1288)" onmouseover="showTip(event, '1288', 1288)">
-            ( [] )()
-          </code>
-          <div class="tip" id="1288">
-            <strong>Signature:</strong> unit -&gt; DList&lt;&#39;?8825&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L28-28" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L16-16" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -237,15 +91,105 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1289', 1289)" onmouseover="showTip(event, '1289', 1289)">
-            ( = )(left, right)
+          <code onmouseout="hideTip(event, '1091', 1091)" onmouseover="showTip(event, '1091', 1091)">
+            Count
           </code>
-          <div class="tip" id="1289">
-            <strong>Signature:</strong> (left:DList&lt;&#39;?8822&gt; * right:DList&lt;&#39;?8822&gt;) -&gt; bool<br />
+          <div class="tip" id="1091">
+            <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L19-19" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L36-36" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1092', 1092)" onmouseover="showTip(event, '1092', 1092)">
+            DeleteBlock(i)
+          </code>
+          <div class="tip" id="1092">
+            <strong>Signature:</strong> i:int -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L35-35" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1093', 1093)" onmouseover="showTip(event, '1093', 1093)">
+            [i]
+          </code>
+          <div class="tip" id="1093">
+            <strong>Signature:</strong> i:int -&gt; &#39;T<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L29-29" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1094', 1094)" onmouseover="showTip(event, '1094', 1094)">
+            Set(i value)
+          </code>
+          <div class="tip" id="1094">
+            <strong>Signature:</strong> i:int -&gt; value:&#39;T -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L32-32" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1095', 1095)" onmouseover="showTip(event, '1095', 1095)">
+            Shift
+          </code>
+          <div class="tip" id="1095">
+            <strong>Signature:</strong> int<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L37-37" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1096', 1096)" onmouseover="showTip(event, '1096', 1096)">
+            ToArray()
+          </code>
+          <div class="tip" id="1096">
+            <strong>Signature:</strong> unit -&gt; &#39;T []<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L39-39" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
