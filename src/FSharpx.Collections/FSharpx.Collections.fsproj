@@ -55,8 +55,41 @@
 	</Target>
 	-->
   <Import Project="$(SolutionDir).paket\paket.targets" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Exceptions.fs" />
+    <Compile Include="Interfaces.fs" />
+    <Compile Include="Infrastructure.fs" />
+    <Compile Include="LazyList.fsi" />
+    <Compile Include="LazyList.fs" />
+    <Compile Include="ResizeArray.fsi" />
+    <Compile Include="ResizeArray.fs" />
+    <Compile Include="Collections.fs" />
+    <Compile Include="Deque.fsi" />
+    <Compile Include="Deque.fs" />
+    <Compile Include="DList.fsi" />
+    <Compile Include="DList.fs" />
+    <Compile Include="ByteString.fs" />
+    <Compile Include="CircularBuffer.fs" />
+    <Compile Include="PriorityQueue.fs" />
+    <Compile Include="NonEmptyList.fs" />
+    <Compile Include="RandomAccessList.fsi" />
+    <Compile Include="RandomAccessList.fs" />
+    <Compile Include="Queue.fsi" />
+    <Compile Include="Queue.fs" />
+    <Compile Include="Literals.fs" />
+    <Compile Include="PersistentVector.fsi" />
+    <Compile Include="PersistentVector.fs" />
+    <Compile Include="PersistentHashMap.fs" />
+    <None Include="paket.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3')">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')">
       <ItemGroup>
         <Reference Include="FSharp.Core">
           <HintPath>..\..\packages\FSharp.Core\lib\net40\FSharp.Core.dll</HintPath>
@@ -120,37 +153,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Exceptions.fs" />
-    <Compile Include="Interfaces.fs" />
-    <Compile Include="Infrastructure.fs" />
-    <Compile Include="LazyList.fsi" />
-    <Compile Include="LazyList.fs" />
-    <Compile Include="ResizeArray.fsi" />
-    <Compile Include="ResizeArray.fs" />
-    <Compile Include="Collections.fs" />
-    <Compile Include="Deque.fsi" />
-    <Compile Include="Deque.fs" />
-    <Compile Include="DList.fsi" />
-    <Compile Include="DList.fs" />
-    <Compile Include="ByteString.fs" />
-    <Compile Include="CircularBuffer.fs" />
-    <Compile Include="PriorityQueue.fs" />
-    <Compile Include="NonEmptyList.fs" />
-    <Compile Include="RandomAccessList.fsi" />
-    <Compile Include="RandomAccessList.fs" />
-    <Compile Include="Queue.fsi" />
-    <Compile Include="Queue.fs" />
-    <Compile Include="Literals.fs" />
-    <Compile Include="PersistentVector.fsi" />
-    <Compile Include="PersistentVector.fs" />
-    <Compile Include="PersistentHashMap.fs" />
-    <None Include="paket.template" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-  </ItemGroup>
 </Project>
