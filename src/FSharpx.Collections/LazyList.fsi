@@ -105,6 +105,10 @@ module LazyList =
     /// the input list.  
     val trySkip     : count:int -> source:LazyList<'T> -> LazyList<'T> option
 
+    ///O(n). /// it applies a function to each element of a list,
+    /// passing an accumulating parameter from left to right,
+    val fold     : f:('T1 -> 'T2 -> 'T1) -> s:'T1 -> l:LazyList<'T2> -> 'T1
+
     ///O(n). Behaves like a combination of map and fold; 
     /// it applies a function to each element of a list, 
     /// passing an accumulating parameter from left to right, 
