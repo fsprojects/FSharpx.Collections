@@ -236,8 +236,11 @@ module SkewBinomialHeap =
     /// Returns false if the element at the head is the minimum.
     let inline isDescending (xs: 'T SkewBinomialHeap) = xs.IsDescending
 
-    ///O(1) - Returns the number of elememts in the collection.
-    let inline length (xs: 'T SkewBinomialHeap) = xs.Count 
+    ///O(1) - Returns the number of elements in the collection.
+    let inline length (xs: 'T SkewBinomialHeap) = xs.Count
+
+    ///O(1) - Returns the number of elements in the collection.
+    let inline count (xs: 'T SkewBinomialHeap) = xs.Count
 
     ///O(log n) - Returns a new heap with the elements of both heaps. The two heaps must have the same isDescending value.
     let inline merge (xs: 'T SkewBinomialHeap) (ys: 'T SkewBinomialHeap) = xs.Merge ys
