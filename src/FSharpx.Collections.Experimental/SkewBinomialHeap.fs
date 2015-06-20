@@ -97,8 +97,6 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
 
     new(descending) = SkewBinomialHeap(0, descending, [])
 
-    static member Empty descending = SkewBinomialHeap (0, descending,[])
-
     member private this.Roots = roots
         
     member this.Count = count
