@@ -10,6 +10,7 @@ open System
 
 let ofList desc items = List.fold (fun h x -> SkewBinomialHeap.insert x h) (SkewBinomialHeap.empty desc) items
 
+//sorts a list with the same ordering as the heap
 let sortList heap items = items |> List.sort |> if SkewBinomialHeap.isDescending heap then List.rev else id
 
 let actualHead heap items = items |> if SkewBinomialHeap.isDescending heap then List.max else List.min
@@ -211,3 +212,40 @@ let ``tryUncons returns Some (head, tail) when the heap is not empty`` () =
 let ``tryUncons returns None when the heap is empty`` () =
     fsCheck <| fun { Heap = heap } ->
         heap |> SkewBinomialHeap.isEmpty ==> lazy(heap |> SkewBinomialHeap.tryUncons |> Option.isNone)
+
+[<Test>]
+let ``insert always insert`` () =
+    fsCheck <| fun { Heap = heap; Items = orig } x ->
+        heap 
+        |> SkewBinomialHeap.insert x 
+        |> SkewBinomialHeap.toList
+        |> should equal (x::orig |> sortList heap)
+
+[<Test>]
+let ``merge should merge if both heaps have the same ordering`` () =
+    fsCheck <| fun { Heap = heap1; Items = orig1 } { Heap = heap2; Items = orig2 } ->
+        heap1.IsDescending = heap2.IsDescending ==>
+        lazy(
+            SkewBinomialHeap.merge heap1 heap2 
+            |> SkewBinomialHeap.toList
+            |> should equal (orig1 |> List.append orig2 |> sortList heap1))
+
+[<Test>]
+let ``merge throws when both heaps have diferent ordering`` () =
+    fsCheck <| fun { Heap = heap1 } { Heap = heap2 } ->
+        heap1.IsDescending <> heap2.IsDescending ==>
+        lazy(should throw typeof<IncompatibleMerge> <| fun () -> SkewBinomialHeap.merge heap1 heap2 |> ignore)
+
+[<Test>]
+let ``tryMerge returns Some merged heap when both heaps have the same ordering`` () =
+    fsCheck <| fun { Heap = heap1; Items = orig1 } { Heap = heap2; Items = orig2 } ->
+        heap1.IsDescending = heap2.IsDescending ==>
+        lazy(
+            match SkewBinomialHeap.tryMerge heap1 heap2 |> Option.map SkewBinomialHeap.toList with
+            | Some list -> list |> should equal (orig1 |> List.append orig2 |> sortList heap1)
+            | None -> fail "tryMerge returned None when called with two compatible heaps")
+
+[<Test>]
+let ``tryMerge returns None when both heaps have diferent ordering`` () =
+    fsCheck <| fun { Heap = heap1; Items = orig1 } { Heap = heap2; Items = orig2 } ->
+        heap1.IsDescending <> heap2.IsDescending ==> lazy(SkewBinomialHeap.tryMerge heap1 heap2 |> Option.isNone)
