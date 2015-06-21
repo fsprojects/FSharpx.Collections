@@ -255,7 +255,7 @@ module SkewBinomialHeap =
 
     ///O(log n) - Returns Some h where h is the heap with the front (head) element removed.
     /// Returns None if the collection is empty.
-    let inline tryGetTail (xs: 'T SkewBinomialHeap) = xs.TryTail()
+    let inline tryTail (xs: 'T SkewBinomialHeap) = xs.TryTail()
 
     /// O(log n) - Returns the head element and tail. Throws if empty.
     let inline uncons (xs: 'T SkewBinomialHeap) = xs.Uncons()
