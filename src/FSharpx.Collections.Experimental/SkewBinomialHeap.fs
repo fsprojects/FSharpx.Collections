@@ -177,6 +177,8 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
 
     interface 'T SkewBinomialHeap System.IEquatable with
         member this.Equals other =
+            descending = other.IsDescending &&
+            count = other.Count &&
             this.ToList () = other.ToList()
 
     override this.Equals other =
