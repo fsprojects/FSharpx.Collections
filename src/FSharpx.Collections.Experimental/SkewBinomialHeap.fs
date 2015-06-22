@@ -101,8 +101,11 @@ module private SBHTreeRoot =
             else sorted
         
 //****************************************************************************************************
-//TODO: Implement equality to be able to compare two heaps
 //TODO: Maybe implement comparison too?
+/// A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are 
+/// extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their 
+/// "try" variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
+/// insertions in constant time O(1). (Based on "Purely Functional Data Structures" - 1996 by Chris Okasaki)
 type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 'T SBHTreeRoot list) =
     
     static let hashElements = 20
