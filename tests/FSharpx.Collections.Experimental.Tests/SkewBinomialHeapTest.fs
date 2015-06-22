@@ -27,7 +27,7 @@ type ComparableGenerator<'T when 'T :> IComparable> =
 type HeapData<'T, 'L when 'T: comparison> = { Heap: 'T SkewBinomialHeap; Items: 'L list; Desc: bool }
 
 type SkewBinomialHeapGenerators() =
-    // Empty heaps only, some are empty after removing all its elements
+    // Empty heaps only, some are empty after removing all of its elements
     static member private EmptyOnly<'T when 'T: comparison> (): Gen<HeapData<'T, 'T>> = gen{
         let! desc = Gen.elements [true; false]
         let! s = Gen.listOf (Arb.generate<'T>)
@@ -94,6 +94,7 @@ let fail str = Assert.Fail str
 let fsCheck a = fsCheck null a
 
 //************* TESTS *****************
+//Only tested the functions on the SkewBinomialHeap module for now, later I could test the remaining functions and methods
 
 [<Test>]
 let ``toSeq returns all the elements`` () =
@@ -249,3 +250,29 @@ let ``tryMerge returns Some merged heap when both heaps have the same ordering``
 let ``tryMerge returns None when both heaps have diferent ordering`` () =
     fsCheck <| fun { Heap = heap1; Items = orig1 } { Heap = heap2; Items = orig2 } ->
         heap1.IsDescending <> heap2.IsDescending ==> lazy(SkewBinomialHeap.tryMerge heap1 heap2 |> Option.isNone)
+
+[<Test>]
+let ``Cons pattern always match if the heap is not empty`` () =
+    fsCheck <| fun { Heap = heap } ->
+        heap |> SkewBinomialHeap.isEmpty |> not ==>
+        match heap with
+        | SkewBinomialHeap.Cons (_, _) -> true
+        | _ -> false
+
+[<Test>]
+let ``Nil pattern always match if the heap is empty`` () =
+    fsCheck <| fun { Heap = heap } ->
+        heap |> SkewBinomialHeap.isEmpty ==>
+        match heap with
+        | SkewBinomialHeap.Cons (_, _) -> false
+        | _ -> true
+
+[<Test>]
+let ``Cons pattern return the same as uncons`` () =
+    fsCheck <| fun { Heap = heap; Items = orig } ->
+        heap |> SkewBinomialHeap.isEmpty |> not ==>
+        match heap with
+        | SkewBinomialHeap.Cons (h, t) ->
+            let (h', t') = heap |> SkewBinomialHeap.uncons
+            h = h' && SkewBinomialHeap.toList t = SkewBinomialHeap.toList t'
+        | _ -> false

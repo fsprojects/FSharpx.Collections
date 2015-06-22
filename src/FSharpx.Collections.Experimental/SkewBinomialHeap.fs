@@ -91,6 +91,8 @@ module private SBHTreeRoot =
             else sorted
         
 //****************************************************************************************************
+//TODO: Implement equality to be able to compare two heaps
+//TODO: Maybe implement comparison too?
 type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 'T SBHTreeRoot list) = 
         
     new() = SkewBinomialHeap(0, false, [])
