@@ -144,7 +144,7 @@ let ``head returns the first element when the heap is not empty`` () =
 [<Test>]
 let ``head throws when the heap is empty`` () =
     fsCheck <| fun { Heap = heap } -> 
-        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<Empty> <| fun () -> heap |> SkewBinomialHeap.head |> ignore)
+        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<InvalidOperationException> <| fun () -> heap |> SkewBinomialHeap.head |> ignore)
 
 [<Test>]
 let ``tryHead returns Some head when the heap is not empty`` () =
@@ -168,7 +168,7 @@ let ``tail returns a heap with the first element removed when the heap is not em
 [<Test>]
 let ``tail throws when the heap is empty`` () =
     fsCheck <| fun { Heap = heap } -> 
-        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<Empty> <| fun () -> heap |> SkewBinomialHeap.tail |> ignore)
+        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<InvalidOperationException> <| fun () -> heap |> SkewBinomialHeap.tail |> ignore)
 
 [<Test>]
 let ``tryTail returns Some tail when the heap is not empty`` () =
@@ -196,7 +196,7 @@ let ``uncons returns (head, tail) when the heap is not empty`` () =
 [<Test>]
 let ``uncons throws when the heap is empty`` () =
     fsCheck <| fun { Heap = heap } -> 
-        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<Empty> <| fun () -> heap |> SkewBinomialHeap.uncons |> ignore)
+        heap |> SkewBinomialHeap.isEmpty ==> lazy(should throw typeof<InvalidOperationException> <| fun () -> heap |> SkewBinomialHeap.uncons |> ignore)
 
 [<Test>]
 let ``tryUncons returns Some (head, tail) when the heap is not empty`` () =

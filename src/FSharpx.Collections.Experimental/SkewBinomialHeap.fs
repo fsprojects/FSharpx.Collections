@@ -5,7 +5,6 @@
 open FSharpx.Collections
 open System.Collections.Generic
 
-exception Empty of string //TODO: improve this and include in the exceptions or use the Empty that is already there
 exception IncompatibleMerge of string
 
 type private 'T SBHTree = Node of 'T * 'T list * 'T SBHTree list
@@ -150,7 +149,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     member this.Head () =
         match this.TryHead () with
         | Some h -> h
-        | _      -> raise (Empty "Empty heap, no head")
+        | _      -> invalidOp "Empty heap, no head"
 
     member this.TryTail () =
         if count = 0 then
@@ -161,7 +160,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     member this.Tail () =
         match this.TryTail () with
         | Some t -> t
-        | _      -> raise (Empty "Empty heap, no tail")
+        | _      -> invalidOp "Empty heap, no tail"
 
     member this.TryUncons () =
         if this.IsEmpty 
@@ -171,7 +170,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     member this.Uncons () =
         match this.TryUncons () with
         | Some t -> t
-        | None   -> raise (Empty "Empty heap, no head and no tail")
+        | None   -> invalidOp "Empty heap, no head and no tail"
 
     member this.ToList () =
         SBHTreeRoot.toListOrdered descending roots
