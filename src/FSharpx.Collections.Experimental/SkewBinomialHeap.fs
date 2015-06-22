@@ -75,6 +75,17 @@ module private SBHTreeRoot =
                 else other
         | []                                    -> failwith "This should never happen"
 
+    let uncons descending roots =
+        //find the root with the minimum value a return it along with the remaining roots
+        let (Root(rank, Node(x, aux, children)), roots') = extractMinRoot descending roots
+        //reverse the children and set their ranks based on the parent's rank
+        let (_, reversed) = children |> List.fold (fun (rank, trees) tree -> rank - 1, Root(rank - 1, tree)::trees) (rank, [])
+        //merge the reversed children with the remaining trees
+        let merged = mergeRoots descending reversed (normalize descending roots') 
+        //reinsert all "auxiliary" elements
+        let newRoots = aux |> List.fold (fun roots value -> insert descending value roots) merged
+        x, newRoots
+
     let rec toListOrdered descending roots =
         let rec treeToList acc = function
             | (Node (x, aux, children)::ts)::tls ->
@@ -93,7 +104,18 @@ module private SBHTreeRoot =
 //****************************************************************************************************
 //TODO: Implement equality to be able to compare two heaps
 //TODO: Maybe implement comparison too?
-type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 'T SBHTreeRoot list) = 
+type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 'T SBHTreeRoot list) =
+    
+    static let hashElements = 20
+
+    let hash = lazy(
+        let rec hashIt n hash roots =
+            if n = 0 then
+                hash
+            else
+                let h, t = SBHTreeRoot.uncons descending roots
+                hashIt (n - 1) (hash * 397 ^^^ Operators.hash h) t
+        hashIt (min hashElements count) 0 roots)
         
     new() = SkewBinomialHeap(0, false, [])
 
@@ -134,19 +156,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         if count = 0 then
             None
         else
-            //find the root with the minimum value a return it along with the remaining roots
-            let (Root(rank, Node(_, aux, children)), roots') = SBHTreeRoot.extractMinRoot descending roots
-
-            //reverse the children a set their ranks based on the parent's rank
-            let (_, reversed) = children |> List.fold (fun (rank, trees) tree -> rank - 1, Root(rank - 1, tree)::trees) (rank, [])
-
-            //merge the reversed children with the remaining trees
-            let merged = SBHTreeRoot.mergeRoots descending reversed (SBHTreeRoot.normalize descending roots') 
-
-            //reinsert all "auxiliary" elements
-            let newRoots = aux |> List.fold (fun roots value -> SBHTreeRoot.insert descending value roots) merged
-
-            Some (SkewBinomialHeap (count - 1, descending, newRoots))
+            Some (SkewBinomialHeap (count - 1, descending, SBHTreeRoot.uncons descending roots |> snd))
 
     member this.Tail () =
         match this.TryTail () with
@@ -154,7 +164,9 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | _      -> raise (Empty "Empty heap, no tail")
 
     member this.TryUncons () =
-        this.TryHead() |> Option.map (fun h -> h, this.Tail())
+        if this.IsEmpty 
+            then None
+            else let (h, t) = SBHTreeRoot.uncons descending roots in Some (h, SkewBinomialHeap (count - 1, descending, t))
 
     member this.Uncons () =
         match this.TryUncons () with
@@ -163,6 +175,17 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
 
     member this.ToList () =
         SBHTreeRoot.toListOrdered descending roots
+
+    interface 'T SkewBinomialHeap System.IEquatable with
+        member this.Equals other =
+            this.ToList () = other.ToList()
+
+    override this.Equals other =
+        match other with
+        | :? ('T SkewBinomialHeap System.IEquatable) as eheap -> eheap.Equals this
+        | _ -> false
+
+    override this.GetHashCode () = match hash with Lazy h -> h
 
     interface IEnumerable<'T> with
         member this.GetEnumerator () = (SBHTreeRoot.toListOrdered descending roots |> List.toSeq).GetEnumerator ()
