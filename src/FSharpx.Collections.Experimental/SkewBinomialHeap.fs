@@ -123,18 +123,18 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
 
     new(descending) = SkewBinomialHeap(0, descending, [])
 
-    member private this.Roots = roots
+    member private __.Roots = roots
         
-    member this.Count = count
+    member __.Count = count
 
-    member this.IsDescending = descending
+    member __.IsDescending = descending
 
-    member this.IsEmpty = count = 0
+    member __.IsEmpty = count = 0
 
-    member this.Insert value =
+    member __.Insert value =
         SkewBinomialHeap (count + 1, descending, SBHTreeRoot.insert descending value roots)
 
-    member this.TryMerge (other: 'T SkewBinomialHeap) =
+    member __.TryMerge (other: 'T SkewBinomialHeap) =
         if descending = other.IsDescending 
             then Some (SkewBinomialHeap (count + other.Count, descending, SBHTreeRoot.mergeRoots descending (SBHTreeRoot.normalize descending roots) (SBHTreeRoot.normalize descending other.Roots)))
             else None
@@ -144,7 +144,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | Some h -> h
         | _      -> raise (IncompatibleMerge "Can not merge two heaps with diferent comparison methods")
 
-    member this.TryHead () =
+    member __.TryHead () =
         if count = 0
             then None
             else Some (SBHTreeRoot.findMinRootItem descending roots)
@@ -154,7 +154,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | Some h -> h
         | _      -> invalidOp "Empty heap, no head"
 
-    member this.TryTail () =
+    member __.TryTail () =
         if count = 0 then
             None
         else
@@ -175,7 +175,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | Some t -> t
         | None   -> invalidOp "Empty heap, no head and no tail"
 
-    member this.ToList () =
+    member __.ToList () =
         SBHTreeRoot.toListOrdered descending roots
 
     interface 'T SkewBinomialHeap System.IEquatable with
@@ -189,10 +189,10 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | :? ('T SkewBinomialHeap System.IEquatable) as eheap -> eheap.Equals this
         | _ -> false
 
-    override this.GetHashCode () = match hash with Lazy h -> h
+    override __.GetHashCode () = match hash with Lazy h -> h
 
     interface IEnumerable<'T> with
-        member this.GetEnumerator () = (SBHTreeRoot.toListOrdered descending roots |> List.toSeq).GetEnumerator ()
+        member __.GetEnumerator () = (SBHTreeRoot.toListOrdered descending roots |> List.toSeq).GetEnumerator ()
         
         member this.GetEnumerator (): System.Collections.IEnumerator = upcast (this :> _ seq).GetEnumerator ()        
 
