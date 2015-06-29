@@ -116,8 +116,8 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
                 hash
             else
                 let h, t = SBHTreeRoot.uncons descending roots
-                hashIt (n - 1) (hash * 397 ^^^ Operators.hash h) t
-        hashIt (min hashElements count) 0 roots)
+                hashIt (n - 1) (~~~(hash * 397) ^^^ Operators.hash h) t
+        hashIt (min hashElements count) (hash count) roots)
         
     new() = SkewBinomialHeap(0, false, [])
 
