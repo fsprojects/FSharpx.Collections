@@ -293,15 +293,26 @@ let ``Equality reflexivity`` () =
 
 [<Test>]
 let ``Equality symmetry`` () =
-    fsCheck <| fun {Heap = heap } item ->
+    fsCheck <| fun { Heap = heap } item ->
         let heap1 = heap |> SkewBinomialHeap.insert item |> SkewBinomialHeap.tail
         let heap2 = heap |> SkewBinomialHeap.insert item |> SkewBinomialHeap.tail
         heap1 = heap2 ==> (heap2 = heap1)
 
 [<Test>]
 let ``Equality transitivity`` () = //maybe this is too much, I guess It would be hard to write an Equals that violates this property and not the others
-    fsCheck <| fun {Heap = heap } item ->
+    fsCheck <| fun { Heap = heap } item ->
         let heap1 = heap |> SkewBinomialHeap.insert item |> SkewBinomialHeap.tail
         let heap2 = heap |> SkewBinomialHeap.insert item |> SkewBinomialHeap.tail
         let heap3 = heap |> SkewBinomialHeap.insert item |> SkewBinomialHeap.tail
         (heap1 = heap2 && heap2 = heap3) ==> (heap1 = heap3)
+
+[<Test>]
+let ``Equals returns false when comparing two heaps with the same ordering but different items`` () =
+    fsCheck <| fun ({ Heap = heap1; Items = orig1}, { Heap = heap2; Items = orig2}) ->
+        (heap1.IsDescending = heap2.IsDescending && orig1 <> orig2) ==> (heap1 <> heap2 && not (heap1.Equals heap2))
+
+[<Test>]
+let ``Equals returns false when comparing two heaps with the same items but different ordering`` () =
+    fsCheck <| fun { Heap = heap1; Items = orig} ->
+        let heap2 = ofList (not heap1.IsDescending) orig
+        heap1 <> heap2 && not (heap1.Equals heap2)
