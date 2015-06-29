@@ -11,21 +11,17 @@ type private 'T SBHTree = Node of 'T * 'T list * 'T SBHTree list
 
 type private 'T SBHTreeRoot = Root of int * 'T SBHTree
 
-[<AutoOpen>]
-module private Helper =
-    let inline xor a b = (a && not b) || (not a && b)
-
 module private SBHTree =
     let item (Node (x, _, _)) = x
 
     let link descending (Node (x, auxX, childrenX) as treeX) (Node (y, auxY, childrenY) as treeY) =
-        if xor (x <= y) descending
+        if x <= y <> descending
             then Node (x, auxX, treeY::childrenX)
             else Node (y, auxY, treeX::childrenY)
 
     let skewLink descending v treeX treeY =
         let (Node (w, aux, children)) = link descending treeX treeY
-        if xor (v <= w) descending
+        if v <= w <> descending
             then Node (v, w::aux, children)
             else Node (w, v::aux, children)
 
@@ -59,7 +55,7 @@ module private SBHTreeRoot =
         | [p] -> (p, [])
         | (Root(_, tree) as root)::roots ->
             let (Root(_, tree') as root', roots') = extractMinRoot descending roots
-            if xor (SBHTree.item tree <= SBHTree.item tree') descending
+            if (SBHTree.item tree <= SBHTree.item tree') <> descending
                 then root, roots
                 else root', root::roots'
         | [] -> failwith "This should never happen"
@@ -69,7 +65,7 @@ module private SBHTreeRoot =
         | Root(_, node)::roots'                 -> 
             let this = item node
             let other = findMinRootItem descending roots'
-            if xor (this <= other) descending
+            if this <= other <> descending
                 then this
                 else other
         | []                                    -> failwith "This should never happen"
