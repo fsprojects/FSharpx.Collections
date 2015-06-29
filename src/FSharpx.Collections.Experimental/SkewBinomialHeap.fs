@@ -97,7 +97,6 @@ module private SBHTreeRoot =
             else sorted
         
 //****************************************************************************************************
-//TODO: Maybe implement comparison too?
 /// A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are 
 /// extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their 
 /// "try" variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
