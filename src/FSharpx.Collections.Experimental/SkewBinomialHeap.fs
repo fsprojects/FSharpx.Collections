@@ -6,6 +6,12 @@ open FSharpx.Collections
 open System.Collections.Generic
 
 exception IncompatibleMerge of string
+exception PatternMatchedBug of string * string
+
+[<AutoOpen>]
+module private Helpers =
+    let inline bug pattern =
+        raise (PatternMatchedBug ("This pattern was never meant to be matched", pattern))
 
 type private 'T SBHTree = Node of 'T * 'T list * 'T SBHTree list
 
@@ -58,7 +64,7 @@ module private SBHTreeRoot =
             if (SBHTree.item tree <= SBHTree.item tree') <> descending
                 then root, roots
                 else root', root::roots'
-        | [] -> failwith "This should never happen"
+        | [] -> bug "[]"
         
     let rec findMinRootItem descending = function
         | [Root(_, node)]                       -> item node
@@ -68,7 +74,7 @@ module private SBHTreeRoot =
             if this <= other <> descending
                 then this
                 else other
-        | []                                    -> failwith "This should never happen"
+        | []                                    -> bug "[]"
 
     let uncons descending roots =
         //find the root with the minimum value a return it along with the remaining roots
