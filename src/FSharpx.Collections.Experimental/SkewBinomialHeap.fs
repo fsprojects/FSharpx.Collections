@@ -110,14 +110,9 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     
     static let hashElements = 20
 
-    let hash = lazy(
-        let rec hashIt n hash roots =
-            if n = 0 then
-                hash
-            else
-                let h, t = SBHTreeRoot.uncons descending roots
-                hashIt (n - 1) (~~~(hash * 397) ^^^ Operators.hash h) t
-        hashIt (min hashElements count) (hash count) roots)
+    // Though mutable, this field is only accessed through GetHashCode and is assigned a value depending only on the other fields of the heap
+    // and since those are inmutable the heap is logically inmutable
+    let mutable hash = None
         
     new() = SkewBinomialHeap(0, false, [])
 
@@ -189,7 +184,19 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         | :? ('T SkewBinomialHeap System.IEquatable) as eheap -> eheap.Equals this
         | _ -> false
 
-    override __.GetHashCode () = match hash with Lazy h -> h
+    override __.GetHashCode () = 
+        match hash with
+        | Some h -> h
+        | None ->
+            let rec hashIt n hash roots =
+                if n = 0 then
+                    if descending then ~~~hash else hash
+                else
+                    let h, t = SBHTreeRoot.uncons descending roots
+                    hashIt (n - 1) (hash * 397 ^^^ Operators.hash h) t
+            let h = hashIt (min hashElements count) (Operators.hash count) roots
+            hash <- Some h
+            h
 
     interface IEnumerable<'T> with
         member __.GetEnumerator () = (SBHTreeRoot.toListOrdered descending roots |> List.toSeq).GetEnumerator ()
