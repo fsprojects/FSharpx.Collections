@@ -8,6 +8,7 @@ open FSharpx.Collections.TimeMeasurement
 let arraySize = 2048*2048*10
 let testIters = 10
 let x = 1000UL
+let testLen = 1000000
 
 [<Test>]
 let ``allocation performance`` () =
@@ -48,64 +49,76 @@ let ``sequential access performance`` () =
     averageTime testIters "BlockResize sequential access" (fun () -> for i in access do bra.[i] <- 0UL)
 
 [<Test>]
+let ``map performance`` () =
+    let a = Array.init arraySize  (fun _ -> x)
+    let ra = new ResizeArray<uint64>()
+    for i in 0..arraySize do ra.Add x
+    let bra = BlockResizeArray.Init arraySize (fun _ -> x)
+    averageTime testIters "ResizeArray map" (fun () -> (Seq.map (fun x -> x*2UL) ra)) 
+    averageTime testIters "Array map" (fun () -> (Array.map (fun x -> x*2UL) a))       
+    averageTime testIters "BlockResizeArray map" (fun () -> bra.Map (fun x -> x*2UL))
+
+[<Test>]
 let ``map function test`` () =
-    let bra = BlockResizeArray.Init 1000000 (fun i -> i)
-    let resArr = Array.init 1000000 (fun i -> i * 2)
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let a = Array.init testLen (fun i -> i * 2)
     let bra = bra.Map (fun i -> i * 2)
     let mutable res = true 
-    for i = 0 to 999999 do
-        res <- res && resArr.[i] = bra.[i]
+    for i = 0 to testLen - 1 do
+        res <- res && a.[i] = bra.[i]
     Assert.AreEqual(res, true)
-
 
 [<Test>]
 let ``iter function test`` () =
-    let bra = BlockResizeArray.Init 1000000 (fun i -> i)
-    let resArr = Array.init 1000000 (fun i -> i)
-    Array.iter (fun i -> bra.[i] <- i * 2) resArr
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let a = Array.init testLen (fun i -> i)
+    Array.iter (fun i -> a.[i] <- i * 2) a
     bra.Iter (fun i -> bra.[i] <- i * 2)
     let mutable res = true 
-    for i = 0 to 999999 do
-        res <- res && resArr.[i] = bra.[i]
+    for i = 0 to bra.Count - 1 do
+        res <- res && (a.[i] = bra.[i])
     Assert.AreEqual(res, true)
 
 [<Test>]
 let ``init function test`` () =
-    let bra = BlockResizeArray.Init 1000000 (fun i -> i)
-    let resArr = Array.init 1000000 (fun i -> i)
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let a = Array.init testLen (fun i -> i)
     let mutable res = true 
     let mutable tmp = 0
-    for i = 0 to 999999 do
-        res <- res && resArr.[i] = bra.[i]
-    Assert.AreEqual((res && bra.Count = 1000000), true)
+    for i = 0 to testLen - 1 do
+        res <- res && a.[i] = bra.[i]
+    Assert.AreEqual((res && bra.Count = testLen), true)
 
 [<Test>]
 let ``zeroCreate function test`` () =
-    let bra = BlockResizeArray<_>.ZeroCreate 100000
-    Assert.AreEqual(bra.Count, 100000)
+    let bra = BlockResizeArray<_>.ZeroCreate testLen
+    Assert.AreEqual(bra.Count, testLen)
 
 [<Test>]
 let ``find function test`` () =
-    let bra = BlockResizeArray.Init 10000000 (fun i -> i)
-    let res = bra.Find (fun i -> i <> 0 && i % 5000000 = 0)
-    Assert.AreEqual(res, 5000000)
+    let c = 5000000
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let res = bra.Find (fun i -> i <> 0 && i % c = 0)
+    Assert.AreEqual(res, c)
 
 [<Test>]
 let ``tryFind function test`` () =
-    let bra = BlockResizeArray.Init 1000000 (fun i -> i)
-    let res = bra.TryFind (fun i -> i <> 0 && i % 500000 = 0)
+    let c = 500000
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let res = bra.TryFind (fun i -> i <> 0 && i % c = 0)
     Assert.AreEqual(res.IsSome, true)
-    Assert.AreEqual(res.Value, 500000)
+    Assert.AreEqual(res.Value, c)
 
 [<Test>]
 let ``filter function test`` () =
-    let a = Array.init 100000 (fun i -> i)
-    let c = Array.filter (fun i -> i % 10000 = 0) a
-    let bra = BlockResizeArray.Init 100000 (fun i -> i)
-    let bra = bra.Filter (fun i -> i % 10000 = 0)
+    let c = 10000
+    let a = Array.init testLen (fun i -> i)
+    let a = Array.filter (fun i -> i % c = 0) a
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let bra = bra.Filter (fun i -> i % c = 0)
     Assert.AreEqual(bra.Count, 10)
     let mutable res = true 
-    for i = 0 to 9 do
+    for i = 0 to bra.Count - 1 do
         res <- res && bra.[i] = i * 10000
     Assert.AreEqual(res, true)
         

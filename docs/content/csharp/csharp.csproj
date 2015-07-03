@@ -51,9 +51,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
+      <Project>{ad3c8e86-f4cf-426f-a31d-015056227777}</Project>
+      <Name>FSharpx.Collections.Experimental</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">
       <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
       <Name>FSharpx.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj">
+      <Project>{4b763738-cf1a-4dec-a888-7d3d15054231}</Project>
+      <Name>FSharpx.Collections.Experimental.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

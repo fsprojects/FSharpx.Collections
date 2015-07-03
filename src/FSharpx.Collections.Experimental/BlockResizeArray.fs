@@ -28,6 +28,7 @@ type BlockResizeArray<'T> () =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+    ///Adds element to the block resize array.
     member this.Add x =
         if count = nextAllocate then
             if count = cap then
@@ -41,14 +42,21 @@ type BlockResizeArray<'T> () =
             active <- active + 1
         arrays.[count >>> shift].[count &&& smallPart] <- x
         count <- count + 1
-    
+
+    ///Allaws to get-set element to block resize array.
     member this.Item
         with get (i:int) = arrays.[i >>> shift].[i &&& smallPart]
         and set i v = arrays.[i >>> shift].[i &&& smallPart] <- v
 
+    ///Deletes block given index.
     member this.DeleteBlock i = arrays.[i] <- null
+    
+    ///Returns the length of a block resize array.
     member this.Count = count
+    
     member private this.Arrays = arrays
+
+    ///Returns the shift size for block resize array.
     member this.Shift = shift
 
     member private this.setCount newCount = 
@@ -58,7 +66,8 @@ type BlockResizeArray<'T> () =
         arrays <- arr
     
     member private this.SetActive i = active <- i
-
+    
+    ///Creates an array from the given block resize array.
     member this.ToArray() =
         let res = Array.zeroCreate count
         for i = 0 to (count >>> shift) - 1 do
@@ -70,6 +79,7 @@ type BlockResizeArray<'T> () =
     
     member private this.SetArr i arr = arrays.[i] <- arr
 
+    ///Creates a block resize array given the dimension and a generator function to compute the elements.
     static member Init initCount (f : int -> 'T)  =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift
@@ -91,6 +101,7 @@ type BlockResizeArray<'T> () =
         bra.setCount initCount
         bra
 
+    ///Creates a block resize array where the entries are initially the default value Unchecked.defaultof<'T>.
     static member ZeroCreate initCount =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift
@@ -105,6 +116,7 @@ type BlockResizeArray<'T> () =
         bra.SetActive (blocksCount + 1)
         bra
 
+    ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
     member this.Find f = 
         let mutable c = None
         let mutable i = 0
@@ -113,6 +125,7 @@ type BlockResizeArray<'T> () =
             i <- i + 1    
         if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
 
+    ///Returns the first element for which the given function returns true. Return None if no such element exists.
     member this.TryFind f =
         let mutable c = None
         let mutable i = 0
@@ -121,6 +134,7 @@ type BlockResizeArray<'T> () =
             i <- i + 1
         c
     
+    ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
     member this.Filter f =
         let bra = new BlockResizeArray<_>()
         let arr = new ResizeArray<_>()
@@ -150,18 +164,22 @@ type BlockResizeArray<'T> () =
         bra.SetActive l
         bra   
 
+    ///Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
     member this.Map (f : 'T -> 'U) =
         let result = new BlockResizeArray<'U>()
         let arr = Array.zeroCreate<_> arrays.Length
         for i = 0 to active - 1 do
             arr.[i] <- Array.map f arrays.[i]
         result.SetArrays arr
+        result.setCount count
+        result.SetActive active
         result
 
+    ///Applies the given function to each element of the block resize array.
     member this.Iter f =
+        let l = Array.iter
         let smallPartCount = count % blockSize
         for i = 0 to active - 1 do
-            let x = i
             Array.iter f arrays.[i] 
             
                 
