@@ -133,7 +133,10 @@ type BlockResizeArray<'T> () =
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
-    
+    ///
+    member this.Fold folder state =
+        Array.fold (fun acc elem -> Array.fold folder acc elem) arrays
+
     ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
     member this.Filter f =
         let bra = new BlockResizeArray<_>()
@@ -181,8 +184,31 @@ type BlockResizeArray<'T> () =
         let smallPartCount = count % blockSize
         for i = 0 to active - 1 do
             Array.iter f arrays.[i] 
-            
-                
-            
+
+module BlockeResizeArray = 
+
+    ///Applies the given function to each element of the block resize array.
+    let iter (f : 'T -> unit) (bra : BlockResizeArray<_>) = bra.Iter f
+
+    ///Returns the length of a block resize array.
+    let inline count (bra : BlockResizeArray<_>) = bra.Count  
+
+    ///Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
+    let map (f : 'T -> 'U) (bra : BlockResizeArray<_>) = bra.Map f
+
+    ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
+    let filter (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.Filter f
+
+    ///Returns the first element for which the given function returns true. Return None if no such element exists.
+    let tryFind (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.TryFind f
+
+    ///Returns the first element for which the given function returns true. 
+    let find (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.Find
+
+    ///Creates an array from the given block resize array.
+    let toArray (bra : BlockResizeArray<_>) = bra.ToArray 
+    
+    ///Adds element to the block resize array.
+    let add x (bra : BlockResizeArray<_>) = bra.Add x           
 
             

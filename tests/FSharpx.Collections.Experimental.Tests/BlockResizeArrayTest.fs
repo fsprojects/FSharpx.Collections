@@ -96,7 +96,7 @@ let ``zeroCreate function test`` () =
 
 [<Test>]
 let ``find function test`` () =
-    let c = 5000000
+    let c = 500000
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let res = bra.Find (fun i -> i <> 0 && i % c = 0)
     Assert.AreEqual(res, c)
@@ -119,6 +119,6 @@ let ``filter function test`` () =
     Assert.AreEqual(bra.Count, 10)
     let mutable res = true 
     for i = 0 to bra.Count - 1 do
-        res <- res && bra.[i] = i * 10000
+        res <- res && bra.[i] = i * c
     Assert.AreEqual(res, true)
         
