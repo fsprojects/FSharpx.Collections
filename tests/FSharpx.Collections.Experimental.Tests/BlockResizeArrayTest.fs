@@ -121,7 +121,6 @@ let ``fold function test`` () =
     let aRes = Array.fold (fun acc elem -> acc + elem) 0 a
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let braRes = bra.Fold (fun acc elem -> acc + elem) 0
-    let k = 0
     Assert.AreEqual(braRes, aRes)
     
     
