@@ -5,7 +5,6 @@
 // Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
 open System.Collections
 open System.Collections.Generic
-
             
 type BlockResizeArray<'T> () =
 
@@ -133,10 +132,15 @@ type BlockResizeArray<'T> () =
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
-    ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
-    member this.Fold folder =
-        Array.fold (fun acc elem -> Array.fold folder acc elem) arrays
 
+    ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
+    member this.Fold (folder : 'State -> 'T -> 'State) (state : 'State) : 'State =
+        let mutable state = state
+        for i in 0..active do
+            let r = Array.fold folder state arrays.[i]
+            state <- r 
+        state
+            
     ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
     member this.Filter f =
         let bra = new BlockResizeArray<_>()
@@ -191,7 +195,7 @@ module BlockeResizeArray =
     let iter (f : 'T -> unit) (bra : BlockResizeArray<_>) = bra.Iter f
 
     ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
-    let fold f (bra : BlockResizeArray<_>) = bra.Fold f
+    let fold f s (bra : BlockResizeArray<_>) = bra.Fold f s
 
     ///Returns the length of a block resize array.
     let inline count (bra : BlockResizeArray<_>) = bra.Count  

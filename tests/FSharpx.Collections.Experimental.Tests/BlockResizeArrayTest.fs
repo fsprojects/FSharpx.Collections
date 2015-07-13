@@ -10,6 +10,12 @@ let testIters = 10
 let x = 1000UL
 let testLen = 1000000
 
+let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
+    let mutable res = true 
+    for i = 0 to bra.Count - 1 do
+        res <- res && arr.[i] = bra.[i]
+    res
+
 [<Test>]
 let ``allocation performance`` () =
     
@@ -63,10 +69,7 @@ let ``map function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i * 2)
     let bra = bra.Map (fun i -> i * 2)
-    let mutable res = true 
-    for i = 0 to testLen - 1 do
-        res <- res && a.[i] = bra.[i]
-    Assert.AreEqual(res, true)
+    Assert.AreEqual(compareByElems bra a, true)
 
 [<Test>]
 let ``iter function test`` () =
@@ -74,20 +77,13 @@ let ``iter function test`` () =
     let a = Array.init testLen (fun i -> i)
     Array.iter (fun i -> a.[i] <- i * 2) a
     bra.Iter (fun i -> bra.[i] <- i * 2)
-    let mutable res = true 
-    for i = 0 to bra.Count - 1 do
-        res <- res && (a.[i] = bra.[i])
-    Assert.AreEqual(res, true)
+    Assert.AreEqual(compareByElems bra a, true)
 
 [<Test>]
 let ``init function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i)
-    let mutable res = true 
-    let mutable tmp = 0
-    for i = 0 to testLen - 1 do
-        res <- res && a.[i] = bra.[i]
-    Assert.AreEqual((res && bra.Count = testLen), true)
+    Assert.AreEqual((compareByElems bra a && bra.Count = testLen), true)
 
 [<Test>]
 let ``zeroCreate function test`` () =
@@ -116,9 +112,16 @@ let ``filter function test`` () =
     let a = Array.filter (fun i -> i % c = 0) a
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let bra = bra.Filter (fun i -> i % c = 0)
-    Assert.AreEqual(bra.Count, 10)
-    let mutable res = true 
-    for i = 0 to bra.Count - 1 do
-        res <- res && bra.[i] = i * c
-    Assert.AreEqual(res, true)
+    Assert.AreEqual(bra.Count, 100)
+    Assert.AreEqual(compareByElems bra a, true)
         
+[<Test>]
+let ``fold function test`` () =
+    let a = Array.init testLen (fun i -> i)
+    let aRes = Array.fold (fun acc elem -> acc + elem) 0 a
+    let bra = BlockResizeArray.Init testLen (fun i -> i)
+    let braRes = bra.Fold (fun acc elem -> acc + elem) 0
+    let k = 0
+    Assert.AreEqual(braRes, aRes)
+    
+    
