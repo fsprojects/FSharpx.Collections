@@ -133,8 +133,8 @@ type BlockResizeArray<'T> () =
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
-    ///
-    member this.Fold folder state =
+    ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
+    member this.Fold folder =
         Array.fold (fun acc elem -> Array.fold folder acc elem) arrays
 
     ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
@@ -189,6 +189,9 @@ module BlockeResizeArray =
 
     ///Applies the given function to each element of the block resize array.
     let iter (f : 'T -> unit) (bra : BlockResizeArray<_>) = bra.Iter f
+
+    ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
+    let fold f (bra : BlockResizeArray<_>) = bra.Fold f
 
     ///Returns the length of a block resize array.
     let inline count (bra : BlockResizeArray<_>) = bra.Count  
