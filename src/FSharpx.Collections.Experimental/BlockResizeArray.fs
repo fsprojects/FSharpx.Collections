@@ -17,7 +17,13 @@ type BlockResizeArray<'T> () =
     let mutable cap = blockSize * arrays.Length
     let mutable nextAllocate = cap
     let mutable active = 1
-    
+
+    let countTop c = 
+        let tail = count % blockSize 
+        if count <> 0 
+        then if tail = 0 then blockSize - 1 else tail - 1
+        else -1
+
     interface IEnumerable<'T> with
         member this.GetEnumerator () =
             let e = 
@@ -131,17 +137,18 @@ type BlockResizeArray<'T> () =
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
-
+    
+    
     ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
     member this.Fold (folder : 'State -> 'T -> 'State) (state : 'State) : 'State =
         let mutable state = state
-        let tail = count % blockSize
         if active > 1
         then            
             for i in 0..active - 2 do
-                state <- Array.fold folder state arrays.[i]            
+                state <- Array.fold folder state arrays.[i]
         let a = arrays.[active - 1]
-        for i in 0..tail - 1 do
+        let top = countTop count
+        for i in 0..top do
             state <- folder state a.[i]
         state
             
@@ -181,9 +188,15 @@ type BlockResizeArray<'T> () =
     ///Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
     member this.Map (f : 'T -> 'U) =
         let result = new BlockResizeArray<'U>()
-        let arr = Array.zeroCreate<_> arrays.Length
-        for i = 0 to active - 1 do
-            arr.[i] <- Array.map f arrays.[i]
+        let arr = Array.zeroCreate<_> active
+        if active > 1
+        then
+            for i = 0 to active - 2 do
+                arr.[i] <- Array.map f arrays.[i]
+        let a = arrays.[active - 1]
+        let top = countTop count
+        for i in 0..top do
+            arr.[active - 1].[i] <- f a.[i]
         result.SetArrays arr
         result.setCount count
         result.SetActive active
@@ -191,8 +204,14 @@ type BlockResizeArray<'T> () =
 
     ///Applies the given function to each element of the block resize array.
     member this.Iter f =
-        for i = 0 to active - 1 do
-            Array.iter f arrays.[i] 
+        if active > 1
+        then
+            for i = 0 to active - 2 do
+                Array.iter f arrays.[i]
+        let a = arrays.[active - 1]
+        let top = countTop count
+        for i in 0..top do
+            f a.[i] 
 
 module BlockeResizeArray = 
 
