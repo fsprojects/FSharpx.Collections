@@ -19,8 +19,8 @@ type BlockResizeArray<'T> () =
     let mutable active = 1
 
     let countTop c = 
-        let tail = count % blockSize 
-        if count <> 0 
+        let tail = c % blockSize 
+        if c <> 0 
         then if tail = 0 then blockSize - 1 else tail - 1
         else -1
 
@@ -124,9 +124,20 @@ type BlockResizeArray<'T> () =
     member this.TryFind f =
         let mutable c = None
         let mutable i = 0
-        while c.IsNone && i < active do
-            c <- Array.tryFind f arrays.[i]
-            i <- i + 1
+        if active > 1
+        then
+            while c.IsNone && i < active - 1 do
+                c <- Array.tryFind f arrays.[i]
+                i <- i + 1
+        let top = countTop count
+        i <- 0
+        if top > 0
+        then
+            while c.IsNone && i < top do
+                if f arrays.[active - 1].[i]
+                then 
+                    c <- Some arrays.[active - 1].[i]
+                    i <- i + 1
         c
 
     ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
@@ -190,6 +201,7 @@ type BlockResizeArray<'T> () =
             for i = 0 to active - 2 do
                 arr.[i] <- Array.map f arrays.[i]
         let a = arrays.[active - 1]
+        arr.[active - 1] <- Array.zeroCreate<_> blockSize
         let top = countTop count
         for i in 0..top do
             arr.[active - 1].[i] <- f a.[i]
