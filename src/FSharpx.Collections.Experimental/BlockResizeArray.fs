@@ -120,15 +120,6 @@ type BlockResizeArray<'T> () =
         bra.SetActive (blocksCount + 1)
         bra
 
-    ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
-    member this.Find f = 
-        let mutable c = None
-        let mutable i = 0
-        while c.IsNone && i < active do
-            c <- Array.tryFind f arrays.[i]
-            i <- i + 1    
-        if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
-
     ///Returns the first element for which the given function returns true. Return None if no such element exists.
     member this.TryFind f =
         let mutable c = None
@@ -137,6 +128,11 @@ type BlockResizeArray<'T> () =
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
+
+    ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
+    member this.Find f = 
+        let mutable c = this.TryFind f  
+        if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
     
     
     ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
