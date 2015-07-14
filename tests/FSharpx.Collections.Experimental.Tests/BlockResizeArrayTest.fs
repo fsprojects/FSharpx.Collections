@@ -10,6 +10,7 @@ let arraySize = 2048*2048*10
 let testIters = 10
 let x = 1000UL
 let testLen = 1000000
+let r = System.Random()
 
 let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
     let mutable res = true 
@@ -124,16 +125,20 @@ let ``fold function test`` () =
     let braRes = bra.Fold (fun acc elem -> acc + elem) 0
     Assert.AreEqual(braRes, aRes)
 
-//[<Property(Arbitrary=[|typeof<BlockResizeArray>|])>]
-let mapTest (bra : BlockResizeArray<'T>) (arr : 'T[]) (f : 'T -> 'U) =
-        let b = bra.Map f
-        let a = Array.map f arr
-        compareByElems b a
+let createBra count =
+    BlockResizeArray.Init count (fun i -> i) 
+
+let mapTest f с =    
+    //let с = r.Next(0, testLen)
+    let c = abs с
+    let bra = createBra c
+    let arr = Array.init с (fun i -> i)
+    let b = bra.Map f
+    let a = Array.map f arr
+    compareByElems b a
 
 [<Test>]
 let ``Map2``() =
-    let bra = BlockResizeArray.Init testLen (fun i -> i)
-    let arr = Array.init testLen (fun i -> i)
-    Check.Verbose <| mapTest bra arr (fun e -> e * 2)
+   Check.Verbose <| mapTest (fun e -> e * 2)
     
     
