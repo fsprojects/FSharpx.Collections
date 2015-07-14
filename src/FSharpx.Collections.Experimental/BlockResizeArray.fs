@@ -137,21 +137,12 @@ type BlockResizeArray<'T> () =
         let mutable state = state
         let tail = count % blockSize
         if active > 1
-        then
-            if tail = 0
-            then
-                for i in 0..active - 1 do
-                    state <- Array.fold folder state arrays.[i]
-            else
-                for i in 0..active - 2 do
-                    state <- Array.fold folder state arrays.[i]
-                let a = arrays.[active - 1]
-                for i in 0..tail - 1 do
-                    state <- folder state a.[i]
-        else
-            let a = arrays.[active - 1]
-            for i in 0..tail - 1 do
-                state <- folder state a.[i]
+        then            
+            for i in 0..active - 2 do
+                state <- Array.fold folder state arrays.[i]            
+        let a = arrays.[active - 1]
+        for i in 0..tail - 1 do
+            state <- folder state a.[i]
         state
             
     ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
