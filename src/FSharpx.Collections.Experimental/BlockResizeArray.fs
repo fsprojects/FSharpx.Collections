@@ -1,8 +1,8 @@
 ﻿namespace FSharpx.Collections.Experimental
 
-// Resize array fith fixed size block memory allocation.
-// Provide more optimal space usage for huge arrays than standard ResizeArray.
-// Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
+/// Resize array fith fixed size block memory allocation.
+/// Provide more optimal space usage for huge arrays than standard ResizeArray.
+/// Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
 open System.Collections
 open System.Collections.Generic
             
@@ -82,19 +82,19 @@ type BlockResizeArray<'T> () =
     static member Init initCount (f : int -> 'T)  =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift
-        let blocksCount =  int <| initCount / blockSize
+        let blocksCount = initCount / blockSize
         let smallPartCount = initCount % blockSize
         if blocksCount = 0
         then
-             let arr = Array.init initCount f
-             Array.blit arr 0 bra.Arrays.[0] 0 initCount
+            for i in 0..initCount - 1 do
+                bra.Arrays.[0].[i] <- f i
         else
-            let l = blocksCount * 2
+            let l = blocksCount + 1
             let newArr = Array.init l (fun i -> if i < blocksCount then Array.init blockSize (fun j -> f (blockSize * i + j)) else Array.zeroCreate<'T> blockSize)
             if smallPartCount <> 0
             then
-                let s = Array.init smallPartCount (fun j -> f (blockSize * blocksCount + j))
-                Array.blit s 0 newArr.[blocksCount] 0 smallPartCount 
+                for i in 0..smallPartCount - 1 do
+                    newArr.[blocksCount].[i] <- f (blockSize * blocksCount + i)
             bra.SetArrays newArr
         bra.SetActive (blocksCount + 1)
         bra.setCount initCount
@@ -104,11 +104,10 @@ type BlockResizeArray<'T> () =
     static member ZeroCreate initCount =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift
-        let blocksCount =  int <| initCount / blockSize
-        let smallPartCount = initCount % blockSize
+        let blocksCount =  initCount / blockSize
         if blocksCount <> 0
         then          
-            let l = blocksCount * 2
+            let l = blocksCount + 1
             let newArr = Array.init l (fun _ -> Array.zeroCreate<_> blockSize)
             bra.SetArrays newArr
         bra.setCount initCount
@@ -119,7 +118,7 @@ type BlockResizeArray<'T> () =
     member this.Find f = 
         let mutable c = None
         let mutable i = 0
-        while(c.IsNone && i < active) do
+        while c.IsNone && i < active do
             c <- Array.tryFind f arrays.[i]
             i <- i + 1    
         if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
@@ -128,7 +127,7 @@ type BlockResizeArray<'T> () =
     member this.TryFind f =
         let mutable c = None
         let mutable i = 0
-        while(c.IsNone && i < active) do
+        while c.IsNone && i < active do
             c <- Array.tryFind f arrays.[i]
             i <- i + 1
         c
@@ -136,9 +135,23 @@ type BlockResizeArray<'T> () =
     ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
     member this.Fold (folder : 'State -> 'T -> 'State) (state : 'State) : 'State =
         let mutable state = state
-        for i in 0..active do
-            let r = Array.fold folder state arrays.[i]
-            state <- r 
+        let tail = count % blockSize
+        if active > 1
+        then
+            if tail = 0
+            then
+                for i in 0..active - 1 do
+                    state <- Array.fold folder state arrays.[i]
+            else
+                for i in 0..active - 2 do
+                    state <- Array.fold folder state arrays.[i]
+                let a = arrays.[active - 1]
+                for i in 0..tail - 1 do
+                    state <- folder state a.[i]
+        else
+            let a = arrays.[active - 1]
+            for i in 0..tail - 1 do
+                state <- folder state a.[i]
         state
             
     ///Returns a new collection containing only the elements of the collection for which the given predicate returns true.
@@ -162,8 +175,11 @@ type BlockResizeArray<'T> () =
                         arr.Add a
                         a <- Array.zeroCreate blockSize
                         index <- 0
+        if index <> 0
+        then
+            arr.Add a
         let l = arr.Count
-        let resArr = Array.zeroCreate (l * 2)
+        let resArr = Array.zeroCreate l
         for i = 0 to l - 1 do
             resArr.[i] <- arr.[i]
         bra.SetArrays resArr
@@ -184,8 +200,6 @@ type BlockResizeArray<'T> () =
 
     ///Applies the given function to each element of the block resize array.
     member this.Iter f =
-        let l = Array.iter
-        let smallPartCount = count % blockSize
         for i = 0 to active - 1 do
             Array.iter f arrays.[i] 
 
@@ -210,10 +224,10 @@ module BlockeResizeArray =
     let tryFind (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.TryFind f
 
     ///Returns the first element for which the given function returns true. 
-    let find (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.Find
+    let find (f : 'T -> bool) (bra : BlockResizeArray<_>) = bra.Find f
 
     ///Creates an array from the given block resize array.
-    let toArray (bra : BlockResizeArray<_>) = bra.ToArray 
+    let toArray (bra : BlockResizeArray<_>) = bra.ToArray () 
     
     ///Adds element to the block resize array.
     let add x (bra : BlockResizeArray<_>) = bra.Add x           
