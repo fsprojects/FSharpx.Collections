@@ -167,8 +167,7 @@ type BlockResizeArray<'T> () =
                         a <- Array.zeroCreate blockSize
                         index <- 0
         if index <> 0
-        then
-            arr.Add a
+        then arr.Add a
         let l = arr.Count
         let resArr = Array.zeroCreate l
         for i = 0 to l - 1 do
