@@ -3,12 +3,14 @@
 open FSharpx.Collections.Experimental
 open NUnit.Framework
 open FsUnit
+open FsCheck
 open FSharpx.Collections.TimeMeasurement
 
 let arraySize = 2048*2048*10
 let testIters = 10
 let x = 1000UL
 let testLen = 1000000
+let r = System.Random()
 
 let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
     let mutable res = true 
@@ -122,5 +124,21 @@ let ``fold function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let braRes = bra.Fold (fun acc elem -> acc + elem) 0
     Assert.AreEqual(braRes, aRes)
+
+let createBra count =
+    BlockResizeArray.Init count (fun i -> i) 
+
+let mapTest f с =    
+    //let с = r.Next(0, testLen)
+    let c = abs с
+    let bra = createBra c
+    let arr = Array.init с (fun i -> i)
+    let b = bra.Map f
+    let a = Array.map f arr
+    compareByElems b a
+
+[<Test>]
+let ``Map2``() =
+   Check.Verbose <| mapTest (fun e -> e * 2)
     
     

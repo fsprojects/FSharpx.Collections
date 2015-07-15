@@ -17,7 +17,13 @@ type BlockResizeArray<'T> () =
     let mutable cap = blockSize * arrays.Length
     let mutable nextAllocate = cap
     let mutable active = 1
-    
+
+    let countTop c = 
+        let tail = c % blockSize 
+        if c <> 0 
+        then if tail = 0 then blockSize - 1 else tail - 1
+        else -1
+
     interface IEnumerable<'T> with
         member this.GetEnumerator () =
             let e = 
@@ -114,34 +120,42 @@ type BlockResizeArray<'T> () =
         bra.SetActive (blocksCount + 1)
         bra
 
-    ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
-    member this.Find f = 
-        let mutable c = None
-        let mutable i = 0
-        while c.IsNone && i < active do
-            c <- Array.tryFind f arrays.[i]
-            i <- i + 1    
-        if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
-
     ///Returns the first element for which the given function returns true. Return None if no such element exists.
     member this.TryFind f =
         let mutable c = None
         let mutable i = 0
-        while c.IsNone && i < active do
-            c <- Array.tryFind f arrays.[i]
-            i <- i + 1
+        if active > 1
+        then
+            while c.IsNone && i < active - 1 do
+                c <- Array.tryFind f arrays.[i]
+                i <- i + 1
+        let top = countTop count
+        i <- 0
+        if top > 0
+        then
+            while c.IsNone && i < top do
+                if f arrays.[active - 1].[i]
+                then 
+                    c <- Some arrays.[active - 1].[i]
+                    i <- i + 1
         c
 
+    ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
+    member this.Find f = 
+        let mutable c = this.TryFind f  
+        if c.IsSome then c.Value else raise(System.Collections.Generic.KeyNotFoundException())
+    
+    
     ///Applies a function to each element of the collection, threading an accumulator argument through the computation.
     member this.Fold (folder : 'State -> 'T -> 'State) (state : 'State) : 'State =
         let mutable state = state
-        let tail = count % blockSize
         if active > 1
         then            
             for i in 0..active - 2 do
-                state <- Array.fold folder state arrays.[i]            
+                state <- Array.fold folder state arrays.[i]
         let a = arrays.[active - 1]
-        for i in 0..tail - 1 do
+        let top = countTop count
+        for i in 0..top do
             state <- folder state a.[i]
         state
             
@@ -180,9 +194,16 @@ type BlockResizeArray<'T> () =
     ///Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
     member this.Map (f : 'T -> 'U) =
         let result = new BlockResizeArray<'U>()
-        let arr = Array.zeroCreate<_> arrays.Length
-        for i = 0 to active - 1 do
-            arr.[i] <- Array.map f arrays.[i]
+        let arr = Array.zeroCreate<_> active
+        if active > 1
+        then
+            for i = 0 to active - 2 do
+                arr.[i] <- Array.map f arrays.[i]
+        let a = arrays.[active - 1]
+        arr.[active - 1] <- Array.zeroCreate<_> blockSize
+        let top = countTop count
+        for i in 0..top do
+            arr.[active - 1].[i] <- f a.[i]
         result.SetArrays arr
         result.setCount count
         result.SetActive active
@@ -190,8 +211,14 @@ type BlockResizeArray<'T> () =
 
     ///Applies the given function to each element of the block resize array.
     member this.Iter f =
-        for i = 0 to active - 1 do
-            Array.iter f arrays.[i] 
+        if active > 1
+        then
+            for i = 0 to active - 2 do
+                Array.iter f arrays.[i]
+        let a = arrays.[active - 1]
+        let top = countTop count
+        for i in 0..top do
+            f a.[i] 
 
 module BlockeResizeArray = 
 
