@@ -2,8 +2,8 @@
 
 open FSharpx.Collections.Experimental
 open NUnit.Framework
-open FsUnit
 open FsCheck
+open FsCheck.NUnit
 open FSharpx.Collections.TimeMeasurement
 
 let arraySize = 2048*2048*10
@@ -14,9 +14,10 @@ let r = System.Random()
 
 let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
     let mutable res = true 
+    Assert.AreEqual(arr.Length, bra.Count, "Length of bra is not equal of array length")    
     for i = 0 to bra.Count - 1 do
         res <- res && arr.[i] = bra.[i]
-    res
+    Assert.IsTrue(res,"")
 
 [<Test>]
 let ``allocation performance`` () =
@@ -62,7 +63,7 @@ let ``map performance`` () =
     let ra = new ResizeArray<uint64>()
     for i in 0..arraySize do ra.Add x
     let bra = BlockResizeArray.Init arraySize (fun _ -> x)
-    averageTime testIters "ResizeArray map" (fun () -> (Seq.map (fun x -> x*2UL) ra)) 
+    averageTime testIters "ResizeArray map" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.map (fun x -> x*2UL) ra)) 
     averageTime testIters "Array map" (fun () -> (Array.map (fun x -> x*2UL) a))       
     averageTime testIters "BlockResizeArray map" (fun () -> bra.Map (fun x -> x*2UL))
 
@@ -71,7 +72,7 @@ let ``map function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i * 2)
     let bra = bra.Map (fun i -> i * 2)
-    Assert.AreEqual(compareByElems bra a, true)
+    compareByElems bra a
 
 [<Test>]
 let ``iter function test`` () =
@@ -79,13 +80,14 @@ let ``iter function test`` () =
     let a = Array.init testLen (fun i -> i)
     Array.iter (fun i -> a.[i] <- i * 2) a
     bra.Iter (fun i -> bra.[i] <- i * 2)
-    Assert.AreEqual(compareByElems bra a, true)
+    compareByElems bra a
 
 [<Test>]
 let ``init function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i)
-    Assert.AreEqual((compareByElems bra a && bra.Count = testLen), true)
+    compareByElems bra a
+    Assert.AreEqual(bra.Count, testLen)
 
 [<Test>]
 let ``zeroCreate function test`` () =
@@ -115,7 +117,7 @@ let ``filter function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let bra = bra.Filter (fun i -> i % c = 0)
     Assert.AreEqual(bra.Count, 100)
-    Assert.AreEqual(compareByElems bra a, true)
+    compareByElems bra a
         
 [<Test>]
 let ``fold function test`` () =
@@ -123,22 +125,70 @@ let ``fold function test`` () =
     let aRes = Array.fold (fun acc elem -> acc + elem) 0 a
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let braRes = bra.Fold (fun acc elem -> acc + elem) 0
-    Assert.AreEqual(braRes, aRes)
+    Assert.AreEqual(braRes, aRes) 
 
-let createBra count =
-    BlockResizeArray.Init count (fun i -> i) 
+let createRandBra count =
+    let rand = System.Random()
+    BlockResizeArray.Init count (fun i -> rand.Next())
 
-let mapTest f с =    
-    //let с = r.Next(0, testLen)
-    let c = abs с
-    let bra = createBra c
-    let arr = Array.init с (fun i -> i)
-    let b = bra.Map f
-    let a = Array.map f arr
-    compareByElems b a
+type ArbitraryModifiers =    
+    static member BlockResizeArray() = 
+        Arb.generate<int> 
+        |> Gen.suchThat (fun i -> i >= 0)
+        |> Gen.map (fun i -> createRandBra (i * 10000))
+        |> Arb.fromGen
+
+[<SetUp>]
+let f () = Arb.register<ArbitraryModifiers>() |> ignore 
 
 [<Test>]
-let ``Map2``() =
-   Check.Verbose <| mapTest (fun e -> e * 2)
+let ``Random map``() =   
+    let testFun f (bra:BlockResizeArray<int>) =        
+        let arr = bra.ToArray()
+        let b = bra.Map f
+        let a = Array.map f arr
+        compareByElems b a
+    Check.Verbose <| testFun (fun e -> e * 2)
     
+[<Test>]
+let ``Random filter``() =   
+    let testFun f (bra:BlockResizeArray<int>) =        
+        let arr = bra.ToArray()
+        let b = bra.Filter f
+        let a = Array.filter f arr
+        compareByElems b a        
+    Check.QuickThrowOnFailure <| testFun (fun e -> e % 3 = 2)
     
+[<Test>]
+let ``Random TryFind``() =   
+    let testFun f (bra:BlockResizeArray<int>) =        
+        let arr = bra.ToArray()
+        let b = bra.TryFind f
+        let a = Array.tryFind f arr
+        Assert.IsTrue((b = a))
+    Check.Verbose <| testFun (fun e -> e % 3 = 2)        
+
+[<Test>]
+let ``Random Find``() =   
+    let testFun f (bra:BlockResizeArray<int>) =        
+        let arr = bra.ToArray()
+        let b = 
+            try 
+                bra.Find f |> Some
+            with
+            | :? System.Collections.Generic.KeyNotFoundException -> None
+        let a = 
+            try 
+                Array.find f arr |> Some
+            with
+            | :? System.Collections.Generic.KeyNotFoundException -> None
+
+        Assert.IsTrue((b = a))
+    Check.Verbose <| testFun (fun e -> e % 3 = 2) 
+
+[<Test>]
+let ``Random ToArray``() =   
+    let testFun (bra:BlockResizeArray<int>) =        
+        let arr = bra.ToArray()
+        compareByElems bra arr
+    Check.Verbose <| testFun

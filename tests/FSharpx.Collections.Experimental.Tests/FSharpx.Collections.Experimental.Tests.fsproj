@@ -112,9 +112,9 @@
     <Compile Include="RealTimeDequeTest.fs" />
     <Compile Include="RealTimeQueueTest.fs" />
     <Compile Include="RoseTreeTest.fs" />
-    <Compile Include="Test22.fs" />
     <Compile Include="TimeSeriesTest.fs" />
     <Compile Include="BlockResizeArrayTest.fs" />
+    <Compile Include="Test22.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
