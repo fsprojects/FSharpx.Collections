@@ -10,7 +10,7 @@ let arraySize = 2048*2048*10
 let testIters = 10
 let x = 1000UL
 let testLen = 1000000
-let r = System.Random()
+let rand = System.Random()
 
 let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
     let mutable res = true 
@@ -127,15 +127,11 @@ let ``fold function test`` () =
     let braRes = bra.Fold (fun acc elem -> acc + elem) 0
     Assert.AreEqual(braRes, aRes) 
 
-let createRandBra count =
-    let rand = System.Random()
-    BlockResizeArray.Init count (fun i -> rand.Next())
-
 type ArbitraryModifiers =    
     static member BlockResizeArray() = 
         Arb.generate<int> 
         |> Gen.suchThat (fun i -> i >= 0)
-        |> Gen.map (fun i -> createRandBra (i * 10000))
+        |> Gen.map (fun i -> BlockResizeArray.Init  (i * 10000) (fun i -> rand.Next()))
         |> Arb.fromGen
 
 [<SetUp>]
@@ -148,7 +144,7 @@ let ``Random map``() =
         let b = bra.Map f
         let a = Array.map f arr
         compareByElems b a
-    Check.Verbose <| testFun (fun e -> e * 2)
+    Check.VerboseThrowOnFailure <| testFun (fun e -> e * 2)
     
 [<Test>]
 let ``Random filter``() =   
@@ -157,7 +153,7 @@ let ``Random filter``() =
         let b = bra.Filter f
         let a = Array.filter f arr
         compareByElems b a        
-    Check.QuickThrowOnFailure <| testFun (fun e -> e % 3 = 2)
+    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2)
     
 [<Test>]
 let ``Random TryFind``() =   
@@ -166,7 +162,7 @@ let ``Random TryFind``() =
         let b = bra.TryFind f
         let a = Array.tryFind f arr
         Assert.IsTrue((b = a))
-    Check.Verbose <| testFun (fun e -> e % 3 = 2)        
+    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2)        
 
 [<Test>]
 let ``Random Find``() =   
@@ -184,11 +180,11 @@ let ``Random Find``() =
             | :? System.Collections.Generic.KeyNotFoundException -> None
 
         Assert.IsTrue((b = a))
-    Check.Verbose <| testFun (fun e -> e % 3 = 2) 
+    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2) 
 
 [<Test>]
 let ``Random ToArray``() =   
     let testFun (bra:BlockResizeArray<int>) =        
         let arr = bra.ToArray()
         compareByElems bra arr
-    Check.Verbose <| testFun
+    Check.VerboseThrowOnFailure <| testFun
