@@ -14,12 +14,12 @@ let rand = System.Random()
 
 let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) = 
     let mutable res = true   
-    Assert.AreEqual(arr.Length, bra.Count, "Length of bra is not equal of array length")
+    Assert.AreEqual(arr.Length, bra.Length, "Length of bra is not equal of array length")
     let diff = new ResizeArray<_>()
-    for i = 0 to bra.Count - 1 do
+    for i = 0 to bra.Length - 1 do
         if arr.[i] <> bra.[i] then diff.Add (i,arr.[i],bra.[i])
         res <- res && arr.[i] = bra.[i]
-    printfn "Content of arrays are not equals in position %A. Length of arrays = %A" diff bra.Count
+    printfn "Content of arrays are not equals in position %A. Length of arrays = %A" diff bra.Length
     Assert.IsTrue(res, "")
 
 [<Test>]
@@ -90,12 +90,12 @@ let ``init function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i)
     compareByElems bra a
-    Assert.AreEqual(bra.Count, testLen)
+    Assert.AreEqual(bra.Length, testLen)
 
 [<Test>]
 let ``zeroCreate function test`` () =
     let bra = BlockResizeArray<_>.ZeroCreate testLen
-    Assert.AreEqual(bra.Count, testLen)
+    Assert.AreEqual(bra.Length, testLen)
 
 [<Test>]
 let ``find function test`` () =
@@ -119,7 +119,7 @@ let ``filter function test`` () =
     let a = Array.filter (fun i -> i % c = 0) a
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let bra = bra.Filter (fun i -> i % c = 0)
-    Assert.AreEqual(bra.Count, 100)
+    Assert.AreEqual(bra.Length, 100)
     compareByElems bra a
         
 [<Test>]

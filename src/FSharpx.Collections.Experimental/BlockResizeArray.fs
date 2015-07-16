@@ -28,7 +28,7 @@ type BlockResizeArray<'T> () =
         member this.GetEnumerator () =
             let e = 
                 seq {for a in arrays do yield! a}
-                |> Seq.take this.Count
+                |> Seq.take this.Length
             e.GetEnumerator()
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
@@ -57,7 +57,7 @@ type BlockResizeArray<'T> () =
     member this.DeleteBlock i = arrays.[i] <- null
     
     ///Returns the length of a block resize array.
-    member this.Count = count
+    member this.Length = count
     
     member private this.Arrays = arrays
 
@@ -170,7 +170,7 @@ type BlockResizeArray<'T> () =
         for i = 0 to active - 1 do
             for j = 0 to blockSize - 1 do
                 let x = arrays.[i].[j] 
-                if f x && i * blockSize + j < this.Count
+                if f x && i * blockSize + j < this.Length
                 then 
                     a.[index] <- x
                     index <- index + 1
@@ -229,7 +229,7 @@ module BlockResizeArray =
     let fold f s (bra : BlockResizeArray<_>) = bra.Fold f s
 
     ///Returns the length of a block resize array.
-    let inline count (bra : BlockResizeArray<_>) = bra.Count  
+    let inline count (bra : BlockResizeArray<_>) = bra.Length  
 
     ///Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
     let map (f : 'T -> 'U) (bra : BlockResizeArray<_>) = bra.Map f
