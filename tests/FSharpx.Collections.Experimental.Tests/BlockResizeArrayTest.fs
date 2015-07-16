@@ -191,3 +191,23 @@ let ``Random ToArray``() =
         let arr = bra.ToArray()
         compareByElems bra arr
     Check.VerboseThrowOnFailure <| testFun
+
+[<Test>]
+let ``Random iter``() =   
+    let testFun f (bra:BlockResizeArray<int>) =
+        let arr = bra.ToArray()
+        let acc1 = ref 0
+        let acc2 = ref 0
+        bra.Iter (f acc1)
+        Array.iter (f acc2) arr
+        Assert.AreEqual(!acc1, !acc2)
+    Check.VerboseThrowOnFailure <| testFun (fun acc -> (fun e -> acc := !acc + e))
+
+[<Test>]
+let ``Random fold``() =   
+    let testFun f (bra:BlockResizeArray<int>) =
+        let arr = bra.ToArray()        
+        let r1 = bra.Fold f 0
+        let r2 =  Array.fold f 0 arr
+        Assert.AreEqual(r2, r1)
+    Check.VerboseThrowOnFailure <| testFun (fun s e -> s + e)
