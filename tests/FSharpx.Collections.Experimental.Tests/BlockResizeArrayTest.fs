@@ -19,8 +19,16 @@ let compareByElems (bra : BlockResizeArray<'T>) (arr : 'T []) =
     for i = 0 to bra.Length - 1 do
         if arr.[i] <> bra.[i] then diff.Add (i,arr.[i],bra.[i])
         res <- res && arr.[i] = bra.[i]
-    printfn "Content of arrays are not equals in position %A. Length of arrays = %A" diff bra.Length
+    printfn "Content of arrays are not equals in position %A. Length of arr = %A " diff bra.Length
     Assert.IsTrue(res, "")
+
+let compareByElems2 (bra : BlockResizeArray<'T>) (arr : 'T []) = 
+    let mutable res = true   
+    let diff = new ResizeArray<_>()
+    for i = 0 to bra.Length - 1 do
+        if arr.[i] <> bra.[i] then diff.Add (i,arr.[i],bra.[i])
+        res <- res && arr.[i] = bra.[i]
+    res
 
 [<Test>]
 let ``allocation performance`` () =
@@ -71,6 +79,38 @@ let ``map performance`` () =
     averageTime testIters "BlockResizeArray map" (fun () -> bra.Map (fun x -> x*2UL))
 
 [<Test>]
+let ``iter performance`` () =
+    let a = Array.init arraySize  (fun _ -> x)
+    let ra = new ResizeArray<uint64>()
+    for i in 0..arraySize do ra.Add x
+    let bra = BlockResizeArray.Init arraySize (fun _ -> x)
+    averageTime testIters "ResizeArray iter" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.iter (fun i -> ()) ra)) 
+    averageTime testIters "Array iter" (fun () -> (Array.iter (fun i -> ())))       
+    averageTime testIters "BlockResizeArray iter" (fun () -> bra.Iter (fun i -> ()))
+
+[<Test>]
+let ``fold performance`` () =
+    let a = Array.init arraySize  (fun _ -> x)
+    let ra = new ResizeArray<uint64>()
+    for i in 0..arraySize do ra.Add x
+    let bra = BlockResizeArray.Init arraySize (fun _ -> x)
+    averageTime testIters "ResizeArray fold" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.fold (fun x acc -> acc + x*2UL) 0UL ra)) 
+    averageTime testIters "Array fold" (fun () -> (Array.fold (fun x acc -> acc + x*2UL) 0UL a))       
+    averageTime testIters "BlockResizeArray fold" (fun () -> (FSharpx.Collections.Experimental.BlockResizeArray.fold (fun x acc -> acc + x*2UL) 0UL bra))
+
+[<Test>]
+let ``find performance`` () =
+    let x = 1000
+    let a = Array.init arraySize  (fun i -> x + i)
+    let ra = new ResizeArray<int>()
+    let s = 1010000
+    for i in 0..arraySize do ra.Add (x + i)
+    let bra = BlockResizeArray.Init arraySize (fun i -> x + i)
+    averageTime testIters "ResizeArray find" (fun () -> Microsoft.FSharp.Collections.ResizeArray.find (fun e -> e <> 0 && e % s = 0) ra)
+    averageTime testIters "Array find" (fun () -> (Array.find (fun e -> e <> 0 && e % s = 0) a))       
+    averageTime testIters "BlockResizeArray find" (fun () -> (FSharpx.Collections.Experimental.BlockResizeArray.find (fun e -> e <> 0 && e % s = 0) bra))
+
+[<Test>]
 let ``map function test`` () =
     let bra = BlockResizeArray.Init testLen (fun i -> i)
     let a = Array.init testLen (fun i -> i * 2)
@@ -118,8 +158,7 @@ let ``filter function test`` () =
     let a = Array.init testLen (fun i -> i)
     let a = Array.filter (fun i -> i % c = 0) a
     let bra = BlockResizeArray.Init testLen (fun i -> i)
-    let bra = bra.Filter (fun i -> i % c = 0)
-    Assert.AreEqual(bra.Length, 100)
+    let bra = bra.Filter (fun e -> e % c = 0)
     compareByElems bra a
         
 [<Test>]
@@ -151,13 +190,13 @@ let ``Random map``() =
     
 [<Test>]
 let ``Random filter``() =   
-    let testFun f (bra:BlockResizeArray<int>) =        
+    let testFun f (bra:BlockResizeArray<int>) =       
         let arr = bra.ToArray()
         let b = bra.Filter f
         let a = Array.filter f arr
         compareByElems b a        
     Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2)
-    
+  
 [<Test>]
 let ``Random TryFind``() =   
     let testFun f (bra:BlockResizeArray<int>) =        

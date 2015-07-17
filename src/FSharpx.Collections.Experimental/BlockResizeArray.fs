@@ -137,7 +137,7 @@ type BlockResizeArray<'T> () =
                 if f arrays.[active - 1].[i]
                 then 
                     c <- Some arrays.[active - 1].[i]
-                    i <- i + 1
+                i <- i + 1
         c
 
     ///Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
@@ -164,7 +164,6 @@ type BlockResizeArray<'T> () =
         let bra = new BlockResizeArray<_>()
         let arr = new ResizeArray<_>()
         let mutable a = Array.zeroCreate blockSize
-        arr.Add a
         let mutable index = 0
         let mutable resCount = 0
         for i = 0 to active - 1 do
