@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>PersistentVector<'T> - fsprojects/FSharpx.Collections</title>
+    <title>SkewBinomialHeap<'T> - fsprojects/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,18 +35,62 @@
 
 
 
-<h1>PersistentVector<'T></h1>
+<h1>SkewBinomialHeap<'T></h1>
 <p>
-  <span>Namespace: FSharpx.Collections</span><br />
+  <span>Namespace: FSharpx.Collections.Experimental</span><br />
 </p>
 <div class="xmldoc">
-<p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
-(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
-(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
-Ordering is by insertion history. The original idea can be found in <a href="http://clojure.org/data_structures">Clojure</a>.</p>
+<p>A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are 
+extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their 
+"try" variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
+insertions in constant time O(1). (Based on "Purely Functional Data Structures" - 1996 by Chris Okasaki)</p>
 
 
 </div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1499', 1499)" onmouseover="showTip(event, '1499', 1499)">
+            new(descending)
+          </code>
+          <div class="tip" id="1499">
+            <strong>Signature:</strong> descending:bool -&gt; &#39;T SkewBinomialHeap<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L120-120" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1500', 1500)" onmouseover="showTip(event, '1500', 1500)">
+            new()
+          </code>
+          <div class="tip" id="1500">
+            <strong>Signature:</strong> unit -&gt; &#39;T SkewBinomialHeap<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L118-118" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
@@ -56,303 +100,235 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1079', 1079)" onmouseover="showTip(event, '1079', 1079)">
-            Conj(arg1)
+          <code onmouseout="hideTip(event, '1501', 1501)" onmouseover="showTip(event, '1501', 1501)">
+            Count
           </code>
-          <div class="tip" id="1079">
-            <strong>Signature:</strong> &#39;T -&gt; PersistentVector&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L254-254" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns a new vector with the element added at the end.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1080', 1080)" onmouseover="showTip(event, '1080', 1080)">
-            Initial
-          </code>
-          <div class="tip" id="1080">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L273-273" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1081', 1081)" onmouseover="showTip(event, '1081', 1081)">
-            IsEmpty
-          </code>
-          <div class="tip" id="1081">
-            <strong>Signature:</strong> bool<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L297-297" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns true if the vector has no elements.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1082', 1082)" onmouseover="showTip(event, '1082', 1082)">
-            [arg1]
-          </code>
-          <div class="tip" id="1082">
-            <strong>Signature:</strong> int -&gt; &#39;T<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L300-300" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log32n). Returns vector element at the index.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1083', 1083)" onmouseover="showTip(event, '1083', 1083)">
-            Last
-          </code>
-          <div class="tip" id="1083">
-            <strong>Signature:</strong> &#39;T<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L304-304" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1084', 1084)" onmouseover="showTip(event, '1084', 1084)">
-            Length
-          </code>
-          <div class="tip" id="1084">
+          <div class="tip" id="1501">
             <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L308-308" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L124-124" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the number of items in the vector.</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1085', 1085)" onmouseover="showTip(event, '1085', 1085)">
-            Rev()
+          <code onmouseout="hideTip(event, '1502', 1502)" onmouseover="showTip(event, '1502', 1502)">
+            Head()
           </code>
-          <div class="tip" id="1085">
-            <strong>Signature:</strong> unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
+          <div class="tip" id="1502">
+            <strong>Signature:</strong> unit -&gt; &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L310-310" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L148-148" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns random access list reversed.</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1086', 1086)" onmouseover="showTip(event, '1086', 1086)">
-            TryInitial
+          <code onmouseout="hideTip(event, '1503', 1503)" onmouseover="showTip(event, '1503', 1503)">
+            Insert(value)
           </code>
-          <div class="tip" id="1086">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; option<br />
+          <div class="tip" id="1503">
+            <strong>Signature:</strong> value:&#39;T -&gt; &#39;T SkewBinomialHeap<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L295-295" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L130-130" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns option vector without the last item.</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1087', 1087)" onmouseover="showTip(event, '1087', 1087)">
-            TryLast
+          <code onmouseout="hideTip(event, '1504', 1504)" onmouseover="showTip(event, '1504', 1504)">
+            IsDescending
           </code>
-          <div class="tip" id="1087">
-            <strong>Signature:</strong> &#39;T option<br />
+          <div class="tip" id="1504">
+            <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L306-306" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L126-126" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option last element in the vector.</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1088', 1088)" onmouseover="showTip(event, '1088', 1088)">
-            TryUnconj
+          <code onmouseout="hideTip(event, '1505', 1505)" onmouseover="showTip(event, '1505', 1505)">
+            IsEmpty
           </code>
-          <div class="tip" id="1088">
-            <strong>Signature:</strong> (PersistentVector&lt;&#39;T&gt; * &#39;T) option<br />
+          <div class="tip" id="1505">
+            <strong>Signature:</strong> bool<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L334-334" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L128-128" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option tuple last element and vector without last item</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1089', 1089)" onmouseover="showTip(event, '1089', 1089)">
-            TryUpdate(arg1, arg2)
+          <code onmouseout="hideTip(event, '1506', 1506)" onmouseover="showTip(event, '1506', 1506)">
+            Merge(other)
           </code>
-          <div class="tip" id="1089">
-            <strong>Signature:</strong> (int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt; option<br />
+          <div class="tip" id="1506">
+            <strong>Signature:</strong> (other:&#39;T SkewBinomialHeap) -&gt; &#39;T SkewBinomialHeap<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L347-347" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L138-138" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns option vector that contains the given value at the index.</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1090', 1090)" onmouseover="showTip(event, '1090', 1090)">
-            Unconj
+          <code onmouseout="hideTip(event, '1507', 1507)" onmouseover="showTip(event, '1507', 1507)">
+            Tail()
           </code>
-          <div class="tip" id="1090">
-            <strong>Signature:</strong> PersistentVector&lt;&#39;T&gt; * &#39;T<br />
+          <div class="tip" id="1507">
+            <strong>Signature:</strong> unit -&gt; &#39;T SkewBinomialHeap<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L332-332" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L159-159" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns tuple last element and vector without last item</p>
-
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1091', 1091)" onmouseover="showTip(event, '1091', 1091)">
-            Update(arg1, arg2)
+          <code onmouseout="hideTip(event, '1508', 1508)" onmouseover="showTip(event, '1508', 1508)">
+            ToList()
           </code>
-          <div class="tip" id="1091">
-            <strong>Signature:</strong> (int * &#39;T) -&gt; PersistentVector&lt;&#39;T&gt;<br />
+          <div class="tip" id="1508">
+            <strong>Signature:</strong> unit -&gt; &#39;T list<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L336-336" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L174-174" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns a new vector that contains the given value at the index.</p>
-
-
-
+          
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1092', 1092)" onmouseover="showTip(event, '1092', 1092)">
-            Empty()
+          <code onmouseout="hideTip(event, '1509', 1509)" onmouseover="showTip(event, '1509', 1509)">
+            TryHead()
           </code>
-          <div class="tip" id="1092">
-            <strong>Signature:</strong> unit -&gt; PersistentVector&lt;&#39;T&gt;<br />
+          <div class="tip" id="1509">
+            <strong>Signature:</strong> unit -&gt; &#39;T option<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L148-148" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L143-143" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns a new PersistentVector with no elements.</p>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
 
+          <code onmouseout="hideTip(event, '1510', 1510)" onmouseover="showTip(event, '1510', 1510)">
+            TryMerge(other)
+          </code>
+          <div class="tip" id="1510">
+            <strong>Signature:</strong> (other:&#39;T SkewBinomialHeap) -&gt; &#39;T SkewBinomialHeap option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L133-133" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
 
+          <code onmouseout="hideTip(event, '1511', 1511)" onmouseover="showTip(event, '1511', 1511)">
+            TryTail()
+          </code>
+          <div class="tip" id="1511">
+            <strong>Signature:</strong> unit -&gt; &#39;T SkewBinomialHeap option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L153-153" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
 
+          <code onmouseout="hideTip(event, '1512', 1512)" onmouseover="showTip(event, '1512', 1512)">
+            TryUncons()
+          </code>
+          <div class="tip" id="1512">
+            <strong>Signature:</strong> unit -&gt; (&#39;T * &#39;T SkewBinomialHeap) option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L164-164" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1513', 1513)" onmouseover="showTip(event, '1513', 1513)">
+            Uncons()
+          </code>
+          <div class="tip" id="1513">
+            <strong>Signature:</strong> unit -&gt; &#39;T * &#39;T SkewBinomialHeap<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L169-169" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
         </td>
       </tr>
     </tbody>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>BinaryRandomAccessList - fsprojects/FSharpx.Collections</title>
+    <title>SkewBinomialHeap - fsprojects/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,7 +35,7 @@
 
 
 
-<h1>BinaryRandomAccessList</h1>
+<h1>SkewBinomialHeap</h1>
 <p>
   <span>Namespace: FSharpx.Collections.Experimental</span><br />
 </p>
@@ -53,19 +53,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '441', 441)" onmouseover="showTip(event, '441', 441)">
-            cons x xs
+          <code onmouseout="hideTip(event, '859', 859)" onmouseover="showTip(event, '859', 859)">
+            count xs
           </code>
-          <div class="tip" id="441">
-            <strong>Signature:</strong> x:&#39;T -&gt; xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt;<br />
+          <div class="tip" id="859">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; int<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L267-267" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L278-278" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns a new random access list with the element added to the beginning.</p>
+          <p>O(1) - Returns the number of elements in the collection.</p>
 
 
 
@@ -74,19 +74,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '442', 442)" onmouseover="showTip(event, '442', 442)">
-            empty ()
+          <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
+            empty descending
           </code>
-          <div class="tip" id="442">
-            <strong>Signature:</strong> unit -&gt; BinaryRandomAccessList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
+          <div class="tip" id="860">
+            <strong>Signature:</strong> descending:bool -&gt; &#39;?10962 SkewBinomialHeap<br />
+                          <strong>Type parameters:</strong> '?10962          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L276-276" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L255-255" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns a empty random access list.</p>
+          <p>O(1) - Returns an empty heap.</p>
 
 
 
@@ -95,19 +95,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '443', 443)" onmouseover="showTip(event, '443', 443)">
+          <code onmouseout="hideTip(event, '861', 861)" onmouseover="showTip(event, '861', 861)">
             head xs
           </code>
-          <div class="tip" id="443">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; &#39;T<br />
+          <div class="tip" id="861">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L270-270" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L258-258" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns the first element.</p>
+          <p>O(log n) - Returns the element at the front. Throws if empty.</p>
 
 
 
@@ -116,19 +116,62 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '444', 444)" onmouseover="showTip(event, '444', 444)">
+          <code onmouseout="hideTip(event, '862', 862)" onmouseover="showTip(event, '862', 862)">
+            insert x xs
+          </code>
+          <div class="tip" id="862">
+            <strong>Signature:</strong> x:&#39;T -&gt; xs:&#39;T SkewBinomialHeap -&gt; &#39;T SkewBinomialHeap<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L265-265" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1) - Returns a new heap with the element inserted.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '863', 863)" onmouseover="showTip(event, '863', 863)">
+            isDescending xs
+          </code>
+          <div class="tip" id="863">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L272-272" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1) - Returns true if a call to head of tryHead would return the maximum element in the collection.
+ Returns false if the element at the head is the minimum.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '864', 864)" onmouseover="showTip(event, '864', 864)">
             isEmpty xs
           </code>
-          <div class="tip" id="444">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; bool<br />
+          <div class="tip" id="864">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; bool<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L279-279" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L268-268" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns true if the random access list has no elements.</p>
+          <p>O(1) - Returns true if the heap has no elements.</p>
 
 
 
@@ -137,19 +180,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '445', 445)" onmouseover="showTip(event, '445', 445)">
+          <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
             length xs
           </code>
-          <div class="tip" id="445">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; int<br />
+          <div class="tip" id="865">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; int<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L282-282" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L275-275" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n). Returns the count of elememts.</p>
+          <p>O(1) - Returns the number of elements in the collection.</p>
 
 
 
@@ -158,19 +201,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '446', 446)" onmouseover="showTip(event, '446', 446)">
-            lookup i xs
+          <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
+            merge xs ys
           </code>
-          <div class="tip" id="446">
-            <strong>Signature:</strong> i:int -&gt; xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; &#39;T<br />
+          <div class="tip" id="866">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; ys:&#39;T SkewBinomialHeap -&gt; &#39;T SkewBinomialHeap<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L285-285" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L281-281" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns element by index.</p>
+          <p>O(log n) - Returns a new heap with the elements of both heaps. The two heaps must have the same isDescending value.</p>
 
 
 
@@ -179,19 +222,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '447', 447)" onmouseover="showTip(event, '447', 447)">
-            ofSeq s
+          <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
+            ofSeq descending s
           </code>
-          <div class="tip" id="447">
-            <strong>Signature:</strong> s:seq&lt;&#39;?12763&gt; -&gt; BinaryRandomAccessList&lt;&#39;?12763&gt;<br />
-                          <strong>Type parameters:</strong> '?12763          </div>
+          <div class="tip" id="867">
+            <strong>Signature:</strong> descending:bool -&gt; s:seq&lt;&#39;?10982&gt; -&gt; &#39;?10982 SkewBinomialHeap<br />
+                          <strong>Type parameters:</strong> '?10982          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L291-291" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L288-288" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns random access list from the sequence.</p>
+          <p>O(n) - Returns heap from the sequence.</p>
 
 
 
@@ -200,40 +243,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '448', 448)" onmouseover="showTip(event, '448', 448)">
-            rev xs
-          </code>
-          <div class="tip" id="448">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L294-294" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(n). Returns random access list reversed.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '449', 449)" onmouseover="showTip(event, '449', 449)">
+          <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
             tail xs
           </code>
-          <div class="tip" id="449">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt;<br />
+          <div class="tip" id="868">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T SkewBinomialHeap<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L297-297" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L291-291" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns a new random access list of the elements trailing the first element.</p>
+          <p>O(log n) - Returns a new heap with the front (head) element removed. Throws if empty.</p>
 
 
 
@@ -242,19 +264,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '450', 450)" onmouseover="showTip(event, '450', 450)">
-            tryGetHead xs
+          <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
+            toList xs
           </code>
-          <div class="tip" id="450">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+          <div class="tip" id="869">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T list<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L273-273" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L308-308" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns option first element.</p>
+          <p>O(n * log n) - Returns and ordered list of the elements in the heap.</p>
 
 
 
@@ -263,19 +285,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '451', 451)" onmouseover="showTip(event, '451', 451)">
-            tryGetTail xs
+          <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+            toSeq xs
           </code>
-          <div class="tip" id="451">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt; option<br />
+          <div class="tip" id="870">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; IEnumerable&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L300-300" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L305-305" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns a option random access list of the elements trailing the first element.</p>
+          <p>O(n * log n) - Returns and ordered sequence of the elements in the heap.</p>
 
 
 
@@ -284,19 +306,20 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '452', 452)" onmouseover="showTip(event, '452', 452)">
-            tryLookup i xs
+          <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
+            tryHead xs
           </code>
-          <div class="tip" id="452">
-            <strong>Signature:</strong> i:int -&gt; xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+          <div class="tip" id="871">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T option<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L288-288" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L262-262" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns option element by index.</p>
+          <p>O(log n) - Returns Some x where x is the element at the front.
+Returns None if the collection is empty.</p>
 
 
 
@@ -305,19 +328,64 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '453', 453)" onmouseover="showTip(event, '453', 453)">
+          <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
+            tryMerge xs ys
+          </code>
+          <div class="tip" id="872">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; ys:&#39;T SkewBinomialHeap -&gt; &#39;T SkewBinomialHeap option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L285-285" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) - Returns Some h where h is the merged heap, is both original heaps have the same isDescending value.
+ Returns None if isDescending is diferent in the heaps supplied.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
+            tryTail xs
+          </code>
+          <div class="tip" id="873">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T SkewBinomialHeap option<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L295-295" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) - Returns Some h where h is the heap with the front (head) element removed.
+ Returns None if the collection is empty.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
             tryUncons xs
           </code>
-          <div class="tip" id="453">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; (&#39;T * BinaryRandomAccessList&lt;&#39;T&gt;) option<br />
+          <div class="tip" id="874">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; (&#39;T * &#39;T SkewBinomialHeap) option<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L306-306" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L302-302" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns the option first element and tail.</p>
+          <p>O(log n) - Returns Some (h, t) where h is the head and t is the tail.
+Returns None if the collection is empty.</p>
 
 
 
@@ -326,61 +394,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '454', 454)" onmouseover="showTip(event, '454', 454)">
-            tryUpdate i y xs
-          </code>
-          <div class="tip" id="454">
-            <strong>Signature:</strong> i:int -&gt; y:&#39;T -&gt; xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt; option<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L312-312" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log n), worst case. Returns option random access list with element updated by index.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '455', 455)" onmouseover="showTip(event, '455', 455)">
+          <code onmouseout="hideTip(event, '875', 875)" onmouseover="showTip(event, '875', 875)">
             uncons xs
           </code>
-          <div class="tip" id="455">
-            <strong>Signature:</strong> xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; &#39;T * BinaryRandomAccessList&lt;&#39;T&gt;<br />
+          <div class="tip" id="875">
+            <strong>Signature:</strong> xs:&#39;T SkewBinomialHeap -&gt; &#39;T * &#39;T SkewBinomialHeap<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L303-303" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L298-298" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log n), worst case. Returns the first element and tail.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '456', 456)" onmouseover="showTip(event, '456', 456)">
-            update i y xs
-          </code>
-          <div class="tip" id="456">
-            <strong>Signature:</strong> i:int -&gt; y:&#39;T -&gt; xs:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; BinaryRandomAccessList&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L309-309" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log n), worst case. Returns random access list with element updated by index.</p>
+          <p>O(log n) - Returns the head element and tail. Throws if empty.</p>
 
 
 
@@ -397,15 +423,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '457', 457)" onmouseover="showTip(event, '457', 457)">
-            ( |Cons|Nil| ) l
+          <code onmouseout="hideTip(event, '876', 876)" onmouseover="showTip(event, '876', 876)">
+            ( |Cons|Nil| ) heap
           </code>
-          <div class="tip" id="457">
-            <strong>Signature:</strong> l:BinaryRandomAccessList&lt;&#39;T&gt; -&gt; Choice&lt;(&#39;T * BinaryRandomAccessList&lt;&#39;T&gt;),unit&gt;<br />
+          <div class="tip" id="876">
+            <strong>Signature:</strong> heap:&#39;T SkewBinomialHeap -&gt; Choice&lt;(&#39;T * &#39;T SkewBinomialHeap),unit&gt;<br />
                           <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryRandomAccessList.fs#L264-264" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/SkewBinomialHeap.fs#L252-252" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
