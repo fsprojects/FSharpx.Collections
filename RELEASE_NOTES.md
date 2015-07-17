@@ -1,3 +1,6 @@
+#### 1.12.1 - 17.07.2015 
+* LazyList.fold - https://github.com/fsprojects/FSharpx.Collections/pull/34
+
 #### 1.12.0 - 17.07.2015 
 * New SkewBinomialHeap - https://github.com/fsprojects/FSharpx.Collections/pull/36
 
