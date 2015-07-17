@@ -70,8 +70,59 @@
 	</Target>
 	-->
   <Import Project="$(SolutionDir).paket\paket.targets" />
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Infrastructure.fs" />
+    <Compile Include="AltBinaryRandomAccessList.fs" />
+    <Compile Include="BankersDeque.fs" />
+    <Compile Include="BankersQueue.fs" />
+    <Compile Include="BatchedDeque.fs" />
+    <Compile Include="BatchedQueue.fs" />
+    <Compile Include="BinaryRandomAccessList.fs" />
+    <Compile Include="BinaryRoseTree.fs" />
+    <Compile Include="BinaryTreeZipper.fs" />
+    <Compile Include="BinomialHeap.fs" />
+    <Compile Include="IntMap.fs" />
+    <Compile Include="BKTree.fs" />
+    <Compile Include="BootstrappedQueue.fs" />
+    <Compile Include="BottomUpMergeSort.fs" />
+    <Compile Include="Deque.fs" />
+    <Compile Include="DList.fs" />
+    <Compile Include="EagerRoseTree.fs" />
+    <Compile Include="FlatList.fsi" />
+    <Compile Include="FlatList.fs" />
+    <Compile Include="PairingHeap.fs" />
+    <Compile Include="HeapPriorityQueue.fs" />
+    <Compile Include="HoodMelvilleQueue.fs" />
+    <Compile Include="ImplicitQueue.fs" />
+    <Compile Include="IndexedRoseTree.fs" />
+    <Compile Include="LeftistHeap.fs" />
+    <Compile Include="ListZipper.fs" />
+    <Compile Include="PhysicistQueue.fs" />
+    <Compile Include="RealTimeDeque.fs" />
+    <Compile Include="RealTimeQueue.fs" />
+    <Compile Include="RingBuffer.fs" />
+    <Compile Include="RoseTree.fs" />
+    <Compile Include="SkewBinaryRandomAccessList.fs" />
+    <Compile Include="TimeSeries.fs" />
+    <Compile Include="CSharpCompat.fs" />
+    <Compile Include="BlockResizeArray.fs" />
+    <None Include="paket.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <ProjectReference Include="..\FSharpx.Collections\FSharpx.Collections.fsproj">
+      <Name>FSharpx.Collections</Name>
+      <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3')">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')">
       <ItemGroup>
         <Reference Include="FSharp.Core">
           <HintPath>..\..\packages\FSharp.Core\lib\net40\FSharp.Core.dll</HintPath>
@@ -135,55 +186,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Infrastructure.fs" />
-    <Compile Include="AltBinaryRandomAccessList.fs" />
-    <Compile Include="BankersDeque.fs" />
-    <Compile Include="BankersQueue.fs" />
-    <Compile Include="BatchedDeque.fs" />
-    <Compile Include="BatchedQueue.fs" />
-    <Compile Include="BinaryRandomAccessList.fs" />
-    <Compile Include="BinaryRoseTree.fs" />
-    <Compile Include="BinaryTreeZipper.fs" />
-    <Compile Include="BinomialHeap.fs" />
-    <Compile Include="IntMap.fs" />
-    <Compile Include="BKTree.fs" />
-    <Compile Include="BootstrappedQueue.fs" />
-    <Compile Include="BottomUpMergeSort.fs" />
-    <Compile Include="Deque.fs" />
-    <Compile Include="DList.fs" />
-    <Compile Include="EagerRoseTree.fs" />
-    <Compile Include="FlatList.fsi" />
-    <Compile Include="FlatList.fs" />
-    <Compile Include="PairingHeap.fs" />
-    <Compile Include="HeapPriorityQueue.fs" />
-    <Compile Include="HoodMelvilleQueue.fs" />
-    <Compile Include="ImplicitQueue.fs" />
-    <Compile Include="IndexedRoseTree.fs" />
-    <Compile Include="LeftistHeap.fs" />
-    <Compile Include="ListZipper.fs" />
-    <Compile Include="PhysicistQueue.fs" />
-    <Compile Include="RealTimeDeque.fs" />
-    <Compile Include="RealTimeQueue.fs" />
-    <Compile Include="RingBuffer.fs" />
-    <Compile Include="RoseTree.fs" />
-    <Compile Include="SkewBinaryRandomAccessList.fs" />
-    <Compile Include="TimeSeries.fs" />
-    <Compile Include="CSharpCompat.fs" />
-    <Compile Include="BlockResizeArray.fs" />
-    <None Include="paket.template" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <ProjectReference Include="..\FSharpx.Collections\FSharpx.Collections.fsproj">
-      <Name>FSharpx.Collections</Name>
-      <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

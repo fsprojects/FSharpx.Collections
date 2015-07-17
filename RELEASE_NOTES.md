@@ -1,4 +1,5 @@
-#### 1.10.1 - 26.02.2015 
+#### 1.11.0 - 25.05.2015 
+* New Block resize array - https://github.com/fsprojects/FSharpx.Collections/pull/33
 * BUGFIX: Prevent ArrayNode's tryFind from returning Some null - https://github.com/fsprojects/FSharpx.Collections/pull/22
 
 #### 1.10.0 - 26.02.2015 

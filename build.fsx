@@ -167,9 +167,9 @@ Target "SourceLink" (fun _ ->
         let proj = VsProj.LoadRelease projFile 
         logfn "source linking %s" proj.OutputFilePdb
         let files = proj.Compiles -- assemblyInfo
-        repo.VerifyChecksums files
-        proj.VerifyPdbChecksums files
-        proj.CreateSrcSrv baseUrl repo.Revision (repo.Paths files)
+        // TODO: repo.VerifyChecksums files
+        // TODO: proj.VerifyPdbChecksums files
+        proj.CreateSrcSrv baseUrl repo.Commit (repo.Paths files)
         Pdbstr.exec proj.OutputFilePdb proj.OutputFilePdbSrcSrv
     )
 )
