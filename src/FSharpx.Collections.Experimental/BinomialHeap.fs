@@ -263,7 +263,7 @@ module BinomialHeap =
     ///O(log n). Returns heap option from merging two heaps.
     let inline tryMerge (xs: BinomialHeap<'T>) (ys: BinomialHeap<'T>) = xs.TryMerge ys
 
-    ///O(log n). Returns heap from the sequence.
+    ///O(n * log n). Returns heap from the sequence.
     let ofSeq descending s = BinomialHeap.ofSeq descending s
 
     ///O(log n). Returns a new heap of the elements trailing the head.

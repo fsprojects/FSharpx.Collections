@@ -1,4 +1,7 @@
-#### 1.11.1 - 25.05.2015 
+#### 1.12.0 - 17.07.2015 
+* New SkewBinomialHeap - https://github.com/fsprojects/FSharpx.Collections/pull/36
+
+#### 1.11.1 - 17.07.2015 
 * New Block resize array functions - https://github.com/fsprojects/FSharpx.Collections/pull/37
 
 #### 1.11.0 - 25.05.2015 

@@ -107,6 +107,7 @@
     <Compile Include="TimeSeries.fs" />
     <Compile Include="CSharpCompat.fs" />
     <Compile Include="BlockResizeArray.fs" />
+    <Compile Include="SkewBinomialHeap.fs" />
     <None Include="paket.template" />
   </ItemGroup>
   <ItemGroup>

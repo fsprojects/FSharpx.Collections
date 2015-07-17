@@ -114,6 +114,7 @@
     <Compile Include="RoseTreeTest.fs" />
     <Compile Include="TimeSeriesTest.fs" />
     <Compile Include="BlockResizeArrayTest.fs" />
+    <Compile Include="SkewBinomialHeapTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
