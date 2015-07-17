@@ -37,8 +37,7 @@
 
 <p>Bulk operations on PersistentVector use an internal TransientVector in order to get much better performance. The following scripts shows this:</p>
 
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">  1: </span>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">  1: </span>
 <span class="l">  2: </span>
 <span class="l">  3: </span>
 <span class="l">  4: </span>
@@ -139,10 +138,8 @@
 <span class="l"> 99: </span>
 <span class="l">100: </span>
 <span class="l">101: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Collections</span><span class="o">.</span><span class="i">PersistentVector</span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">Collections</span><span class="o">.</span><span class="i">PersistentVector</span>
 
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">trials</span> <span class="o">=</span> <span class="n">5</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">r</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="t">Random</span>()
@@ -243,8 +240,7 @@
 <span class="fsi">10000 writes in size n = 10000000</span>
 <span class="fsi">  Array 1.0ms</span>
 <span class="fsi">  PersistentVector 24.2ms</span>
-</pre>
-</td>
+</code></pre></td>
 </tr>
 </table>
 

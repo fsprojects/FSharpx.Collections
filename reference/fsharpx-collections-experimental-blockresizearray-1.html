@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Timeseries<'T> - fsprojects/FSharpx.Collections</title>
+    <title>BlockResizeArray<'T> - fsprojects/FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann">
@@ -35,11 +35,16 @@
 
 
 
-<h1>Timeseries<'T></h1>
+<h1>BlockResizeArray<'T></h1>
 <p>
   <span>Namespace: FSharpx.Collections.Experimental</span><br />
 </p>
 <div class="xmldoc">
+<p>Resize array fith fixed size block memory allocation.
+Provide more optimal space usage for huge arrays than standard ResizeArray.
+Basic version created by Avdyukhin Dmitry <a href="dimonbv@gmail.com">dimonbv@gmail.com</a></p>
+
+
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -50,51 +55,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1478', 1478)" onmouseover="showTip(event, '1478', 1478)">
-            new(startDate, granularity, size)
+          <code onmouseout="hideTip(event, '1281', 1281)" onmouseover="showTip(event, '1281', 1281)">
+            new()
           </code>
-          <div class="tip" id="1478">
-            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * size:int) -&gt; Timeseries&lt;&#39;T&gt;<br />
+          <div class="tip" id="1281">
+            <strong>Signature:</strong> unit -&gt; BlockResizeArray&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L34-34" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1479', 1479)" onmouseover="showTip(event, '1479', 1479)">
-            new(startDate, granularity, values)
-          </code>
-          <div class="tip" id="1479">
-            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * values:seq&lt;&#39;T&gt;) -&gt; Timeseries&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L31-31" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1480', 1480)" onmouseover="showTip(event, '1480', 1480)">
-            new(...)
-          </code>
-          <div class="tip" id="1480">
-            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * position:int * values:seq&lt;&#39;T&gt;) -&gt; Timeseries&lt;&#39;T&gt;<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L9-9" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L9-9" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -112,20 +81,19 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1481', 1481)" onmouseover="showTip(event, '1481', 1481)">
-            Advance(toDate)
+          <code onmouseout="hideTip(event, '1282', 1282)" onmouseover="showTip(event, '1282', 1282)">
+            Add(x)
           </code>
-          <div class="tip" id="1481">
-            <strong>Signature:</strong> toDate:DateTimeOffset -&gt; DateTimeOffset<br />
+          <div class="tip" id="1282">
+            <strong>Signature:</strong> x:&#39;T -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L72-72" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L37-37" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Advances the start date of the Timeseries to toDate. Throws an 
-ArgumentException if toDate is before the Timeseries start date.</p>
+          <p>Adds element to the block resize array.</p>
 
 
 
@@ -134,201 +102,250 @@ ArgumentException if toDate is before the Timeseries start date.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1482', 1482)" onmouseover="showTip(event, '1482', 1482)">
-            AsTimeseries(startDate)
+          <code onmouseout="hideTip(event, '1283', 1283)" onmouseover="showTip(event, '1283', 1283)">
+            DeleteBlock(i)
           </code>
-          <div class="tip" id="1482">
-            <strong>Signature:</strong> (startDate:DateTimeOffset option) -&gt; (DateTimeOffset * &#39;T) []<br />
+          <div class="tip" id="1283">
+            <strong>Signature:</strong> i:int -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L44-44" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L57-57" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Deletes block given index.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1483', 1483)" onmouseover="showTip(event, '1483', 1483)">
-            Buffer
+          <code onmouseout="hideTip(event, '1284', 1284)" onmouseover="showTip(event, '1284', 1284)">
+            Filter(f)
           </code>
-          <div class="tip" id="1483">
-            <strong>Signature:</strong> RingBuffer&lt;&#39;T&gt;<br />
+          <div class="tip" id="1284">
+            <strong>Signature:</strong> (f:(&#39;T -&gt; bool)) -&gt; BlockResizeArray&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L40-40" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L163-163" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns a new collection containing only the elements of the collection for which the given predicate returns true.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1484', 1484)" onmouseover="showTip(event, '1484', 1484)">
-            Clone()
+          <code onmouseout="hideTip(event, '1285', 1285)" onmouseover="showTip(event, '1285', 1285)">
+            Find(f)
           </code>
-          <div class="tip" id="1484">
-            <strong>Signature:</strong> unit -&gt; Timeseries&lt;&#39;T&gt;<br />
+          <div class="tip" id="1285">
+            <strong>Signature:</strong> (f:(&#39;T -&gt; bool)) -&gt; &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L89-89" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L144-144" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1485', 1485)" onmouseover="showTip(event, '1485', 1485)">
-            Granularity
+          <code onmouseout="hideTip(event, '1286', 1286)" onmouseover="showTip(event, '1286', 1286)">
+            Fold(folder state)
           </code>
-          <div class="tip" id="1485">
-            <strong>Signature:</strong> TimeSpan<br />
+          <div class="tip" id="1286">
+            <strong>Signature:</strong> (folder:(&#39;State -&gt; &#39;T -&gt; &#39;State)) -&gt; state:&#39;State -&gt; &#39;State<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L42-42" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L150-150" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Applies a function to each element of the collection, threading an accumulator argument through the computation.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1486', 1486)" onmouseover="showTip(event, '1486', 1486)">
-            Insert(...)
+          <code onmouseout="hideTip(event, '1287', 1287)" onmouseover="showTip(event, '1287', 1287)">
+            [i]
           </code>
-          <div class="tip" id="1486">
-            <strong>Signature:</strong> (op:(&#39;T -&gt; &#39;T -&gt; &#39;T) * startDate:DateTimeOffset * gran:TimeSpan * dataToInsert:seq&lt;&#39;T&gt;) -&gt; unit<br />
+          <div class="tip" id="1287">
+            <strong>Signature:</strong> i:int -&gt; &#39;T<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L77-77" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L54-54" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Allaws to get-set element to block resize array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1487', 1487)" onmouseover="showTip(event, '1487', 1487)">
-            Merge(f, ts)
+          <code onmouseout="hideTip(event, '1288', 1288)" onmouseover="showTip(event, '1288', 1288)">
+            [()]
           </code>
-          <div class="tip" id="1487">
-            <strong>Signature:</strong> (f:(&#39;T -&gt; &#39;T -&gt; &#39;T) * ts:Timeseries&lt;&#39;T&gt;) -&gt; unit<br />
+          <div class="tip" id="1288">
+            <strong>Signature:</strong> unit -&gt; int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L86-86" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L53-53" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Allaws to get-set element to block resize array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1488', 1488)" onmouseover="showTip(event, '1488', 1488)">
-            Series
+          <code onmouseout="hideTip(event, '1289', 1289)" onmouseover="showTip(event, '1289', 1289)">
+            Iter(f)
           </code>
-          <div class="tip" id="1488">
-            <strong>Signature:</strong> (DateTimeOffset * &#39;T) []<br />
+          <div class="tip" id="1289">
+            <strong>Signature:</strong> (f:(&#39;T -&gt; unit)) -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L55-55" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L212-212" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Applies the given function to each element of the block resize array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1489', 1489)" onmouseover="showTip(event, '1489', 1489)">
-            StartDate()
+          <code onmouseout="hideTip(event, '1290', 1290)" onmouseover="showTip(event, '1290', 1290)">
+            Length
           </code>
-          <div class="tip" id="1489">
-            <strong>Signature:</strong> unit -&gt; DateTimeOffset<br />
+          <div class="tip" id="1290">
+            <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L41-41" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L60-60" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns the length of a block resize array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1490', 1490)" onmouseover="showTip(event, '1490', 1490)">
-            StartDate()
+          <code onmouseout="hideTip(event, '1291', 1291)" onmouseover="showTip(event, '1291', 1291)">
+            Map(f)
           </code>
-          <div class="tip" id="1490">
-            <strong>Signature:</strong> unit -&gt; unit<br />
+          <div class="tip" id="1291">
+            <strong>Signature:</strong> (f:(&#39;T -&gt; &#39;U)) -&gt; BlockResizeArray&lt;&#39;U&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L41-41" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L194-194" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1491', 1491)" onmouseover="showTip(event, '1491', 1491)">
-            ToGranularity(granularity)
+          <code onmouseout="hideTip(event, '1292', 1292)" onmouseover="showTip(event, '1292', 1292)">
+            Shift
           </code>
-          <div class="tip" id="1491">
-            <strong>Signature:</strong> granularity:TimeSpan -&gt; Timeseries&lt;&#39;T&gt;<br />
+          <div class="tip" id="1292">
+            <strong>Signature:</strong> int<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L48-48" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L65-65" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Returns the shift size for block resize array.</p>
+
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1492', 1492)" onmouseover="showTip(event, '1492', 1492)">
-            TryAdvance(toDate)
+          <code onmouseout="hideTip(event, '1293', 1293)" onmouseover="showTip(event, '1293', 1293)">
+            ToArray()
           </code>
-          <div class="tip" id="1492">
-            <strong>Signature:</strong> toDate:DateTimeOffset -&gt; DateTimeOffset option<br />
+          <div class="tip" id="1293">
+            <strong>Signature:</strong> unit -&gt; &#39;T []<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L60-60" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L76-76" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Tries to advance the start date of the Timeseries to toDate.
-Returns None if toDate is before the start date of the Timeseries, 
-otherwise Some containing the start date of the Timeseries.</p>
+          <p>Creates an array from the given block resize array.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1294', 1294)" onmouseover="showTip(event, '1294', 1294)">
+            TryFind(f)
+          </code>
+          <div class="tip" id="1294">
+            <strong>Signature:</strong> (f:(&#39;T -&gt; bool)) -&gt; &#39;T option<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L124-124" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns the first element for which the given function returns true. Return None if no such element exists.</p>
 
 
 
@@ -345,19 +362,43 @@ otherwise Some containing the start date of the Timeseries.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1493', 1493)" onmouseover="showTip(event, '1493', 1493)">
-            Empty(startDate, granularity, size)
+          <code onmouseout="hideTip(event, '1295', 1295)" onmouseover="showTip(event, '1295', 1295)">
+            Init(initCount f)
           </code>
-          <div class="tip" id="1493">
-            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * size:int) -&gt; Timeseries&lt;&#39;?8790&gt;<br />
+          <div class="tip" id="1295">
+            <strong>Signature:</strong> initCount:int -&gt; (f:(int -&gt; &#39;T)) -&gt; BlockResizeArray&lt;&#39;T&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/TimeSeries.fs#L37-37" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L88-88" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Creates a block resize array given the dimension and a generator function to compute the elements.</p>
+
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1296', 1296)" onmouseover="showTip(event, '1296', 1296)">
+            ZeroCreate(initCount)
+          </code>
+          <div class="tip" id="1296">
+            <strong>Signature:</strong> initCount:int -&gt; BlockResizeArray&lt;&#39;?8739&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BlockResizeArray.fs#L110-110" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a block resize array where the entries are initially the default value Unchecked.defaultof<'T>.</p>
+
+
+
         </td>
       </tr>
     </tbody>
