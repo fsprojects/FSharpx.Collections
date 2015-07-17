@@ -244,6 +244,15 @@ module LazyList =
         if n < 0 then None
         else skipcOpt n s
 
+    let fold f s l =
+        let rec loop s l cont =
+            match  getCell l with
+            | CellEmpty -> cont s
+            | CellCons(x,xs) ->
+                let s = f s x
+                loop s xs (fun s -> cont s)
+        loop s l id
+
     let mapAccum f s l =
         let rec loop s l cont =
             match  getCell l with
