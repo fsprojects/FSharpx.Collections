@@ -14,7 +14,7 @@ Please contribute to this project. Don't ask for permission, just fork the repos
 
 Travis-CI | AppVeyor
 --------- | --------
-[![Travis-CI Build Status](https://img.shields.io/travis/fsprojects/FSharpx.Collections.svg)](https://travis-ci.org/fsprojects/FSharpx.Collections) | [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/fsgit/FSharpx-Collections.svg)](https://ci.appveyor.com/project/fsgit/fsharpx-collections)
+[![Travis-CI Build Status](https://img.shields.io/travis/fsprojects/FSharpx.Collections/master.svg)](https://travis-ci.org/fsprojects/FSharpx.Collections) | [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/fsgit/FSharpx-Collections/master.svg)](https://ci.appveyor.com/project/fsgit/fsharpx-collections)
 
 
 ## Maintainer(s)
