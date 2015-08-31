@@ -33,7 +33,7 @@ module ResizeArray =
         for i = 0 to len - 1 do 
             arr2.[start2+i] <- arr1.[start1 + i]
 
-    let concat (arrs: ResizeArray<'T> list) = new ResizeArray<_> (seq { for arr in arrs do for x in arr do yield x })
+    let concat (arrs: seq<ResizeArray<'T>>) = new ResizeArray<_> (seq { for arr in arrs do for x in arr do yield x })
     let append (arr1: ResizeArray<'T>) (arr2: ResizeArray<'T>) = concat [arr1; arr2]
 
     let sub (arr: ResizeArray<'T>) start len =

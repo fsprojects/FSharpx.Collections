@@ -185,3 +185,11 @@ type public ResizeArrayTests() =
         test "ra_rev d"
             (ResizeArray.rev (ra [1; 2]) =? [2; 1])
 
+        test "ra_concat ra ra"
+            (ResizeArray.concat (ra [ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]]) =? [1; 2; 3; 4; 5; 6; 7])
+
+        test "ra_concat list ra"
+            (ResizeArray.concat [ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]] =? [1; 2; 3; 4; 5; 6; 7])
+
+        test "ra_concat concat"
+            (ResizeArray.concat (ra [ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]]) =? (ResizeArray.concat (Seq.ofList[ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]]) |> List.ofSeq))

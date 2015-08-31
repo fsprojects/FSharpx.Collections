@@ -37,7 +37,7 @@ module ResizeArray =
     val append: ResizeArray<'T> -> ResizeArray<'T> -> ResizeArray<'T>
 
     ///Build a new array that contains the elements of each of the given list of arrays
-    val concat: ResizeArray<'T> list -> ResizeArray<'T>
+    val concat: seq<ResizeArray<'T>> -> ResizeArray<'T>
 
     ///Build a new array that contains the given subrange specified by
     ///starting index and length.
