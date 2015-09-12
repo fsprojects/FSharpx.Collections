@@ -9,6 +9,14 @@ See [the home page](http://fsprojects.github.io/FSharpx.Collections/) and [API d
 
 Please contribute to this project. Don't ask for permission, just fork the repository and send pull requests.
 
+
+## Build Status
+
+Mono | .NET
+---- | ----
+[![Mono CI Build Status](https://img.shields.io/travis/fsprojects/FSharpx.Collections/master.svg)](https://travis-ci.org/fsprojects/FSharpx.Collections) | [![.NET CI Build Status](https://img.shields.io/appveyor/ci/fsgit/FSharpx-Collections/master.svg)](https://ci.appveyor.com/project/fsgit/fsharpx-collections)
+
+
 ## Maintainer(s)
 
 - [@forki](https://github.com/forki)
