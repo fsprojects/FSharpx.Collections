@@ -1,3 +1,7 @@
+#### 1.12.2 - 12.09.2015 
+* ResizeArray.collect made to take seq as an input - https://github.com/fsprojects/FSharpx.Collections/pull/41
+* Made conflict resolution explicit in variable names - https://github.com/fsprojects/FSharpx.Collections/pull/39
+
 #### 1.12.1 - 17.07.2015 
 * LazyList.fold - https://github.com/fsprojects/FSharpx.Collections/pull/34
 
