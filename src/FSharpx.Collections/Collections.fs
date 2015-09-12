@@ -402,8 +402,8 @@ module Map =
     let valueList map = map |> Map.toList |> List.unzip |> snd
 
     /// Combines the two Maps into a single Map
-    let union (map1: Map<_,_>) (map2: Map<_,_>) = 
-        Seq.fold (fun m (KeyValue(k,v)) -> Map.add k v m) map1 map2
+    let union (loses: Map<_,_>) (wins: Map<_,_>) = 
+        Seq.fold (fun m (KeyValue(k,v)) -> Map.add k v m) loses wins
 
     let choose (f : 'T -> 'b -> 'c option) (map : Map<'T,'b>) =
         (Map.empty, map) ||> Map.fold (fun s k v -> 
