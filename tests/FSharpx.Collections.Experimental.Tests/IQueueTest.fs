@@ -210,13 +210,18 @@ let ``foldback matches build list``() =
     fsCheck "PhysicistQueue Snoc" (Prop.forAll (Arb.fromGen QueueGen.physicistQueueIntSnocGen) 
         (fun ((q : IQueue<int>), (l : int list)) -> PhysicistQueue.foldBack (fun (elem : int) (l' : int list) -> elem::l') (q :?> PhysicistQueue<int>) [] = l |> classifyCollect q (q.Length())))
 
+let rec nth l i =
+    match i with
+    | 0 -> List.head l
+    | _ -> nth (List.tail l) (i-1)
+
 [<Test>]
 [<Category("IQueue")>]
 [<Property("Category", "IQueue")>]
 [<TestCaseSource("intGensStart1")>]
 let ``get head from queue``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.Head = (List.nth l 0) |> classifyCollect q (q.Length())))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.Head = (nth l 0) |> classifyCollect q (q.Length())))
 
 [<Test>]
 [<Category("IQueue")>]
@@ -224,7 +229,7 @@ let ``get head from queue``(x : obj) =
 [<TestCaseSource("intGensStart1")>]
 let ``get head from queue safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.TryGetHead.Value = (List.nth l 0) |> classifyCollect q (q.Length())))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.TryGetHead.Value = (nth l 0) |> classifyCollect q (q.Length())))
 
 [<Test>]
 [<Category("IQueue")>]
@@ -232,7 +237,7 @@ let ``get head from queue safely``(x : obj) =
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from queue``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : IQueue<int>), l) -> q.Tail.Head = (List.nth l 1) |> classifyCollect q (q.Length())))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : IQueue<int>), l) -> q.Tail.Head = (nth l 1) |> classifyCollect q (q.Length())))
 
 [<Test>]
 [<Category("IQueue")>]
@@ -240,7 +245,7 @@ let ``get tail from queue``(x : obj) =
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from queue safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : IQueue<int>, l) -> q.TryGetTail.Value.Head = (List.nth l 1) |> classifyCollect q (q.Length())))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : IQueue<int>, l) -> q.TryGetTail.Value.Head = (nth l 1) |> classifyCollect q (q.Length())))
 
 [<Test>]
 [<Category("IQueue")>]

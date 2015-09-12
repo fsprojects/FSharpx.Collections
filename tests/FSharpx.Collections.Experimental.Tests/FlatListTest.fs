@@ -233,11 +233,16 @@ let ``IEnumarable: flatlist with 300 elements should be convertable to a seq``()
 
     !flatlist |> Seq.toList |> should equal [1..300]
 
+let rec nth l i =
+    match i with
+    | 0 -> List.head l
+    | _ -> nth (List.tail l) (i-1)
+
 [<Test>]
 [<TestCaseSource("intGensStart1")>]
 let ``Item: get last from flatlist``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (v : FlatList<int>, l : list<int>) -> v.[l.Length - 1] = (List.nth l (l.Length - 1)) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (v : FlatList<int>, l : list<int>) -> v.[l.Length - 1] = (nth l (l.Length - 1)) ))
 
 [<Test>]
 let ``iter: flatlist should allow iter``() =

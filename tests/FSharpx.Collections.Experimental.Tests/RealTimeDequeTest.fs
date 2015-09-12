@@ -613,8 +613,8 @@ let ``last, init, and length work test 9``() =
     && ((length t1_8) = 1) && ((length t1C_8) = 1) && ((last t1_8) = "j") && ((last t1C_8) = "j")) |> should equal true
 
 [<Test>]
-let ``IEnumerable Seq nth``() =
-    lena |> Seq.nth 5 |> should equal "e"
+let ``IEnumerable Seq``() =
+    (lena |> Seq.toArray).[5] |> should equal "e"
 
 [<Test>]
 let ``IEnumerable Seq length``() =
