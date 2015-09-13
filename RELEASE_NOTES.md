@@ -1,3 +1,6 @@
+#### 1.12.4 - 13.09.2015 
+* Fixed enumerating empty RandomAccessList - https://github.com/fsprojects/FSharpx.Collections/pull/45
+
 #### 1.12.3 - 12.09.2015 
 * ResizeArray.collect made to take seq as an input - https://github.com/fsprojects/FSharpx.Collections/pull/41
 * Made conflict resolution explicit in variable names - https://github.com/fsprojects/FSharpx.Collections/pull/39
