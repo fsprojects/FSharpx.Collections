@@ -279,7 +279,6 @@ let ``randomAccessList of randomAccessLists constructed by consing tail``() =
 [<Test>]
 let ``nth length 1``() =
     let x = empty |> cons "a" 
-//    let x = empty |> cons "a" 
     let x' = x |> nth 0 
     x' |> should equal "a"
 
@@ -760,3 +759,10 @@ let ``toSeq to list``() =
     let rl = ofSeq l
 
     rl |> toSeq |> List.ofSeq |> should equal l
+
+[<Test>]
+let ``enumerate empty``() =
+    for i in RandomAccessList.empty do
+        ignore()
+
+    true |> should equal true

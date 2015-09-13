@@ -223,17 +223,19 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         ret
 
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
-        let i = ref (endIndex - 1)
-        let array = if (endIndex - 1) < count then ref (this.ArrayFor !i) else ref null
+        if count = 0 then Seq.empty
+        else
+            let i = ref (endIndex - 1)
+            let array = if (endIndex - 1) < count then ref (this.ArrayFor !i) else ref null
 
-        seq {
-            while !i > (startIndex - 1) do
-                if (!i + 1) % Literals2.blockSize  = 0 then
-                    array := this.ArrayFor !i
+            seq {
+                while !i > (startIndex - 1) do
+                    if (!i + 1) % Literals2.blockSize  = 0 then
+                        array := this.ArrayFor !i
 
-                yield (!array).[!i &&& Literals2.blockIndexMask] :?> 'T
-                i := !i - 1 
-            }
+                    yield (!array).[!i &&& Literals2.blockIndexMask] :?> 'T
+                    i := !i - 1 
+                }
         
     member this.Cons (x : 'T) = 
         if count - tailOff < Literals2.blockSize then
