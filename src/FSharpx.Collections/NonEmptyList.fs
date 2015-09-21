@@ -97,3 +97,7 @@ module NonEmptyList =
     [<CompiledName("SelectMany")>]
     let collect mapping list =
         List.fold (fun s e -> mapping e |> append s) (mapping (head list)) (tail list)
+
+    [<CompiledName("Zip")>]
+    let inline zip list1 list2 =
+        create (list1.Head, list2.Head) (List.zip list1.Tail list2.Tail)
