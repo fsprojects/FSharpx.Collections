@@ -91,3 +91,30 @@ let reduce() =
         let actual = NonEmptyList.reduce (+) nel
         let expected = nel |> NonEmptyList.toList |> List.sum
         expected = actual
+
+[<Test>]
+let zip() =
+    let EqualLengthNELGen =
+        gen {
+            let! a = NonEmptyListGen.NonEmptyList().Generator
+            let! b = Gen.listOfLength a.Length Arb.generate
+                     |> Gen.map (fun l -> NonEmptyList.create (List.head l) (List.tail l))
+            return a, b
+        } |> Arb.fromGen
+
+    fsCheck <| Prop.forAll EqualLengthNELGen (fun (nel1, nel2) ->
+
+        let actual = NonEmptyList.zip nel1 nel2 |> NonEmptyList.toList
+        let expected = List.zip <| NonEmptyList.toList nel1 
+                                <| NonEmptyList.toList nel2
+        expected = actual)
+
+[<Test>]
+let ``zip on lists with different lengths raises an exception``()=
+    fsCheck <| fun nel1 nel2 ->
+        try
+            NonEmptyList.zip nel1 nel2 |> ignore
+            nel1.Length = nel2.Length
+        with :? System.ArgumentException -> 
+            nel1.Length <> nel2.Length
+                    
