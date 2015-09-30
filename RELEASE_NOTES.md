@@ -1,6 +1,5 @@
-#### 1.13.2 - 30.09.2015 
+#### 1.13.3 - 30.09.2015 
 * Add zip to NonEmptyList - https://github.com/fsprojects/FSharpx.Collections/pull/46
-* Update FSharp.Core to 4.0.0.1
  
 #### 1.12.4 - 13.09.2015 
 * Fixed enumerating empty RandomAccessList - https://github.com/fsprojects/FSharpx.Collections/pull/45
