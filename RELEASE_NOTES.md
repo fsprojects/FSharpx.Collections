@@ -1,3 +1,6 @@
+#### 1.13.4 - 02.10.2015 
+* Allow 4.0 FSharp.Core
+
 #### 1.13.3 - 30.09.2015 
 * Add zip to NonEmptyList - https://github.com/fsprojects/FSharpx.Collections/pull/46
  
