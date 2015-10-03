@@ -63,12 +63,31 @@ module NonEmptyList =
     [<Extension>]
     let toSeq (list: NonEmptyList<_>) = list :> _ seq
 
+    [<CompiledName("OfArray")>]
+    let inline ofArray (arr: _ array) =
+        match arr.Length with
+        | 0 -> invalidArg "arr" "Array is empty"
+        | len -> create arr.[0] [for i = 1 to len - 1 do yield arr.[i]]
+
+    [<CompiledName("OfList")>]
+    let inline ofList (l: _ list) =
+        match l with
+        | head :: tail -> create head tail
+        | _ -> invalidArg "l" "List is empty"
+
+    [<CompiledName("OfSeq")>]
+    let ofSeq (e: _ seq) =
+        use ie = e.GetEnumerator()
+        if ie.MoveNext()
+        then create ie.Current [while ie.MoveNext() do yield ie.Current]
+        else invalidArg "e" "Sequence is empty"
+
     [<CompiledName("Select")>]
     let map f list = 
         let newHead = f (head list)
         let newTail = List.map f (tail list)
         create newHead newTail
-    
+
     [<CompiledName("Cons")>]
     let cons head tail =        
         create head (toList tail)
