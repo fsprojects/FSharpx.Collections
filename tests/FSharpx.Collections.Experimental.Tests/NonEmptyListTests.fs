@@ -59,6 +59,30 @@ let ``toArray is same length as non-empty list`` () =
     fsCheck (fun nel -> NonEmptyList.toArray nel |> Array.length = nel.Length)
 
 [<Test>]
+let ofArray () =
+    fsCheck <| fun arr ->
+        try Seq.forall2 (=) (NonEmptyList.ofArray arr) arr
+        with :? System.ArgumentException -> arr.Length = 0
+
+[<Test>]
+let ofList () =
+    fsCheck <| fun l ->
+        try Seq.forall2 (=) (NonEmptyList.ofList l) l
+        with :? System.ArgumentException -> l = []
+
+[<Test>]
+let ofSeq () =
+    let ArbitrarySeq = 
+        gen {
+            let! len = Gen.choose (0, 10)
+            let! l = Gen.listOfLength len Arb.generate
+            return seq { for i = 0 to len - 1 do yield l.[i] }
+        } |> Arb.fromGen
+    fsCheck <| Prop.forAll ArbitrarySeq (fun s -> 
+        try Seq.forall2 (=) (NonEmptyList.ofSeq s) s
+        with :? System.ArgumentException -> Seq.isEmpty s)
+
+[<Test>]
 let ``reverse . reverse = id`` () =
     fsCheck (fun nel -> (NonEmptyList.rev << NonEmptyList.rev) nel = nel)
 
@@ -103,7 +127,6 @@ let zip() =
         } |> Arb.fromGen
 
     fsCheck <| Prop.forAll EqualLengthNELGen (fun (nel1, nel2) ->
-
         let actual = NonEmptyList.zip nel1 nel2 |> NonEmptyList.toList
         let expected = List.zip <| NonEmptyList.toList nel1 
                                 <| NonEmptyList.toList nel2
@@ -117,4 +140,4 @@ let ``zip on lists with different lengths raises an exception``()=
             nel1.Length = nel2.Length
         with :? System.ArgumentException -> 
             nel1.Length <> nel2.Length
-                    
+
