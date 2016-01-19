@@ -37,7 +37,7 @@ redistribution for both commercial and non-commercial purposes. For more informa
 [License file][license] in the GitHub repository. 
 
   [content]: https://github.com/fsprojects/FSharpx.Collections/tree/master/docs/content
-  [gh]: https://github.com/fsprojects/FSharpx.Collectionsd
+  [gh]: https://github.com/fsprojects/FSharpx.Collections
   [issues]: https://github.com/fsprojects/FSharpx.Collections/issues
   [readme]: https://github.com/fsprojects/FSharpx.Collections/blob/master/README.md
   [license]: https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt
