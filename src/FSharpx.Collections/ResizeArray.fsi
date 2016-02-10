@@ -33,32 +33,32 @@ module ResizeArray =
     /// Create an array by calling the given generator on each index.
     val init: int -> (int -> 'T) -> ResizeArray<'T>
 
-    ///Build a new array that contains the elements of the first array followed by the elements of the second array
+    /// Build a new array that contains the elements of the first array followed by the elements of the second array
     val append: ResizeArray<'T> -> ResizeArray<'T> -> ResizeArray<'T>
 
-    ///Build a new array that contains the elements of each of the given list of arrays
+    /// Build a new array that contains the elements of each of the given list of arrays
     val concat: seq<ResizeArray<'T>> -> ResizeArray<'T>
 
-    ///Build a new array that contains the given subrange specified by
-    ///starting index and length.
+    /// Build a new array that contains the given subrange specified by
+    /// starting index and length.
     val sub: ResizeArray<'T> -> int -> int -> ResizeArray<'T>
 
-    ///Build a new array that contains the elements of the given array
+    /// Build a new array that contains the elements of the given array
     val copy: ResizeArray<'T> -> ResizeArray<'T>
 
-    ///Fill a range of the collection with the given element
+    /// Fill a range of the collection with the given element
     val fill: ResizeArray<'T> -> int -> int -> 'T -> unit
 
-    ///Read a range of elements from the first array and write them into the second.
+    /// Read a range of elements from the first array and write them into the second.
     val blit: ResizeArray<'T> -> int -> ResizeArray<'T> -> int -> int -> unit
 
-    ///Build a list from the given array
+    /// Build a list from the given array
     val toList: ResizeArray<'T> -> 'T list
 
-    ///Build an array from the given list
+    /// Build an array from the given list
     val ofList: 'T list -> ResizeArray<'T>
 
-    ///Build and array from the given seq
+    /// Build and array from the given seq
     val ofSeq : 'T seq -> ResizeArray<'T>
 
     /// Apply a function to each element of the collection, threading an accumulator argument
@@ -71,30 +71,30 @@ module ResizeArray =
     /// computes <c>f i0 (...(f iN s))</c>.
     val foldBack: ('T -> 'State -> 'State) -> ResizeArray<'T> -> 'State -> 'State
 
-    ///Apply the given function to each element of the array. 
+    /// Apply the given function to each element of the array. 
     val iter: ('T -> unit) -> ResizeArray<'T> -> unit
 
-    ///Build a new array whose elements are the results of applying the given function
-    ///to each of the elements of the array.
+    /// Build a new array whose elements are the results of applying the given function
+    /// to each of the elements of the array.
     val map: ('T -> 'U) -> ResizeArray<'T> -> ResizeArray<'U>
 
-    ///Apply the given function to two arrays simultaneously. The
-    ///two arrays must have the same lengths, otherwise an Invalid_argument exception is
-    ///raised.
+    /// Apply the given function to two arrays simultaneously. The
+    /// two arrays must have the same lengths, otherwise an Invalid_argument exception is
+    /// raised.
     val iter2: ('T1 -> 'T2 -> unit) -> ResizeArray<'T1> -> ResizeArray<'T2> -> unit
 
-    ///Build a new collection whose elements are the results of applying the given function
-    ///to the corresponding elements of the two collections pairwise.  The two input
-    ///arrays must have the same lengths.
+    /// Build a new collection whose elements are the results of applying the given function
+    /// to the corresponding elements of the two collections pairwise.  The two input
+    /// arrays must have the same lengths.
     val map2: ('T1 -> 'T2 -> 'U) -> ResizeArray<'T1> -> ResizeArray<'T2> -> ResizeArray<'U>
 
-    ///Apply the given function to each element of the array.  The integer passed to the
-    ///function indicates the index of element.
+    /// Apply the given function to each element of the array.  The integer passed to the
+    /// function indicates the index of element.
     val iteri: (int -> 'T -> unit) -> ResizeArray<'T> -> unit
 
-    ///Build a new array whose elements are the results of applying the given function
-    ///to each of the elements of the array. The integer index passed to the
-    ///function indicates the index of element being transformed.
+    /// Build a new array whose elements are the results of applying the given function
+    /// to each of the elements of the array. The integer index passed to the
+    /// function indicates the index of element being transformed.
     val mapi: (int -> 'T -> 'U) -> ResizeArray<'T> -> ResizeArray<'U>
 
     /// Test if any element of the array satisfies the given predicate.
@@ -107,33 +107,33 @@ module ResizeArray =
     /// then computes <c>p i0 && ... && p iN</c>.
     val forall: ('T -> bool) -> ResizeArray<'T> -> bool
 
-    ///Return a new collection containing only the elements of the collection
-    ///for which the given predicate returns <c>true</c>
+    /// Return a new collection containing only the elements of the collection
+    /// for which the given predicate returns <c>true</c>
     val filter: ('T -> bool) -> ResizeArray<'T> -> ResizeArray<'T>
 
-    ///Split the collection into two collections, containing the 
-    ///elements for which the given predicate returns <c>true</c> and <c>false</c>
-    ///respectively 
+    /// Split the collection into two collections, containing the 
+    /// elements for which the given predicate returns <c>true</c> and <c>false</c>
+    /// respectively 
     val partition: ('T -> bool) -> ResizeArray<'T> -> ResizeArray<'T> * ResizeArray<'T>
 
-    ///Apply the given function to each element of the array. Return
-    ///the array comprised of the results "x" for each element where
-    ///the function returns Some(x)
+    /// Apply the given function to each element of the array. Return
+    /// the array comprised of the results "x" for each element where
+    /// the function returns Some(x)
     val choose: ('T -> 'U option) -> ResizeArray<'T> -> ResizeArray<'U>
 
-    ///Return the first element for which the given function returns <c>true</c>.
-    ///Raise <c>KeyNotFoundException</c> if no such element exists.
+    /// Return the first element for which the given function returns <c>true</c>.
+    /// Raise <c>KeyNotFoundException</c> if no such element exists.
     val find: ('T -> bool) -> ResizeArray<'T> -> 'T
 
-    ///Return the first element for which the given function returns <c>true</c>.
-    ///Return None if no such element exists.
+    /// Return the first element for which the given function returns <c>true</c>.
+    /// Return None if no such element exists.
     val tryFind: ('T -> bool) -> ResizeArray<'T> -> 'T option
 
-    ///Apply the given function to successive elements, returning the first
-    ///result where function returns "Some(x)" for some x.
+    /// Apply the given function to successive elements, returning the first
+    /// result where function returns "Some(x)" for some x.
     val tryPick: ('T -> 'U option) -> ResizeArray<'T> -> 'U option
 
-    ///Return a new array with the elements in reverse order
+    /// Return a new array with the elements in reverse order
     val rev: ResizeArray<'T> -> ResizeArray<'T>
 
     /// Sort the elements using the given comparison function

@@ -79,10 +79,10 @@ module Deque =
     [<GeneralizableValue>]
     val empty<'T> : Deque<'T>
 
-    /// O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, left to right
+    ///O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, left to right
     val fold : ('State -> 'T -> 'State) -> 'State -> Deque<'T> -> 'State
 
-    /// O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, right to left
+    ///O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, right to left
     val foldBack : ('T -> 'State -> 'State) -> Deque<'T> -> 'State -> 'State
 
     ///O(1) amortized, O(n), worst case. Returns the first element.
