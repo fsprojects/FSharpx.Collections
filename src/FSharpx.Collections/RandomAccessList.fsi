@@ -97,11 +97,20 @@ module RandomAccessList =
     /// O(1) for all practical purposes; really O(log32n). Returns option value at the index.
     val inline tryNth : int -> RandomAccessList<'T> -> 'T option
  
+    /// O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
+    val inline nthNth : int -> int -> RandomAccessList<RandomAccessList<'T>> -> 'T
+
+    /// O(log32(m,n)). Returns option value at the indices.
+    val inline tryNthNth : int -> int -> RandomAccessList<RandomAccessList<'T>> -> 'T option
+
     /// O(n). Returns a random access list of the seq.
     val ofSeq : seq<'T> -> RandomAccessList<'T>
 
     /// O(n). Returns new random access list reversed.
     val inline rev : RandomAccessList<'T> -> RandomAccessList<'T>
+
+    /// O(1). Returns a new random access list of one element.
+    val inline singleton : 'T -> RandomAccessList<'T>
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new random access list without the first item. If the collection is empty it throws an exception.
     val inline tail : RandomAccessList<'T> -> RandomAccessList<'T>
@@ -121,6 +130,12 @@ module RandomAccessList =
     /// O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
     val inline update : int -> 'T -> RandomAccessList<'T> -> RandomAccessList<'T>
 
+    /// O(log32(m,n)). Returns a new random access list of random access lists that contains the given value at the indices.
+    val inline updateNth : int -> int -> 'T -> RandomAccessList<RandomAccessList<'T>> -> RandomAccessList<RandomAccessList<'T>>
+
     /// O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.
     val inline tryUpdate : int -> 'T -> RandomAccessList<'T> -> RandomAccessList<'T> option
+
+    /// O(log32(m,n)). Returns option random access list that contains the given value at the indices.
+    val inline tryUpdateNth : int -> int -> 'T -> RandomAccessList<RandomAccessList<'T>> -> RandomAccessList<RandomAccessList<'T>> option
 #endif

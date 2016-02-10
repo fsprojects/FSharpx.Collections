@@ -381,10 +381,19 @@ module RandomAccessList =
     let inline tryNth i (randomAccessList :'T RandomAccessList) =
         if i >= 0 && i < randomAccessList.Length then Some(randomAccessList.[i])
         else None
- 
+
+    let inline nthNth i j (randomAccessList :'T RandomAccessList RandomAccessList) : 'T = randomAccessList.[i] |> nth j
+
+    let inline tryNthNth i j (randomAccessList :'T RandomAccessList RandomAccessList) =
+        match tryNth i randomAccessList with
+        | Some v' -> tryNth j v'
+        | None -> None
+
     let ofSeq (items : 'T seq) = RandomAccessList.ofSeq items 
 
     let inline rev (randomAccessList :'T RandomAccessList) = randomAccessList.Rev()
+
+    let inline singleton (x : 'T) = empty |> cons x
 
     let inline tail (randomAccessList :'T RandomAccessList) = randomAccessList.Tail
 
@@ -398,6 +407,13 @@ module RandomAccessList =
 
     let inline update i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.Update(i, x)
 
+    let inline updateNth i j (x : 'T) (randomAccessList : 'T RandomAccessList RandomAccessList) : 'T RandomAccessList RandomAccessList = randomAccessList.Update(i, (randomAccessList.[i].Update(j, x)))
+
     let inline tryUpdate i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.TryUpdate(i, x)
+
+    let inline tryUpdateNth i  j (x : 'T) (randomAccessList : 'T RandomAccessList RandomAccessList) =
+        if i >= 0 && i < randomAccessList.Length && j >= 0 && j < randomAccessList.[i].Length
+        then Some(updateNth i j x randomAccessList)
+        else None
 
 #endif
