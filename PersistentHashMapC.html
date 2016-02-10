@@ -34,9 +34,7 @@
         <div class="span9" id="main">
           
 <h1><a name="PersistentHashMap" class="anchor" href="#PersistentHashMap">PersistentHashMap</a></h1>
-
 <p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). Count is O(1).</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -52,18 +50,16 @@
 <td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="c">// Create an empty PersistentHashMap and add some elements</span>
 PersistentHashMap&lt;<span class="k">int</span>,<span class="k">string</span>&gt; map <span class="o">=</span>
     PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt;.Empty()
-        .Add(42,<span class="s">"hello"</span>)
-        .Add(99, <span class="s">"world"</span>);
+        .Add(<span class="n">42</span>,<span class="s">"hello"</span>)
+        .Add(<span class="n">99</span>, <span class="s">"world"</span>);
 
-Console.WriteLine(map[42]); <span class="c">// hello</span>
-Console.WriteLine(map[99]); <span class="c">// world</span>
+Console.WriteLine(map[<span class="n">42</span>]); <span class="c">// hello</span>
+Console.WriteLine(map[<span class="n">99</span>]); <span class="c">// world</span>
 
 <span class="c">// Check no. of elements in the PersistentHashMap</span>
 Console.WriteLine(map.Length);  <span class="c">// 2</span>
 </code></pre></td></tr></table>
-
 <p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
 <span class="l"> 2: </span>
 <span class="l"> 3: </span>
@@ -80,21 +76,21 @@ Console.WriteLine(map.Length);  <span class="c">// 2</span>
 <span class="l">14: </span>
 <span class="l">15: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map2 <span class="o">=</span> 
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map<span class="n">2</span> <span class="o">=</span> 
     map
-     .Add(104, <span class="s">"!"</span>)
-     .Add(42, <span class="s">"hi"</span>);  <span class="c">// replace existing value</span>
+     .Add(<span class="n">104</span>, <span class="s">"!"</span>)
+     .Add(<span class="n">42</span>, <span class="s">"hi"</span>);  <span class="c">// replace existing value</span>
 
-Console.WriteLine(map2[42]); <span class="c">// hi</span>
-Console.WriteLine(map[42]);  <span class="c">// hello            </span>
+Console.WriteLine(map<span class="n">2</span>[<span class="n">42</span>]); <span class="c">// hi</span>
+Console.WriteLine(map[<span class="n">42</span>]);  <span class="c">// hello            </span>
 
 Console.WriteLine(map.Length);  <span class="c">// 2</span>
-Console.WriteLine(map2.Length); <span class="c">// 3</span>
+Console.WriteLine(map<span class="n">2</span>.Length); <span class="c">// 3</span>
 
 <span class="c">// remove the last element from a PersistentHashMap</span>
-PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map3 <span class="o">=</span> map2.Remove(104);
+PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map<span class="n">3</span> <span class="o">=</span> map<span class="n">2</span>.Remove(<span class="n">104</span>);
 
-Console.WriteLine(map3.Length); <span class="c">// 2</span>
+Console.WriteLine(map<span class="n">3</span>.Length); <span class="c">// 2</span>
 </code></pre></td></tr></table>
 
 

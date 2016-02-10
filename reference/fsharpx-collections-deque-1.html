@@ -41,10 +41,9 @@
 </p>
 <div class="xmldoc">
 <p>Double-ended queue is an ordered linear linear structure implementing the signature of List
-(head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects 
-the first or left-most element in the structure, while "last" inspects the last or 
+(head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects
+the first or left-most element in the structure, while "last" inspects the last or
 right-most element. "rev" (reverse) has time complexity O(1). Ordering is by insertion history.</p>
-
 
 </div>
   <h3>Instance members</h3>
@@ -71,7 +70,6 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1). Returns a new deque with the element added to the end.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -90,7 +88,6 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new deque with the element added to the beginning.</p>
-
 
 
         </td>
@@ -113,7 +110,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns the first element.</p>
 
 
-
+              <p>CompiledName: <code>get_Head</code></p>
         </td>
       </tr>
       <tr>
@@ -134,7 +131,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
 
 
-
+              <p>CompiledName: <code>get_Initial</code></p>
         </td>
       </tr>
       <tr>
@@ -155,7 +152,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1). Returns true if the deque has no elements.</p>
 
 
-
+              <p>CompiledName: <code>get_IsEmpty</code></p>
         </td>
       </tr>
       <tr>
@@ -176,7 +173,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns the last element.</p>
 
 
-
+              <p>CompiledName: <code>get_Last</code></p>
         </td>
       </tr>
       <tr>
@@ -197,7 +194,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1). Returns the count of elememts.</p>
 
 
-
+              <p>CompiledName: <code>get_Length</code></p>
         </td>
       </tr>
       <tr>
@@ -218,7 +215,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1). Returns deque reversed.</p>
 
 
-
+              <p>CompiledName: <code>get_Rev</code></p>
         </td>
       </tr>
       <tr>
@@ -239,7 +236,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.</p>
 
 
-
+              <p>CompiledName: <code>get_Tail</code></p>
         </td>
       </tr>
       <tr>
@@ -260,7 +257,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns option first element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryHead</code></p>
         </td>
       </tr>
       <tr>
@@ -281,7 +278,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryInitial</code></p>
         </td>
       </tr>
       <tr>
@@ -302,7 +299,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns option last element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryLast</code></p>
         </td>
       </tr>
       <tr>
@@ -323,7 +320,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryTail</code></p>
         </td>
       </tr>
       <tr>
@@ -344,7 +341,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns option init and the last element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryUnconj</code></p>
         </td>
       </tr>
       <tr>
@@ -365,7 +362,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns option first element and tail.</p>
 
 
-
+              <p>CompiledName: <code>get_TryUncons</code></p>
         </td>
       </tr>
       <tr>
@@ -386,7 +383,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns init and the last element.</p>
 
 
-
+              <p>CompiledName: <code>get_Unconj</code></p>
         </td>
       </tr>
       <tr>
@@ -407,7 +404,7 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <p>O(1) amortized, O(n), worst case. Returns the first element and tail.</p>
 
 
-
+              <p>CompiledName: <code>get_Uncons</code></p>
         </td>
       </tr>
     </tbody>

@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>Defines functions which allow to access and manipulate RandomAccessLists.</p>
 
-
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -68,8 +67,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns a new random access list with the element added at the end.</p>
-
+          <p>O(1). Returns a new random access list with the element added at the start.</p>
 
 
         </td>
@@ -92,7 +90,6 @@
           <p>O(1). Returns random access list of no elements.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -111,7 +108,6 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns a state from the supplied state and a function operating from left to right.</p>
-
 
 
         </td>
@@ -134,7 +130,6 @@
           <p>O(n). Returns a state from the supplied state and a function operating from right to left.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -152,8 +147,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the last element in the random access list. If the random access list is empty it throws an exception.</p>
-
+          <p>O(1). Returns the first element in the random access list. If the random access list is empty it throws an exception.</p>
 
 
         </td>
@@ -176,7 +170,6 @@
           <p>O(n). Returns a random access list of the supplied length using the supplied function operating on the index.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -195,7 +188,6 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns true if the random access list has no elements.</p>
-
 
 
         </td>
@@ -218,7 +210,6 @@
           <p>O(1). Returns the number of items in the random access list.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -239,7 +230,6 @@
           <p>O(n). Returns a random access list whose elements are the results of applying the supplied function to each of the elements of a supplied random access list.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -257,8 +247,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns the value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns the value at the index.</p>
 
 
         </td>
@@ -281,7 +270,6 @@
           <p>O(n). Returns a random access list of the seq.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -302,7 +290,6 @@
           <p>O(n). Returns new random access list reversed.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -320,8 +307,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns a new random access list without the last item. If the collection is empty it throws an exception.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new random access list without the first item. If the collection is empty it throws an exception.</p>
 
 
         </td>
@@ -344,7 +330,6 @@
           <p>O(n). Views the given random access list as a sequence.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -362,8 +347,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option last element in the random access list.</p>
-
+          <p>O(1). Returns option first element in the random access list.</p>
 
 
         </td>
@@ -383,8 +367,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns option value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns option value at the index.</p>
 
 
         </td>
@@ -404,8 +387,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns option random access list without the last item.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns option random access list without the first item.</p>
 
 
         </td>
@@ -425,8 +407,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option tuple last element and random access list without last item</p>
-
+          <p>O(1). Returns option tuple first element and random access list without first item</p>
 
 
         </td>
@@ -446,8 +427,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns option random access list that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.</p>
 
 
         </td>
@@ -467,8 +447,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns tuple last element and random access list without last item</p>
-
+          <p>O(1). Returns tuple first element and random access list without first item</p>
 
 
         </td>
@@ -488,8 +467,7 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns a new random access list that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.</p>
 
 
         </td>
@@ -518,6 +496,7 @@
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           
+              <p>CompiledName: <code>|Cons|Nil|</code></p>
         </td>
       </tr>
     </tbody>

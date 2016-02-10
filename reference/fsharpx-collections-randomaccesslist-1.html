@@ -40,11 +40,14 @@
   <span>Namespace: FSharpx.Collections</span><br />
 </p>
 <div class="xmldoc">
-<p>RandomAccessList is an ordered linear structure implementing the List signature 
-(head, tail, cons), as well as inspection (lookup) and update (returning a new 
-immutable instance) of any element in the structure by index. Ordering is by insertion history.
-While PersistentVector<'T> is appending to the end this version prepends ekements to the list.</p>
-
+<p>RandomAccessList is an ordered linear structure implementing the List signature
+(head, tail, cons), as well as inspection (lookup) and update (returning a new
+immutable instance) of any element in the structure by index. Length is O(1). Indexed
+lookup or update (returning a new immutable instance of RandomAccessList) of any element
+is O(log32n), which is close enough to O(1) as to make no practical difference: a
+RandomAccessList containing 4 billion items can lookup or update any item in at most 7
+steps. Ordering is by insertion history. While PersistentVector<'T> is appending to the
+end this version prepends elements to the list.</p>
 
 </div>
   <h3>Instance members</h3>
@@ -68,8 +71,7 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns a new random access list with the element added at the end.</p>
-
+          <p>O(1). Returns a new random access list with the element added at the start.</p>
 
 
         </td>
@@ -89,10 +91,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns the last element in the random access list. If the random access list is empty it throws an exception.</p>
+          <p>O(1). Returns the first element in the random access list. If the random access list is empty it throws an exception.</p>
 
 
-
+              <p>CompiledName: <code>get_Head</code></p>
         </td>
       </tr>
       <tr>
@@ -113,7 +115,7 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           <p>O(1). Returns true if the random access list has no elements.</p>
 
 
-
+              <p>CompiledName: <code>get_IsEmpty</code></p>
         </td>
       </tr>
       <tr>
@@ -131,10 +133,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns random access list element at the index.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns random access list element at the index.</p>
 
 
-
+              <p>CompiledName: <code>get_Item</code></p>
         </td>
       </tr>
       <tr>
@@ -155,7 +157,7 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           <p>O(1). Returns the number of items in the random access list.</p>
 
 
-
+              <p>CompiledName: <code>get_Length</code></p>
         </td>
       </tr>
       <tr>
@@ -176,7 +178,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           <p>O(n). Returns random access list reversed.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -194,10 +195,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns a new random access list without the last item. If the collection is empty it throws an exception.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new random access list without the first item. If the collection is empty it throws an exception.</p>
 
 
-
+              <p>CompiledName: <code>get_Tail</code></p>
         </td>
       </tr>
       <tr>
@@ -215,10 +216,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option last element in the random access list.</p>
+          <p>O(1). Returns option first element in the random access list.</p>
 
 
-
+              <p>CompiledName: <code>get_TryHead</code></p>
         </td>
       </tr>
       <tr>
@@ -236,10 +237,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns option random access list without the last item.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns option random access list without the first item.</p>
 
 
-
+              <p>CompiledName: <code>get_TryTail</code></p>
         </td>
       </tr>
       <tr>
@@ -257,10 +258,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option tuple last element and random access list without last item</p>
+          <p>O(1). Returns option tuple first element and random access list without first item</p>
 
 
-
+              <p>CompiledName: <code>get_TryUncons</code></p>
         </td>
       </tr>
       <tr>
@@ -278,8 +279,7 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns option random access list that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.</p>
 
 
         </td>
@@ -299,10 +299,10 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns tuple last element and random access list without last item</p>
+          <p>O(1). Returns tuple first element and random access list without first item</p>
 
 
-
+              <p>CompiledName: <code>get_Uncons</code></p>
         </td>
       </tr>
       <tr>
@@ -320,8 +320,7 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns a new random access list that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.</p>
 
 
         </td>

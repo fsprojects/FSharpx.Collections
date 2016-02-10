@@ -40,11 +40,12 @@
   <span>Namespace: FSharpx.Collections</span><br />
 </p>
 <div class="xmldoc">
-<p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
-(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
-(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
+<p>PersistentVector is an ordered linear structure implementing the inverse of the List signature,
+(last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
+(returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
+to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
+lookup or update any item in at most 7 steps.
 Ordering is by insertion history. The original idea can be found in <a href="http://clojure.org/data_structures">Clojure</a>.</p>
-
 
 </div>
   <h3>Instance members</h3>
@@ -71,7 +72,6 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(1). Returns a new vector with the element added at the end.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -89,10 +89,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
 
 
-
+              <p>CompiledName: <code>get_Initial</code></p>
         </td>
       </tr>
       <tr>
@@ -113,7 +113,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(1). Returns true if the vector has no elements.</p>
 
 
-
+              <p>CompiledName: <code>get_IsEmpty</code></p>
         </td>
       </tr>
       <tr>
@@ -131,10 +131,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns vector element at the index.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns vector element at the index.</p>
 
 
-
+              <p>CompiledName: <code>get_Item</code></p>
         </td>
       </tr>
       <tr>
@@ -155,7 +155,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(1). Returns the last element in the vector. If the vector is empty it throws an exception.</p>
 
 
-
+              <p>CompiledName: <code>get_Last</code></p>
         </td>
       </tr>
       <tr>
@@ -176,7 +176,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(1). Returns the number of items in the vector.</p>
 
 
-
+              <p>CompiledName: <code>get_Length</code></p>
         </td>
       </tr>
       <tr>
@@ -197,7 +197,6 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(n). Returns random access list reversed.</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -215,10 +214,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(n). Returns option vector without the last item.</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns option vector without the last item.</p>
 
 
-
+              <p>CompiledName: <code>get_TryInitial</code></p>
         </td>
       </tr>
       <tr>
@@ -239,7 +238,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <p>O(1). Returns option last element in the vector.</p>
 
 
-
+              <p>CompiledName: <code>get_TryLast</code></p>
         </td>
       </tr>
       <tr>
@@ -257,10 +256,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns option tuple last element and vector without last item</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns option tuple last element and vector without last item</p>
 
 
-
+              <p>CompiledName: <code>get_TryUnconj</code></p>
         </td>
       </tr>
       <tr>
@@ -278,8 +277,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns option vector that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.</p>
 
 
         </td>
@@ -299,10 +297,10 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(1). Returns tuple last element and vector without last item</p>
+          <p>O(1) for all practical purposes; really O(log32n). Returns tuple last element and vector without last item</p>
 
 
-
+              <p>CompiledName: <code>get_Unconj</code></p>
         </td>
       </tr>
       <tr>
@@ -320,8 +318,7 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>O(log32n). Returns a new vector that contains the given value at the index.</p>
-
+          <p>O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.</p>
 
 
         </td>
@@ -350,7 +347,6 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Returns a new PersistentVector with no elements.</p>
-
 
 
         </td>

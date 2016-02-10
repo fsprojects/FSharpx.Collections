@@ -41,20 +41,17 @@
 </p>
 <div class="xmldoc">
 <p>LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
-uncached sequences. LazyLists normally involve delayed computations without 
-side-effects.  The results of these computations are cached and evaluations will be 
-performed only once for each element of the lazy list.  In contrast, for sequences 
-(IEnumerable) recomputation happens each time an enumerator is created and the sequence 
+uncached sequences. LazyLists normally involve delayed computations without
+side-effects.  The results of these computations are cached and evaluations will be
+performed only once for each element of the lazy list.  In contrast, for sequences
+(IEnumerable) recomputation happens each time an enumerator is created and the sequence
 traversed.</p>
-
-<p>LazyLists can represent cached, potentially-infinite computations.  Because they are 
-cached they may cause memory leaks if some active code or data structure maintains a 
-live reference to the head of an infinite or very large lazy list while iterating it, 
+<p>LazyLists can represent cached, potentially-infinite computations.  Because they are
+cached they may cause memory leaks if some active code or data structure maintains a
+live reference to the head of an infinite or very large lazy list while iterating it,
 or if a reference is maintained after the list is no longer required.</p>
-
-<p>Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns. 
+<p>Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns.
 These may force the computation of elements of the list.</p>
-
 
 </div>
   <h3>Instance members</h3>
@@ -79,10 +76,10 @@ These may force the computation of elements of the list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Return the first element of the list.  Forces the evaluation of
- the first cell of the list if it is not already evaluated.</p>
+the first cell of the list if it is not already evaluated.</p>
 
 
-
+              <p>CompiledName: <code>get_Head</code></p>
         </td>
       </tr>
       <tr>
@@ -101,10 +98,10 @@ These may force the computation of elements of the list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Test if a list is empty.  Forces the evaluation of
- the first element of the stream if it is not already evaluated.</p>
+the first element of the stream if it is not already evaluated.</p>
 
 
-
+              <p>CompiledName: <code>get_IsEmpty</code></p>
         </td>
       </tr>
       <tr>
@@ -125,7 +122,6 @@ These may force the computation of elements of the list.</p>
           <p>O(n). Return the length of the list</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -144,10 +140,10 @@ These may force the computation of elements of the list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Return the list corresponding to the remaining items in the sequence.<br />
- Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
 
 
-
+              <p>CompiledName: <code>get_Tail</code></p>
         </td>
       </tr>
       <tr>
@@ -166,10 +162,10 @@ These may force the computation of elements of the list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Return option the first element of the list.  Forces the evaluation of
- the first cell of the list if it is not already evaluated.</p>
+the first cell of the list if it is not already evaluated.</p>
 
 
-
+              <p>CompiledName: <code>get_TryHead</code></p>
         </td>
       </tr>
       <tr>
@@ -188,10 +184,10 @@ These may force the computation of elements of the list.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(1). Return option the list corresponding to the remaining items in the sequence.<br />
- Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
+Forces the evaluation of the first cell of the list if it is not already evaluated.</p>
 
 
-
+              <p>CompiledName: <code>get_TryTail</code></p>
         </td>
       </tr>
       <tr>
@@ -212,7 +208,7 @@ These may force the computation of elements of the list.</p>
           <p>O(1). Returns option tuple of head element and tail of the list.</p>
 
 
-
+              <p>CompiledName: <code>get_TryUncons</code></p>
         </td>
       </tr>
       <tr>
@@ -233,7 +229,7 @@ These may force the computation of elements of the list.</p>
           <p>O(1). Returns tuple of head element and tail of the list.</p>
 
 
-
+              <p>CompiledName: <code>get_Uncons</code></p>
         </td>
       </tr>
     </tbody>

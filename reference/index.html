@@ -49,17 +49,15 @@
           </td>
           <td class="xmldoc"><p>An ArraySegment with structural comparison and equality.</p>
 
-
 </td>
         </tr>
         <tr>
           <td class="type-name">
             <a href="fsharpx-collections-dlist-1.html">DList<'T></a>
           </td>
-          <td class="xmldoc"><p>DList is an ordered linear structure implementing the List signature (head, tail, cons), 
+          <td class="xmldoc"><p>DList is an ordered linear structure implementing the List signature (head, tail, cons),
 end-insertion (conj), and O(1) append. Ordering is by insertion history.
 DList is an implementation of <a href="http://dl.acm.org/citation.cfm?id=8475">John Hughes' append list</a>.</p>
-
 
 </td>
         </tr>
@@ -68,10 +66,9 @@ DList is an implementation of <a href="http://dl.acm.org/citation.cfm?id=8475">J
             <a href="fsharpx-collections-deque-1.html">Deque<'T></a>
           </td>
           <td class="xmldoc"><p>Double-ended queue is an ordered linear linear structure implementing the signature of List
-(head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects 
-the first or left-most element in the structure, while "last" inspects the last or 
+(head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects
+the first or left-most element in the structure, while "last" inspects the last or
 right-most element. "rev" (reverse) has time complexity O(1). Ordering is by insertion history.</p>
-
 
 </td>
         </tr>
@@ -79,13 +76,12 @@ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by ins
           <td class="type-name">
             <a href="fsharpx-collections-heap-1.html">Heap<'T></a>
           </td>
-          <td class="xmldoc"><p>Heap is an ordered linear structure where the ordering is either ascending or descending. 
-"head" inspects the first element in the ordering, "tail" takes the remaining structure 
-after head, and "insert" places elements within the ordering. PriorityQueue is available 
+          <td class="xmldoc"><p>Heap is an ordered linear structure where the ordering is either ascending or descending.
+"head" inspects the first element in the ordering, "tail" takes the remaining structure
+after head, and "insert" places elements within the ordering. PriorityQueue is available
 as an alternate interface.
-According to Okasaki the time complexity of the heap functions in this Heap implementation 
+According to Okasaki the time complexity of the heap functions in this Heap implementation
 (based on the "pairing" heap) have "resisted" time complexity analysis.</p>
-
 
 </td>
         </tr>
@@ -106,20 +102,17 @@ According to Okasaki the time complexity of the heap functions in this Heap impl
             <a href="fsharpx-collections-lazylist-1.html">LazyList<'T></a>
           </td>
           <td class="xmldoc"><p>LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
-uncached sequences. LazyLists normally involve delayed computations without 
-side-effects.  The results of these computations are cached and evaluations will be 
-performed only once for each element of the lazy list.  In contrast, for sequences 
-(IEnumerable) recomputation happens each time an enumerator is created and the sequence 
+uncached sequences. LazyLists normally involve delayed computations without
+side-effects.  The results of these computations are cached and evaluations will be
+performed only once for each element of the lazy list.  In contrast, for sequences
+(IEnumerable) recomputation happens each time an enumerator is created and the sequence
 traversed.</p>
-
-<p>LazyLists can represent cached, potentially-infinite computations.  Because they are 
-cached they may cause memory leaks if some active code or data structure maintains a 
-live reference to the head of an infinite or very large lazy list while iterating it, 
+<p>LazyLists can represent cached, potentially-infinite computations.  Because they are
+cached they may cause memory leaks if some active code or data structure maintains a
+live reference to the head of an infinite or very large lazy list while iterating it,
 or if a reference is maintained after the list is no longer required.</p>
-
-<p>Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns. 
+<p>Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns.
 These may force the computation of elements of the list.</p>
-
 
 </td>
         </tr>
@@ -136,18 +129,18 @@ These may force the computation of elements of the list.</p>
           <td class="xmldoc"><p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
 Hash maps provide fast access (log32N hops). count is O(1).</p>
 
-
 </td>
         </tr>
         <tr>
           <td class="type-name">
             <a href="fsharpx-collections-persistentvector-1.html">PersistentVector<'T></a>
           </td>
-          <td class="xmldoc"><p>PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
-(last, initial, conj) in place of (head, tail, cons). Indexed lookup or update 
-(returning a new immutable instance of Vector) of any element is O(log32n). Length is O(1). 
+          <td class="xmldoc"><p>PersistentVector is an ordered linear structure implementing the inverse of the List signature,
+(last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
+(returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
+to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
+lookup or update any item in at most 7 steps.
 Ordering is by insertion history. The original idea can be found in <a href="http://clojure.org/data_structures">Clojure</a>.</p>
-
 
 </td>
         </tr>
@@ -155,13 +148,12 @@ Ordering is by insertion history. The original idea can be found in <a href="htt
           <td class="type-name">
             <a href="fsharpx-collections-queue-1.html">Queue<'T></a>
           </td>
-          <td class="xmldoc"><p>Queue is an ordered linear data structure where elements are added at the end (right) 
-and inspected and removed at the beginning (left). Ordering is by insertion history. 
+          <td class="xmldoc"><p>Queue is an ordered linear data structure where elements are added at the end (right)
+and inspected and removed at the beginning (left). Ordering is by insertion history.
 The qualities of the Queue structure make elements first in, first out (fifo).
-"head" inspects the first or left-most element in the structure, while "conj" 
+"head" inspects the first or left-most element in the structure, while "conj"
 inserts an element at the end, or right of the structure.
 Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
-
 
 </td>
         </tr>
@@ -169,11 +161,14 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <td class="type-name">
             <a href="fsharpx-collections-randomaccesslist-1.html">RandomAccessList<'T></a>
           </td>
-          <td class="xmldoc"><p>RandomAccessList is an ordered linear structure implementing the List signature 
-(head, tail, cons), as well as inspection (lookup) and update (returning a new 
-immutable instance) of any element in the structure by index. Ordering is by insertion history.
-While PersistentVector<'T> is appending to the end this version prepends ekements to the list.</p>
-
+          <td class="xmldoc"><p>RandomAccessList is an ordered linear structure implementing the List signature
+(head, tail, cons), as well as inspection (lookup) and update (returning a new
+immutable instance) of any element in the structure by index. Length is O(1). Indexed
+lookup or update (returning a new immutable instance of RandomAccessList) of any element
+is O(log32n), which is close enough to O(1) as to make no practical difference: a
+RandomAccessList containing 4 billion items can lookup or update any item in at most 7
+steps. Ordering is by insertion history. While PersistentVector<'T> is appending to the
+end this version prepends elements to the list.</p>
 
 </td>
         </tr>
@@ -189,7 +184,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
             <a href="fsharpx-collections-arraymodule.html">Array</a>
           </td>
           <td class="xmldoc"><p>Extensions for F#'s Array module.</p>
-
 
 </td>
         </tr>
@@ -216,7 +210,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
             <a href="fsharpx-collections-dictionarymodule.html">Dictionary</a>
           </td>
           <td class="xmldoc"><p>Extensions for System.Collections.Generic.Dictionary.</p>
-
 
 </td>
         </tr>
@@ -250,7 +243,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           </td>
           <td class="xmldoc"><p>Extensions for F#'s List module.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -265,7 +257,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           </td>
           <td class="xmldoc"><p>Extensions for F#'s Map module.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -273,7 +264,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
             <a href="fsharpx-collections-namevaluecollectionmodule.html">NameValueCollection</a>
           </td>
           <td class="xmldoc"><p>Extensions for NameValueCollections.</p>
-
 
 </td>
         </tr>
@@ -289,7 +279,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           </td>
           <td class="xmldoc"><p>Defines functions which allow to access and manipulate PersistentHashMaps.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -297,7 +286,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
             <a href="fsharpx-collections-persistentvectormodule.html">PersistentVector</a>
           </td>
           <td class="xmldoc"><p>Defines functions which allow to access and manipulate PersistentVectors.</p>
-
 
 </td>
         </tr>
@@ -319,7 +307,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
           </td>
           <td class="xmldoc"><p>Defines functions which allow to access and manipulate RandomAccessLists.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -327,7 +314,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
             <a href="fsharpx-collections-seq.html">Seq</a>
           </td>
           <td class="xmldoc"><p>Extensions for F#'s Seq module.</p>
-
 
 </td>
         </tr>
@@ -398,7 +384,6 @@ While PersistentVector<'T> is appending to the end this version prepends ekement
 This RoseTree uses a Vector for the children RoseTree forest.
 Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -421,7 +406,6 @@ Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
 Provide more optimal space usage for huge arrays than standard ResizeArray.
 Basic version created by Avdyukhin Dmitry <a href="dimonbv@gmail.com">dimonbv@gmail.com</a></p>
 
-
 </td>
         </tr>
         <tr>
@@ -435,7 +419,6 @@ efficient calculation of the list length.
 Note that an alternate form would represent the DList as:
 type DList<'T> = DList of ('T list -&gt; 'T list)
 An example can be found at <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209</a></p>
-
 
 </td>
         </tr>
@@ -465,7 +448,6 @@ An example can be found at <a href="http://stackoverflow.com/questions/5324623/f
 This RoseTree uses a List for the children RoseTree forest.
 Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -494,7 +476,6 @@ Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
 This RoseTree uses a Vector for the children RoseTree forest.
 Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -514,9 +495,8 @@ Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
             <a href="fsharpx-collections-experimental-pairingheap-1.html">PairingHeap<'T></a>
           </td>
           <td class="xmldoc"><p>PairingHeap performs extremely well in practice, however (according to Okasaki) it should be avoided for applications taking advantage of persistence.
-Also according to Okasaki the time complexity of the heap functions in the PairingHeap implementation have "resisted" time complexity analysis. 
+Also according to Okasaki the time complexity of the heap functions in the PairingHeap implementation have "resisted" time complexity analysis.
 ofSeq: superior performance; insert: superior performance; tail: superior performance</p>
-
 
 </td>
         </tr>
@@ -556,7 +536,6 @@ ofSeq: superior performance; insert: superior performance; tail: superior perfor
           </td>
           <td class="xmldoc"><p>Multi-way tree, also known as rose tree.</p>
 
-
 </td>
         </tr>
         <tr>
@@ -581,11 +560,10 @@ ofSeq: superior performance; insert: superior performance; tail: superior perfor
           <td class="type-name">
             <a href="fsharpx-collections-experimental-skewbinomialheap-1.html">SkewBinomialHeap<'T></a>
           </td>
-          <td class="xmldoc"><p>A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are 
-extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their 
+          <td class="xmldoc"><p>A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are
+extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their
 "try" variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
 insertions in constant time O(1). (Based on "Purely Functional Data Structures" - 1996 by Chris Okasaki)</p>
-
 
 </td>
         </tr>
@@ -668,7 +646,6 @@ insertions in constant time O(1). (Based on "Purely Functional Data Structures" 
           </td>
           <td class="xmldoc"><p>TreeZipper
 original implementation taken from <a href="http://blog.xquant.net/?p=156">http://blog.xquant.net/?p=156</a></p>
-
 
 </td>
         </tr>
@@ -763,7 +740,6 @@ original implementation taken from <a href="http://blog.xquant.net/?p=156">http:
           <td class="xmldoc"><p>ListZipper
 original implementation taken from <a href="http://learnyouahaskell.com/zippers">http://learnyouahaskell.com/zippers</a></p>
 
-
 </td>
         </tr>
         <tr>
@@ -847,7 +823,6 @@ original implementation taken from <a href="http://learnyouahaskell.com/zippers"
             <a href="microsoft-fsharp-collections-resizearraymodule.html">ResizeArray</a>
           </td>
           <td class="xmldoc"><p>Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.</p>
-
 
 </td>
         </tr>

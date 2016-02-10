@@ -40,13 +40,12 @@
   <span>Namespace: FSharpx.Collections</span><br />
 </p>
 <div class="xmldoc">
-<p>Queue is an ordered linear data structure where elements are added at the end (right) 
-and inspected and removed at the beginning (left). Ordering is by insertion history. 
+<p>Queue is an ordered linear data structure where elements are added at the end (right)
+and inspected and removed at the beginning (left). Ordering is by insertion history.
 The qualities of the Queue structure make elements first in, first out (fifo).
-"head" inspects the first or left-most element in the structure, while "conj" 
+"head" inspects the first or left-most element in the structure, while "conj"
 inserts an element at the end, or right of the structure.
 Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
-
 
 </div>
   <h3>Instance members</h3>
@@ -73,7 +72,6 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1). Returns a new queue with the element added to the end. (Enqueue)</p>
 
 
-
         </td>
       </tr>
       <tr>
@@ -94,7 +92,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1). Returns the first element. (Peek)</p>
 
 
-
+              <p>CompiledName: <code>get_Head</code></p>
         </td>
       </tr>
       <tr>
@@ -115,7 +113,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1). Returns true if the queue has no elements.</p>
 
 
-
+              <p>CompiledName: <code>get_IsEmpty</code></p>
         </td>
       </tr>
       <tr>
@@ -136,7 +134,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1). Returns the count of elememts.</p>
 
 
-
+              <p>CompiledName: <code>get_Length</code></p>
         </td>
       </tr>
       <tr>
@@ -155,7 +153,6 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
           <p>O(n). Returns queue reversed.</p>
-
 
 
         </td>
@@ -178,7 +175,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1) amortized, O(n) worst-case. Returns a new queue of the elements trailing the first element. (Dequeue)</p>
 
 
-
+              <p>CompiledName: <code>get_Tail</code></p>
         </td>
       </tr>
       <tr>
@@ -199,7 +196,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1). Returns option first element</p>
 
 
-
+              <p>CompiledName: <code>get_TryHead</code></p>
         </td>
       </tr>
       <tr>
@@ -220,7 +217,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1) amortized, O(n) worst-case. Returns option queue of the elements trailing the first element.</p>
 
 
-
+              <p>CompiledName: <code>get_TryTail</code></p>
         </td>
       </tr>
       <tr>
@@ -241,7 +238,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1) amortized, O(n) worst-case. Returns option first element and tail.</p>
 
 
-
+              <p>CompiledName: <code>get_TryUncons</code></p>
         </td>
       </tr>
       <tr>
@@ -262,7 +259,7 @@ Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
           <p>O(1) amortized, O(n) worst-case. Returns the first element and tail.</p>
 
 
-
+              <p>CompiledName: <code>get_Uncons</code></p>
         </td>
       </tr>
     </tbody>
