@@ -5,8 +5,7 @@ nuget NUnit.Runners
 nuget FSharp.Formatting
 nuget FsCheck 0.9.2
 nuget FsUnit
-nuget NUnit
-nuget NUget.CommandLine
+nuget NUnit ~> 2
 nuget FSharp.Core >= 3
 nuget SourceLink.Fake
 
