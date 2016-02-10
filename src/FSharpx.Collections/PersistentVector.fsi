@@ -41,10 +41,10 @@ type PersistentVector<'T> =
     ///O(n). Returns random access list reversed.
     member Rev : unit -> PersistentVector<'T>
 
-    /// O(1). Returns tuple last element and vector without last item  
+    /// O(n). Returns tuple last element and vector without last item
     member Unconj : PersistentVector<'T> * 'T
 
-    /// O(1). Returns option tuple last element and vector without last item  
+    /// O(n). Returns option tuple last element and vector without last item
     member TryUnconj : (PersistentVector<'T> * 'T) option
 
     /// O(log32n). Returns a new vector that contains the given value at the index.
@@ -126,10 +126,10 @@ module PersistentVector =
     ///O(n). Views the given vector as a sequence.
     val inline toSeq  : PersistentVector<'T> ->  seq<'T>
 
-    /// O(1). Returns tuple last element and vector without last item
+    /// O(n). Returns tuple last element and vector without last item
     val inline unconj : PersistentVector<'T> -> PersistentVector<'T> * 'T
 
-    /// O(1). Returns option tuple last element and vector without last item  
+    /// O(n). Returns option tuple last element and vector without last item
     val inline tryUnconj : PersistentVector<'T> -> (PersistentVector<'T> * 'T) option
 
     /// O(log32n). Returns a new vector that contains the given value at the index. 
