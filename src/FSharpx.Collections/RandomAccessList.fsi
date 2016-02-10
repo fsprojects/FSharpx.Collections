@@ -42,10 +42,10 @@ type RandomAccessList<'T> =
     /// O(1) for all practical purposes; really O(log32n). Returns option random access list without the first item.
     member TryTail : RandomAccessList<'T> option
 
-    /// O(1). Returns tuple first element and random access list without first item
+    /// O(1) for all practical purposes; really O(log32n). Returns tuple first element and random access list without first item
     member Uncons : 'T * RandomAccessList<'T>
 
-    /// O(1). Returns option tuple first element and random access list without first item
+    /// O(1) for all practical purposes; really O(log32n). Returns option tuple first element and random access list without first item
     member TryUncons : ('T * RandomAccessList<'T>) option
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
@@ -112,10 +112,10 @@ module RandomAccessList =
     /// O(n). Views the given random access list as a sequence.
     val inline toSeq  : RandomAccessList<'T> ->  seq<'T>
 
-    /// O(1). Returns tuple first element and random access list without first item
+    /// O(1) for all practical purposes; really O(log32n). Returns tuple first element and random access list without first item
     val inline uncons : RandomAccessList<'T> -> 'T * RandomAccessList<'T>
 
-    /// O(1). Returns option tuple first element and random access list without first item
+    /// O(1) for all practical purposes; really O(log32n). Returns option tuple first element and random access list without first item
     val inline tryUncons : RandomAccessList<'T> -> ('T * RandomAccessList<'T>) option
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
