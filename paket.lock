@@ -23,6 +23,7 @@ NUGET
     NUnit.Console (3.0.1)
     NUnit.Runners (3.0.1)
       NUnit.Console (3.0.1)
+    NUnit.Runners.Net4 (2.6.4)
     Octokit (0.18.0)
       Microsoft.Net.Http
     SourceLink.Fake (1.1.0)
