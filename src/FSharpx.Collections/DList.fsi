@@ -37,7 +37,7 @@ type DList<'T> =
     ///O(log n). Returns the first element and tail.
     member Uncons : 'T * DList<'T> 
  
-    ///O((log n). Returns option first element and tail.
+    ///O(log n). Returns option first element and tail.
     member TryUncons : ('T * DList<'T>) option
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
