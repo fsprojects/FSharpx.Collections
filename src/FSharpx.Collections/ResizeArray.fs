@@ -7,7 +7,6 @@ namespace Microsoft.FSharp.Collections
 
 open Microsoft.FSharp.Core.OptimizedClosures
 
-
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module ResizeArray =
 
@@ -322,6 +321,24 @@ module ResizeArray =
             res1.Add(x)
             res2.Add(y)
         res1,res2
+
+    
+
+    let distinctBy keyf (array:ResizeArray<_>) =
+        let temp = ResizeArray()
+        let hashSet = System.Collections.Generic.HashSet(HashIdentity.Structural)
+        for v in array do
+            if hashSet.Add(keyf v) then
+                temp.Add(v)
+        temp
+
+    let distinct (array:ResizeArray<_>) =
+        let temp = ResizeArray()
+        let hashSet = System.Collections.Generic.HashSet(HashIdentity.Structural)
+        for v in array do
+            if hashSet.Add(v) then
+                temp.Add(v)
+        temp
 
     let combine arr1 arr2 = zip arr1 arr2
     let split arr = unzip arr

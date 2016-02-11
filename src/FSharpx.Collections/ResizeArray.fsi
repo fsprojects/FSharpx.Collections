@@ -227,3 +227,13 @@ module ResizeArray =
 
     /// Split an array of pairs into two arrays
     val unzip : ResizeArray<'T1 * 'T2> -> ResizeArray<'T1> * ResizeArray<'T2>
+
+    /// Returns an array that contains no duplicate entries according to the 
+    /// generic hash and equality comparisons on the keys returned by the given key-generating function.
+    /// If an element occurs multiple times in the array then the later occurrences are discarded.
+    val distinctBy: ('T -> 'Key) -> ResizeArray<'T> -> ResizeArray<'T> when 'Key : equality
+
+    /// Returns an array that contains no duplicate entries according to generic hash and
+    /// equality comparisons on the entries.
+    /// If an element occurs multiple times in the array then the later occurrences are discarded.
+    val distinct: ResizeArray<'T> -> ResizeArray<'T> when 'T : equality
