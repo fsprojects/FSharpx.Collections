@@ -1,7 +1,6 @@
-#### 1.13.4 - 02.10.2015 
-* Allow 4.0 FSharp.Core
-
-#### 1.13.3 - 30.09.2015 
+#### 1.14.0 - 13.02.2016 
+* Allow 4.0 FSharp.Core 
+* Distinct and DistinctBy functions for ResizeArray - https://github.com/fsprojects/FSharpx.Collections/pull/56
 * Add zip to NonEmptyList - https://github.com/fsprojects/FSharpx.Collections/pull/46
  
 #### 1.12.4 - 13.09.2015 
