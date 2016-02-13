@@ -9,6 +9,7 @@ type public ResizeArrayTests() =
   
     [<Test>]
     member this.BasicTests() = 
+        let rng = System.Random()
         let ra = ResizeArray.ofList
         let (=?) a b = ResizeArray.toList a = b
 
@@ -193,3 +194,9 @@ type public ResizeArrayTests() =
 
         test "ra_concat concat"
             (ResizeArray.concat (ra [ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]]) =? (ResizeArray.concat (Seq.ofList[ra [1; 2]; ra [3]; ra [4; 5; 6;]; ra []; ra [7]]) |> List.ofSeq))
+
+        test "ra_distinct a"
+            (let ar = [for i=1 to 100 do yield rng.Next(0,10)] in (ar |> Seq.distinct |> Seq.toArray) = (ar |> ra |> ResizeArray.distinct |> ResizeArray.toArray))
+
+        test "ra_distinctBy a"
+            (let ar = [for i=1 to 100 do yield rng.Next(0,10),rng.Next(0,10)] in (ar |> Seq.distinctBy(fun (x,_) -> x) |> Seq.toArray) = (ar |> ra |> ResizeArray.distinctBy(fun (x,_) -> x) |> ResizeArray.toArray))
