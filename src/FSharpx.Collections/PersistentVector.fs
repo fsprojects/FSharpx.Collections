@@ -446,7 +446,7 @@ module PersistentVector =
 
     let inline tryUpdate i (x : 'T) (vector : PersistentVector<'T>) = vector.TryUpdate(i, x)
 
-    let inline tryUpdateNth i  j (x : 'T) (vector : PersistentVector<PersistentVector<'T>>) = 
+    let inline tryUpdateNth i j (x : 'T) (vector : PersistentVector<PersistentVector<'T>>) =
         if i >= 0 && i < vector.Length && j >= 0 && j < vector.[i].Length
         then Some(updateNth i j x vector)
         else None
