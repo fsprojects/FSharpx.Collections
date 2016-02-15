@@ -60,6 +60,9 @@ module RandomAccessList =
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : RandomAccessList<'T> ->  Choice<('T * RandomAccessList<'T> ),unit>
 
+    /// O(n). Returns a new random access list with the elements of the second random access list added at the end.
+    val append : RandomAccessList<'T> -> RandomAccessList<'T> -> RandomAccessList<'T>
+
     /// O(1). Returns a new random access list with the element added at the start.
     val inline cons : 'T -> RandomAccessList<'T> -> RandomAccessList<'T>
 
@@ -138,4 +141,7 @@ module RandomAccessList =
 
     /// O(log32(m,n)). Returns option random access list that contains the given value at the indices.
     val inline tryUpdateNth : int -> int -> 'T -> RandomAccessList<RandomAccessList<'T>> -> RandomAccessList<RandomAccessList<'T>> option
+
+    /// O(n). Returns a random access list of random access lists of given length from the seq. Result may be a jagged random access list.
+    val inline windowSeq : int  -> seq<'T> -> RandomAccessList<RandomAccessList<'T>>
 #endif
