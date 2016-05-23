@@ -105,9 +105,14 @@ let ``last is last and never fails``() =
 
 [<Test>]
 let ``append has combined length``() =
-    fsCheck <| fun a b ->
-        let c = NonEmptyList.append a b
-        c.Length = a.Length + b.Length
+    fsCheck <| fun (a: _ list) (b: _ list) ->
+        if a.IsEmpty || b.IsEmpty then
+            // we don't test non-empty lists here.
+            true
+        else
+            let neA = NonEmptyList.create a.Head a.Tail
+            let neB = NonEmptyList.create b.Head b.Tail
+            (NonEmptyList.append neA neB).Length = neA.Length + neB.Length
 
 [<Test>]
 let reduce() =
