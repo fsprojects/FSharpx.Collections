@@ -1,4 +1,4 @@
-#### 1.15.0 - 25.05.2016 
+#### 1.15.1 - 25.05.2016 
 * Use FSharp.Core 4.0 
 * Improved RandomAccessList API with some functions from PersistentVector - https://github.com/fsprojects/FSharpx.Collections/pull/54
 * Faster NonEmptyList implementation - https://github.com/fsprojects/FSharpx.Collections/pull/62
