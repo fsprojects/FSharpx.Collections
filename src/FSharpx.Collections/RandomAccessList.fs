@@ -337,7 +337,15 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
 module RandomAccessList = 
     //pattern discriminators  (active pattern)
     let (|Cons|Nil|) (v : RandomAccessList<'T>) = match v.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil
-     
+
+    let append (listA : RandomAccessList<'T>) (listB : RandomAccessList<'T>) =
+        let mutable ret = TransientVect()
+        for i in (listB.Length - 1) .. -1 .. 0 do
+            ret <- ret.conj listB.[i]
+        for i in (listA.Length - 1) .. -1 .. 0 do
+            ret <- ret.conj listA.[i]
+        ret.persistent()
+
     let inline cons (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.Cons x
 
     let empty<'T> = RandomAccessList.Empty() :> RandomAccessList<'T>
@@ -381,10 +389,19 @@ module RandomAccessList =
     let inline tryNth i (randomAccessList :'T RandomAccessList) =
         if i >= 0 && i < randomAccessList.Length then Some(randomAccessList.[i])
         else None
- 
+
+    let inline nthNth i j (randomAccessList :'T RandomAccessList RandomAccessList) : 'T = randomAccessList.[i] |> nth j
+
+    let inline tryNthNth i j (randomAccessList :'T RandomAccessList RandomAccessList) =
+        match tryNth i randomAccessList with
+        | Some v' -> tryNth j v'
+        | None -> None
+
     let ofSeq (items : 'T seq) = RandomAccessList.ofSeq items 
 
     let inline rev (randomAccessList :'T RandomAccessList) = randomAccessList.Rev()
+
+    let inline singleton (x : 'T) = empty |> cons x
 
     let inline tail (randomAccessList :'T RandomAccessList) = randomAccessList.Tail
 
@@ -398,6 +415,26 @@ module RandomAccessList =
 
     let inline update i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.Update(i, x)
 
+    let inline updateNth i j (x : 'T) (randomAccessList : 'T RandomAccessList RandomAccessList) : 'T RandomAccessList RandomAccessList = randomAccessList.Update(i, (randomAccessList.[i].Update(j, x)))
+
     let inline tryUpdate i (x : 'T) (randomAccessList : 'T RandomAccessList) = randomAccessList.TryUpdate(i, x)
 
+    let inline tryUpdateNth i j (x : 'T) (randomAccessList : 'T RandomAccessList RandomAccessList) =
+        if i >= 0 && i < randomAccessList.Length && j >= 0 && j < randomAccessList.[i].Length
+        then Some(updateNth i j x randomAccessList)
+        else None
+
+    let inline windowFun windowLength =
+        fun t (v : RandomAccessList<RandomAccessList<'T>>) ->
+        if v.Head.Length = windowLength
+        then
+            v
+            |> cons (empty.Cons(t))
+        else
+            tail v
+            |> cons (head v |> cons t)
+
+    let inline windowSeq windowLength (items: 'T seq) =
+        if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
+        else (Seq.foldBack (windowFun windowLength) items (empty.Cons empty<'T>)) (*Seq.fold (windowFun windowLength) (empty.Cons empty<'T>) items*) // TODO: Check if this should be foldBack due to inversion effects of prepending
 #endif

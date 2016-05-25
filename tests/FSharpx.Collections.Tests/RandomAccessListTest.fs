@@ -277,10 +277,69 @@ let ``randomAccessList of randomAccessLists constructed by consing tail``() =
     windowed.[2].Length |> should equal 5
 
 [<Test>]
+let ``windowSeq should keep every value from its original list``() =
+    let seq30 = seq { for i in 1..30 do yield i }
+    let fullVec = ofSeq seq30
+    for i in 1..35 do
+        let lists = windowSeq i seq30
+        lists |> fold append empty |> should equal fullVec
+        lists |> fold append empty |> toSeq |> Seq.take 5 |> Seq.toList |> should equal [1;2;3;4;5]
+
+[<Test>]
+let ``windowSeq should return vectors of equal length if possible``() =
+    let seq30 = seq { for i in 1..30 do yield i }
+
+    let len3lists = windowSeq 3 seq30
+    let len5lists = windowSeq 5 seq30
+    let len6lists = windowSeq 6 seq30
+
+    len3lists |> length |> should equal 10
+    len5lists |> length |> should equal 6
+    len6lists |> length |> should equal 5
+    len3lists |> map length |> toSeq |> Seq.toList |> should equal [3;3;3;3;3;3;3;3;3;3]
+    len5lists |> map length |> toSeq |> Seq.toList |> should equal [5;5;5;5;5;5]
+    len6lists |> map length |> toSeq |> Seq.toList |> should equal [6;6;6;6;6]
+
+[<Test>]
+let ``windowSeq should return vectors all of equal length except the first``() =
+    let seq30 = seq { for i in 1..30 do yield i }
+
+    let len4lists = windowSeq 4 seq30
+    let len7lists = windowSeq 7 seq30
+    let len8lists = windowSeq 8 seq30
+    let len17lists = windowSeq 17 seq30
+
+    len4lists |> length |> should equal 8
+    len7lists |> length |> should equal 5
+    len8lists |> length |> should equal 4
+    len17lists |> length |> should equal 2
+    len4lists |> map length |> toSeq |> Seq.toList |> should equal [2;4;4;4;4;4;4;4] (*[4;4;4;4;4;4;4;2]*)
+    len7lists |> map length |> toSeq |> Seq.toList |> should equal [2;7;7;7;7]
+    len8lists |> map length |> toSeq |> Seq.toList |> should equal [6;8;8;8]
+    len17lists |> map length |> toSeq |> Seq.toList |> should equal [13;17]
+
+[<Test>]
+let ``nth on empty list should throw``() =
+    let x = empty
+    (fun () -> x |> nth 0 |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+
+[<Test>]
 let ``nth length 1``() =
     let x = empty |> cons "a" 
     let x' = x |> nth 0 
     x' |> should equal "a"
+
+[<Test>]
+let ``appending two lists keeps order of items``() =
+    let list1 = ref empty
+    for i in 3 .. -1 .. 1 do
+        list1 := cons i (!list1)
+
+    let list2 = ref empty
+    for i in 9 .. -1 .. 7 do
+        list2 := cons i (!list2)
+
+    append (!list1) (!list2) |> toSeq |> Seq.toList |> should equal [1;2;3;7;8;9]
 
 [<Test>]
 let ``rev empty``() =
@@ -492,6 +551,107 @@ let ``tryNth length 10``() =
 let ``tryNth not found``() =
     let lena = empty |> cons "a" |> cons "b" |> cons "c" |> cons "d" |> cons "e" |> cons "f" |> cons "g" |> cons "h" |> cons "i" |> cons "j"
     lena |> tryNth 10 |> should equal None
+
+[<Test>]
+let ``list of lists can be accessed with nthNth``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    outer |> nthNth 0 2 |> should equal 3
+    outer |> nthNth 1 4 |> should equal 5
+
+[<Test>]
+let ``nthNth throws exception for out-of-bounds indices``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    (fun () -> nthNth 2 2 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> nthNth 1 5 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> nthNth -1 2 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> nthNth 1 -2 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+
+[<Test>]
+let ``list of lists can be accessed with tryNthNth``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    outer |> tryNthNth 0 2 |> should equal (Some 3)
+    outer |> tryNthNth 1 4 |> should equal (Some 5)
+
+[<Test>]
+let ``tryNthNth returns None for out-of-bounds indices``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    outer |> tryNthNth 2 2 |> should equal None
+    outer |> tryNthNth 1 5 |> should equal None
+    outer |> tryNthNth -1 2 |> should equal None
+    outer |> tryNthNth 1 -2 |> should equal None
+
+[<Test>]
+let ``list of lists can be updated with updateNth``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    outer |> updateNth 0 2 7 |> nthNth 0 2 |> should equal 7
+    outer |> updateNth 1 4 9 |> nthNth 1 4 |> should equal 9
+
+[<Test>]
+let ``updateNth should not change the original list``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = ref empty
+    outer := cons inner (!outer)
+    outer := cons inner (!outer)
+
+    !outer |> updateNth 0 2 7 |> nthNth 0 2 |> should equal 7
+    !outer |> nthNth 0 2 |> should equal 3
+    !outer |> updateNth 1 4 9 |> nthNth 1 4 |> should equal 9
+    !outer |> nthNth 1 4 |> should equal 5
+
+[<Test>]
+let ``updateNth throws exception for out-of-bounds indices``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    (fun () -> updateNth 0 6 7 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> updateNth 9 2 7 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> updateNth 1 -4 7 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+    (fun () -> updateNth -1 4 7 outer |> ignore) |> should throw typeof<System.IndexOutOfRangeException>
+
+[<Test>]
+let ``tryUpdateNth returns None for out-of-bounds indices``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    tryUpdateNth 0 6 7 outer |> should equal None
+    tryUpdateNth 9 2 7 outer |> should equal None
+    tryUpdateNth 1 -4 7 outer |> should equal None
+    tryUpdateNth -1 4 7 outer |> should equal None
+
+[<Test>]
+let ``tryUpdateNth is like updateNth but returns option``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = empty |> cons inner |> cons inner
+
+    let result = outer |> tryUpdateNth 0 2 7
+    result |> Option.isSome |> should be True
+    result |> Option.get |> nthNth 0 2 |> should equal 7
+
+    let result2 = outer |> tryUpdateNth 1 4 9
+    result2 |> Option.isSome |> should be True
+    result2 |> Option.get |> nthNth 1 4 |> should equal 9
+
+[<Test>]
+let ``tryUpdateNth should not change the original list``() =
+    let inner = [1; 2; 3; 4; 5] |> ofSeq
+    let outer = ref empty
+    outer := cons inner (!outer)
+    outer := cons inner (!outer)
+
+    !outer |> tryUpdateNth 0 2 7 |> Option.get |> nthNth 0 2 |> should equal 7
+    !outer |> nthNth 0 2 |> should equal 3
+    !outer |> tryUpdateNth 1 4 9 |> Option.get |> nthNth 1 4 |> should equal 9
+    !outer |> nthNth 1 4 |> should equal 5
 
 [<Test>]
 let ``update length 1``() =

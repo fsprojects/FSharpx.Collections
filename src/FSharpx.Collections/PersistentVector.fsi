@@ -107,7 +107,7 @@ module PersistentVector =
     /// O(1) for all practical purposes; really O(log32n). Returns the value at the index. If the index is out of bounds it throws an exception.
     val inline nth : int -> PersistentVector<'T> -> 'T
 
-    /// O(log32(m,n)). Returns the value at the  outer index, inner index. If either index is out of bounds it throws an exception.
+    /// O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
     val inline nthNth : int -> int -> PersistentVector<PersistentVector<'T>> -> 'T
  
     /// O(1) for all practical purposes; really O(log32n). Returns option value at the index.
