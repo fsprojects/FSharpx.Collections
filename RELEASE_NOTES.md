@@ -1,3 +1,6 @@
+#### 1.15.2 - 03.09.2016 
+* Couple of new helper functions - https://github.com/fsprojects/FSharpx.Collections/pull/63
+
 #### 1.15.1 - 25.05.2016 
 * Use FSharp.Core 4.0 
 * Improved RandomAccessList API with some functions from PersistentVector - https://github.com/fsprojects/FSharpx.Collections/pull/54
