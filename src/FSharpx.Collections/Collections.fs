@@ -9,6 +9,18 @@ open FSharpx
             
 /// Extensions for F#'s Seq module.
 module Seq =
+
+    /// Prepends `x` to the seq `xs`
+    let cons x xs = seq {
+        yield x
+        yield! xs
+    }
+
+    /// Returns the head and tail of the seq. If the seq is empty, returns `None`.
+    let unCons s = if Seq.isEmpty s
+                   then None
+                   else Some (Seq.head s, Seq.tail s)
+
     /// <summary>
     /// Adds an index to a sequence
     /// </summary>
@@ -52,7 +64,22 @@ module Seq =
     
     /// Splits a sequences at the given index
     let splitAt n seq = (Seq.take n seq, Seq.skip n seq)
-    
+
+    /// Splits a sequences up to the point where the predicate holds
+    let span predicate source = (Seq.takeWhile predicate source, Seq.skipWhile predicate source)
+
+    /// Applies a key-generating function to each element of a sequence and yields a sequence of unique keys and a sequence of all elements that have each key.
+    /// This function groups together only neighbouring elements in the seq.
+    let groupNeighboursBy (projection:'T->'Key) source =
+        let rec go s =
+            match Seq.tryHead s with
+            | None   -> Seq.empty
+            | Some e -> let pe = projection e
+                        let predicate x = projection x = pe
+                        let neighbours, rest = span predicate s
+                        cons (pe, neighbours) (go rest)
+        go source
+
     /// Converts a streamReader into a seq yielding on each line
     let ofStreamReader (streamReader : System.IO.StreamReader) = 
          seq {  
@@ -306,6 +333,18 @@ module List =
   
     let skip n l = splitAt n l |> snd
     let take n l = splitAt n l |> fst
+
+    /// Applies a key-generating function to each element of a list and yields a list of unique keys and a list of all elements that have each key.
+    /// This function groups together only neighbouring elements in the list.
+    let groupNeighboursBy (projection:'T->'Key) source =
+        let rec go s =
+            match s with
+            | []     -> []
+            | x::xs  -> let pe = projection x
+                        let predicate y = projection y = pe
+                        let neighbours, rest = span predicate (x::xs)
+                        cons (pe, neighbours) (go rest)
+        go source
 
     let inline mapIf pred f =
         List.map (fun x -> if pred x then f x else x)

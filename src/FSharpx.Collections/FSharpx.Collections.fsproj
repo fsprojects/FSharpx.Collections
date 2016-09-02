@@ -68,6 +68,9 @@
 	-->
   <Import Project="$(SolutionDir).paket\paket.targets" />
   <ItemGroup>
+    <None Include="paket.references" />
+    <None Include="paket.template" />
+    <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Exceptions.fs" />
     <Compile Include="Interfaces.fs" />
@@ -93,8 +96,6 @@
     <Compile Include="PersistentVector.fsi" />
     <Compile Include="PersistentVector.fs" />
     <Compile Include="PersistentHashMap.fs" />
-    <None Include="paket.template" />
-    <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

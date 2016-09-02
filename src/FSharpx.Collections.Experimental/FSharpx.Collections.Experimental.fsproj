@@ -70,6 +70,9 @@
 	-->
   <Import Project="$(SolutionDir).paket\paket.targets" />
   <ItemGroup>
+    <None Include="paket.references" />
+    <None Include="paket.template" />
+    <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Infrastructure.fs" />
     <Compile Include="AltBinaryRandomAccessList.fs" />
@@ -107,8 +110,6 @@
     <Compile Include="CSharpCompat.fs" />
     <Compile Include="BlockResizeArray.fs" />
     <Compile Include="SkewBinomialHeap.fs" />
-    <None Include="paket.template" />
-    <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
