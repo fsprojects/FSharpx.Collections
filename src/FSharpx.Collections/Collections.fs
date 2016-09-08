@@ -230,6 +230,13 @@ module Seq =
               notFirst := true
       } 
 
+    /// The catOptions function takes a list of Options and returns a seq of all the Some values.
+    let catOptions (xs:seq<Option<'a>>) =
+        seq {
+            for x in xs do
+                if x.IsSome then yield x.Value
+        }
+
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
 module Array = 
@@ -289,6 +296,13 @@ module Array =
                         if Array.exists Option.isNone window
                         then None
                         else Some(Array.averageBy Option.get window))
+                  
+    /// The catOptions function takes a list of Options and returns an array of all the Some values.
+    let catOptions (xs:Option<'a>[]) =
+        [|
+            for x in xs do
+                if x.IsSome then yield x.Value
+        |]
 
 /// Extensions for F#'s List module.
 module List =
@@ -393,6 +407,13 @@ module List =
             list
         else
             pad (total - List.length list) elem list
+      
+    /// The catOptions function takes a list of Options and returns a list of all the Some values.
+    let catOptions (xs:Option<'a> list) =
+        [
+            for x in xs do
+                if x.IsSome then yield x.Value
+        ]
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for System.Collections.Generic.Dictionary.
@@ -465,6 +486,22 @@ module Map =
 
     let findOrDefault key defaultValue (map : Map<'T,'b>) =
         defaultArg (map.TryFind key) defaultValue
+  
+  /// The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.
+    let catOptionKeys (m:Map<Option<'a>, 'b>) =
+        seq {
+            for k, v in Map.toSeq m do
+                if k.IsSome then yield k.Value, v
+        }
+        |> Map.ofSeq
+  
+  /// The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.
+    let catOptionValues (m:Map<'a, Option<'b>>) =
+        seq {
+            for k, v in Map.toSeq m do
+                if v.IsSome then yield k, v.Value
+        }
+        |> Map.ofSeq
 
 #if FX_PORTABLE
 #else
