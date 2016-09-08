@@ -236,6 +236,10 @@ module Seq =
             for x in xs do
                 if x.IsSome then yield x.Value
         }
+    
+    /// Compares two sequences for equality using the given comparison function, element by element.
+    let equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
+
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
@@ -303,6 +307,10 @@ module Array =
             for x in xs do
                 if x.IsSome then yield x.Value
         |]
+
+    /// Compares two arrays for equality using the given comparison function, element by element.
+    let equalsWith eq xs ys = Array.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
+
 
 /// Extensions for F#'s List module.
 module List =
@@ -415,6 +423,10 @@ module List =
                 if x.IsSome then yield x.Value
         ]
 
+    /// Compares two lists for equality using the given comparison function, element by element.
+    let equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
+
+
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for System.Collections.Generic.Dictionary.
 module Dictionary =
@@ -502,6 +514,13 @@ module Map =
                 if v.IsSome then yield k, v.Value
         }
         |> Map.ofSeq
+
+    /// Compares two maps for equality using the given comparison function, element by element.
+    let equalsWith eq xs ys =
+        let xs' = Map.toSeq xs
+        let ys' = Map.toSeq ys
+        Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
+
 
 #if FX_PORTABLE
 #else
