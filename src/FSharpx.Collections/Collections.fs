@@ -231,12 +231,8 @@ module Seq =
       } 
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
-    let catOptions (xs:seq<Option<'a>>) =
-        seq {
-            for x in xs do
-                if x.IsSome then yield x.Value
-        }
-    
+    let inline catOptions (xs:seq<Option<'a>>) = Seq.choose id
+
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
@@ -302,11 +298,8 @@ module Array =
                         else Some(Array.averageBy Option.get window))
                   
     /// The catOptions function takes a list of Options and returns an array of all the Some values.
-    let catOptions (xs:Option<'a>[]) =
-        [|
-            for x in xs do
-                if x.IsSome then yield x.Value
-        |]
+    let inline catOptions (xs:Option<'a>[]) = Array.choose id
+
 
     /// Compares two arrays for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Array.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -417,11 +410,8 @@ module List =
             pad (total - List.length list) elem list
       
     /// The catOptions function takes a list of Options and returns a list of all the Some values.
-    let catOptions (xs:Option<'a> list) =
-        [
-            for x in xs do
-                if x.IsSome then yield x.Value
-        ]
+    let inline catOptions (xs:Option<'a> list) = List.choose id
+
 
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -499,21 +489,18 @@ module Map =
     let findOrDefault key defaultValue (map : Map<'T,'b>) =
         defaultArg (map.TryFind key) defaultValue
   
-  /// The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.
-    let catOptionKeys (m:Map<Option<'a>, 'b>) =
+    /// The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.
+    let inline catOptionKeys (table:Map<Option<'a>, 'b>) =
         seq {
-            for k, v in Map.toSeq m do
+            for k, v in Map.toSeq table do
                 if k.IsSome then yield k.Value, v
         }
         |> Map.ofSeq
   
-  /// The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.
-    let catOptionValues (m:Map<'a, Option<'b>>) =
-        seq {
-            for k, v in Map.toSeq m do
-                if v.IsSome then yield k, v.Value
-        }
-        |> Map.ofSeq
+    /// The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.
+    let inline catOptionValues (table:Map<'a, Option<'b>>) =
+        let chooser _ vo = vo
+        choose chooser table
 
     /// Compares two maps for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys =
