@@ -233,6 +233,29 @@ module Seq =
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
     let inline catOptions (xs:seq<Option<'a>>) = Seq.choose id
 
+    /// Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+    let inline choice1s xs =
+        let chooser = function
+                      | Choice1Of2 x -> Some x
+                      | _            -> None
+        Seq.choose chooser xs
+
+    /// Extracts from a seq of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+    let inline choice2s xs =
+        let chooser = function
+                      | Choice2Of2 x -> Some x
+                      | _            -> None
+        Seq.choose chooser xs
+
+    /// Partitions a seq of Choice into two seqs. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+    let inline partitionChoices (xs:seq<Choice<'a, 'b>>) =
+        let choice f1 f2 = function
+                           | Choice1Of2 x -> f1 x
+                           | Choice2Of2 y -> f2 y
+        let choice1 x (c1, c2) = (cons x c1, c2       )
+        let choice2 y (c1, c2) = (c1       , cons y c2)
+        Seq.foldBack (choice choice1 choice2) xs (Seq.empty, Seq.empty)
+
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
@@ -300,6 +323,23 @@ module Array =
     /// The catOptions function takes a list of Options and returns an array of all the Some values.
     let inline catOptions (xs:Option<'a>[]) = Array.choose id
 
+    /// Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+    let inline choice1s xs =
+        let chooser = function
+                      | Choice1Of2 x -> Some x
+                      | _            -> None
+        Array.choose chooser xs
+
+    /// Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+    let inline choice2s xs =
+        let chooser = function
+                      | Choice2Of2 x -> Some x
+                      | _            -> None
+        Array.choose chooser xs
+
+    /// Partitions an aray of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+    let inline partitionChoices xs =
+        (choice1s xs, choice2s xs)
 
     /// Compares two arrays for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Array.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -412,6 +452,23 @@ module List =
     /// The catOptions function takes a list of Options and returns a list of all the Some values.
     let inline catOptions (xs:Option<'a> list) = List.choose id
 
+    /// Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+    let inline choice1s xs =
+        let chooser = function
+                      | Choice1Of2 x -> Some x
+                      | _            -> None
+        List.choose chooser xs
+
+    /// Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+    let inline choice2s xs =
+        let chooser = function
+                      | Choice2Of2 x -> Some x
+                      | _            -> None
+        List.choose chooser xs
+
+    /// Partitions a list of Choice into two lists. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+    let inline partitionChoices xs =
+        (choice1s xs, choice2s xs)
 
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -486,6 +543,9 @@ module Map =
     let keys (map : Map<'T,'b>) = 
         map |> Map.toSeq |> Seq.map fst
 
+    /// Retrieves the key set from a Map
+    let inline keySet map = keys map |> Set.ofSeq
+
     let findOrDefault key defaultValue (map : Map<'T,'b>) =
         defaultArg (map.TryFind key) defaultValue
   
@@ -504,9 +564,9 @@ module Map =
 
     /// Compares two maps for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys =
-        let xs' = Map.toSeq xs
-        let ys' = Map.toSeq ys
-        Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
+        let xs' = Map.toArray xs
+        let ys' = Map.toArray ys
+        Array.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
 
 
 #if FX_PORTABLE
