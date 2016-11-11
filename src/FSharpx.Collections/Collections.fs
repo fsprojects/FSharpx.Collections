@@ -5,7 +5,6 @@ open System.Linq
 open System.Collections
 open System.Collections.Generic
 open System.Runtime.CompilerServices
-open FSharpx
             
 /// Extensions for F#'s Seq module.
 module Seq =
