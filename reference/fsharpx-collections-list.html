@@ -55,15 +55,75 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '145', 145)" onmouseover="showTip(event, '145', 145)">
+          <code onmouseout="hideTip(event, '150', 150)" onmouseover="showTip(event, '150', 150)">
+            catOptions xs
+          </code>
+          <div class="tip" id="150">
+            <strong>Signature:</strong> xs:Option&lt;&#39;a&gt; list -&gt; &#39;?8367 option list -&gt; &#39;?8367 list<br />
+                          <strong>Type parameters:</strong> 'a, '?8367          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L452-452" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The catOptions function takes a list of Options and returns a list of all the Some values.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
+            choice1s xs
+          </code>
+          <div class="tip" id="151">
+            <strong>Signature:</strong> xs:Choice&lt;&#39;?8369,&#39;?8370&gt; list -&gt; &#39;?8369 list<br />
+                          <strong>Type parameters:</strong> '?8369, '?8370          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L455-455" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+            choice2s xs
+          </code>
+          <div class="tip" id="152">
+            <strong>Signature:</strong> xs:Choice&lt;&#39;?8372,&#39;?8373&gt; list -&gt; &#39;?8373 list<br />
+                          <strong>Type parameters:</strong> '?8372, '?8373          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L462-462" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
             cons hd tl
           </code>
-          <div class="tip" id="145">
+          <div class="tip" id="153">
             <strong>Signature:</strong> hd:&#39;a -&gt; tl:&#39;a list -&gt; &#39;a list<br />
                           <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L296-296" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L350-350" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -75,15 +135,35 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '146', 146)" onmouseover="showTip(event, '146', 146)">
+          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
+            equalsWith eq xs ys
+          </code>
+          <div class="tip" id="154">
+            <strong>Signature:</strong> eq:(&#39;?8378 -&gt; &#39;?8378 -&gt; bool) -&gt; xs:&#39;?8378 list -&gt; ys:&#39;?8378 list -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8378          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L473-473" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Compares two lists for equality using the given comparison function, element by element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
             fill total elem list
           </code>
-          <div class="tip" id="146">
+          <div class="tip" id="155">
             <strong>Signature:</strong> total:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
                           <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L391-391" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L445-445" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -93,15 +173,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '147', 147)" onmouseover="showTip(event, '147', 147)">
+          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
             groupNeighboursBy projection source
           </code>
-          <div class="tip" id="147">
+          <div class="tip" id="156">
             <strong>Signature:</strong> projection:(&#39;T -&gt; &#39;Key) -&gt; source:&#39;T list -&gt; (&#39;Key * &#39;T list) list<br />
                           <strong>Type parameters:</strong> 'T, 'Key          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L339-339" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L393-393" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -114,15 +194,15 @@ This function groups together only neighbouring elements in the list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '148', 148)" onmouseover="showTip(event, '148', 148)">
+          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
             lift2 f l1 l2
           </code>
-          <div class="tip" id="148">
-            <strong>Signature:</strong> f:(&#39;?8298 -&gt; &#39;?8299 -&gt; &#39;?8300) -&gt; l1:&#39;?8298 list -&gt; l2:&#39;?8299 list -&gt; &#39;?8300 list<br />
-                          <strong>Type parameters:</strong> '?8298, '?8299, '?8300          </div>
+          <div class="tip" id="157">
+            <strong>Signature:</strong> f:(&#39;?8324 -&gt; &#39;?8325 -&gt; &#39;?8326) -&gt; l1:&#39;?8324 list -&gt; l2:&#39;?8325 list -&gt; &#39;?8326 list<br />
+                          <strong>Type parameters:</strong> '?8324, '?8325, '?8326          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L300-300" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L354-354" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -132,15 +212,15 @@ This function groups together only neighbouring elements in the list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '149', 149)" onmouseover="showTip(event, '149', 149)">
+          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
             mapAccum f s l
           </code>
-          <div class="tip" id="149">
-            <strong>Signature:</strong> f:(&#39;?8325 -&gt; &#39;?8326 -&gt; &#39;?8325 * &#39;?8327) -&gt; s:&#39;?8325 -&gt; l:&#39;?8326 list -&gt; &#39;?8325 * &#39;?8327 list<br />
-                          <strong>Type parameters:</strong> '?8325, '?8326, '?8327          </div>
+          <div class="tip" id="158">
+            <strong>Signature:</strong> f:(&#39;?8351 -&gt; &#39;?8352 -&gt; &#39;?8351 * &#39;?8353) -&gt; s:&#39;?8351 -&gt; l:&#39;?8352 list -&gt; &#39;?8351 * &#39;?8353 list<br />
+                          <strong>Type parameters:</strong> '?8351, '?8352, '?8353          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L356-356" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L410-410" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -155,15 +235,15 @@ and returning a final value of this accumulator together with the new list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '150', 150)" onmouseover="showTip(event, '150', 150)">
+          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
             mapIf pred f
           </code>
-          <div class="tip" id="150">
-            <strong>Signature:</strong> pred:(&#39;?8323 -&gt; bool) -&gt; f:(&#39;?8323 -&gt; &#39;?8323) -&gt; &#39;?8323 list -&gt; &#39;?8323 list<br />
-                          <strong>Type parameters:</strong> '?8323          </div>
+          <div class="tip" id="159">
+            <strong>Signature:</strong> pred:(&#39;?8349 -&gt; bool) -&gt; f:(&#39;?8349 -&gt; &#39;?8349) -&gt; &#39;?8349 list -&gt; &#39;?8349 list<br />
+                          <strong>Type parameters:</strong> '?8349          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L349-349" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L403-403" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -173,15 +253,15 @@ and returning a final value of this accumulator together with the new list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
+          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
             merge a b
           </code>
-          <div class="tip" id="151">
-            <strong>Signature:</strong> a:&#39;?8334 list -&gt; b:&#39;?8334 list -&gt; &#39;?8334 list<br />
-                          <strong>Type parameters:</strong> '?8334          </div>
+          <div class="tip" id="160">
+            <strong>Signature:</strong> a:&#39;?8360 list -&gt; b:&#39;?8360 list -&gt; &#39;?8360 list<br />
+                          <strong>Type parameters:</strong> '?8360          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L384-384" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L438-438" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -193,15 +273,15 @@ and returning a final value of this accumulator together with the new list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
             mergeBy f a b
           </code>
-          <div class="tip" id="152">
-            <strong>Signature:</strong> f:(&#39;?8331 -&gt; &#39;?8332) -&gt; a:&#39;?8331 list -&gt; b:&#39;?8331 list -&gt; &#39;?8331 list<br />
-                          <strong>Type parameters:</strong> '?8331, '?8332          </div>
+          <div class="tip" id="161">
+            <strong>Signature:</strong> f:(&#39;?8357 -&gt; &#39;?8358) -&gt; a:&#39;?8357 list -&gt; b:&#39;?8357 list -&gt; &#39;?8357 list<br />
+                          <strong>Type parameters:</strong> '?8357, '?8358          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L371-371" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L425-425" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -213,177 +293,15 @@ and returning a final value of this accumulator together with the new list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
+          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
             pad amt elem list
           </code>
-          <div class="tip" id="153">
+          <div class="tip" id="162">
             <strong>Signature:</strong> amt:int -&gt; elem:&#39;a -&gt; list:&#39;a list -&gt; &#39;a list<br />
                           <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L387-387" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
-            singleton x
-          </code>
-          <div class="tip" id="154">
-            <strong>Signature:</strong> x:&#39;?8296 -&gt; &#39;?8296 list<br />
-                          <strong>Type parameters:</strong> '?8296          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L298-298" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
-            skip n l
-          </code>
-          <div class="tip" id="155">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?8316 list -&gt; &#39;?8316 list<br />
-                          <strong>Type parameters:</strong> '?8316          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L334-334" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
-            skipUntil pred l
-          </code>
-          <div class="tip" id="156">
-            <strong>Signature:</strong> pred:(&#39;?8308 -&gt; bool) -&gt; l:&#39;?8308 list -&gt; &#39;?8308 list<br />
-                          <strong>Type parameters:</strong> '?8308          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L319-319" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
-            skipWhile pred l
-          </code>
-          <div class="tip" id="157">
-            <strong>Signature:</strong> pred:(&#39;?8306 -&gt; bool) -&gt; l:&#39;?8306 list -&gt; &#39;?8306 list<br />
-                          <strong>Type parameters:</strong> '?8306          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L318-318" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
-            span pred l
-          </code>
-          <div class="tip" id="158">
-            <strong>Signature:</strong> pred:(&#39;?8302 -&gt; bool) -&gt; l:&#39;?8302 list -&gt; &#39;?8302 list * &#39;?8302 list<br />
-                          <strong>Type parameters:</strong> '?8302          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L306-306" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
-            split pred l
-          </code>
-          <div class="tip" id="159">
-            <strong>Signature:</strong> pred:(&#39;?8304 -&gt; bool) -&gt; l:&#39;?8304 list -&gt; &#39;?8304 list * &#39;?8304 list<br />
-                          <strong>Type parameters:</strong> '?8304          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L316-316" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
-            splitAt n l
-          </code>
-          <div class="tip" id="160">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?8314 list -&gt; &#39;?8314 list * &#39;?8314 list<br />
-                          <strong>Type parameters:</strong> '?8314          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L323-323" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
-            take n l
-          </code>
-          <div class="tip" id="161">
-            <strong>Signature:</strong> n:int -&gt; l:&#39;?8318 list -&gt; &#39;?8318 list<br />
-                          <strong>Type parameters:</strong> '?8318          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L335-335" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
-            takeUntil pred l
-          </code>
-          <div class="tip" id="162">
-            <strong>Signature:</strong> pred:(&#39;?8312 -&gt; bool) -&gt; l:&#39;?8312 list -&gt; &#39;?8312 list<br />
-                          <strong>Type parameters:</strong> '?8312          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L321-321" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L441-441" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -394,14 +312,34 @@ and returning a final value of this accumulator together with the new list.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
-            takeWhile pred l
+            partitionChoices xs
           </code>
           <div class="tip" id="163">
-            <strong>Signature:</strong> pred:(&#39;?8310 -&gt; bool) -&gt; l:&#39;?8310 list -&gt; &#39;?8310 list<br />
-                          <strong>Type parameters:</strong> '?8310          </div>
+            <strong>Signature:</strong> xs:Choice&lt;&#39;?8375,&#39;?8376&gt; list -&gt; &#39;?8375 list * &#39;?8376 list<br />
+                          <strong>Type parameters:</strong> '?8375, '?8376          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L320-320" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L469-469" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Partitions a list of Choice into two lists. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
+            singleton x
+          </code>
+          <div class="tip" id="164">
+            <strong>Signature:</strong> x:&#39;?8322 -&gt; &#39;?8322 list<br />
+                          <strong>Type parameters:</strong> '?8322          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L352-352" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -411,15 +349,177 @@ and returning a final value of this accumulator together with the new list.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
-            transpose lst
+          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+            skip n l
           </code>
-          <div class="tip" id="164">
-            <strong>Signature:</strong> lst:&#39;?8329 list list -&gt; &#39;?8329 list list<br />
-                          <strong>Type parameters:</strong> '?8329          </div>
+          <div class="tip" id="165">
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?8342 list -&gt; &#39;?8342 list<br />
+                          <strong>Type parameters:</strong> '?8342          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L365-365" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L388-388" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+            skipUntil pred l
+          </code>
+          <div class="tip" id="166">
+            <strong>Signature:</strong> pred:(&#39;?8334 -&gt; bool) -&gt; l:&#39;?8334 list -&gt; &#39;?8334 list<br />
+                          <strong>Type parameters:</strong> '?8334          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L373-373" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+            skipWhile pred l
+          </code>
+          <div class="tip" id="167">
+            <strong>Signature:</strong> pred:(&#39;?8332 -&gt; bool) -&gt; l:&#39;?8332 list -&gt; &#39;?8332 list<br />
+                          <strong>Type parameters:</strong> '?8332          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L372-372" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+            span pred l
+          </code>
+          <div class="tip" id="168">
+            <strong>Signature:</strong> pred:(&#39;?8328 -&gt; bool) -&gt; l:&#39;?8328 list -&gt; &#39;?8328 list * &#39;?8328 list<br />
+                          <strong>Type parameters:</strong> '?8328          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L360-360" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
+            split pred l
+          </code>
+          <div class="tip" id="169">
+            <strong>Signature:</strong> pred:(&#39;?8330 -&gt; bool) -&gt; l:&#39;?8330 list -&gt; &#39;?8330 list * &#39;?8330 list<br />
+                          <strong>Type parameters:</strong> '?8330          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L370-370" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+            splitAt n l
+          </code>
+          <div class="tip" id="170">
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?8340 list -&gt; &#39;?8340 list * &#39;?8340 list<br />
+                          <strong>Type parameters:</strong> '?8340          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L377-377" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+            take n l
+          </code>
+          <div class="tip" id="171">
+            <strong>Signature:</strong> n:int -&gt; l:&#39;?8344 list -&gt; &#39;?8344 list<br />
+                          <strong>Type parameters:</strong> '?8344          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L389-389" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+            takeUntil pred l
+          </code>
+          <div class="tip" id="172">
+            <strong>Signature:</strong> pred:(&#39;?8338 -&gt; bool) -&gt; l:&#39;?8338 list -&gt; &#39;?8338 list<br />
+                          <strong>Type parameters:</strong> '?8338          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L375-375" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
+            takeWhile pred l
+          </code>
+          <div class="tip" id="173">
+            <strong>Signature:</strong> pred:(&#39;?8336 -&gt; bool) -&gt; l:&#39;?8336 list -&gt; &#39;?8336 list<br />
+                          <strong>Type parameters:</strong> '?8336          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L374-374" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '174', 174)" onmouseover="showTip(event, '174', 174)">
+            transpose lst
+          </code>
+          <div class="tip" id="174">
+            <strong>Signature:</strong> lst:&#39;?8355 list list -&gt; &#39;?8355 list list<br />
+                          <strong>Type parameters:</strong> '?8355          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L419-419" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

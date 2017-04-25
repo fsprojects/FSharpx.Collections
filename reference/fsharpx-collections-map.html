@@ -55,15 +55,55 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+          <code onmouseout="hideTip(event, '175', 175)" onmouseover="showTip(event, '175', 175)">
+            catOptionKeys table
+          </code>
+          <div class="tip" id="175">
+            <strong>Signature:</strong> table:Map&lt;Option&lt;&#39;a&gt;,&#39;b&gt; -&gt; Map&lt;&#39;a,&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'a, 'b          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L552-552" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '176', 176)" onmouseover="showTip(event, '176', 176)">
+            catOptionValues table
+          </code>
+          <div class="tip" id="176">
+            <strong>Signature:</strong> table:Map&lt;&#39;a,Option&lt;&#39;b&gt;&gt; -&gt; Map&lt;&#39;a,&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'a, 'b          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L560-560" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '177', 177)" onmouseover="showTip(event, '177', 177)">
             choose f map
           </code>
-          <div class="tip" id="165">
+          <div class="tip" id="177">
             <strong>Signature:</strong> f:(&#39;T -&gt; &#39;b -&gt; &#39;c option) -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;c&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b, 'c          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L447-447" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L526-526" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -73,15 +113,35 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+          <code onmouseout="hideTip(event, '178', 178)" onmouseover="showTip(event, '178', 178)">
+            equalsWith eq xs ys
+          </code>
+          <div class="tip" id="178">
+            <strong>Signature:</strong> eq:(&#39;?8312 * &#39;?8313 -&gt; &#39;?8312 * &#39;?8313 -&gt; bool) -&gt; xs:Map&lt;&#39;?8312,&#39;?8313&gt; -&gt; ys:Map&lt;&#39;?8312,&#39;?8313&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8312, '?8313          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L565-565" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Compares two maps for equality using the given comparison function, element by element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '179', 179)" onmouseover="showTip(event, '179', 179)">
             findOrDefault key defaultValue map
           </code>
-          <div class="tip" id="166">
+          <div class="tip" id="179">
             <strong>Signature:</strong> key:&#39;T -&gt; defaultValue:&#39;b -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; &#39;b<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L466-466" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L548-548" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -91,15 +151,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+          <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
             insertWith f key value map
           </code>
-          <div class="tip" id="167">
-            <strong>Signature:</strong> f:(&#39;?8261 -&gt; &#39;?8261 -&gt; &#39;?8261) -&gt; key:&#39;?8262 -&gt; value:&#39;?8261 -&gt; map:Map&lt;&#39;?8262,&#39;?8261&gt; -&gt; Map&lt;&#39;?8262,&#39;?8261&gt;<br />
-                          <strong>Type parameters:</strong> '?8261, '?8262          </div>
+          <div class="tip" id="180">
+            <strong>Signature:</strong> f:(&#39;?8275 -&gt; &#39;?8275 -&gt; &#39;?8275) -&gt; key:&#39;?8276 -&gt; value:&#39;?8275 -&gt; map:Map&lt;&#39;?8276,&#39;?8275&gt; -&gt; Map&lt;&#39;?8276,&#39;?8275&gt;<br />
+                          <strong>Type parameters:</strong> '?8275, '?8276          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L422-422" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L501-501" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -112,15 +172,15 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+          <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
             keys map
           </code>
-          <div class="tip" id="168">
+          <div class="tip" id="181">
             <strong>Signature:</strong> map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L463-463" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L542-542" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -132,15 +192,35 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
+          <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
+            keySet map
+          </code>
+          <div class="tip" id="182">
+            <strong>Signature:</strong> map:Map&lt;&#39;?8300,&#39;?8301&gt; -&gt; Set&lt;&#39;?8300&gt;<br />
+                          <strong>Type parameters:</strong> '?8300, '?8301          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L546-546" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Retrieves the key set from a Map</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '183', 183)" onmouseover="showTip(event, '183', 183)">
             removeMany keys map
           </code>
-          <div class="tip" id="169">
+          <div class="tip" id="183">
             <strong>Signature:</strong> keys:seq&lt;&#39;T&gt; -&gt; map:Map&lt;&#39;T,&#39;b&gt; -&gt; Map&lt;&#39;T,&#39;b&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L455-455" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L534-534" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -152,15 +232,15 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+          <code onmouseout="hideTip(event, '184', 184)" onmouseover="showTip(event, '184', 184)">
             spanWithKey pred map
           </code>
-          <div class="tip" id="170">
-            <strong>Signature:</strong> pred:(&#39;?8255 -&gt; bool) -&gt; map:Map&lt;&#39;?8255,&#39;?8256&gt; -&gt; Map&lt;&#39;?8255,&#39;?8256&gt; * Map&lt;&#39;?8255,&#39;?8256&gt;<br />
-                          <strong>Type parameters:</strong> '?8255, '?8256          </div>
+          <div class="tip" id="184">
+            <strong>Signature:</strong> pred:(&#39;?8269 -&gt; bool) -&gt; map:Map&lt;&#39;?8269,&#39;?8270&gt; -&gt; Map&lt;&#39;?8269,&#39;?8270&gt; * Map&lt;&#39;?8269,&#39;?8270&gt;<br />
+                          <strong>Type parameters:</strong> '?8269, '?8270          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L407-407" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L486-486" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -170,15 +250,15 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+          <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
             splitWithKey pred d
           </code>
-          <div class="tip" id="171">
-            <strong>Signature:</strong> pred:(&#39;?8258 -&gt; bool) -&gt; d:Map&lt;&#39;?8258,&#39;?8259&gt; -&gt; Map&lt;&#39;?8258,&#39;?8259&gt; * Map&lt;&#39;?8258,&#39;?8259&gt;<br />
-                          <strong>Type parameters:</strong> '?8258, '?8259          </div>
+          <div class="tip" id="185">
+            <strong>Signature:</strong> pred:(&#39;?8272 -&gt; bool) -&gt; d:Map&lt;&#39;?8272,&#39;?8273&gt; -&gt; Map&lt;&#39;?8272,&#39;?8273&gt; * Map&lt;&#39;?8272,&#39;?8273&gt;<br />
+                          <strong>Type parameters:</strong> '?8272, '?8273          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L416-416" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L495-495" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -188,15 +268,15 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+          <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
             union loses wins
           </code>
-          <div class="tip" id="172">
-            <strong>Signature:</strong> loses:Map&lt;&#39;?8270,&#39;?8271&gt; -&gt; wins:Map&lt;&#39;?8270,&#39;?8271&gt; -&gt; Map&lt;&#39;?8270,&#39;?8271&gt;<br />
-                          <strong>Type parameters:</strong> '?8270, '?8271          </div>
+          <div class="tip" id="186">
+            <strong>Signature:</strong> loses:Map&lt;&#39;?8284,&#39;?8285&gt; -&gt; wins:Map&lt;&#39;?8284,&#39;?8285&gt; -&gt; Map&lt;&#39;?8284,&#39;?8285&gt;<br />
+                          <strong>Type parameters:</strong> '?8284, '?8285          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L444-444" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L523-523" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -208,15 +288,15 @@ If the key does exist, the function will insert f new<em>value old</em>value.</p
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
+          <code onmouseout="hideTip(event, '187', 187)" onmouseover="showTip(event, '187', 187)">
             updateWith f key map
           </code>
-          <div class="tip" id="173">
-            <strong>Signature:</strong> f:(&#39;?8264 -&gt; &#39;?8264 option) -&gt; key:&#39;?8265 -&gt; map:Map&lt;&#39;?8265,&#39;?8264&gt; -&gt; Map&lt;&#39;?8265,&#39;?8264&gt;<br />
-                          <strong>Type parameters:</strong> '?8264, '?8265          </div>
+          <div class="tip" id="187">
+            <strong>Signature:</strong> f:(&#39;?8278 -&gt; &#39;?8278 option) -&gt; key:&#39;?8279 -&gt; map:Map&lt;&#39;?8279,&#39;?8278&gt; -&gt; Map&lt;&#39;?8279,&#39;?8278&gt;<br />
+                          <strong>Type parameters:</strong> '?8278, '?8279          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L432-432" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L511-511" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -230,15 +310,15 @@ If it is Some y, the key is bound to the new value y.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '174', 174)" onmouseover="showTip(event, '174', 174)">
+          <code onmouseout="hideTip(event, '188', 188)" onmouseover="showTip(event, '188', 188)">
             valueList map
           </code>
-          <div class="tip" id="174">
-            <strong>Signature:</strong> map:Map&lt;&#39;?8267,&#39;?8268&gt; -&gt; &#39;?8268 list<br />
-                          <strong>Type parameters:</strong> '?8267, '?8268          </div>
+          <div class="tip" id="188">
+            <strong>Signature:</strong> map:Map&lt;&#39;?8281,&#39;?8282&gt; -&gt; &#39;?8282 list<br />
+                          <strong>Type parameters:</strong> '?8281, '?8282          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L441-441" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L520-520" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -248,15 +328,15 @@ If it is Some y, the key is bound to the new value y.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '175', 175)" onmouseover="showTip(event, '175', 175)">
+          <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
             values map
           </code>
-          <div class="tip" id="175">
+          <div class="tip" id="189">
             <strong>Signature:</strong> map:Map&lt;&#39;T,&#39;b&gt; -&gt; seq&lt;&#39;b&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'b          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L459-459" class="github-link">
+            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L538-538" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
