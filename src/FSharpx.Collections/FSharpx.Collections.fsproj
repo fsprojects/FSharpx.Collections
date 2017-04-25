@@ -96,6 +96,7 @@
     <Compile Include="PersistentVector.fsi" />
     <Compile Include="PersistentVector.fs" />
     <Compile Include="PersistentHashMap.fs" />
+    <Compile Include="TaggedCollections.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
