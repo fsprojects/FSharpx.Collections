@@ -1,3 +1,6 @@
+#### 1.15.3 - 25.05.2017 
+* Couple of new helper functions - https://github.com/fsprojects/FSharpx.Collections/pull/64
+
 #### 1.15.2 - 03.09.2016 
 * Couple of new helper functions - https://github.com/fsprojects/FSharpx.Collections/pull/63
 
