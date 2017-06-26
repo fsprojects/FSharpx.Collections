@@ -1,3 +1,6 @@
+#### 1.17.0 - 26.06.2017
+* PERFORMANCE: NonEmptyList Collect had poor performance - https://github.com/fsprojects/FSharpx.Collections/pull/75
+
 #### 1.16.0 - 25.05.2017
 * New tagged structures - https://github.com/fsprojects/FSharpx.Collections/pull/69
 * Use FSharp.Core 4.0 
