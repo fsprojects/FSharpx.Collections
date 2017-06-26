@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <None Include="app.config" />
     <Compile Include="..\FSharpx.Collections.Tests\FsUnit.fs">
       <Link>FsUnit.fs</Link>
     </Compile>
