@@ -90,6 +90,9 @@ module NonEmptyList =
     let reduce reduction list =
         List.reduce reduction list.List
 
+    [<CompiledName("Last")>]
+    let last list =
+        List.last list.List
 
     [<CompiledName("Reverse")>]
     [<Extension>]
