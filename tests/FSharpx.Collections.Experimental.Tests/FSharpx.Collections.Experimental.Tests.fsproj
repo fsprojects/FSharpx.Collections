@@ -10,7 +10,7 @@
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
     <Name>FSharpx.Collections.Experimental.Tests</Name>
     <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\..\</SolutionDir>
   </PropertyGroup>
@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
