@@ -1,4 +1,4 @@
-RESTRICTION: >= net45
+RESTRICTION: >= net40
 NUGET
   remote: http://www.nuget.org/api/v2
     FAKE (4.61.3)
@@ -13,6 +13,12 @@ NUGET
     FsUnit (1.4.1)
       FSharp.Core (>= 3.1.2.5)
       NUnit (2.6.4)
+    Microsoft.Bcl (1.1.10) - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
+      Microsoft.Bcl.Build (>= 1.0.14)
+    Microsoft.Bcl.Build (1.0.21) - import_targets: false, restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
+    Microsoft.Net.Http (2.2.29) - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
+      Microsoft.Bcl (>= 1.1.10)
+      Microsoft.Bcl.Build (>= 1.0.14)
     NUnit (2.6.4)
     NUnit.ConsoleRunner (3.6.1)
     NUnit.Extension.NUnitProjectLoader (3.5)
@@ -29,6 +35,7 @@ NUGET
       NUnit.Extension.VSProjectLoader (>= 3.5)
     NUnit.Runners.Net4 (2.6.4)
     Octokit (0.24)
+      Microsoft.Net.Http  - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
     SourceLink.Fake (1.1)
 GITHUB
   remote: fsharp/FAKE
