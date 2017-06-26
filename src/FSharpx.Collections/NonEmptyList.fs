@@ -4,8 +4,7 @@ open System
 open System.Collections
 open System.Collections.Generic
 open System.Runtime.CompilerServices
-open FSharpx
- 
+
 type NonEmptyList<'T> = 
     private { List: 'T list }
 
@@ -91,9 +90,6 @@ module NonEmptyList =
     let reduce reduction list =
         List.reduce reduction list.List
 
-    [<CompiledName("Last")>]
-    let last list =
-        List.last list.List
 
     [<CompiledName("Reverse")>]
     [<Extension>]
@@ -101,8 +97,8 @@ module NonEmptyList =
         { List = List.rev list.List}
 
     [<CompiledName("SelectMany")>]
-    let collect mapping list =
-        List.fold (fun s e -> mapping e |> append s) (mapping (head list)) (tail list)
+    let collect (mapping:'a -> NonEmptyList<'b>) (list:NonEmptyList<'a>) =
+        list.List |> List.collect (fun x -> (mapping x).List) |> ofList
 
     [<CompiledName("Zip")>]
     let zip list1 list2 =
