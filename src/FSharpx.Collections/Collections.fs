@@ -234,26 +234,21 @@ module Seq =
 
     /// Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Seq.choose chooser xs
 
     /// Extracts from a seq of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Seq.choose chooser xs
 
     /// Partitions a seq of Choice into two seqs. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
-    let inline partitionChoices (xs:seq<Choice<'a, 'b>>) =
-        let choice f1 f2 = function
-                           | Choice1Of2 x -> f1 x
-                           | Choice2Of2 y -> f2 y
-        let choice1 x (c1, c2) = (cons x c1, c2       )
-        let choice2 y (c1, c2) = (c1       , cons y c2)
-        Seq.foldBack (choice choice1 choice2) xs (Seq.empty, Seq.empty)
+    let inline partitionChoices xs =
+        (choice1s xs, choice2s xs)
 
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -324,16 +319,16 @@ module Array =
 
     /// Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Array.choose chooser xs
 
     /// Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Array.choose chooser xs
 
     /// Partitions an aray of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
@@ -453,21 +448,26 @@ module List =
 
     /// Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         List.choose chooser xs
 
     /// Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         List.choose chooser xs
 
     /// Partitions a list of Choice into two lists. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
-    let inline partitionChoices xs =
-        (choice1s xs, choice2s xs)
+    let inline partitionChoices (xs:Choice<'a, 'b> list) =
+        let inline choice f1 f2 a = match a with
+                                    | Choice1Of2 x -> f1 x
+                                    | Choice2Of2 y -> f2 y
+        let inline choice1 x (c1, c2) = (cons x c1, c2       )
+        let inline choice2 y (c1, c2) = (c1       , cons y c2)
+        List.foldBack (choice choice1 choice2) xs ([], [])
 
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
