@@ -483,6 +483,12 @@ module Dictionary =
 
 /// Extensions for F#'s Map module.
 module Map =
+    /// <summary>
+    /// Returns a new map made from the given Dictionary (or anything else that implements <code>seq&lt;KeyValuePair&lt;&apos;a, &apos;b&gt;&gt;</code>).
+    /// </summary>
+    let ofDict (d:seq<KeyValuePair<'a, 'b>>) =
+        d |> Seq.map (fun (KeyValue(x,y)) -> x, y) |> Map.ofSeq
+
     let spanWithKey pred map =
         map
         |> Map.fold (fun (l,r) k v ->
@@ -520,8 +526,17 @@ module Map =
     let valueList map = map |> Map.toList |> List.unzip |> snd
 
     /// Combines the two Maps into a single Map
-    let union (loses: Map<_,_>) (wins: Map<_,_>) = 
-        Seq.fold (fun m (KeyValue(k,v)) -> Map.add k v m) loses wins
+    let inline union (loses: Map<'k, 'v>) (wins: Map<'k, 'v>) = 
+        Map.fold (fun m k v -> Map.add k v m) loses wins
+
+    /// Combines the two Maps into a single Map, with custom decisioning on what happens in case of conflict
+    let inline unionWith (decide : 'k -> 'v -> 'v -> 'v) (m1:Map<'k, 'v>) (m2:Map<'k, 'v>) =
+        let inline add m k v1 =
+            let v = match Map.tryFind k m with
+                    | None    -> v1
+                    | Some v2 -> decide k v1 v2
+            Map.add k v m
+        Map.fold add m1 m2
 
     let choose (f : 'T -> 'b -> 'c option) (map : Map<'T,'b>) =
         (Map.empty, map) ||> Map.fold (fun s k v -> 
@@ -535,11 +550,11 @@ module Map =
         Seq.fold (fun s key -> Map.remove key s) map keys
 
     /// Retrieves the values from a Map
-    let values (map : Map<'T,'b>) = 
+    let inline values (map : Map<'T,'b>) = 
         map |> Map.toSeq |> Seq.map snd
 
     /// Retrieves the keys from a Map    
-    let keys (map : Map<'T,'b>) = 
+    let inline keys (map : Map<'T,'b>) = 
         map |> Map.toSeq |> Seq.map fst
 
     /// Retrieves the key set from a Map
@@ -562,10 +577,11 @@ module Map =
         choose chooser table
 
     /// Compares two maps for equality using the given comparison function, element by element.
-    let inline equalsWith eq xs ys =
-        let xs' = Map.toArray xs
-        let ys' = Map.toArray ys
-        Array.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
+    let inline equalsWith (eq : 'k -> 'v -> 'k -> 'v -> bool) (xs:Map<'k, 'v>) (ys:Map<'k, 'v>) =
+        let eq' (k1, v1) (k2, v2) = eq k1 v1 k2 v2
+        let xs' = Map.toSeq xs
+        let ys' = Map.toSeq ys
+        Seq.equalsWith eq' xs' ys'
 
 
 #if FX_PORTABLE
