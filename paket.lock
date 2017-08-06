@@ -1,10 +1,10 @@
-RESTRICTION: >= net40
+RESTRICTION: >= net451
 NUGET
   remote: http://www.nuget.org/api/v2
-    FAKE (4.61.3)
+    FAKE (4.63)
     FsCheck (0.9.2)
     FSharp.Compiler.Service (2.0.0.6)
-    FSharp.Core (4.2.1) - redirects: force
+    FSharp.Core (4.2.2) - redirects: force
     FSharp.Formatting (2.14.4)
       FSharp.Compiler.Service (2.0.0.6)
       FSharpVSPowerTools.Core (>= 2.3 < 2.4)
@@ -13,21 +13,15 @@ NUGET
     FsUnit (1.4.1)
       FSharp.Core (>= 3.1.2.5)
       NUnit (2.6.4)
-    Microsoft.Bcl (1.1.10) - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
-      Microsoft.Bcl.Build (>= 1.0.14)
-    Microsoft.Bcl.Build (1.0.21) - import_targets: false, restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
-    Microsoft.Net.Http (2.2.29) - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
-      Microsoft.Bcl (>= 1.1.10)
-      Microsoft.Bcl.Build (>= 1.0.14)
     NUnit (2.6.4)
-    NUnit.ConsoleRunner (3.6.1)
-    NUnit.Extension.NUnitProjectLoader (3.5)
-    NUnit.Extension.NUnitV2Driver (3.6)
-    NUnit.Extension.NUnitV2ResultWriter (3.5)
+    NUnit.ConsoleRunner (3.7)
+    NUnit.Extension.NUnitProjectLoader (3.6)
+    NUnit.Extension.NUnitV2Driver (3.7)
+    NUnit.Extension.NUnitV2ResultWriter (3.6)
     NUnit.Extension.TeamCityEventListener (1.0.2)
-    NUnit.Extension.VSProjectLoader (3.5)
-    NUnit.Runners (3.6.1)
-      NUnit.ConsoleRunner (>= 3.6.1)
+    NUnit.Extension.VSProjectLoader (3.6)
+    NUnit.Runners (3.7)
+      NUnit.ConsoleRunner (>= 3.7)
       NUnit.Extension.NUnitProjectLoader (>= 3.5)
       NUnit.Extension.NUnitV2Driver (>= 3.6)
       NUnit.Extension.NUnitV2ResultWriter (>= 3.5)
@@ -35,9 +29,8 @@ NUGET
       NUnit.Extension.VSProjectLoader (>= 3.5)
     NUnit.Runners.Net4 (2.6.4)
     Octokit (0.24)
-      Microsoft.Net.Http  - restriction: && (>= net40) (< net45) (< portable-win81+wpa81)
     SourceLink.Fake (1.1)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (15e1b741f4ae9fbaad640a65231dfcec28ce6ddd)
+    modules/Octokit/Octokit.fsx (291f58cc70aba6dd871cf18e66d2d88357e4f208)
       Octokit (>= 0.20)
