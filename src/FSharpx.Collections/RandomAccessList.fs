@@ -11,7 +11,6 @@ module internal Literals2 =
     [<Literal>]
     let internal blockIndexMask = 0x01f
 
-open FSharpx
 open System.Threading
 #if FX_NO_THREAD
 #else
