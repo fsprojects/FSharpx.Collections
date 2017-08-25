@@ -35,6 +35,10 @@ module Seq =
     let tryFindWithIndex pred l =
         l |> index |> Seq.tryFind (fun (_,v) -> pred v)
 
+    /// Returns the only element of the sequence for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:seq<'a>) : 'a =
+        source |> Seq.filter predicate |> Seq.exactlyOne
+
     let inline lift2 f l1 l2 = 
         seq {
             for i in l1 do
@@ -260,6 +264,10 @@ module Array =
     let inline nth i arr = Array.get arr i
     let inline setAt i v arr = Array.set arr i v; arr
 
+    /// Returns the only element of the array for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:'a[]) : 'a =
+        source |> Array.filter predicate |> Array.exactlyOne
+
     let copyTo sourceStartIndx startIndx source target =
         let targetLength = (Array.length target)
         if startIndx < 0 || startIndx > targetLength - 1 then
@@ -345,6 +353,10 @@ module List =
     let inline cons hd tl = hd::tl
   
     let inline singleton x = [x]
+
+    /// Returns the only element of the list for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:'a list) : 'a =
+        source |> List.filter predicate |> List.exactlyOne
 
     let inline lift2 f (l1: _ list) (l2: _ list) = 
         [ for i in l1 do
