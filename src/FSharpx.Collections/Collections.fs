@@ -493,13 +493,17 @@ module Dictionary =
         | true,v -> Some v
         | _ -> None
 
+    let inline toSeq (d:seq<KeyValuePair<'a, 'b>>) : seq<'a * 'b> =
+        d |> Seq.map (fun (KeyValue(x,y)) -> x, y)
+
+
 /// Extensions for F#'s Map module.
 module Map =
     /// <summary>
     /// Returns a new map made from the given Dictionary (or anything else that implements <code>seq&lt;KeyValuePair&lt;&apos;a, &apos;b&gt;&gt;</code>).
     /// </summary>
     let ofDict (d:seq<KeyValuePair<'a, 'b>>) =
-        d |> Seq.map (fun (KeyValue(x,y)) -> x, y) |> Map.ofSeq
+        d |> Dictionary.toSeq |> Map.ofSeq
 
     let spanWithKey pred map =
         map
