@@ -37,7 +37,9 @@ let Empty = new EmptyConstraint()
 
 let EmptyString = new EmptyStringConstraint()
 
+#if !NETCOREAPP2_0
 let NullOrEmptyString = new NullOrEmptyStringConstraint()
+#endif
 
 let True = new TrueConstraint()
 
