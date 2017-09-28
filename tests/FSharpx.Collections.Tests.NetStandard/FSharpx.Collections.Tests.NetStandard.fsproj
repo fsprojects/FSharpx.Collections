@@ -39,7 +39,7 @@
     <Compile Include="..\FSharpx.Collections.Tests\TransientHashMapTest.fs" />
     <Compile Include="..\FSharpx.Collections.Tests\PersistentHashMapTest.fs" />
 
-    <Compile Include="..\FSharpx.Collections.Tests\Program.fs"/>
+    <Compile Include="Program.fs"/>
   </ItemGroup>
 
   <ItemGroup>
