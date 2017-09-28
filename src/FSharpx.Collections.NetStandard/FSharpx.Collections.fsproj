@@ -7,7 +7,6 @@
   <ItemGroup>
     <None Include="..\FSharpx.Collections\paket.references" />
     <None Include="..\FSharpx.Collections\paket.template" />
-    <Content Include="..\FSharpx.Collections\app.config" />
     <Compile Include="..\FSharpx.Collections\AssemblyInfo.fs" />
     <Compile Include="..\FSharpx.Collections\Exceptions.fs" />
     <Compile Include="..\FSharpx.Collections\Interfaces.fs" />
