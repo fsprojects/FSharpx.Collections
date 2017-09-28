@@ -13,7 +13,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Program.fs"/>
+    <Compile Include="..\FSharpx.Collections.Tests\FsUnit.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\FsCheckRunner.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\FsCheckProperties.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\Utilities.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\ArrayTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\ByteStringTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\ColllectionTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\DequeTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\DictionaryExtensionsTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\DListTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\HeapTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\LazyListTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\ListExtensionsTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\MapExtensionsTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\MapTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\NameValueCollectionTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\PriorityQueueTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\QueueTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\RandomAccessListTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\SeqTests.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\PersistentVectorTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\TransientHashMapTest.fs" />
+    <Compile Include="..\FSharpx.Collections.Tests\PersistentHashMapTest.fs" />
+
+    <Compile Include="..\FSharpx.Collections.Tests\Program.fs"/>
   </ItemGroup>
 
 </Project>
