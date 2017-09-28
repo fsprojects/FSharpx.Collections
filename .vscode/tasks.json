@@ -15,6 +15,20 @@
                 "reveal": "always"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "command": "dotnet test tests/FSharpx.Collections.Tests.NetStandard/FSharpx.Collections.Tests.NetStandard.fsproj",
+            "type": "shell",
+            "dependsOn": "build",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$msCompile"
         }
     ]
 }

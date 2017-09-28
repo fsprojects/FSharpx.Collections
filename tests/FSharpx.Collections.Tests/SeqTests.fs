@@ -135,7 +135,7 @@ let ``I should not be able to get the tail of a empty sequence``() =
     let f () =
         Seq.tail []
         |> should equal []
-    Assert.Throws<ArgumentException>(TestDelegate f)
+    Assert.Throws<ArgumentException>(TestDelegate f) |> ignore
 
 [<Test>]
 let ``I should be able to get the tail of a empty sequence without a fail``() =
