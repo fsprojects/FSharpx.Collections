@@ -131,10 +131,11 @@ let ``I should be able to get the tail of a sequence``() =
     |> should equal [2;3;4]
 
 [<Test>]
-[<ExpectedException(typeof<ArgumentException>)>]
 let ``I should not be able to get the tail of a empty sequence``() =
-    Seq.tail []
-    |> should equal []
+    let f () =
+        Seq.tail []
+        |> should equal []
+    Assert.Throws<ArgumentException>(TestDelegate f)
 
 [<Test>]
 let ``I should be able to get the tail of a empty sequence without a fail``() =

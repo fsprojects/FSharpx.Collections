@@ -8,7 +8,12 @@ open System.Collections.Generic
 
 [<AutoOpen>]
 module Utilities = 
+#if NETCOREAPP2_0
+    let test msg b = Assert.AreEqual(true, b, "MiniTest '" + msg + "'")
+#else
     let test msg b = Assert.IsTrue(b, "MiniTest '" + msg + "'")
+#endif
+
     let logMessage msg = 
         System.Console.WriteLine("LOG:" + msg)
 //        System.Diagnostics.Trace.WriteLine("LOG:" + msg)
