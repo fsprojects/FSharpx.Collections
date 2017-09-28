@@ -42,4 +42,8 @@
     <Compile Include="..\FSharpx.Collections.Tests\Program.fs"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FSharpx.Collections.NetStandard\FSharpx.Collections.fsproj" />
+  </ItemGroup>
+
 </Project>
