@@ -11,7 +11,11 @@ let private nUnitRunner =
         member x.OnShrink(args, everyShrink) = ()
         member x.OnFinished(name, result) = 
             match result with 
+#if NETCOREAPP2_0
             | TestResult.True (data, _) -> 
+#else
+            | TestResult.True data -> 
+#endif
                 printfn "%s" (Runner.onFinishedToString name result)
             | _ -> Assert.Fail(Runner.onFinishedToString name result) }
    
