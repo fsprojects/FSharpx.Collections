@@ -497,6 +497,23 @@ module Dictionary =
         d |> Seq.map (fun (KeyValue(x,y)) -> x, y)
 
 
+[<Extension>]
+type ExtraIDictionary() =
+    [<Extension>]
+    static member inline TryFind(d:IDictionary<'k, 'v>, k:'k) =
+        match d.TryGetValue k with
+        | true, v -> Some v
+        | _ -> None
+
+[<Extension>]
+type ExtraIReadOnlyDictionary() =
+    [<Extension>]
+    static member inline TryFind(d:IReadOnlyDictionary<'k, 'v>, k:'k) =
+        match d.TryGetValue k with
+        | true, v -> Some v
+        | _ -> None
+
+
 /// Extensions for F#'s Map module.
 module Map =
     /// <summary>
