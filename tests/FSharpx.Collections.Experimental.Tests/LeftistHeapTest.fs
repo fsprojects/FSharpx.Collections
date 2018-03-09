@@ -118,7 +118,7 @@ let ``structure pattern match and merge``() =
 
     let x, h1, h2 = 
         match h with
-        | T(_, _, _, x', h1', h2') -> x', h1', h2'
+        | LeftistHeap.T(_, _, _, x', h1', h2') -> x', h1', h2'
         | _ ->  "zz", h, h
 
     let h3 = merge h1 h2 
