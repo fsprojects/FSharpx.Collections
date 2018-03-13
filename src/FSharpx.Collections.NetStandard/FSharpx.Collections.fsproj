@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\FSharpx.Collections\paket.references" />
+    <None Include="..\FSharpx.Collections\paket.template" />
+    <Compile Include="..\FSharpx.Collections\AssemblyInfo.fs" />
+    <Compile Include="..\FSharpx.Collections\Exceptions.fs" />
+    <Compile Include="..\FSharpx.Collections\Interfaces.fs" />
+    <Compile Include="..\FSharpx.Collections\Infrastructure.fs" />
+    <Compile Include="..\FSharpx.Collections\LazyList.fsi" />
+    <Compile Include="..\FSharpx.Collections\LazyList.fs" />
+    <Compile Include="..\FSharpx.Collections\ResizeArray.fsi" />
+    <Compile Include="..\FSharpx.Collections\ResizeArray.fs" />
+    <Compile Include="..\FSharpx.Collections\Collections.fs" />
+    <Compile Include="..\FSharpx.Collections\Deque.fsi" />
+    <Compile Include="..\FSharpx.Collections\Deque.fs" />
+    <Compile Include="..\FSharpx.Collections\DList.fsi" />
+    <Compile Include="..\FSharpx.Collections\DList.fs" />
+    <Compile Include="..\FSharpx.Collections\ByteString.fs" />
+    <Compile Include="..\FSharpx.Collections\CircularBuffer.fs" />
+    <Compile Include="..\FSharpx.Collections\PriorityQueue.fs" />
+    <Compile Include="..\FSharpx.Collections\NonEmptyList.fs" />
+    <Compile Include="..\FSharpx.Collections\RandomAccessList.fsi" />
+    <Compile Include="..\FSharpx.Collections\RandomAccessList.fs" />
+    <Compile Include="..\FSharpx.Collections\Queue.fsi" />
+    <Compile Include="..\FSharpx.Collections\Queue.fs" />
+    <Compile Include="..\FSharpx.Collections\Literals.fs" />
+    <Compile Include="..\FSharpx.Collections\PersistentVector.fsi" />
+    <Compile Include="..\FSharpx.Collections\PersistentVector.fs" />
+    <Compile Include="..\FSharpx.Collections\PersistentHashMap.fs" />
+    <Compile Include="..\FSharpx.Collections\TaggedCollections.fs" />
+  </ItemGroup>
+
+</Project>
