@@ -1,5 +1,4 @@
 source http://nuget.org/api/v2
-framework: >= net4
 
 nuget FAKE
 nuget NUnit.Runners
