@@ -20,7 +20,7 @@ type RoseTree<[<EqualityConditionalOn>] 'T> =
     override x.GetHashCode() = 
         391
         + (box x.Root).GetHashCode() * 23
-        + x.Children.GetHashCode()
+        + (x.Children :> _ seq).GetHashCode()
 
     interface IEquatable<RoseTree<'T>> with
         member x.Equals y = 
