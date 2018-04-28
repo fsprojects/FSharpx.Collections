@@ -230,7 +230,7 @@ module Seq =
       } 
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
-    let inline catOptions (xs:seq<Option<'a>>) = Seq.choose id
+    let inline catOptions (xs : 'a option seq) = Seq.choose id xs
 
     /// Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
