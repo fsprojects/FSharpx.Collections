@@ -35,7 +35,11 @@ module Seq =
     let tryFindWithIndex pred l =
         l |> index |> Seq.tryFind (fun (_,v) -> pred v)
 
-    let inline lift2 f l1 l2 =
+    /// Returns the only element of the sequence for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:seq<'a>) : 'a =
+        source |> Seq.filter predicate |> Seq.exactlyOne
+
+    let inline lift2 f l1 l2 = 
         seq {
             for i in l1 do
                 for j in l2 do
@@ -234,26 +238,21 @@ module Seq =
 
     /// Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Seq.choose chooser xs
 
     /// Extracts from a seq of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Seq.choose chooser xs
 
     /// Partitions a seq of Choice into two seqs. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
-    let inline partitionChoices (xs:seq<Choice<'a, 'b>>) =
-        let choice f1 f2 = function
-                           | Choice1Of2 x -> f1 x
-                           | Choice2Of2 y -> f2 y
-        let choice1 x (c1, c2) = (cons x c1, c2       )
-        let choice2 y (c1, c2) = (c1       , cons y c2)
-        Seq.foldBack (choice choice1 choice2) xs (Seq.empty, Seq.empty)
+    let inline partitionChoices xs =
+        (choice1s xs, choice2s xs)
 
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -264,6 +263,10 @@ module Seq =
 module Array =
     let inline nth i arr = Array.get arr i
     let inline setAt i v arr = Array.set arr i v; arr
+
+    /// Returns the only element of the array for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:'a[]) : 'a =
+        source |> Array.filter predicate |> Array.exactlyOne
 
     let copyTo sourceStartIndx startIndx source target =
         let targetLength = (Array.length target)
@@ -324,16 +327,16 @@ module Array =
 
     /// Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Array.choose chooser xs
 
     /// Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         Array.choose chooser xs
 
     /// Partitions an aray of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
@@ -351,7 +354,11 @@ module List =
 
     let inline singleton x = [x]
 
-    let inline lift2 f (l1: _ list) (l2: _ list) =
+    /// Returns the only element of the list for which the given function returns true.
+    let inline findExactlyOne (predicate : 'a -> bool) (source:'a list) : 'a =
+        source |> List.filter predicate |> List.exactlyOne
+
+    let inline lift2 f (l1: _ list) (l2: _ list) = 
         [ for i in l1 do
             for j in l2 do
                 yield f i j ]
@@ -453,21 +460,26 @@ module List =
 
     /// Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
-        let chooser = function
-                      | Choice1Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         List.choose chooser xs
 
     /// Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
-        let chooser = function
-                      | Choice2Of2 x -> Some x
-                      | _            -> None
+        let inline chooser a = match a with
+                               | Choice1Of2 x -> Some x
+                               | _            -> None
         List.choose chooser xs
 
     /// Partitions a list of Choice into two lists. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
-    let inline partitionChoices xs =
-        (choice1s xs, choice2s xs)
+    let inline partitionChoices (xs:Choice<'a, 'b> list) =
+        let inline choice f1 f2 a = match a with
+                                    | Choice1Of2 x -> f1 x
+                                    | Choice2Of2 y -> f2 y
+        let inline choice1 x (c1, c2) = (cons x c1, c2       )
+        let inline choice2 y (c1, c2) = (c1       , cons y c2)
+        List.foldBack (choice choice1 choice2) xs ([], [])
 
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
@@ -481,8 +493,35 @@ module Dictionary =
         | true,v -> Some v
         | _ -> None
 
+    let inline toSeq (d:seq<KeyValuePair<'a, 'b>>) : seq<'a * 'b> =
+        d |> Seq.map (fun (KeyValue(x,y)) -> x, y)
+
+
+[<Extension>]
+type ExtraIDictionary() =
+    [<Extension>]
+    static member inline TryFind(d:IDictionary<'k, 'v>, k:'k) =
+        match d.TryGetValue k with
+        | true, v -> Some v
+        | _ -> None
+
+[<Extension>]
+type ExtraIReadOnlyDictionary() =
+    [<Extension>]
+    static member inline TryFind(d:IReadOnlyDictionary<'k, 'v>, k:'k) =
+        match d.TryGetValue k with
+        | true, v -> Some v
+        | _ -> None
+
+
 /// Extensions for F#'s Map module.
 module Map =
+    /// <summary>
+    /// Returns a new map made from the given Dictionary (or anything else that implements <code>seq&lt;KeyValuePair&lt;&apos;a, &apos;b&gt;&gt;</code>).
+    /// </summary>
+    let ofDict (d:seq<KeyValuePair<'a, 'b>>) =
+        d |> Dictionary.toSeq |> Map.ofSeq
+
     let spanWithKey pred map =
         map
         |> Map.fold (fun (l,r) k v ->
@@ -519,6 +558,16 @@ module Map =
 
     let valueList map = map |> Map.toList |> List.unzip |> snd
 
+    
+    /// Combines the two Maps into a single Map, with custom decisioning on what happens in case of conflict
+    let inline unionWith (decide : 'k -> 'v -> 'v -> 'v) (m1:Map<'k, 'v>) (m2:Map<'k, 'v>) =
+        let inline add m k v1 =
+            let v = match Map.tryFind k m with
+                    | None    -> v1
+                    | Some v2 -> decide k v1 v2
+            Map.add k v m
+        Map.fold add m1 m2
+
     /// Combines the two Maps into a single Map
     let union (loses: Map<_,_>) (wins: Map<_,_>) =
         Seq.fold (fun m (KeyValue(k,v)) -> Map.add k v m) loses wins
@@ -535,11 +584,11 @@ module Map =
         Seq.fold (fun s key -> Map.remove key s) map keys
 
     /// Retrieves the values from a Map
-    let values (map : Map<'T,'b>) =
+    let inline values (map : Map<'T,'b>) = 
         map |> Map.toSeq |> Seq.map snd
 
-    /// Retrieves the keys from a Map
-    let keys (map : Map<'T,'b>) =
+    /// Retrieves the keys from a Map    
+    let inline keys (map : Map<'T,'b>) = 
         map |> Map.toSeq |> Seq.map fst
 
     /// Retrieves the key set from a Map
@@ -562,10 +611,11 @@ module Map =
         choose chooser table
 
     /// Compares two maps for equality using the given comparison function, element by element.
-    let inline equalsWith eq xs ys =
-        let xs' = Map.toArray xs
-        let ys' = Map.toArray ys
-        Array.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
+    let inline equalsWith (eq : 'k -> 'v -> 'k -> 'v -> bool) (xs:Map<'k, 'v>) (ys:Map<'k, 'v>) =
+        let eq' (k1, v1) (k2, v2) = eq k1 v1 k2 v2
+        let xs' = Map.toSeq xs
+        let ys' = Map.toSeq ys
+        Seq.equalsWith eq' xs' ys'
 
 
 #if FX_PORTABLE
