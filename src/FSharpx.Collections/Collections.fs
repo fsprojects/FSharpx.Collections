@@ -5,7 +5,7 @@ open System.Linq
 open System.Collections
 open System.Collections.Generic
 open System.Runtime.CompilerServices
-            
+
 /// Extensions for F#'s Seq module.
 module Seq =
 
@@ -44,27 +44,27 @@ module Seq =
             for i in l1 do
                 for j in l2 do
                     yield f i j }
-    
+
     /// Will iterate the current sequence until the given predicate is statisfied
-    let iterBreak (f:'T -> bool) (seq:seq<_>) = 
-        use en = seq.GetEnumerator() 
+    let iterBreak (f:'T -> bool) (seq:seq<_>) =
+        use en = seq.GetEnumerator()
         let mutable run = true
         while en.MoveNext() && run do
             run <- f en.Current
-    
+
     /// The same as Seq.average except will return None if the seq is empty
     let inline tryAverage (seq : seq<(^a)>) : ^a option =
-        use e = seq.GetEnumerator()     
+        use e = seq.GetEnumerator()
         let mutable acc = LanguagePrimitives.GenericZero< (^a) >
         let mutable count = 0
         while e.MoveNext() do
             acc <- acc + e.Current
             count <- count + 1
-        if count = 0 
+        if count = 0
         then None
         else Some(LanguagePrimitives.DivideByInt< (^a) > acc count)
 
-    
+
     /// Splits a sequences at the given index
     let splitAt n seq = (Seq.take n seq, Seq.skip n seq)
 
@@ -84,20 +84,20 @@ module Seq =
         go source
 
     /// Converts a streamReader into a seq yielding on each line
-    let ofStreamReader (streamReader : System.IO.StreamReader) = 
-         seq {  
+    let ofStreamReader (streamReader : System.IO.StreamReader) =
+         seq {
                 use sr = streamReader
                 while not(sr.EndOfStream) do
                     yield sr.ReadLine()
              }
-    
+
     /// Converts a Stream into a sequence of bytes
     let ofStreamByByte (stream: System.IO.Stream) =
         seq { while stream.Length <> stream.Position do
                 let x = stream.ReadByte()
                 if (int x) < 0 then ()
                 else yield x }
-    
+
     /// Converts a stream into a seq of byte[] where the array is of the length given
     /// Note: the last chunk maybe less than the given chunk size
     let ofStreamByChunk chunkSize (stream: System.IO.Stream) =
@@ -106,20 +106,20 @@ module Seq =
                 let bytesRead = stream.Read(buffer, 0, chunkSize)
                 if bytesRead = 0 then ()
                 else yield buffer }
-    
+
     /// Creates a infinite sequences of the given values
-    let asCircular values = 
-        let rec next () = 
+    let asCircular values =
+        let rec next () =
             seq {
                 for element in values do
                     yield element
                 yield! next()
             }
         next()
-    
+
     /// Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted
-    let asCircularOnLoop f values = 
-        let rec next () = 
+    let asCircularOnLoop f values =
+        let rec next () =
             seq {
                 for element in values do
                     yield element
@@ -129,8 +129,8 @@ module Seq =
         next()
 
     /// Creates a infinite sequences of the given values returning None everytime the given seq is exhausted
-    let asCircularWithBreak values = 
-        let rec next () = 
+    let asCircularWithBreak values =
+        let rec next () =
             seq {
                 for element in values do
                     yield Some(element)
@@ -138,50 +138,50 @@ module Seq =
                 yield! next()
             }
         next()
-        
+
     /// A safe version of seq head
-    let tryHead (source : seq<_>) = 
+    let tryHead (source : seq<_>) =
         use e = source.GetEnumerator()
         if e.MoveNext()
         then Some(e.Current)
-        else None //empty list                
-              
-    let tail (source : seq<_>) = 
+        else None //empty list
+
+    let tail (source : seq<_>) =
         seq {
             use e = source.GetEnumerator()
             if e.MoveNext()
-            then 
+            then
                 while e.MoveNext() do
                     yield e.Current
-            else invalidArg "source" "source sequence cannot be empty"              
+            else invalidArg "source" "source sequence cannot be empty"
         }
 
-    let tailNoFail (source : seq<_>) = 
+    let tailNoFail (source : seq<_>) =
         seq {
             use e = source.GetEnumerator()
             if e.MoveNext()
-            then 
+            then
                 while e.MoveNext() do
                     yield e.Current
-            else ()             
+            else ()
         }
 
     /// The same as Seq.nth except returns None if the sequence is empty or does not have enough elements
-    let tryNth index (source : seq<_>) = 
-         let rec tryNth' index (e : System.Collections.Generic.IEnumerator<'T>) = 
+    let tryNth index (source : seq<_>) =
+         let rec tryNth' index (e : System.Collections.Generic.IEnumerator<'T>) =
              if not (e.MoveNext()) then None
              else if index < 0 then None
              else if index = 0 then Some(e.Current)
              else tryNth' (index-1) e
-    
+
          use e = source.GetEnumerator()
          tryNth' index e
-    
+
     /// The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
     /// Alias for Enumerable.Skip
-    let inline skipNoFail count (source: seq<_>) = 
+    let inline skipNoFail count (source: seq<_>) =
         Enumerable.Skip(source, count)
-        
+
     /// Creates an infinite sequence of the given value
     let repeat a = seq { while true do yield a }
 
@@ -190,13 +190,13 @@ module Seq =
         seq {
               let values = source |> skipNoFail (n - 1)
               match values |> tryNth 0 with
-              | Some(v) -> 
+              | Some(v) ->
                     yield v
                     yield! contract n (tailNoFail values)
               | None -> ()
         }
 
-    /// Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences. 
+    /// Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences.
     /// Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.
     let rec combine f (a : seq<_>) (b : seq<_>) =
         seq {
@@ -216,25 +216,25 @@ module Seq =
     /// Pages the underlying sequence
     let page page pageSize (source : seq<_>) =
           source |> skipNoFail (page * pageSize) |> Seq.truncate pageSize
-        
-    let prependToAll sep list = 
+
+    let prependToAll sep list =
         seq{
             for element in list do
                 yield sep
                 yield element
         }
 
-    let intersperse (sep: 'a) (list: 'a seq) : 'a seq = 
-        seq { 
-            let notFirst = ref false 
-            for element in list do 
-              if !notFirst then yield sep; 
-              yield element; 
+    let intersperse (sep: 'a) (list: 'a seq) : 'a seq =
+        seq {
+            let notFirst = ref false
+            for element in list do
+              if !notFirst then yield sep;
+              yield element;
               notFirst := true
-      } 
+      }
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
-    let inline catOptions (xs:seq<Option<'a>>) = Seq.choose id
+    let inline catOptions (xs:seq<Option<'a>>) = Seq.choose id xs
 
     /// Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
@@ -260,7 +260,7 @@ module Seq =
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
-module Array = 
+module Array =
     let inline nth i arr = Array.get arr i
     let inline setAt i v arr = Array.set arr i v; arr
 
@@ -274,27 +274,27 @@ module Array =
             failwith "Start Index outside the bounds of the array"
 
         let sourceLength = (Array.length source)
-        let elementsToCopy = 
+        let elementsToCopy =
                     if (targetLength - startIndx - sourceStartIndx) > sourceLength then
                         sourceLength
                     else
-                       (targetLength - startIndx - sourceStartIndx)    
+                       (targetLength - startIndx - sourceStartIndx)
 
         Array.blit source sourceStartIndx target startIndx elementsToCopy
-    
-    let ofTuple (source : obj) : obj array = 
+
+    let ofTuple (source : obj) : obj array =
         Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields source
 
-    let toTuple (source : 'T array) : 't = 
+    let toTuple (source : 'T array) : 't =
         let elements = source |> Array.map (fun x -> x :> obj)
         Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(elements, typeof<'t>) :?> 't
 
     /// Returns an array of sliding windows of data drawn from the source array.
     /// Each window contains the n elements surrounding the current element.
-    let centeredWindow n (source: _ []) =    
+    let centeredWindow n (source: _ []) =
         if n < 0 then invalidArg "n" "n must be a positive integer"
         let lastIndex = source.Length - 1
-    
+
         let window i _ =
             let windowStartIndex = Math.Max(i - n, 0)
             let windowEndIndex = Math.Min(i + n, lastIndex)
@@ -307,23 +307,23 @@ module Array =
 
     /// Calculates the central moving average for the array using n elements either side
     /// of the point where the mean is being calculated.
-    let inline centralMovingAverage n (a:^t []) = 
+    let inline centralMovingAverage n (a:^t []) =
         a |> centeredWindow n |> Array.map (Array.average)
-        
+
     /// Calculates the central moving average for the array of optional elements using n
     /// elements either side of the point where the mean is being calculated. If any of
     /// the optional elements in the averaging window are None then the average itself
     /// is None.
-    let inline centralMovingAverageOfOption n (a:^t option array) = 
-        a 
-        |> centeredWindow n 
+    let inline centralMovingAverageOfOption n (a:^t option array) =
+        a
+        |> centeredWindow n
         |> Array.map (fun window ->
                         if Array.exists Option.isNone window
                         then None
                         else Some(Array.averageBy Option.get window))
-                  
+
     /// The catOptions function takes a list of Options and returns an array of all the Some values.
-    let inline catOptions (xs:Option<'a>[]) = Array.choose id
+    let inline catOptions (xs:Option<'a>[]) = Array.choose id xs
 
     /// Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
@@ -351,7 +351,7 @@ module Array =
 module List =
     /// Curried cons
     let inline cons hd tl = hd::tl
-  
+
     let inline singleton x = [x]
 
     /// Returns the only element of the list for which the given function returns true.
@@ -363,7 +363,7 @@ module List =
             for j in l2 do
                 yield f i j ]
 
-  
+
     let span pred l =
         let rec loop l cont =
             match l with
@@ -373,14 +373,14 @@ module List =
             | x::xs when pred x -> loop xs (fun rest -> cont (x::rest))
             | _ -> failwith "Unrecognized pattern"
         loop l id
-  
+
     let split pred l = span (not << pred) l
-  
+
     let skipWhile pred l = span pred l |> snd
     let skipUntil pred l = split pred l |> snd
     let takeWhile pred l = span pred l |> fst
     let takeUntil pred l = split pred l |> fst
-    
+
     let splitAt n l =
         let pred i = i >= n
         let rec loop i l cont =
@@ -391,7 +391,7 @@ module List =
             | x::xs when not (pred i) -> loop (i+1) xs (fun rest -> cont (x::rest))
             | _ -> failwith "Unrecognized pattern"
         loop 0 l id
-  
+
     let skip n l = splitAt n l |> snd
     let take n l = splitAt n l |> fst
 
@@ -410,9 +410,9 @@ module List =
     let inline mapIf pred f =
         List.map (fun x -> if pred x then f x else x)
 
-    /// Behaves like a combination of map and fold; 
-    /// it applies a function to each element of a list, 
-    /// passing an accumulating parameter from left to right, 
+    /// Behaves like a combination of map and fold;
+    /// it applies a function to each element of a list,
+    /// passing an accumulating parameter from left to right,
     /// and returning a final value of this accumulator together with the new list.
     let mapAccum f s l =
         let rec loop s l cont =
@@ -434,7 +434,7 @@ module List =
             match a, b with
             | h :: t, h' :: t' when f(h) < f(h') ->
                 yield h; yield! mergeBy f t b
-            | h :: t, h' :: t' -> 
+            | h :: t, h' :: t' ->
                 yield h'; yield! mergeBy f a t'
             | h :: t, [] -> yield! a
             | [], h :: t -> yield! b
@@ -444,19 +444,19 @@ module List =
     /// Merges two sequences by the default comparer for 'T
     let merge a b = mergeBy id a b
 
-    
-    let pad (amt: int) (elem: 'a) (list: 'a list) : 'a list = 
+
+    let pad (amt: int) (elem: 'a) (list: 'a list) : 'a list =
         if amt >=0 then list @ (List.replicate amt elem)
         else list
 
-    let fill (total:int) (elem: 'a) (list: 'a list) = 
-        if List.length list >= total then 
+    let fill (total:int) (elem: 'a) (list: 'a list) =
+        if List.length list >= total then
             list
         else
             pad (total - List.length list) elem list
-      
+
     /// The catOptions function takes a list of Options and returns a list of all the Some values.
-    let inline catOptions (xs:Option<'a> list) = List.choose id
+    let inline catOptions (xs:Option<'a> list) = List.choose id xs
 
     /// Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
     let inline choice1s xs =
@@ -534,7 +534,7 @@ module Map =
     let splitWithKey pred d = spanWithKey (not << pred) d
 
     /// <summary>
-    /// <code>insertWith f key value mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map. 
+    /// <code>insertWith f key value mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
     /// If the key does exist, the function will insert <code>f new_value old_value</code>.
     /// </summary>
     let insertWith f key value map =
@@ -543,8 +543,8 @@ module Map =
         | None -> map |> Map.add key value
 
     /// <summary>
-    /// <code>update f k map</code> updates the value <code>x</code> at key <code>k</code> (if it is in the map). 
-    /// If <code>f x</code> is <code>None</code>, the element is deleted. 
+    /// <code>update f k map</code> updates the value <code>x</code> at key <code>k</code> (if it is in the map).
+    /// If <code>f x</code> is <code>None</code>, the element is deleted.
     /// If it is <code>Some y</code>, the key is bound to the new value <code>y</code>.
     /// </summary>
     let updateWith f key map =
@@ -558,10 +558,7 @@ module Map =
 
     let valueList map = map |> Map.toList |> List.unzip |> snd
 
-    /// Combines the two Maps into a single Map
-    let inline union (loses: Map<'k, 'v>) (wins: Map<'k, 'v>) = 
-        Map.fold (fun m k v -> Map.add k v m) loses wins
-
+    
     /// Combines the two Maps into a single Map, with custom decisioning on what happens in case of conflict
     let inline unionWith (decide : 'k -> 'v -> 'v -> 'v) (m1:Map<'k, 'v>) (m2:Map<'k, 'v>) =
         let inline add m k v1 =
@@ -571,12 +568,16 @@ module Map =
             Map.add k v m
         Map.fold add m1 m2
 
+    /// Combines the two Maps into a single Map
+    let union (loses: Map<_,_>) (wins: Map<_,_>) =
+        Seq.fold (fun m (KeyValue(k,v)) -> Map.add k v m) loses wins
+
     let choose (f : 'T -> 'b -> 'c option) (map : Map<'T,'b>) =
-        (Map.empty, map) ||> Map.fold (fun s k v -> 
-                    let result = f k v 
-                    if Option.isSome result 
+        (Map.empty, map) ||> Map.fold (fun s k v ->
+                    let result = f k v
+                    if Option.isSome result
                     then Map.add k result.Value s
-                    else s) 
+                    else s)
 
     /// Allows to remove many keys from a Map
     let removeMany (keys : seq<'T>) (map : Map<'T,'b>) =
@@ -595,7 +596,7 @@ module Map =
 
     let findOrDefault key defaultValue (map : Map<'T,'b>) =
         defaultArg (map.TryFind key) defaultValue
-  
+
     /// The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.
     let inline catOptionKeys (table:Map<Option<'a>, 'b>) =
         seq {
@@ -603,7 +604,7 @@ module Map =
                 if k.IsSome then yield k.Value, v
         }
         |> Map.ofSeq
-  
+
     /// The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.
     let inline catOptionValues (table:Map<'a, Option<'b>>) =
         let chooser _ vo = vo
@@ -633,7 +634,7 @@ module NameValueCollection =
     /// <param name="b"></param>
     [<Extension>]
     [<CompiledName("Concat")>]
-    let concat a b = 
+    let concat a b =
         let x = NameValueCollection()
         x.Add a
         x.Add b
@@ -703,7 +704,7 @@ module NameValueCollection =
         let notimpl() = raise <| NotImplementedException()
         let getEnumerator() =
             let enum = x.GetEnumerator()
-            let wrapElem (o: obj) = 
+            let wrapElem (o: obj) =
                 let key = o :?> string
                 let values = x.GetValues key
                 KeyValuePair(key,values)
@@ -715,9 +716,9 @@ module NameValueCollection =
                 member e.Current = box (wrapElem enum.Current) }
         { new IDictionary<string,string[]> with
             member d.Count = x.Count
-            member d.IsReadOnly = false 
-            member d.Item 
-                with get k = 
+            member d.IsReadOnly = false
+            member d.Item
+                with get k =
                     let v = x.GetValues k
                     if v = null
                         then raise <| KeyNotFoundException(sprintf "Key '%s' not found" k)
@@ -727,13 +728,13 @@ module NameValueCollection =
                     for i in v do
                         x.Add(k,i)
             member d.Keys = upcast ResizeArray<string>(x.Keys |> Seq.cast)
-            member d.Values = 
+            member d.Values =
                 let values = ResizeArray<string[]>()
                 for i in 0..x.Count-1 do
                     values.Add(x.GetValues i)
                 upcast values
             member d.Add v = d.Add(v.Key, v.Value)
-            member d.Add(key,value) = 
+            member d.Add(key,value) =
                 if key = null
                     then raise <| ArgumentNullException("key")
                 if d.ContainsKey key
@@ -745,17 +746,17 @@ module NameValueCollection =
             member d.CopyTo(array,arrayIndex) = notimpl()
             member d.GetEnumerator() = getEnumerator()
             member d.GetEnumerator() = getEnumerator() :> IEnumerator
-            member d.Remove (item: KeyValuePair<string,string[]>) = 
+            member d.Remove (item: KeyValuePair<string,string[]>) =
                 if d.Contains item then
                     x.Remove item.Key
                     true
                 else
                     false
-            member d.Remove (key: string) = 
+            member d.Remove (key: string) =
                 let exists = d.ContainsKey key
                 x.Remove key
                 exists
-            member d.TryGetValue(key: string, value: byref<string[]>) = 
+            member d.TryGetValue(key: string, value: byref<string[]>) =
                 if d.ContainsKey key then
                     value <- d.[key]
                     true
@@ -770,7 +771,7 @@ module NameValueCollection =
         { new IDictionary<string,string[]> with
             member d.Count = a.Count
             member d.IsReadOnly = true
-            member d.Item 
+            member d.Item
                 with get k = a.[k]
                 and set k v = notSupported()
             member d.Keys = a.Keys
@@ -786,32 +787,32 @@ module NameValueCollection =
             member d.Remove (item: KeyValuePair<string,string[]>) = notSupported(); false
             member d.Remove (key: string) = notSupported(); false
             member d.TryGetValue(key: string, value: byref<string[]>) = a.TryGetValue(key, ref value)
-        }                
+        }
 
     [<Extension>]
     [<CompiledName("AsLookup")>]
     let asLookup (this: NameValueCollection) =
-        let getEnumerator() = 
+        let getEnumerator() =
             let e = this.GetEnumerator()
-            let wrapElem (o: obj) = 
+            let wrapElem (o: obj) =
                 let key = o :?> string
                 let values = this.GetValues key :> seq<string>
                 { new IGrouping<string,string> with
                     member x.Key = key
                     member x.GetEnumerator() = values.GetEnumerator()
                     member x.GetEnumerator() = values.GetEnumerator() :> IEnumerator }
-  
+
             { new IEnumerator<IGrouping<string,string>> with
                 member x.Current = wrapElem e.Current
                 member x.MoveNext() = e.MoveNext()
                 member x.Reset() = e.Reset()
                 member x.Dispose() = ()
                 member x.Current = box (wrapElem e.Current) }
-                      
+
         { new ILookup<string,string> with
             member x.Count = this.Count
-            member x.Item 
-                with get key = 
+            member x.Item
+                with get key =
                     match this.GetValues key with
                     | null -> Seq.empty
                     | a -> upcast a
