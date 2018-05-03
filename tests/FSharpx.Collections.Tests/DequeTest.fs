@@ -207,25 +207,25 @@ let ``toSeq works``() =
 [<TestCaseSource("intGensStart1")>]
 let ``get head from deque``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> (head q) = (List.nth l 0) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> (head q) = (List.item 0 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart1")>]
 let ``get head from deque safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> (tryHead q).Value = (List.nth l 0) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> (tryHead q).Value = (List.item 0 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from deque``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : Deque<int>), l) -> q.Tail.Head = (List.nth l 1) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : Deque<int>), l) -> q.Tail.Head = (List.item 1 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from deque safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> q.TryTail.Value.Head = (List.nth l 1) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Deque<int>, l) -> q.TryTail.Value.Head = (List.item 1 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart2")>]
@@ -586,7 +586,7 @@ let ``last, init, and length work test 9``() =
 
 [<Test>]
 let ``IEnumerable Seq nth``() =
-    lena |> Seq.nth 5 |> should equal "e"
+    lena |> Seq.item 5 |> should equal "e"
 
 [<Test>]
 let ``IEnumerable Seq length``() =

@@ -140,26 +140,26 @@ let ``foldback matches build list``() =
 [<TestCaseSource("intGensStart1")>]
 let ``get head from queue``(x : obj) =
     let genAndName = unbox x 
-//    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (peek q) = (List.nth l 0) |> classifyCollect q q.Length))
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (head q) = (List.nth l 0) ))
+//    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (peek q) = (List.item 0 l) |> classifyCollect q q.Length))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (head q) = (List.item 0 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart1")>]
 let ``get head from queue safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (tryHead q).Value = (List.nth l 0) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> (tryHead q).Value = (List.item 0 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from queue``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : Queue<int>), l) -> q.Tail.Head = (List.nth l 1) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : Queue<int>), l) -> q.Tail.Head = (List.item 1 l) ))
 
 [<Test>]
 [<TestCaseSource("intGensStart2")>]
 let ``get tail from queue safely``(x : obj) =
     let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> q.TryTail.Value.Head = (List.nth l 1) ))
+    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : Queue<int>, l) -> q.TryTail.Value.Head = (List.item 1 l) ))
 
 [<Test>]
 let ``give None if there is no head in the queue``() =
