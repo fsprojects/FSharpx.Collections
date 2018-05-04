@@ -1,13 +1,11 @@
 source http://nuget.org/api/v2
 
+nuget Expecto
+nuget Expecto.FsCheck
 nuget FAKE
-nuget NUnit.Runners
 nuget FSharp.Formatting
-nuget FsCheck 0.9.2
-nuget FsUnit
-nuget NUnit ~> 2
-nuget NUnit.Runners.Net4
-nuget FSharp.Core redirects: force
+nuget FsCheck 
+nuget FSharp.Core
 nuget SourceLink.Fake
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx

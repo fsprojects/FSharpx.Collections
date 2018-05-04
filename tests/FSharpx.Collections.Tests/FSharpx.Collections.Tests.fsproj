@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>b397365b-f6ef-4abc-94f1-8f6ea900bf20</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Tests</AssemblyName>
     <Name>FSharpx.Collections.Tests</Name>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <None Include="app.config" />
     <Compile Include="FsUnit.fs" />
     <Compile Include="FsCheckRunner.fs" />
     <Compile Include="FsCheckProperties.fs" />
@@ -35,6 +34,7 @@
     <Compile Include="PersistentVectorTest.fs" />
     <Compile Include="TransientHashMapTest.fs" />
     <Compile Include="PersistentHashMapTest.fs" />
+    <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">

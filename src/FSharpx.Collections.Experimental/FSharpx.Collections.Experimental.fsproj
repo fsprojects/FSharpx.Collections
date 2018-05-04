@@ -12,7 +12,6 @@
   <ItemGroup>
     <None Include="paket.references" />
     <None Include="paket.template" />
-    <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Infrastructure.fs" />
     <Compile Include="AltBinaryRandomAccessList.fs" />

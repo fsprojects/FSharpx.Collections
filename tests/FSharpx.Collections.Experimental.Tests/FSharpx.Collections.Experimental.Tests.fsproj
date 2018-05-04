@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>4b763738-cf1a-4dec-a888-7d3d15054231</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Experimental.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
     <Name>FSharpx.Collections.Experimental.Tests</Name>
@@ -10,7 +10,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.config" />
     <None Include="paket.references" />
     <Compile Include="..\FSharpx.Collections.Tests\FsUnit.fs">
       <Link>FsUnit.fs</Link>
@@ -57,6 +56,7 @@
     <Compile Include="TimeSeriesTest.fs" />
     <Compile Include="BlockResizeArrayTest.fs" />
     <Compile Include="SkewBinomialHeapTest.fs" />
+    <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
