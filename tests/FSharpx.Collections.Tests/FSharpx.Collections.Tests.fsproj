@@ -17,7 +17,7 @@
     <Compile Include="Utilities.fs" />
     <Compile Include="ArrayTests.fs" />
     <Compile Include="ByteStringTest.fs" />
-    <Compile Include="ColllectionTests.fs" />
+    <Compile Include="ResizeArrayTests.fs" />
     <Compile Include="DequeTest.fs" />
     <Compile Include="DictionaryExtensionsTests.fs" />
     <Compile Include="DListTest.fs" />
