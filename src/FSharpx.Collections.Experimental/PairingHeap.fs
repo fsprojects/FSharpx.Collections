@@ -111,7 +111,7 @@ type PairingHeap<'T when 'T : comparison> =
     ///O(1) worst case. Returns option first min or max element.
     member this.TryGetHead() = PairingHeap.tryGetHead this
 
-    ///O(log n) amortized time. Returns a new heap with the element inserted.
+    ///O(1) amortized time. Returns a new heap with the element inserted.
     member this.Insert x  = PairingHeap.insert x this
 
     ///O(1) Returns true if the heap has no elements.
@@ -125,12 +125,12 @@ type PairingHeap<'T when 'T : comparison> =
         let lH = this::[]
         PairingHeap.sumTree lH
 
-    ///O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.
+    ///O(1) amortized time. Returns heap from merging two heaps, both must have same descending.
     member this.Merge (xs : PairingHeap<'T>) = 
         if this.IsDescending = xs.IsDescending then PairingHeap.merge this xs
         else failwith "not same max or min"
 
-    ///O(log n) amortized time. Returns heap option from merging two heaps.
+    ///O(1) amortized time. Returns heap option from merging two heaps.
     member this.TryMerge (xs : PairingHeap<'T>) = 
         if this.IsDescending = xs.IsDescending then Some(PairingHeap.merge this xs)
         else None
@@ -236,7 +236,7 @@ module PairingHeap =
     ///O(1) worst case. Returns option first min or max element.
     let inline tryGetHead (xs: PairingHeap<'T>)  = xs.TryGetHead()
 
-    ///O(log n) amortized time. Returns a new heap with the element inserted.
+    ///O(1) amortized time. Returns a new heap with the element inserted.
     let inline insert x (xs: PairingHeap<'T>) = xs.Insert x   
 
     ///O(1) Returns true if the heap has no elements.
@@ -248,10 +248,10 @@ module PairingHeap =
     ///O(n). Returns the count of elememts.
     let inline length (xs: PairingHeap<'T>) = xs.Length() 
 
-    ///O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.
+    ///O(1) amortized time. Returns heap from merging two heaps, both must have same descending.
     let inline merge (xs: PairingHeap<'T>) (ys: PairingHeap<'T>) = xs.Merge ys
 
-    ///O(log n) amortized time. Returns heap option from merging two heaps.
+    ///O(1) amortized time. Returns heap option from merging two heaps.
     let inline tryMerge (xs: PairingHeap<'T>) (ys: PairingHeap<'T>) = xs.TryMerge ys
 
     ///O(n). Returns heap from the sequence.
