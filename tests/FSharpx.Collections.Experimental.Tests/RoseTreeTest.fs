@@ -81,7 +81,7 @@ let bind() =
 
 open FsCheck
 open FsCheck.NUnit
-open FSharpx.Collections.Tests.Properties
+open FSharpx.Collections.Experimental.Tests.Properties
 
 type RoseTreeGen =
     static member RoseTree() =

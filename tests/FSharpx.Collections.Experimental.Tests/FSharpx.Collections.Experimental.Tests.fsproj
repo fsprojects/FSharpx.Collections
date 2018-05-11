@@ -2,28 +2,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>4b763738-cf1a-4dec-a888-7d3d15054231</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Experimental.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
     <Name>FSharpx.Collections.Experimental.Tests</Name>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.config" />
     <None Include="paket.references" />
-    <Compile Include="..\FSharpx.Collections.Tests\FsUnit.fs">
-      <Link>FsUnit.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharpx.Collections.Tests\FsCheckRunner.fs">
-      <Link>FsCheckRunner.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharpx.Collections.Tests\FsCheckProperties.fs">
-      <Link>FsCheckProperties.fs</Link>
-    </Compile>
-    <Compile Include="..\FSharpx.Collections.Tests\Utilities.fs">
-      <Link>Utilities.fs</Link>
-    </Compile>
+    <Compile Include="FsUnit.fs" />
+    <Compile Include="FsCheckRunner.fs" />
+    <Compile Include="FsCheckProperties.fs" />
+    <Compile Include="Utilities.fs" />
     <Compile Include="QueueGen.fs" />
     <Compile Include="HeapGen.fs" />
     <Compile Include="AltBinaryRandomAccessListTest.fs" />
@@ -57,6 +48,7 @@
     <Compile Include="TimeSeriesTest.fs" />
     <Compile Include="BlockResizeArrayTest.fs" />
     <Compile Include="SkewBinomialHeapTest.fs" />
+    <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">

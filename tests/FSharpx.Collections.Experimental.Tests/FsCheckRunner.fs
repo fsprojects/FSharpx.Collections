@@ -1,4 +1,4 @@
-﻿module FsCheck.NUnit
+module FsCheck.NUnit
 
 open FSharpx
 open FsCheck
@@ -11,7 +11,7 @@ let private nUnitRunner =
         member x.OnShrink(args, everyShrink) = ()
         member x.OnFinished(name, result) = 
             match result with 
-            | TestResult.True data -> 
+            | TestResult.True (data, true) -> 
                 printfn "%s" (Runner.onFinishedToString name result)
             | _ -> Assert.Fail(Runner.onFinishedToString name result) }
    

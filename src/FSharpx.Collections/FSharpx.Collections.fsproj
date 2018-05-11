@@ -7,14 +7,13 @@
     <RootNamespace>FSharpx.Collections</RootNamespace>
     <AssemblyName>FSharpx.Collections</AssemblyName>
     <Name>FSharpx.Collections</Name>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
     <None Include="paket.template" />
-    <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Exceptions.fs" />
     <Compile Include="Interfaces.fs" />

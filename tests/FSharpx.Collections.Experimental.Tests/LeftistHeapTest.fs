@@ -3,7 +3,7 @@
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.LeftistHeap
-open FSharpx.Collections.Tests.Properties
+open FSharpx.Collections.Experimental.Tests.Properties
 open NUnit.Framework
 open FsCheck
 open FsCheck.NUnit

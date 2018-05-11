@@ -6,13 +6,12 @@
     <RootNamespace>FSharpx.Collections.Experimental</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental</AssemblyName>
     <Name>FSharpx.Collections.Experimental</Name>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
     <None Include="paket.template" />
-    <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Infrastructure.fs" />
     <Compile Include="AltBinaryRandomAccessList.fs" />

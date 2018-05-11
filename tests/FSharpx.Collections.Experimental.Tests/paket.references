@@ -1,4 +1,6 @@
 FSharp.Core
 FsCheck
-FsUnit
+Expecto
+Expecto.FsCheck
 NUnit
+FsUnit
