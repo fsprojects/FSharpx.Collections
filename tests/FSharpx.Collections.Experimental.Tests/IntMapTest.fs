@@ -516,7 +516,7 @@ let ``test maxViewWithKey``() =
 
 open FsCheck
 open FsCheck.NUnit
-open FSharpx.Collections.Tests.Properties
+open FSharpx.Collections.Experimental.Tests.Properties
 open System.Linq
 
 let fsCheck t = fsCheck "" t

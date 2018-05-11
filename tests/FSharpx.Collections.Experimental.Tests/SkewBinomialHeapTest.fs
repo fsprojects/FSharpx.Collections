@@ -84,7 +84,7 @@ let register =
         Arb.register<ComparableGenerator<string>>() |> ignore
         Arb.register<SkewBinomialHeapGenerators>() |> ignore)
 
-[<TestFixtureSetUp>]
+//[<TestFixtureSetUp>]
 let setUp () =
     register.Force ()
 

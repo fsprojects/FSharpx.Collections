@@ -26,15 +26,15 @@ module ByteStringTests =
     [<Tests>]
     let testByteString =
         testList "ByteString" [
-            testCase "test ByteString comparison should correctly return -1, 0, or 1"  <| fun () ->
+            test "test ByteString comparison should correctly return -1, 0, or 1" {
                 comparisonTests
-                |> Array.iter (fun x -> BS.Compare(unbox x.[0], unbox x.[1]) |> (Expect.equal "comparison" <| unbox x.[3]) )
+                |> Array.iter (fun x -> BS.Compare(unbox x.[0], unbox x.[1]) |> (Expect.equal "comparison" <| unbox x.[3]) ) }
 
-            testCase "test ByteString_length should return the length of the byte string" <| fun () ->
+            test "test ByteString_length should return the length of the byte string" {
               let input = create "Hello, world!"B
-              length input |> (Expect.equal "length" 13)
+              Expect.equal "length" 13 <| length input }
 
-            testCase "test ByteString_span correctly breaks the ByteString on the specified predicate" <| fun () ->
+            test "test ByteString_span correctly breaks the ByteString on the specified predicate" {
                 spanAndSplitTests
                 |> Array.iter (fun x -> 
                     let input = unbox x.[0]
@@ -43,10 +43,9 @@ module ByteStringTests =
                     let str = create input
                     let expected = if input.Length = breakIndex then str, empty
                                     else BS(input, 0, breakIndex), BS(input, breakIndex, input.Length - breakIndex)
-                    let actual = span ((<>) breakChar) str
-                    actual |> (Expect.equal "ByteString * ByteString" expected) )
+                    Expect.equal "ByteString * ByteString" expected <| span ((<>) breakChar) str ) }
 
-            testCase "test ByteString_split correctly breaks the ByteString on the specified predicate"  <| fun () ->
+            test "test ByteString_split correctly breaks the ByteString on the specified predicate" {
                 spanAndSplitTests
                 |> Array.iter (fun x -> 
                     let input = unbox x.[0]
@@ -55,101 +54,71 @@ module ByteStringTests =
                     let str = create input
                     let expected = if input.Length = breakIndex then str, empty
                                     else BS(input, 0, breakIndex), BS(input, breakIndex, input.Length - breakIndex)
-                    let actual = split ((=) breakChar) str
-                    actual |> (Expect.equal "ByteString * ByteString" expected) )
+                    Expect.equal "ByteString * ByteString" expected <| split ((=) breakChar) str ) }
 
-            //[<Test>]
-            //testCase "test ByteString_span correctly breaks the ByteString on \r" <| fun () ->
-            //  let input = "test\r\ntest"B
-            //  let str = create input
-            //  let expected = BS(input, 0, 4), BS(input, 4, 6)
-            //  let actual = span (fun c -> c <> '\r'B && c <> '\n'B) str
-            //  actual |> should equal expected
+            test "test ByteString_span correctly breaks the ByteString on \r" {
+                let input = "test\r\ntest"B
+                let str = create input
+                let expected = BS(input, 0, 4), BS(input, 4, 6)
+                Expect.equal "ByteString * ByteString" expected <| span (fun c -> c <> '\r'B && c <> '\n'B) str }
 
-            //[<Test>]
-            //testCase "test ByteString_split correctly breaks the ByteString on \r" <| fun () ->
-            //  let input = "test\r\ntest"B
-            //  let str = create input
-            //  let expected = BS(input, 0, 4), BS(input, 4, 6)
-            //  let actual = split (fun c -> c = '\r'B || c = '\n'B) str
-            //  actual |> should equal expected
+            test "test ByteString_split correctly breaks the ByteString on \r" {
+                let input = "test\r\ntest"B
+                let str = create input
+                let expected = BS(input, 0, 4), BS(input, 4, 6)
+                Expect.equal "ByteString * ByteString" expected <| split (fun c -> c = '\r'B || c = '\n'B) str }
 
-            //[<Test>]
-            //testCase "test ByteString_splitAt correctly breaks the ByteString on the specified index" <| fun () ->
-            //  let input = "Howdy! Want to play?"B
-            //  let str = create input
-            //  let expected = BS(input, 0, 6), BS(input, 6, 14)
-            //  let actual = splitAt 6 str
-            //  actual |> should equal expected
+            test "test ByteString_splitAt correctly breaks the ByteString on the specified index" {
+                let input = "Howdy! Want to play?"B
+                let str = create input
+                let expected = BS(input, 0, 6), BS(input, 6, 14)
+                Expect.equal "ByteString * ByteString" expected <| splitAt 6 str }
 
-            //[<Test>]
-            //testCase "test ByteString_fold should concatenate bytes into a string" <| fun () ->
-            //  create "Howdy"B
-            //  |> fold (fun a b -> a + (char b).ToString()) ""
-            //  |> should equal "Howdy"
+            test "test ByteString_fold should concatenate bytes into a string" {
+                Expect.equal "string" "Howdy" 
+                    <| (create "Howdy"B
+                        |> fold (fun a b -> a + (char b).ToString()) "" ) }
 
-            //[<Test>]
-            //testCase "test ByteString_take correctly truncates the ByteString at the selected index" <| fun () ->
-            //  let input = "Howdy! Want to play?"B
-            //  let str = create input
-            //  let expected = BS(input, 0, 6)
-            //  let actual = take 6 str
-            //  actual |> should equal expected
+            test "test ByteString_take correctly truncates the ByteString at the selected index" {
+                let input = "Howdy! Want to play?"B
+                let str = create input
+                let expected = BS(input, 0, 6)
+                Expect.equal "ByteString" expected <| take 6 str }
 
-            //[<Test>]
-            //[<Sequential>]
-            //testCase "test drop should drop the first n items" <| fun () ->
-            //([<Values(0,1,2,3,4,5,6,7,8,9)>] x) =
-            //  let input = "Howdy! Want to play?"B
-            //  let actual = skip 7 (create input)
-            //  actual |> should equal (BS(input,7,13))
+           
+            test "test drop should drop the first n items" {
+                let input = "Howdy! Want to play?"B
+                Expect.equal "ByteString"  (BS(input,7,13)) <| skip 7 (create input) }
 
-            //[<Test>]
-            //testCase "test dropWhile should drop anything before the first space" <| fun () ->
-            //  let input = create "Howdy! Want to play?"B
-            //  let dropWhile2Head = skipWhile ((<>) ' 'B) >> head
-            //  let actual = dropWhile2Head input
-            //  actual |> should equal ' 'B
+            test "test dropWhile should drop anything before the first space" {
+                let input = create "Howdy! Want to play?"B
+                let dropWhile2Head = skipWhile ((<>) ' 'B) >> head
+                Expect.equal "Byte" ' 'B <| dropWhile2Head input }
 
-            //[<Test>]
-            //testCase "test take should return an empty ArraySegment when asked to take 0" <| fun () ->
-            //  let actual = take 0 (create "Nothing should be taken"B)
-            //  actual |> should equal empty
+            test "test take should return an empty ArraySegment when asked to take 0" {
+                Expect.equal "empty ByteString" empty <| take 0 (create "Nothing should be taken"B) }
 
-            //[<Test>]
-            //testCase "test take should return an empty ArraySegment when given an empty ArraySegment" <| fun () ->
-            //  let actual = take 4 empty
-            //  actual |> should equal empty
+            test "test take should return an empty ArraySegment when given an empty ArraySegment" {
+                Expect.equal "empty ByteString" empty <| take 4 empty }
 
-            //[<Test>]
-            //[<Sequential>]
-            //testCase "test take should take the first n items" <| fun () ->
-            //([<Values(1,2,3,4,5,6,7,8,9,10)>] x) =
-            //  let input = [|0uy..9uy|]
-            //  let expected = BS(input,0,x)
-            //  let actual = take x (create input)
-            //  actual |> should equal expected
+            test "test take should take the first n items" {
+                let input = [|0uy..9uy|]
 
-            //[<Test>]
-            //testCase "test takeWhile should return an empty ArraySegment when given an empty ArraySegment" <| fun () ->
-            //  let actual = takeWhile ((<>) ' 'B) empty
-            //  actual |> should equal empty
+                [1;2;3;4;5;6;7;8;9;10]
+                |> List.iter (fun x ->
+                    Expect.equal "ByteString" (BS(input,0,x)) <| take x (create input) ) }
 
-            //[<Test>]
-            //testCase "test takeWhile should take anything before the first space" <| fun () ->
-            //  let input = "Hello world"B
-            //  let actual = takeWhile ((<>) ' 'B) (create input)
-            //  actual |> should equal (BS(input, 0, 5))
+            test "test takeWhile should return an empty ArraySegment when given an empty ArraySegment" {
+                Expect.equal "empty ByteString" empty <| takeWhile ((<>) ' 'B) empty }
 
-            //[<Test>]
-            //testCase "test takeUntil should return an empty ArraySegment when given an empty ArraySegment" <| fun () ->
-            //  let actual = takeUntil ((=) ' 'B) empty
-            //  actual |> should equal empty
+            test "test takeWhile should take anything before the first space" {
+                let input = "Hello world"B
+                Expect.equal "ByteString" (BS(input, 0, 5)) <| (takeWhile ((<>) ' 'B) (create input)) }
 
-            //[<Test>]
-            //testCase "test takeUntil should correctly split the input" <| fun () ->
-            //  let input = "abcde"B
-            //  let actual = takeUntil ((=) 'c'B) (create input)
-            //  actual |> should equal (BS(input, 0, 2))
+            test "test takeUntil should return an empty ArraySegment when given an empty ArraySegment" {
+              Expect.equal "empty ByteString" empty <| takeUntil ((=) ' 'B) empty }
 
+            test "test takeUntil should correctly split the input" {
+              let input = "abcde"B
+              Expect.equal "ByteString" (BS(input, 0, 2)) <| takeUntil ((=) 'c'B) (create input) }
         ]

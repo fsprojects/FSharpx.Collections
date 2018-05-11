@@ -2,3 +2,5 @@ FSharp.Core
 FsCheck
 Expecto
 Expecto.FsCheck
+NUnit
+FsUnit

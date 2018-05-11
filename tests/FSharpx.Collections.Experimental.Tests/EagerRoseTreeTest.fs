@@ -6,7 +6,7 @@ open FSharpx.Collections.Experimental
 open NUnit.Framework
 open FsCheck
 open FsCheck.NUnit
-open FSharpx.Collections.Tests.Properties
+open FSharpx.Collections.Experimental.Tests.Properties
 open FsUnit
 
 

@@ -1,88 +1,82 @@
-﻿module FSharpx.Collections.Tests.PriorityQueueTest
+﻿namespace FSharpx.Collections.Tests
 
-open FSharpx
 open FSharpx.Collections.PriorityQueue
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``empty queue should be empty``() =
-    let pq = empty false
+module PriorityQueueTests =
+    let testPriorityQueue =
 
-    isEmpty pq |> should equal true
-    tryPeek pq |> should equal None
-    tryPop pq |> should equal None
+        testList "PriorityQueue" [
+            test "empty queue should be empty" {
+                let pq = empty false
 
-[<Test>]
-let ``After adding an element to the PQ it shouldn't be empty``() =
-    let pq = empty false |> insert 1
+                Expect.isTrue "empty" <| isEmpty pq
+                Expect.isNone "empty" <| tryPeek pq
+                Expect.isNone "empty" <| tryPop pq }
 
-    isEmpty pq |> should equal false
-    
+            test "After adding an element to the PQ it shouldn't be empty" {
+                let pq = empty false |> insert 1
+                Expect.isFalse "insert"  <| isEmpty pq }
 
-[<Test>]
-let ``After adding an element to the PQ the element should be the smallest``() =
-    let pq = empty false |> insert 1
+            test "After adding an element to the PQ the element should be the smallest" {
+                let pq = empty false |> insert 1
 
-    tryPeek pq |> should equal (Some 1)
-    peek pq |> should equal 1
+                Expect.equal "insert" (Some 1) <| tryPeek pq
+                Expect.equal "insert" 1 <| peek pq }
 
-[<Test>]
-let ``After adding an element to the PQ and popping it the PQ should be empty``() =
-    let pq = empty false |> insert 1
+            test "After adding an element to the PQ and popping it the PQ should be empty" {
+                let pq = empty false |> insert 1
 
-    let element,newPQ = pop pq
-    element |> should equal 1
-    isEmpty newPQ |> should equal true
+                let element,newPQ = pop pq
+                Expect.equal "pop" 1 element
+                Expect.isTrue "pop"  <| isEmpty newPQ
 
-    let element,newPQ = (tryPop pq).Value
-    element |> should equal 1
-    isEmpty newPQ |> should equal true
+                let element,newPQ = (tryPop pq).Value
+                Expect.equal "tryPop" 1 element
+                Expect.isTrue "tryPop"  <| isEmpty newPQ }
 
-[<Test>]
-let ``Adding multiple elements to the PQ should allow to pop the smallest``() =
-    let pq = empty false |> insert 1 |> insert 3 |> insert 0 |> insert 4 |> insert -3
+            test "Adding multiple elements to the PQ should allow to pop the smallest" {
+                let pq = empty false |> insert 1 |> insert 3 |> insert 0 |> insert 4 |> insert -3
 
-    let element,newPQ = pop pq
-    element |> should equal -3
+                let element,newPQ = pop pq
+                Expect.equal "pop" -3 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 0
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 0 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 1
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 1 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 3
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 3 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 4
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 4 element
 
-    isEmpty newPQ |> should equal true
+                Expect.isTrue "pop"  <| isEmpty newPQ }
 
-[<Test>]
-let ``Adding multiple elements to a MaxPriorityQueue should allow to pop the smallest``() =
-    let pq = empty true |> insert 1 |> insert 3 |> insert 0 |> insert 4 |> insert -3
+            test "Adding multiple elements to a MaxPriorityQueue should allow to pop the smallest" {
+                let pq = empty true |> insert 1 |> insert 3 |> insert 0 |> insert 4 |> insert -3
 
-    let element,newPQ = pop pq
-    element |> should equal 4
+                let element,newPQ = pop pq
+                Expect.equal "pop" 4 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 3
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 3 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 1
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 1 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal 0
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" 0 element
 
-    let element,newPQ = pop newPQ
-    element |> should equal -3
+                let element,newPQ = pop newPQ
+                Expect.equal "pop" -3 element
 
-    isEmpty newPQ |> should equal true
+                Expect.isTrue "pop"  <| isEmpty newPQ }
 
-[<Test>]
-let ``Can use a PQ as a seq``() =
-    let pq = empty false |> insert 15 |> insert 3 |> insert 0 |> insert 4 |> insert -3
-
-    pq |> Seq.toList |> should equal [-3;0;3;4;15]
+            test "Can use a PQ as a seq" {
+                let pq = empty false |> insert 15 |> insert 3 |> insert 0 |> insert 4 |> insert -3
+                Expect.equal "" [-3;0;3;4;15] (pq |> Seq.toList) }
+        ]

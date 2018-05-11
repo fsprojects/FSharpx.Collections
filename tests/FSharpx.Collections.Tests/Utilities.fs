@@ -15,79 +15,12 @@ module Utilities = ()
 ////        System.Diagnostics.Trace.WriteLine("LOG:" + msg)
 //    let check msg v1 v2 = test msg (v1 = v2)
 //    let reportFailure msg = Assert.Fail msg
-//    let numActiveEnumerators = ref 0
+
 //    let throws f = try f() |> ignore; false with e -> true
 
-//    let countEnumeratorsAndCheckedDisposedAtMostOnceAtEnd (seq: seq<'a>) =
-//       let enumerator() = 
-//                 numActiveEnumerators := !numActiveEnumerators + 1;
-//                 let disposed = ref false in
-//                 let endReached = ref false in
-//                 let ie = seq.GetEnumerator() in
-//                 { new System.Collections.Generic.IEnumerator<'a> with 
-//                      member x.Current =
-//                          test "rvlrve0" (not !endReached);
-//                          test "rvlrve1" (not !disposed);
-//                          ie.Current
-//                      member x.Dispose() = 
-//                          test "rvlrve2" !endReached;
-//                          test "rvlrve4" (not !disposed);
-//                          numActiveEnumerators := !numActiveEnumerators - 1;
-//                          disposed := true;
-//                          ie.Dispose() 
-//                   interface System.Collections.IEnumerator with 
-//                      member x.MoveNext() = 
-//                          test "rvlrve0" (not !endReached);
-//                          test "rvlrve3" (not !disposed);
-//                          endReached := not (ie.MoveNext());
-//                          not !endReached
-//                      member x.Current = 
-//                          test "qrvlrve0" (not !endReached);
-//                          test "qrvlrve1" (not !disposed);
-//                          box ie.Current
-//                      member x.Reset() = 
-//                          ie.Reset()
-//                   } in
 
-//       { new seq<'a> with 
-//             member x.GetEnumerator() =  enumerator() 
-//         interface System.Collections.IEnumerable with 
-//             member x.GetEnumerator() =  (enumerator() :> _) }
 
-//    let countEnumeratorsAndCheckedDisposedAtMostOnce (seq: seq<'a>) =
-//       let enumerator() = 
-//                 let disposed = ref false in
-//                 let endReached = ref false in
-//                 let ie = seq.GetEnumerator() in
-//                 numActiveEnumerators := !numActiveEnumerators + 1;
-//                 { new System.Collections.Generic.IEnumerator<'a> with 
-//                      member x.Current =
-//                          test "qrvlrve0" (not !endReached);
-//                          test "qrvlrve1" (not !disposed);
-//                          ie.Current
-//                      member x.Dispose() = 
-//                          test "qrvlrve4" (not !disposed);
-//                          numActiveEnumerators := !numActiveEnumerators - 1;
-//                          disposed := true;
-//                          ie.Dispose() 
-//                   interface System.Collections.IEnumerator with 
-//                      member x.MoveNext() = 
-//                          test "qrvlrve0" (not !endReached);
-//                          test "qrvlrve3" (not !disposed);
-//                          endReached := not (ie.MoveNext());
-//                          not !endReached
-//                      member x.Current = 
-//                          test "qrvlrve0" (not !endReached);
-//                          test "qrvlrve1" (not !disposed);
-//                          box ie.Current
-//                      member x.Reset() = 
-//                          ie.Reset()
-//                   } in
 
-//       { new seq<'a> with 
-//             member x.GetEnumerator() =  enumerator() 
-//         interface System.Collections.IEnumerable with 
-//             member x.GetEnumerator() =  (enumerator() :> _) }
 
 //    // Verifies two sequences are equal (same length, equiv elements)
 //    let verifySeqsEqual seq1 seq2 =

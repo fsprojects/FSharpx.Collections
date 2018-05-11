@@ -1,19 +1,20 @@
-﻿module FSharpx.Collections.Tests.DictionaryExtensionsTest
+﻿namespace FSharpx.Collections.Tests
 
 open FSharpx.Collections
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``dictionary tryfind with some``() =
-  let a = dict [1,"one"; 2,"two"]
-  let v = a |> Dictionary.tryFind 1
-  match v with
-  | Some a -> a |> should equal "one" 
-  | None -> failwith "key should have been found"
+module DictionaryExtensionsTests =
 
-[<Test>]
-let ``dictionary tryfind with none``() =
-  let a = dict [1,"one"; 2,"two"]
-  let v = a |> Dictionary.tryFind 3
-  v |> should sameAs None
+    [<Tests>]
+    let testDictionaryExtensions =
+        testList "DictionaryExtensions" [
+
+            test "dictionary tryfind with some" {
+              let a = dict [1,"one"; 2,"two"]
+              Expect.equal "tryfind" (Some "one") (a |> Dictionary.tryFind 1) }
+
+            test "dictionary tryfind with none" {
+              let a = dict [1,"one"; 2,"two"]
+              Expect.isNone  "tryfind" (a |> Dictionary.tryFind 3) }
+        ]

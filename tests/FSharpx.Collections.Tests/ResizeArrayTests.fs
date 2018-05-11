@@ -13,7 +13,7 @@ module ResizeArrayTests =
 
     [<Tests>]
     let testResizeArray =
-        testList "ByteString" [
+        testList "ResizeArray" [
             test "ra_exists2_a" { 
                 Expect.isTrue "exists2" <| ResizeArray.exists2 (=)
                     (ra [1; 2; 3; 4; 5; 6])
@@ -28,13 +28,13 @@ module ResizeArrayTests =
                 Expect.equal "findIndex" 4 <| ResizeArray.findIndex (fun i -> i >= 4) (ra [0..10]) }
 
             test "ra_findIndex_b" {
-                Expect.throwsT<KeyNotFoundException> "findIndex" <| (fun () -> ResizeArray.findIndex (fun i -> i >= 20) (ra [0..10]) |> ignore) }
+                Expect.throwsT<KeyNotFoundException> "findIndex" (fun () -> ResizeArray.findIndex (fun i -> i >= 20) (ra [0..10]) |> ignore) }
        
             test "ra_find_indexi_a" {
                 Expect.equal "findIndexi" 3 <| ResizeArray.findIndexi (=) (ra [1; 2; 3; 3; 2; 1]) }
 
             test "ra_find_indexi_b" {
-                Expect.throwsT<KeyNotFoundException> "findIndexi" <| (fun () -> ResizeArray.findIndexi (=) (ra [1..10]) |> ignore) }
+                Expect.throwsT<KeyNotFoundException> "findIndexi" (fun () -> ResizeArray.findIndexi (=) (ra [1..10]) |> ignore) }
 
             test "ra_forall2_a" {
                 Expect.isTrue "forall2" <| ResizeArray.forall2 (=) (ra [1..10]) (ra [1..10]) }
@@ -52,7 +52,7 @@ module ResizeArrayTests =
                 Expect.isTrue "mapi2" (ResizeArray.mapi2 (fun i j k -> i+j+k) (ra [1..10]) (ra [1..10]) =? [2..+3..29]) }
 
             test "ra_mapi2_b" { 
-                Expect.throwsT<System.ArgumentException> "mapi2" <| (fun () -> ResizeArray.mapi2 (fun i j k -> i+j+k) (ra []) (ra [1..10]) |> ignore) }
+                Expect.throwsT<System.ArgumentException> "mapi2" (fun () -> ResizeArray.mapi2 (fun i j k -> i+j+k) (ra []) (ra [1..10]) |> ignore) }
 
             
             test "ra_iteri2" {
@@ -142,7 +142,7 @@ module ResizeArrayTests =
                 Expect.equal "find" 51 <| (ra [1..100] |> ResizeArray.find (fun x -> x > 50) ) }
 
             test "ra_find b" { 
-                Expect.throwsT<KeyNotFoundException> "find" <| (fun () -> ra [1..100] |> ResizeArray.find (fun x -> x > 180) |> ignore) }
+                Expect.throwsT<KeyNotFoundException> "find" (fun () -> ra [1..100] |> ResizeArray.find (fun x -> x > 180) |> ignore) }
 
             test "ra_first" { 
                 Expect.equal "tryPick" (Some (51*51)) (ra [1..100] |> ResizeArray.tryPick (fun x -> if x > 50 then Some (x*x) else None) ) }

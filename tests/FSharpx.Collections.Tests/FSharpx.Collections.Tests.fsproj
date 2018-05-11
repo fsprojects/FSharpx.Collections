@@ -11,8 +11,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <Compile Include="FsUnit.fs" />
-    <Compile Include="FsCheckRunner.fs" />
     <Compile Include="FsCheckProperties.fs" />
     <Compile Include="Utilities.fs" />
     <Compile Include="ArrayTests.fs" />
