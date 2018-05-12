@@ -98,143 +98,143 @@ module HeapTests =
                 Expect.isTrue "" true }
         ]
 
-    [<Tests>]
-    let propertyTestHeap =
-        //only going up to 5 elements is probably sufficient to test all edge cases
+    //[<Tests>]
+    //let propertyTestHeap =
+    //    //only going up to 5 elements is probably sufficient to test all edge cases
 
-        let insertThruList l h =
-            List.fold (fun (h' : Heap<'a>) x -> h'.Insert  x  ) h l
+    //    let insertThruList l h =
+    //        List.fold (fun (h' : Heap<'a>) x -> h'.Insert  x  ) h l
 
-        let maxHeapIntGen =
-            gen {   let! n = Gen.length2thru12
-                    let! n2 = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    let! y =  Gen.listInt n2
-                    return ( (Heap.ofSeq true x |> insertThruList y), ((x @ y) |> List.sort |> List.rev) ) }
+    //    let maxHeapIntGen =
+    //        gen {   let! n = Gen.length2thru12
+    //                let! n2 = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                let! y =  Gen.listInt n2
+    //                return ( (Heap.ofSeq true x |> insertThruList y), ((x @ y) |> List.sort |> List.rev) ) }
 
-        let maxHeapIntOfSeqGen =
-            gen {   let! n = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    return ( (Heap.ofSeq true x), (x |> List.sort |> List.rev) ) }
+    //    let maxHeapIntOfSeqGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                return ( (Heap.ofSeq true x), (x |> List.sort |> List.rev) ) }
 
-        let maxHeapIntInsertGen =
-            gen {   let! n = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    return ( (Heap.empty true |> insertThruList x), (x |> List.sort |> List.rev) ) }
+    //    let maxHeapIntInsertGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                return ( (Heap.empty true |> insertThruList x), (x |> List.sort |> List.rev) ) }
 
-        let maxHeapStringGen =
-            gen {   let! n = Gen.length1thru12
-                    let! n2 = Gen.length2thru12
-                    let! x =  Gen.listString n
-                    let! y =  Gen.listString n2
-                    return ( (Heap.ofSeq true x |> insertThruList y), ((x @ y) |> List.sort |> List.rev) ) }
+    //    let maxHeapStringGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! n2 = Gen.length2thru12
+    //                let! x =  Gen.listString n
+    //                let! y =  Gen.listString n2
+    //                return ( (Heap.ofSeq true x |> insertThruList y), ((x @ y) |> List.sort |> List.rev) ) }
 
-        let minHeapIntGen =
-            gen {   let! n = Gen.length2thru12
-                    let! n2 = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    let! y =  Gen.listInt n2
-                    return ( (Heap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
+    //    let minHeapIntGen =
+    //        gen {   let! n = Gen.length2thru12
+    //                let! n2 = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                let! y =  Gen.listInt n2
+    //                return ( (Heap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
 
-        let minHeapIntOfSeqGen =
-            gen {   let! n = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    return ( (Heap.ofSeq false x), (x |> List.sort) ) }
+    //    let minHeapIntOfSeqGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                return ( (Heap.ofSeq false x), (x |> List.sort) ) }
 
-        let minHeapIntInsertGen =
-            gen {   let! n = Gen.length1thru12
-                    let! x =  Gen.listInt n
-                    return ( (Heap.empty false |> insertThruList x), (x |> List.sort) ) }
+    //    let minHeapIntInsertGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! x =  Gen.listInt n
+    //                return ( (Heap.empty false |> insertThruList x), (x |> List.sort) ) }
 
-        let minHeapStringGen =
-            gen {   let! n = Gen.length1thru12
-                    let! n2 = Gen.length2thru12
-                    let! x =  Gen.listString n
-                    let! y =  Gen.listString n2
-                    return ( (Heap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
+    //    let minHeapStringGen =
+    //        gen {   let! n = Gen.length1thru12
+    //                let! n2 = Gen.length2thru12
+    //                let! x =  Gen.listString n
+    //                let! y =  Gen.listString n2
+    //                return ( (Heap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
 
-        // HACK: from when using NUnit TestCaseSource does not understand array of tuples at runtime
-        let intGens start =
-            let v = Array.create 6 (box (maxHeapIntGen, "max Heap int"))
-            v.[1] <- box ((maxHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max Heap OfSeq")
-            v.[2] <- box ((maxHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max Heap from Insert")
-            v.[3] <- box (minHeapIntGen , "min Heap int")
-            v.[4] <- box ((minHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min Heap OfSeq")
-            v.[5] <- box ((minHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min Heap from Insert")
-            v
+    //    // HACK: from when using NUnit TestCaseSource does not understand array of tuples at runtime
+    //    let intGens start =
+    //        let v = Array.create 6 (box (maxHeapIntGen, "max Heap int"))
+    //        v.[1] <- box ((maxHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max Heap OfSeq")
+    //        v.[2] <- box ((maxHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max Heap from Insert")
+    //        v.[3] <- box (minHeapIntGen , "min Heap int")
+    //        v.[4] <- box ((minHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min Heap OfSeq")
+    //        v.[5] <- box ((minHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min Heap from Insert")
+    //        v
 
-        let stringGens =
-            let v = Array.create 2 (box (maxHeapStringGen, "max Heap string"))
-            v.[1] <- box (minHeapStringGen, "min Heap string")
-            v
+    //    let stringGens =
+    //        let v = Array.create 2 (box (maxHeapStringGen, "max Heap string"))
+    //        v.[1] <- box (minHeapStringGen, "min Heap string")
+    //        v
 
-        let intGensStart1 =
-            intGens 1  //this will accept all
+    //    let intGensStart1 =
+    //        intGens 1  //this will accept all
 
-        let intGensStart2 =
-            intGens 2 // this will accept 11 out of 12
+    //    let intGensStart2 =
+    //        intGens 2 // this will accept 11 out of 12
 
-        testList "Heap property tests" [
+    //    testList "Heap property tests" [
 
-            testPropertyWithConfig config10k "head should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-                fun ((h : Heap<int>), (l : int list)) -> h.Head = l.Head )
+    //        testPropertyWithConfig config10k "head should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
+    //            fun ((h : Heap<int>), (l : int list)) -> h.Head = l.Head )
 
-            testPropertyWithConfig config10k "maxHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen maxHeapIntGen) <|
-                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length )
+    //        testPropertyWithConfig config10k "maxHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen maxHeapIntGen) <|
+    //            fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length )
 
-            testPropertyWithConfig config10k "minHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen minHeapIntGen) <|
-                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length )
+    //        testPropertyWithConfig config10k "minHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen minHeapIntGen) <|
+    //            fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length )
 
-            testPropertyWithConfig config10k "rev works max heap" (Prop.forAll (Arb.fromGen maxHeapIntGen) <|
-                fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
+    //        testPropertyWithConfig config10k "rev works max heap" (Prop.forAll (Arb.fromGen maxHeapIntGen) <|
+    //            fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
 
-            testPropertyWithConfig config10k "rev works min  heap" (Prop.forAll (Arb.fromGen minHeapIntGen) <|
-                fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
+    //        testPropertyWithConfig config10k "rev works min  heap" (Prop.forAll (Arb.fromGen minHeapIntGen) <|
+    //            fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
 
-            testPropertyWithConfig config10k "seq enumerate matches build list int" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-                fun (h : Heap<int>, l) -> h |> Seq.toList = l )
+    //        testPropertyWithConfig config10k "seq enumerate matches build list int" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
+    //            fun (h : Heap<int>, l) -> h |> Seq.toList = l )
 
-            testPropertyWithConfig config10k "seq enumerate matches build list string" (Prop.forAll (Arb.fromGen (fst <| unbox stringGens)) <|
-                fun (h : Heap<string>, l) -> h |> Seq.toList = l )
+    //        testPropertyWithConfig config10k "seq enumerate matches build list string" (Prop.forAll (Arb.fromGen (fst <| unbox stringGens)) <|
+    //            fun (h : Heap<string>, l) -> h |> Seq.toList = l )
 
-            testPropertyWithConfig config10k "tail should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-                fun ((h : Heap<int>), (l : int list)) ->    
-                    let tl = h.Tail()
-                    let tlHead =
-                        if (tl.Length > 0) then tl.Head = l.Item(1)
-                        else true
-                    tlHead && (tl.Length = l.Length - 1) )
+    //        testPropertyWithConfig config10k "tail should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
+    //            fun ((h : Heap<int>), (l : int list)) ->    
+    //                let tl = h.Tail()
+    //                let tlHead =
+    //                    if (tl.Length > 0) then tl.Head = l.Item(1)
+    //                    else true
+    //                tlHead && (tl.Length = l.Length - 1) )
 
-            testPropertyWithConfig config10k "tryHead should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-                fun ((h : Heap<int>), (l : int list)) -> h.TryHead.Value = l.Head )
+    //        testPropertyWithConfig config10k "tryHead should return" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
+    //            fun ((h : Heap<int>), (l : int list)) -> h.TryHead.Value = l.Head )
 
-            testPropertyWithConfig config10k "tryUncons 1 element" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-                fun ((h : Heap<int>), (l : int list)) ->    
-                    let x, tl = h.TryUncons().Value
-                    x = l.Head && tl.Length = (l.Length - 1) )
+    //        testPropertyWithConfig config10k "tryUncons 1 element" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
+    //            fun ((h : Heap<int>), (l : int list)) ->    
+    //                let x, tl = h.TryUncons().Value
+    //                x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-                fun ((h : Heap<int>), (l : int list)) ->    
-                    let x, tl = h.Uncons()
-                    x = l.Head && tl.Length = (l.Length - 1) )
+    //        testPropertyWithConfig config10k "uncons 1 element" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
+    //            fun ((h : Heap<int>), (l : int list)) ->    
+    //                let x, tl = h.Uncons()
+    //                x = l.Head && tl.Length = (l.Length - 1) )
 
-            //type HeapGen =
-            //    static member Heap{
-            //        let rec heapGen{ 
-            //            gen {
-            //                let! n = Gen.length1thru100
-            //                let! xs =  Gen.listInt n
-            //                return Heap.ofSeq true xs
-            //            }
-            //        Arb.fromGen (heapGen())
+    //        //type HeapGen =
+    //        //    static member Heap{
+    //        //        let rec heapGen{ 
+    //        //            gen {
+    //        //                let! n = Gen.length1thru100
+    //        //                let! xs =  Gen.listInt n
+    //        //                return Heap.ofSeq true xs
+    //        //            }
+    //        //        Arb.fromGen (heapGen())
 
-            //let registerGen = lazy (Arb.register<HeapGen>() |> ignore)
+    //        //let registerGen = lazy (Arb.register<HeapGen>() |> ignore)
 
-    //fsCheck having trouble with Heap
-    //FSharpx.Tests.HeapTest.monoid law:
-    //System.Exception : Geneflect: type not handled FSharpx.Collections.Heap`1[System.IComparable]
-    //[<Test>]
-    //testPropertyWithConfig config10k "monoid law" {
-    //    registerGen.Force()
-    //    checkMonoid "Heap" (Heap.monoid)
-        ]
+    ////fsCheck having trouble with Heap
+    ////FSharpx.Tests.HeapTest.monoid law:
+    ////System.Exception : Geneflect: type not handled FSharpx.Collections.Heap`1[System.IComparable]
+    ////[<Test>]
+    ////testPropertyWithConfig config10k "monoid law" {
+    ////    registerGen.Force()
+    ////    checkMonoid "Heap" (Heap.monoid)
+    //    ]
