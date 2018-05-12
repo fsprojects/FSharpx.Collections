@@ -28,7 +28,7 @@ module ByteStringTests =
         testList "ByteString" [
             test "test ByteString comparison should correctly return -1, 0, or 1" {
                 comparisonTests
-                |> Array.iter (fun x -> BS.Compare(unbox x.[0], unbox x.[1]) |> (Expect.equal "comparison" <| unbox x.[3]) ) }
+                |> Array.iter (fun x -> BS.Compare(unbox x.[0], unbox x.[1]) |> (Expect.equal "comparison" <| unbox x.[2]) ) }
 
             test "test ByteString_length should return the length of the byte string" {
               let input = create "Hello, world!"B
