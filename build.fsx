@@ -48,7 +48,7 @@ let tags = "F# fsharp fsharpx collections datastructures"
 let solutionFile  = "FSharpx.Collections.sln"
 
 // Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/**/*Tests*.dll"
+let testAssemblies = "tests/**/bin/Release/net47/*Collections.Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
