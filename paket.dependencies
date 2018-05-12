@@ -1,9 +1,10 @@
 source http://nuget.org/api/v2
+source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget Expecto
 nuget Expecto.FsCheck
 nuget FAKE
-nuget FSharp.Formatting
+nuget FSharp.Formatting prerelease
 nuget FsCheck 
 nuget FSharp.Core
 nuget FsUnit

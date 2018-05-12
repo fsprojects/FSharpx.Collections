@@ -7,8 +7,7 @@ open Expecto
 open Expecto.Flip
 open System.Collections.Generic
 
-//#nowarn "40"
-//#nowarn "49"
+#nowarn "40"
 
 module LazyList =
     

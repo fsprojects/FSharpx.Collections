@@ -12,7 +12,6 @@
   <ItemGroup>
     <None Include="paket.references" />
     <Compile Include="FsCheckProperties.fs" />
-    <Compile Include="Utilities.fs" />
     <Compile Include="ArrayTests.fs" />
     <Compile Include="ByteStringTest.fs" />
     <Compile Include="ResizeArrayTests.fs" />
