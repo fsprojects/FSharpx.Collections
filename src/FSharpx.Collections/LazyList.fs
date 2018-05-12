@@ -8,7 +8,6 @@ namespace FSharpx.Collections
 open System
 open System.Collections.Generic
 
-#nowarn "21" // recursive initialization
 #nowarn "40" // recursive initialization
 
 exception UndefinedException
