@@ -2,9 +2,13 @@
 // Builds the documentation from `.fsx` and `.md` files in the 'docs/content' directory
 // (the generated documentation is stored in the 'docs/output' directory)
 // --------------------------------------------------------------------------------------
-
+let referenceBinaries = []
 // Web site location for the generated documentation
+#if TESTING
+let website = __SOURCE_DIRECTORY__ + "../output"
+#else
 let website = "/FSharpx.Collections"
+#endif
 
 let githubLink = "http://github.com/fsprojects/FSharpx.Collections"
 
@@ -29,6 +33,7 @@ open System.IO
 open Fake.FileHelper
 open FSharp.Literate
 open FSharp.MetadataFormat
+open FSharp.Formatting.Razor
 
 // When called from 'build.fsx', use the public project URL as <root>
 // otherwise, use the current 'output' directory.
@@ -59,6 +64,8 @@ subDirectories (directoryInfo templates)
                             name, [templates @@ name
                                    formatting @@ "templates"
                                    formatting @@ "templates/reference" ]))
+
+let fsiEvaluator = lazy (Some (FsiEvaluator() :> IFsiEvaluator))
 
 // Copy static files and CSS + JS from F# Formatting
 let copyFiles () =
@@ -99,19 +106,19 @@ let libDirs =
 // Build API reference from XML comments
 let buildReference () =
   CleanDir (output @@ "reference")
-  MetadataFormat.Generate
+  RazorMetadataFormat.Generate
     ( binaries, output @@ "reference", layoutRootsAll.["en"],
       parameters = ("root", root)::info,
       sourceRepo = githubLink @@ "tree/master",
       sourceFolder = __SOURCE_DIRECTORY__ @@ ".." @@ "..",
-      ?assemblyReferences = references,
       publicOnly = true,libDirs = libDirs )
 
 // Build documentation from `fsx` and `md` files in `docs/content`
 let buildDocumentation () =
-  let subdirs = Directory.EnumerateDirectories(content, "*", SearchOption.AllDirectories)
-  for dir in Seq.append [content] subdirs do
-    let sub = if dir.Length > content.Length then dir.Substring(content.Length + 1) else "."
+  let subdirs =
+    [ content, docTemplate; ]
+  for dir, template in subdirs do
+    let sub = "." // Everything goes into the same output directory here
     let langSpecificPath(lang, path:string) =
         path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
         |> Array.exists(fun i -> i = lang)
@@ -120,11 +127,13 @@ let buildDocumentation () =
         match key with
         | Some lang -> layoutRootsAll.[lang]
         | None -> layoutRootsAll.["en"] // "en" is the default language
-    Literate.ProcessDirectory
-      ( dir, docTemplate, output @@ sub, replacements = ("root", root)::info,
+    RazorLiterate.ProcessDirectory
+      ( dir, template, output @@ sub, replacements = ("root", root)::info,
         layoutRoots = layoutRoots,
-        ?assemblyReferences = references,
-        generateAnchors = true )
+        generateAnchors = true,
+        processRecursive = false,
+        includeSource = true, // Only needed for 'side-by-side' pages, but does not hurt others
+        ?fsiEvaluator = fsiEvaluator.Value ) // Currently we don't need it but it's a good stress test to have it here.
 
 // Generate
 copyFiles()
