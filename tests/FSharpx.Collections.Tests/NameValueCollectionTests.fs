@@ -42,7 +42,8 @@ module NameValueCollectionTests =
               let s = NameValueCollection.toList a
               Expect.equal "toList" r s }
 
-            //shouldn't this fail on dup keys? appears not to be exception, even on add
+            //This is incorrect behavior. Duplicate name should add comma-separated value to value list
+            //https://github.com/fsprojects/FSharpx.Collections/issues/96
             test "concat" {
               let a = NameValueCollection()
               a.Add("1", "uno")
@@ -51,7 +52,7 @@ module NameValueCollectionTests =
               b.Add("1", "one")
               b.Add("2", "two")
               let c = NameValueCollection.concat a b
-              Expect.equal "concat" [("1", "uno"); ("2", "dos"); ("1", "one"); ("2", "two")] <| NameValueCollection.toList c }
+              Expect.equal "concat" [("1", "uno"); ("1", "one"); ("2", "dos"); ("2", "two")] <| NameValueCollection.toList c }
 
             test "toLookup" {
               let n1 = NameValueCollection.ofSeq ["1","uno"; "1","one"; "2","two"]

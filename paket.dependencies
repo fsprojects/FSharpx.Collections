@@ -4,11 +4,13 @@ source https://ci.appveyor.com/nuget/fsharp-formatting
 nuget Expecto
 nuget Expecto.FsCheck
 nuget FAKE
+nuget NUnit.Runners
 nuget FSharp.Formatting prerelease
 nuget FsCheck 
 nuget FSharp.Core
 nuget FsUnit
-nuget NUnit
+nuget NUnit 
+nuget NUnit.Runners.Net4
 nuget SourceLink.Fake
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx

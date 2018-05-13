@@ -76,7 +76,7 @@ module HeapTests =
 
                 let l3 = ofSeq true [1..99] |> insert 7
 
-                Expect.equal "structural equality" l1 l3 }
+                Expect.notEqual "structural equality" l1 l3 }
 
             test "toSeq to list" {
                 let l = ["f";"e";"d";"c";"b";"a"] 

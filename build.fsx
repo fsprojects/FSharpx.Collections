@@ -50,6 +50,8 @@ let solutionFile  = "FSharpx.Collections.sln"
 // Pattern specifying assemblies to be tested using NUnit
 let testAssemblies = "tests/**/bin/Release/net47/*Collections.Tests.exe"
 
+let nUnitTestAssemblies = "tests/**/bin/Release/net461/*Collections.Experimental.Tests.dll"
+
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
 let gitOwner = "fsprojects" 
@@ -138,6 +140,14 @@ Target "Build" (fun _ ->
 Target "RunTests" (fun _ ->
     !! testAssemblies
     |> Expecto id
+
+
+    !! nUnitTestAssemblies
+    |> NUnit (fun p ->
+        { p with
+            DisableShadowCopy = true
+            TimeOut = TimeSpan.FromMinutes 20.
+            OutputFile = "TestResults.xml" })
 )
 
 #if MONO

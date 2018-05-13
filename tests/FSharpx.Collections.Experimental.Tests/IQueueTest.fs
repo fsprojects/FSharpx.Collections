@@ -18,17 +18,17 @@ let emptyIQueues =
 // NUnit TestCaseSource does not understand array of tuples at runtime
 let intGens start =
     let v = Array.create 12 (box (QueueGen.bankersQueueIntGen, "BankersQueue"))
-    v.[1] <- box ((QueueGen.bankersQueueIntOfSeqGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "BankersQueue OfSeq")
-    v.[2] <- box ((QueueGen.bankersQueueIntSnocGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "BankersQueue Snoc")
+    v.[1] <- box ((QueueGen.bankersQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BankersQueue OfSeq")
+    v.[2] <- box ((QueueGen.bankersQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BankersQueue Snoc")
     v.[3] <- box (QueueGen.batchedQueueIntGen, "BatchedQueue")
-    v.[4] <- box ((QueueGen.batchedQueueIntOfSeqGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "BatchedQueue OfSeq")
-    v.[5] <- box ((QueueGen.batchedQueueIntSnocGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "BatchedQueue Snoc")
+    v.[4] <- box ((QueueGen.batchedQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BatchedQueue OfSeq")
+    v.[5] <- box ((QueueGen.batchedQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BatchedQueue Snoc")
     v.[6] <- box (QueueGen.hoodMelvilleQueueIntGen, "HoodMelvilleQueue")
-    v.[7] <- box ((QueueGen.hoodMelvilleQueueIntOfSeqGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue OfSeq")
-    v.[8] <- box ((QueueGen.hoodMelvilleQueueIntSnocGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue Snoc")
+    v.[7] <- box ((QueueGen.hoodMelvilleQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue OfSeq")
+    v.[8] <- box ((QueueGen.hoodMelvilleQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue Snoc")
     v.[9] <- box (QueueGen.physicistQueueIntGen, "PhysicistQueue")
-    v.[10] <- box ((QueueGen.physicistQueueIntOfSeqGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "PhysicistQueue OfSeq")
-    v.[11] <- box ((QueueGen.physicistQueueIntSnocGen |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "PhysicistQueue Snoc")
+    v.[10] <- box ((QueueGen.physicistQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "PhysicistQueue OfSeq")
+    v.[11] <- box ((QueueGen.physicistQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "PhysicistQueue Snoc")
     v
 
 let objGens =
