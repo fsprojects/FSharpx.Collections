@@ -23,11 +23,11 @@ Even restricting only to this type, never got generic element type 'a to work. N
 // NUnit TestCaseSource does not understand array of tuples at runtime
 let intGens start =
     let v = Array.create 6 (box (maxPairingHeapIntGen, "max PairingHeap int"))
-    v.[1] <- box ((maxPairingHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max PairingHeap OfSeq")
-    v.[2] <- box ((maxPairingHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max PairingHeap from Insert")
+    v.[1] <- box ((maxPairingHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max PairingHeap OfSeq")
+    v.[2] <- box ((maxPairingHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max PairingHeap from Insert")
     v.[3] <- box (minPairingHeapIntGen , "min PairingHeap int")
-    v.[4] <- box ((minPairingHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min PairingHeap OfSeq")
-    v.[5] <- box ((minPairingHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min PairingHeap from Insert")
+    v.[4] <- box ((minPairingHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min PairingHeap OfSeq")
+    v.[5] <- box ((minPairingHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min PairingHeap from Insert")
     v
 
 let stringGens =

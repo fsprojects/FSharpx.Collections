@@ -23,11 +23,11 @@ Even restricting only to this type, never got generic element type 'a to work. N
 // NUnit TestCaseSource does not understand array of tuples at runtime
 let intGens start =
     let v = Array.create 6 (box (maxBinomialHeapIntGen, "max BinomialHeap int"))
-    v.[1] <- box ((maxBinomialHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max BinomialHeap OfSeq")
-    v.[2] <- box ((maxBinomialHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max BinomialHeap from Insert")
+    v.[1] <- box ((maxBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max BinomialHeap OfSeq")
+    v.[2] <- box ((maxBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max BinomialHeap from Insert")
     v.[3] <- box (minBinomialHeapIntGen , "min BinomialHeap int")
-    v.[4] <- box ((minBinomialHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min BinomialHeap OfSeq")
-    v.[5] <- box ((minBinomialHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min BinomialHeap from Insert")
+    v.[4] <- box ((minBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min BinomialHeap OfSeq")
+    v.[5] <- box ((minBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min BinomialHeap from Insert")
     v
 
 let stringGens =

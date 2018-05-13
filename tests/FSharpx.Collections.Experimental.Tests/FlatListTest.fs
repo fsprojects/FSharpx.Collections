@@ -31,7 +31,7 @@ let flatlistStringGen =
 // NUnit TestCaseSource does not understand array of tuples at runtime
 let intGens start =
     let v = Array.create 2 (box (flatlistIntGen, "FlatList"))
-    v.[1] <- box ((flatlistIntGen |> Gen.suchThat (fun (v, l) -> l.Length >= start)), "FlatList OfSeq")
+    v.[1] <- box ((flatlistIntGen |> Gen.filter (fun (v, l) -> l.Length >= start)), "FlatList OfSeq")
     v
 
 let intGensStart1 =

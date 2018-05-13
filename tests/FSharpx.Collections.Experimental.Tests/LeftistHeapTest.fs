@@ -23,11 +23,11 @@ Even restricting only to this type, never got generic element type 'a to work. N
 // NUnit TestCaseSource does not understand array of tuples at runtime
 let intGens start =
     let v = Array.create 6 (box (maxLeftistHeapIntGen, "max LeftistHeap int"))
-    v.[1] <- box ((maxLeftistHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max LeftistHeap OfSeq")
-    v.[2] <- box ((maxLeftistHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max LeftistHeap from Insert")
+    v.[1] <- box ((maxLeftistHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max LeftistHeap OfSeq")
+    v.[2] <- box ((maxLeftistHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max LeftistHeap from Insert")
     v.[3] <- box (minLeftistHeapIntGen , "min LeftistHeap int")
-    v.[4] <- box ((minLeftistHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min LeftistHeap OfSeq")
-    v.[5] <- box ((minLeftistHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min LeftistHeap from Insert")
+    v.[4] <- box ((minLeftistHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min LeftistHeap OfSeq")
+    v.[5] <- box ((minLeftistHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min LeftistHeap from Insert")
     v
 
 let stringGens =

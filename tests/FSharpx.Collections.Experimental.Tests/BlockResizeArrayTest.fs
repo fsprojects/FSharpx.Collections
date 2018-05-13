@@ -172,7 +172,7 @@ let ``fold function test`` () =
 type ArbitraryModifiers =    
     static member BlockResizeArray() = 
         Arb.generate<int> 
-        |> Gen.suchThat (fun i -> i >= 0)
+        |> Gen.filter (fun i -> i >= 0)
         |> Gen.map (fun i -> BlockResizeArray.Init  (i * 10000) (fun i -> rand.Next()))
         |> Arb.fromGen
 

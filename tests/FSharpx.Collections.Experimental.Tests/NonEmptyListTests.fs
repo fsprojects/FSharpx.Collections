@@ -9,7 +9,7 @@ type NonEmptyListGen =
     static member NonEmptyList() =
         gen.Return NonEmptyList.create 
         |> Gen.ap Arb.generate
-        |> Gen.ap (Arb.generate |> Gen.suchThat (fun l -> l.Length < 10))
+        |> Gen.ap (Arb.generate |> Gen.filter (fun l -> l.Length < 10))
         |> Arb.fromGen
 
 let registerGen = lazy (Arb.register<NonEmptyListGen>() |> ignore)
