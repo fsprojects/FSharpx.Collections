@@ -92,16 +92,33 @@ let references =
   else None
 
 let binaries =
-    directoryInfo bin 
-    |> subDirectories
-    |> Array.map (fun d -> d.FullName @@ (sprintf "%s.dll" d.Name))
-    |> List.ofArray
+    let manuallyAdded = 
+        referenceBinaries 
+        |> List.map (fun b -> bin @@ b)
+   
+    let conventionBased = 
+        directoryInfo bin 
+        |> subDirectories
+        |> Array.map (fun d -> d.Name, (subDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net461")) ).[0] )
+        |> Array.map (fun (name, d) -> 
+            d.GetFiles()
+            |> Array.filter (fun x -> 
+                x.Name.ToLower() = (sprintf "%s.dll" name).ToLower())
+            |> Array.map (fun x -> x.FullName) 
+            )
+        |> Array.concat
+        |> List.ofArray
+
+    conventionBased @ manuallyAdded
 
 let libDirs =
-    directoryInfo bin 
-    |> subDirectories
-    |> Array.map (fun d -> d.FullName)
-    |> List.ofArray
+    let conventionBasedbinDirs =
+        directoryInfo bin 
+        |> subDirectories
+        |> Array.map (fun d -> d.FullName)
+        |> List.ofArray
+
+    conventionBasedbinDirs @ [bin]
 
 // Build API reference from XML comments
 let buildReference () =
