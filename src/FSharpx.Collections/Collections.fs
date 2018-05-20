@@ -260,9 +260,13 @@ module Seq =
 
 /// Extensions for F#'s Array module.
 module Array =
+    /// nth item of array
     let inline nth i arr = Array.get arr i
+
+    /// set the ith item of array
     let inline setAt i v arr = Array.set arr i v; arr
 
+    /// copy items from one array to another
     let copyTo sourceStartIndx startIndx source target =
         let targetLength = (Array.length target)
         if startIndx < 0 || startIndx > targetLength - 1 then
@@ -280,6 +284,7 @@ module Array =
     let ofTuple (source : obj) : obj array =
         Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields source
 
+    /// needs doc
     let toTuple (source : 'T array) : 't =
         let elements = source |> Array.map (fun x -> x :> obj)
         Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(elements, typeof<'t>) :?> 't

@@ -28,6 +28,7 @@
     <Compile Include="DList.fsi" />
     <Compile Include="DList.fs" />
     <Compile Include="ByteString.fs" />
+    <Compile Include="CircularBuffer.fsi" />
     <Compile Include="CircularBuffer.fs" />
     <Compile Include="PriorityQueue.fs" />
     <Compile Include="NonEmptyList.fs" />
