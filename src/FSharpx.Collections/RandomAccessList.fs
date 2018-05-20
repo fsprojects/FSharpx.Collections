@@ -332,7 +332,6 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module RandomAccessList = 
     //pattern discriminators  (active pattern)
     let (|Cons|Nil|) (v : RandomAccessList<'T>) = match v.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

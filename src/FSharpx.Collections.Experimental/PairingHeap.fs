@@ -221,7 +221,6 @@ type PairingHeap<'T when 'T : comparison> =
             let element,newHeap = this.Uncons()
             element,(newHeap  :> IPriorityQueue<'T>)
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module PairingHeap =   
     //pattern discriminator
 

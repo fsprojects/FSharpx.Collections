@@ -55,7 +55,6 @@ type PersistentVector<'T> =
     /// O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
     member TryUpdate : int * 'T -> PersistentVector<'T> option
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Defines functions which allow to access and manipulate PersistentVectors.
 module PersistentVector = 
     //pattern discriminators (active pattern)

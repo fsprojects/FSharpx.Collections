@@ -16,7 +16,6 @@ type FlatList<'T> =
     /// O(1). Returns true if the flatlist has no elements.
     member IsEmpty : bool
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module FlatList =
 
     /// O(n). Creates a flatlist that contains the elements of one flatlist followed by the elements of another flatlist.

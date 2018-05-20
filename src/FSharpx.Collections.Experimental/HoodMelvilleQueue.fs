@@ -176,7 +176,6 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module HoodMelvilleQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : HoodMelvilleQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

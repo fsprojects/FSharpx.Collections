@@ -366,7 +366,6 @@ type Deque<'T> (front, rBack) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Deque =
 
 //pattern discriminators

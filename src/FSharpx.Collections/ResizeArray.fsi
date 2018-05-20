@@ -9,11 +9,9 @@
 
 namespace Microsoft.FSharp.Collections
 
-
 open System
 open System.Collections.Generic
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.
 module ResizeArray =
 

@@ -311,8 +311,7 @@ and AltBinRndAccList<'T> with
         | Some(x) -> Some(x)
       
       
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
- module AltBinaryRandomAccessList = 
+module AltBinaryRandomAccessList = 
     //pattern discriminator
 
     let (|Cons|Nil|) (l: AltBinRndAccList<'T>) = match l.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

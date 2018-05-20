@@ -258,8 +258,6 @@ module Seq =
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
 module Array =
     let inline nth i arr = Array.get arr i
@@ -472,8 +470,6 @@ module List =
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for System.Collections.Generic.Dictionary.
 module Dictionary =
     let tryFind key (d: IDictionary<_,_>) =
@@ -570,7 +566,6 @@ module Map =
 
 #if FX_PORTABLE
 #else
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
 /// Extensions for NameValueCollections.
 module NameValueCollection =

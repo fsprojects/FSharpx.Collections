@@ -103,7 +103,6 @@ and
     | CellCons of 'T * LazyList<'T> 
     | CellEmpty
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module LazyList = 
 
     let lzy f = { status = Delayed f }

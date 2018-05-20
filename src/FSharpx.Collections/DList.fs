@@ -156,7 +156,6 @@ and
     | Unit of 'T
     | Join of DListData<'T> * DListData<'T>  
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module DList =
 
     //pattern discriminators  (active pattern)

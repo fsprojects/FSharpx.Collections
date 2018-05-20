@@ -230,7 +230,6 @@ and HeapData<'T when 'T : comparison> =
     | E 
     | T of 'T * list<HeapData<'T>>
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Heap =   
     //pattern discriminator
 

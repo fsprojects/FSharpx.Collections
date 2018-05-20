@@ -45,7 +45,6 @@ type FlatList<'T> =
             | arr -> (arr :> IEnumerable).GetEnumerator()
 
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module FlatList =
 
     let append(l1 : FlatList<'T>) (l2 : FlatList<'T>) = 
