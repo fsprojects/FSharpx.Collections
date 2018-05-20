@@ -142,112 +142,141 @@ module DListTests =
                 Expect.isFalse "structural equality" (l1 = l3) }
         ]
 
-    //[<Tests>]
-    //let propertyTestDList =
+    [<Tests>]
+    let propertyTestDList =
 
-    //    let enDListThruList l q  =
-    //        let rec loop (q' : 'a DList) (l' : 'a list) = 
-    //            match l' with
-    //            | hd :: [] -> q'.Conj hd
-    //            | hd :: tl -> loop (q'.Conj hd) tl
-    //            | [] -> q'
+        let enDListThruList l q  =
+            let rec loop (q' : 'a DList) (l' : 'a list) = 
+                match l' with
+                | hd :: [] -> q'.Conj hd
+                | hd :: tl -> loop (q'.Conj hd) tl
+                | [] -> q'
         
-    //        loop q l
+            loop q l
 
-    //    //DList
-    //    (*
-    //    non-IDList generators from random ofList
-    //    *)
-    //    let DListOfListGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! x = Gen.listInt n
-    //                return ( (DList.ofSeq x), x) }
+        //DList
+        (*
+        non-IDList generators from random ofList
+        *)
+        let DListOfListGen =
+            gen {   let! n = Gen.length2thru12
+                    let! x = Gen.listInt n
+                    return ( (DList.ofSeq x), x) }
 
-    //    (*
-    //    IDList generators from random ofSeq and/or conj elements from random list 
-    //    *)
-    //    let DListIntGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listInt n
-    //                let! y =  Gen.listInt n2
-    //                return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
+        (*
+        IDList generators from random ofSeq and/or conj elements from random list 
+        *)
+        let DListIntGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listInt n
+                    let! y =  Gen.listInt n2
+                    return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
 
-    //    let DListIntOfSeqGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (DList.ofSeq x), x) }
+        let DListIntOfSeqGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (DList.ofSeq x), x) }
 
-    //    let DListIntConjGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (DList.empty |> enDListThruList x), x) }
+        let DListIntConjGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (DList.empty |> enDListThruList x), x) }
 
-    //    let DListObjGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! n2 = Gen.length1thru12
-    //                let! x =  Gen.listObj n
-    //                let! y =  Gen.listObj n2
-    //                return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
+        let DListObjGen =
+            gen {   let! n = Gen.length2thru12
+                    let! n2 = Gen.length1thru12
+                    let! x =  Gen.listObj n
+                    let! y =  Gen.listObj n2
+                    return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
 
-    //    let DListStringGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listString n
-    //                let! y =  Gen.listString n2  
-    //                return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
+        let DListStringGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listString n
+                    let! y =  Gen.listString n2  
+                    return ( (DList.ofSeq x |> enDListThruList y), (x @ y) ) }
 
-    //    // HACK: from when using NUnit TestCaseSource does not understand array of tuples at runtime
-    //    let intGens start =
-    //        let v = Array.create 3 (box (DListIntGen, "DList"))
-    //        v.[1] <- box ((DListIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "DList OfSeq")
-    //        v.[2] <- box ((DListIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "DList conjDList") 
-    //        v
+        let intGens start =
+            let v = Array.create 3 DListIntGen
+            v.[1] <- DListIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[2] <- DListIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v
 
-    //    let intGensStart1 =
-    //        intGens 1  //this will accept all
+        let intGensStart1 =
+            intGens 1  //this will accept all
 
-    //    let intGensStart2 =
-    //        intGens 2 // this will accept 11 out of 12
+        let intGensStart2 =
+            intGens 2 // this will accept 11 out of 12
 
-    //    testList "DList property tests" [
+        testList "DList property tests" [
 
-    //        testPropertyWithConfig config10k "DList fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "DList fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
               
-    //        testPropertyWithConfig config10k "DList OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "DList OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
 
-    //        testPropertyWithConfig config10k "DList Conj fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntConjGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "DList Conj fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntConjGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
 
-    //        testPropertyWithConfig config10k "DList foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "DList foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
               
-    //        testPropertyWithConfig config10k "DList OfSeq foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "DList OfSeq foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k "DList Conj foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntConjGen)  <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "DList Conj foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntConjGen)  <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k "get head from DList" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : DList<int>, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k "get head from DList 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get head from DList safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : DList<int>, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k "get head from DList 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get tail from DList" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k "get head from DList 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get tail from DList safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun (q : DList<int>, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k "get head from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "int DList builds and serializes" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : DList<int>, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "get head from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "obj DList builds and serializes" (Prop.forAll (Arb.fromGen DListObjGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "get head from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "string DList builds and serializes" (Prop.forAll (Arb.fromGen DListStringGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
-    //    ]
+            testPropertyWithConfig config10k "get tail from DList 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from DList 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from DList 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "int DList builds and serializes 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "int DList builds and serializes 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "int DList builds and serializes 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "obj DList builds and serializes" (Prop.forAll (Arb.fromGen DListObjGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "string DList builds and serializes" (Prop.forAll (Arb.fromGen DListStringGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+        ]

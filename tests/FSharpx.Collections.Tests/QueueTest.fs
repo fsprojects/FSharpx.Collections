@@ -81,118 +81,147 @@ module QueueTests =
                 Expect.notEqual "" l1 l3 }
         ]
         
-    //[<Tests>]
-    //let propertyTestQueue =
+    [<Tests>]
+    let propertyTestQueue =
 
-    //    let enqueueThruList l q  =
-    //        let rec loop (q' : 'a Queue) (l' : 'a list) = 
-    //            match l' with
-    //            | hd :: [] -> q'.Conj hd
-    //            | hd :: tl -> loop (q'.Conj hd) tl
-    //            | [] -> q'
+        let enqueueThruList l q  =
+            let rec loop (q' : 'a Queue) (l' : 'a list) = 
+                match l' with
+                | hd :: [] -> q'.Conj hd
+                | hd :: tl -> loop (q'.Conj hd) tl
+                | [] -> q'
         
-    //        loop q l
+            loop q l
 
-    //    //Queue
-    //    (*
-    //    non-IQueue generators from random ofList
-    //    *)
-    //    let queueOfListGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Queue.ofList x), x) }
+        //Queue
+        (*
+        non-IQueue generators from random ofList
+        *)
+        let queueOfListGen =
+            gen {   let! n = Gen.length2thru12
+                    let! x = Gen.listInt n
+                    return ( (Queue.ofList x), x) }
 
-    //    (*
-    //    IQueue generators from random ofSeq and/or conj elements from random list 
-    //    *)
-    //    let queueIntGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listInt n
-    //                let! y =  Gen.listInt n2
-    //                return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
+        (*
+        IQueue generators from random ofSeq and/or conj elements from random list 
+        *)
+        let queueIntGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listInt n
+                    let! y =  Gen.listInt n2
+                    return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
 
-    //    let queueIntOfSeqGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Queue.ofSeq x), x) }
+        let queueIntOfSeqGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (Queue.ofSeq x), x) }
 
-    //    let queueIntConjGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Queue.empty |> enqueueThruList x), x) }
+        let queueIntConjGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (Queue.empty |> enqueueThruList x), x) }
 
-    //    let queueObjGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! n2 = Gen.length1thru12
-    //                let! x =  Gen.listObj n
-    //                let! y =  Gen.listObj n2
-    //                return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
+        let queueObjGen =
+            gen {   let! n = Gen.length2thru12
+                    let! n2 = Gen.length1thru12
+                    let! x =  Gen.listObj n
+                    let! y =  Gen.listObj n2
+                    return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
 
-    //    let queueStringGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listString n
-    //                let! y =  Gen.listString n2  
-    //                return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
+        let queueStringGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listString n
+                    let! y =  Gen.listString n2  
+                    return ( (Queue.ofSeq x |> enqueueThruList y), (x @ y) ) }
 
-    //    // NUnit TestCaseSource does not understand array of tuples at runtime
-    //    let intGens start =
-    //        let v = Array.create 3 (box (queueIntGen, "Queue"))
-    //        v.[1] <- box ((queueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "Queue OfSeq")
-    //        v.[2] <- box ((queueIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "Queue Enqueue") 
-    //        v
+        let intGens start =
+            let v = Array.create 3 queueIntGen
+            v.[1] <- queueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[2] <-queueIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v
 
-    //    let intGensStart1 =
-    //        intGens 1  //this will accept all
+        let intGensStart1 =
+            intGens 1  //this will accept all
 
-    //    let intGensStart2 =
-    //        intGens 2 // this will accept 11 out of 12
+        let intGensStart2 =
+            intGens 2 // this will accept 11 out of 12
 
-    //    testList "Queue property tests" [
+        testList "Queue property tests" [
 
-    //        testPropertyWithConfig config10k "fold matches build list rev" (Prop.forAll (Arb.fromGen queueIntGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) |> classifyCollect q q.Length)
+            testPropertyWithConfig config10k "fold matches build list rev" (Prop.forAll (Arb.fromGen queueIntGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) |> classifyCollect q q.Length)
               
-    //        testPropertyWithConfig config10k "Queue OfSeq fold matches build list rev"  (Prop.forAll (Arb.fromGen queueIntOfSeqGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
+            testPropertyWithConfig config10k "Queue OfSeq fold matches build list rev"  (Prop.forAll (Arb.fromGen queueIntOfSeqGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
 
-    //        testPropertyWithConfig config10k "Queue Conj fold matches build list rev" (Prop.forAll (Arb.fromGen queueIntConjGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
+            testPropertyWithConfig config10k "Queue Conj fold matches build list rev" (Prop.forAll (Arb.fromGen queueIntConjGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
 
-    //        testPropertyWithConfig config10k "Queue foldback matches build list" (Prop.forAll (Arb.fromGen queueIntGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "Queue foldback matches build list" (Prop.forAll (Arb.fromGen queueIntGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
               
-    //        testPropertyWithConfig config10k " Queue OfSeqfoldback matches build list" (Prop.forAll (Arb.fromGen queueIntOfSeqGen)  <|
-    //            fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l |> classifyCollect q q.Length)
+            testPropertyWithConfig config10k " Queue OfSeqfoldback matches build list" (Prop.forAll (Arb.fromGen queueIntOfSeqGen)  <|
+                fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l |> classifyCollect q q.Length)
 
-    //        testPropertyWithConfig config10k "Queue Conj foldback matches build list" (Prop.forAll (Arb.fromGen queueIntConjGen) <|
-    //            fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "Queue Conj foldback matches build list" (Prop.forAll (Arb.fromGen queueIntConjGen) <|
+                fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k "get head from queue" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : Queue<int>, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k "get head from queue 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get head from queue safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : Queue<int>, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k "get head from queue 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get tail from queue" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun ((q : Queue<int>), l) -> q.Tail.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k "get head from queue 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "get tail from queue safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun (q : Queue<int>, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k "get head from queue safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "int queue builds and serializes" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : Queue<int>, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "get head from queue safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "obj queue builds and serializes" (Prop.forAll (Arb.fromGen queueObjGen) <|
-    //            fun (q : Queue<obj>, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "get head from queue safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k "string queue builds and serializes" (Prop.forAll (Arb.fromGen queueStringGen) <|
-    //            fun (q : Queue<string>, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "get tail from queue 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
 
-    //        testPropertyWithConfig config10k "reverse . reverse = id" (Prop.forAll (Arb.fromGen queueObjGen) <|
-    //            fun (q, l) -> q |> rev |> rev |> Seq.toList = (q |> Seq.toList) )
+            testPropertyWithConfig config10k "get tail from queue 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
 
-    //        testPropertyWithConfig config10k "ofList build and serialize" (Prop.forAll (Arb.fromGen queueOfListGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
-    //    ]
+            testPropertyWithConfig config10k "get tail from queue 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from queue safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from queue safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "get tail from queue safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k "int queue builds and serializes 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "int queue builds and serializes 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "int queue builds and serializes 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "obj queue builds and serializes" (Prop.forAll (Arb.fromGen queueObjGen) <|
+                fun (q : Queue<obj>, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "string queue builds and serializes" (Prop.forAll (Arb.fromGen queueStringGen) <|
+                fun (q : Queue<string>, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "reverse . reverse = id" (Prop.forAll (Arb.fromGen queueObjGen) <|
+                fun (q, l) -> q |> rev |> rev |> Seq.toList = (q |> Seq.toList) )
+
+            testPropertyWithConfig config10k "ofList build and serialize" (Prop.forAll (Arb.fromGen queueOfListGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+        ]

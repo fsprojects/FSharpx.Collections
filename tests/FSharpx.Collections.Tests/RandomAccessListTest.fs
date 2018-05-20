@@ -683,119 +683,148 @@ module RandomAccessListTest =
                 Expect.isTrue "enumerate empty" true }
         ]
 
-    //[<Tests>]
-    //let propertyTestRandomAccessList = 
-    //    let consThruList l q  =
-    //        let rec loop (q' : 'a RandomAccessList) (l' : 'a list) = 
-    //            match l' with
-    //            | hd :: [] -> q'.Cons hd
-    //            | hd :: tl -> loop (q'.Cons hd) tl
-    //            | [] -> q'
+    [<Tests>]
+    let propertyTestRandomAccessList = 
+        let consThruList l q  =
+            let rec loop (q' : 'a RandomAccessList) (l' : 'a list) = 
+                match l' with
+                | hd :: [] -> q'.Cons hd
+                | hd :: tl -> loop (q'.Cons hd) tl
+                | [] -> q'
         
-    //        loop q l
+            loop q l
 
-    //    //RandomAccessList
-    //    (*
-    //    non-IRandomAccessList generators from random ofList
-    //    *)
-    //    let RandomAccessListOfListGen =
-    //        gen {   let! n = Gen.length2thru100
-    //                let! x = Gen.listInt n
-    //                return ( (RandomAccessList.ofSeq x), x) }
+        //RandomAccessList
+        (*
+        non-IRandomAccessList generators from random ofList
+        *)
+        let RandomAccessListOfListGen =
+            gen {   let! n = Gen.length2thru100
+                    let! x = Gen.listInt n
+                    return ( (RandomAccessList.ofSeq x), x) }
 
-    //    (*
-    //    IRandomAccessList generators from random ofSeq and/or conj elements from random list 
-    //    *)
-    //    let RandomAccessListIntGen =
-    //        gen {   let! n = Gen.length1thru100
-    //                let! n2 = Gen.length2thru100
-    //                let! x =  Gen.listInt n
-    //                let! y =  Gen.listInt n2
-    //                return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
+        (*
+        IRandomAccessList generators from random ofSeq and/or conj elements from random list 
+        *)
+        let RandomAccessListIntGen =
+            gen {   let! n = Gen.length1thru100
+                    let! n2 = Gen.length2thru100
+                    let! x =  Gen.listInt n
+                    let! y =  Gen.listInt n2
+                    return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
 
-    //    let RandomAccessListIntOfSeqGen =
-    //        gen {   let! n = Gen.length1thru100
-    //                let! x = Gen.listInt n
-    //                return ( (RandomAccessList.ofSeq x), x) }
+        let RandomAccessListIntOfSeqGen =
+            gen {   let! n = Gen.length1thru100
+                    let! x = Gen.listInt n
+                    return ( (RandomAccessList.ofSeq x), x) }
 
-    //    let RandomAccessListIntConsGen =
-    //        gen {   let! n = Gen.length1thru100
-    //                let! x = Gen.listInt n
-    //                return ( (RandomAccessList.empty |> consThruList x),  List.rev x) }
+        let RandomAccessListIntConsGen =
+            gen {   let! n = Gen.length1thru100
+                    let! x = Gen.listInt n
+                    return ( (RandomAccessList.empty |> consThruList x),  List.rev x) }
 
-    //    let RandomAccessListObjGen =
-    //        gen {   let! n = Gen.length2thru100
-    //                let! n2 = Gen.length1thru100
-    //                let! x =  Gen.listObj n
-    //                let! y =  Gen.listObj n2
-    //                return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
+        let RandomAccessListObjGen =
+            gen {   let! n = Gen.length2thru100
+                    let! n2 = Gen.length1thru100
+                    let! x =  Gen.listObj n
+                    let! y =  Gen.listObj n2
+                    return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
 
-    //    let RandomAccessListStringGen =
-    //        gen {   let! n = Gen.length1thru100
-    //                let! n2 = Gen.length2thru100
-    //                let! x =  Gen.listString n
-    //                let! y =  Gen.listString n2  
-    //                return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
+        let RandomAccessListStringGen =
+            gen {   let! n = Gen.length1thru100
+                    let! n2 = Gen.length2thru100
+                    let! x =  Gen.listString n
+                    let! y =  Gen.listString n2  
+                    return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
 
-    //    // NUnit TestCaseSource does not understand array of tuples at runtime
-    //    let intGens start =
-    //        let v = Array.create 3 (box (RandomAccessListIntGen, "RandomAccessList"))
-    //        v.[1] <- box ((RandomAccessListIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "RandomAccessList OfSeq")
-    //        v.[2] <- box ((RandomAccessListIntConsGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "RandomAccessList conjRandomAccessList") 
-    //        v
+        let intGens start =
+            let v = Array.create 3 RandomAccessListIntGen
+            v.[1] <- RandomAccessListIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[2] <- RandomAccessListIntConsGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v
 
-    //    let intGensStart1 =
-    //        intGens 1  //this will accept all
+        let intGensStart1 =
+            intGens 1  //this will accept all
 
-    //    let intGensStart2 =
-    //        intGens 2 // this will accept 11 out of 12
+        let intGensStart2 =
+            intGens 2 // this will accept 11 out of 12
 
-    //    testList "RandomAccessList property tests" [
-    //        testPropertyWithConfig config10k  "fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
+        testList "RandomAccessList property tests" [
+            testPropertyWithConfig config10k  "fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
               
-    //        testPropertyWithConfig config10k  "RandomAccessList OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
+            testPropertyWithConfig config10k  "RandomAccessList OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = (List.rev l) )
 
-    //        testPropertyWithConfig config10k  "andomAccessList Consfold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = (List.rev l) )
+            testPropertyWithConfig config10k  "andomAccessList Consfold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
+                fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = (List.rev l) )
 
-    //        testPropertyWithConfig config10k  "foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k  "foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
               
-    //        testPropertyWithConfig config10k  "OfSeq foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k  "OfSeq foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k  "Conj foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k  "Conj foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k  "get head from RandomAccessList" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : RandomAccessList<int>, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k  "get head from RandomAccessList 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "get head from RandomAccessList safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : RandomAccessList<int>, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k  "get head from RandomAccessList 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "get tail from RandomAccessList" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun ((q : RandomAccessList<int>), l) -> q.Tail.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k  "get head from RandomAccessList 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (head q) = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "get tail from RandomAccessList safely" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun (q : RandomAccessList<int>, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+            testPropertyWithConfig config10k  "get head from RandomAccessList safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "int RandomAccessList builds and serializes" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k  "get head from RandomAccessList safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "obj RandomAccessList builds and serializes" (Prop.forAll (Arb.fromGen RandomAccessListObjGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k  "get head from RandomAccessList safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
 
-    //        testPropertyWithConfig config10k  "string RandomAccessList builds and serializes" (Prop.forAll (Arb.fromGen RandomAccessListStringGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k  "get tail from RandomAccessList 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
 
-    //        testPropertyWithConfig config10k  "rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
-    //            fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
+            testPropertyWithConfig config10k  "get tail from RandomAccessList 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k  "get tail from RandomAccessList 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun ((q), l) -> q.Tail.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k  "get tail from RandomAccessList safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k  "get tail from RandomAccessList safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k  "get tail from RandomAccessList safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
+
+            testPropertyWithConfig config10k  "int RandomAccessList builds and serializes 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k  "int RandomAccessList builds and serializes 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k  "int RandomAccessList builds and serializes 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k  "obj RandomAccessList builds and serializes" (Prop.forAll (Arb.fromGen RandomAccessListObjGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k  "string RandomAccessList builds and serializes" (Prop.forAll (Arb.fromGen RandomAccessListStringGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k  "rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
+                fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
               
-    //        testPropertyWithConfig config10k  "OfSeq rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
-    //            fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
+            testPropertyWithConfig config10k  "OfSeq rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
+                fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
 
-    //        testPropertyWithConfig config10k  "Cons rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
-    //            fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
-    //    ]
+            testPropertyWithConfig config10k  "Cons rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
+                fun (q, l) -> q |> rev |> List.ofSeq = (List.rev l) )
+        ]

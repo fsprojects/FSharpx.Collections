@@ -599,127 +599,162 @@ module DequeTests  =
                 Expect.notEqual "equality" l1 l3 }
         ]
 
-    //[<Tests>]
-    //let propertyTestDeque =
+    [<Tests>]
+    let propertyTestDeque =
 
-    //    let conjThruList l q  =
-    //        let rec loop (q' : 'a Deque) (l' : 'a list) = 
-    //            match l' with
-    //            | hd :: tl -> loop (q'.Conj hd) tl
-    //            | [] -> q'
+        let conjThruList l q  =
+            let rec loop (q' : 'a Deque) (l' : 'a list) = 
+                match l' with
+                | hd :: tl -> loop (q'.Conj hd) tl
+                | [] -> q'
         
-    //        loop q l 
-    //    (*
-    //    non-Deque generators from random ofList
-    //    *)
-    //    let dequeOfListGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Deque.ofList x), x) }
+            loop q l 
+        (*
+        non-Deque generators from random ofList
+        *)
+        let dequeOfListGen =
+            gen {   let! n = Gen.length2thru12
+                    let! x = Gen.listInt n
+                    return ( (Deque.ofList x), x) }
 
-    //    (*
-    //    Deque generators from random ofSeq and/or conj elements from random list 
-    //    *)
-    //    let dequeIntGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listInt n
-    //                let! y =  Gen.listInt n2
-    //                return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
+        (*
+        Deque generators from random ofSeq and/or conj elements from random list 
+        *)
+        let dequeIntGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listInt n
+                    let! y =  Gen.listInt n2
+                    return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
 
-    //    let dequeIntOfSeqGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Deque.ofSeq x), x) }
+        let dequeIntOfSeqGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (Deque.ofSeq x), x) }
 
-    //    let dequeIntConjGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! x = Gen.listInt n
-    //                return ( (Deque.empty |> conjThruList x), x) }
+        let dequeIntConjGen =
+            gen {   let! n = Gen.length1thru12
+                    let! x = Gen.listInt n
+                    return ( (Deque.empty |> conjThruList x), x) }
 
-    //    let dequeObjGen =
-    //        gen {   let! n = Gen.length2thru12
-    //                let! n2 = Gen.length1thru12
-    //                let! x =  Gen.listObj n
-    //                let! y =  Gen.listObj n2
-    //                return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
+        let dequeObjGen =
+            gen {   let! n = Gen.length2thru12
+                    let! n2 = Gen.length1thru12
+                    let! x =  Gen.listObj n
+                    let! y =  Gen.listObj n2
+                    return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
 
-    //    let dequeStringGen =
-    //        gen {   let! n = Gen.length1thru12
-    //                let! n2 = Gen.length2thru12
-    //                let! x =  Gen.listString n
-    //                let! y =  Gen.listString n2  
-    //                return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
+        let dequeStringGen =
+            gen {   let! n = Gen.length1thru12
+                    let! n2 = Gen.length2thru12
+                    let! x =  Gen.listString n
+                    let! y =  Gen.listString n2  
+                    return ( (Deque.ofSeq x |> conjThruList y), (x @ y) ) }
 
-    //    // HACK: from when using NUnit TestCaseSource does not understand array of tuples at runtime
-    //    let intGens start =
-    //        //let v = Array.create 3 (box (dequeIntGen, "Deque"))
-    //        //v.[1] <- box ((dequeIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "Deque OfSeq")
-    //        //v.[2] <- box ((dequeIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "Deque Enqueue") 
-    //        //v
-    //        let v = Array.create 3 (dequeIntGen)
-    //        v.[1] <- dequeIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
-    //        v.[2] <- dequeIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)
-    //        v
+        let intGens start =
+            let v = Array.create 3 dequeIntGen
+            v.[1] <- dequeIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[2] <- dequeIntConjGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v
 
-    //    let intGensStart1 =
-    //        intGens 1  //this will accept all
+        let intGensStart1 =
+            intGens 1  //this will accept all
 
-    //    let intGensStart2 =
-    //        intGens 2 // this will accept 11 out of 12
+        let intGensStart2 =
+            intGens 2 // this will accept 11 out of 12
 
-    //    testList "Deque property tests" [
+        testList "Deque property tests" [
         
-    //        testPropertyWithConfig config10k "Deque fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "Deque fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntGen) <|
+                fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = List.rev l )
               
-    //        testPropertyWithConfig config10k "Deque OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntOfSeqGen)  <|
-    //            fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "Deque OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntOfSeqGen)  <|
+                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
 
-    //        testPropertyWithConfig config10k "Deque Conj fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntConjGen) <|
-    //            fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = List.rev l )
+            testPropertyWithConfig config10k "Deque Conj fold matches build list rev" (Prop.forAll (Arb.fromGen dequeIntConjGen) <|
+                fun (q, l) -> q |> fold (fun l' elem  -> elem::l') [] = List.rev l )
 
-    //        testPropertyWithConfig config10k "Deque foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntGen) <|
-    //            fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "Deque foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntGen) <|
+                fun (q, l) -> foldBack (fun elem l'  -> elem::l') q [] = l )
               
-    //        testPropertyWithConfig config10k "Deque OfSeq foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntOfSeqGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "Deque OfSeq foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntOfSeqGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        testPropertyWithConfig config10k "Deque Conj foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntConjGen) <|
-    //            fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+            testPropertyWithConfig config10k "Deque Conj foldback matches build list" (Prop.forAll (Arb.fromGen dequeIntConjGen) <|
+                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
 
-    //        //testPropertyWithConfig config10k "int deque builds and serializes" (Prop.forAll (Arb.fromGen intGensStart1) <|
-    //        //    fun xs ->
-    //        //        xs
-    //        //        |> Array.iter (fun (q : Deque<int>, l) -> q |> Seq.toList = l ) )
+            testPropertyWithConfig config10k "int deque builds and serializes 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> q |> Seq.toList = l )
 
-    //        testPropertyWithConfig config10k "obj deque builds and serializes" (Prop.forAll (Arb.fromGen dequeObjGen) <|
-    //            fun (q, l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "int deque builds and serializes 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> q |> Seq.toList = l )
 
-    //        testPropertyWithConfig config10k "string deque builds and serializes" (Prop.forAll (Arb.fromGen dequeStringGen) <|
-    //            fun (q , l) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "int deque builds and serializes 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> q |> Seq.toList = l )
 
-    //        testPropertyWithConfig config10k "obj Deque reverse . reverse = id" (Prop.forAll (Arb.fromGen dequeObjGen) <|
-    //            fun (q, l) -> q |> rev |> rev |> Seq.toList = (q |> Seq.toList) )
+            testPropertyWithConfig config10k "obj deque builds and serializes" (Prop.forAll (Arb.fromGen dequeObjGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "string deque builds and serializes" (Prop.forAll (Arb.fromGen dequeStringGen) <|
+                fun (q , l) -> q |> Seq.toList = l )
+
+            testPropertyWithConfig config10k "obj Deque reverse . reverse = id" (Prop.forAll (Arb.fromGen dequeObjGen) <|
+                fun (q, l) -> q |> rev |> rev |> Seq.toList = (q |> Seq.toList) )
     
-    //        testPropertyWithConfig config10k "Deque ofList build and serialize" (Prop.forAll (Arb.fromGen dequeOfListGen) <|
-    //            fun (q, (l : int list)) -> q |> Seq.toList = l )
+            testPropertyWithConfig config10k "Deque ofList build and serialize" (Prop.forAll (Arb.fromGen dequeOfListGen) <|
+                fun (q, l) -> q |> Seq.toList = l )
 
-    //        testPropertyWithConfig config10k "get head from deque" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart1)) <|
-    //            fun (q : Deque<int>, l) -> head q = List.item 0 l )
+            testPropertyWithConfig config10k "get head from deque 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> head q = List.item 0 l )
 
-    //        //testPropertyWithConfig config10k "get head from deque safely" (Prop.forAll (Arb.fromGen intGensStart1) <|
-    //        //    fun (q : Deque<int>, l) -> (tryHead q).Value = List.item 0 l )
+            testPropertyWithConfig config10k "get head from deque 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> head q = List.item 0 l )
 
-    //        testPropertyWithConfig config10k "get tail from deque" (Prop.forAll (Arb.fromGen (fst <| unbox intGensStart2)) <|
-    //            fun ((q : Deque<int>), l) -> q.Tail.Head = List.item 1 l )
+            testPropertyWithConfig config10k "get head from deque 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> head q = List.item 0 l )
 
-    //        //testPropertyWithConfig config10k "get tail from deque safely" (Prop.forAll (Arb.fromGen intGensStart2) <|
-    //        //    fun ((q : Deque<int>), l) -> q.TryTail.Value.Head = List.item 1 l )
+            testPropertyWithConfig config10k "get head from deque safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (tryHead q).Value = List.item 0 l )
 
-    //        //testPropertyWithConfig config10k "get initial from deque" (Prop.forAll (Arb.fromGen intGensStart2) <|
-    //        //    fun ((q : Deque<int>), l) -> List.ofSeq (initial q) = (List.rev l |> List.tail |> List.rev) )
+            testPropertyWithConfig config10k "get head from deque safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (tryHead q).Value = List.item 0 l )
 
-    //        //testPropertyWithConfig config10k "get initial from deque safely" (Prop.forAll (Arb.fromGen intGensStart2) <|
-    //            //fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev) )
-    //    ]
+            testPropertyWithConfig config10k "get head from deque safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (tryHead q).Value = List.item 0 l )
+
+            testPropertyWithConfig config10k "get tail from deque 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> q.Tail.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get tail from deque 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> q.Tail.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get tail from deque 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> q.Tail.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get tail from deque safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> q.TryTail.Value.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get tail from deque safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> q.TryTail.Value.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get tail from deque safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> q.TryTail.Value.Head = List.item 1 l )
+
+            testPropertyWithConfig config10k "get initial from deque 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> List.ofSeq (initial q) = (List.rev l |> List.tail |> List.rev) )
+
+            testPropertyWithConfig config10k "get initial from deque 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> List.ofSeq (initial q) = (List.rev l |> List.tail |> List.rev) )
+
+            testPropertyWithConfig config10k "get initial from deque 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> List.ofSeq (initial q) = (List.rev l |> List.tail |> List.rev) )
+
+            testPropertyWithConfig config10k "get initial from deque safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev) )
+
+            testPropertyWithConfig config10k "get initial from deque safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev) )
+
+            testPropertyWithConfig config10k "get initial from deque safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev) )
+        ]

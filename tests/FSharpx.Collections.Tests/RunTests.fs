@@ -14,15 +14,15 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args ResizeArrayTests.testResizeArray |> ignore
 
         Tests.runTestsWithArgs defaultConfig args DequeTests.testDeque |> ignore
-        //Tests.runTestsWithArgs defaultConfig args DequeTests.propertyTestDeque |> ignore
+        Tests.runTestsWithArgs defaultConfig args DequeTests.propertyTestDeque |> ignore
 
         Tests.runTestsWithArgs defaultConfig args DictionaryExtensionsTests.testDictionaryExtensions |> ignore
 
         Tests.runTestsWithArgs defaultConfig args DListTests.testDList |> ignore
-        //Tests.runTestsWithArgs defaultConfig args DListTests.propertyTestDList |> ignore
+        Tests.runTestsWithArgs defaultConfig args DListTests.propertyTestDList |> ignore
 
         Tests.runTestsWithArgs defaultConfig args HeapTests.testHeap |> ignore
-        //Tests.runTestsWithArgs defaultConfig args HeapTests.propertyTestHeap |> ignore
+        Tests.runTestsWithArgs defaultConfig args HeapTests.propertyTestHeap |> ignore
 
         Tests.runTestsWithArgs defaultConfig args LazyList.testLazyList |> ignore
 
@@ -38,10 +38,10 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args PriorityQueueTests.testPriorityQueue |> ignore
 
         Tests.runTestsWithArgs defaultConfig args QueueTests.testQueue |> ignore
-        //Tests.runTestsWithArgs defaultConfig args QueueTests.propertyTestQueue |> ignore
+        Tests.runTestsWithArgs defaultConfig args QueueTests.propertyTestQueue |> ignore
 
         Tests.runTestsWithArgs defaultConfig args RandomAccessListTest.testRandomAccessList |> ignore
-        //Tests.runTestsWithArgs defaultConfig args RandomAccessListTest.propertyTestRandomAccessList |> ignore
+        Tests.runTestsWithArgs defaultConfig args RandomAccessListTest.propertyTestRandomAccessList |> ignore
 
         Tests.runTestsWithArgs defaultConfig args SeqTests.testSeq |> ignore
 
