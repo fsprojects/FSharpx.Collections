@@ -2,19 +2,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>4b763738-cf1a-4dec-a888-7d3d15054231</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Experimental.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
     <Name>FSharpx.Collections.Experimental.Tests</Name>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <Compile Include="FsUnit.fs" />
-    <Compile Include="FsCheckRunner.fs" />
     <Compile Include="FsCheckProperties.fs" />
-    <Compile Include="Utilities.fs" />
     <Compile Include="QueueGen.fs" />
     <Compile Include="HeapGen.fs" />
     <Compile Include="AltBinaryRandomAccessListTest.fs" />
@@ -22,15 +19,18 @@
     <Compile Include="BatchedDequeTest.fs" />
     <Compile Include="BinaryRandomAccessListTest.fs" />
     <Compile Include="BinaryRoseTreeTest.fs" />
+    <Compile Include="BinaryTreeZipperTest.fs" />
     <Compile Include="BinomialHeapTest.fs" />
     <Compile Include="BKTreeTest.fs" />
+    <Compile Include="BlockResizeArrayTest.fs" />
     <Compile Include="BootstrappedQueueTest.fs" />
     <Compile Include="BottomUpMergeSortTest.fs" />
     <Compile Include="DequeTest.fs" />
     <Compile Include="DListTest.fs" />
     <Compile Include="EagerRoseTreeTest.fs" />
-    <Compile Include="FlatListTest.fs" />
     <Compile Include="EditDistanceTest.fs" />
+    <Compile Include="FileSystemZipperTest.fs" />
+    <Compile Include="FlatListTest.fs" />
     <Compile Include="HeapPriorityQueueTest.fs" />
     <Compile Include="ImplicitQueueTest.fs" />
     <Compile Include="IndexedRoseTreeTest.fs" />
@@ -40,24 +40,19 @@
     <Compile Include="ListZipperTest.fs" />
     <Compile Include="NonEmptyListTests.fs" />
     <Compile Include="PairingHeapTest.fs" />
-    <Compile Include="RingBufferTest.fs" />
-    <Compile Include="SkewBinaryRandomAccessListTest.fs" />
     <Compile Include="RealTimeDequeTest.fs" />
     <Compile Include="RealTimeQueueTest.fs" />
+    <Compile Include="RingBufferTest.fs" />
     <Compile Include="RoseTreeTest.fs" />
-    <Compile Include="TimeSeriesTest.fs" />
-    <Compile Include="BlockResizeArrayTest.fs" />
+    <Compile Include="SkewBinaryRandomAccessListTest.fs" />
     <Compile Include="SkewBinomialHeapTest.fs" />
+    <Compile Include="TimeSeriesTest.fs" />
+    <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
       <Name>FSharpx.Collections.Experimental</Name>
       <Project>{ad3c8e86-f4cf-426f-a31d-015056227777}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">
-      <Name>FSharpx.Collections</Name>
-      <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

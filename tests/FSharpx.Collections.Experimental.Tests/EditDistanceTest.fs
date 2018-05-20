@@ -1,30 +1,31 @@
-﻿module FSharpx.Collections.Experimental.Tests.EditDistanceTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-type BS = ByteString
+module EditDistanceTest =
 
-[<Test>]
-let ``distance example``() =
-    BKTree.ByteString.distance (BS "kitten"B) (BS "sitting"B)
-    |> should equal 3
+    type BS = ByteString
 
-[<Test>]
-let ``toListDistance example``() =
-    [BS "kitten"B; BS "setting"B; BS "getting"B]
-    |> BKTree.ByteString.ofList
-    |> BKTree.ByteString.toListDistance 2 (BS "sitting"B)
-    |> should equal [BS "setting"B; BS "getting"B]
+    [<Tests>]
+    let testEditDistance =
 
+        testList "Experimental EditDistance" [
+            test "distance example" {
+                BKTree.ByteString.distance (BS "kitten"B) (BS "sitting"B)
+                |> Expect.equal "" 3 } 
 
-let inline toBS(text:string) = ByteString(System.Text.Encoding.ASCII.GetBytes text)
+            test "toListDistance example" {
+                [BS "kitten"B; BS "setting"B; BS "getting"B]
+                |> BKTree.ByteString.ofList
+                |> BKTree.ByteString.toListDistance 2 (BS "sitting"B)
+                |> Expect.equal "" [BS "setting"B; BS "getting"B] } 
 
-let calcEditDistance text1 text2 = BKTree.ByteString.distance (toBS text1) (toBS text2)
-    
-[<Test>]
-let ``String distance example``() =
-    calcEditDistance "meilenstein" "levenshtein"
-    |> should equal 4
+            test "String distance example" {
+                let inline toBS(text:string) = ByteString(System.Text.Encoding.ASCII.GetBytes text)
+                let calcEditDistance text1 text2 = BKTree.ByteString.distance (toBS text1) (toBS text2)
+                calcEditDistance "meilenstein" "levenshtein"
+                |> Expect.equal "" 4 } 
+        ]

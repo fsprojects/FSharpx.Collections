@@ -1,169 +1,271 @@
-﻿module FSharpx.Collections.Experimental.Tests.BinomialHeapTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.BinomialHeap
 open FSharpx.Collections.Experimental.Tests.Properties
-open NUnit.Framework
 open FsCheck
-open FsCheck.NUnit
-open FsUnit
+open Expecto
+open Expecto.Flip
 open HeapGen
 
 //only going up to 5 elements is probably sufficient to test all edge cases
 
-(*
-Could not get IHeap<'c, 'a when 'c :> IHeap<'c, 'a> and 'a : comparison> interface working smoothly between shared code,
-NUnit TestCaseSource(), FsCheck, and trying to pass around the tuple of heap generator and list. So need individual test
-file for each heap type, unlike IQueue.
+module BinomialHeapTest =
 
-Even restricting only to this type, never got generic element type 'a to work. Need separate tests for int and string.
-*)
+    [<Tests>]
+    let testBinomialHeap =
 
-// NUnit TestCaseSource does not understand array of tuples at runtime
-let intGens start =
-    let v = Array.create 6 (box (maxBinomialHeapIntGen, "max BinomialHeap int"))
-    v.[1] <- box ((maxBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max BinomialHeap OfSeq")
-    v.[2] <- box ((maxBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "max BinomialHeap from Insert")
-    v.[3] <- box (minBinomialHeapIntGen , "min BinomialHeap int")
-    v.[4] <- box ((minBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min BinomialHeap OfSeq")
-    v.[5] <- box ((minBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)), "min BinomialHeap from Insert")
-    v
+        testList "Experimental BinomialHeap" [
 
-let stringGens =
-    let v = Array.create 2 (box (maxBinomialHeapStringGen, "max BinomialHeap string"))
-    v.[1] <- box (minBinomialHeapStringGen, "min BinomialHeap string")
-    v
+            test "cons pattern discriminator" {
+                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = uncons h 
 
-let intGensStart1 =
-    intGens 1  //this will accept all
+                let h2, t2 = 
+                    match t1 with
+                    | Cons(h, t) -> h, t
+                    | _ ->  "x", t1
 
-let intGensStart2 =
-    intGens 2 // this will accept 11 out of 12
+                ((h2 = "e") && ((length t2) = 4)) |> Expect.isTrue "" }
 
-[<Test>]
-let ``cons pattern discriminator``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h1, t1 = uncons h 
+            test "cons pattern discriminator 2" {
+                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-    let h2, t2 = 
-        match t1 with
-        | Cons(h, t) -> h, t
-        | _ ->  "x", t1
+                let t2 = 
+                    match h with
+                    | Cons("f", Cons(_, t)) -> t
+                    | _ ->  h
 
-    ((h2 = "e") && ((length t2) = 4)) |> should equal true
+                let h1, t3 = uncons t2 
 
-[<Test>]
-let ``cons pattern discriminator 2``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                ((h1 = "d") && ((length t2) = 4)) |> Expect.isTrue "" }
 
-    let t2 = 
-        match h with
-        | Cons("f", Cons(_, t)) -> t
-        | _ ->  h
+            test "empty list should be empty" { 
+                (BinomialHeap.empty true).IsEmpty |> Expect.isTrue "" }
 
-    let h1, t3 = uncons t2 
+            test "length of empty is 0" {
+                (BinomialHeap.empty true).Length() |> Expect.equal "" 0 }
 
-    ((h1 = "d") && ((length t2) = 4)) |> should equal true
+            test "tryGetHead on empty should return None" {
+                (BinomialHeap.empty true).TryGetHead() |> Expect.isNone "" }
 
-[<Test>]
-let ``empty list should be empty``() = 
-    (BinomialHeap.empty true).IsEmpty |> should equal true
+            test "tryGetTail on empty should return None" {
+                (BinomialHeap.empty true).TryGetTail() |> Expect.isNone "" }
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``head should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : BinomialHeap<int>), (l : int list)) ->    
-                                                                            (h.Head() = l.Head)     
-                                                                            |> classifyCollect h (h.Length())))
-[<Test>]
-let ``insert works``() =
-    (((BinomialHeap.empty true).Insert 1).Insert 2).IsEmpty |> should equal false
+            test "tryGetTail on len 1 should return Some empty" {
+                let h = BinomialHeap.empty true |> insert 1 |> tryGetTail
+                h.Value |> isEmpty |> Expect.isTrue "" }
 
-[<Test>]
-let ``seq enumerate matches build list``() =
+            test "tryMerge max and mis should be None" {
+                let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
 
-    fsCheck "maxBinomialHeap" (Prop.forAll (Arb.fromGen maxBinomialHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length())))
+                tryMerge h1 h2 |> Expect.isNone "" }
 
-    fsCheck "minBinomialHeap" (Prop.forAll (Arb.fromGen minBinomialHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length())))
+            test "insert works" {
+                (((BinomialHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
 
-[<Test>]
-let ``length of empty is 0``() =
-    (BinomialHeap.empty true).Length() |> should equal 0
+            test "tryUncons empty" {
+                (BinomialHeap.empty true).TryUncons() |> Expect.isNone "" }
+        ]
 
-[<Test>]
-[<TestCaseSource("intGensStart1")>]
-let ``seq enumerate matches build list int``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : BinomialHeap<int>, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length())))
+    [<Tests>]
+    let propertyBinomialHeap =
 
-[<Test>]
-[<TestCaseSource("stringGens")>]
-let ``seq enumerate matches build list string``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : BinomialHeap<string>, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length())))
+        let intGens start =
+            let v = Array.create 6 maxBinomialHeapIntGen
+            v.[1] <- maxBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[2] <- maxBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[3] <- minBinomialHeapIntGen
+            v.[4] <- minBinomialHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v.[5] <- minBinomialHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+            v
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tail should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : BinomialHeap<int>), (l : int list)) ->    
-                                                                            let tl = h.Tail()
-                                                                            let tlHead =
-                                                                                if (tl.Length() > 0) then (tl.Head() = l.Item(1))
-                                                                                else true
-                                                                            (tlHead && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+        let stringGens =
+            let v = Array.create 2 maxBinomialHeapStringGen
+            v.[1] <- minBinomialHeapStringGen
+            v
 
-[<Test>]
-let ``tryGetHead on empty should return None``() =
-    (BinomialHeap.empty true).TryGetHead() |> should equal None
+        let intGensStart1 =
+            intGens 1  //this will accept all
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryGetHead should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : BinomialHeap<int>), (l : int list)) ->    
-                                                                            (h.TryGetHead().Value = l.Head)     
-                                                                            |> classifyCollect h (h.Length())))
+        let intGensStart2 =
+            intGens 2 // this will accept 11 out of 12
 
-[<Test>]
-let ``tryGetTail on empty should return None``() =
-    (BinomialHeap.empty true).TryGetTail() |> should equal None
+        testList "Experimental BinomialHeap property tests" [
 
-[<Test>]
-let ``tryGetTail on len 1 should return Some empty``() =
-    let h = BinomialHeap.empty true |> insert 1 |> tryGetTail
-    h.Value |> isEmpty |> should equal true
+            testPropertyWithConfig config10k "head should return 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-let ``tryMerge max and mis should be None``() =
-    let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+            testPropertyWithConfig config10k "head should return 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-    tryMerge h1 h2 |> should equal None
+            testPropertyWithConfig config10k "head should return 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryUncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : BinomialHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.TryUncons().Value
-                                                                            ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+            testPropertyWithConfig config10k "head should return 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-let ``tryUncons empty``() =
-    (BinomialHeap.empty true).TryUncons() |> should equal None
+            testPropertyWithConfig config10k "head should return 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``uncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : BinomialHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.Uncons()
-                                                                            ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+            testPropertyWithConfig config10k "head should return 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list max" (Prop.forAll (Arb.fromGen maxBinomialHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list min" (Prop.forAll (Arb.fromGen minBinomialHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 3" (Prop.forAll (Arb.fromGen intGensStart1.[3]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 4" (Prop.forAll (Arb.fromGen intGensStart1.[4]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list int 5" (Prop.forAll (Arb.fromGen intGensStart1.[5]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "seq enumerate matches build list string 0" (Prop.forAll (Arb.fromGen stringGens.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "seq enumerate matches build list string 1" (Prop.forAll (Arb.fromGen stringGens.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tail should return 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "tryGetHead should return 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryGetHead should return 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryGetHead should return 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryGetHead should return 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryGetHead should return 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryGetHead should return 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "tryUncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+               fun (h, l) ->    let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "uncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+        ]

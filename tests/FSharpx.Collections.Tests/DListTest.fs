@@ -120,17 +120,6 @@ module DListTests =
                 let q = ofSeq  l
                 Expect.equal "toList" l  <| DList.toList q }
 
-            //type DListGen =
-            //    static member DList {
-            //        let rec dListGen { 
-            //            gen {
-            //                let! xs = Arb.generate
-            //                return DList.ofSeq (Seq.ofList xs)
-            //            }
-            //        Arb.fromGen (dListGen())
-
-            //let registerGen = lazy (Arb.register<DListGen>() |> ignore)
-
             test "structural equality" {
                 let l1 = ofSeq [1..100]
                 let l2 = ofSeq [1..100]

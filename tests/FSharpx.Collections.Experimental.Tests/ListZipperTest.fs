@@ -1,29 +1,33 @@
-﻿module FSharpx.Collections.Experimental.Tests.ListZipperTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.ListZipper
-open NUnit.Framework
+open Expecto
+open Expecto.Flip
    
-let chars = ['a'..'z']
-let digits = ['0'..'9']
+module ListZipperTest =
 
-[<Test>]
-let ``Can move forward``() =
-    let z = chars |> zipper |> forward |> forward
-    Assert.AreEqual(focus z,'c')
+    let chars = ['a'..'z']
+    let digits = ['0'..'9']
 
-[<Test>]
-let ``Can move back``() =
-    let z = chars |> zipper |> forward |> forward |> back
-    Assert.AreEqual(focus z,'b')
+    [<Tests>]
+    let testListZipper =
 
-[<Test>]
-let ``Can move to the front``() =
-    let z = chars |> zipper |> forward |> forward |> front
-    Assert.AreEqual(focus z,'a')
+        testList "Experimental ListZipper" [
+            test "Can move forward" {
+                let z = chars |> zipper |> forward |> forward
+                Expect.equal "" 'c' <| focus z }
 
-[<Test>]
-let ``Can modify an element``() =
-    let z = chars |> zipper |> forward |> forward |> modify 'e' |> back |> forward
-    Assert.AreEqual(focus z,'e')
+            test "Can move back" {
+                let z = chars |> zipper |> forward |> forward |> back
+                Expect.equal "" 'b' <| focus z }
+
+            test "Can move to the front" {
+                let z = chars |> zipper |> forward |> forward |> front
+                Expect.equal "" 'a' <| focus z }
+
+            test "Can modify an element" {
+                let z = chars |> zipper |> forward |> forward |> modify 'e' |> back |> forward
+                Expect.equal "" 'e' <| focus z }
+        ]

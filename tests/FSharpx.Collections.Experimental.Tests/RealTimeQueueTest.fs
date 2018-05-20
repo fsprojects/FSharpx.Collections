@@ -1,61 +1,57 @@
-﻿module FSharpx.Collections.Experimental.Tests.RealTimeQueueTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open System
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FSharpx.Collections.Experimental.RealTimeQueue
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``empty queue should be empty``() =
-    isEmpty empty |> should equal true
+module RealTimeQueueTest =
 
-[<Test>]
-let ``it should allow to enqueue``() =
-    empty |> snoc 1 |> snoc 2 |> isEmpty |> should equal false
+    [<Tests>]
+    let testRealTimeQueue =
 
-[<Test>]
-let ``it should allow to dequeue``() =
-    empty |> snoc 1 |> tail |> isEmpty |> should equal true
+        testList "Experimental RealTimeQueue" [
+            test "empty queue should be empty" {
+                isEmpty empty |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should fail if there is no head in the queue``() =
-    let ok = ref false
-    try
-        empty |> head |> ignore
-    with x when x = Exceptions.Empty -> ok := true
-    !ok |> should equal true
+            test "it should allow to enqueue" {
+                empty |> snoc 1 |> snoc 2 |> isEmpty |> Expect.isFalse "" }
 
-[<Test>]
-let ``it should give None if there is no head in the queue``() =
-    empty |> tryGetHead |> should equal None
+            test "it should allow to dequeue" {
+                empty |> snoc 1 |> tail |> isEmpty |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should fail if there is no tail the queue``() =
-    let ok = ref false
-    try
-        empty |> tail |> ignore
-    with x when x = Exceptions.Empty -> ok := true
-    !ok |> should equal true
+            test "it should fail if there is no head in the queue" {
+                let ok = ref false
+                try
+                    empty |> head |> ignore
+                with x when x = Exceptions.Empty -> ok := true
+                !ok |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should give None if there is no tail in the queue``() =
-    empty |> tryGetTail |> should equal None
+            test "it should give None if there is no head in the queue" {
+                empty |> tryGetHead |> Expect.isNone "" }
 
-[<Test>]
-let ``it should allow to get the head from a queue``() =
-    empty |> snoc 1 |> snoc 2 |> head |> should equal 1
+            test "it should fail if there is no tail the queue" {
+                let ok = ref false
+                try
+                    empty |> tail |> ignore
+                with x when x = Exceptions.Empty -> ok := true
+                !ok |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should allow to get the head from a queue safely``() =
-    empty |> snoc 1 |> snoc 2 |> tryGetHead |> should equal (Some 1)
+            test "it should give None if there is no tail in the queue" {
+                empty |> tryGetTail |> Expect.isNone "" }
 
-[<Test>]
-let ``it should allow to get the tail from the queue``() =
-    empty |> snoc "a" |> snoc "b" |> snoc "c" |> tail |> head |> should equal "b"
+            test "it should allow to get the head from a queue" {
+                empty |> snoc 1 |> snoc 2 |> head |> Expect.equal "" 1 } 
 
-[<Test>]
-let ``it should allow to get the tail from a queue safely``() =
-    let value = empty |> snoc 1 |> snoc 2 |> tryGetTail
-    value.Value |> head |> should equal 2
+            test "it should allow to get the head from a queue safely" {
+                empty |> snoc 1 |> snoc 2 |> tryGetHead |> Expect.equal "" (Some 1) } 
+
+            test "it should allow to get the tail from the queue" {
+                empty |> snoc "a" |> snoc "b" |> snoc "c" |> tail |> head |> Expect.equal "" "b" } 
+
+            test "it should allow to get the tail from a queue safely" {
+                let value = empty |> snoc 1 |> snoc 2 |> tryGetTail
+                value.Value |> head |> Expect.equal "" 2 } 
+        ]
