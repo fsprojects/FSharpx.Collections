@@ -95,11 +95,11 @@ module DListTests =
 
             test "test ofSeq should create a DList from a list" {
                 let test = [ for i in 0..4 -> i ]
-                Expect.equal "ofSeq" (List.toSeq test) (DList.ofSeq test |> DList.toSeq) }
+                Expect.sequenceEqual "ofSeq" (List.toSeq test) (DList.ofSeq test |> DList.toSeq) }
 
             test "test ofSeq should create a DList from an array" {
                 let test = [| for i in 0..4 -> i |]
-                Expect.equal "ofSeq from Array" (Array.toSeq test)  (DList.ofSeq test |> DList.toSeq) }
+                Expect.sequenceEqual "ofSeq from Array" (Array.toSeq test)  (DList.ofSeq test |> DList.toSeq) }
 
             test "test singleton should return a Unit containing the solo value" {
                 Expect.equal "singleton" 1 (singleton 1 |> head) }
@@ -131,16 +131,15 @@ module DListTests =
 
             //let registerGen = lazy (Arb.register<DListGen>() |> ignore)
 
-            //[<Test>]
             test "structural equality" {
                 let l1 = ofSeq [1..100]
                 let l2 = ofSeq [1..100]
 
-                Expect.equal "structural equality" l1 l2
+                Expect.sequenceEqual "structural equality" l1 l2
 
                 let l3 = ofSeq [1..99] |> conj 7
 
-                Expect.equal "structural equality" l1 l3 }
+                Expect.isFalse "structural equality" (l1 = l3) }
         ]
 
     //[<Tests>]

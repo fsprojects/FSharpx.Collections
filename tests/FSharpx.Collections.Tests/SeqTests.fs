@@ -77,7 +77,7 @@ module SeqTests =
                 use stream = new IO.MemoryStream(bytes)
 
                 Seq.ofStreamByChunk 3 stream
-                |> Expect.equal 
+                |> Expect.sequenceEqual 
                     "ofStreamByChunk" ([
                                         Text.Encoding.UTF8.GetBytes("1\r\n")
                                         Text.Encoding.UTF8.GetBytes("2\r\n")

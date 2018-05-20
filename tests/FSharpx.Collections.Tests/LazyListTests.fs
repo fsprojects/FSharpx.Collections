@@ -10,7 +10,6 @@ open System.Collections.Generic
 #nowarn "40"
 
 module LazyList =
-    
 
     let rec pairReduce xs =
               match xs with
@@ -152,14 +151,14 @@ module LazyList =
             test "tryTail seq2" {Expect.equal "tryTail" [2] <| LazyList.toList ((LazyList.tryTail (LazyList.cons 1 (LazyList.cons 2 LazyList.empty))).Value) }
             test "tryTail seq3" {Expect.equal "tryTail" [2;3] <| LazyList.toList ((LazyList.tryTail (LazyList.cons 1 (LazyList.cons 2 (LazyList.cons 3 LazyList.empty)))).Value) }
  
-            test "take1" {Expect.equal "" [0;1;2;3] <| LazyList.toList (LazyList.take 4 nats) }
-            test "drop1" {Expect.equal "" 4 <| LazyList.head (LazyList.skip 4 nats) }
-            test "drop1" {Expect.equal "" 0 <| LazyList.head (LazyList.skip 0 nats) }
+            test "take1" {Expect.equal "take1" [0;1;2;3] <| LazyList.toList (LazyList.take 4 nats) }
+            test "skip 4" {Expect.equal "drop1" 4 <| LazyList.head (LazyList.skip 4 nats) }
+            test "skip 0" {Expect.equal "drop1" 0 <| LazyList.head (LazyList.skip 0 nats) }
 
-            test "tryTake empty" {Expect.isNone "" <| LazyList.tryTake 4 LazyList.empty }
-            test "tryTake0" {Expect.isTrue "" <| LazyList.isEmpty (LazyList.tryTake 0 LazyList.empty).Value}
-            test "tryTake1" {Expect.equal "" [0] <| LazyList.toList (LazyList.tryTake 1 nats).Value }
-            test "tryTake4" {Expect.equal "" [0;1;2;3] <|LazyList.toList (LazyList.tryTake 4 nats).Value }
+            test "tryTake empty" {Expect.isNone "tryTake" <| LazyList.tryTake 4 LazyList.empty }
+            test "tryTake0" {Expect.isTrue "tryTake0" <| LazyList.isEmpty (LazyList.tryTake 0 LazyList.empty).Value}
+            test "tryTake1" {Expect.equal "tryTake1" [0] <| LazyList.toList (LazyList.tryTake 1 nats).Value }
+            test "tryTake4" {Expect.equal "tryTake4" [0;1;2;3] <|LazyList.toList (LazyList.tryTake 4 nats).Value }
             test "tryTake4 from list of 3" {Expect.equal "" [0;1;2] <| LazyList.toList (LazyList.tryTake 4 (LazyList.tryTake 3 nats).Value).Value }
 
             test "trySkip 0" {Expect.equal "" 0 <| LazyList.head (LazyList.trySkip 0 nats).Value }
@@ -173,11 +172,11 @@ module LazyList =
                 let x, y = (LazyList.tryUncons (LazyList.take 1 nats)).Value
                 Expect.equal "tryUncons" (0, true) (x, (LazyList.isEmpty y)) }
 
-            test "tryUncons 2" {
+            test "tryUncons take 2" {
                 let x2, y2 = (LazyList.tryUncons (LazyList.take 2 nats)).Value
                 Expect.equal "tryUncons" (0, [1]) (x2, (LazyList.toList y2)) }
 
-            test "tryUncons 2" {
+            test "tryUncons take 3" {
                 let x3, y3 = (LazyList.tryUncons (LazyList.take 3 nats)).Value
                 Expect.equal "tryUncons" (0, [1;2]) (x3, (LazyList.toList y3)) }
 
@@ -185,11 +184,11 @@ module LazyList =
                 let xa, ya = LazyList.uncons (LazyList.take 1 nats)
                 Expect.equal "uncons" (0, true) (xa, (LazyList.isEmpty ya)) }
 
-            test "uncons 2" {
+            test "uncons take 2" {
                 let xa2, ya2 = LazyList.uncons (LazyList.take 2 nats)
                 Expect.equal "uncons" (0, [1]) (xa2, (LazyList.toList ya2)) }
 
-            test "uncons 2" {
+            test "uncons take 3" {
                 let xa3, ya3 = LazyList.uncons (LazyList.take 3 nats)
                 Expect.equal "uncons" (0, [1;2]) (xa3, (LazyList.toList ya3)) }
 
@@ -223,69 +222,69 @@ module LazyList =
             test "map"    {Expect.equal "map" [1;2;3;4] <| LazyList.toList (LazyList.take 4 (LazyList.map    (fun x -> x+1) nats)) }
             test "map2"   {Expect.equal "map2" [0*1;1*2;2*3;3*4] <| LazyList.toList (LazyList.take 4 (LazyList.map2   (fun x y -> x*y) nats (LazyList.tail nats))) }
 
-            test "array"  {Expect.equal "array" (LazyList.toList (LazyList.take 6 nats)) <| Array.toList (LazyList.toArray (LazyList.take 6 nats)) } 
-            test "array"  {Expect.equal "array" (LazyList.toList (LazyList.ofArray [|1;2;3;4|])) <| LazyList.toList (LazyList.ofList [1;2;3;4]) }
+            test "array take6"  {Expect.equal "array" (LazyList.toList (LazyList.take 6 nats)) <| Array.toList (LazyList.toArray (LazyList.take 6 nats)) } 
+            test "array list"  {Expect.equal "array" (LazyList.toList (LazyList.ofArray [|1;2;3;4|])) <| LazyList.toList (LazyList.ofList [1;2;3;4]) }
 
             // This checks that LazyList.map, LazyList.length etc. are tail recursive
-            test "LazyList.length" {Expect.equal "length" 100 (LazyList.ofSeq (Seq.init 100 (fun c -> c)) |> LazyList.length) }
-            test "LazyList.length" {Expect.equal "length" 1000000 (LazyList.ofSeq (Seq.init 1000000 (fun c -> c)) |> LazyList.length) }
-            test "LazyList.length" {Expect.equal "length" 0 (LazyList.ofSeq (Seq.init 0 (fun c -> c)) |> LazyList.length) }
+            test "LazyList.length 100" {Expect.equal "length" 100 (LazyList.ofSeq (Seq.init 100 (fun c -> c)) |> LazyList.length) }
+            test "LazyList.length 1000000" {Expect.equal "length" 1000000 (LazyList.ofSeq (Seq.init 1000000 (fun c -> c)) |> LazyList.length) }
+            test "LazyList.length 0" {Expect.equal "length" 0 (LazyList.ofSeq (Seq.init 0 (fun c -> c)) |> LazyList.length) }
             test "LazyList.map" {Expect.equal "map" 1000000 (LazyList.map (fun x -> x + 1) (LazyList.ofSeq (Seq.init 1000000 (fun c -> c))) |> Seq.length) }
             test "LazyList.filter" {Expect.equal "filter" 500000 (LazyList.filter (fun x -> x % 2 = 0) (LazyList.ofSeq (Seq.init 1000000 (fun c -> c))) |> Seq.length) }
-            test "LazyList.iter" {Expect.equal "iter" 0 (let count = ref 0 in LazyList.iter (fun x -> incr count) (LazyList.ofSeq (Seq.init 0 (fun c -> c))); !count) }
+            test "LazyList.iter 0" {Expect.equal "iter" 0 (let count = ref 0 in LazyList.iter (fun x -> incr count) (LazyList.ofSeq (Seq.init 0 (fun c -> c))); !count) }
             test "LazyList.iter" {Expect.equal "iter" 1000000 (let count = ref 0 in LazyList.iter (fun x -> incr count) (LazyList.ofSeq (Seq.init 1000000 (fun c -> c))); !count) }
             test "LazyList.toList" {Expect.equal "toList" 200000 (LazyList.toList (LazyList.ofSeq (Seq.init 200000 (fun c -> c))) |> Seq.length) }
             test "LazyList.toArray" {Expect.equal "toArray" 200000 (LazyList.toArray (LazyList.ofSeq (Seq.init 200000 (fun c -> c))) |> Seq.length) }
 
             // check exists on an infinite stream terminates
-            test "IEnumerableTest.exists" {Expect.isTrue "exists" (Seq.exists ((=) "a") (LazyList.repeat "a" |> LazyList.toSeq)) }
+            test "IEnumerableTest.exists 1" {Expect.isTrue "exists" (Seq.exists ((=) "a") (LazyList.repeat "a" |> LazyList.toSeq)) }
             // test a succeeding 'exists' on a concat of an infinite number of finite streams terminates
-            test "IEnumerableTest.exists" {Expect.isTrue "exists" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq))) }
+            test "IEnumerableTest.exists 2" {Expect.isTrue "exists" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq))) }
             // test a succeeding 'exists' on a concat of an infinite number of infinite streams terminates
-            test "IEnumerableTest.exists" {Expect.isTrue "exists" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat (LazyList.repeat "a" |> LazyList.toSeq) |> LazyList.toSeq))) }
+            test "IEnumerableTest.exists 3" {Expect.isTrue "exists" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat (LazyList.repeat "a" |> LazyList.toSeq) |> LazyList.toSeq))) }
             // test a failing for_all on an infinite stream terminates
-            test "IEnumerableTest.exists" {Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (LazyList.repeat "a" |> LazyList.toSeq)) }
+            test "IEnumerableTest.exists 4" {Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (LazyList.repeat "a" |> LazyList.toSeq)) }
             // test a failing for_all on a concat of an infinite number of finite streams terminates
-            test "IEnumerableTest.exists" {Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq))) }
-            test "IEnumerableTest.append, infinite, infinite, then take" {Expect.equal "append, infinite, infinite, then take" [ "a"; "a" ] (Seq.take 2 (Seq.append (LazyList.repeat "a" |> LazyList.toSeq) (LazyList.repeat "b" |> LazyList.toSeq)) |> Seq.toList) }
+            test "IEnumerableTest.exists 5" {Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq))) }
+            test "IEnumerableTest.append, infinite, infinite, then take 2" {Expect.equal "append, infinite, infinite, then take" [ "a"; "a" ] (Seq.take 2 (Seq.append (LazyList.repeat "a" |> LazyList.toSeq) (LazyList.repeat "b" |> LazyList.toSeq)) |> Seq.toList) }
             
             // test exists on an infinite stream terminates
-            test "IEnumerableTest.exists" {
+            test "IEnumerableTest.exists 6" {
                 let numActiveEnumerators = ref 0
                 Expect.isTrue "exists" (Seq.exists ((=) "a") (LazyList.repeat "a" |> LazyList.toSeq |> countEnumeratorsAndCheckedDisposedAtMostOnce numActiveEnumerators )) 
                 Expect.equal "<dispoal>" 0 !numActiveEnumerators }
 
             // test a succeeding 'exists' on a concat of an infinite number of finite streams terminates
-            test "IEnumerableTest.exists" {
+            test "IEnumerableTest.exists 7" {
                 let numActiveEnumerators = ref 0
                 Expect.isTrue "" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq |> countEnumeratorsAndCheckedDisposedAtMostOnce numActiveEnumerators))) 
                 Expect.equal "<dispoal>" 0 !numActiveEnumerators }
 
             // test a succeeding 'exists' on a concat of an infinite number of infinite streams terminates
-            test "IEnumerableTest.exists" {
+            test "IEnumerableTest.exists 8" {
                 let numActiveEnumerators = ref 0
                 Expect.isTrue "" (Seq.exists ((=) "a") (Seq.concat (LazyList.repeat (LazyList.repeat "a" |> LazyList.toSeq) |> LazyList.toSeq |> countEnumeratorsAndCheckedDisposedAtMostOnce numActiveEnumerators))) 
                 Expect.equal "<dispoal>" 0 !numActiveEnumerators}
 
             // test a failing for_all on an infinite stream terminates
-            test "IEnumerableTest.exists" {
+            test "IEnumerableTest.exists 9" {
                 let numActiveEnumerators = ref 0
                 Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (LazyList.repeat "a" |> LazyList.toSeq |> countEnumeratorsAndCheckedDisposedAtMostOnce numActiveEnumerators)) 
                 Expect.equal "" 0 !numActiveEnumerators }
 
             // check a failing for_all on a concat of an infinite number of finite streams terminates
-            test "IEnumerableTest.exists" {
+            test "IEnumerableTest.exists 10" {
                 let numActiveEnumerators = ref 0
                 Expect.isFalse "exists" (Seq.forall ((=) "a" >> not) (Seq.concat (LazyList.repeat [| "a"; "b"|] |> LazyList.toSeq |> countEnumeratorsAndCheckedDisposedAtMostOnce numActiveEnumerators))) 
                 Expect.equal "exists" 0 !numActiveEnumerators }
         
-            test "IEnumerableTest.append, infinite, infinite, then take" {
+            test "IEnumerableTest.append, repeat" {
                 let numActiveEnumerators = ref 0
                 Expect.equal "" [ "a"; "a" ] (Seq.take 2 (Seq.append (LazyList.repeat "a" |> LazyList.toSeq) (LazyList.repeat "b" |> LazyList.toSeq)) |> countEnumeratorsAndCheckedDisposedAtMostOnceAtEnd numActiveEnumerators |> Seq.toList) 
                 Expect.equal "exists" 0 !numActiveEnumerators }
 
-            test "we09wek" {Expect.equal "pairReduce" [1; 5; 9; 13; 17; 21; 25; 29; 33; 37] <| LazyList.toList (LazyList.take 10 (pairReduce inf)) }
+            test "pairReduce" {Expect.equal "pairReduce" [1; 5; 9; 13; 17; 21; 25; 29; 33; 37] <| LazyList.toList (LazyList.take 10 (pairReduce inf)) }
 
-            test "we09wek" {Expect.equal "scan" [0;1;3] (LazyList.scan (+) 0 (LazyList.ofList [1;2]) |> LazyList.toList) }
-            test "we09wek" {Expect.equal "scan" [0] (LazyList.scan (+) 0 (LazyList.ofList [])  |> LazyList.toList) }
+            test "scan 3" {Expect.equal "scan" [0;1;3] (LazyList.scan (+) 0 (LazyList.ofList [1;2]) |> LazyList.toList) }
+            test "scan 0" {Expect.equal "scan" [0] (LazyList.scan (+) 0 (LazyList.ofList [])  |> LazyList.toList) }
         ]

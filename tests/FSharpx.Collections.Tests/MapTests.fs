@@ -31,9 +31,9 @@ module MapTests =
 
             test "I should be able to extract values from a map" { 
                 let expected = [1;2;3;4;5;6;7;8;9;10] |> Seq.ofList
-                Expect.equal "values" expected <| Map.values data }
+                Expect.sequenceEqual "values" expected <| Map.values data }
 
             test "I should be able to extract keys from a map" { 
                 let expected = [1;2;3;4;5;6;7;8;9;10] |> Seq.ofList
-                Expect.equal "keys" expected <| Map.keys data }
+                Expect.sequenceEqual "keys" expected <| Map.keys data }
         ]

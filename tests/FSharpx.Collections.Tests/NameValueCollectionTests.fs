@@ -28,7 +28,7 @@ module NameValueCollectionTests =
               let r = ["1","uno"; "1","one"; "2","two"]
               let a = NameValueCollection.ofSeq r
               let s = NameValueCollection.toSeq a
-              Expect.equal "toSeq" (List.toSeq r) s }
+              Expect.sequenceEqual "toSeq" (List.toSeq r) s }
 
             test "toArray" {
               let r = [|"1","uno"; "1","one"; "2","two"|]
