@@ -28,6 +28,8 @@ module BlockResizeArrayTest =
     let testBlockResizeArray =
 
         testList "Experimental BlockResizeArray" [
+#if MONO
+#else
             test "allocation performance" {
     
                 averageTime testIters "ResizeArrayAlloc" (fun () -> 
@@ -36,7 +38,7 @@ module BlockResizeArrayTest =
                 averageTime testIters "BlockResizeArrayAlloc" (fun () -> 
                     let a = new BlockResizeArray<uint64>()
                     for i in 0..arraySize do a.Add x ) }  
-
+                
             test "random access performance" {
                 let rand = System.Random()
                 let access = [|for i in 0..arraySize-1 -> rand.Next(0, arraySize - 1)|]
@@ -100,7 +102,7 @@ module BlockResizeArrayTest =
                 averageTime testIters "ResizeArray find" (fun () -> Microsoft.FSharp.Collections.ResizeArray.find (fun e -> e <> 0 && e % s = 0) ra)
                 averageTime testIters "Array find" (fun () -> (Array.find (fun e -> e <> 0 && e % s = 0) a))       
                 averageTime testIters "BlockResizeArray find" (fun () -> (FSharpx.Collections.Experimental.BlockResizeArray.find (fun e -> e <> 0 && e % s = 0) bra)) }
-
+#endif
             test "map function test" {
                 let bra = BlockResizeArray.Init testLen (fun i -> i)
                 let a = Array.init testLen (fun i -> i * 2)
