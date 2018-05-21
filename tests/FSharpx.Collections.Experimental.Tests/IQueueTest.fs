@@ -18,32 +18,32 @@ module IQueueTest =
 
     // NUnit TestCaseSource does not understand array of tuples at runtime
     let intGens start =
-        let v = Array.create 12 (box (QueueGen.bankersQueueIntGen, "BankersQueue"))
-        v.[1] <- box ((QueueGen.bankersQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BankersQueue OfSeq")
-        v.[2] <- box ((QueueGen.bankersQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BankersQueue Snoc")
-        v.[3] <- box (QueueGen.batchedQueueIntGen, "BatchedQueue")
-        v.[4] <- box ((QueueGen.batchedQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BatchedQueue OfSeq")
-        v.[5] <- box ((QueueGen.batchedQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "BatchedQueue Snoc")
-        v.[6] <- box (QueueGen.hoodMelvilleQueueIntGen, "HoodMelvilleQueue")
-        v.[7] <- box ((QueueGen.hoodMelvilleQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue OfSeq")
-        v.[8] <- box ((QueueGen.hoodMelvilleQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "HoodMelvilleQueue Snoc")
-        v.[9] <- box (QueueGen.physicistQueueIntGen, "PhysicistQueue")
-        v.[10] <- box ((QueueGen.physicistQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "PhysicistQueue OfSeq")
-        v.[11] <- box ((QueueGen.physicistQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)), "PhysicistQueue Snoc")
+        let v = Array.create 12 QueueGen.bankersQueueIntGen
+        v.[1] <- QueueGen.bankersQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[2] <- QueueGen.bankersQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[3] <- QueueGen.batchedQueueIntGen
+        v.[4] <- QueueGen.batchedQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[5] <- QueueGen.batchedQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[6] <- QueueGen.hoodMelvilleQueueIntGen
+        v.[7] <- QueueGen.hoodMelvilleQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[8] <- QueueGen.hoodMelvilleQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[9] <- QueueGen.physicistQueueIntGen
+        v.[10] <- QueueGen.physicistQueueIntOfSeqGen |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[11] <- QueueGen.physicistQueueIntSnocGen |> Gen.filter (fun (q, l) -> l.Length >= start)
         v
 
     let objGens =
-        let v = Array.create 4 (box (QueueGen.bankersQueueObjGen, "BankersQueue"))
-        v.[1] <- box (QueueGen.batchedQueueObjGen, "BatchedQueue")
-        v.[2] <- box (QueueGen.hoodMelvilleQueueObjGen, "HoodMelvilleQueue")
-        v.[3] <- box (QueueGen.physicistQueueObjGen, "PhysicistQueue")
+        let v = Array.create 4 QueueGen.bankersQueueObjGen
+        v.[1] <- QueueGen.batchedQueueObjGen
+        v.[2] <- QueueGen.hoodMelvilleQueueObjGen
+        v.[3] <- QueueGen.physicistQueueObjGen
         v
 
     let stringGens =
-        let v = Array.create 4 (box (QueueGen.bankersQueueStringGen, "BankersQueue"))
-        v.[1] <- box (QueueGen.batchedQueueStringGen, "BatchedQueue")
-        v.[2] <- box (QueueGen.hoodMelvilleQueueStringGen, "HoodMelvilleQueue")
-        v.[3] <- box (QueueGen.physicistQueueStringGen, "PhysicistQueue")
+        let v = Array.create 4 QueueGen.bankersQueueStringGen
+        v.[1] <- QueueGen.batchedQueueStringGen
+        v.[2] <- QueueGen.hoodMelvilleQueueStringGen
+        v.[3] <- QueueGen.physicistQueueStringGen
         v
 
     let intGensStart1 =
@@ -56,21 +56,18 @@ module IQueueTest =
     let testIQueue =
 
         testList "Experimental   IQueue" [
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
             //test "allow to dequeue``(eIQ : IQueue<obj>) =
             //    ((eIQ.Snoc 1).Tail).IsEmpty |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
             //test "allow to enqueue``(eIQ : IQueue<obj>) =
             //    ((eIQ.Snoc 1).Snoc 2).IsEmpty |> Expect.isFalse "" }
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "cons pattern discriminator - BankersQueue" {
@@ -83,7 +80,6 @@ module IQueueTest =
 
             //    ((h1 = "f") && (t1.Length = 5)) |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "cons pattern discriminator - BatchedQueue" {
@@ -96,7 +92,6 @@ module IQueueTest =
 
             //    ((h1 = "f") && (t1.Length = 5)) |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "cons pattern discriminator - HoodMelvilleQueue" {
@@ -109,7 +104,6 @@ module IQueueTest =
 
             //    ((h1 = "f") && (t1.Length = 5)) |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "cons pattern discriminator - PhysicistQueue" {
@@ -122,14 +116,12 @@ module IQueueTest =
 
             //    ((h1 = "f") && (t1.Length = 5)) |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
             //test "empty queue should be empty``(eIQ : IQueue<obj>) =
             //    eIQ.IsEmpty |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
@@ -140,7 +132,6 @@ module IQueueTest =
             //    with x when x = Exceptions.Empty -> ok := true
             //    !ok |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
@@ -151,7 +142,6 @@ module IQueueTest =
             //    with x when x = Exceptions.Empty -> ok := true
             //    !ok |> Expect.isTrue "" }
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "fold matches build list rev" {
@@ -183,7 +173,6 @@ module IQueueTest =
             //    fsCheck "PhysicistQueue Snoc" (Prop.forAll (Arb.fromGen (QueueGen.physicistQueueIntSnocGen)) 
             //        (fun ((q :IQueue<int>), (l : int list)) -> q :?> PhysicistQueue<int> |> PhysicistQueue.fold (fun (l' : int list) (elem : int) -> elem::l') [] = (List.rev l) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "foldback matches build list" {
@@ -220,7 +209,6 @@ module IQueueTest =
             //    | 0 -> List.head l
             //    | _ -> nth (List.tail l) (i-1)
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("intGensStart1")>]
@@ -228,7 +216,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.Head = (nth l 0) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("intGensStart1")>]
@@ -236,7 +223,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q.TryGetHead.Value = (nth l 0) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("intGensStart2")>]
@@ -244,7 +230,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((q : IQueue<int>), l) -> q.Tail.Head = (nth l 1) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("intGensStart2")>]
@@ -252,21 +237,18 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q : IQueue<int>, l) -> q.TryGetTail.Value.Head = (nth l 1) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
             //test "give None if there is no head in the queue``(eIQ : IQueue<obj>) =
             //    eIQ.TryGetHead |> Expect.isNone "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("emptyIQueues")>]
             //test "give None if there is no tail in the queue``(eIQ  : IQueue<obj>) =
             //    eIQ.TryGetTail |> Expect.isNone "" }
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("intGensStart1")>]
@@ -274,7 +256,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<int>, l) -> q |> Seq.toList = l |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("objGens")>]
@@ -282,7 +263,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<obj>, l) -> q |> Seq.toList = l |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //[<TestCaseSource("stringGens")>]
@@ -290,7 +270,6 @@ module IQueueTest =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (q :IQueue<string>, l) -> q |> Seq.toList = l |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "reverse . reverse = id" {
@@ -304,7 +283,6 @@ module IQueueTest =
             //    fsCheck "PhysicistQueue" (Prop.forAll (Arb.fromGen QueueGen.physicistQueueIntGen) 
             //        (fun (q, l) -> q :?> PhysicistQueue<int> |> PhysicistQueue.rev |> PhysicistQueue.rev |> Seq.toList = (q |> Seq.toList) |> classifyCollect q (q.Length())))
 
-            //[<Test>]
             //[<Category("nonIQueue")>]
             //[<Property("Category", "nonIQueue")>]
             //test "ofList build and serialize" {
@@ -318,7 +296,6 @@ module IQueueTest =
             //    fsCheck "PhysicistQueue" (Prop.forAll (Arb.fromGen QueueGen.physicistQueueOfListqGen) 
             //        (fun ((q : PhysicistQueue<int>), (l : int list)) -> q |>  Seq.toList = l |> classifyCollect q q.Length))
 
-            //[<Test>]
             //[<Category("IQueue")>]
             //[<Property("Category", "IQueue")>]
             //test "TryUncons wind-down to None" {

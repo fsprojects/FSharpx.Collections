@@ -37,10 +37,10 @@ module TimeSeriesTest =
                 let startDate' = actual.Advance(toDate)
                 startDate' |> Expect.equal "" startDate } 
 
-            //test "I should not be able to advance a timeseries to a past date" {
-            //    let toDate = startDate.AddDays(-1.)
-            //    let actual = new Timeseries<int>(startDate, granularity, size)
-            //    Assert.Throws<ArgumentException>(fun _ -> actual.Advance(toDate) |> ignore) |> ignore
+            test "I should not be able to advance a timeseries to a past date" {
+                let toDate = startDate.AddDays(-1.)
+                let actual = new Timeseries<int>(startDate, granularity, size)
+                Expect.throwsT<ArgumentException> "" <| fun _ -> actual.Advance(toDate) |> ignore }
 
             test "I should be to advance a timeseries to a future date" {
                 let toDate = startDate.AddDays(1.)

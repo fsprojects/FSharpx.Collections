@@ -22,9 +22,9 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args BinomialHeapTest.testBinomialHeap |> ignore
         Tests.runTestsWithArgs defaultConfig args BinomialHeapTest.propertyBinomialHeap |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args BKTreeTest.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args BKTreeTest.testBKTree |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArray |> ignore
 
         Tests.runTestsWithArgs defaultConfig args BootstrappedQueueTest.testBootstrappedQueue |> ignore
 
@@ -34,23 +34,24 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args DListTest.testDList |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args EagerRoseTreeTest.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args EagerRoseTreeTest.testEagerRoseTree |> ignore
+        Tests.runTestsWithArgs defaultConfig args EagerRoseTreeTest.testEagerRoseTreePropeerties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args EditDistanceTest.testEditDistance |> ignore
 
         Tests.runTestsWithArgs defaultConfig args FileSystemZipperTest.testFileSystemZipper |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args FlatListTest.<> |> ignore
+        //Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatList |> ignore
+        //Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatListProperties|> ignore
 
         Tests.runTestsWithArgs defaultConfig args HeapPriorityQueueTest.testHeapPriorityQueue |> ignore
 
         Tests.runTestsWithArgs defaultConfig args ImplicitQueueTest.testImplicitQueue |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args IndexedRoseTreeTest.testIndexedRoseTree |> ignore
-        //Tests.runTestsWithArgs defaultConfig args IndexedRoseTreeTest.testIndexedRoseTreeProperties |> ignore
+        Tests.runTestsWithArgs defaultConfig args IndexedRoseTreeTest.testIndexedRoseTree |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args IntMapTest.<> |> ignore
-        //Tests.runTestsWithArgs defaultConfig args IntMapTest.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args IntMapTest.testIntMap |> ignore
+        Tests.runTestsWithArgs defaultConfig args IntMapTest.testIntMapProperties |> ignore
 
         //Tests.runTestsWithArgs defaultConfig args IQueueTest.<> |> ignore
 
@@ -73,9 +74,10 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args SkewBinaryRandomAccessListTest.testSkewBinaryRandomAccessList |> ignore
 
+        // to do: register SkewBinomialHeap
         //Tests.runTestsWithArgs defaultConfig args SkewBinomialHeapTest.testSkewBinomialHeap |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args TimeSeriesTest.testTimeSeries |> ignore
+        Tests.runTestsWithArgs defaultConfig args TimeSeriesTest.testTimeSeries |> ignore
     
         0
 

@@ -1,11 +1,26 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
+open Properties
+open FsCheck
 open Expecto
 open Expecto.Flip
+open System.Linq
 
 module IntMapTest =
+    type IntMapGen =
+        static member IntMap() =
+            let rec intMapGen() = 
+                gen {
+                    let! ks = Arb.generate
+                    let! xs = Arb.generate
+                    return IntMap.ofSeq (Seq.zip (Seq.ofList xs) (Seq.ofList ks))
+                }
+            Arb.fromGen (intMapGen())
+
+    let registerGen = lazy (Arb.register<IntMapGen>() |> ignore)
+
+    registerGen.Force()
 
     [<Tests>]
     let testIntMap =
@@ -91,24 +106,24 @@ module IntMapTest =
                 IntMap.insertWith (+) 7 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "a"); (7, "xxx")])
                 IntMap.insertWith (+) 5 "xxx" IntMap.empty |> Expect.equal "" (IntMap.singleton 5 "xxx") } 
 
-            //test "test insertWithKey" {
-            //    let f key new_value old_value = string key + ":" + new_value + "|" + old_value
-            //    IntMap.insertWithKey f 5 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "5:xxx|a")])
-            //    IntMap.insertWithKey f 7 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "a"); (7, "xxx")])
-            //    IntMap.insertWithKey f 5 "xxx" IntMap.empty |> Expect.equal "" (IntMap.singleton 5 "xxx") } 
+            test "test insertWithKey" {
+                let f key new_value old_value = string key + ":" + new_value + "|" + old_value
+                IntMap.insertWithKey f 5 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "5:xxx|a")])
+                IntMap.insertWithKey f 7 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "a"); (7, "xxx")])
+                IntMap.insertWithKey f 5 "xxx" IntMap.empty |> Expect.equal "" (IntMap.singleton 5 "xxx") } 
 
-            //test "test insertTryFindWithKey" {
-            //    let f key new_value old_value = string key + ":" + new_value + "|" + old_value
-            //    IntMap.insertTryFindWithKey f 5 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (Some "a", IntMap.ofList [(3, "b"); (5, "5:xxx|a")])
-            //    let fnd, map = IntMap.insertTryFindWithKey f 2 "xxx" (IntMap.ofList [(5,"a"); (3,"b")])
-            //    fnd |> Expect.isNone ""
-            //    map |> Expect.equal "" (IntMap.ofList [(2,"xxx");(3,"b");(5,"a")])
-            //    let fnd, map = IntMap.insertTryFindWithKey f 7 "xxx" (IntMap.ofList [(5,"a"); (3,"b")])
-            //    fnd |> Expect.isNone ""
-            //    map |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "a"); (7, "xxx")])
-            //    let fnd, map = IntMap.insertTryFindWithKey f 5 "xxx" IntMap.empty
-            //    fnd |> Expect.isNone ""
-            //    map |> Expect.equal "" (IntMap.singleton 5 "xxx") } 
+            test "test insertTryFindWithKey" {
+                let f key new_value old_value = string key + ":" + new_value + "|" + old_value
+                IntMap.insertTryFindWithKey f 5 "xxx" (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (Some "a", IntMap.ofList [(3, "b"); (5, "5:xxx|a")])
+                let fnd, map = IntMap.insertTryFindWithKey f 2 "xxx" (IntMap.ofList [(5,"a"); (3,"b")])
+                fnd |> Expect.isNone ""
+                map |> Expect.equal "" (IntMap.ofList [(2,"xxx");(3,"b");(5,"a")])
+                let fnd, map = IntMap.insertTryFindWithKey f 7 "xxx" (IntMap.ofList [(5,"a"); (3,"b")])
+                fnd |> Expect.isNone ""
+                map |> Expect.equal "" (IntMap.ofList [(3, "b"); (5, "a"); (7, "xxx")])
+                let fnd, map = IntMap.insertTryFindWithKey f 5 "xxx" IntMap.empty
+                fnd |> Expect.isNone ""
+                map |> Expect.equal "" (IntMap.singleton 5 "xxx") } 
 
             // Delete/Update
 
@@ -443,151 +458,138 @@ module IntMapTest =
             test "test maxViewWithKey" {
                 IntMap.maxViewWithKey (IntMap.ofList [(5,"a"); (3,"b")]) |> Expect.equal "" (Some ((5,"a"), IntMap.singleton 3 "b"))
                 IntMap.maxViewWithKey IntMap.empty |> Expect.isNone "" }
+        ]
 
-            //open FsCheck
-            //open FSharpx.Collections.Experimental.Tests.Properties
-            //open System.Linq
+    [<Tests>]
+    let testIntMapProperties =
 
-            //let fsCheck t = fsCheck "" t
+        let except (xs: _ seq) ys = xs.Except(ys)
+        let intersect (xs: _ seq) ys = xs.Intersect(ys)
+        let mapOption (f: 'a -> 'b option) l = List.foldBack (fun x xs -> match f x with Some v -> v::xs | None -> xs) l []
 
-            //type IntMapGen =
-            //    static member IntMap() =
-            //        let rec intMapGen() = 
-            //            gen {
-            //                let! ks = Arb.generate
-            //                let! xs = Arb.generate
-            //                return IntMap.ofSeq (Seq.zip (Seq.ofList xs) (Seq.ofList ks))
-            //            }
-            //        Arb.fromGen (intMapGen())
+        testList "Experimental IntMap Properties" [
 
-            //let registerGen = lazy (Arb.register<IntMapGen>() |> ignore)
+            testPropertyWithConfig config10k "prop singleton" <|
+                fun k x -> IntMap.insert k x IntMap.empty = IntMap.singleton k x
 
-            //test "prop singleton" {
-            //    fsCheck (fun k x -> IntMap.insert k x IntMap.empty = IntMap.singleton k x)
+            testPropertyWithConfig config10k "prop insert and tryFind" <|
+                fun k t -> IntMap.tryFind k (IntMap.insert k () t) <> None
 
-            //test "prop insert and tryFind" {
-            //    registerGen.Force()
-            //    fsCheck (fun k t -> IntMap.tryFind k (IntMap.insert k () t) <> None)
+            testPropertyWithConfig config10k "prop insert and delete" <|
+                fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k (IntMap.insert k () t) = t)
 
-            //test "prop insert and delete" {
-            //    registerGen.Force()
-            //    fsCheck <| fun k t ->
-            //        IntMap.tryFind k t = None ==> (IntMap.delete k (IntMap.insert k () t) = t)
+            testPropertyWithConfig config10k "prop delete non member" <|
+                fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k t = t)
 
-            //test "prop delete non member" {
-            //    registerGen.Force()
-            //    fsCheck <| fun k t ->
-            //        IntMap.tryFind k t = None ==> (IntMap.delete k t = t)
+            testPropertyWithConfig config10k "prop append" <|
+                fun xs ys ->
+                    List.sort (IntMap.keys (IntMap.append (IntMap.ofList xs) (IntMap.ofList ys)))
+                        = List.sort (List.ofSeq (Seq.distinct (List.append (List.map fst xs) (List.map fst ys))))
 
-            //test "prop append" {
-            //    fsCheck <| fun xs ys ->
-            //        List.sort (IntMap.keys (IntMap.append (IntMap.ofList xs) (IntMap.ofList ys)))
-            //            = List.sort (List.ofSeq (Seq.distinct (List.append (List.map fst xs) (List.map fst ys))))
+            testPropertyWithConfig config10k "prop append and singleton" <|
+                fun t k x -> IntMap.append (IntMap.singleton k x) t = IntMap.insert k x t
 
-            //test "prop append and singleton" {
-            //    registerGen.Force()
-            //    fsCheck (fun t k x -> IntMap.append (IntMap.singleton k x) t = IntMap.insert k x t)
+            testPropertyWithConfig config10k "prop append and sum" <|
+                fun xs ys ->
+                    List.sum (IntMap.values (IntMap.appendWith (+) (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
+                        = List.sum (List.map snd xs) + List.sum (List.map snd ys)
 
-            //test "prop append and sum" {
-            //    fsCheck <| fun xs ys ->
-            //        List.sum (IntMap.values (IntMap.appendWith (+) (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
-            //            = List.sum (List.map snd xs) + List.sum (List.map snd ys)
+            testPropertyWithConfig config10k "prop difference" <|
+                fun xs ys ->
+                    List.sort (IntMap.keys (IntMap.difference (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
+                        = List.sort (List.ofSeq (except (Seq.distinct (List.map fst xs)) (Seq.distinct (List.map fst ys))))
 
-            //let except (xs: _ seq) ys = xs.Except(ys)
-            //let intersect (xs: _ seq) ys = xs.Intersect(ys)
+            testPropertyWithConfig config10k "prop intersection" <|
+                fun xs ys ->
+                    List.sort (IntMap.keys (IntMap.intersection (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
+                        = List.sort (List.ofSeq (Seq.distinct (intersect (List.map fst xs) (List.map fst ys))))
 
-            //test "prop difference" {
-            //    fsCheck <| fun xs ys ->
-            //        List.sort (IntMap.keys (IntMap.difference (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
-            //            = List.sort (List.ofSeq (except (Seq.distinct (List.map fst xs)) (Seq.distinct (List.map fst ys))))
+            testPropertyWithConfig config10k "prop intersectionWith" <|
+                fun (xs: (int * int) list) (ys: (int * int) list) ->
+                    let xs' = Seq.distinctBy fst xs |> Seq.toList
+                    let ys' = Seq.distinctBy fst ys |> Seq.toList
+                    let f l r = l + 2 * r
+                    IntMap.toList (IntMap.intersectionWith f (IntMap.ofList xs') (IntMap.ofList ys'))
+                        = [ for (kx, vx) in List.sort xs' do for (ky, vy) in ys' do if kx = ky then yield (kx, f vx vy) ]
 
-            //test "prop intersection" {
-            //    fsCheck <| fun xs ys ->
-            //        List.sort (IntMap.keys (IntMap.intersection (IntMap.ofListWith (+) xs) (IntMap.ofListWith (+) ys)))
-            //            = List.sort (List.ofSeq (Seq.distinct (intersect (List.map fst xs) (List.map fst ys))))
+            testPropertyWithConfig config10k "prop intersectionWithKey" <|
+                fun (xs: (int * int) list) (ys: (int * int) list) ->
+                    let xs' = Seq.distinctBy fst xs |> Seq.toList
+                    let ys' = Seq.distinctBy fst ys |> Seq.toList
+                    let f k l r = k + 2 * l + 3 * r
+                    IntMap.toList (IntMap.intersectionWithKey f (IntMap.ofList xs') (IntMap.ofList ys'))
+                        = [ for (kx, vx) in List.sort xs' do for (ky, vy) in ys' do if kx = ky then yield (kx, f kx vx vy) ]
 
-            //test "prop intersectionWith" {
-            //    fsCheck <| fun (xs: (int * int) list) (ys: (int * int) list) ->
-            //        let xs' = Seq.distinctBy fst xs |> Seq.toList
-            //        let ys' = Seq.distinctBy fst ys |> Seq.toList
-            //        let f l r = l + 2 * r
-            //        IntMap.toList (IntMap.intersectionWith f (IntMap.ofList xs') (IntMap.ofList ys'))
-            //            = [ for (kx, vx) in List.sort xs' do for (ky, vy) in ys' do if kx = ky then yield (kx, f vx vy) ]
+            testPropertyWithConfig config10k "prop mergeWithKey" <|
+                fun (xs: (int * int) list) (ys: (int * int) list) ->
+                    let xs' = Seq.distinctBy fst xs |> Seq.toList
+                    let ys' = Seq.distinctBy fst ys |> Seq.toList
+                    let xm = IntMap.ofList xs'
+                    let ym = IntMap.ofList ys'
 
-            //test "prop intersectionWithKey" {
-            //    fsCheck <| fun (xs: (int * int) list) (ys: (int * int) list) ->
-            //        let xs' = Seq.distinctBy fst xs |> Seq.toList
-            //        let ys' = Seq.distinctBy fst ys |> Seq.toList
-            //        let f k l r = k + 2 * l + 3 * r
-            //        IntMap.toList (IntMap.intersectionWithKey f (IntMap.ofList xs') (IntMap.ofList ys'))
-            //            = [ for (kx, vx) in List.sort xs' do for (ky, vy) in ys' do if kx = ky then yield (kx, f kx vx vy) ]
+                    let emulateMergeWithKey f keep_x keep_y =
+                        let combine k =
+                            match (List.tryFind (fst >> (=) k) xs', List.tryFind (fst >> (=) k) ys') with
+                            | (None, Some(_, y)) -> if keep_y then Some (k, y) else None
+                            | (Some(_, x), None) -> if keep_x then Some (k, x) else None
+                            | (Some(_, x), Some(_, y)) ->  f k x y |> Option.map (fun v -> (k, v))
+                            | _ -> failwith "emulateMergeWithKey: combine"
+                        mapOption combine (List.sort (List.ofSeq (Seq.distinct (List.append (List.map fst xs') (List.map fst ys')))))
 
-            //let mapOption (f: 'a -> 'b option) l = List.foldBack (fun x xs -> match f x with Some v -> v::xs | None -> xs) l []
-
-            //test "prop mergeWithKey" {
-            //    fsCheck <| fun (xs: (int * int) list) (ys: (int * int) list) ->
-            //        let xs' = Seq.distinctBy fst xs |> Seq.toList
-            //        let ys' = Seq.distinctBy fst ys |> Seq.toList
-            //        let xm = IntMap.ofList xs'
-            //        let ym = IntMap.ofList ys'
-
-            //        let emulateMergeWithKey f keep_x keep_y =
-            //            let combine k =
-            //                match (List.tryFind (fst >> (=) k) xs', List.tryFind (fst >> (=) k) ys') with
-            //                | (None, Some(_, y)) -> if keep_y then Some (k, y) else None
-            //                | (Some(_, x), None) -> if keep_x then Some (k, x) else None
-            //                | (Some(_, x), Some(_, y)) ->  f k x y |> Option.map (fun v -> (k, v))
-            //                | _ -> failwith "emulateMergeWithKey: combine"
-            //            mapOption combine (List.sort (List.ofSeq (Seq.distinct (List.append (List.map fst xs') (List.map fst ys')))))
-
-            //        let testMergeWithKey f keep_x keep_y =
-            //            let keep b m = match b with | false -> IntMap.empty | true -> m
-            //            IntMap.toList (IntMap.mergeWithKey f (keep keep_x) (keep keep_y) xm ym) = emulateMergeWithKey f keep_x keep_y
+                    let testMergeWithKey f keep_x keep_y =
+                        let keep b m = match b with | false -> IntMap.empty | true -> m
+                        IntMap.toList (IntMap.mergeWithKey f (keep keep_x) (keep keep_y) xm ym) = emulateMergeWithKey f keep_x keep_y
                     
-            //        List.forall id [ for f in
-            //            [ (fun _ x1 _ -> Some x1);
-            //                (fun _ _ x2 -> Some x2);
-            //                (fun _ _ _ -> None);
-            //                (fun k x1 x2 -> if k % 2 = 0 then None else Some (2 * x1 + 3 * x2))
-            //            ] do
-            //                for keep_x in [ true; false ] do
-            //                    for keep_y in [ true; false ] do yield testMergeWithKey f keep_x keep_y
-            //        ]
+                    List.forall id [ for f in
+                        [ (fun _ x1 _ -> Some x1);
+                            (fun _ _ x2 -> Some x2);
+                            (fun _ _ _ -> None);
+                            (fun k x1 x2 -> if k % 2 = 0 then None else Some (2 * x1 + 3 * x2))
+                        ] do
+                            for keep_x in [ true; false ] do
+                                for keep_y in [ true; false ] do yield testMergeWithKey f keep_x keep_y
+                    ]
 
-            //test "prop list" {
-            //    fsCheck <| fun (xs: int list) ->
-            //        List.sort (List.ofSeq (Seq.distinct xs)) = [ for (x,()) in IntMap.toList (IntMap.ofList [ for x in xs do yield (x,()) ]) do yield x ]
+            testPropertyWithConfig config10k "prop list" <|
+                fun (xs: int list) ->
+                    List.sort (List.ofSeq (Seq.distinct xs)) = [ for (x,()) in IntMap.toList (IntMap.ofList [ for x in xs do yield (x,()) ]) do yield x ]
 
-            //test "prop alter" {
-            //    fsCheck <| fun t k ->
-            //        let f = function | Some () -> None | None -> Some ()
-            //        let t' = IntMap.alter f k t
-            //        match IntMap.tryFind k t with
-            //        | Some _ -> IntMap.size t - 1 = IntMap.size t' && IntMap.tryFind k t' = None
-            //        | None -> IntMap.size t + 1 = IntMap.size t' && IntMap.tryFind k t' <> None
+            testPropertyWithConfig config10k "prop alter" <|
+                fun t k ->
+                    let f = function | Some () -> None | None -> Some ()
+                    let t' = IntMap.alter f k t
+                    match IntMap.tryFind k t with
+                    | Some _ -> IntMap.size t - 1 = IntMap.size t' && IntMap.tryFind k t' = None
+                    | None -> IntMap.size t + 1 = IntMap.size t' && IntMap.tryFind k t' <> None
 
-            //test "prop isEmpty" {
-            //    registerGen.Force()
-            //    fsCheck (fun m -> IntMap.isEmpty m = (IntMap.size m = 0))
+            testPropertyWithConfig config10k "prop isEmpty" <|
+                fun m -> IntMap.isEmpty m = (IntMap.size m = 0)
 
-            //test "prop exists" {
-            //    fsCheck <| fun xs n ->
-            //        let m = IntMap.ofList (List.zip xs xs)
-            //        List.forall (fun k -> IntMap.exists k m = List.exists ((=) k) xs) (n::xs)
+            testPropertyWithConfig config10k "prop exists" <|
+                fun xs n ->
+                    let m = IntMap.ofList (List.zip xs xs)
+                    List.forall (fun k -> IntMap.exists k m = List.exists ((=) k) xs) (n::xs)
 
-            //test "prop notExists" {
-            //    fsCheck <| fun xs n ->
-            //        let m = IntMap.ofList (List.zip xs xs)
-            //        List.forall (fun k -> IntMap.notExists k m = not (List.exists ((=) k) xs)) (n::xs)
+            testPropertyWithConfig config10k "prop notExists" <|
+                fun xs n ->
+                    let m = IntMap.ofList (List.zip xs xs)
+                    List.forall (fun k -> IntMap.notExists k m = not (List.exists ((=) k) xs)) (n::xs)
 
-            //test "implements IEnumerable" {
-            //    fsCheck <| fun xs ->
-            //        let xs = List.zip xs xs
-            //        let map = IntMap.ofList xs
-            //        let a = map :> _ seq |> Seq.toList
-            //        set xs = set a && a.Length = List.length (List.ofSeq (Seq.distinct xs)
-            //test "functor laws" {
-            //    registerGen.Force()
+            testPropertyWithConfig config10k "implements IEnumerable 1" <|
+                fun xs ->
+                    let xs = List.zip xs xs
+                    let map = IntMap.ofList xs
+                    let a = map :> _ seq |> Seq.toList
+                    set xs = set a 
+
+            testPropertyWithConfig config10k "implements IEnumerable 2" <|
+                fun xs ->
+                    let xs = List.zip xs xs
+                    let map = IntMap.ofList xs
+                    let a = map :> _ seq |> Seq.toList
+                    a.Length = (List.length (List.ofSeq (Seq.distinct xs)))
+
+            //testPropertyWithConfig config10k "functor laws" <|
             //    let fmap = IntMap.map
             //    let n = sprintf "IntMap : functor %s"
             //    NUnit.fsCheck (n "preserves identity") <| 

@@ -11,16 +11,6 @@ open HeapGen
 
 //only going up to 5 elements is probably sufficient to test all edge cases
 
-(*
-Could not get IHeap<'c, 'a when 'c :> IHeap<'c, 'a> and 'a : comparison> interface working smoothly between shared code,
-NUnit TestCaseSource(), FsCheck, and trying to pass around the tuple of heap generator and list. So need individual test
-file for each heap type, unlike IQueue.
-
-Even restricting only to this type, never got generic element type 'a to work. Need separate tests for int and string.
-*)
-
-// NUnit TestCaseSource does not understand array of tuples at runtime
-
 module LeftistHeapTest =
 
     let intGens start =

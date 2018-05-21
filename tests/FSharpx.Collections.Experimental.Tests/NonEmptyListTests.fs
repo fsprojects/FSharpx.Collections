@@ -20,7 +20,6 @@ module NonEmptyListTests =
     let testNonEmptyList =
 
         testList "Experimental NonEmptyList" [
-            //[<Test>]
             //test "functor laws" {
             //    registerGen.Force()
             //    let n = sprintf "NonEmptyList : functor %s"
@@ -30,7 +29,6 @@ module NonEmptyListTests =
             //    fsCheck (n "preserves composition") <|
             //        fun f g value -> map (f << g) value = (map f << map g) value
 
-            //[<Test>]
             //test "monad laws" {
             //    registerGen.Force()
             //    let ret (x: int) = NonEmptyList.singleton x
@@ -48,35 +46,28 @@ module NonEmptyListTests =
 
             //let fsCheck t = fsCheck "" t
 
-            //[<Test>]
             //test "toList gives non-empty list" {
             //    fsCheck (fun nel -> NonEmptyList.toList nel |> List.length > 0)
 
-            //[<Test>]
             //test "toArray gives non-empty array" {
             //    fsCheck (fun nel -> NonEmptyList.toArray nel |> Array.length > 0)
 
-            //[<Test>]
             //test "toList is same length as non-empty list`` () =
             //    fsCheck (fun nel -> NonEmptyList.toList nel |> List.length = nel.Length)
 
-            //[<Test>]
             //test "toArray is same length as non-empty list`` () =
             //    fsCheck (fun nel -> NonEmptyList.toArray nel |> Array.length = nel.Length)
 
-            //[<Test>]
             //let ofArray () =
             //    fsCheck <| fun arr ->
             //        try Seq.forall2 (=) (NonEmptyList.ofArray arr) arr
             //        with :? System.ArgumentException -> arr.Length = 0
 
-            //[<Test>]
             //let ofList () =
             //    fsCheck <| fun l ->
             //        try Seq.forall2 (=) (NonEmptyList.ofList l) l
             //        with :? System.ArgumentException -> l = []
 
-            //[<Test>]
             //let ofSeq () =
             //    let ArbitrarySeq = 
             //        gen {
@@ -88,19 +79,15 @@ module NonEmptyListTests =
             //        try Seq.forall2 (=) (NonEmptyList.ofSeq s) s
             //        with :? System.ArgumentException -> Seq.isEmpty s)
 
-            //[<Test>]
             //test "reverse . reverse = id`` () =
             //    fsCheck (fun nel -> (NonEmptyList.rev << NonEmptyList.rev) nel = nel)
 
-            //[<Test>]
             //test "last . reverse = head" {
             //    fsCheck (fun nel -> (NonEmptyList.last << NonEmptyList.rev) nel = NonEmptyList.head nel)
 
-            //[<Test>]
             //test "head . reverse = last" {
             //    fsCheck (fun nel -> (NonEmptyList.head << NonEmptyList.rev) nel = NonEmptyList.last nel)
 
-            //[<Test>]
             //test "last is last and never fails" {
             //    fsCheck <| fun nel ->
             //        let actualLast = NonEmptyList.last nel
@@ -109,7 +96,6 @@ module NonEmptyListTests =
             //            l.[l.Length-1]
             //        expectedLast = actualLast
 
-            //[<Test>]
             //test "append has combined length" {
             //    fsCheck <| fun (a: _ list) (b: _ list) ->
             //        if a.IsEmpty || b.IsEmpty then
@@ -120,14 +106,12 @@ module NonEmptyListTests =
             //            let neB = NonEmptyList.create b.Head b.Tail
             //            (NonEmptyList.append neA neB).Length = neA.Length + neB.Length
 
-            //[<Test>]
             //let reduce() =
             //    fsCheck <| fun nel ->
             //        let actual = NonEmptyList.reduce (+) nel
             //        let expected = nel |> NonEmptyList.toList |> List.sum
             //        expected = actual
 
-            //[<Test>]
             //let zip() =
             //    let EqualLengthNELGen =
             //        gen {
@@ -143,7 +127,6 @@ module NonEmptyListTests =
             //                                <| NonEmptyList.toList nel2
             //        expected = actual)
 
-            //[<Test>]
             //test "zip on lists with different lengths raises an exception``()=
             //    fsCheck <| fun nel1 nel2 ->
             //        try
