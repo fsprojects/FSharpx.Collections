@@ -1,5 +1,6 @@
 ﻿/// ListZipper
 /// original implementation taken from http://learnyouahaskell.com/zippers
+[<RequireQualifiedAccess>]
 module FSharpx.Collections.Experimental.ListZipper
 
 #nowarn "25"

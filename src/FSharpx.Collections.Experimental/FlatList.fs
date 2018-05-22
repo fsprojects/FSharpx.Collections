@@ -44,7 +44,7 @@ type FlatList<'T> =
             | null -> (Seq.empty :> IEnumerable).GetEnumerator()
             | arr -> (arr :> IEnumerable).GetEnumerator()
 
-
+[<RequireQualifiedAccess>]
 module FlatList =
 
     let append(l1 : FlatList<'T>) (l2 : FlatList<'T>) = 

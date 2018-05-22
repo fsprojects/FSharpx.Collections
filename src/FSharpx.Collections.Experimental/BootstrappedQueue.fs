@@ -1,5 +1,6 @@
 ﻿// bootstrapped queue from Chris Okasaki’s “Purely functional data structures”
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
+[<RequireQualifiedAccess>]
 module FSharpx.Collections.Experimental.BootstrappedQueue
 
 open FSharpx.Collections

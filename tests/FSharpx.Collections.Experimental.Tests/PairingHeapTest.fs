@@ -2,8 +2,7 @@
 
 open FSharpx
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.PairingHeap
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip

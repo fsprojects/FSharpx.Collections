@@ -7,6 +7,7 @@ open System.Collections.Generic
 open System.Runtime.CompilerServices
 
 /// Extensions for F#'s Seq module.
+[<RequireQualifiedAccess>]
 module Seq =
 
     /// Prepends `x` to the seq `xs`
@@ -259,6 +260,7 @@ module Seq =
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
 /// Extensions for F#'s Array module.
+[<RequireQualifiedAccess>]
 module Array =
     /// nth item of array
     let inline nth i arr = Array.get arr i
@@ -348,6 +350,7 @@ module Array =
 
 
 /// Extensions for F#'s List module.
+[<RequireQualifiedAccess>]
 module List =
     /// Curried cons
     let inline cons hd tl = hd::tl
@@ -476,6 +479,7 @@ module List =
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
 /// Extensions for System.Collections.Generic.Dictionary.
+[<RequireQualifiedAccess>]
 module Dictionary =
     let tryFind key (d: IDictionary<_,_>) =
         match d.TryGetValue key with
@@ -483,6 +487,7 @@ module Dictionary =
         | _ -> None
 
 /// Extensions for F#'s Map module.
+[<RequireQualifiedAccess>]
 module Map =
     let spanWithKey pred map =
         map
@@ -573,6 +578,7 @@ module Map =
 #else
 [<Extension>]
 /// Extensions for NameValueCollections.
+[<RequireQualifiedAccess>]
 module NameValueCollection =
     open System.Collections.Specialized
     open System.Linq

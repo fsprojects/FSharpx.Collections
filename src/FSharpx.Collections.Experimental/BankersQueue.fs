@@ -121,6 +121,7 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module BankersQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : BankersQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

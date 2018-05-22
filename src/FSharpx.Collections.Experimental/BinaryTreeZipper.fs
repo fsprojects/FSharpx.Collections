@@ -1,5 +1,6 @@
 ﻿/// TreeZipper
 /// original implementation taken from http://blog.xquant.net/?p=156
+[<RequireQualifiedAccess>]
 module FSharpx.Collections.Experimental.BinaryTreeZipper
 
 /// A simple binary tree

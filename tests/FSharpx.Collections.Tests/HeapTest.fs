@@ -1,9 +1,7 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open FSharpx
 open FSharpx.Collections
-open FSharpx.Collections.Heap
-open FSharpx.Collections.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip
@@ -15,36 +13,36 @@ module HeapTests =
         testList "Heap" [
 
             test "cons pattern discriminator" {
-                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-                let h1, t1 = uncons h 
+                let h = Heap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = Heap.uncons h 
 
                 let h2, t2 = 
                     match t1 with
-                    | Cons(h, t) -> h, t
+                    | Heap.Cons(h, t) -> h, t
                     | _ ->  "x", t1
 
-                Expect.isTrue "cons pattern" ((h2 = "e") && ((length t2) = 4)) }
+                Expect.isTrue "cons pattern" ((h2 = "e") && ((Heap.length t2) = 4)) }
 
             test "cons pattern discriminator 2" {
-                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h = Heap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
                 let t2 = 
                     match h with
-                    | Cons("f", Cons(_, t)) -> t
+                    | Heap.Cons("f", Heap.Cons(_, t)) -> t
                     | _ ->  h
 
-                let h1, t3 = uncons t2 
+                let h1, t3 = Heap.uncons t2 
 
-                Expect.isTrue "cons pattern" ((h1 = "d") && ((length t2) = 4)) }
+                Expect.isTrue "cons pattern" ((h1 = "d") && ((Heap.length t2) = 4)) }
 
             test "empty list should be empty" { 
                 Expect.isTrue "empty" (Heap.empty true).IsEmpty }
 
             test "rev empty" {
-                let h = empty true
-                Expect.isTrue "" (h |> rev |> isEmpty)
-                let h' = empty false
-                Expect.isTrue "" (h' |> rev |> isEmpty) }
+                let h = Heap.empty true
+                Expect.isTrue "" (h |> Heap.rev |> Heap.isEmpty)
+                let h' = Heap.empty false
+                Expect.isTrue "" (h' |> Heap.rev |> Heap.isEmpty) }
 
             test "insert works" {
                 Expect.isFalse "" (((Heap.empty true).Insert 1).Insert 2).IsEmpty }
@@ -59,30 +57,30 @@ module HeapTests =
                 Expect.isNone "tryTail" <| (Heap.empty true).TryTail() }
 
             test "tryTail on len 1 should return Some empty" {
-                let h = Heap.empty true |> insert 1 |> tryTail
-                Expect.isTrue "tryTail" (h.Value |> isEmpty) }
+                let h = Heap.empty true |> Heap.insert 1 |> Heap.tryTail
+                Expect.isTrue "tryTail" (h.Value |> Heap.isEmpty) }
 
             test "tryMerge max and min should be None" {
-                let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-                let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+                let h1 = Heap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = Heap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
 
-                Expect.isNone "tryMerge" <| tryMerge h1 h2 }
+                Expect.isNone "tryMerge" <| Heap.tryMerge h1 h2 }
 
             test "structural equality" {
-                let l1 = ofSeq true [1..100]
-                let l2 = ofSeq true [1..100]
+                let l1 = Heap.ofSeq true [1..100]
+                let l2 = Heap.ofSeq true [1..100]
 
                 Expect.equal "structural equality" l1 l2
 
-                let l3 = ofSeq true [1..99] |> insert 7
+                let l3 = Heap.ofSeq true [1..99] |> Heap.insert 7
 
                 Expect.notEqual "structural equality" l1 l3 }
 
             test "toSeq to list" {
                 let l = ["f";"e";"d";"c";"b";"a"] 
-                let h = ofSeq true l
+                let h = Heap.ofSeq true l
 
-                Expect.equal "toSeq to list" l  (h |> toSeq |> List.ofSeq) }
+                Expect.equal "toSeq to list" l  (h |> Heap.toSeq |> List.ofSeq) }
 
             test "tryUncons empty" {
                 Expect.isNone "TryUncons" <| (Heap.empty true).TryUncons() }
@@ -200,10 +198,10 @@ module HeapTests =
                 fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length )
 
             testPropertyWithConfig config10k "rev works max heap" (Prop.forAll (Arb.fromGen maxHeapIntGen) <|
-                fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
+                fun (h, l) -> h |> Heap.rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
 
             testPropertyWithConfig config10k "rev works min  heap" (Prop.forAll (Arb.fromGen minHeapIntGen) <|
-                fun (h, l) -> h |> rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
+                fun (h, l) -> h |> Heap.rev |> List.ofSeq = (h |> List.ofSeq |> List.rev) )
 
             testPropertyWithConfig config10k "seq enumerate matches build list int 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
                 fun (h , l) -> h |> Seq.toList = l )
@@ -326,32 +324,32 @@ module HeapTests =
                     let x, tl = h.TryUncons().Value
                     x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
                      
-            testPropertyWithConfig config10k "uncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
 
-            testPropertyWithConfig config10k "uncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+            testPropertyWithConfig config10k "Heap.uncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )

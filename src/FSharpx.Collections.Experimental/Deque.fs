@@ -366,6 +366,7 @@ type Deque<'T> (front, rBack) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module Deque =
 
 //pattern discriminators

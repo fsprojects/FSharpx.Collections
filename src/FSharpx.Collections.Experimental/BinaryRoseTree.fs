@@ -48,6 +48,7 @@ type BinaryRoseTree<'T> = //{ Root: 'T; Children: 'T BinaryRoseTree Vector }
         member x.GetEnumerator() =
             (x :> seq<'T>).GetEnumerator() :> IEnumerator 
 
+[<RequireQualifiedAccess>]
 module BinaryRoseTree =
 
     let inline createTree root (children : BinaryRoseTree<'T>) = Node(root, children, Nil)

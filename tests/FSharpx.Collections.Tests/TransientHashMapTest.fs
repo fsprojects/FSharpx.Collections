@@ -2,7 +2,6 @@
 
 open System
 open FSharpx.Collections
-open FSharpx.Collections.PersistentHashMap
 open Expecto
 open Expecto.Flip
 
@@ -43,23 +42,23 @@ module TransientHashMapTests =
 
             test "empty map should be empty" {
                 let x = TransientHashMap<int,int>.Empty()
-                Expect.equal "empty" 0 (x.persistent() |> length) } 
+                Expect.equal "empty" 0 (x.persistent() |> PersistentHashMap.length) } 
 
             test "empty map should not contain key 0" {
                 let x = TransientHashMap<int,int>.Empty()
-                Expect.isFalse "empty" (x.persistent() |> containsKey 1) }
+                Expect.isFalse "empty" (x.persistent() |> PersistentHashMap.containsKey 1) }
 
             test "can add null entry to empty map" {
                 let x = TransientHashMap<string,string>.Empty()
-                Expect.isFalse "containsKey" (x.persistent() |> containsKey "value")  
-                Expect.isFalse "containsKey" (x.persistent() |> containsKey null) 
-                Expect.isTrue "containsKey" (x.Add(null,"Hello").persistent() |> containsKey null) } 
+                Expect.isFalse "PersistentHashMap.containsKey" (x.persistent() |> PersistentHashMap.containsKey "value")  
+                Expect.isFalse "PersistentHashMap.containsKey" (x.persistent() |> PersistentHashMap.containsKey null) 
+                Expect.isTrue "PersistentHashMap.containsKey" (x.Add(null,"Hello").persistent() |> PersistentHashMap.containsKey null) } 
 
             test "can add empty string as key to empty map" {
                 let x = TransientHashMap<string,string>.Empty()
-                Expect.isFalse "" (x.persistent() |> containsKey "") 
-                Expect.isFalse ""  (x.Add("","Hello").persistent() |> containsKey null)
-                Expect.isTrue "" (x.Add("","Hello").persistent() |> containsKey "") }  
+                Expect.isFalse "" (x.persistent() |> PersistentHashMap.containsKey "") 
+                Expect.isFalse ""  (x.Add("","Hello").persistent() |> PersistentHashMap.containsKey null)
+                Expect.isTrue "" (x.Add("","Hello").persistent() |> PersistentHashMap.containsKey "") }  
 
             test "can add some integers to empty map" {
                 let x =
@@ -71,9 +70,9 @@ module TransientHashMapTests =
                         .Add(5,"o")
                         .persistent()
 
-                Expect.isTrue "containsKey" (x |> containsKey 1)
-                Expect.isTrue "containsKey" (x |> containsKey 5)
-                Expect.isFalse "containsKey" (x |> containsKey 6) } 
+                Expect.isTrue "PersistentHashMap.containsKey" (x |> PersistentHashMap.containsKey 1)
+                Expect.isTrue "PersistentHashMap.containsKey" (x |> PersistentHashMap.containsKey 5)
+                Expect.isFalse "PersistentHashMap.containsKey" (x |> PersistentHashMap.containsKey 6) } 
 
             test "can remove some integers from a map" {
                 let x =
@@ -87,10 +86,10 @@ module TransientHashMapTests =
                         .Remove(4)
                         .persistent()
 
-                Expect.isFalse "containsKey" <| containsKey 1 x 
-                Expect.isFalse "containsKey" <| containsKey 4 x 
-                Expect.isTrue "containsKey" <| containsKey 5 x 
-                Expect.isFalse "containsKey" <| containsKey 6 x }
+                Expect.isFalse "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey 1 x 
+                Expect.isFalse "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey 4 x 
+                Expect.isTrue "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey 5 x 
+                Expect.isFalse "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey 6 x }
 
             test "can find integers in a map" {
                 let x =
@@ -102,9 +101,9 @@ module TransientHashMapTests =
                         .Add(5,"o")
                         .persistent()
             
-                Expect.equal "find" "h" (x |> find 1)
-                Expect.equal "find" "l" (x |> find 4)
-                Expect.equal "find" "o" (x |> find 5) }
+                Expect.equal "find" "h" (x |> PersistentHashMap.find 1)
+                Expect.equal "find" "l" (x |> PersistentHashMap.find 4)
+                Expect.equal "find" "o" (x |> PersistentHashMap.find 5) }
 
             test "can lookup integers from a map" {
                 let x =
@@ -131,9 +130,9 @@ module TransientHashMapTests =
                         .Add(5,"o")
                         .persistent()
             
-                Expect.equal "" "h" <| find 1 x 
-                Expect.equal "" "a" <| find 4 x 
-                Expect.equal "" "o" <| find 5 x }
+                Expect.equal "" "h" <| PersistentHashMap.find 1 x 
+                Expect.equal "" "a" <| PersistentHashMap.find 4 x 
+                Expect.equal "" "o" <| PersistentHashMap.find 5 x }
 
             test "can add tons of integers to empty map" {
                 let x = ref (TransientHashMap<int,int>.Empty())
@@ -144,7 +143,7 @@ module TransientHashMapTests =
 
                 let x = (!x).persistent()
                 for i in 0 .. counter do 
-                   x |> containsKey i |> Expect.isTrue "lookup" }
+                   x |> PersistentHashMap.containsKey i |> Expect.isTrue "lookup" }
 
             test "can lookup tons of integers from a map" {
                 let x = ref (TransientHashMap<int,int>.Empty())
@@ -175,10 +174,10 @@ module TransientHashMapTests =
                         .Add(y,y.Name)
                         .persistent()
     
-                Expect.isTrue "containsKey" <| containsKey x map 
-                Expect.isTrue "containsKey" <| containsKey y map  
+                Expect.isTrue "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey x map 
+                Expect.isTrue "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey y map  
 
-                Expect.isFalse "containsKey" <| containsKey y empty }
+                Expect.isFalse "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey y PersistentHashMap.empty }
 
             test "can lookup keys with colliding hashes from map" {
                 let x = { Name = "Test"}
@@ -189,8 +188,8 @@ module TransientHashMapTests =
                         .Add(y,y)
                         .persistent()
     
-                Expect.equal "find" { Name = "Test"} (map |> find x)
-                Expect.equal "find" { Name = "Test1"} (map |> find y) }
+                Expect.equal "find" { Name = "Test"} (map |> PersistentHashMap.find x)
+                Expect.equal "find" { Name = "Test1"} (map |> PersistentHashMap.find y) }
 
             test "can add lots of keys with colliding hashes to empty map" {
                 let x = ref (TransientHashMap<AlwaysSameHash,int>.Empty() )
@@ -201,5 +200,5 @@ module TransientHashMapTests =
 
                 let x = (!x).persistent()
                 for i in 0 .. counter do 
-                    x |> containsKey { Name = i.ToString() } |> Expect.isTrue "containsKey" }
+                    x |> PersistentHashMap.containsKey { Name = i.ToString() } |> Expect.isTrue "PersistentHashMap.containsKey" }
         ]

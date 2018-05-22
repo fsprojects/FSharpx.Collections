@@ -351,6 +351,7 @@ type BatchedDeque<'T> (front, rBack) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module BatchedDeque =
 
     //pattern discriminator

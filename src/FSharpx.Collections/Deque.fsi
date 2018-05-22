@@ -61,6 +61,7 @@ type Deque<'T> =
     ///O(1) amortized, O(n), worst case. Returns option first element and tail.
     member TryUncons : ('T * Deque<'T>) option
 
+[<RequireQualifiedAccess>]
 module Deque =
 
     //pattern discriminators

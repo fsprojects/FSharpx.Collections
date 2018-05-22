@@ -2,8 +2,7 @@
 
 open System
 open FSharpx.Collections
-open FSharpx.Collections.DList
-open FSharpx.Collections.Tests.Properties
+open Properties
 open Expecto
 open Expecto.Flip
 open FsCheck
@@ -16,55 +15,55 @@ module DListTests =
         let emptyDList = DList.empty
 
         testList "DList" [
-            test "allow to tail to work" {
-                Expect.isTrue "conj tail" (emptyDList |> conj 1 |> tail |> isEmpty) }
+            test "allow to DList.tail to work" {
+                Expect.isTrue "DList.conj DList.tail" (emptyDList |> DList.conj 1 |> DList.tail |> DList.isEmpty) }
 
-            test "conj to work" {
-                Expect.isFalse "conj length" (emptyDList |> conj 1 |> conj 2 |> isEmpty) }
+            test "DList.conj to work" {
+                Expect.isFalse "DList.conj length" (emptyDList |> DList.conj 1 |> DList.conj 2 |> DList.isEmpty) }
 
-            test "cons to work" {
-                Expect.equal "cons length" 2 (emptyDList |> cons 1 |> cons 2 |> length) }
+            test "DList.cons to work" {
+                Expect.equal "DList.cons length" 2 (emptyDList |> DList.cons 1 |> DList.cons 2 |> DList.length) }
 
-            test "allow to cons and conj to work" {
-                Expect.equal "cons conj length" 3 (emptyDList |> cons 1 |> cons 2 |> conj 3 |> length) }
+            test "allow to DList.cons and DList.conj to work" {
+                Expect.equal "DList.cons DList.conj length" 3 (emptyDList |> DList.cons 1 |> DList.cons 2 |> DList.conj 3 |> DList.length) }
 
-            test "cons pattern discriminator - DList" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"]
+            test "DList.cons pattern discriminator - DList" {
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"]
     
                 let h1, t1 = 
                     match q with
-                    | Cons(h, t) -> h, t
+                    | DList.Cons(h, t) -> h, t
                     | _ ->  "x", q
 
-                Expect.isTrue "cons pattern discriminator" ((h1 = "f") && (t1.Length = 5)) }
+                Expect.isTrue "DList.cons pattern discriminator" ((h1 = "f") && (t1.Length = 5)) }
 
             test "empty DList should be empty" {
-                Expect.isTrue "empty" (emptyDList |> isEmpty) }
+                Expect.isTrue "empty" (emptyDList |> DList.isEmpty) }
 
-            test "fail if there is no head in the DList" {
-                Expect.throwsT<System.Exception> "empty head" (fun () -> emptyDList |> head |> ignore) }
+            test "fail if there is no DList.head in the DList" {
+                Expect.throwsT<System.Exception> "empty DList.head" (fun () -> emptyDList |> DList.head |> ignore) }
 
-            test "fail if there is no tail in the DList" {
-                Expect.throwsT<System.Exception> "no tail" (fun () -> emptyDList |> tail |> ignore) }
+            test "fail if there is no DList.tail in the DList" {
+                Expect.throwsT<System.Exception> "no DList.tail" (fun () -> emptyDList |> DList.tail |> ignore) }
 
             test "foldBack matches build list 2" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"]
-                let lq = foldBack (fun (elem : string) (l' : string list) -> elem::l') q []
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"]
+                let lq = DList.foldBack (fun (elem : string) (l' : string list) -> elem::l') q []
                 Expect.equal "foldBack" (DList.toList q) lq }
 
             test "fold matches build list rev 2" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"]
-                let lq = fold (fun (l' : string list) (elem : string) -> elem::l') [] q
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"]
+                let lq = DList.fold (fun (l' : string list) (elem : string) -> elem::l') [] q
                 Expect.equal "fold rev" (List.rev <| DList.toList q) lq }
 
-            test "give None if there is no head in the DList" {
-                Expect.isNone "tryHead" (emptyDList |> tryHead) }
+            test "give None if there is no DList.head in the DList" {
+                Expect.isNone "DList.tryHead" (emptyDList |> DList.tryHead) }
 
-            test "give None if there is no tail in the DList" {
-                Expect.isNone "tryTail" (emptyDList |> tryTail) } 
+            test "give None if there is no DList.tail in the DList" {
+                Expect.isNone "tryTail" (emptyDList |> DList.tryTail) } 
 
             test "TryUncons wind-down to None" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"] 
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"] 
 
                 let rec loop (q' : DList<string>) = 
                     match (q'.TryUncons) with
@@ -74,7 +73,7 @@ module DListTests =
                 Expect.isNone "TryUncons" <| loop q }
 
             test "Uncons wind-down to None" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"] 
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"] 
 
                 let rec loop (q' : DList<string>) = 
                     match (q'.Uncons) with
@@ -84,14 +83,14 @@ module DListTests =
                 Expect.isTrue "Uncons" <| loop q }
 
             test "test length should return 6" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"] 
-                Expect.equal "length" 6 <| length q }
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"] 
+                Expect.equal "length" 6 <| DList.length q }
 
             test "singleton length 1" {
-                Expect.equal "singleton length" 1 (singleton 1 |> length) }
+                Expect.equal "singleton length" 1 (DList.singleton 1 |> DList.length) }
 
             test "empty length 0" {
-                Expect.equal "empty length" 0 (empty |> length) }
+                Expect.equal "empty length" 0 (DList.empty |> DList.length) }
 
             test "test ofSeq should create a DList from a list" {
                 let test = [ for i in 0..4 -> i ]
@@ -102,31 +101,31 @@ module DListTests =
                 Expect.sequenceEqual "ofSeq from Array" (Array.toSeq test)  (DList.ofSeq test |> DList.toSeq) }
 
             test "test singleton should return a Unit containing the solo value" {
-                Expect.equal "singleton" 1 (singleton 1 |> head) }
+                Expect.equal "singleton" 1 (DList.singleton 1 |> DList.head) }
 
             test "test append should join two DLists together" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"]
-                let q2 = ofSeq ["1";"2";"3";"4";"5";"6"]
-                let q3 =  append q q2
-                Expect.equal "append" 12 (q3 |> length)
-                Expect.equal "append" "f" (q3  |> head) }
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"]
+                let q2 = DList.ofSeq ["1";"2";"3";"4";"5";"6"]
+                let q3 =  DList.append q q2
+                Expect.equal "append" 12 (q3 |> DList.length)
+                Expect.equal "append" "f" (q3  |> DList.head) }
 
             test "test toSeq" {
-                let q = ofSeq ["f";"e";"d";"c";"b";"a"] 
+                let q = DList.ofSeq ["f";"e";"d";"c";"b";"a"] 
                 Expect.equal "toSeq" ["f";"e";"d";"c";"b";"a"] <| List.ofSeq (DList.toSeq q) }
 
             test "test toList" {
                 let l = ["f";"e";"d";"c";"b";"a"]
-                let q = ofSeq  l
+                let q = DList.ofSeq  l
                 Expect.equal "toList" l  <| DList.toList q }
 
             test "structural equality" {
-                let l1 = ofSeq [1..100]
-                let l2 = ofSeq [1..100]
+                let l1 = DList.ofSeq [1..100]
+                let l2 = DList.ofSeq [1..100]
 
                 Expect.sequenceEqual "structural equality" l1 l2
 
-                let l3 = ofSeq [1..99] |> conj 7
+                let l3 = DList.ofSeq [1..99] |> DList.conj 7
 
                 Expect.isFalse "structural equality" (l1 = l3) }
         ]
@@ -153,7 +152,7 @@ module DListTests =
                     return ( (DList.ofSeq x), x) }
 
         (*
-        IDList generators from random ofSeq and/or conj elements from random list 
+        IDList generators from random ofSeq and/or DList.conj elements from random list 
         *)
         let DListIntGen =
             gen {   let! n = Gen.length1thru12
@@ -201,57 +200,57 @@ module DListTests =
         testList "DList property tests" [
 
             testPropertyWithConfig config10k "DList fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntGen) <|
-                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+                fun (q, l) -> q |> DList.fold (fun l' elem -> elem::l') [] = List.rev l )
               
             testPropertyWithConfig config10k "DList OfSeq fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
-                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+                fun (q, l) -> q |> DList.fold (fun l' elem -> elem::l') [] = List.rev l )
 
             testPropertyWithConfig config10k "DList Conj fold matches build list rev" (Prop.forAll (Arb.fromGen DListIntConjGen) <|
-                fun (q, l) -> q |> fold (fun l' elem -> elem::l') [] = List.rev l )
+                fun (q, l) -> q |> DList.fold (fun l' elem -> elem::l') [] = List.rev l )
 
             testPropertyWithConfig config10k "DList foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntGen) <|
-                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+                fun (q, l) -> DList.foldBack (fun elem l' -> elem::l') q [] = l )
               
             testPropertyWithConfig config10k "DList OfSeq foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntOfSeqGen) <|
-                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+                fun (q, l) -> DList.foldBack (fun elem l' -> elem::l') q [] = l )
 
             testPropertyWithConfig config10k "DList Conj foldBack matches build list" (Prop.forAll (Arb.fromGen DListIntConjGen)  <|
-                fun (q, l) -> foldBack (fun elem l' -> elem::l') q [] = l )
+                fun (q, l) -> DList.foldBack (fun elem l' -> elem::l') q [] = l )
 
-            testPropertyWithConfig config10k "get head from DList 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
-                fun (q, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> DList.head q = List.item 0 l )
 
-            testPropertyWithConfig config10k "get head from DList 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
-                fun (q, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> DList.head q = List.item 0 l )
 
-            testPropertyWithConfig config10k "get head from DList 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
-                fun (q, l) -> (head q) = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> DList.head q = List.item 0 l )
 
-            testPropertyWithConfig config10k "get head from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
-                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (q, l) -> (DList.tryHead q).Value = List.item 0 l )
 
-            testPropertyWithConfig config10k "get head from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
-                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (q, l) -> (DList.tryHead q).Value = List.item 0 l )
 
-            testPropertyWithConfig config10k "get head from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
-                fun (q, l) -> (tryHead q).Value = (List.item 0 l) )
+            testPropertyWithConfig config10k "get DList.head from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (q, l) -> (DList.tryHead q).Value = List.item 0 l )
 
-            testPropertyWithConfig config10k "get tail from DList 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
                 fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
 
-            testPropertyWithConfig config10k "get tail from DList 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
                 fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
 
-            testPropertyWithConfig config10k "get tail from DList 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
                 fun ((q : DList<int>), l) -> q.Tail.Head = (List.item 1 l) )
 
-            testPropertyWithConfig config10k "get tail from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList safely 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
                 fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
 
-            testPropertyWithConfig config10k "get tail from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList safely 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
                 fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
 
-            testPropertyWithConfig config10k "get tail from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+            testPropertyWithConfig config10k "get DList.tail from DList safely 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
                 fun (q, l) -> q.TryTail.Value.Head = (List.item 1 l) )
 
             testPropertyWithConfig config10k "int DList builds and serializes 0" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|

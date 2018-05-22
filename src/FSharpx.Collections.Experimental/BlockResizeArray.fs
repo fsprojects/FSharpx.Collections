@@ -219,6 +219,7 @@ type BlockResizeArray<'T> () =
         for i in 0..top do
             f a.[i] 
 
+[<RequireQualifiedAccess>]
 module BlockResizeArray = 
 
     ///Applies the given function to each element of the block resize array.

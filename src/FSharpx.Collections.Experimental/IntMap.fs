@@ -35,6 +35,7 @@ type IntMap<'T> =
         member x.GetEnumerator() =
             (x :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module IntMap =
 
     let inline private maskW i m = int (i &&& (~~~ (m - 1ul) ^^^ m))

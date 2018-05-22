@@ -156,6 +156,7 @@ and
     | Unit of 'T
     | Join of DListData<'T> * DListData<'T>  
 
+[<RequireQualifiedAccess>]
 module DList =
 
     //pattern discriminators  (active pattern)

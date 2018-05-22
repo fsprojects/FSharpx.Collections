@@ -24,6 +24,7 @@
     // CONSIDER: SetTree<'T> = SetEmpty | SetNode of 'T  * SetTree<'T> *  SetTree<'T> * int
     //  with SetOne = SetNode of (x,null,null,1)
 
+    [<RequireQualifiedAccess>]
     module SetTree = 
         let empty = SetEmpty
 
@@ -711,6 +712,7 @@
         // move to a n-way tree.
         | MapNode of 'Key * 'T * MapTree<'Key,'T> *  MapTree<'Key,'T> * int
 
+    [<RequireQualifiedAccess>]
     module MapTree = 
 
         let empty = MapEmpty 

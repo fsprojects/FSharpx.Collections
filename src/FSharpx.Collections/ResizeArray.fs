@@ -7,6 +7,7 @@ namespace Microsoft.FSharp.Collections
 
 open Microsoft.FSharp.Core.OptimizedClosures
 
+[<RequireQualifiedAccess>]
 module ResizeArray =
 
     let length (arr: ResizeArray<'T>) =  arr.Count

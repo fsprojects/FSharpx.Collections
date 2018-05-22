@@ -1,5 +1,7 @@
 ﻿// BottomUp merge sort from Chris Okasaki’s “Purely functional data structures”
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/bottom-up-merge-sort
+
+[<RequireQualifiedAccess>]
 module FSharpx.Collections.Experimental.BottomUpMergeSort
 
 open FSharpx

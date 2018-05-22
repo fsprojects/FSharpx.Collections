@@ -203,6 +203,7 @@ type LeftistHeap<'T when 'T : comparison> =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator  
 
+[<RequireQualifiedAccess>]
 module LeftistHeap =   
     //pattern discriminator
 

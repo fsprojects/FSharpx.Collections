@@ -1,9 +1,7 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.BinomialHeap
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip
@@ -19,51 +17,51 @@ module BinomialHeapTest =
         testList "Experimental BinomialHeap" [
 
             test "cons pattern discriminator" {
-                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-                let h1, t1 = uncons h 
+                let h = BinomialHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = BinomialHeap.uncons h 
 
                 let h2, t2 = 
                     match t1 with
-                    | Cons(h, t) -> h, t
+                    | BinomialHeap.Cons(h, t) -> h, t
                     | _ ->  "x", t1
 
-                ((h2 = "e") && ((length t2) = 4)) |> Expect.isTrue "" }
+                ((h2 = "e") && ((BinomialHeap.length t2) = 4)) |> Expect.isTrue "" }
 
             test "cons pattern discriminator 2" {
-                let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h = BinomialHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
                 let t2 = 
                     match h with
-                    | Cons("f", Cons(_, t)) -> t
+                    | BinomialHeap.Cons("f", BinomialHeap.Cons(_, t)) -> t
                     | _ ->  h
 
-                let h1, t3 = uncons t2 
+                let h1, t3 = BinomialHeap.uncons t2 
 
-                ((h1 = "d") && ((length t2) = 4)) |> Expect.isTrue "" }
+                ((h1 = "d") && ((BinomialHeap.length t2) = 4)) |> Expect.isTrue "" }
 
             test "empty list should be empty" { 
                 (BinomialHeap.empty true).IsEmpty |> Expect.isTrue "" }
 
-            test "length of empty is 0" {
+            test "BinomialHeap.length of empty is 0" {
                 (BinomialHeap.empty true).Length() |> Expect.equal "" 0 }
 
             test "tryGetHead on empty should return None" {
                 (BinomialHeap.empty true).TryGetHead() |> Expect.isNone "" }
 
-            test "tryGetTail on empty should return None" {
+            test "BinomialHeap.tryGetTail on empty should return None" {
                 (BinomialHeap.empty true).TryGetTail() |> Expect.isNone "" }
 
-            test "tryGetTail on len 1 should return Some empty" {
-                let h = BinomialHeap.empty true |> insert 1 |> tryGetTail
-                h.Value |> isEmpty |> Expect.isTrue "" }
+            test "BinomialHeap.tryGetTail on len 1 should return Some empty" {
+                let h = BinomialHeap.empty true |> BinomialHeap.insert 1 |> BinomialHeap.tryGetTail
+                h.Value |> BinomialHeap.isEmpty |> Expect.isTrue "" }
 
-            test "tryMerge max and mis should be None" {
-                let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-                let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+            test "BinomialHeap.tryMerge max and mis should be None" {
+                let h1 = BinomialHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = BinomialHeap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
 
-                tryMerge h1 h2 |> Expect.isNone "" }
+                BinomialHeap.tryMerge h1 h2 |> Expect.isNone "" }
 
-            test "insert works" {
+            test "BinomialHeap.insert works" {
                 (((BinomialHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
 
             test "tryUncons empty" {
@@ -239,32 +237,32 @@ module BinomialHeapTest =
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 0" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 1" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 2" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 3" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 4" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))
 
-            testPropertyWithConfig config10k "uncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+            testPropertyWithConfig config10k "BinomialHeap.uncons 1 element 5" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
                 fun (h, l) ->   let x, tl = h.Uncons()
                                 ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
                                 |> classifyCollect h (h.Length()))

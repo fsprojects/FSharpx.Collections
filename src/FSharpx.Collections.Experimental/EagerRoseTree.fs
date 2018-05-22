@@ -30,6 +30,7 @@ type EagerRoseTree<'T> =
 and EagerRoseForest<'T> = EagerRoseTree<'T> list
 
 [<Extension>]
+[<RequireQualifiedAccess>]
 module EagerRoseTree =
     open FSharpx
 

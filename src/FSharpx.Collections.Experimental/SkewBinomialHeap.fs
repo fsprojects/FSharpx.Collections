@@ -246,7 +246,8 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
         member this.TryPeek() = this.TryHead ()
         
         member this.TryPop() = this.TryUncons () |> Option.map (fun (h, t) -> h, upcast t)
-        
+  
+[<RequireQualifiedAccess>]
 module SkewBinomialHeap =
     
     let inline (|Cons|Nil|) (heap: 'T SkewBinomialHeap) = match heap.TryUncons () with | Some (h, t) -> Cons(h, t) | None -> Nil

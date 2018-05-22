@@ -56,6 +56,7 @@ type LazyList<'T> =
     ///O(1). Returns option tuple of head element and tail of the list.
     member TryUncons : ('T * LazyList<'T>) option
 
+[<RequireQualifiedAccess>]
 module LazyList =
 
     ///O(1). Test if a list is empty.  Forces the evaluation of

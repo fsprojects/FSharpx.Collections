@@ -92,6 +92,7 @@ type Queue<'T> (front : list<'T>, rBack : list<'T>) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> System.Collections.IEnumerator
 
+[<RequireQualifiedAccess>]
 module Queue =
     //pattern discriminators  (active pattern)
     let (|Cons|Nil|) (q : Queue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

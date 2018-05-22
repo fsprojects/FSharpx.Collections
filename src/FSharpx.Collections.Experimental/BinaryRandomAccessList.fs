@@ -257,6 +257,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator  
 
+[<RequireQualifiedAccess>]
 module BinaryRandomAccessList =   
     //pattern discriminator
 

@@ -154,6 +154,7 @@ type PhysicistQueue<'T> (prefix : list<'T>, frontLength : int, front : Lazy<list
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module PhysicistQueue =
     //pattern discriminators
 

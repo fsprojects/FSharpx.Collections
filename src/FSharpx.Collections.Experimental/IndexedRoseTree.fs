@@ -30,6 +30,7 @@ type IndexedRoseTree<'T> = { Root: 'T; Children: PersistentVector<IndexedRoseTre
         member x.Equals y = 
             obj.Equals(x.Root, y.Root) && (x.Children :> _ seq).SequenceEqual y.Children       
 
+[<RequireQualifiedAccess>]
 module IndexedRoseTree =
 
     let inline create root children = { Root = root; Children = children }

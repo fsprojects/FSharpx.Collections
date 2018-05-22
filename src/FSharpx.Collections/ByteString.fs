@@ -92,6 +92,7 @@ type ByteString(array: byte[], offset: int, count: int) =
         /// Gets an enumerator for the bytes stored in the byte string.
         member x.GetEnumerator() = x.GetEnumerator() :> IEnumerator
   
+[<RequireQualifiedAccess>]
 module ByteString =
     /// An active pattern for conveniently retrieving the properties of a ByteString.
     let (|BS|) (x:ByteString) = x.Array, x.Offset, x.Count

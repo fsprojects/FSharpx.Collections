@@ -439,6 +439,7 @@ type RealTimeDeque<'T>(c : int, frontLength : int, front : LazyList<'T>,  stream
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module RealTimeDeque =
     //pattern discriminators
 

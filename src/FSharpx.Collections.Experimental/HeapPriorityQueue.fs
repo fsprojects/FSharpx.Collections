@@ -1,8 +1,8 @@
 ﻿namespace FSharpx.Collections.Experimental
 
-open FSharpx.Collections.Experimental.PairingHeap
 open FSharpx.Collections
 
+[<RequireQualifiedAccess>]
 module HeapPriorityQueue =
 
     let empty<'T when 'T : comparison> maxQueue = PairingHeap.empty maxQueue :> IPriorityQueue<'T>

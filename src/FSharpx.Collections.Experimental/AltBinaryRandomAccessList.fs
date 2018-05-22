@@ -310,7 +310,7 @@ and AltBinRndAccList<'T> with
         | None -> None
         | Some(x) -> Some(x)
       
-      
+[<RequireQualifiedAccess>]      
 module AltBinaryRandomAccessList = 
     //pattern discriminator
 

@@ -1,15 +1,13 @@
 namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.FlatList
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip
 
 (*
-FlatList generators from random ofSeq and/or conj elements from random list 
+FlatList generators from random FlatList.ofSeq and/or conj elements from random list 
 *)
 
 module FlatListTest =
@@ -46,45 +44,42 @@ module FlatListTest =
 
         testList "Experimental FlatList" [
 
-            test "append: multiple appends to an empty flatlist should increase the length" {
-                empty |> append (singleton 1) |> append (singleton  4) |> append (singleton  25) |> length |> Expect.equal "" 3 } 
+            test "FlatList.append: multiple appends to an FlatList.empty flatlist should increase the FlatList.length" {
+                FlatList.empty |> FlatList.append (FlatList.singleton 1) |> FlatList.append (FlatList.singleton  4) |> FlatList.append (FlatList.singleton  25) |> FlatList.length |> Expect.equal "" 3 } 
 
-            test "append: multiple append to an empty flatlist should create a flatlist" {
-                let x = (empty |> append (singleton  1) |> append (singleton  4) |> append (singleton  25)) 
+            test "FlatList.append: multiple FlatList.append to an FlatList.empty flatlist should create a flatlist" {
+                let x = (FlatList.empty |> FlatList.append (FlatList.singleton  1) |> FlatList.append (FlatList.singleton  4) |> FlatList.append (FlatList.singleton  25)) 
                 x.[0] |> Expect.equal "" 25
                 x.[1] |> Expect.equal "" 4
                 x.[2] |> Expect.equal "" 1 }
 
-            test "append: to an empty flatlist should create a singleton flatlist" {
-                (empty |> append (singleton 1)).[0] |> Expect.equal "" 1 }
+            test "FlatList.append: to an FlatList.empty flatlist should create a FlatList.singleton flatlist" {
+                (FlatList.empty |> FlatList.append (FlatList.singleton 1)).[0] |> Expect.equal "" 1 }
 
-            
-
-
-            test "concat: expected result" {
+            test "FlatList.concat: expected result" {
 
                 let aTable max = seq { for i in 1 .. max -> [| for j in 1 .. max -> (i, j, i*j) |] }
                 let a = Array.concat (aTable 3)
 
                 let fTable max = 
                     seq { for i in 1 .. max -> [| for j in 1 .. max -> (i, j, i*j) |]}
-                    |> ofSeq
-                let f = concat (fTable 3)
+                    |> FlatList.ofSeq
+                let f = FlatList.concat (fTable 3)
 
-                Array.toList a |> Expect.equal "" (toList f) } 
+                Array.toList a |> Expect.equal "" (FlatList.toList f) } 
 
             test "Equality: flatlist with 3 elements can be compared" {
-                let flatlist1 = ref empty
+                let flatlist1 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist1 := append (!flatlist1) (singleton i)
+                    flatlist1 := FlatList.append (!flatlist1) (FlatList.singleton i)
 
-                let flatlist2 = ref empty
+                let flatlist2 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist2 := append (!flatlist2) (singleton i)
+                    flatlist2 := FlatList.append (!flatlist2) (FlatList.singleton i)
 
-                let flatlist3 = ref empty
+                let flatlist3 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist3 := append (!flatlist3) (singleton (2*i))
+                    flatlist3 := FlatList.append (!flatlist3) (FlatList.singleton (2*i))
 
 
                 flatlist1 = flatlist1 |> Expect.isTrue "" 
@@ -93,104 +88,104 @@ module FlatListTest =
 
             test "Equality: structural equality" {
 
-                let l1 = ofSeq [1..100]
-                let l2 = ofSeq [1..100]
+                let l1 = FlatList.ofSeq [1..100]
+                let l2 = FlatList.ofSeq [1..100]
 
                 l1 = l2 |> Expect.isTrue "" 
 
-                let l3 = append (ofSeq [1..99]) (singleton 99)
+                let l3 = FlatList.append (FlatList.ofSeq [1..99]) (FlatList.singleton 99)
 
                 l1 = l3 |> Expect.isFalse "" }
 
-            test "empty: flatlist should be empty" {
-                let x = empty<int>
-                x |> length |> Expect.equal "" 0} 
+            test "FlatList.empty: flatlist should be FlatList.empty" {
+                let x = FlatList.empty<int>
+                x |> FlatList.length |> Expect.equal "" 0} 
 
             test "GetHashCode: flatlist with 3 elements can compute hashcodes" {
-                let flatlist1 = ref empty
+                let flatlist1 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist1 := append (!flatlist1) (singleton i) 
+                    flatlist1 := FlatList.append (!flatlist1) (FlatList.singleton i) 
 
-                let flatlist2 = ref empty
+                let flatlist2 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist2 := append (!flatlist2) (singleton i)
+                    flatlist2 := FlatList.append (!flatlist2) (FlatList.singleton i)
 
-                let flatlist3 = ref empty
+                let flatlist3 = ref FlatList.empty
                 for i in 1..3 do
-                    flatlist3 := append (!flatlist3) (singleton (2*i))
+                    flatlist3 := FlatList.append (!flatlist3) (FlatList.singleton (2*i))
 
                 flatlist1.GetHashCode() |> Expect.equal "" (flatlist2.GetHashCode())
                 ((flatlist1.GetHashCode()) = (flatlist3.GetHashCode())) |> Expect.isFalse "" }
 
-            test "init: flatlist should allow init" {
-                let flatlist = init 5 (fun x -> x * 2) 
+            test "FlatList.init: flatlist should allow FlatList.init" {
+                let flatlist = FlatList.init 5 (fun x -> x * 2) 
                 let s = Seq.init 5 (fun x -> x * 2)
 
                 s |> Seq.toList |> Expect.equal "" [0;2;4;6;8]
                 flatlist |> Seq.toList |> Expect.equal "" [0;2;4;6;8] } 
 
             test "IEnumarable: flatlist with 300 elements should be convertable to a seq" {
-                let flatlist = ref empty
+                let flatlist = ref FlatList.empty
                 for i in 1..300 do
-                    flatlist := append (!flatlist) (singleton i) 
+                    flatlist := FlatList.append (!flatlist) (FlatList.singleton i) 
 
                 !flatlist |> Seq.toList |> Expect.equal "" [1..300] } 
 
-            test "iter: flatlist should allow iter" {
+            test "FlatList.iter: flatlist should allow FlatList.iter" {
                 let l' = ref []
    
                 let l2 = [1;2;3;4]
-                let v = ofSeq l2
+                let v = FlatList.ofSeq l2
 
-                iter (fun (elem : int) -> l' := elem::!l') v
+                FlatList.iter (fun (elem : int) -> l' := elem::!l') v
     
                 !l' |> Expect.equal "" (List.rev l2) }                           
 
-            test "iter2: flatlist should allow iter2" {
+            test "FlatList.iter2: flatlist should allow FlatList.iter2" {
                 let l' = ref []
    
                 let l2 = [1;2;3;4]
-                let v = ofSeq l2
+                let v = FlatList.ofSeq l2
 
-                iter2 (fun (elem1 : int) (elem2 : int) -> l' := elem1::elem2::!l') v v
+                FlatList.iter2 (fun (elem1 : int) (elem2 : int) -> l' := elem1::elem2::!l') v v
     
                 !l' |> Expect.equal "" (List.rev [1;1;2;2;3;3;4;4]) }         
 
-            test "iteri: flatlist should allow iteri" {
+            test "FlatList.iteri: flatlist should allow FlatList.iteri" {
                 let l' = ref []
    
                 let l2 = [1;2;3;4]
-                let v = ofSeq l2
+                let v = FlatList.ofSeq l2
 
-                iteri (fun i (elem : int) -> l' := (i * elem)::!l') v
+                FlatList.iteri (fun i (elem : int) -> l' := (i * elem)::!l') v
     
                 !l' |> Expect.equal "" (List.rev [0;2;6;12]) }    
 
-            test "ofList: flatlist can be created" {
+            test "FlatList.ofList: flatlist can be created" {
                 let xs = [7;88;1;4;25;30] 
-                ofList xs |> Seq.toList |> Expect.equal "" xs } 
+                FlatList.ofList xs |> Seq.toList |> Expect.equal "" xs } 
 
-            test "ofSeq: flatlist can be created" {
+            test "FlatList.ofSeq: flatlist can be created" {
                 let xs = [7;88;1;4;25;30] 
-                ofSeq xs |> Seq.toList |> Expect.equal "" xs } 
+                FlatList.ofSeq xs |> Seq.toList |> Expect.equal "" xs } 
 
             test "physicalEquality: works" {
-                let l1 = ofSeq [1..100]
+                let l1 = FlatList.ofSeq [1..100]
                 let l2 = l1
-                let l3 = ofSeq [1..100]
+                let l3 = FlatList.ofSeq [1..100]
 
-                physicalEquality l1 l2 |> Expect.isTrue "" 
+                FlatList.physicalEquality l1 l2 |> Expect.isTrue "" 
 
-                physicalEquality l1 l3 |> Expect.isFalse "" }
+                FlatList.physicalEquality l1 l3 |> Expect.isFalse "" }
 
-            test "rev: empty" {
-                isEmpty (empty |> rev) |> Expect.isTrue "" }
+            test "FlatList.rev: FlatList.empty" {
+                FlatList.isEmpty (FlatList.empty |> FlatList.rev) |> Expect.isTrue "" }
 
-            test "toMap: works" {
+            test "FlatList.toMap: works" {
                 let l2 = [(1,"a");(2,"b");(3,"c");(4,"d")]
-                let v = ofList l2
+                let v = FlatList.ofList l2
 
-                let m = toMap v
+                let m = FlatList.toMap v
     
                 m.[1] |> Expect.equal "" "a"   
                 m.[2] |> Expect.equal "" "b"
@@ -198,22 +193,22 @@ module FlatListTest =
                 m.[4] |> Expect.equal "" "d" 
                 m.ContainsKey 5 |> Expect.isFalse "" }
 
-            test "unzip: works" {
+            test "FlatList.unzip: works" {
                 let l2 = [(1,"a");(2,"b");(3,"c");(4,"d")]
-                let v = ofList l2
-                let x, y = unzip v
+                let v = FlatList.ofList l2
+                let x, y = FlatList.unzip v
     
-                toList x |> Expect.equal "" [1;2;3;4]  
-                toList y |> Expect.equal "" ["a";"b";"c";"d"] } 
+                FlatList.toList x |> Expect.equal "" [1;2;3;4]  
+                FlatList.toList y |> Expect.equal "" ["a";"b";"c";"d"] } 
 
-            test "zip: works" {
+            test "FlatList.zip: works" {
                 let l1 = [1;2;3;4]
                 let l2 = ["a";"b";"c";"d"]
-                let v1 = ofList l1
-                let v2 = ofList l2
-                let v = zip v1 v2
+                let v1 = FlatList.ofList l1
+                let v2 = FlatList.ofList l2
+                let v = FlatList.zip v1 v2
     
-                toList v |> Expect.equal "" [(1,"a");(2,"b");(3,"c");(4,"d")] }   
+                FlatList.toList v |> Expect.equal "" [(1,"a");(2,"b");(3,"c");(4,"d")] }   
         ]
 
     [<Tests>]
@@ -224,49 +219,49 @@ module FlatListTest =
         let stringFun = fun (l' : (string * string) list) (elem1 : string) (elem2 : string) -> (elem1, elem2)::l'
 
         testList "Experimental FlatList Properties" [
-            testPropertyWithConfig config10k "collect: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> v |> collect (fun elem -> ofList [ 0 .. elem ]) |> toList
+            testPropertyWithConfig config10k "FlatList.collect: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> v |> FlatList.collect (fun elem -> FlatList.ofList [ 0 .. elem ]) |> FlatList.toList
                                                                                 = (l |> Array.ofList 
                                                                                     |> Array.collect (fun elem -> [| 0 .. elem |])
                                                                                     |> Array.toList) )
 
-            testPropertyWithConfig config10k "exists: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> v |> exists (fun elem -> elem = 6) 
+            testPropertyWithConfig config10k "FlatList.exists: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> v |> FlatList.exists (fun elem -> elem = 6) 
                                                                 = (l |> Array.ofList 
                                                                     |> Array.exists (fun elem -> elem = 6)) )
 
             testPropertyWithConfig config10k "filter: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> v |> filter (fun elem -> elem % 2 = 0) |> toList
+                fun (v, l) -> v |> FlatList.filter (fun elem -> elem % 2 = 0) |> FlatList.toList
                                                                    = (l |> Array.ofList 
                                                                         |> Array.filter (fun elem -> elem % 2 = 0)
                                                                         |> Array.toList) )
 
-            testPropertyWithConfig config10k "fold: matches build list rev int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> v |> fold (fun (l' : int list) (elem : int) -> elem::l') [] = (List.rev l) )
+            testPropertyWithConfig config10k "fold: matches build list FlatList.rev int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> v |> FlatList.fold (fun (l' : int list) (elem : int) -> elem::l') [] = (List.rev l) )
               
-            testPropertyWithConfig config10k "fold: matches build list rev obj" <|
-                fun (v, l) -> v |> fold (fun (l' : obj list) (elem : obj) -> elem::l') [] = (List.rev l) 
+            testPropertyWithConfig config10k "fold: matches build list FlatList.rev obj" <|
+                fun (v, l) -> v |> FlatList.fold (fun (l' : obj list) (elem : obj) -> elem::l') [] = (List.rev l) 
 
-            testPropertyWithConfig config10k "fold: matches build list rev string" <|
-                fun (v, l) -> v |> fold (fun (l' : string list) (elem : string) -> elem::l') [] = (List.rev l) 
+            testPropertyWithConfig config10k "fold: matches build list FlatList.rev string" <|
+                fun (v, l) -> v |> FlatList.fold (fun (l' : string list) (elem : string) -> elem::l') [] = (List.rev l) 
 
             testPropertyWithConfig config10k "fold2: matches build list fold int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> (v,v) ||> fold2 listFun [] = List.fold2 listFun [] l l )
+                fun (v, l) -> (v,v) ||> FlatList.fold2 listFun [] = List.fold2 listFun [] l l )
               
             testPropertyWithConfig config10k "fold2: matches build list fold obj" (Prop.forAll (Arb.fromGen flatlistObjGen) <|
-                fun (v, l) -> (v,v) ||> fold2 objFun [] = List.fold2 objFun [] l l )
+                fun (v, l) -> (v,v) ||> FlatList.fold2 objFun [] = List.fold2 objFun [] l l )
 
             testPropertyWithConfig config10k "fold2: matches build list fold string" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
-                fun (v, l) -> (v,v) ||> fold2 stringFun [] = List.fold2 stringFun []  l l )
+                fun (v, l) -> (v,v) ||> FlatList.fold2 stringFun [] = List.fold2 stringFun []  l l )
 
             testPropertyWithConfig config10k "foldback: matches build list int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> foldBack (fun (elem : int) (l' : int list)  -> elem::l') v [] = l )
+                fun (v, l) -> FlatList.foldBack (fun (elem : int) (l' : int list)  -> elem::l') v [] = l )
               
             testPropertyWithConfig config10k "foldback: matches build list obj" (Prop.forAll (Arb.fromGen flatlistObjGen) <|
-                fun (v, l) -> foldBack (fun (elem : obj) (l' : obj list) -> elem::l') v [] = l )
+                fun (v, l) -> FlatList.foldBack (fun (elem : obj) (l' : obj list) -> elem::l') v [] = l )
 
             testPropertyWithConfig config10k "foldback: matches build list string" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
-                fun (v, l) -> foldBack (fun (elem : string) (l' : string list) -> elem::l') v [] = l )
+                fun (v, l) -> FlatList.foldBack (fun (elem : string) (l' : string list) -> elem::l') v [] = l )
 
             //testPropertyWithConfig config10k "foldback2: matches build list" <|
 
@@ -283,10 +278,10 @@ module FlatListTest =
             //        (fun (v, l) -> foldBack2 stringFun v v [] = List.foldBack2 stringFun l l [] ))
 
             testPropertyWithConfig config10k "forall: works" (Prop.forAll (Arb.fromGen flatlistIntGen)  <|
-                fun (v, l) -> forall (fun (elem : int) -> elem < 1000) v  =  true )
+                fun (v, l) -> FlatList.forall (fun (elem : int) -> elem < 1000) v  =  true )
 
             testPropertyWithConfig config10k "forall2: works" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
-                fun (v, l) -> forall2 (fun (elem1 : int) (elem2 : int) -> (elem1 < 1000 && elem2 < 1000)) v v  =  true )
+                fun (v, l) -> FlatList.forall2 (fun (elem1 : int) (elem2 : int) -> (elem1 < 1000 && elem2 < 1000)) v v  =  true )
 
             //let rec nth l i =
             //    match i with
@@ -302,37 +297,37 @@ module FlatListTest =
 
             //    let funMap = (fun x ->  x * 2)
             //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> map funMap v |> toList =  List.map funMap l ))
+            //        (fun (v, l) -> map funMap v |> FlatList.toList =  List.map funMap l ))
 
             //testPropertyWithConfig config10k "map2: flatlist should allow map2" <|
 
             //    let funMap2 = (fun x y ->  ((x * 2), (y * 2)))
             //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> map2 funMap2 v v |> toList =  List.map2 funMap2 l l ))
+            //        (fun (v, l) -> map2 funMap2 v v |> FlatList.toList =  List.map2 funMap2 l l ))
 
             //testPropertyWithConfig config10k "mapi: flatlist should allow mapi" <|
 
             //    let funMapi = (fun i x ->  i * x)
             //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> mapi funMapi v |> toList =  List.mapi funMapi l ))
+            //        (fun (v, l) -> mapi funMapi v |> FlatList.toList =  List.mapi funMapi l ))
 
             //testPropertyWithConfig config10k "partition: works" <|
 
             //    let funMapi = (fun x ->  x % 2 = 0)
             //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
             //        (fun (v, l) -> let x, y = partition funMapi v 
-            //                                                      ((toList x),(toList y)) =  List.partition funMapi l )) 
+            //                                                      ((FlatList.toList x),(FlatList.toList y)) =  List.partition funMapi l )) 
     
-            //testPropertyWithConfig config10k "rev: matches build list rev" <|
+            //testPropertyWithConfig config10k "FlatList.rev: matches build list FlatList.rev" <|
 
             //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun ((q :FlatList<int>), (l : int list)) -> q |> rev |> List.ofSeq = (List.rev l) ))
+            //        (fun ((q :FlatList<int>), (l : int list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
               
             //    fsCheck "FlatList obj" (Prop.forAll (Arb.fromGen flatlistObjGen) 
-            //        (fun ((q :FlatList<obj>), (l : obj list)) -> q |> rev |> List.ofSeq = (List.rev l) ))
+            //        (fun ((q :FlatList<obj>), (l : obj list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
 
             //    fsCheck "FlatList string" (Prop.forAll (Arb.fromGen flatlistStringGen) 
-            //         (fun ((q :FlatList<string>), (l : string list)) -> q |> rev |> List.ofSeq = (List.rev l) ))
+            //         (fun ((q :FlatList<string>), (l : string list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
 
             //testPropertyWithConfig config10k "sum: works" <|
 

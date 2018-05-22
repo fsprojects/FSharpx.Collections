@@ -1,8 +1,6 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.BottomUpMergeSort
 open Expecto
 open Expecto.Flip
 
@@ -13,20 +11,20 @@ module BottomUpMergeSortTest =
 
         testList "Experimental BottomUpMergeSort" [
             test "empty list should be empty" {
-                empty |> isEmpty |> Expect.isTrue "" }
+                BottomUpMergeSort.empty |> BottomUpMergeSort.isEmpty |> Expect.isTrue "" }
 
             test "empty list should be empty after sort" {
-                sort empty |> Expect.equal "" [] } 
+                BottomUpMergeSort.sort BottomUpMergeSort.empty |> Expect.equal "" [] } 
 
             test "singleton list should be the same after sort" {
-                sort (singleton 1) |> Expect.equal "" [1] } 
+                BottomUpMergeSort.sort (BottomUpMergeSort.singleton 1) |> Expect.equal "" [1] } 
 
             test "adding a element to an empty list" {
-                empty |> add 1 |> sort |> Expect.equal "" [1] } 
+                BottomUpMergeSort.empty |> BottomUpMergeSort.add 1 |> BottomUpMergeSort.sort |> Expect.equal "" [1] } 
 
             test "adding multiple elements to an empty list" {
-                empty |> add 100 |> add 1 |> add 3 |> add 42 |> sort |> Expect.equal "" [1; 3; 42; 100] } 
+                BottomUpMergeSort.empty |> BottomUpMergeSort.add 100 |> BottomUpMergeSort.add 1 |> BottomUpMergeSort.add 3 |> BottomUpMergeSort.add 42 |> BottomUpMergeSort.sort |> Expect.equal "" [1; 3; 42; 100] } 
 
             test "adding multiple strings to an empty list" {
-                empty |> add "100" |> add "1" |> add "3" |> add "42" |> sort |> Expect.equal "" ["1"; "100"; "3"; "42"] } 
+                BottomUpMergeSort.empty |> BottomUpMergeSort.add "100" |> BottomUpMergeSort.add "1" |> BottomUpMergeSort.add "3" |> BottomUpMergeSort.add "42" |> BottomUpMergeSort.sort |> Expect.equal "" ["1"; "100"; "3"; "42"] } 
         ]

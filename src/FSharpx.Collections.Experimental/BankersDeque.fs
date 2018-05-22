@@ -391,6 +391,7 @@ type BankersDeque<'T> (c : int, frontLength : int, front : LazyList<'T>,  rBackL
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module BankersDeque =
     //pattern discriminators
 

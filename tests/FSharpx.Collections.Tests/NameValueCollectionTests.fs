@@ -1,11 +1,11 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open FSharpx.Collections
-open Expecto
-open Expecto.Flip
 open System.Collections.Generic
 open System.Collections.Specialized
 open System.Linq
+open FSharpx.Collections
+open Expecto
+open Expecto.Flip
 
 module NameValueCollectionTests =
 

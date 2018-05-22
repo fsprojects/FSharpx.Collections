@@ -1,5 +1,7 @@
 ﻿// RealTime queue from Chris Okasaki’s "Purely functional data structures"
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/real-time-queue
+
+[<RequireQualifiedAccess>]
 module FSharpx.Collections.Experimental.RealTimeQueue
 
 open FSharpx.Collections

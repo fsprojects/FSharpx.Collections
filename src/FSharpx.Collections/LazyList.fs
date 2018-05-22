@@ -103,6 +103,7 @@ and
     | CellCons of 'T * LazyList<'T> 
     | CellEmpty
 
+[<RequireQualifiedAccess>]
 module LazyList = 
 
     let lzy f = { status = Delayed f }

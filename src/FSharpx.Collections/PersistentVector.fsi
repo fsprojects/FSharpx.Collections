@@ -56,6 +56,7 @@ type PersistentVector<'T> =
     member TryUpdate : int * 'T -> PersistentVector<'T> option
 
 /// Defines functions which allow to access and manipulate PersistentVectors.
+[<RequireQualifiedAccess>]
 module PersistentVector = 
     //pattern discriminators (active pattern)
     val (|Conj|Nil|) : PersistentVector<'T> ->  Choice<(PersistentVector<'T> * 'T),unit>

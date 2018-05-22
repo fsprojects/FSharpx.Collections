@@ -156,6 +156,7 @@ type Deque<'T> (front, rBack) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module Deque =
 
     let (|Cons|Nil|) (q : Deque<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

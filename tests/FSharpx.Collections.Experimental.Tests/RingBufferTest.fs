@@ -2,7 +2,6 @@
 
 open System
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.RingBuffer
 open Expecto
 open Expecto.Flip
 

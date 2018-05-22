@@ -251,6 +251,7 @@ type SkewBinaryRandomAccessList<'T> (randomAccessList) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator  
 
+[<RequireQualifiedAccess>]
 module SkewBinaryRandomAccessList =   
     //pattern discriminator
 

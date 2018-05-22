@@ -1,8 +1,6 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.ListZipper
 open Expecto
 open Expecto.Flip
    
@@ -16,18 +14,18 @@ module ListZipperTest =
 
         testList "Experimental ListZipper" [
             test "Can move forward" {
-                let z = chars |> zipper |> forward |> forward
-                Expect.equal "" 'c' <| focus z }
+                let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward
+                Expect.equal "" 'c' <| ListZipper.focus z }
 
             test "Can move back" {
-                let z = chars |> zipper |> forward |> forward |> back
-                Expect.equal "" 'b' <| focus z }
+                let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward |> ListZipper.back
+                Expect.equal "" 'b' <| ListZipper.focus z }
 
             test "Can move to the front" {
-                let z = chars |> zipper |> forward |> forward |> front
-                Expect.equal "" 'a' <| focus z }
+                let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward |> ListZipper.front
+                Expect.equal "" 'a' <| ListZipper.focus z }
 
             test "Can modify an element" {
-                let z = chars |> zipper |> forward |> forward |> modify 'e' |> back |> forward
-                Expect.equal "" 'e' <| focus z }
+                let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward |> ListZipper.modify 'e' |> ListZipper.back |> ListZipper.forward
+                Expect.equal "" 'e' <| ListZipper.focus z }
         ]
