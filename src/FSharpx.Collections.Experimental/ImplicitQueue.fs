@@ -1,7 +1,4 @@
-﻿// implicit queue from Chris Okasaki’s “Purely functional data structures”
-// original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/implicit-queue
-[<RequireQualifiedAccess>]
-module FSharpx.Collections.Experimental.ImplicitQueue
+﻿namespace FSharpx.Collections.Experimental
 
 open FSharpx.Collections
 
@@ -14,18 +11,12 @@ type ImplicitQueue<'T> =
     | Shallow of Digit<'T>
     | Deep of Digit<'T> * Lazy<ImplicitQueue<'T * 'T>> * Digit<'T>
 
-///O(1). Returns queue of no elements.
-let empty = Shallow Zero
-
-///O(1). Returns true if the queue has no elements
-let isEmpty = function Shallow Zero -> true | _ -> false
-
 type ImplicitQueue<'T> with
     //polymorphic recursion cannot be achieved through let-bound functions
     //hence we use static member methods
     static member snoc (x:'T) : ImplicitQueue<'T> -> ImplicitQueue<'T> = function
         | Shallow Zero -> Shallow (One x)
-        | Shallow (One y) -> Deep (Two (y, x), lazy empty, Zero)
+        | Shallow (One y) -> Deep (Two (y, x), lazy Shallow Zero, Zero)
         | Deep(f, m, Zero) -> Deep(f, m, One x)
         | Deep(f, m, One y) -> Deep(f, lazy ImplicitQueue.snoc (y, x) (m.Force()), Zero)
         | _ -> failwith "should not get there"
@@ -46,9 +37,10 @@ type ImplicitQueue<'T> with
 
     static member tail : ImplicitQueue<'T> -> ImplicitQueue<'T> = function
         | Shallow Zero -> raise Exceptions.Empty
-        | Shallow (One x) -> empty
+        | Shallow (One x) -> Shallow Zero
         | Deep(Two(x, y), m, r) -> Deep(One y, m, r)
         | Deep(One x, q, r) ->
+            let isEmpty = function Shallow Zero -> true | _ -> false
             let q' = q.Force()
             if isEmpty q' then Shallow r else
             let y, z = ImplicitQueue.head q'
@@ -57,26 +49,38 @@ type ImplicitQueue<'T> with
 
     static member tryGetTail : ImplicitQueue<'T> -> ImplicitQueue<'T> option = function
         | Shallow Zero -> None
-        | Shallow (One x) -> Some empty
+        | Shallow (One x) -> Some <| Shallow Zero
         | Deep(Two(x, y), m, r) -> Some(Deep(One y, m, r))
         | Deep(One x, q, r) ->
+            let isEmpty = function Shallow Zero -> true | _ -> false
             let q' = q.Force()
             if isEmpty q' then Some(Shallow r) else
             let y, z = ImplicitQueue.head q'
             Some(Deep(Two(y, z), lazy ImplicitQueue.tail q', r))
         | _ -> failwith "should not get there"
 
-///O(1), amortized. Returns a new queue with the element added to the end.
-let inline snoc x queue = ImplicitQueue.snoc x queue
+/// implicit queue from Chris Okasaki’s “Purely functional data structures”
+/// original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/implicit-queue
+[<RequireQualifiedAccess>]
+module ImplicitQueue =
 
-///O(1), amortized. Returns the first element.
-let inline head queue = ImplicitQueue<'T>.head queue
+    ///O(1). Returns queue of no elements.
+    let empty = Shallow Zero
 
-///O(1), amortized. Returns option first element.
-let inline tryGetHead queue = ImplicitQueue<'T>.tryGetHead queue
+    ///O(1). Returns true if the queue has no elements
+    let isEmpty = function Shallow Zero -> true | _ -> false
 
-///O(1), amortized. Returns a new queue of the elements trailing the first element.
-let inline tail queue = ImplicitQueue<'T>.tail queue
+    ///O(1), amortized. Returns a new queue with the element added to the end.
+    let inline snoc x queue = ImplicitQueue.snoc x queue
 
-///O(1), amortized. Returns option queue of the elements trailing the first element.
-let inline tryGetTail queue = ImplicitQueue<'T>.tryGetTail queue
+    ///O(1), amortized. Returns the first element.
+    let inline head queue = ImplicitQueue<'T>.head queue
+
+    ///O(1), amortized. Returns option first element.
+    let inline tryGetHead queue = ImplicitQueue<'T>.tryGetHead queue
+
+    ///O(1), amortized. Returns a new queue of the elements trailing the first element.
+    let inline tail queue = ImplicitQueue<'T>.tail queue
+
+    ///O(1), amortized. Returns option queue of the elements trailing the first element.
+    let inline tryGetTail queue = ImplicitQueue<'T>.tryGetTail queue

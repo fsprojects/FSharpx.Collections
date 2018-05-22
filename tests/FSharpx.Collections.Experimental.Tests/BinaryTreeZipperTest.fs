@@ -5,7 +5,7 @@ open Expecto
 open Expecto.Flip
 
 module BinaryTreeZipperTest =
-    let tree  = BinaryTreeZipper.Branch("a", BinaryTreeZipper.Branch("b", BinaryTreeZipper.Leaf, BinaryTreeZipper.Branch("c", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf)), BinaryTreeZipper.Branch("d", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf))
+    let tree  = Branch("a", Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)), Branch("d", BinaryTree.Leaf, BinaryTree.Leaf))
 
     [<Tests>]
     let testBinaryTreeZipper =
@@ -18,15 +18,15 @@ module BinaryTreeZipperTest =
 
             test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.left inside the BinaryTreeZipper.zipper" {      
                let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.left
-               Expect.equal "" (BinaryTreeZipper.Branch("b", BinaryTreeZipper.Leaf, BinaryTreeZipper.Branch("c", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf))) z1.Focus }
+               Expect.equal "" (Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf))) z1.Focus }
 
             test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.right inside the BinaryTreeZipper.zipper" {      
                let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.right
-               Expect.equal "" (BinaryTreeZipper.Branch("d", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf)) z1.Focus }
+               Expect.equal "" (Branch("d", BinaryTree.Leaf, BinaryTree.Leaf)) z1.Focus }
 
             test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.left and the BinaryTreeZipper.right inside the BinaryTreeZipper.zipper" {      
                let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.move [BinaryTreeZipper.TreeZipperDirection.Left;BinaryTreeZipper.TreeZipperDirection.Right]
-               Expect.equal "" (BinaryTreeZipper.Branch("c", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf)) z1.Focus }
+               Expect.equal "" (Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)) z1.Focus }
 
             test "Can BinaryTreeZipper.move up inside the BinaryTreeZipper.zipper" {      
                let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.move [BinaryTreeZipper.TreeZipperDirection.Left;BinaryTreeZipper.TreeZipperDirection.Right;BinaryTreeZipper.TreeZipperDirection.Right;BinaryTreeZipper.Up;BinaryTreeZipper.Up;BinaryTreeZipper.Up]
@@ -39,5 +39,5 @@ module BinaryTreeZipperTest =
             test "Can modify inside the BinaryTreeZipper.zipper" { 
                let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.right |> BinaryTreeZipper.setFocus (BinaryTreeZipper.branch "e") |> BinaryTreeZipper.top
 
-               Expect.equal "" (BinaryTreeZipper.Branch("a", BinaryTreeZipper.Branch("b", BinaryTreeZipper.Leaf, BinaryTreeZipper.Branch("c", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf)), BinaryTreeZipper.Branch("e", BinaryTreeZipper.Leaf, BinaryTreeZipper.Leaf))) z1.Focus }
+               Expect.equal "" (Branch("a", Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)), Branch("e", BinaryTree.Leaf, BinaryTree.Leaf))) z1.Focus }
         ]

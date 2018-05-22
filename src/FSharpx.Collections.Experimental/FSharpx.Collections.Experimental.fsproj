@@ -36,8 +36,8 @@
     <Compile Include="PairingHeap.fs" />
     <Compile Include="HeapPriorityQueue.fs" />
     <Compile Include="HoodMelvilleQueue.fs" />
-    <Compile Include="ImplicitQueue.fs" />
     <Compile Include="IndexedRoseTree.fs" />
+    <Compile Include="ImplicitQueue.fs" />
     <Compile Include="LeftistHeap.fs" />
     <Compile Include="ListZipper.fs" />
     <Compile Include="PhysicistQueue.fs" />
