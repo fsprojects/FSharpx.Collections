@@ -10,3 +10,4 @@ nuget FSharp.Core
 nuget SourceLink.Fake
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx
+nuget Expecto.VisualStudio.TestAdapter version_in_path: true
