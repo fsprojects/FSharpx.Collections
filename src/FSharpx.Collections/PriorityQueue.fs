@@ -4,7 +4,6 @@
 
 namespace FSharpx.Collections
 
-
 open System.Collections
 open System.Collections.Generic
 
@@ -230,7 +229,7 @@ and HeapData<'T when 'T : comparison> =
     | E 
     | T of 'T * list<HeapData<'T>>
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module Heap =   
     //pattern discriminator
 
@@ -284,6 +283,7 @@ module Heap =
     ///O(log n) amortized time. Returns option head element and tail.
     let inline tryUncons (xs: Heap<'T>) = xs.TryUncons()
 
+[<RequireQualifiedAccess>]
 module PriorityQueue =
     ///O(1). Returns a empty queue, with indicated ordering.
     let empty<'T when 'T : comparison> isDescending = Heap.empty isDescending :> IPriorityQueue<'T>

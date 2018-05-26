@@ -19,6 +19,7 @@ type NonEmptyList<'T> =
         member x.GetEnumerator() = (x :> _ seq).GetEnumerator() :> IEnumerator
 
 [<Extension>]
+[<RequireQualifiedAccess>]
 module NonEmptyList =
     [<CompiledName("Create")>]
     let create head tail = { List = head :: tail }

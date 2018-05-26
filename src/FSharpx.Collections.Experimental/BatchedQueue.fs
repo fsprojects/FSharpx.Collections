@@ -132,7 +132,7 @@ type BatchedQueue<'T> (front : list<'T>, rBack : list<'T>) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module BatchedQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : BatchedQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil

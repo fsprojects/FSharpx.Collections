@@ -92,17 +92,21 @@ type ByteString(array: byte[], offset: int, count: int) =
         /// Gets an enumerator for the bytes stored in the byte string.
         member x.GetEnumerator() = x.GetEnumerator() :> IEnumerator
   
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module ByteString =
     /// An active pattern for conveniently retrieving the properties of a ByteString.
     let (|BS|) (x:ByteString) = x.Array, x.Offset, x.Count
     
+    /// needs .fsi file
     let empty = ByteString()
 
+    /// needs .fsi file
     let singleton c = ByteString(Array.create 1 c, 0, 1)
 
+    /// needs .fsi file
     let create arr = ByteString(arr, 0, arr.Length)
 
+    /// needs .fsi file
     let findIndex pred (bs:ByteString) =
 #if FX_PORTABLE
         let rec loop i = 
@@ -114,41 +118,54 @@ module ByteString =
         Array.FindIndex(bs.Array, bs.Offset, bs.Count, Predicate<_>(pred))
 #endif
 
+    /// needs .fsi file
     let ofArraySegment (segment:ArraySegment<byte>) = ByteString(segment.Array, segment.Offset, segment.Count)
 
+    /// needs .fsi file
     let ofSeq s = let arr = Array.ofSeq s in ByteString(arr, 0, arr.Length)
 
+    /// needs .fsi file
     let ofList l = ByteString(Array.ofList l, 0, l.Length)
 
+    /// needs .fsi file
     let ofString (s:string) = s.ToCharArray() |> Array.map byte |> create
 
+    /// needs .fsi file
     let toArray (bs:ByteString) =
         if bs.Count = 0 then Array.empty<_>
         else bs.Array.[bs.Offset..(bs.Offset + bs.Count - 1)]
 
+    /// needs .fsi file      
     let toSeq (bs:ByteString) = bs :> seq<byte>
 
+    /// needs .fsi file
     let toList (bs:ByteString) = List.ofSeq bs
 
 #if FX_PORTABLE
 #else
+    /// needs .fsi file
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
 #endif
 
+    /// needs .fsi file
     let isEmpty (bs:ByteString) = 
         bs.Count <= 0
 
+    /// needs .fsi file
     let length (bs:ByteString) = 
         bs.Count
 
+    /// needs .fsi file
     let index (bs:ByteString) pos =
         bs.Array.[bs.Offset + pos]
 
+    /// needs .fsi file
     let head (bs:ByteString) =
         if bs.Count <= 0 then
           failwith "Cannot take the head of an empty byte string."
         else bs.Array.[bs.Offset]
 
+    /// needs .fsi file
     let tail (bs:ByteString) =
         if bs.Count = 1 then empty
         else ByteString(bs.Array, bs.Offset+1, bs.Count-1)
@@ -177,6 +194,7 @@ module ByteString =
              Buffer.BlockCopy(x',o',buffer,l,l')
              ByteString(buffer,0,l+l')
     
+    /// needs .fsi file
     let fold f seed bs =
         let rec loop bs acc =
             if isEmpty bs then acc 
@@ -184,6 +202,7 @@ module ByteString =
                  loop tl (f acc hd)
         loop bs seed
   
+    /// needs .fsi file
     let split pred (bs:ByteString) =
         if isEmpty bs then empty, empty
         else let index = findIndex pred bs
@@ -192,22 +211,30 @@ module ByteString =
                   ByteString(bs.Array, bs.Offset, count),
                   ByteString(bs.Array, index, bs.Count - count)
     
+    /// needs .fsi file
     let span pred bs = split (not << pred) bs
     
+    /// needs .fsi file
     let splitAt n (bs:ByteString) =
         if isEmpty bs then empty, empty
         elif n = 0 then empty, bs
         elif n >= bs.Count then bs, empty
         else let x,o,l = bs.Array, bs.Offset, bs.Count in ByteString(x,o,n), ByteString(x,o+n,l-n)
     
+    /// needs .fsi file
     let skip n bs = splitAt n bs |> snd
 
+    /// needs .fsi file
     let skipWhile pred bs = span pred bs |> snd
 
+    /// needs .fsi file
     let skipUntil pred bs = split pred bs |> snd
 
+    /// needs .fsi file
     let take n bs = splitAt n bs |> fst 
 
+    /// needs .fsi file
     let takeWhile pred bs = span pred bs |> fst
 
+    /// needs .fsi file
     let takeUntil pred bs = split pred bs |> fst

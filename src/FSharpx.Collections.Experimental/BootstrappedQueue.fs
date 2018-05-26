@@ -1,6 +1,4 @@
-﻿// bootstrapped queue from Chris Okasaki’s “Purely functional data structures”
-// original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
-module FSharpx.Collections.Experimental.BootstrappedQueue
+﻿namespace FSharpx.Collections.Experimental
 
 open FSharpx.Collections
 
@@ -82,29 +80,34 @@ and BootstrappedQueue<'T> =
         let b0 = BootstrappedQueue.Empty
         NonEmptyBootstrappedQueue<'T>.create (l.Length) l b0 0 [] |> NonEmpty
 
-///O(1). Returns queue of no elements.
-let empty = Empty
+/// bootstrapped queue from Chris Okasaki’s “Purely functional data structures”
+/// original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
+[<RequireQualifiedAccess>]
+module BootstrappedQueue =
 
-///O(1). Returns true if the queue has no elements
-let isEmpty = function Empty -> true | _ -> false
+    ///O(1). Returns queue of no elements.
+    let empty = Empty
 
-///O(log* n). Returns a new queue with the element added to the end.
-let inline snoc x queue = BootstrappedQueue.snoc x queue
+    ///O(1). Returns true if the queue has no elements
+    let isEmpty = function Empty -> true | _ -> false
 
-///O(1), worst case. Returns the first element.
-let inline head queue = BootstrappedQueue<'T>.head queue
+    ///O(log* n). Returns a new queue with the element added to the end.
+    let inline snoc x queue = BootstrappedQueue.snoc x queue
 
-///O(1), worst case.  Returns option first element.
-let inline tryGetHead queue = BootstrappedQueue<'T>.tryGetHead queue
+    ///O(1), worst case. Returns the first element.
+    let inline head queue = BootstrappedQueue<'T>.head queue
 
-///O(log* n), worst case. Returns a new queue of the elements trailing the first element.
-let inline tail queue = BootstrappedQueue<'T>.tail queue
+    ///O(1), worst case.  Returns option first element.
+    let inline tryGetHead queue = BootstrappedQueue<'T>.tryGetHead queue
 
-///O(log* n), worst case. Returns option queue of the elements trailing the first element.
-let inline tryGetTail queue = BootstrappedQueue<'T>.tryGetTail queue
+    ///O(log* n), worst case. Returns a new queue of the elements trailing the first element.
+    let inline tail queue = BootstrappedQueue<'T>.tail queue
 
-///O(1). Returns the count of elememts.
-let inline length queue = BootstrappedQueue<'T>.length queue
+    ///O(log* n), worst case. Returns option queue of the elements trailing the first element.
+    let inline tryGetTail queue = BootstrappedQueue<'T>.tryGetTail queue
 
-///O(1). Returns a queue of the list.
-let inline ofList list = BootstrappedQueue<'T>.ofList list
+    ///O(1). Returns the count of elememts.
+    let inline length queue = BootstrappedQueue<'T>.length queue
+
+    ///O(1). Returns a queue of the list.
+    let inline ofList list = BootstrappedQueue<'T>.ofList list

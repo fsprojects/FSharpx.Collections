@@ -32,6 +32,7 @@ module L = LazyList
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
+[<RequireQualifiedAccess>]
 module RoseTree =
     open FSharpx
 

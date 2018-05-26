@@ -89,7 +89,7 @@ type DList<'T> =
                     yield! y :> seq<'T> }
             enumerable.GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module DList =
     ///O(1). Returns DList of no elements.
     let empty<'T> : DList<'T> = Nil

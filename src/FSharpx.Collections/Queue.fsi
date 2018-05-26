@@ -42,7 +42,7 @@ type Queue<'T> =
     ///O(1) amortized, O(n) worst-case. Returns option first element and tail.
     member TryUncons : ('T * Queue<'T>) option
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module Queue =
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : Queue<'T> -> Choice<('T * Queue<'T>),unit>

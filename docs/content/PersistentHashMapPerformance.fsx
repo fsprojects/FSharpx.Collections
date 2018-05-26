@@ -1,7 +1,7 @@
 (*** hide ***)
-#r "../build/FSharpx.Collections.dll"
-#r "../lib/System.Runtime.dll"
-#r "../packages/Microsoft.Bcl.Immutable.1.0.30/lib/portable-net45+win8+wp8/System.Collections.Immutable.dll"
+#r "../../bin/FSharpx.Collections/net461/FSharpx.Collections.dll"
+//#r "../lib/System.Runtime.dll"
+#r "../../packages/System.Collections.Immutable/lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll"
 open System
 
 

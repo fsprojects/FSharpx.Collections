@@ -53,9 +53,9 @@ type RandomAccessList<'T> =
 
     /// O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.
     member TryUpdate : int * 'T -> RandomAccessList<'T> option
-            
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+
 /// Defines functions which allow to access and manipulate RandomAccessLists.
+[<RequireQualifiedAccess>]
 module RandomAccessList = 
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : RandomAccessList<'T> ->  Choice<('T * RandomAccessList<'T> ),unit>

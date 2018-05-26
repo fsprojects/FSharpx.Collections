@@ -1,96 +1,95 @@
-﻿module FSharpx.Collections.Experimental.Tests.BinaryRoseTreeTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx
 open FSharpx.Collections.Experimental
 open FSharpx.Collections
-open NUnit.Framework
-open FsCheck
-open FsCheck.NUnit
-open FSharpx.Collections.Tests.Properties
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-let atree = 
-    BinaryRoseTree.createTree 1
-        (BinaryRoseTree.createTree 2
-            (BinaryRoseTree.createForest 3 
-                BinaryRoseTree.empty
-                (BinaryRoseTree.createTree 4
-                    (BinaryRoseTree.createTree 5
-                        (BinaryRoseTree.singleton 6)
-                    )
-                )
-            )
-        )
+module BinaryRoseTreeTest =
 
-let expected = 
-    BinaryRoseTree.createTree 2
-        (BinaryRoseTree.createTree 3
-            (BinaryRoseTree.createForest 4 
-                BinaryRoseTree.empty
-                (BinaryRoseTree.createTree 5
-                    (BinaryRoseTree.createTree 6
-                        (BinaryRoseTree.singleton 7)
-                    )
-                )
-            )
-        )
-
-let ctree = 
-    BinaryRoseTree.createTree "f"
-        (
-            BinaryRoseTree.createForest "b" 
-                (BinaryRoseTree.createForest "a" 
+    let atree = 
+        BinaryRoseTree.createTree 1
+            (BinaryRoseTree.createTree 2
+                (BinaryRoseTree.createForest 3 
                     BinaryRoseTree.empty
-                    (BinaryRoseTree.createTree "d"
-                        (BinaryRoseTree.createForest "c" 
-                            BinaryRoseTree.empty
-                            (BinaryRoseTree.singleton "e")
+                    (BinaryRoseTree.createTree 4
+                        (BinaryRoseTree.createTree 5
+                            (BinaryRoseTree.singleton 6)
                         )
                     )
                 )
+            )
 
-                (BinaryRoseTree.createTree "g"
-                    (BinaryRoseTree.createTree "i"
-                        (BinaryRoseTree.singleton "h")
+    let expected = 
+        BinaryRoseTree.createTree 2
+            (BinaryRoseTree.createTree 3
+                (BinaryRoseTree.createForest 4 
+                    BinaryRoseTree.empty
+                    (BinaryRoseTree.createTree 5
+                        (BinaryRoseTree.createTree 6
+                            (BinaryRoseTree.singleton 7)
+                        )
                     )
                 )
-        )
+            )
 
-[<Test>]
-let ``preOrder works``() =
-    let actual = BinaryRoseTree.preOrder ctree |> Seq.toList
-    Assert.AreEqual(["f";"b";"a";"d";"c";"e";"g";"i";"h"], actual)
+    let ctree = 
+        BinaryRoseTree.createTree "f"
+            (
+                BinaryRoseTree.createForest "b" 
+                    (BinaryRoseTree.createForest "a" 
+                        BinaryRoseTree.empty
+                        (BinaryRoseTree.createTree "d"
+                            (BinaryRoseTree.createForest "c" 
+                                BinaryRoseTree.empty
+                                (BinaryRoseTree.singleton "e")
+                            )
+                        )
+                    )
 
-[<Test>]
-let ``postOrder works``() =
-    let actual = BinaryRoseTree.postOrder ctree |> Seq.toList
-    Assert.AreEqual(["a";"c";"e";"d";"b";"h";"i";"g";"f"], actual)
+                    (BinaryRoseTree.createTree "g"
+                        (BinaryRoseTree.createTree "i"
+                            (BinaryRoseTree.singleton "h")
+                        )
+                    )
+            )
+
+    [<Tests>]
+    let testBinaryRoseTree=
+
+        testList "Experimental BinaryRoseTree" [
+            test "preOrder works" {
+                let actual = BinaryRoseTree.preOrder ctree |> Seq.toList
+                Expect.equal "" ["f";"b";"a";"d";"c";"e";"g";"i";"h"] actual }
+
+            test "postOrder works" {
+                let actual = BinaryRoseTree.postOrder ctree |> Seq.toList
+                Expect.equal "" ["a";"c";"e";"d";"b";"h";"i";"g";"f"] actual }
     
-[<Test>]
-let map() =
-    let actual = BinaryRoseTree.map ((+) 1) atree 
-    Assert.AreEqual(expected, actual)
+            test "map" {
+                let actual = BinaryRoseTree.map ((+) 1) atree 
+                Expect.equal "" expected actual }
 
-[<Test>]
-let ``fold via preOrder``() =
-    let actual = BinaryRoseTree.preOrder atree |> Seq.fold (*) 1
-    Assert.AreEqual(720, actual)
+            test "fold via preOrder" {
+                let actual = BinaryRoseTree.preOrder atree |> Seq.fold (*) 1
+                Expect.equal "" 720 actual }
 
-let iRT = BinaryRoseTree.createTree 1 (BinaryRoseTree.createForest 2 atree expected)
-let singleRT = BinaryRoseTree.singleton 1
+            test "functor laws" {
+                let iRT = BinaryRoseTree.createTree 1 (BinaryRoseTree.createForest 2 atree expected)
+                let singleRT = BinaryRoseTree.singleton 1
 
-[<Test>]
-let ``functor laws``() =
-    //fsCheck version of functor and monad laws stackoverflows 
-    let map = BinaryRoseTree.map
+                //fsCheck version of functor and monad laws stackoverflows 
+                let map = BinaryRoseTree.map
     
-    //preserves identity
-    ((map id iRT) = iRT) |> should equal true
-    ((map id singleRT) = singleRT) |> should equal true
+                //preserves identity
+                ((map id iRT) = iRT) |> Expect.isTrue "" 
+                ((map id singleRT) = singleRT) |> Expect.isTrue "" 
     
-    let f = (fun x -> x + 5)
-    let g = (fun x -> x - 2)
+                let f = (fun x -> x + 5)
+                let g = (fun x -> x - 2)
 
-    //preserves composition
-    map (f << g) iRT = (map f << map g) iRT |> should equal true
-    map (f << g) singleRT = (map f << map g) singleRT |> should equal true
+                //preserves composition
+                map (f << g) iRT = (map f << map g) iRT |> Expect.isTrue "" 
+                map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue "" }
+        ]

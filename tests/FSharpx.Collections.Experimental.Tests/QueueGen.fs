@@ -2,11 +2,8 @@
 
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Tests.Properties
-open NUnit.Framework
+open FSharpx.Collections.Experimental.Tests.Properties
 open FsCheck
-open FsCheck.NUnit
-open FsUnit
 
 module QueueGen =
 

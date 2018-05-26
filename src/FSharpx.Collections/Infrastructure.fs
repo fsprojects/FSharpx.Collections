@@ -1,4 +1,4 @@
-﻿module FSharpx.Collections.TimeMeasurement
+﻿module internal FSharpx.Collections.TimeMeasurement
 
 #if FX_PORTABLE
 #else

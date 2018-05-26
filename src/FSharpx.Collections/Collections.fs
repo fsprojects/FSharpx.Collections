@@ -7,6 +7,7 @@ open System.Collections.Generic
 open System.Runtime.CompilerServices
 
 /// Extensions for F#'s Seq module.
+[<RequireQualifiedAccess>]
 module Seq =
 
     /// Prepends `x` to the seq `xs`
@@ -258,13 +259,16 @@ module Seq =
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
+[<RequireQualifiedAccess>]
 module Array =
+    /// nth item of array
     let inline nth i arr = Array.get arr i
+
+    /// set the ith item of array
     let inline setAt i v arr = Array.set arr i v; arr
 
+    /// copy items from one array to another
     let copyTo sourceStartIndx startIndx source target =
         let targetLength = (Array.length target)
         if startIndx < 0 || startIndx > targetLength - 1 then
@@ -282,6 +286,7 @@ module Array =
     let ofTuple (source : obj) : obj array =
         Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields source
 
+    /// needs doc
     let toTuple (source : 'T array) : 't =
         let elements = source |> Array.map (fun x -> x :> obj)
         Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(elements, typeof<'t>) :?> 't
@@ -345,6 +350,7 @@ module Array =
 
 
 /// Extensions for F#'s List module.
+[<RequireQualifiedAccess>]
 module List =
     /// Curried cons
     let inline cons hd tl = hd::tl
@@ -472,9 +478,8 @@ module List =
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for System.Collections.Generic.Dictionary.
+[<RequireQualifiedAccess>]
 module Dictionary =
     let tryFind key (d: IDictionary<_,_>) =
         match d.TryGetValue key with
@@ -482,6 +487,7 @@ module Dictionary =
         | _ -> None
 
 /// Extensions for F#'s Map module.
+[<RequireQualifiedAccess>]
 module Map =
     let spanWithKey pred map =
         map
@@ -570,9 +576,9 @@ module Map =
 
 #if FX_PORTABLE
 #else
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
 /// Extensions for NameValueCollections.
+[<RequireQualifiedAccess>]
 module NameValueCollection =
     open System.Collections.Specialized
     open System.Linq

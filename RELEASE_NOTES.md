@@ -1,3 +1,15 @@
+#### 2.0.0-beta1 - in process
+* Microsoft.NET.Sdk projects
+* target net45 and netstandard2.0
+* BREAKING CHANGE: RequireQualifiedAccess
+* BREAKING CHANGE: type RealTimeQueue under Experimental namespace
+* BREAKING CHANGE: type BootstrappedQueue under Experimental namespace
+* BREAKING CHANGE: type ListZipper under Experimental namespace
+* BREAKING CHANGE: types BinaryTree, TreeDirection, BinaryTreeZipper under Experimental namespace
+* BREAKING CHANGE: type ImplicitQueue under Experimental namespace
+* BREAKING CHANGE: type BinaryRandomAccessList under Experimental namespace
+* BREAKING CHANGE: type Digit for BinaryRandomAccessList renamed TreeBRALDigit
+
 #### 1.17.0 - 26.06.2017
 * PERFORMANCE: NonEmptyList Collect had poor performance - https://github.com/fsprojects/FSharpx.Collections/pull/75
 
@@ -52,4 +64,4 @@
 * Fixing nuget package
 
 #### 1.9.1 - 14.01.2013 
-* Initial release from new location
+* Initial release from new location; previous contributor history lost

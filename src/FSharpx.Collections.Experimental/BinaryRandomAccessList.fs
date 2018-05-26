@@ -6,13 +6,12 @@ namespace FSharpx.Collections.Experimental
 
 open System.Collections
 open FSharpx.Collections
-open System.Collections.Generic
 
 type TreeBRAL<'T> =
     | Leaf of 'T
     | Node of int * TreeBRAL<'T> * TreeBRAL<'T>
 
-type Digit<'T> =
+type TreeBRALDigit<'T> =
     | Zero
     | One of TreeBRAL<'T>
 
@@ -24,7 +23,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
         | Leaf _ -> 1
         | Node (w, _, _) -> w
 
-    static member private length : int * int * list<Digit<'T>> -> int = function
+    static member private length : int * int * list<TreeBRALDigit<'T>> -> int = function
         | len, acc, [] -> len
         | len, acc, One(_)::ts -> BinaryRandomAccessList.length ((len + acc), (2 * acc), ts)
         | len, acc, Zero::ts -> BinaryRandomAccessList.length (len, (2 * acc), ts)
@@ -43,26 +42,26 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
         | i, Node(w, t1, t2) ->
             if i < w / 2 then BinaryRandomAccessList.tryLookupTree (i, t1) else BinaryRandomAccessList.tryLookupTree (i - w/2, t2)
 
-    static member private lookup : int * list<Digit<'T>> -> 'T = function
+    static member private lookup : int * list<TreeBRALDigit<'T>> -> 'T = function
         | _, [] -> raise Exceptions.OutOfBounds
         | i, Zero::ts -> BinaryRandomAccessList.lookup (i, ts)
         | i, One t::ts ->
             let size = BinaryRandomAccessList.size t
             if i < size then BinaryRandomAccessList.lookupTree (i, t) else BinaryRandomAccessList.lookup ((i - size), ts)
 
-    static member private tryLookup : int * list<Digit<'T>> -> 'T option = function
+    static member private tryLookup : int * list<TreeBRALDigit<'T>> -> 'T option = function
         | _, [] -> None
         | i, Zero::ts -> BinaryRandomAccessList.tryLookup (i, ts)
         | i, One t::ts ->
             let size = BinaryRandomAccessList.size t
             if i < size then BinaryRandomAccessList.tryLookupTree (i, t) else BinaryRandomAccessList.tryLookup ((i - size), ts)
 
-    static member private consTree  : TreeBRAL<'T> * list<Digit<'T>> ->  list<Digit<'T>> = function
+    static member private consTree  : TreeBRAL<'T> * list<TreeBRALDigit<'T>> ->  list<TreeBRALDigit<'T>> = function
         | t, [] -> [One t]
         | t, Zero::ts -> One t :: ts
         | t1, One t2 :: ts -> Zero :: BinaryRandomAccessList.consTree ((BinaryRandomAccessList.link t1 t2), ts) 
 
-    static member private unconsTree : list<Digit<'T>> -> TreeBRAL<'T> * list<Digit<'T>> = function
+    static member private unconsTree : list<TreeBRALDigit<'T>> -> TreeBRAL<'T> * list<TreeBRALDigit<'T>> = function
         | [] -> raise Exceptions.Empty
         | [One t] -> t, []
         | One t :: ts -> t, Zero::ts
@@ -71,7 +70,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
             | Node(_, t1, t2), ts' -> t1, One t2::ts'
             | _ -> failwith "should never get there"
 
-    static member private tryUnconsTree : list<Digit<'T>> -> (TreeBRAL<'T> * list<Digit<'T>>) option = function
+    static member private tryUnconsTree : list<TreeBRALDigit<'T>> -> (TreeBRAL<'T> * list<TreeBRALDigit<'T>>) option = function
         | [] -> None
         | [One t] -> Some(t, [])
         | One t :: ts -> Some(t, Zero::ts)
@@ -98,7 +97,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
             else
               Some(Node(w, t1, BinaryRandomAccessList.updateTree (i - w/2, y, t2)))
 
-    static member update i y : list<Digit<'T>> -> list<Digit<'T>> = function
+    static member update i y : list<TreeBRALDigit<'T>> -> list<TreeBRALDigit<'T>> = function
         | []  -> raise Exceptions.OutOfBounds
         | Zero::ts -> Zero :: BinaryRandomAccessList.update i y ts
         | One t::ts ->
@@ -109,7 +108,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
             else
               (One t) :: BinaryRandomAccessList.update (i - size) y ts
 
-    static member tryUpdate i y : list<Digit<'T>> -> list<Digit<'T>> option = function
+    static member tryUpdate i y : list<TreeBRALDigit<'T>> -> list<TreeBRALDigit<'T>> option = function
         | []  -> None
         | Zero::ts -> Some(Zero :: BinaryRandomAccessList.update i y ts)
         | One t::ts ->
@@ -124,7 +123,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
         if Seq.isEmpty s then BinaryRandomAccessList([])
         else
             let a = Array.ofSeq s
-            let rec loop (acc: list<Digit<'T>>) dec (a': array<'T>) =
+            let rec loop (acc: list<TreeBRALDigit<'T>>) dec (a': array<'T>) =
                 if dec < 0 then BinaryRandomAccessList(acc)
                 else loop (BinaryRandomAccessList.consTree ((Leaf a'.[dec]), acc)) (dec - 1) a'
 
@@ -163,7 +162,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
     ///O(n). Returns random access list reversed.
     member this.Rev() =
 
-        let rec loop : list<Digit<'T>> * list<Digit<'T>> -> BinaryRandomAccessList<'T>  = function
+        let rec loop : list<TreeBRALDigit<'T>> * list<TreeBRALDigit<'T>> -> BinaryRandomAccessList<'T>  = function
             | acc, [] -> BinaryRandomAccessList(acc)  
             | acc, ral -> 
                 let x, ts = BinaryRandomAccessList.unconsTree ral
@@ -257,7 +256,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator  
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module BinaryRandomAccessList =   
     //pattern discriminator
 

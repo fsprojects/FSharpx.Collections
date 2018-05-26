@@ -232,6 +232,7 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
             let element,newHeap = this.Uncons()
             element,(newHeap  :> IPriorityQueue<'T>)
 
+[<RequireQualifiedAccess>]
 module BinomialHeap = 
     //pattern discriminator
     let (|Cons|Nil|) (h: BinomialHeap<'T>) = match h.TryUncons() with Some(a,b) -> Cons(a,b) | None -> Nil

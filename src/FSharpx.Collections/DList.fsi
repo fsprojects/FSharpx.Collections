@@ -40,7 +40,7 @@ type DList<'T> =
     ///O(log n). Returns option first element and tail.
     member TryUncons : ('T * DList<'T>) option
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module DList =
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : DList<'T> -> Choice<('T * DList<'T>),unit>

@@ -357,7 +357,7 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module PersistentVector = 
     //pattern discriminators  (active pattern)
     let (|Conj|Nil|) (v : PersistentVector<'T>) = match v.TryUnconj with Some(a,b) -> Conj(a,b) | None -> Nil

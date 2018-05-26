@@ -1,14 +1,12 @@
 source http://nuget.org/api/v2
-framework: >= net4
+source https://ci.appveyor.com/nuget/fsharp-formatting
 
+nuget Expecto
+nuget Expecto.FsCheck
 nuget FAKE
-nuget NUnit.Runners
-nuget FSharp.Formatting
-nuget FsCheck 0.9.2
-nuget FsUnit
-nuget NUnit ~> 2
-nuget NUnit.Runners.Net4
-nuget FSharp.Core redirects: force
-nuget SourceLink.Fake
+nuget FSharp.Formatting prerelease
+nuget FsCheck 
+nuget FSharp.Core
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx
+nuget Expecto.VisualStudio.TestAdapter version_in_path: true

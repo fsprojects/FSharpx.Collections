@@ -1,8 +1,9 @@
-﻿type project
+﻿type file
+id FSharpx.Collections
 owners
-    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford
+    Steffen Forkmann, Mauricio Scheffer, Jack Fox
 authors 
-    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford
+    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford, Jack Fox
 projectUrl
     https://github.com/fsprojects/FSharpx.Collections
 iconUrl
@@ -11,11 +12,15 @@ licenseUrl
     http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+language
+    F#
 copyright
-    Copyright 2015
+    Copyright 2018
 tags
     F# fsharp fsharpx collections datastructures
 summary
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
 description
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
+files
+	../../bin/FSharpx.Collections ==> lib

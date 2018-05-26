@@ -29,8 +29,8 @@ type EagerRoseTree<'T> =
             
 and EagerRoseForest<'T> = EagerRoseTree<'T> list
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 [<Extension>]
+[<RequireQualifiedAccess>]
 module EagerRoseTree =
     open FSharpx
 
