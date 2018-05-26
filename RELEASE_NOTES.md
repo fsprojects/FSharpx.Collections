@@ -1,4 +1,4 @@
-#### 2.0.0-beta1 - in process
+#### 2.0.0-beta1 - 2018-05-26
 * Microsoft.NET.Sdk projects
 * target net45 and netstandard2.0
 * BREAKING CHANGE: RequireQualifiedAccess
