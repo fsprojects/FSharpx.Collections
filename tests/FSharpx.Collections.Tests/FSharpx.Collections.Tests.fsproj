@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>b397365b-f6ef-4abc-94f1-8f6ea900bf20</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Tests</AssemblyName>
@@ -35,8 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj">
-      <Name>FSharpx.Collections</Name>
-      <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

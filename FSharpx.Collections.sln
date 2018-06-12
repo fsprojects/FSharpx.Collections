@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections", "src/FSharpx.Collections/FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections", "src\FSharpx.Collections\FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental", "src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental", "src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Tests", "tests/FSharpx.Collections.Tests/FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Tests", "tests\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental.Tests", "tests/FSharpx.Collections.Experimental.Tests/FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental.Tests", "tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{E8AA1CAD-BC7C-4788-B5EF-6C68225B1B5A}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,20 +36,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F0FAE041-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{4C22B791-4526-4EA9-8576-CA4A10FD8816}"
 	ProjectSection(SolutionItems) = preProject
-		docs/content/index.fsx = docs/content/index.fsx
-		docs/content/PersistentHashMap.fsx = docs/content/PersistentHashMap.fsx
-		docs/content/PersistentHashMapPerformance.fsx = docs/content/PersistentHashMapPerformance.fsx
-		docs/content/PersistentVector.fsx = docs/content/PersistentVector.fsx
-		docs/content/PersistentVectorPerformance.fsx = docs/content/PersistentVectorPerformance.fsx
+		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\PersistentHashMap.fsx = docs\content\PersistentHashMap.fsx
+		docs\content\PersistentHashMapPerformance.fsx = docs\content\PersistentHashMapPerformance.fsx
+		docs\content\PersistentVector.fsx = docs\content\PersistentVector.fsx
+		docs\content\PersistentVectorPerformance.fsx = docs\content\PersistentVectorPerformance.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{38CF3CF1-8F46-4199-A8C0-8B2B9A4E15E9}"
 	ProjectSection(SolutionItems) = preProject
-		docs/tools/generate.fsx = docs/tools/generate.fsx
-		docs/tools/templates/template.cshtml = docs/tools/templates/template.cshtml
+		docs\tools\generate.fsx = docs\tools\generate.fsx
+		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp", "docs/content/csharp/csharp.csproj", "{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp", "docs\content\csharp\csharp.csproj", "{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{B3ACB658-17A4-4950-A8F0-6A397CC21FD3}"
 	ProjectSection(SolutionItems) = preProject
