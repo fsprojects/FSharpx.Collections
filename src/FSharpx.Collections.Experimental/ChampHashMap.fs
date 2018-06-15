@@ -26,9 +26,19 @@ type internal Node<'TKey, 'TValue when 'TKey : equality> =
 
 open BitUtilities
 open FSharpx.Collections
-open System.Collections.Specialized
+open System.Runtime.CompilerServices
+[<assembly: InternalsVisibleTo("FSharpx.Collections.Experimental.Tests")>]
+do()
 module internal Node = 
 
+    let inline set items index value inplace = 
+        if (inplace) then
+            Array.set items index value |> ignore
+            items
+        else
+            let copy = Array.copy items
+            Array.set copy index value |> ignore
+            copy
     let inline keyNotFound key =
         raise (Exceptions.KeyNotFound key)
 
@@ -54,7 +64,7 @@ module internal Node =
                 getValue subNode key hash (BitVector32.CreateSection (PartitionMaxValue, section))
             else keyNotFound key
         | EmptyNode -> keyNotFound key
-        | _ -> failwith "Not supported"
+        | CollisionNode(items, _) -> (Array.find (fun k -> k.Key = key) items).Value
 
     let rec tryGetValue node key (hash: BitVector32) (section: BitVector32.Section) = 
         match node with
@@ -71,7 +81,10 @@ module internal Node =
                 tryGetValue subNode key hash (BitVector32.CreateSection (PartitionMaxValue, section))
             else None
         | EmptyNode -> None
-        | _ -> failwith "Not supported"
+        | CollisionNode(items, _) -> 
+            match (Array.tryFind (fun k -> k.Key = key) items) with
+            | Some(pair) -> Some(pair.Value)
+            | None -> None
 
     let rec merge pair1 pair2 (pair1Hash: BitVector32) (pair2Hash: BitVector32) (section: BitVector32.Section) = 
         if (section.Offset >= 25s) then
@@ -103,14 +116,7 @@ module internal Node =
         | BitmapNode(entryMap, nodeMap, items, nodes) ->
             let hashIndex = hash.Item section
             let mask = BitVector32.CreateMask hashIndex
-            let inline set items index value inplace = 
-                if (inplace) then
-                    Array.set items index value |> ignore
-                    items
-                else
-                    let copy = Array.copy items
-                    Array.set copy index value |> ignore
-                    copy
+            
             if (entryMap.Item mask) then
                 let entryIndex = index entryMap mask
                 if ((Array.get items entryIndex).Key = change.Key) then
@@ -139,9 +145,23 @@ module internal Node =
                 entries.Item mask <- true
                 let newItems = insert items entryIndex change
                 BitmapNode(nodeMap, entries, newItems, nodes)
-        | CollisionNode(_) -> failwith "Not implemented"
-
+        | CollisionNode(items, hash) -> 
+            let index = Array.findIndex (fun i -> i.Key = change.Key) items
+            if (index <> -1) then 
+                let newArr = set items index change false
+                CollisionNode(newArr, hash)
+            else
+                let newArr = Array.append items [|change|]
+                CollisionNode(newArr, hash)
     
+open Node
+type ChampHashMap<[<EqualityConditionalOn>]'TKey,'TValue when 'TKey : equality> private (root:Node<'TKey,'TValue>) = 
+    member internal this.Root: Node<'TKey, 'TValue> = root
 
-type ChampHashMap<'TKey,'TValue when 'TKey : equality>() = 
-    member this.Length : int = 0
+    new() = ChampHashMap(EmptyNode)
+
+    member this.Item key value = 
+        let hashVector = BitVector32(int32(key.GetHashCode()))
+        let section = BitVector32.CreateSection(PartitionMaxValue)
+        let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
+        ChampHashMap(newRoot)
