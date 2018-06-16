@@ -4,12 +4,12 @@ NUGET
       FSharp.Core (>= 4.0.0.1) - restriction: >= net45
       FSharp.Core (>= 4.3.2) - restriction: && (< net45) (>= netstandard2.0)
       System.Configuration.ConfigurationManager (>= 4.4) - restriction: && (< net45) (>= netstandard2.0)
-    Expecto (8.0)
+    Expecto (8.1.1)
       Argu (>= 5.1) - restriction: || (>= net461) (>= netstandard2.0)
       Mono.Cecil (>= 0.10) - restriction: || (>= net461) (>= netstandard2.0)
       System.Diagnostics.FileVersionInfo (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
-    Expecto.FsCheck (8.0)
-      Expecto (>= 8.0) - restriction: || (>= net461) (>= netstandard2.0)
+    Expecto.FsCheck (8.1.1)
+      Expecto (>= 8.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FsCheck (>= 2.10.4) - restriction: || (>= net461) (>= netstandard2.0)
     Expecto.VisualStudio.TestAdapter (9.0.0) - version_in_path: true
       Expecto (>= 8.0 < 9.0) - restriction: >= net461
@@ -17,12 +17,12 @@ NUGET
       Microsoft.TestPlatform.ObjectModel (>= 15.0 < 16.0) - restriction: >= net461
       Mono.Cecil (>= 0.10 < 0.11) - restriction: >= net461
       Newtonsoft.Json (>= 10.0 < 11.0) - restriction: >= net461
-    FAKE (4.64.13)
-    FsCheck (2.10.10)
+    FAKE (5.0)
+    FsCheck (2.11)
       FSharp.Core (>= 4.0.0.1) - restriction: || (>= net452) (&& (< netstandard1.6) (>= portable-net45+win8)) (&& (< portable-net45+win8) (>= portable-net45+win8+wp8)) (&& (< portable-net45+win8+wp8) (>= portable-net45+win8+wp8+wpa81))
       FSharp.Core (>= 4.3.4) - restriction: && (< net452) (>= netstandard1.6)
       NETStandard.Library (>= 1.6.1) - restriction: && (< net452) (>= netstandard1.6)
-      System.ValueTuple (>= 4.4) - restriction: && (< net452) (>= netstandard1.6)
+      System.ValueTuple (>= 4.5) - restriction: && (< net452) (>= netstandard1.6)
     FSharp.Compiler.Service (22.0.3)
       FSharp.Core (>= 4.1.18) - restriction: || (>= net45) (>= netstandard2.0)
       Microsoft.DiaSymReader (>= 1.1) - restriction: || (>= net45) (>= netstandard2.0)
@@ -36,7 +36,7 @@ NUGET
       System.Runtime.Loader (>= 4.0) - restriction: && (< net45) (>= netstandard2.0)
       System.Security.Cryptography.Algorithms (>= 4.3) - restriction: && (< net45) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net45
-    FSharp.Core (4.3.4)
+    FSharp.Core (4.5)
       System.Collections (>= 4.0.11) - restriction: && (< net45) (>= netstandard1.6) (< netstandard2.0)
       System.Console (>= 4.0) - restriction: && (< net45) (>= netstandard1.6) (< netstandard2.0)
       System.Diagnostics.Debug (>= 4.0.11) - restriction: && (< net45) (>= netstandard1.6) (< netstandard2.0)
@@ -61,26 +61,24 @@ NUGET
       System.Threading.ThreadPool (>= 4.0.10) - restriction: && (< net45) (>= netstandard1.6) (< netstandard2.0)
       System.Threading.Timer (>= 4.0.1) - restriction: && (< net45) (>= netstandard1.6) (< netstandard2.0)
     Microsoft.AspNet.Razor (3.2.6)
-    Microsoft.DiaSymReader (1.2) - restriction: || (>= net45) (>= netstandard2.0)
-      Microsoft.Net.Compilers (>= 2.3) - restriction: || (>= net20) (>= netstandard1.1)
+    Microsoft.DiaSymReader (1.3) - restriction: || (>= net45) (>= netstandard2.0)
       NETStandard.Library (>= 1.6.1) - restriction: && (< net20) (>= netstandard1.1)
-    Microsoft.DiaSymReader.PortablePdb (1.4) - restriction: || (>= net45) (>= netstandard2.0)
-      Microsoft.DiaSymReader (>= 1.2) - restriction: >= portable-net45+win8
+    Microsoft.DiaSymReader.PortablePdb (1.5) - restriction: || (>= net45) (>= netstandard2.0)
+      Microsoft.DiaSymReader (>= 1.3) - restriction: >= portable-net45+win8
       System.Collections (>= 4.3) - restriction: >= netstandard1.1
-      System.Collections.Immutable (>= 1.3.1) - restriction: >= portable-net45+win8
+      System.Collections.Immutable (>= 1.5) - restriction: >= portable-net45+win8
       System.Diagnostics.Debug (>= 4.3) - restriction: >= netstandard1.1
       System.Globalization (>= 4.3) - restriction: >= netstandard1.1
       System.IO (>= 4.3) - restriction: >= netstandard1.1
       System.Linq (>= 4.3) - restriction: >= netstandard1.1
       System.Reflection (>= 4.3) - restriction: >= netstandard1.1
-      System.Reflection.Metadata (>= 1.4.2) - restriction: >= portable-net45+win8
+      System.Reflection.Metadata (>= 1.6) - restriction: >= portable-net45+win8
       System.Reflection.Primitives (>= 4.3) - restriction: >= netstandard1.1
       System.Runtime (>= 4.3) - restriction: >= netstandard1.1
       System.Runtime.Extensions (>= 4.3) - restriction: >= netstandard1.1
       System.Runtime.InteropServices (>= 4.3) - restriction: >= netstandard1.1
       System.Text.Encoding (>= 4.3) - restriction: >= netstandard1.1
       System.Threading (>= 4.3) - restriction: >= netstandard1.1
-    Microsoft.Net.Compilers (2.8.2) - restriction: || (>= net45) (>= netstandard2.0)
     Microsoft.NETCore.Platforms (2.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.3) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.4) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.5) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.6) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.4) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.5) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.4) (>= netstandard1.5) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.4) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< net45) (>= net46) (< netstandard1.3)) (&& (< net45) (>= net46) (< netstandard1.4)) (&& (< net45) (>= net461)) (&& (< net45) (>= netstandard1.1) (< netstandard1.2) (< win8)) (&& (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.3) (< netstandard1.4) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.4) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.5) (< netstandard1.6) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.6) (< netstandard2.0) (< win8) (< wpa81)) (&& (< net45) (>= netstandard2.0)) (&& (>= net46) (< portable-net45+win8+wpa81)) (&& (< net46) (>= netstandard2.0)) (>= netcoreapp2.0) (&& (< netstandard1.0) (>= netstandard1.1) (< portable-net45+win8)) (&& (< netstandard1.0) (>= netstandard1.1) (>= win8)) (&& (< netstandard1.0) (>= netstandard1.1) (< win8)) (&& (>= netstandard1.1) (< portable-net45+win8+wpa81)) (&& (>= netstandard1.1) (>= wp8)) (&& (>= netstandard1.2) (< portable-net45+win8+wpa81)) (&& (< netstandard1.2) (>= uap10.0) (< win8)) (&& (>= netstandard1.3) (< portable-net45+win8+wpa81)) (&& (< netstandard1.3) (>= netstandard2.0)) (&& (< netstandard1.3) (>= uap10.0)) (&& (< netstandard1.3) (< win8) (>= wpa81)) (&& (>= netstandard1.4) (< portable-net45+win8+wpa81)) (&& (>= netstandard1.5) (< portable-net45+win8+wpa81)) (&& (< netstandard1.5) (>= uap10.0)) (&& (>= netstandard1.6) (< portable-net45+win8+wp8+wpa81)) (&& (>= netstandard1.6) (< portable-net45+win8+wpa81)) (&& (< portable-net45+win8+wpa81) (>= uap10.0)) (>= uap10.1)
     Microsoft.NETCore.Targets (2.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.6) (< netstandard2.0) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard1.2) (< win8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.3) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.4) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.5) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard1.6) (< win8)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.4) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.4) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.5) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.4) (< netstandard1.5) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.4) (>= netstandard1.5) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.4) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.5) (< netstandard1.6) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard1.6) (< win8) (< wpa81)) (&& (< net45) (>= net46) (< netstandard1.4)) (&& (>= net46) (< portable-net45+win8+wpa81)) (&& (>= netstandard1.1) (< portable-net45+win8+wpa81)) (&& (>= netstandard1.2) (< portable-net45+win8+wpa81)) (&& (< netstandard1.2) (>= uap10.0) (< win8)) (&& (>= netstandard1.3) (< portable-net45+win8+wpa81)) (&& (< netstandard1.3) (>= uap10.0) (< win8) (< wpa81)) (&& (>= netstandard1.4) (< portable-net45+win8+wpa81)) (&& (>= netstandard1.5) (< portable-net45+win8+wpa81)) (&& (< netstandard1.5) (>= netstandard1.6) (>= uap10.0)) (&& (< netstandard1.5) (>= uap10.0) (< uap10.1)) (&& (< netstandard1.5) (>= uap10.0) (< win8) (< wpa81)) (&& (>= netstandard1.6) (< portable-net45+win8+wpa81)) (&& (< portable-net45+win8+wpa81) (>= uap10.0))
     Microsoft.TestPlatform.ObjectModel (15.7.2) - version_in_path: true, restriction: >= net461
@@ -704,5 +702,5 @@ NUGET
       System.ValueTuple (>= 4.4 < 5.0)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (97a503a180d86701ae7c56f7e15432907a86b3f3)
+    modules/Octokit/Octokit.fsx (6ba51f5612a914e161be2a9b642907f75e28780f)
       Octokit (>= 0.20)

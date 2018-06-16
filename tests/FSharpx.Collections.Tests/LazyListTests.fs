@@ -75,7 +75,7 @@ module LazyList =
                         failwith "disposed in Generic.IEnumerator.Current"
                     ie.Current
                 member x.Dispose() = 
-                    if !endReached then
+                    if (not !endReached) then
                         failwith "end reached in Generic.IEnumerator.Dispose"
                     if !disposed then
                         failwith "disposed in Generic.IEnumerator.Dispose"
