@@ -174,7 +174,7 @@ module TimeSeriesTest =
                 let clone = buffer.Clone()
                 buffer.Buffer.ToArray() |> Expect.equal "" (clone.Buffer.ToArray())
                 clone.Buffer.Advance(2) |> ignore
-                Expect.equal "" (buffer.Buffer.ToArray()) <|clone.Buffer.ToArray()
+                Expect.notEqual "" (buffer.Buffer.ToArray()) <|clone.Buffer.ToArray()
                 buffer.Buffer.Position |> Expect.equal "" 0
                 clone.Buffer.Position |> Expect.equal "" 2 }
        
