@@ -36,34 +36,83 @@ module LeftistHeapTest =
     let testLeftistHeap =
 
         testList "Experimental LeftistHeap" [
-            //[<Test>]
-            //test "cons pattern discriminator" {
-            //    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-            //    let h1, t1 = uncons h 
 
-            //    let h2, t2 = 
-            //        match t1 with
-            //        | Cons(h, t) -> h, t
-            //        | _ ->  "x", t1
+            test "cons pattern discriminator" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = LeftistHeap.uncons h 
 
-            //    ((h2 = "e") && ((length t2) = 4)) |> Expect.isTrue "" }
+                let h2, t2 = 
+                    match t1 with
+                    | LeftistHeap.Cons(h, t) -> h, t
+                    | _ ->  "x", t1
 
-            //[<Test>]
-            //test "cons pattern discriminator 2" {
-            //    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                ((h2 = "e") && ((LeftistHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-            //    let t2 = 
-            //        match h with
-            //        | Cons("f", Cons(_, t)) -> t
-            //        | _ ->  h
+            test "cons pattern discriminator 2" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-            //    let h1, t3 = uncons t2 
+                let t2 = 
+                    match h with
+                    | LeftistHeap.Cons("f", LeftistHeap.Cons(_, t)) -> t
+                    | _ ->  h
 
-            //    ((h1 = "d") && ((length t2) = 4)) |> Expect.isTrue "" }
+                let h1, t3 = LeftistHeap.uncons t2 
 
-            //[<Test>]
-            //test "empty list should be empty" { 
-            //    (LeftistHeap.empty true).IsEmpty |> Expect.isTrue "" }
+                ((h1 = "d") && ((LeftistHeap.length t2) = 4)) |> Expect.isTrue "" }
+
+            test "empty list should be empty" { 
+                (LeftistHeap.empty true).IsEmpty |> Expect.isTrue "" }
+
+            test "IHeap insert works" {
+                let h = 
+                    LeftistHeap.empty true |> LeftistHeap.insert "a" |> LeftistHeap.insert "b" |> LeftistHeap.insert "c" 
+                    |> LeftistHeap.insert "d" |> LeftistHeap.insert "e" |> LeftistHeap.insert "f" |> LeftistHeap.insert "g" 
+                    |> LeftistHeap.insert "h" |> LeftistHeap.insert "i" |> LeftistHeap.insert "j"
+                ((h :> IHeap<_, string>).Insert "zz").Head |> Expect.equal "" "zz" } 
+
+            test "insert works" {
+                (((LeftistHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
+
+            test "length of empty is 0" {
+                (LeftistHeap.empty true).Length |> Expect.equal "" 0 }
+
+            test "structure pattern match and merge" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+
+                let x, h1, h2 = 
+                    match h with
+                    | LeftistHeap.T(_, _, _, x', h1', h2') -> x', h1', h2'
+                    | _ ->  "zz", h, h
+
+                let h3 = LeftistHeap.merge h1 h2 
+
+                let x2, t3 = LeftistHeap.uncons h3 
+
+                ((x = "f") && (x2 = "e") && ((LeftistHeap.length t3) = 4)) |> Expect.isTrue "" }
+
+            test "tryGetHead on empty should return None" {
+                (LeftistHeap.empty true).TryGetHead |> Expect.isNone "" }
+
+            test "tryGetTail on empty should return None" {
+                (LeftistHeap.empty true).TryGetTail() |> Expect.isNone "" }
+
+            test "tryGetTail on len 1 should return Some empty" {
+                (LeftistHeap.empty true |> LeftistHeap.insert 1 |> LeftistHeap.tryGetTail).Value |> LeftistHeap.isEmpty |> Expect.isTrue "" }
+
+            test "tryMerge max and mis should be None" {
+                let h1 = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = LeftistHeap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+
+                LeftistHeap.tryMerge h1 h2 |> Expect.isNone "" }
+
+            test "tryUncons empty" {
+                (LeftistHeap.empty true).TryUncons() |> Expect.isNone "" }
+        ]
+
+    [<Tests>]
+    let testLeftistHeapProperties =
+
+        testList "Experimental LeftistHeap properties" [
 
             //[<Test>]
             //[<TestCaseSource("intGensStart2")>]
@@ -74,15 +123,6 @@ module LeftistHeapTest =
             //                                                                            |> classifyCollect h h.Length))
 
             //[<Test>]
-            //test "IHeap insert works" {
-            //    let h = empty true |> insert "a" |> insert "b" |> insert "c" |> insert "d" |> insert "e" |> insert "f" |> insert "g" |> insert "h" |> insert "i" |> insert "j"
-            //    ((h :> IHeap<_, string>).Insert "zz").Head |> Expect.equal "" "zz" } 
-
-            //[<Test>]
-            //test "insert works" {
-            //    (((LeftistHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
-
-            //[<Test>]
             //test "seq enumerate matches build list" {
 
             //    fsCheck "maxLeftistHeap" (Prop.forAll (Arb.fromGen maxLeftistHeapIntGen) 
@@ -90,10 +130,6 @@ module LeftistHeapTest =
 
             //    fsCheck "minLeftistHeap" (Prop.forAll (Arb.fromGen minLeftistHeapIntGen) 
             //        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length))
-
-            //[<Test>]
-            //test "length of empty is 0" {
-            //    (LeftistHeap.empty true).Length |> Expect.equal "" } 0
 
             //[<Test>]
             //[<TestCaseSource("intGensStart1")>]
@@ -108,21 +144,6 @@ module LeftistHeapTest =
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : LeftistHeap<string>, l) -> h |> Seq.toList = l |> classifyCollect h h.Length))
 
             //[<Test>]
-            //test "structure pattern match and merge" {
-            //    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-
-            //    let x, h1, h2 = 
-            //        match h with
-            //        | LeftistHeap.T(_, _, _, x', h1', h2') -> x', h1', h2'
-            //        | _ ->  "zz", h, h
-
-            //    let h3 = merge h1 h2 
-
-            //    let x2, t3 = uncons h3 
-
-            //    ((x = "f") && (x2 = "e") && ((length t3) = 4)) |> Expect.isTrue "" }
-
-            //[<Test>]
             //[<TestCaseSource("intGensStart2")>]
             //test "tail should return``(x : obj) =
             //    let genAndName = unbox x 
@@ -135,31 +156,12 @@ module LeftistHeapTest =
             //                                                                            |> classifyCollect h h.Length))
 
             //[<Test>]
-            //test "tryGetHead on empty should return None" {
-            //    (LeftistHeap.empty true).TryGetHead |> Expect.isNone "" }
-
-            //[<Test>]
             //[<TestCaseSource("intGensStart2")>]
             //test "tryGetHead should return``(x : obj) =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
             //                                                                            (h.TryGetHead.Value = l.Head)     
             //                                                                            |> classifyCollect h h.Length))
-
-            //[<Test>]
-            //test "tryGetTail on empty should return None" {
-            //    (LeftistHeap.empty true).TryGetTail() |> Expect.isNone "" }
-
-            //[<Test>]
-            //test "tryGetTail on len 1 should return Some empty" {
-            //    (LeftistHeap.empty true |> insert 1 |> tryGetTail).Value |> isEmpty |> Expect.isTrue "" }
-
-            //[<Test>]
-            //test "tryMerge max and mis should be None" {
-            //    let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-            //    let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
-
-            //    tryMerge h1 h2 |> Expect.isNone "" }
 
             //[<Test>]
             //[<TestCaseSource("intGensStart2")>]
@@ -169,10 +171,6 @@ module LeftistHeapTest =
             //                                                                            let x, tl = h.TryUncons().Value
             //                                                                            ((x = l.Head) && (tl.Length = (l.Length - 1)))     
             //                                                                            |> classifyCollect h h.Length))
-
-            //[<Test>]
-            //test "tryUncons empty" {
-            //    (LeftistHeap.empty true).TryUncons() |> Expect.isNone "" }
 
             //[<Test>]
             //[<TestCaseSource("intGensStart2")>]

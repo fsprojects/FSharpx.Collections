@@ -1,10 +1,11 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
+open FsCheck
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open Expecto
 open Expecto.Flip
+open Properties
 
 module RoseTreeTest =
 
@@ -74,29 +75,32 @@ module RoseTreeTest =
                 let newDoc = htmldoc |> RoseTree.bind wrapText
                 let expected = tree (elem "body") [tree (elem "div") [tree (elem "span") [text "hello world"]]]
                 Expect.equal "" expected newDoc }
+        ]
+    
+    type RoseTreeGen =
+        static member RoseTree() =
+            let rec roseTreeGen() = 
+                gen {
+                    let! root = Arb.generate
+                    // need to set these frequencies to avoid blowing the stack
+                    let! children = Gen.frequency [70, gen.Return LazyList.empty; 1, Gen.finiteLazyList()]
+                    return RoseTree.create root children
+                }
+            Arb.fromGen (roseTreeGen())
 
-            //open FsCheck
-            //open FSharpx.Collections.Experimental.Tests.Properties
+    [<Tests>]
+    let testRoseTreeProperties =
 
-            //type RoseTreeGen =
-            //    static member RoseTree() =
-            //        let rec roseTreeGen() = 
-            //            gen {
-            //                let! root = Arb.generate
-            //                // need to set these frequencies to avoid blowing the stack
-            //                let! children = Gen.frequency [70, gen.Return LazyList.empty; 1, Gen.finiteLazyList()]
-            //                return RoseTree.create root children
-            //            }
-            //        Arb.fromGen (roseTreeGen())
+        let registerGen = lazy (Arb.register<RoseTreeGen>() |> ignore)
 
-            //let registerGen = lazy (Arb.register<RoseTreeGen>() |> ignore)
+        registerGen.Force()
 
-            //let equality() =
-            //    registerGen.Force()
-            //    checkEquality<int RoseTree> "RoseTree"
+        let equality() =
+            checkEquality<int RoseTree> "RoseTree"
+
+        testList "Experimental RoseTree propeerties" [
 
             //test "functor laws" {
-            //    registerGen.Force()
             //    let map = RoseTree.map
             //    let n = sprintf "RoseTree : functor %s"
             //    fsCheck (n "preserves identity") <| 
@@ -105,7 +109,6 @@ module RoseTreeTest =
             //        fun f g value -> map (f << g) value = (map f << map g) value
 
             //test "monad laws" {
-            //    registerGen.Force()
             //    let n = sprintf "RoseTree : monad %s"
             //    let inline (>>=) m f = RoseTree.bind f m
             //    let ret = RoseTree.singleton

@@ -43,34 +43,65 @@ module PairingHeapTest =
         intGens 2 // this will accept 11 out of 12
 
     [<Tests>]
-    let testRealTimeDeque =
+    let testPairingHeap =
 
-        testList "Experimental RealTimeDeque" [
-            //test "cons pattern discriminator" {
-            //    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-            //    let h1, t1 = uncons h 
+        testList "Experimental PairingHeap" [
+            test "cons pattern discriminator" {
+                let h = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = PairingHeap.uncons h 
 
-            //    let h2, t2 = 
-            //        match t1 with
-            //        | Cons(h, t) -> h, t
-            //        | _ ->  "x", t1
+                let h2, t2 = 
+                    match t1 with
+                    | PairingHeap.Cons(h, t) -> h, t
+                    | _ ->  "x", t1
 
-            //    ((h2 = "e") && ((length t2) = 4)) |> Expect.isTrue "" }
+                ((h2 = "e") && ((PairingHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-            //test "cons pattern discriminator 2" {
-            //    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+            test "cons pattern discriminator 2" {
+                let h = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-            //    let t2 = 
-            //        match h with
-            //        | Cons("f", Cons(_, t)) -> t
-            //        | _ ->  h
+                let t2 = 
+                    match h with
+                    | PairingHeap.Cons("f", PairingHeap.Cons(_, t)) -> t
+                    | _ ->  h
 
-            //    let h1, t3 = uncons t2 
+                let h1, t3 = PairingHeap.uncons t2 
 
-            //    ((h1 = "d") && ((length t2) = 4)) |> Expect.isTrue "" }
+                ((h1 = "d") && ((PairingHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-            //test "empty list should be empty" { 
-            //    (PairingHeap.empty true).IsEmpty |> Expect.isTrue "" }
+            test "empty list should be empty" { 
+                (PairingHeap.empty true).IsEmpty |> Expect.isTrue "" }
+
+            test "insert works" {
+                (((PairingHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
+
+            test "length of empty is 0" {
+                (PairingHeap.empty true).Length() |> Expect.equal "" 0 }
+
+            test "tryGetHead on empty should return None" {
+                (PairingHeap.empty true).TryGetHead() |> Expect.isNone "" }
+
+            test "tryGetTail on empty should return None" {
+                (PairingHeap.empty true).TryGetTail() |> Expect.isNone "" }
+
+            test "tryGetTail on len 1 should return Some empty" {
+                let h = PairingHeap.empty true |> PairingHeap.insert 1 |> PairingHeap.tryGetTail
+                h.Value |> PairingHeap.isEmpty |> Expect.isTrue "" }
+
+            test "tryMerge max and mis should be None" {
+                let h1 = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = PairingHeap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+
+                PairingHeap.tryMerge h1 h2 |> Expect.isNone "" }
+
+            test "tryUncons empty" {
+                (PairingHeap.empty true).TryUncons() |> Expect.isNone "" }
+        ]
+
+    [<Tests>]
+    let testPairingHeapProperties =
+
+        testList "Experimental PairingHeap properties" [
 
             //[<TestCaseSource("intGensStart2")>]
             //test "head should return``(x : obj) =
@@ -78,8 +109,6 @@ module PairingHeapTest =
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
             //                                                                            (h.Head() = l.Head)     
             //                                                                            |> classifyCollect h (h.Length())))
-            //test "insert works" {
-            //    (((PairingHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
 
             //test "seq enumerate matches build list" {
 
@@ -88,9 +117,6 @@ module PairingHeapTest =
 
             //    fsCheck "minPairingHeap" (Prop.forAll (Arb.fromGen minPairingHeapIntGen) 
             //        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length())))
-
-            //test "length of empty is 0" {
-            //    (PairingHeap.empty true).Length() |> Expect.equal "" } 0
 
             //[<TestCaseSource("intGensStart1")>]
             //test "seq enumerate matches build list int``(x : obj) =
@@ -113,28 +139,12 @@ module PairingHeapTest =
             //                                                                            (tlHead && (tl.Length() = (l.Length - 1)))     
             //                                                                            |> classifyCollect h (h.Length())))
 
-            //test "tryGetHead on empty should return None" {
-            //    (PairingHeap.empty true).TryGetHead() |> Expect.isNone "" }
-
             //[<TestCaseSource("intGensStart2")>]
             //test "tryGetHead should return``(x : obj) =
             //    let genAndName = unbox x 
             //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
             //                                                                            (h.TryGetHead().Value = l.Head)     
             //                                                                            |> classifyCollect h (h.Length())))
-
-            //test "tryGetTail on empty should return None" {
-            //    (PairingHeap.empty true).TryGetTail() |> Expect.isNone "" }
-
-            //test "tryGetTail on len 1 should return Some empty" {
-            //    let h = PairingHeap.empty true |> insert 1 |> tryGetTail
-            //    h.Value |> isEmpty |> Expect.isTrue "" }
-
-            //test "tryMerge max and mis should be None" {
-            //    let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-            //    let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
-
-            //    tryMerge h1 h2 |> Expect.isNone "" }
 
             //[<TestCaseSource("intGensStart2")>]
             //test "tryUncons 1 element``(x : obj) =
@@ -143,9 +153,6 @@ module PairingHeapTest =
             //                                                                            let x, tl = h.TryUncons().Value
             //                                                                            ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
             //                                                                            |> classifyCollect h (h.Length())))
-
-            //test "tryUncons empty" {
-            //    (PairingHeap.empty true).TryUncons() |> Expect.isNone "" }
 
             //[<TestCaseSource("intGensStart2")>]
             //test "uncons 1 element``(x : obj) =

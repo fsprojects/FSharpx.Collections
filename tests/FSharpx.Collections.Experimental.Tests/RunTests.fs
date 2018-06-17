@@ -41,8 +41,8 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args FileSystemZipperTest.testFileSystemZipper |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatList |> ignore
-        //Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatListProperties|> ignore
+        Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatList |> ignore
+        Tests.runTestsWithArgs defaultConfig args FlatListTest.testFlatListProperties|> ignore
 
         Tests.runTestsWithArgs defaultConfig args HeapPriorityQueueTest.testHeapPriorityQueue |> ignore
 
@@ -53,15 +53,18 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args IntMapTest.testIntMap |> ignore
         Tests.runTestsWithArgs defaultConfig args IntMapTest.testIntMapProperties |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args IQueueTest.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args IQueueTest.testIQueue |> ignore
+        Tests.runTestsWithArgs defaultConfig args IQueueTest.testIQueueProperties |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.<> |> ignore
+        //Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeap |> ignore
+        //Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeapProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args ListZipperTest.testListZipper |> ignore
 
         //Tests.runTestsWithArgs defaultConfig args NonEmptyListTests.<> |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args PairingHeapTest.<> |> ignore
+        //Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeap |> ignore
+        //Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeapProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args RealTimeDequeTest.testRealTimeDeque |> ignore
 
@@ -70,7 +73,7 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args RingBufferTest.testRingBuffer |> ignore
 
         //Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTree |> ignore
-        //Tests.runTestsWithArgs defaultConfig args RoseTreeTest.<> |> ignore
+        //Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTreeProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args SkewBinaryRandomAccessListTest.testSkewBinaryRandomAccessList |> ignore
 

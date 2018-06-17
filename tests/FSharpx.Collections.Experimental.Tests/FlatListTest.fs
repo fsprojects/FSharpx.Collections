@@ -29,8 +29,8 @@ module FlatListTest =
 
     // NUnit TestCaseSource does not understand array of tuples at runtime
     let intGens start =
-        let v = Array.create 2 (box (flatlistIntGen, "FlatList"))
-        v.[1] <- box ((flatlistIntGen |> Gen.filter (fun (v, l) -> l.Length >= start)), "FlatList OfSeq")
+        let v = Array.create 2 flatlistIntGen
+        v.[1] <- flatlistIntGen |> Gen.filter (fun (v, l) -> l.Length >= start)
         v
 
     let intGensStart1 =
@@ -218,6 +218,11 @@ module FlatListTest =
         let objFun = fun (l' : (obj * obj) list) (elem1 : obj) (elem2 : obj) -> (elem1, elem2)::l'
         let stringFun = fun (l' : (string * string) list) (elem1 : string) (elem2 : string) -> (elem1, elem2)::l'
 
+        let rec nth l i =
+            match i with
+            | 0 -> List.head l
+            | _ -> nth (List.tail l) (i-1)
+
         testList "Experimental FlatList Properties" [
             testPropertyWithConfig config10k "FlatList.collect: expected result" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
                 fun (v, l) -> v |> FlatList.collect (fun elem -> FlatList.ofList [ 0 .. elem ]) |> FlatList.toList
@@ -239,11 +244,11 @@ module FlatListTest =
             testPropertyWithConfig config10k "fold: matches build list FlatList.rev int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
                 fun (v, l) -> v |> FlatList.fold (fun (l' : int list) (elem : int) -> elem::l') [] = (List.rev l) )
               
-            testPropertyWithConfig config10k "fold: matches build list FlatList.rev obj" <|
-                fun (v, l) -> v |> FlatList.fold (fun (l' : obj list) (elem : obj) -> elem::l') [] = (List.rev l) 
+            testPropertyWithConfig config10k "fold: matches build list FlatList.rev obj" (Prop.forAll (Arb.fromGen flatlistObjGen) <|
+                fun (v, l) -> v |> FlatList.fold (fun (l' : obj list) (elem : obj) -> elem::l') [] = (List.rev l) )
 
-            testPropertyWithConfig config10k "fold: matches build list FlatList.rev string" <|
-                fun (v, l) -> v |> FlatList.fold (fun (l' : string list) (elem : string) -> elem::l') [] = (List.rev l) 
+            testPropertyWithConfig config10k "fold: matches build list FlatList.rev string" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
+                fun (v, l) -> v |> FlatList.fold (fun (l' : string list) (elem : string) -> elem::l') [] = (List.rev l) )
 
             testPropertyWithConfig config10k "fold2: matches build list fold int" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
                 fun (v, l) -> (v,v) ||> FlatList.fold2 listFun [] = List.fold2 listFun [] l l )
@@ -263,19 +268,20 @@ module FlatListTest =
             testPropertyWithConfig config10k "foldback: matches build list string" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
                 fun (v, l) -> FlatList.foldBack (fun (elem : string) (l' : string list) -> elem::l') v [] = l )
 
-            //testPropertyWithConfig config10k "foldback2: matches build list" <|
+            testPropertyWithConfig config10k "foldback2: matches build FlatList"  (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> 
+                    let listFun = fun (elem1 : int) (elem2 : int) (l' : (int * int) list) -> (elem1, elem2)::l'
+                    FlatList.foldBack2 listFun v v [] = List.foldBack2 listFun l l [] )
+               
+            testPropertyWithConfig config10k "foldback2: matches build FlatList obj" (Prop.forAll (Arb.fromGen flatlistObjGen)  <|      
+                fun (v, l) -> 
+                    let objFun = fun (elem1 : obj) (elem2 : obj) (l' : (obj * obj) list) -> (elem1, elem2)::l'
+                    FlatList.foldBack2 objFun v v [] = List.foldBack2 objFun l l [] )
 
-            //    let listFun = fun (elem1 : int) (elem2 : int) (l' : (int * int) list) -> (elem1, elem2)::l'
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> foldBack2 listFun v v [] = List.foldBack2 listFun l l [] ))
-              
-            //    let objFun = fun (elem1 : obj) (elem2 : obj) (l' : (obj * obj) list) -> (elem1, elem2)::l'
-            //    fsCheck "FlatList obj" (Prop.forAll (Arb.fromGen flatlistObjGen) 
-            //        (fun (v, l) -> foldBack2 objFun v v [] = List.foldBack2 objFun l l [] ))
-
-            //    let stringFun = fun (elem1 : string) (elem2 : string) (l' : (string * string) list) -> (elem1, elem2)::l'
-            //    fsCheck "FlatList string" (Prop.forAll (Arb.fromGen flatlistStringGen) 
-            //        (fun (v, l) -> foldBack2 stringFun v v [] = List.foldBack2 stringFun l l [] ))
+            testPropertyWithConfig config10k "foldback2: matches build FlatList string" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
+                fun (v, l) -> 
+                    let stringFun = fun (elem1 : string) (elem2 : string) (l' : (string * string) list) -> (elem1, elem2)::l'
+                    FlatList.foldBack2 stringFun v v [] = List.foldBack2 stringFun l l [] )
 
             testPropertyWithConfig config10k "forall: works" (Prop.forAll (Arb.fromGen flatlistIntGen)  <|
                 fun (v, l) -> FlatList.forall (fun (elem : int) -> elem < 1000) v  =  true )
@@ -283,68 +289,51 @@ module FlatListTest =
             testPropertyWithConfig config10k "forall2: works" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
                 fun (v, l) -> FlatList.forall2 (fun (elem1 : int) (elem2 : int) -> (elem1 < 1000 && elem2 < 1000)) v v  =  true )
 
-            //let rec nth l i =
-            //    match i with
-            //    | 0 -> List.head l
-            //    | _ -> nth (List.tail l) (i-1)
+            testPropertyWithConfig config10k "Item: get last from flatlist"  (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (v : FlatList<int>, l : list<int>) -> v.[l.Length - 1] = (nth l (l.Length - 1)) )
 
-            //[<TestCaseSource("intGensStart1")>]
-            //testPropertyWithConfig config10k "Item: get last from flatlist``(x : obj) =
-            //    let genAndName = unbox x 
-            //    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (v : FlatList<int>, l : list<int>) -> v.[l.Length - 1] = (nth l (l.Length - 1)) ))
+            testPropertyWithConfig config10k "map: flatlist should allow map" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) ->
+                    let funMap = (fun x ->  x * 2)
+                    FlatList.map funMap v |> FlatList.toList =  List.map funMap l )
 
-            //testPropertyWithConfig config10k "map: flatlist should allow map" <|
+            testPropertyWithConfig config10k "map2: flatlist should allow map2" (Prop.forAll (Arb.fromGen flatlistIntGen) <|  
+                fun (v, l) -> 
+                    let funMap2 = (fun x y ->  ((x * 2), (y * 2)))
+                    FlatList.map2 funMap2 v v |> FlatList.toList =  List.map2 funMap2 l l )
 
-            //    let funMap = (fun x ->  x * 2)
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> map funMap v |> FlatList.toList =  List.map funMap l ))
+            testPropertyWithConfig config10k "mapi: flatlist should allow mapi" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> 
+                    let funMapi = (fun i x ->  i * x)
+                    FlatList.mapi funMapi v |> FlatList.toList =  List.mapi funMapi l )
 
-            //testPropertyWithConfig config10k "map2: flatlist should allow map2" <|
-
-            //    let funMap2 = (fun x y ->  ((x * 2), (y * 2)))
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> map2 funMap2 v v |> FlatList.toList =  List.map2 funMap2 l l ))
-
-            //testPropertyWithConfig config10k "mapi: flatlist should allow mapi" <|
-
-            //    let funMapi = (fun i x ->  i * x)
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> mapi funMapi v |> FlatList.toList =  List.mapi funMapi l ))
-
-            //testPropertyWithConfig config10k "partition: works" <|
-
-            //    let funMapi = (fun x ->  x % 2 = 0)
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> let x, y = partition funMapi v 
-            //                                                      ((FlatList.toList x),(FlatList.toList y)) =  List.partition funMapi l )) 
+            testPropertyWithConfig config10k "partition: works" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> 
+                    let funMapi = (fun x ->  x % 2 = 0)
+                    let x, y = FlatList.partition funMapi v 
+                    ((FlatList.toList x),(FlatList.toList y)) =  List.partition funMapi l )
     
-            //testPropertyWithConfig config10k "FlatList.rev: matches build list FlatList.rev" <|
-
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun ((q :FlatList<int>), (l : int list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
+            testPropertyWithConfig config10k "FlatList.rev: matches build FlatList FlatList.rev" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (q, l) -> q |> FlatList.rev |> List.ofSeq = (List.rev l) )
               
-            //    fsCheck "FlatList obj" (Prop.forAll (Arb.fromGen flatlistObjGen) 
-            //        (fun ((q :FlatList<obj>), (l : obj list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
+            testPropertyWithConfig config10k "FlatList.rev: matches build FlatList obj FlatList.rev" (Prop.forAll (Arb.fromGen flatlistObjGen) <|
+                fun (q, l) -> q |> FlatList.rev |> List.ofSeq = (List.rev l) )
 
-            //    fsCheck "FlatList string" (Prop.forAll (Arb.fromGen flatlistStringGen) 
-            //         (fun ((q :FlatList<string>), (l : string list)) -> q |> FlatList.rev |> List.FlatList.ofSeq = (List.FlatList.rev l) ))
+            testPropertyWithConfig config10k "FlatList.rev: matches build FlatList string FlatList.rev" (Prop.forAll (Arb.fromGen flatlistStringGen) <|
+                fun (q, l) -> q |> FlatList.rev |> List.ofSeq = (List.rev l) )
 
-            //testPropertyWithConfig config10k "sum: works" <|
+            testPropertyWithConfig config10k "sum: works" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> FlatList.sum v = List.sum l )
 
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> sum v = List.sum l ))
+            testPropertyWithConfig config10k "sumBy: works" (Prop.forAll (Arb.fromGen flatlistIntGen) <|
+                fun (v, l) -> 
+                    let funSumBy = (fun x ->  x * 2)
+                    FlatList.sumBy funSumBy v = List.sumBy funSumBy l )
 
-            //testPropertyWithConfig config10k "sumBy: works" <|
-            //    let funSumBy = (fun x ->  x * 2)
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> sumBy funSumBy v = List.sumBy funSumBy l ))
-
-            //testPropertyWithConfig config10k "tryFind: works" <|
-            //    let funTryFind = (fun x ->  x % 2 = 0)
-            //    fsCheck "FlatList" (Prop.forAll (Arb.fromGen flatlistIntGen) 
-            //        (fun (v, l) -> 
-            //                                                    match tryFind funTryFind v with
-            //                                                    | None -> None = List.tryFind funTryFind l 
-            //                                                    | Some x -> x = (List.tryFind funTryFind l).Value  ))
-
+            testPropertyWithConfig config10k "tryFind: works" (Prop.forAll (Arb.fromGen flatlistIntGen)<|
+                fun (v, l) -> 
+                    let funTryFind = (fun x ->  x % 2 = 0)
+                    match FlatList.tryFind funTryFind v with
+                    | None -> None = List.tryFind funTryFind l 
+                    | Some x -> x = (List.tryFind funTryFind l).Value  )
         ]
