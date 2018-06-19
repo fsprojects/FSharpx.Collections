@@ -201,7 +201,9 @@ module DList =
 
     let inline toList l = foldBack (List.cons) l [] 
 
-    let inline toSeq (l:DList<'T>) = l :> seq<'T>    let rec pairWiseDListData cons dlist lastvalue =
+    let inline toSeq (l:DList<'T>) = l :> seq<'T>    
+    
+    let rec pairWiseDListData cons dlist lastvalue =
         match dlist with
         | Nil -> cons
         | Cons(x,Nil) -> Join(cons,Unit(lastvalue,x))
