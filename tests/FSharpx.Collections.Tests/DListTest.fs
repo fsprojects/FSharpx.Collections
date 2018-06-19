@@ -129,7 +129,7 @@ module DListTests =
 
                 Expect.isFalse "structural equality" (l1 = l3) }
 
-            test "test DList pairwise on 0 1 2 3 lenghts" {
+            test "test DList pairwise on 0 1 2 3 lengths" {
                 for lengthTest in 0..3 do
                     let testList = [ for i in 0..lengthTest -> i ]
                     let expectedPairs = testList |> List.pairwise |> DList.ofSeq
