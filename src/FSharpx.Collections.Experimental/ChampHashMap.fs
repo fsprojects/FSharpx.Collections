@@ -26,9 +26,6 @@ type internal Node<'TKey, 'TValue when 'TKey : equality> =
 
 open BitUtilities
 open FSharpx.Collections
-open System.Runtime.CompilerServices
-[<assembly: InternalsVisibleTo("FSharpx.Collections.Experimental.Tests")>]
-do()
 module internal Node = 
 
     let inline set items index value inplace = 
@@ -155,12 +152,29 @@ module internal Node =
                 CollisionNode(newArr, hash)
     
 open Node
-type ChampHashMap<[<EqualityConditionalOn>]'TKey,'TValue when 'TKey : equality> private (root:Node<'TKey,'TValue>) = 
+type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root:Node<'TKey,'TValue>) = 
     member internal this.Root: Node<'TKey, 'TValue> = root
 
     new() = ChampHashMap(EmptyNode)
 
-    member this.Item key value = 
+    member this.Item(key, value) = 
+        let hashVector = BitVector32(int32(key.GetHashCode()))
+        let section = BitVector32.CreateSection(PartitionMaxValue)
+        let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
+        ChampHashMap(newRoot)
+
+    member private this.retrieveValue key valuefunc = 
+        let hashVector = BitVector32(int32(key.GetHashCode()))
+        let section = BitVector32.CreateSection(PartitionMaxValue)
+        valuefunc this.Root key
+
+    member this.Item key =
+        this.retrieveValue key getValue
+    
+    member public this.TryGetValue key = 
+        this.retrieveValue key tryGetValue
+
+    member public this.Add key value =
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
         let newRoot = update this.Root false {Key=key; Value=value} hashVector section 

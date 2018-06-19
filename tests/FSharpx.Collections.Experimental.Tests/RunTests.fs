@@ -7,10 +7,10 @@ module RunTests =
     [<EntryPoint>]
     let main args =
 
-        Tests.runTestsWithArgs defaultConfig args AltBinaryRandomAccessListTest.testAltBinaryRandomAccessList |> ignore
+        //Tests.runTestsWithArgs defaultConfig args AltBinaryRandomAccessListTest.testAltBinaryRandomAccessList |> ignore
 
-        Tests.runTestsWithArgs defaultConfig args BankersDequeTest.testBankersDeque |> ignore
-
+        //Tests.runTestsWithArgs defaultConfig args BankersDequeTest.testBankersDeque |> ignore
+        Tests.runTestsWithArgs defaultConfig args champHashMapTests.testQueue |> ignore
         Tests.runTestsWithArgs defaultConfig args BatchDequeTest.testBatchDeque |> ignore
 
         Tests.runTestsWithArgs defaultConfig args BinaryRandomAccessListTest.testBinaryRandomAccessList |> ignore
@@ -24,7 +24,7 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args BKTreeTest.testBKTree |> ignore
 
-        Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArray |> ignore
+        //Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArray |> ignore
 
         Tests.runTestsWithArgs defaultConfig args BootstrappedQueueTest.testBootstrappedQueue |> ignore
 
