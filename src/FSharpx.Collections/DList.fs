@@ -210,7 +210,7 @@ module DList =
         | Cons(x,rest) ->
             pairWiseDListData (Join(cons,Unit(lastvalue,x))) rest x
 
-    let inline pairwise (l:DList<'T>) =
+    let pairwise (l:DList<'T>) =
         let dlistData =
             match l with
             | Nil -> Nil
