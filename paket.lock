@@ -17,7 +17,7 @@ NUGET
       Microsoft.TestPlatform.ObjectModel (>= 15.0 < 16.0) - restriction: >= net461
       Mono.Cecil (>= 0.10 < 0.11) - restriction: >= net461
       Newtonsoft.Json (>= 10.0 < 11.0) - restriction: >= net461
-    FAKE (5.0)
+    FAKE (4.64.13)
     FsCheck (2.11)
       FSharp.Core (>= 4.0.0.1) - restriction: || (>= net452) (&& (< netstandard1.6) (>= portable-net45+win8)) (&& (< portable-net45+win8) (>= portable-net45+win8+wp8)) (&& (< portable-net45+win8+wp8) (>= portable-net45+win8+wp8+wpa81))
       FSharp.Core (>= 4.3.4) - restriction: && (< net452) (>= netstandard1.6)
@@ -702,5 +702,5 @@ NUGET
       System.ValueTuple (>= 4.4 < 5.0)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (6ba51f5612a914e161be2a9b642907f75e28780f)
+    modules/Octokit/Octokit.fsx (320bdd6c69725de15a7734cb40d0f6330b37ec64)
       Octokit (>= 0.20)
