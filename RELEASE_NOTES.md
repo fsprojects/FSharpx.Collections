@@ -1,3 +1,6 @@
+#### 2.0.0-beta3 - 2018-06-19
+* pairwise DList
+
 #### 2.0.0-beta2 - 2018-05-26
 * target net45 and netstandard2.0 (beta1 incorrectly targetted net461)
 

@@ -3,7 +3,7 @@ source https://ci.appveyor.com/nuget/fsharp-formatting
 
 nuget Expecto
 nuget Expecto.FsCheck
-nuget FAKE 
+nuget FAKE 4.64.13
 nuget FSharp.Formatting prerelease
 nuget FsCheck 
 nuget FSharp.Core
