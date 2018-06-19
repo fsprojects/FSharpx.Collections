@@ -128,6 +128,13 @@ module DListTests =
                 let l3 = DList.ofSeq [1..99] |> DList.conj 7
 
                 Expect.isFalse "structural equality" (l1 = l3) }
+            test "test DList pairwise" {
+                let testList = [ for i in 0..4 -> i ]
+                let expectedPairs = testList |> List.pairwise |> DList.ofSeq
+                let testDList = DList.ofSeq testList
+                let paired = DList.pairwise testDList
+                Expect.sequenceEqual "pairwise does not match List.pairwise" expectedPairs paired
+            }
         ]
 
     [<Tests>]
