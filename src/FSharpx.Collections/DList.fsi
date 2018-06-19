@@ -101,3 +101,4 @@ module DList =
     val inline toSeq  : DList<'T> ->  seq<'T>
 
     val inline pairwise : DList<'T> -> DList<'T*'T>
+    
