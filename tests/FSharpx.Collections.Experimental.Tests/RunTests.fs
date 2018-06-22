@@ -61,7 +61,7 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args ListZipperTest.testListZipper |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args NonEmptyListTests.<> |> ignore
+        Tests.runTestsWithArgs defaultConfig args NonEmptyListTests.testNonEmptyList |> ignore
 
         Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeap |> ignore
         Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeapProperties |> ignore
