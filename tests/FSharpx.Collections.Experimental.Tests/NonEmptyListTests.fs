@@ -4,6 +4,7 @@ open FSharpx.Collections
 open FsCheck
 open Expecto
 open Expecto.Flip
+open Properties
 
 module NonEmptyListTests =
 

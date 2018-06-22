@@ -56,15 +56,15 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args IQueueTest.testIQueue |> ignore
         Tests.runTestsWithArgs defaultConfig args IQueueTest.testIQueueProperties |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeap |> ignore
-        //Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeapProperties |> ignore
+        Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeap |> ignore
+        Tests.runTestsWithArgs defaultConfig args LeftistHeapTest.testLeftistHeapProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args ListZipperTest.testListZipper |> ignore
 
         //Tests.runTestsWithArgs defaultConfig args NonEmptyListTests.<> |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeap |> ignore
-        //Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeapProperties |> ignore
+        Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeap |> ignore
+        Tests.runTestsWithArgs defaultConfig args PairingHeapTest.testPairingHeapProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args RealTimeDequeTest.testRealTimeDeque |> ignore
 
@@ -72,15 +72,13 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args RingBufferTest.testRingBuffer |> ignore
 
-        //Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTree |> ignore
-        //Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTreeProperties |> ignore
+        Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTree |> ignore
+        Tests.runTestsWithArgs defaultConfig args RoseTreeTest.testRoseTreeProperties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args SkewBinaryRandomAccessListTest.testSkewBinaryRandomAccessList |> ignore
 
-        // to do: register SkewBinomialHeap
-        //Tests.runTestsWithArgs defaultConfig args SkewBinomialHeapTest.testSkewBinomialHeap |> ignore
+        Tests.runTestsWithArgs defaultConfig args SkewBinomialHeapTest.testSkewBinomialHeap |> ignore
 
         Tests.runTestsWithArgs defaultConfig args TimeSeriesTest.testTimeSeries |> ignore
     
         0
-

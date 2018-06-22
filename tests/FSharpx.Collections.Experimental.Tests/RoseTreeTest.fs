@@ -95,32 +95,32 @@ module RoseTreeTest =
 
         registerGen.Force()
 
-        let equality() =
-            checkEquality<int RoseTree> "RoseTree"
+        //let equality() =
+        //    checkEquality<int RoseTree> "RoseTree"
+
+        let map = RoseTree.map
+        let inline (>>=) m f = RoseTree.bind f m
+        let ret = RoseTree.singleton
 
         testList "Experimental RoseTree propeerties" [
 
-            //test "functor laws" {
-            //    let map = RoseTree.map
-            //    let n = sprintf "RoseTree : functor %s"
-            //    fsCheck (n "preserves identity") <| 
-            //        fun value -> map id value = value
-            //    fsCheck (n "preserves composition") <|
-            //        fun f g value -> map (f << g) value = (map f << map g) value
+            testPropertyWithConfig config10k "RoseTree functor laws: preserves identity" <|
+                    fun value -> map id value = value 
 
-            //test "monad laws" {
-            //    let n = sprintf "RoseTree : monad %s"
-            //    let inline (>>=) m f = RoseTree.bind f m
-            //    let ret = RoseTree.singleton
-            //    fsCheck "left identity" <| 
-            //        fun f a -> ret a >>= f = f a
-            //    fsCheck "right identity" <| 
-            //        fun x -> x >>= ret = x
-            //    fsCheck "associativity" <| 
-            //        fun f g v ->
-            //            let a = (v >>= f) >>= g
-            //            let b = v >>= (fun x -> f x >>= g)
-            //            a = b
+            testPropertyWithConfig config10k "RoseTree functor laws: preserves composition" <|
+                    fun f g value -> map (f << g) value = (map f << map g) value
+
+            testPropertyWithConfig config10k "RoseTree monad laws : left identity" <|
+                    fun f a -> ret a >>= f = f a
+
+            testPropertyWithConfig config10k "RoseTree monad laws : right identity" <|
+                    fun x -> x >>= ret = x
+
+            testPropertyWithConfig config10k "RoseTree monad laws : associativity" <|
+                    fun f g v ->
+                        let a = (v >>= f) >>= g
+                        let b = v >>= (fun x -> f x >>= g)
+                        a = b
 
         //// TODO port example from http://blog.moertel.com/articles/2007/03/07/directory-tree-printing-in-haskell-part-two-refactoring
         ]
