@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IPersistentVector<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>IPersistentVector<'T></h1>
+<p>
+
+    <span>Namespace: FSharpx.Collections</span><br />
+        <span>Parent Module: <a href="fsharpx-collections-interfaces.html">Interfaces</a></span><br />
+    </p>
+<div class="xmldoc">
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1093', 1093)" onmouseover="showTip(event, '1093', 1093)">
+            AssocN(arg1, arg2)
+          </code>
+          <div class="tip" id="1093">
+            <strong>Signature:</strong> (int * &#39;T) -&gt; IPersistentVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L28-28" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1094', 1094)" onmouseover="showTip(event, '1094', 1094)">
+            Conj(arg1)
+          </code>
+          <div class="tip" id="1094">
+            <strong>Signature:</strong> &#39;T -&gt; IPersistentVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L16-16" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns a new vector with the element 'added' at the end.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1095', 1095)" onmouseover="showTip(event, '1095', 1095)">
+            Count()
+          </code>
+          <div class="tip" id="1095">
+            <strong>Signature:</strong> unit -&gt; int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L19-19" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns the number of items in the collection.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1096', 1096)" onmouseover="showTip(event, '1096', 1096)">
+            [arg1]
+          </code>
+          <div class="tip" id="1096">
+            <strong>Signature:</strong> int -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L13-13" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns the value at the index. If the index is out of bounds it throws an exception.</p>
+
+
+              <p>CompiledName: <code>get_Item</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1097', 1097)" onmouseover="showTip(event, '1097', 1097)">
+            Peek()
+          </code>
+          <div class="tip" id="1097">
+            <strong>Signature:</strong> unit -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L22-22" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns the last element in the vector. If the vector is empty it throws an exception.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1098', 1098)" onmouseover="showTip(event, '1098', 1098)">
+            Pop()
+          </code>
+          <div class="tip" id="1098">
+            <strong>Signature:</strong> unit -&gt; IPersistentVector&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L25-25" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Returns a new vector without the last item. If the collection is empty it throws an exception.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

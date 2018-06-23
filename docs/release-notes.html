@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>release-notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FSharpx.Collections is a collection of datastructures for use with F# and C#.">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h4><a name="2-0-0-beta3-2018-06-19" class="anchor" href="#2-0-0-beta3-2018-06-19">2.0.0-beta3 - 2018-06-19</a></h4>
+<ul>
+<li>pairwise DList</li>
+</ul>
+<h4><a name="2-0-0-beta2-2018-05-26" class="anchor" href="#2-0-0-beta2-2018-05-26">2.0.0-beta2 - 2018-05-26</a></h4>
+<ul>
+<li>target net45 and netstandard2.0 (beta1 incorrectly targetted net461)</li>
+</ul>
+<h4><a name="2-0-0-beta1-2018-05-26" class="anchor" href="#2-0-0-beta1-2018-05-26">2.0.0-beta1 - 2018-05-26</a></h4>
+<ul>
+<li>Microsoft.NET.Sdk projects</li>
+<li>target net45 and netstandard2.0</li>
+<li>BREAKING CHANGE: RequireQualifiedAccess</li>
+<li>BREAKING CHANGE: type RealTimeQueue under Experimental namespace</li>
+<li>BREAKING CHANGE: type BootstrappedQueue under Experimental namespace</li>
+<li>BREAKING CHANGE: type ListZipper under Experimental namespace</li>
+<li>BREAKING CHANGE: types BinaryTree, TreeDirection, BinaryTreeZipper under Experimental namespace</li>
+<li>BREAKING CHANGE: type ImplicitQueue under Experimental namespace</li>
+<li>BREAKING CHANGE: type BinaryRandomAccessList under Experimental namespace</li>
+<li>BREAKING CHANGE: type Digit for BinaryRandomAccessList renamed TreeBRALDigit</li>
+</ul>
+<h4><a name="1-17-0-26-06-2017" class="anchor" href="#1-17-0-26-06-2017">1.17.0 - 26.06.2017</a></h4>
+<ul>
+<li>PERFORMANCE: NonEmptyList Collect had poor performance - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/75">https://github.com/fsprojects/FSharpx.Collections/pull/75</a></li>
+</ul>
+<h4><a name="1-16-0-25-05-2017" class="anchor" href="#1-16-0-25-05-2017">1.16.0 - 25.05.2017</a></h4>
+<ul>
+<li>New tagged structures - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/69">https://github.com/fsprojects/FSharpx.Collections/pull/69</a></li>
+<li>Use FSharp.Core 4.0</li>
+<li>Couple of new helper functions - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/64">https://github.com/fsprojects/FSharpx.Collections/pull/64</a> <a href="https://github.com/fsprojects/FSharpx.Collections/pull/63">https://github.com/fsprojects/FSharpx.Collections/pull/63</a></li>
+<li>Improved RandomAccessList API with some functions from PersistentVector - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/54">https://github.com/fsprojects/FSharpx.Collections/pull/54</a></li>
+<li>Faster NonEmptyList implementation - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/62">https://github.com/fsprojects/FSharpx.Collections/pull/62</a></li>
+</ul>
+<h4><a name="1-14-0-13-02-2016" class="anchor" href="#1-14-0-13-02-2016">1.14.0 - 13.02.2016</a></h4>
+<ul>
+<li>Allow 4.0 FSharp.Core</li>
+<li>Distinct and DistinctBy functions for ResizeArray - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/56">https://github.com/fsprojects/FSharpx.Collections/pull/56</a></li>
+<li>Add zip to NonEmptyList - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/46">https://github.com/fsprojects/FSharpx.Collections/pull/46</a></li>
+</ul>
+<h4><a name="1-12-4-13-09-2015" class="anchor" href="#1-12-4-13-09-2015">1.12.4 - 13.09.2015</a></h4>
+<ul>
+<li>Fixed enumerating empty RandomAccessList - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/45">https://github.com/fsprojects/FSharpx.Collections/pull/45</a></li>
+</ul>
+<h4><a name="1-12-3-12-09-2015" class="anchor" href="#1-12-3-12-09-2015">1.12.3 - 12.09.2015</a></h4>
+<ul>
+<li>ResizeArray.collect made to take seq as an input - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/41">https://github.com/fsprojects/FSharpx.Collections/pull/41</a></li>
+<li>Made conflict resolution explicit in variable names - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/39">https://github.com/fsprojects/FSharpx.Collections/pull/39</a></li>
+</ul>
+<h4><a name="1-12-1-17-07-2015" class="anchor" href="#1-12-1-17-07-2015">1.12.1 - 17.07.2015</a></h4>
+<ul>
+<li>LazyList.fold - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/34">https://github.com/fsprojects/FSharpx.Collections/pull/34</a></li>
+</ul>
+<h4><a name="1-12-0-17-07-2015" class="anchor" href="#1-12-0-17-07-2015">1.12.0 - 17.07.2015</a></h4>
+<ul>
+<li>New SkewBinomialHeap - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/36">https://github.com/fsprojects/FSharpx.Collections/pull/36</a></li>
+</ul>
+<h4><a name="1-11-1-17-07-2015" class="anchor" href="#1-11-1-17-07-2015">1.11.1 - 17.07.2015</a></h4>
+<ul>
+<li>New Block resize array functions - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/37">https://github.com/fsprojects/FSharpx.Collections/pull/37</a></li>
+</ul>
+<h4><a name="1-11-0-25-05-2015" class="anchor" href="#1-11-0-25-05-2015">1.11.0 - 25.05.2015</a></h4>
+<ul>
+<li>New Block resize array - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/33">https://github.com/fsprojects/FSharpx.Collections/pull/33</a></li>
+<li>BUGFIX: Prevent ArrayNode's tryFind from returning Some null - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/22">https://github.com/fsprojects/FSharpx.Collections/pull/22</a></li>
+</ul>
+<h4><a name="1-10-0-26-02-2015" class="anchor" href="#1-10-0-26-02-2015">1.10.0 - 26.02.2015</a></h4>
+<ul>
+<li>Added profile 259 and fixed profile 47 folder name - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/26">https://github.com/fsprojects/FSharpx.Collections/pull/26</a></li>
+</ul>
+<h4><a name="1-9-6-13-01-2015" class="anchor" href="#1-9-6-13-01-2015">1.9.6 - 13.01.2015</a></h4>
+<ul>
+<li>Bump version due to broken logo link - <a href="https://github.com/fsprojects/FSharpx.Collections/issues/21">https://github.com/fsprojects/FSharpx.Collections/issues/21</a></li>
+</ul>
+<h4><a name="1-9-5-13-01-2015" class="anchor" href="#1-9-5-13-01-2015">1.9.5 - 13.01.2015</a></h4>
+<ul>
+<li>Bump version due to broken package meta data - <a href="https://github.com/fsprojects/FSharpx.Collections/issues/21">https://github.com/fsprojects/FSharpx.Collections/issues/21</a></li>
+</ul>
+<h4><a name="1-9-4-07-08-2014" class="anchor" href="#1-9-4-07-08-2014">1.9.4 - 07.08.2014</a></h4>
+<ul>
+<li>Add Profile47</li>
+</ul>
+<h4><a name="1-9-3-07-08-2014" class="anchor" href="#1-9-3-07-08-2014">1.9.3 - 07.08.2014</a></h4>
+<ul>
+<li>Tail recursive implementation of Heap.Tail - <a href="https://github.com/fsprojects/FSharpx.Collections/pull/17">https://github.com/fsprojects/FSharpx.Collections/pull/17</a></li>
+</ul>
+<h4><a name="1-9-2-14-01-2013" class="anchor" href="#1-9-2-14-01-2013">1.9.2 - 14.01.2013</a></h4>
+<ul>
+<li>Fixing nuget package</li>
+</ul>
+<h4><a name="1-9-1-14-01-2013" class="anchor" href="#1-9-1-14-01-2013">1.9.1 - 14.01.2013</a></h4>
+<ul>
+<li>Initial release from new location; previous contributor history lost</li>
+</ul>
+
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

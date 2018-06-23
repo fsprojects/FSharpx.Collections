@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RoseTree - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>RoseTree</h1>
+<p>
+  <span>Namespace: FSharpx.Collections.Experimental</span><br />
+        <span>
+          Attributes:<br />
+[&lt;CompilationRepresentation(4)&gt;]<br />
+[&lt;Extension&gt;]<br />
+[&lt;RequireQualifiedAccess&gt;]<br />
+          
+      </span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '864', 864)" onmouseover="showTip(event, '864', 864)">
+            ap(x f)
+          </code>
+          <div class="tip" id="864">
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13210&gt; -&gt; f:RoseTree&lt;(&#39;?13210 -&gt; &#39;?13211)&gt; -&gt; RoseTree&lt;&#39;?13211&gt;<br />
+                          <strong>Type parameters:</strong> '?13210, '?13211                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L47-47" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
+            bind(f x)
+          </code>
+          <div class="tip" id="865">
+            <strong>Signature:</strong> f:(&#39;c -&gt; RoseTree&lt;&#39;d&gt;) -&gt; x:RoseTree&lt;&#39;c&gt; -&gt; RoseTree&lt;&#39;d&gt;<br />
+                          <strong>Type parameters:</strong> 'c, 'd                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L56-56" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
+            create(root children)
+          </code>
+          <div class="tip" id="866">
+            <strong>Signature:</strong> root:&#39;b -&gt; children:RoseForest&lt;&#39;b&gt; -&gt; RoseTree&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'b                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L39-39" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
+            dfsPost(x)
+          </code>
+          <div class="tip" id="867">
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13222&gt; -&gt; seq&lt;&#39;?13222&gt;<br />
+                          <strong>Type parameters:</strong> '?13222                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;DfsPost&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L71-71" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>DfsPost</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
+            dfsPre(x)
+          </code>
+          <div class="tip" id="868">
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13220&gt; -&gt; seq&lt;&#39;?13220&gt;<br />
+                          <strong>Type parameters:</strong> '?13220                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;DfsPre&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L63-63" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>DfsPre</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
+            lift2(f a b)
+          </code>
+          <div class="tip" id="869">
+            <strong>Signature:</strong> f:(&#39;d -&gt; &#39;e -&gt; &#39;f) -&gt; a:RoseTree&lt;&#39;d&gt; -&gt; b:RoseTree&lt;&#39;e&gt; -&gt; RoseTree&lt;&#39;f&gt;<br />
+                          <strong>Type parameters:</strong> 'd, 'e, 'f                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L54-54" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+            map(f x)
+          </code>
+          <div class="tip" id="870">
+            <strong>Signature:</strong> f:(&#39;c -&gt; &#39;d) -&gt; x:RoseTree&lt;&#39;c&gt; -&gt; RoseTree&lt;&#39;d&gt;<br />
+                          <strong>Type parameters:</strong> 'c, 'd                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L43-43" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
+            mapAccum(f state tree)
+          </code>
+          <div class="tip" id="871">
+            <strong>Signature:</strong> f:(&#39;e -&gt; &#39;f -&gt; &#39;e * &#39;g) -&gt; state:&#39;e -&gt; tree:RoseTree&lt;&#39;f&gt; -&gt; &#39;e * RoseTree&lt;&#39;g&gt;<br />
+                          <strong>Type parameters:</strong> 'e, 'f, 'g                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L88-88" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Behaves like a combination of map and fold;
+it applies a function to each element of a tree,
+passing an accumulating parameter,
+and returning a final value of this accumulator together with the new tree.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
+            singleton(x)
+          </code>
+          <div class="tip" id="872">
+            <strong>Signature:</strong> x:&#39;b -&gt; RoseTree&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'b                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
+            unfold(f seed)
+          </code>
+          <div class="tip" id="873">
+            <strong>Signature:</strong> f:(&#39;?13224 -&gt; &#39;?13225 * LazyList&lt;&#39;?13224&gt;) -&gt; seed:&#39;?13224 -&gt; RoseTree&lt;&#39;?13225&gt;<br />
+                          <strong>Type parameters:</strong> '?13224, '?13225                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L77-77" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
+            unfoldForest(f)
+          </code>
+          <div class="tip" id="874">
+            <strong>Signature:</strong> f:(&#39;?13227 -&gt; &#39;?13228 * LazyList&lt;&#39;?13227&gt;) -&gt; LazyList&lt;&#39;?13227&gt; -&gt; RoseForest&lt;&#39;?13228&gt;<br />
+                          <strong>Type parameters:</strong> '?13227, '?13228                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L81-81" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

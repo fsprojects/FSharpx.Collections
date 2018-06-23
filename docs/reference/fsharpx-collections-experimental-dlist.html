@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DList - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>DList</h1>
+<p>
+  <span>Namespace: FSharpx.Collections.Experimental</span><br />
+        <span>
+          Attributes:<br />
+[&lt;RequireQualifiedAccess&gt;]<br />
+          
+      </span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '549', 549)" onmouseover="showTip(event, '549', 549)">
+            append(left right)
+          </code>
+          <div class="tip" id="549">
+            <strong>Signature:</strong> left:DList&lt;&#39;?13945&gt; -&gt; right:DList&lt;&#39;?13945&gt; -&gt; DList&lt;&#39;?13945&gt;<br />
+                          <strong>Type parameters:</strong> '?13945                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L123-123" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList of two lists.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '550', 550)" onmouseover="showTip(event, '550', 550)">
+            cons(hd tl)
+          </code>
+          <div class="tip" id="550">
+            <strong>Signature:</strong> hd:&#39;?13943 -&gt; tl:DList&lt;&#39;?13943&gt; -&gt; DList&lt;&#39;?13943&gt;<br />
+                          <strong>Type parameters:</strong> '?13943                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L117-117" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList with the element added to the beginning.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '551', 551)" onmouseover="showTip(event, '551', 551)">
+            empty
+          </code>
+          <div class="tip" id="551">
+            <strong>Signature:</strong> DList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L95-95" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns DList of no elements.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '552', 552)" onmouseover="showTip(event, '552', 552)">
+            fold(f seed l)
+          </code>
+          <div class="tip" id="552">
+            <strong>Signature:</strong> f:(&#39;?13953 -&gt; &#39;?13954 -&gt; &#39;?13953) -&gt; seed:&#39;?13953 -&gt; l:DList&lt;&#39;?13954&gt; -&gt; &#39;?13953<br />
+                          <strong>Type parameters:</strong> '?13953, '?13954                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L141-141" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
+See <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068</a></p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '553', 553)" onmouseover="showTip(event, '553', 553)">
+            head(l)
+          </code>
+          <div class="tip" id="553">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13947&gt; -&gt; &#39;?13947<br />
+                          <strong>Type parameters:</strong> '?13947                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L131-131" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns the first element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '554', 554)" onmouseover="showTip(event, '554', 554)">
+            isEmpty(l)
+          </code>
+          <div class="tip" id="554">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13933&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?13933                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L98-98" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the DList has no elements.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '555', 555)" onmouseover="showTip(event, '555', 555)">
+            length(l)
+          </code>
+          <div class="tip" id="555">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13935&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?13935                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L101-101" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns the count of elememts.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '556', 556)" onmouseover="showTip(event, '556', 556)">
+            ofSeq(s)
+          </code>
+          <div class="tip" id="556">
+            <strong>Signature:</strong> s:seq&lt;&#39;?13939&gt; -&gt; DList&lt;&#39;?13939&gt;<br />
+                          <strong>Type parameters:</strong> '?13939                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L107-107" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a DList of the seq.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '557', 557)" onmouseover="showTip(event, '557', 557)">
+            singleton(x)
+          </code>
+          <div class="tip" id="557">
+            <strong>Signature:</strong> x:&#39;?13937 -&gt; DList&lt;&#39;?13937&gt;<br />
+                          <strong>Type parameters:</strong> '?13937                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L104-104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns DList of one elements.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '558', 558)" onmouseover="showTip(event, '558', 558)">
+            snoc(l x)
+          </code>
+          <div class="tip" id="558">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13949&gt; -&gt; x:&#39;?13949 -&gt; DList&lt;&#39;?13949&gt;<br />
+                          <strong>Type parameters:</strong> '?13949                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L134-134" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a new DList with the element added to the end.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '559', 559)" onmouseover="showTip(event, '559', 559)">
+            tail(l)
+          </code>
+          <div class="tip" id="559">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13951&gt; -&gt; DList&lt;&#39;?13951&gt;<br />
+                          <strong>Type parameters:</strong> '?13951                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L137-137" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n). Returns a new DList of the elements trailing the first element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '560', 560)" onmouseover="showTip(event, '560', 560)">
+            toArray(l)
+          </code>
+          <div class="tip" id="560">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13958&gt; -&gt; &#39;?13958 []<br />
+                          <strong>Type parameters:</strong> '?13958                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L155-155" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '561', 561)" onmouseover="showTip(event, '561', 561)">
+            toList(l)
+          </code>
+          <div class="tip" id="561">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13956&gt; -&gt; &#39;?13956 list<br />
+                          <strong>Type parameters:</strong> '?13956                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L153-153" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '562', 562)" onmouseover="showTip(event, '562', 562)">
+            toSeq(l)
+          </code>
+          <div class="tip" id="562">
+            <strong>Signature:</strong> l:DList&lt;&#39;?13941&gt; -&gt; seq&lt;&#39;?13941&gt;<br />
+                          <strong>Type parameters:</strong> '?13941                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/DList.fs#L114-114" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a seq of the DList elements.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

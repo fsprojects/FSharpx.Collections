@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IDeque<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>IDeque<'T></h1>
+<p>
+
+    <span>Namespace: FSharpx.Collections</span><br />
+        <span>Parent Module: <a href="fsharpx-collections-interfaces.html">Interfaces</a></span><br />
+    </p>
+<div class="xmldoc">
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1056', 1056)" onmouseover="showTip(event, '1056', 1056)">
+            Cons(arg1)
+          </code>
+          <div class="tip" id="1056">
+            <strong>Signature:</strong> &#39;T -&gt; IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L35-35" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new deque with the element added to the beginning</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1057', 1057)" onmouseover="showTip(event, '1057', 1057)">
+            Count
+          </code>
+          <div class="tip" id="1057">
+            <strong>Signature:</strong> int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L38-38" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the count of elememts</p>
+
+
+              <p>CompiledName: <code>get_Count</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1058', 1058)" onmouseover="showTip(event, '1058', 1058)">
+            Head
+          </code>
+          <div class="tip" id="1058">
+            <strong>Signature:</strong> &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the first element</p>
+
+
+              <p>CompiledName: <code>get_Head</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1059', 1059)" onmouseover="showTip(event, '1059', 1059)">
+            Init
+          </code>
+          <div class="tip" id="1059">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L47-47" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new deque of the elements before the last element</p>
+
+
+              <p>CompiledName: <code>get_Init</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1060', 1060)" onmouseover="showTip(event, '1060', 1060)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1060">
+            <strong>Signature:</strong> bool<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L53-53" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns true if the deque has no elements</p>
+
+
+              <p>CompiledName: <code>get_IsEmpty</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1061', 1061)" onmouseover="showTip(event, '1061', 1061)">
+            Last
+          </code>
+          <div class="tip" id="1061">
+            <strong>Signature:</strong> &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L56-56" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the last element</p>
+
+
+              <p>CompiledName: <code>get_Last</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1062', 1062)" onmouseover="showTip(event, '1062', 1062)">
+            Length
+          </code>
+          <div class="tip" id="1062">
+            <strong>Signature:</strong> int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L62-62" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the count of elememts</p>
+
+
+              <p>CompiledName: <code>get_Length</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1063', 1063)" onmouseover="showTip(event, '1063', 1063)">
+            Lookup(arg1)
+          </code>
+          <div class="tip" id="1063">
+            <strong>Signature:</strong> int -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L65-65" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns element by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1064', 1064)" onmouseover="showTip(event, '1064', 1064)">
+            Remove(arg1)
+          </code>
+          <div class="tip" id="1064">
+            <strong>Signature:</strong> int -&gt; IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L71-71" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns deque with element removed by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1065', 1065)" onmouseover="showTip(event, '1065', 1065)">
+            Rev
+          </code>
+          <div class="tip" id="1065">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L77-77" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns deque reversed</p>
+
+
+              <p>CompiledName: <code>get_Rev</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1066', 1066)" onmouseover="showTip(event, '1066', 1066)">
+            Snoc(arg1)
+          </code>
+          <div class="tip" id="1066">
+            <strong>Signature:</strong> &#39;T -&gt; IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L80-80" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new deque with the element added to the end</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1067', 1067)" onmouseover="showTip(event, '1067', 1067)">
+            Tail
+          </code>
+          <div class="tip" id="1067">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L83-83" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new deque of the elements trailing the first element</p>
+
+
+              <p>CompiledName: <code>get_Tail</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1068', 1068)" onmouseover="showTip(event, '1068', 1068)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1068">
+            <strong>Signature:</strong> &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L44-44" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option first element</p>
+
+
+              <p>CompiledName: <code>get_TryGetHead</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1069', 1069)" onmouseover="showTip(event, '1069', 1069)">
+            TryGetInit
+          </code>
+          <div class="tip" id="1069">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L50-50" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option deque of the elements before the last element</p>
+
+
+              <p>CompiledName: <code>get_TryGetInit</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1070', 1070)" onmouseover="showTip(event, '1070', 1070)">
+            TryGetLast
+          </code>
+          <div class="tip" id="1070">
+            <strong>Signature:</strong> &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L59-59" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option last element</p>
+
+
+              <p>CompiledName: <code>get_TryGetLast</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1071', 1071)" onmouseover="showTip(event, '1071', 1071)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1071">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L86-86" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option deque of the elements trailing the first element</p>
+
+
+              <p>CompiledName: <code>get_TryGetTail</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1072', 1072)" onmouseover="showTip(event, '1072', 1072)">
+            TryLookup(arg1)
+          </code>
+          <div class="tip" id="1072">
+            <strong>Signature:</strong> int -&gt; &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L68-68" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option element by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1073', 1073)" onmouseover="showTip(event, '1073', 1073)">
+            TryRemove(arg1)
+          </code>
+          <div class="tip" id="1073">
+            <strong>Signature:</strong> int -&gt; IDeque&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L74-74" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1074', 1074)" onmouseover="showTip(event, '1074', 1074)">
+            TryUncons
+          </code>
+          <div class="tip" id="1074">
+            <strong>Signature:</strong> (&#39;T * IDeque&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L92-92" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>get_TryUncons</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1075', 1075)" onmouseover="showTip(event, '1075', 1075)">
+            TryUnsnoc
+          </code>
+          <div class="tip" id="1075">
+            <strong>Signature:</strong> (IDeque&lt;&#39;T&gt; * &#39;T) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L98-98" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option init and the last element</p>
+
+
+              <p>CompiledName: <code>get_TryUnsnoc</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1076', 1076)" onmouseover="showTip(event, '1076', 1076)">
+            TryUpdate(arg1 arg2)
+          </code>
+          <div class="tip" id="1076">
+            <strong>Signature:</strong> int -&gt; &#39;T -&gt; IDeque&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L104-104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option deque with element updated by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1077', 1077)" onmouseover="showTip(event, '1077', 1077)">
+            Uncons
+          </code>
+          <div class="tip" id="1077">
+            <strong>Signature:</strong> &#39;T * IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L89-89" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the first element and tail</p>
+
+
+              <p>CompiledName: <code>get_Uncons</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1078', 1078)" onmouseover="showTip(event, '1078', 1078)">
+            Unsnoc
+          </code>
+          <div class="tip" id="1078">
+            <strong>Signature:</strong> IDeque&lt;&#39;T&gt; * &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L95-95" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns init and the last element</p>
+
+
+              <p>CompiledName: <code>get_Unsnoc</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1079', 1079)" onmouseover="showTip(event, '1079', 1079)">
+            Update(arg1 arg2)
+          </code>
+          <div class="tip" id="1079">
+            <strong>Signature:</strong> int -&gt; &#39;T -&gt; IDeque&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L101-101" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns deque with element updated by index</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

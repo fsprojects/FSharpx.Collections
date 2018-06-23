@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Heap<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Heap<'T></h1>
+<p>
+
+    <span>Namespace: FSharpx.Collections</span><br />
+    </p>
+<div class="xmldoc">
+<p>Heap is an ordered linear structure where the ordering is either ascending or descending.
+"head" inspects the first element in the ordering, "tail" takes the remaining structure
+after head, and "insert" places elements within the ordering. PriorityQueue is available
+as an alternate interface.
+According to Okasaki the time complexity of the heap functions in this Heap implementation
+(based on the "pairing" heap) have "resisted" time complexity analysis.</p>
+
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1158', 1158)" onmouseover="showTip(event, '1158', 1158)">
+            new(isDescending, length, data)
+          </code>
+          <div class="tip" id="1158">
+            <strong>Signature:</strong> (isDescending:bool * length:int * data:HeapData&lt;&#39;T&gt;) -&gt; Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>.ctor</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1159', 1159)" onmouseover="showTip(event, '1159', 1159)">
+            Head
+          </code>
+          <div class="tip" id="1159">
+            <strong>Signature:</strong> &#39;T<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L104-104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1) worst case. Returns the min or max element.</p>
+
+
+              <p>CompiledName: <code>get_Head</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1160', 1160)" onmouseover="showTip(event, '1160', 1160)">
+            Insert(x)
+          </code>
+          <div class="tip" id="1160">
+            <strong>Signature:</strong> x:&#39;T -&gt; Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L116-116" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns a new heap with the element inserted.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1161', 1161)" onmouseover="showTip(event, '1161', 1161)">
+            IsDescending
+          </code>
+          <div class="tip" id="1161">
+            <strong>Signature:</strong> bool<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L126-126" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the heap has max element at head.</p>
+
+
+              <p>CompiledName: <code>get_IsDescending</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1162', 1162)" onmouseover="showTip(event, '1162', 1162)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1162">
+            <strong>Signature:</strong> bool<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L120-120" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns true if the heap has no elements.</p>
+
+
+              <p>CompiledName: <code>get_IsEmpty</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1163', 1163)" onmouseover="showTip(event, '1163', 1163)">
+            Length
+          </code>
+          <div class="tip" id="1163">
+            <strong>Signature:</strong> int<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L129-129" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns the count of elememts.</p>
+
+
+              <p>CompiledName: <code>get_Length</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1164', 1164)" onmouseover="showTip(event, '1164', 1164)">
+            Merge(xs)
+          </code>
+          <div class="tip" id="1164">
+            <strong>Signature:</strong> xs:Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L132-132" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1165', 1165)" onmouseover="showTip(event, '1165', 1165)">
+            Rev()
+          </code>
+          <div class="tip" id="1165">
+            <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L142-142" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n log n). Returns heap reversed.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1166', 1166)" onmouseover="showTip(event, '1166', 1166)">
+            Tail()
+          </code>
+          <div class="tip" id="1166">
+            <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L147-147" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns a new heap of the elements trailing the head.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1167', 1167)" onmouseover="showTip(event, '1167', 1167)">
+            TryHead
+          </code>
+          <div class="tip" id="1167">
+            <strong>Signature:</strong> &#39;T option<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L110-110" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1) worst case. Returns option first min or max element.</p>
+
+
+              <p>CompiledName: <code>get_TryHead</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1168', 1168)" onmouseover="showTip(event, '1168', 1168)">
+            TryMerge(xs)
+          </code>
+          <div class="tip" id="1168">
+            <strong>Signature:</strong> xs:Heap&lt;&#39;T&gt; -&gt; Heap&lt;&#39;T&gt; option<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L137-137" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns heap option from merging two heaps.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1169', 1169)" onmouseover="showTip(event, '1169', 1169)">
+            TryTail()
+          </code>
+          <div class="tip" id="1169">
+            <strong>Signature:</strong> unit -&gt; Heap&lt;&#39;T&gt; option<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L180-180" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns option heap of the elements trailing the head.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1170', 1170)" onmouseover="showTip(event, '1170', 1170)">
+            TryUncons()
+          </code>
+          <div class="tip" id="1170">
+            <strong>Signature:</strong> unit -&gt; (&#39;T * Heap&lt;&#39;T&gt;) option<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L192-192" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns option head element and tail.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1171', 1171)" onmouseover="showTip(event, '1171', 1171)">
+            Uncons()
+          </code>
+          <div class="tip" id="1171">
+            <strong>Signature:</strong> unit -&gt; &#39;T * Heap&lt;&#39;T&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L186-186" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log n) amortized time. Returns the head element and tail.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

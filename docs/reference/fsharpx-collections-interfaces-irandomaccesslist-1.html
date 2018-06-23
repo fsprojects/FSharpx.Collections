@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>IRandomAccessList<'T> - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>IRandomAccessList<'T></h1>
+<p>
+
+    <span>Namespace: FSharpx.Collections</span><br />
+        <span>Parent Module: <a href="fsharpx-collections-interfaces.html">Interfaces</a></span><br />
+    </p>
+<div class="xmldoc">
+</div>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1109', 1109)" onmouseover="showTip(event, '1109', 1109)">
+            Cons(arg1)
+          </code>
+          <div class="tip" id="1109">
+            <strong>Signature:</strong> &#39;T -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L191-191" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new random access list with the element added to the beginning</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1110', 1110)" onmouseover="showTip(event, '1110', 1110)">
+            Count()
+          </code>
+          <div class="tip" id="1110">
+            <strong>Signature:</strong> unit -&gt; int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L194-194" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the count of elememts</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1111', 1111)" onmouseover="showTip(event, '1111', 1111)">
+            Head
+          </code>
+          <div class="tip" id="1111">
+            <strong>Signature:</strong> &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L197-197" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the first element</p>
+
+
+              <p>CompiledName: <code>get_Head</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1112', 1112)" onmouseover="showTip(event, '1112', 1112)">
+            IsEmpty
+          </code>
+          <div class="tip" id="1112">
+            <strong>Signature:</strong> bool<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L203-203" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns true if the random access list has no elements</p>
+
+
+              <p>CompiledName: <code>get_IsEmpty</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1113', 1113)" onmouseover="showTip(event, '1113', 1113)">
+            Length()
+          </code>
+          <div class="tip" id="1113">
+            <strong>Signature:</strong> unit -&gt; int<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L206-206" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the count of elememts</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1114', 1114)" onmouseover="showTip(event, '1114', 1114)">
+            Lookup(arg1)
+          </code>
+          <div class="tip" id="1114">
+            <strong>Signature:</strong> int -&gt; &#39;T<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L209-209" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns element by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1115', 1115)" onmouseover="showTip(event, '1115', 1115)">
+            Rev()
+          </code>
+          <div class="tip" id="1115">
+            <strong>Signature:</strong> unit -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L215-215" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns random access list reversed</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1116', 1116)" onmouseover="showTip(event, '1116', 1116)">
+            Tail
+          </code>
+          <div class="tip" id="1116">
+            <strong>Signature:</strong> IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L218-218" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a new random access list of the elements trailing the first element</p>
+
+
+              <p>CompiledName: <code>get_Tail</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1117', 1117)" onmouseover="showTip(event, '1117', 1117)">
+            TryGetHead
+          </code>
+          <div class="tip" id="1117">
+            <strong>Signature:</strong> &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L200-200" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option first element</p>
+
+
+              <p>CompiledName: <code>get_TryGetHead</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1118', 1118)" onmouseover="showTip(event, '1118', 1118)">
+            TryGetTail
+          </code>
+          <div class="tip" id="1118">
+            <strong>Signature:</strong> IRandomAccessList&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L221-221" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns a option random access list of the elements trailing the first element</p>
+
+
+              <p>CompiledName: <code>get_TryGetTail</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1119', 1119)" onmouseover="showTip(event, '1119', 1119)">
+            TryLookup(arg1)
+          </code>
+          <div class="tip" id="1119">
+            <strong>Signature:</strong> int -&gt; &#39;T option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L212-212" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option element by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1120', 1120)" onmouseover="showTip(event, '1120', 1120)">
+            TryUncons
+          </code>
+          <div class="tip" id="1120">
+            <strong>Signature:</strong> (&#39;T * IRandomAccessList&lt;&#39;T&gt;) option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L227-227" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the option first element and tail</p>
+
+
+              <p>CompiledName: <code>get_TryUncons</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1121', 1121)" onmouseover="showTip(event, '1121', 1121)">
+            TryUpdate(arg1 arg2)
+          </code>
+          <div class="tip" id="1121">
+            <strong>Signature:</strong> int -&gt; &#39;T -&gt; IRandomAccessList&lt;&#39;T&gt; option<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L233-233" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns option random access list with element updated by index</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1122', 1122)" onmouseover="showTip(event, '1122', 1122)">
+            Uncons
+          </code>
+          <div class="tip" id="1122">
+            <strong>Signature:</strong> &#39;T * IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L224-224" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns the first element and tail</p>
+
+
+              <p>CompiledName: <code>get_Uncons</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1123', 1123)" onmouseover="showTip(event, '1123', 1123)">
+            Update(arg1 arg2)
+          </code>
+          <div class="tip" id="1123">
+            <strong>Signature:</strong> int -&gt; &#39;T -&gt; IRandomAccessList&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L230-230" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>returns random access list with element updated by index</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

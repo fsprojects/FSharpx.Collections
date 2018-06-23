@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FlatList - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>FlatList</h1>
+<p>
+  <span>Namespace: FSharpx.Collections.Experimental</span><br />
+        <span>
+          Attributes:<br />
+[&lt;RequireQualifiedAccess&gt;]<br />
+          
+      </span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '603', 603)" onmouseover="showTip(event, '603', 603)">
+            append(arg1 arg2)
+          </code>
+          <div class="tip" id="603">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L50-50" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist that contains the elements of one flatlist followed by the elements of another flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '604', 604)" onmouseover="showTip(event, '604', 604)">
+            collect(arg1 arg2)
+          </code>
+          <div class="tip" id="604">
+            <strong>Signature:</strong> (&#39;T -&gt; FlatList&lt;&#39;T&gt;) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L56-56" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies the supplied function to each element of a flatlist, concatenates the results, and returns the combined flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '605', 605)" onmouseover="showTip(event, '605', 605)">
+            concat(arg1)
+          </code>
+          <div class="tip" id="605">
+            <strong>Signature:</strong> FlatList&lt;&#39;T []&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L63-63" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist that contains the elements of each of the supplied sequence of flatlists.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '606', 606)" onmouseover="showTip(event, '606', 606)">
+            empty
+          </code>
+          <div class="tip" id="606">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;GeneralizableValue&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L68-68" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns flatlist of no elements.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '607', 607)" onmouseover="showTip(event, '607', 607)">
+            exists(arg1 arg2)
+          </code>
+          <div class="tip" id="607">
+            <strong>Signature:</strong> (&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L70-70" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n) worst case. Tests whether any element of a flatlist satisfies the supplied predicate.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '608', 608)" onmouseover="showTip(event, '608', 608)">
+            filter(arg1 arg2)
+          </code>
+          <div class="tip" id="608">
+            <strong>Signature:</strong> (&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L75-75" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns a flatlist that contains only the elements of the supplied flatlist for which the supplied condition returns true.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '609', 609)" onmouseover="showTip(event, '609', 609)">
+            fold(arg1 arg2 arg3)
+          </code>
+          <div class="tip" id="609">
+            <strong>Signature:</strong> (&#39;State -&gt; &#39;T -&gt; &#39;State) -&gt; &#39;State -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L80-80" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies a function to each element of a flatlist from left to right (first to last), threading an accumulator argument through the computation.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '610', 610)" onmouseover="showTip(event, '610', 610)">
+            fold2(arg1 arg2 arg3 arg4)
+          </code>
+          <div class="tip" id="610">
+            <strong>Signature:</strong> (&#39;State -&gt; &#39;T1 -&gt; &#39;T2 -&gt; &#39;State) -&gt; &#39;State -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'State, 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L85-85" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies a function to pairs of elements from two supplied flatlists, left-to-right, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '611', 611)" onmouseover="showTip(event, '611', 611)">
+            foldBack(arg1 arg2 arg3)
+          </code>
+          <div class="tip" id="611">
+            <strong>Signature:</strong> (&#39;T -&gt; &#39;State -&gt; &#39;State) -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T, 'State                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L91-91" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies a function to each element of a flatlist from right to left (last to first), threading an accumulator argument through the computation.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '612', 612)" onmouseover="showTip(event, '612', 612)">
+            foldBack2(arg1 arg2 arg3 arg4)
+          </code>
+          <div class="tip" id="612">
+            <strong>Signature:</strong> (&#39;T1 -&gt; &#39;T2 -&gt; &#39;State -&gt; &#39;State) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; &#39;State -&gt; &#39;State<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'State                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L96-96" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies a function to pairs of elements from two supplied flatlists, right-to-left, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '613', 613)" onmouseover="showTip(event, '613', 613)">
+            forall(arg1 arg2)
+          </code>
+          <div class="tip" id="613">
+            <strong>Signature:</strong> (&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L102-102" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Tests whether all elements of a flatlist satisfy the supplied condition.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '614', 614)" onmouseover="showTip(event, '614', 614)">
+            forall2(arg1 arg2 arg3)
+          </code>
+          <div class="tip" id="614">
+            <strong>Signature:</strong> (&#39;T1 -&gt; &#39;T2 -&gt; bool) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L107-107" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Tests whether all corresponding elements of two supplied flatlists satisfy a supplied condition.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '615', 615)" onmouseover="showTip(event, '615', 615)">
+            init(arg1 f)
+          </code>
+          <div class="tip" id="615">
+            <strong>Signature:</strong> int -&gt; f:(int -&gt; &#39;T) -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L113-113" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Uses a supplied function to create a flatlist of the supplied dimension.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '616', 616)" onmouseover="showTip(event, '616', 616)">
+            isEmpty(arg1)
+          </code>
+          <div class="tip" id="616">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L119-119" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). O(1). Returns true if the flatlist has no elements.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '617', 617)" onmouseover="showTip(event, '617', 617)">
+            iter(arg1 arg2)
+          </code>
+          <div class="tip" id="617">
+            <strong>Signature:</strong> (&#39;T -&gt; unit) -&gt; FlatList&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L121-121" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies the supplied function to each element of a flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '618', 618)" onmouseover="showTip(event, '618', 618)">
+            iter2(arg1 arg2 arg3)
+          </code>
+          <div class="tip" id="618">
+            <strong>Signature:</strong> (&#39;T1 -&gt; &#39;T2 -&gt; unit) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L126-126" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies the supplied function to a pair of elements from matching indexes in two flatlists, also passing the index of the elements. The two flatlists must have the same lengths; otherwise, an ArgumentException is raised.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '619', 619)" onmouseover="showTip(event, '619', 619)">
+            iteri(arg1 arg2)
+          </code>
+          <div class="tip" id="619">
+            <strong>Signature:</strong> (int -&gt; &#39;T -&gt; unit) -&gt; FlatList&lt;&#39;T&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L132-132" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Applies the supplied function to each element of a flatlist. The integer passed to the function indicates the index of the element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '620', 620)" onmouseover="showTip(event, '620', 620)">
+            length(arg1)
+          </code>
+          <div class="tip" id="620">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L137-137" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns the number of items in the flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '621', 621)" onmouseover="showTip(event, '621', 621)">
+            map(arg1 arg2)
+          </code>
+          <div class="tip" id="621">
+            <strong>Signature:</strong> (&#39;T1 -&gt; &#39;T2) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L139-139" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '622', 622)" onmouseover="showTip(event, '622', 622)">
+            map2(arg1 arg2 arg3)
+          </code>
+          <div class="tip" id="622">
+            <strong>Signature:</strong> (&#39;T1 -&gt; &#39;T2 -&gt; &#39;T3) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; FlatList&lt;&#39;T3&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2, 'T3                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L144-144" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to the corresponding elements of two supplied flatlists. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '623', 623)" onmouseover="showTip(event, '623', 623)">
+            mapi(arg1 arg2)
+          </code>
+          <div class="tip" id="623">
+            <strong>Signature:</strong> (int -&gt; &#39;T1 -&gt; &#39;T2) -&gt; FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L150-150" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist. An integer index passed to the function indicates the index of the element being transformed.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '624', 624)" onmouseover="showTip(event, '624', 624)">
+            ofList(arg1)
+          </code>
+          <div class="tip" id="624">
+            <strong>Signature:</strong> &#39;T list -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L155-155" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist from the supplied list.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '625', 625)" onmouseover="showTip(event, '625', 625)">
+            ofSeq(arg1)
+          </code>
+          <div class="tip" id="625">
+            <strong>Signature:</strong> seq&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L160-160" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Creates a flatlist from the supplied enumerable object.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '626', 626)" onmouseover="showTip(event, '626', 626)">
+            partition(arg1 arg2)
+          </code>
+          <div class="tip" id="626">
+            <strong>Signature:</strong> (&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; * FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L163-163" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Splits a flatlist into two flatlists, one containing the elements for which the supplied condition returns true, and the other containing those for which it returns false.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '627', 627)" onmouseover="showTip(event, '627', 627)">
+            physicalEquality(arg1 arg2)
+          </code>
+          <div class="tip" id="627">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L170-170" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). True if the flatlists are reference-equal, false otherwise</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '628', 628)" onmouseover="showTip(event, '628', 628)">
+            rev(arg1)
+          </code>
+          <div class="tip" id="628">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L173-173" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Reverses the order of the elements in a supplied array.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '629', 629)" onmouseover="showTip(event, '629', 629)">
+            singleton(arg1)
+          </code>
+          <div class="tip" id="629">
+            <strong>Signature:</strong> &#39;T -&gt; FlatList&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L178-178" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1). Returns a flatlist of one element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '630', 630)" onmouseover="showTip(event, '630', 630)">
+            sum(arg1)
+          </code>
+          <div class="tip" id="630">
+            <strong>Signature:</strong> FlatList&lt;int&gt; -&gt; int<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L180-180" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns the sum of the elements in the flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '631', 631)" onmouseover="showTip(event, '631', 631)">
+            sumBy(arg1 arg2)
+          </code>
+          <div class="tip" id="631">
+            <strong>Signature:</strong> (&#39;T -&gt; int) -&gt; FlatList&lt;&#39;T&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L185-185" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns the sum of the results generated by applying a function to each element of a flatlist.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '632', 632)" onmouseover="showTip(event, '632', 632)">
+            toList(arg1)
+          </code>
+          <div class="tip" id="632">
+            <strong>Signature:</strong> FlatList&lt;&#39;T&gt; -&gt; &#39;T list<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L190-190" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Converts the supplied flatlist to a list.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '633', 633)" onmouseover="showTip(event, '633', 633)">
+            toMap(arg1)
+          </code>
+          <div class="tip" id="633">
+            <strong>Signature:</strong> FlatList&lt;&#39;Key * &#39;T&gt; -&gt; Map&lt;&#39;Key,&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'Key, 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L195-195" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Converts the supplied flatlist of tuple pairs to a map.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '634', 634)" onmouseover="showTip(event, '634', 634)">
+            tryFind(arg1 arg2)
+          </code>
+          <div class="tip" id="634">
+            <strong>Signature:</strong> (&#39;T -&gt; bool) -&gt; FlatList&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L197-197" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Returns the first element in the supplied flatlist for which the supplied function returns true. Returns None if no such element exists.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '635', 635)" onmouseover="showTip(event, '635', 635)">
+            unzip(arg1)
+          </code>
+          <div class="tip" id="635">
+            <strong>Signature:</strong> FlatList&lt;&#39;T1 * &#39;T2&gt; -&gt; FlatList&lt;&#39;T1&gt; * FlatList&lt;&#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L202-202" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Splits a flatlist of tuple pairs into a tuple of two flatlists.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '636', 636)" onmouseover="showTip(event, '636', 636)">
+            zip(arg1 arg2)
+          </code>
+          <div class="tip" id="636">
+            <strong>Signature:</strong> FlatList&lt;&#39;T1&gt; -&gt; FlatList&lt;&#39;T2&gt; -&gt; FlatList&lt;&#39;T1 * &#39;T2&gt;<br />
+                          <strong>Type parameters:</strong> 'T1, 'T2                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L207-207" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(n). Combines two flatlists into a flatlist of tuples that have two elements. The two flatlists must have equal lengths; otherwise, ArgumentException is raised.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

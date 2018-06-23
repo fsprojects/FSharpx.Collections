@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>NonEmptyList - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>NonEmptyList</h1>
+<p>
+  <span>Namespace: FSharpx.Collections</span><br />
+        <span>
+          Attributes:<br />
+[&lt;Extension&gt;]<br />
+[&lt;RequireQualifiedAccess&gt;]<br />
+          
+      </span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+            append(list1 list2)
+          </code>
+          <div class="tip" id="202">
+            <strong>Signature:</strong> list1:NonEmptyList&lt;&#39;?9612&gt; -&gt; list2:NonEmptyList&lt;&#39;?9612&gt; -&gt; NonEmptyList&lt;&#39;?9612&gt;<br />
+                          <strong>Type parameters:</strong> '?9612                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Concat&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L87-87" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Concat</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+            appendList(list1 list2)
+          </code>
+          <div class="tip" id="203">
+            <strong>Signature:</strong> list1:NonEmptyList&lt;&#39;?9610&gt; -&gt; list2:&#39;?9610 list -&gt; NonEmptyList&lt;&#39;?9610&gt;<br />
+                          <strong>Type parameters:</strong> '?9610                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Concat&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L83-83" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Concat</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '204', 204)" onmouseover="showTip(event, '204', 204)">
+            collect(mapping list)
+          </code>
+          <div class="tip" id="204">
+            <strong>Signature:</strong> mapping:(&#39;a -&gt; NonEmptyList&lt;&#39;b&gt;) -&gt; list:NonEmptyList&lt;&#39;a&gt; -&gt; NonEmptyList&lt;&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'a, 'b                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;SelectMany&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L104-104" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>SelectMany</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '205', 205)" onmouseover="showTip(event, '205', 205)">
+            cons(head tail)
+          </code>
+          <div class="tip" id="205">
+            <strong>Signature:</strong> head:&#39;?9608 -&gt; tail:NonEmptyList&lt;&#39;?9608&gt; -&gt; NonEmptyList&lt;&#39;?9608&gt;<br />
+                          <strong>Type parameters:</strong> '?9608                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Cons&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L79-79" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Cons</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '206', 206)" onmouseover="showTip(event, '206', 206)">
+            create(head tail)
+          </code>
+          <div class="tip" id="206">
+            <strong>Signature:</strong> head:&#39;?9581 -&gt; tail:&#39;?9581 list -&gt; NonEmptyList&lt;&#39;?9581&gt;<br />
+                          <strong>Type parameters:</strong> '?9581                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Create&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L25-25" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Create</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '207', 207)" onmouseover="showTip(event, '207', 207)">
+            createParamsArray(head, tail)
+          </code>
+          <div class="tip" id="207">
+            <strong>Signature:</strong> (head:&#39;?9583 * tail:&#39;?9583 []) -&gt; NonEmptyList&lt;&#39;?9583&gt;<br />
+                          <strong>Type parameters:</strong> '?9583                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Create&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L28-28" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Create</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '208', 208)" onmouseover="showTip(event, '208', 208)">
+            head(x)
+          </code>
+          <div class="tip" id="208">
+            <strong>Signature:</strong> x:NonEmptyList&lt;&#39;?9587&gt; -&gt; &#39;?9587<br />
+                          <strong>Type parameters:</strong> '?9587                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Head&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L34-34" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Head</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
+            last(list)
+          </code>
+          <div class="tip" id="209">
+            <strong>Signature:</strong> list:NonEmptyList&lt;&#39;?9616&gt; -&gt; &#39;?9616<br />
+                          <strong>Type parameters:</strong> '?9616                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Last&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L95-95" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Last</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '210', 210)" onmouseover="showTip(event, '210', 210)">
+            length(x)
+          </code>
+          <div class="tip" id="210">
+            <strong>Signature:</strong> x:NonEmptyList&lt;&#39;?9593&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?9593                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Length&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L44-44" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Length</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '211', 211)" onmouseover="showTip(event, '211', 211)">
+            map(f list)
+          </code>
+          <div class="tip" id="211">
+            <strong>Signature:</strong> f:(&#39;?9605 -&gt; &#39;?9606) -&gt; list:NonEmptyList&lt;&#39;?9605&gt; -&gt; NonEmptyList&lt;&#39;?9606&gt;<br />
+                          <strong>Type parameters:</strong> '?9605, '?9606                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Select&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L75-75" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Select</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '212', 212)" onmouseover="showTip(event, '212', 212)">
+            ofArray(arr)
+          </code>
+          <div class="tip" id="212">
+            <strong>Signature:</strong> arr:&#39;?9599 array -&gt; NonEmptyList&lt;&#39;?9599&gt;<br />
+                          <strong>Type parameters:</strong> '?9599                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;OfArray&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L56-56" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>OfArray</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '213', 213)" onmouseover="showTip(event, '213', 213)">
+            ofList(l)
+          </code>
+          <div class="tip" id="213">
+            <strong>Signature:</strong> l:&#39;?9601 list -&gt; NonEmptyList&lt;&#39;?9601&gt;<br />
+                          <strong>Type parameters:</strong> '?9601                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;OfList&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L62-62" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>OfList</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '214', 214)" onmouseover="showTip(event, '214', 214)">
+            ofSeq(e)
+          </code>
+          <div class="tip" id="214">
+            <strong>Signature:</strong> e:seq&lt;&#39;?9603&gt; -&gt; NonEmptyList&lt;&#39;?9603&gt;<br />
+                          <strong>Type parameters:</strong> '?9603                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;OfSeq&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L68-68" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>OfSeq</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
+            reduce(reduction list)
+          </code>
+          <div class="tip" id="215">
+            <strong>Signature:</strong> reduction:(&#39;?9614 -&gt; &#39;?9614 -&gt; &#39;?9614) -&gt; list:NonEmptyList&lt;&#39;?9614&gt; -&gt; &#39;?9614<br />
+                          <strong>Type parameters:</strong> '?9614                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Aggregate&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L91-91" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Aggregate</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
+            rev(list)
+          </code>
+          <div class="tip" id="216">
+            <strong>Signature:</strong> list:NonEmptyList&lt;&#39;?9618&gt; -&gt; NonEmptyList&lt;&#39;?9618&gt;<br />
+                          <strong>Type parameters:</strong> '?9618                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Reverse&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L100-100" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Reverse</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
+            singleton(value)
+          </code>
+          <div class="tip" id="217">
+            <strong>Signature:</strong> value:&#39;?9585 -&gt; NonEmptyList&lt;&#39;?9585&gt;<br />
+                          <strong>Type parameters:</strong> '?9585                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Singleton&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L31-31" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Singleton</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+            tail(x)
+          </code>
+          <div class="tip" id="218">
+            <strong>Signature:</strong> x:NonEmptyList&lt;&#39;?9589&gt; -&gt; &#39;?9589 list<br />
+                          <strong>Type parameters:</strong> '?9589                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Tail&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L37-37" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Tail</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+            toArray(list)
+          </code>
+          <div class="tip" id="219">
+            <strong>Signature:</strong> list:NonEmptyList&lt;&#39;?9595&gt; -&gt; &#39;?9595 []<br />
+                          <strong>Type parameters:</strong> '?9595                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;ToArray&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L48-48" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>ToArray</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+            toList(x)
+          </code>
+          <div class="tip" id="220">
+            <strong>Signature:</strong> x:NonEmptyList&lt;&#39;?9591&gt; -&gt; &#39;?9591 list<br />
+                          <strong>Type parameters:</strong> '?9591                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;ToFSharpList&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L41-41" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>ToFSharpList</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+            toSeq(list)
+          </code>
+          <div class="tip" id="221">
+            <strong>Signature:</strong> list:NonEmptyList&lt;&#39;?9597&gt; -&gt; seq&lt;&#39;?9597&gt;<br />
+                          <strong>Type parameters:</strong> '?9597                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;AsEnumerable&quot;)&gt;]<br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L53-53" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>AsEnumerable</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+            zip(list1 list2)
+          </code>
+          <div class="tip" id="222">
+            <strong>Signature:</strong> list1:NonEmptyList&lt;&#39;?9623&gt; -&gt; list2:NonEmptyList&lt;&#39;?9624&gt; -&gt; NonEmptyList&lt;&#39;?9623 * &#39;?9624&gt;<br />
+                          <strong>Type parameters:</strong> '?9623, '?9624                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Zip&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L108-108" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>Zip</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
