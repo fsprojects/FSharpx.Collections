@@ -35,6 +35,8 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args NameValueCollectionTests.testNameValueCollection |> ignore
 
+        Tests.runTestsWithArgs defaultConfig args NonEmptyListTests.testNonEmptyList |> ignore
+
         Tests.runTestsWithArgs defaultConfig args PriorityQueueTests.testPriorityQueue |> ignore
 
         Tests.runTestsWithArgs defaultConfig args QueueTests.testQueue |> ignore

@@ -24,6 +24,7 @@
     <Compile Include="MapExtensionsTest.fs" />
     <Compile Include="MapTests.fs" />
     <Compile Include="NameValueCollectionTests.fs" />
+    <Compile Include="NonEmptyListTests.fs" />
     <Compile Include="PriorityQueueTest.fs" />
     <Compile Include="QueueTest.fs" />
     <Compile Include="RandomAccessListTest.fs" />

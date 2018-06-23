@@ -1,10 +1,10 @@
-﻿namespace FSharpx.Collections.Experimental.Tests
+﻿namespace FSharpx.Collections.Tests
 
 open FSharpx.Collections
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip
-open Properties
 
 module NonEmptyListTests =
 
@@ -14,8 +14,6 @@ module NonEmptyListTests =
             |> Arb.fromGen
 
     let registerGen = lazy (Arb.register<NonEmptyListGen>() |> ignore)
-
-    registerGen.Force()
 
     let EqualLengthNELGen() =
         gen {
@@ -39,9 +37,11 @@ module NonEmptyListTests =
     [<Tests>]
     let testNonEmptyList =
 
+        //registerGen.Force()
+
         testList "Experimental NonEmptyList" [
-            testPropertyWithConfig config10k "NonEmptyList functor laws: preserves identity" <|
-                fun value -> map id value = value
+            testPropertyWithConfig config10k "NonEmptyList functor laws: preserves identity" (Prop.forAll (NonEmptyListGen.NonEmptyList()) <|
+                fun value -> map id value = value )
 
             testPropertyWithConfig config10k "NonEmptyList functor laws: preserves composition" <|
                 fun f g value -> map (f << g) value = (map f << map g) value
@@ -58,17 +58,17 @@ module NonEmptyListTests =
                     let b = v >>= (fun x -> f x >>= g)
                     a = b
 
-            testPropertyWithConfig config10k "toList gives non-empty list" <|
-                fun nel -> NonEmptyList.toList nel |> List.length > 0
+            testPropertyWithConfig config10k "toList gives non-empty list" (Prop.forAll (NonEmptyListGen.NonEmptyList()) <|
+                fun nel -> NonEmptyList.toList nel |> List.length > 0 )
 
-            testPropertyWithConfig config10k "toArray gives non-empty array" <|
-                fun nel -> NonEmptyList.toArray nel |> Array.length > 0
+            testPropertyWithConfig config10k "toArray gives non-empty array" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
+                fun nel -> NonEmptyList.toArray nel |> Array.length > 0 )
 
-            testPropertyWithConfig config10k "toList is same length as non-empty list" <|
-                fun nel -> NonEmptyList.toList nel |> List.length = nel.Length
+            testPropertyWithConfig config10k "toList is same length as non-empty list" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
+                fun nel -> NonEmptyList.toList nel |> List.length = nel.Length )
 
-            testPropertyWithConfig config10k "toArray is same length as non-empty list" <|
-                fun nel -> NonEmptyList.toArray nel |> Array.length = nel.Length
+            testPropertyWithConfig config10k "toArray is same length as non-empty list" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
+                fun nel -> NonEmptyList.toArray nel |> Array.length = nel.Length )
 
             testPropertyWithConfig config10k "ofArray" <|
                 fun arr ->
@@ -85,22 +85,22 @@ module NonEmptyListTests =
                     try Seq.forall2 (=) (NonEmptyList.ofSeq s) s
                     with :? System.ArgumentException -> Seq.isEmpty s)
 
-            testPropertyWithConfig config10k "reverse . reverse = id" <|
-                fun nel -> (NonEmptyList.rev << NonEmptyList.rev) nel = nel
+            testPropertyWithConfig config10k "reverse . reverse = id" (Prop.forAll (NonEmptyListGen.NonEmptyList()) <|
+                fun nel -> (NonEmptyList.rev << NonEmptyList.rev) nel = nel )
 
-            testPropertyWithConfig config10k "last . reverse = head" <|
-                fun nel -> (NonEmptyList.last << NonEmptyList.rev) nel = NonEmptyList.head nel
+            testPropertyWithConfig config10k "last . reverse = head" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
+                fun nel -> (NonEmptyList.last << NonEmptyList.rev) nel = NonEmptyList.head nel )
 
-            testPropertyWithConfig config10k "head . reverse = last" <|
-                fun nel -> (NonEmptyList.head << NonEmptyList.rev) nel = NonEmptyList.last nel
+            testPropertyWithConfig config10k "head . reverse = last" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
+                fun nel -> (NonEmptyList.head << NonEmptyList.rev) nel = NonEmptyList.last nel )
 
-            testPropertyWithConfig config10k "last is last and never fails" <|
+            testPropertyWithConfig config10k "last is last and never fails" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
                 fun nel ->
                     let actualLast = NonEmptyList.last nel
                     let expectedLast = 
                         let l = NonEmptyList.toList nel
                         l.[l.Length-1]
-                    expectedLast = actualLast
+                    expectedLast = actualLast )
 
             testPropertyWithConfig config10k "append has combined length" <|
                 fun (a: _ list) (b: _ list) ->
@@ -112,11 +112,11 @@ module NonEmptyListTests =
                         let neB = NonEmptyList.create b.Head b.Tail
                         (NonEmptyList.append neA neB).Length = neA.Length + neB.Length
 
-            testPropertyWithConfig config10k "reduce" <|
+            testPropertyWithConfig config10k "reduce" (Prop.forAll (NonEmptyListGen.NonEmptyList())  <|
                 fun nel ->
                     let actual = NonEmptyList.reduce (+) nel
                     let expected = nel |> NonEmptyList.toList |> List.sum
-                    expected = actual
+                    expected = actual )
 
             testPropertyWithConfig config10k "zip" (Prop.forAll (EqualLengthNELGen()) <|
                 fun (nel1, nel2) ->
@@ -127,9 +127,12 @@ module NonEmptyListTests =
 
             testPropertyWithConfig config10k "zip on lists with different lengths raises an exception" <|
                 fun nel1 nel2 ->
-                    try
-                        NonEmptyList.zip nel1 nel2 |> ignore
-                        nel1.Length = nel2.Length
-                    with :? System.ArgumentException -> 
-                        nel1.Length <> nel2.Length
+                    Expect.throwsT<System.ArgumentException> 
+                        (sprintf "length %i; length %i" nel1.Length nel2.Length)
+                        (fun () -> NonEmptyList.zip nel1 nel2 |> ignore)
+                    //try
+                    //    NonEmptyList.zip nel1 nel2 |> ignore
+                    //    nel1.Length = nel2.Length
+                    //with :? System.ArgumentException -> 
+                    //    nel1.Length <> nel2.Length
         ]
