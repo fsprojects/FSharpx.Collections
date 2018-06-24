@@ -32,6 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{DF9581
 		build.fsx = build.fsx
 		build.proj = build.proj
 		build.sh = build.sh
+		fake.sh = fake.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F0FAE041-7EC2-4ECC-8FA3-DC8B87310757}"
