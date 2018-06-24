@@ -1,10 +1,13 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open FSharpx.Collections
-open Properties
+open System
+
 open FsCheck
 open Expecto
 open Expecto.Flip
+
+open FSharpx.Collections
+open Properties
 
 module NonEmptyListTests =
 
@@ -23,40 +26,110 @@ module NonEmptyListTests =
             return a, b
         } |> Arb.fromGen
 
-    let ArbitrarySeq() = 
+    let ArbitrarySeqGen() =
         gen {
             let! len = Gen.choose (0, 10)
             let! l = Gen.listOfLength len Arb.generate
             return seq { for i = 0 to len - 1 do yield l.[i] }
+        }
+
+    let ArbitrarySeq() = 
+        ArbitrarySeqGen() |> Arb.fromGen
+
+    let arbitraryMapMapNE() =
+        gen {
+            let f = fun x -> x
+            let g = fun x -> x
+            let! ne = (Gen.apply (Gen.apply (gen.Return NonEmptyList.create) Arb.generate) (Arb.generate |> Gen.filter (fun l -> l.Length < 10)))
+            return (f, g, ne)
         } |> Arb.fromGen
 
-    let map = NonEmptyList.map
-    let ret (x: int) = NonEmptyList.singleton x
-    let inline (>>=) m f = NonEmptyList.collect f m
+    let nonEmptyListGen() =
+        gen {
+            let! ne = (Gen.apply (Gen.apply (gen.Return NonEmptyList.create) Arb.generate) (Arb.generate |> Gen.filter (fun l -> l.Length < 10)))
+            return  ne
+        } 
 
+    let twoDifferentLengths() =
+        gen {
+            let! ne1 = nonEmptyListGen()
+            let! ne2 = nonEmptyListGen() |> Gen.filter (fun xs -> xs.Length <> ne1.Length)
+            return  ne1, ne2
+        } |> Arb.fromGen
+
+    let neOfLength stdGen1 stdGen2 n =
+        match n with
+        | n when n > 1 ->
+            let tail =      
+                Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) <| (ArbitrarySeqGen() |> Gen.filter (fun xs -> Seq.length xs > 0))
+                |> Seq.toList
+            NonEmptyList.create tail.Head tail
+        | _ -> 
+            let head = 
+                Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) Arb.generate
+            NonEmptyList.create head List.empty
+
+    let neListOfInt() =
+        gen {
+            let! n = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 1000)
+            let! l = Gen.listInt n
+            return NonEmptyList.create l.Head l.Tail 
+        } |> Arb.fromGen
+
+    let leftIdentity() =
+        gen {
+            let! stdGen1 = Arb.generate<int>
+            let! stdGen2 = Arb.generate<int>
+            let! n = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 100)
+            return  (neOfLength stdGen1 stdGen2), n
+        } |> Arb.fromGen
+
+    let neListOfObj n (o : obj) =
+        let tail =
+            let rec loop i l =
+                match i with
+                | n when n > 0 ->
+                    loop (n - 1) (o::l)
+                | _ ->
+                    l
+            loop (n - 1) List.empty
+        NonEmptyList.create o tail
+
+    let associativity() =
+        gen {
+            let! n1 = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
+            let! n2 = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
+            let! o = Arb.generate<obj>
+
+            let! xs = Gen.listObj n2 |> Gen.filter (fun x -> x.Length > 0 && x.Length < 100)
+            return (neListOfObj n1), (neListOfObj n2), (NonEmptyList.create xs.Head xs.Tail)
+        } |> Arb.fromGen
+        
     [<Tests>]
     let testNonEmptyList =
 
-        //registerGen.Force()
+        let map = NonEmptyList.map
+        let ret (x: int) = NonEmptyList.singleton x
+        let inline (>>=) m f = NonEmptyList.collect f m
 
-        testList "Experimental NonEmptyList" [
+        testList "NonEmptyList" [
             testPropertyWithConfig config10k "NonEmptyList functor laws: preserves identity" (Prop.forAll (NonEmptyListGen.NonEmptyList()) <|
                 fun value -> map id value = value )
 
-            testPropertyWithConfig config10k "NonEmptyList functor laws: preserves composition" <|
-                fun f g value -> map (f << g) value = (map f << map g) value
+            testPropertyWithConfig config10k "NonEmptyList functor laws: preserves composition" (Prop.forAll (arbitraryMapMapNE()) <|
+                fun (f, g, value) -> map (f << g) value = (map f << map g) value )
 
-            testPropertyWithConfig config10k "NonEmptyList monad laws: left identity" <|
-                fun f a -> ret a >>= f = f a
+            testPropertyWithConfig config10k "NonEmptyList monad laws: left identity" (Prop.forAll (leftIdentity()) <|
+                fun (f, a) -> ret a >>= f = f a )
 
-            testPropertyWithConfig config10k "NonEmptyList monad laws: right identity" <|
-                fun x -> x >>= ret = x
+            testPropertyWithConfig config10k "NonEmptyList monad laws: right identity" (Prop.forAll (neListOfInt()) <|
+                fun x -> x >>= ret = x )
 
-            testPropertyWithConfig config10k "NonEmptyList monad laws: associativity" <|
-                fun f g v ->
+            testPropertyWithConfig config10k "NonEmptyList monad laws: associativity" (Prop.forAll (associativity()) <|
+                fun (f, g, v) ->
                     let a = (v >>= f) >>= g
                     let b = v >>= (fun x -> f x >>= g)
-                    a = b
+                    a = b )
 
             testPropertyWithConfig config10k "toList gives non-empty list" (Prop.forAll (NonEmptyListGen.NonEmptyList()) <|
                 fun nel -> NonEmptyList.toList nel |> List.length > 0 )
@@ -125,14 +198,9 @@ module NonEmptyListTests =
                                             <| NonEmptyList.toList nel2
                     expected = actual )
 
-            testPropertyWithConfig config10k "zip on lists with different lengths raises an exception" <|
-                fun nel1 nel2 ->
+            testPropertyWithConfig config10k "zip on lists with different lengths raises an exception" (Prop.forAll (twoDifferentLengths()) <|
+                fun (nel1, nel2) ->
                     Expect.throwsT<System.ArgumentException> 
                         (sprintf "length %i; length %i" nel1.Length nel2.Length)
-                        (fun () -> NonEmptyList.zip nel1 nel2 |> ignore)
-                    //try
-                    //    NonEmptyList.zip nel1 nel2 |> ignore
-                    //    nel1.Length = nel2.Length
-                    //with :? System.ArgumentException -> 
-                    //    nel1.Length <> nel2.Length
+                        (fun () -> NonEmptyList.zip nel1 nel2 |> ignore) )
         ]
