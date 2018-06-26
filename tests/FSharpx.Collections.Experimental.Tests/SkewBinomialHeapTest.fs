@@ -193,7 +193,7 @@ module SkewBinomialHeapTest =
                 (Prop.forAll (Arb.fromGen heapStringGen) <|
                     fun (heap, orig) -> heap |> SkewBinomialHeap.toSeq |> Seq.toList = sortList heap orig )
 
-            testPropertyWithConfig config10k "toList returns the same as toSeq |> List.ofSeq" 
+            ptestPropertyWithConfig config10k "toList returns the same as toSeq |> List.ofSeq" 
                 (Prop.forAll (comparableAndComparable()) <|
                     fun { Heap = heap } ->  heap |> SkewBinomialHeap.toList = (heap |> SkewBinomialHeap.toSeq |> List.ofSeq) )
 
@@ -376,7 +376,7 @@ module SkewBinomialHeapTest =
             //            |> SkewBinomialHeap.toList
             //            |> Expect.equal "" (orig1 |> List.append orig2 |> sortList heap1))
 
-            testPropertyWithConfig config10k "merge throws when both heaps have diferent ordering" (Prop.forAll  (differentOrdered ()) <|
+            ptestPropertyWithConfig config10k "merge throws when both heaps have diferent ordering" (Prop.forAll  (differentOrdered ()) <|
                 fun ({ Heap = heap1 }, { Heap = heap2 }) ->
                     heap1.IsDescending <> heap2.IsDescending ==>
                     lazy(Expect.throwsT<IncompatibleMerge> "" <| fun () -> SkewBinomialHeap.merge heap1 heap2 |> ignore) )
@@ -428,7 +428,7 @@ module SkewBinomialHeapTest =
             ////Maybe the distribution of the hash should be checked
             ////to avoid bad hashes, I don't know if that should be done as part of unit testPropertyWithConfig config10king
 
-            testPropertyWithConfig config10k "Equality reflexivity"
+            ptestPropertyWithConfig config10k "Equality reflexivity"
                 (Prop.forAll (comparableAndComparable()) <|
                     fun { Heap = heap } -> heap = heap )
 
