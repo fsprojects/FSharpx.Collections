@@ -243,7 +243,6 @@ Target.create "GenerateReferenceDocs" (fun _ ->
             ProjectParameters =  ("root", root)::info
             SourceRepository = githubLink @@ "tree/master" }
            )
-
 )
 
 Target.create "GenerateHelp" (fun _ ->
@@ -276,37 +275,6 @@ Target.create "GenerateHelp" (fun _ ->
                 LayoutRoots = layoutRoots
                 ProjectParameters  = ("root", root)::info
                 Template = docTemplate } )
-)
-
-let generateHelp fail debug =
-    let args =
-        if debug then "--define:HELP"
-        else "--define:RELEASE --define:HELP"
-    try
-        //buildDocumentationTarget args "Default"
-        Trace.traceImportant "Help generated"
-    with
-    | e when not fail ->
-        Trace.traceImportant "generating help documentation failed"
-
-
-Target.create "GenerateHelpDebug" (fun _ ->
-    copyBaseDocs ()
-
-    generateHelp true true
-)
-
-Target.create "KeepRunning" (fun _ ->    
-
-    use watcher = !! "docs/content/**/*.*" |> ChangeWatcher.run (fun changes ->
-         generateHelp true true
-    )
-
-    Trace.traceImportant "Waiting for help edits. Press any key to stop."
-
-    System.Console.ReadKey() |> ignore
-
-    watcher.Dispose()
 )
 
 Target.create "GenerateDocs" ignore
@@ -349,7 +317,6 @@ Target.create "AddLangDocs" (fun _ ->
         Shell.copy langTemplateDir [ templateDir </> templateFileName ]
 
         createIndexFsx lang)
-
 )
 
 // --------------------------------------------------------------------------------------
@@ -373,7 +340,6 @@ Target.create "Release" (fun _ ->
 
     Git.Branches.tag "" release.NugetVersion
     Git.Branches.pushTag "" "origin" release.NugetVersion
-
 )
 
 Target.create "BuildPackage" ignore
@@ -403,13 +369,7 @@ Target.create "All" ignore
   ==> "GenerateHelp"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
-
-"CleanDocs"
-  ==> "GenerateHelpDebug"
-
-"GenerateHelp"
-  ==> "KeepRunning"
-    
+   
 "ReleaseDocs"
   ==> "Release"
 
