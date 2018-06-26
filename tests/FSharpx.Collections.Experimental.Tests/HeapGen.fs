@@ -10,7 +10,6 @@ module HeapGen =
     let insertThruList l h =
         List.fold (fun (h' : #IHeap<_,'a>) x -> h'.Insert  x  ) h l
 
-//LeftistHeap
 (*
 IHeap generators from random ofSeq and/or snoc elements from random list 
 *)
@@ -62,7 +61,6 @@ IHeap generators from random ofSeq and/or snoc elements from random list
               let! y =  Gen.listString n2
               return ( (LeftistHeap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
 
-//BinomialHeap
 (*
 IHeap generators from random ofSeq and/or snoc elements from random list 
 *)
@@ -114,7 +112,6 @@ IHeap generators from random ofSeq and/or snoc elements from random list
               let! y =  Gen.listString n2
               return ( (BinomialHeap.ofSeq false x |> insertThruList y), ((x @ y) |> List.sort) ) }
 
-//PairingHeap
 (*
 IHeap generators from random ofSeq and/or snoc elements from random list 
 *)

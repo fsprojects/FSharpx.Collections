@@ -76,27 +76,69 @@ module RoseTreeTest =
                 let expected = tree (elem "body") [tree (elem "div") [tree (elem "span") [text "hello world"]]]
                 Expect.equal "" expected newDoc }
         ]
-    
-    type RoseTreeGen =
-        static member RoseTree() =
-            let rec roseTreeGen() = 
-                gen {
-                    let! root = Arb.generate
-                    // need to set these frequencies to avoid blowing the stack
-                    let! children = Gen.frequency [70, gen.Return LazyList.empty; 1, Gen.finiteLazyList()]
-                    return RoseTree.create root children
-                }
-            Arb.fromGen (roseTreeGen())
 
     [<Tests>]
     let testRoseTreeProperties =
 
-        let registerGen = lazy (Arb.register<RoseTreeGen>() |> ignore)
+        let roseTree() = 
+            gen {
+                let! root = Arb.generate<obj>
+                // need to set these frequencies to avoid blowing the stack
+                let! children = Gen.frequency [70, gen.Return LazyList.empty<RoseTree<obj>>; 1, Gen.finiteLazyList()]
+                return RoseTree.create root children 
+            }
+            |> Arb.fromGen
 
-        registerGen.Force()
+        let roseTreeOfObj n (o : obj) =
+            let tail =
+                let rec loop i l =
+                    match i with
+                    | n when n > 0 ->
+                        loop (n - 1) ((RoseTree.singleton o)::l)
+                    | _ ->
+                        l
+                loop (n - 1) List.empty
+            RoseTree.create o (LazyList.ofList tail)
 
-        //let equality() =
-        //    checkEquality<int RoseTree> "RoseTree"
+        let associativity() =
+            gen {
+                let! n1 = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
+                let! n2 = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
+                
+
+                let! xs = Gen.listObj n2 |> Gen.filter (fun x -> x.Length > 0 && x.Length < 100)
+                return (roseTreeOfObj n1), (roseTreeOfObj n2), (RoseTree.create xs.Head (LazyList.ofList (xs.Tail |> List.map RoseTree.singleton)))
+            } |> Arb.fromGen
+
+        let composition() =
+            gen {
+                let f = fun x -> x
+                let g = fun x -> x
+                let! n = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
+
+                let! xs = Gen.listObj n |> Gen.filter (fun x -> x.Length > 0 && x.Length < 100)
+                return f, g, (RoseTree.create xs.Head (LazyList.ofList (xs.Tail |> List.map RoseTree.singleton)))
+            } |> Arb.fromGen
+
+        let roseTreeOfLength stdGen1 stdGen2 n =
+            match n with
+            | n when n > 1 ->
+                let tail =      
+                    Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) <| (Gen.ArbitrarySeqGen() |> Gen.filter (fun xs -> Seq.length xs > 0))
+                    |> Seq.toList
+                RoseTree.create tail.Head (tail |> List.map  RoseTree.singleton |> LazyList.ofList)
+            | _ -> 
+                let head = 
+                    Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) Arb.generate
+                RoseTree.create head LazyList.empty
+
+        let leftIdentity() =
+            gen {
+                let! stdGen1 = Arb.generate<int>
+                let! stdGen2 = Arb.generate<int>
+                let! n = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 100)
+                return  (roseTreeOfLength stdGen1 stdGen2), n
+            } |> Arb.fromGen
 
         let map = RoseTree.map
         let inline (>>=) m f = RoseTree.bind f m
@@ -104,23 +146,28 @@ module RoseTreeTest =
 
         testList "Experimental RoseTree propeerties" [
 
-            testPropertyWithConfig config10k "RoseTree functor laws: preserves identity" <|
-                    fun value -> map id value = value 
+            ptestPropertyWithConfig config10k "RoseTree functor laws: preserves identity" 
+                (Prop.forAll (roseTree()) <|
+                    fun value -> map id value = value )
 
-            testPropertyWithConfig config10k "RoseTree functor laws: preserves composition" <|
-                    fun f g value -> map (f << g) value = (map f << map g) value
+            testPropertyWithConfig config10k "RoseTree functor laws: preserves composition" 
+                (Prop.forAll (composition()) <|
+                    fun (f, g, value) -> map (f << g) value = (map f << map g) value  )
 
-            testPropertyWithConfig config10k "RoseTree monad laws : left identity" <|
-                    fun f a -> ret a >>= f = f a
+            testPropertyWithConfig config10k "RoseTree monad laws : left identity" 
+                (Prop.forAll (leftIdentity()) <|
+                    fun (f, a) -> ret a >>= f = f a )
 
-            testPropertyWithConfig config10k "RoseTree monad laws : right identity" <|
-                    fun x -> x >>= ret = x
+            ptestPropertyWithConfig config10k "RoseTree monad laws : right identity" 
+                (Prop.forAll (roseTree()) <|
+                    fun x -> x >>= ret = x )
 
-            testPropertyWithConfig config10k "RoseTree monad laws : associativity" <|
-                    fun f g v ->
+            testPropertyWithConfig config10k "RoseTree monad laws : associativity" 
+                (Prop.forAll (associativity()) <|
+                    fun (f, g, v) ->
                         let a = (v >>= f) >>= g
                         let b = v >>= (fun x -> f x >>= g)
-                        a = b
+                        a = b )
 
         //// TODO port example from http://blog.moertel.com/articles/2007/03/07/directory-tree-printing-in-haskell-part-two-refactoring
         ]

@@ -1,6 +1,5 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
 open Properties
 open FsCheck

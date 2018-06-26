@@ -43,6 +43,16 @@ module Gen =
     let finiteLazyList() =
         Gen.map LazyList.ofList Arb.generate
 
+    let ArbitrarySeqGen() =
+        gen {
+            let! len = Gen.choose (0, 10)
+            let! l = Gen.listOfLength len Arb.generate
+            return seq { for i = 0 to len - 1 do yield l.[i] }
+        }
+
+    let ArbitrarySeq() = 
+        ArbitrarySeqGen() |> Arb.fromGen
+
 (*
 Recommend a range of size 1 - 12 for lists used to build test data structures:
 

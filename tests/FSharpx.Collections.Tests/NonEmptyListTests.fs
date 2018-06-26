@@ -1,7 +1,5 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open System
-
 open FsCheck
 open Expecto
 open Expecto.Flip
@@ -25,16 +23,6 @@ module NonEmptyListTests =
                         |> Gen.map (fun l -> NonEmptyList.create (List.head l) (List.tail l))
             return a, b
         } |> Arb.fromGen
-
-    let ArbitrarySeqGen() =
-        gen {
-            let! len = Gen.choose (0, 10)
-            let! l = Gen.listOfLength len Arb.generate
-            return seq { for i = 0 to len - 1 do yield l.[i] }
-        }
-
-    let ArbitrarySeq() = 
-        ArbitrarySeqGen() |> Arb.fromGen
 
     let arbitraryMapMapNE() =
         gen {
@@ -61,7 +49,7 @@ module NonEmptyListTests =
         match n with
         | n when n > 1 ->
             let tail =      
-                Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) <| (ArbitrarySeqGen() |> Gen.filter (fun xs -> Seq.length xs > 0))
+                Gen.eval (n - 1) (Random.StdGen(stdGen1, stdGen2)) <| (Gen.ArbitrarySeqGen() |> Gen.filter (fun xs -> Seq.length xs > 0))
                 |> Seq.toList
             NonEmptyList.create tail.Head tail
         | _ -> 
@@ -153,7 +141,7 @@ module NonEmptyListTests =
                     try Seq.forall2 (=) (NonEmptyList.ofList l) l
                     with :? System.ArgumentException -> l = []
 
-            testPropertyWithConfig config10k "ofSeq" (Prop.forAll (ArbitrarySeq()) <|
+            testPropertyWithConfig config10k "ofSeq" (Prop.forAll (Gen.ArbitrarySeq()) <|
                 fun s -> 
                     try Seq.forall2 (=) (NonEmptyList.ofSeq s) s
                     with :? System.ArgumentException -> Seq.isEmpty s)

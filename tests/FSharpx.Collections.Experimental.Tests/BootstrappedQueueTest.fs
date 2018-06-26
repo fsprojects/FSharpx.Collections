@@ -1,6 +1,5 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open Expecto

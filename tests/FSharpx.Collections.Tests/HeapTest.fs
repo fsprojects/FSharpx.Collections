@@ -353,24 +353,4 @@ module HeapTests =
                 fun (h , l) ->    
                     let x, tl = h.Uncons()
                     x = l.Head && tl.Length = (l.Length - 1) )
-
-            //type HeapGen =
-            //    static member Heap{
-            //        let rec heapGen{ 
-            //            gen {
-            //                let! n = Gen.length1thru100
-            //                let! xs =  Gen.listInt n
-            //                return Heap.ofSeq true xs
-            //            }
-            //        Arb.fromGen (heapGen())
-
-            //let registerGen = lazy (Arb.register<HeapGen>() |> ignore)
-
-    //fsCheck having trouble with Heap
-    //FSharpx.Tests.HeapTest.monoid law:
-    //System.Exception : Geneflect: type not handled FSharpx.Collections.Heap`1[System.IComparable]
-    //[<Test>]
-    //testPropertyWithConfig config10k "monoid law" {
-    //    registerGen.Force()
-    //    checkMonoid "Heap" (Heap.monoid)
         ]

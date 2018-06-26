@@ -1,11 +1,9 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
-open Expecto.Flip
 
 module BKTreeTest =
 
@@ -28,8 +26,6 @@ module BKTreeTest =
 
     [<Tests>]
     let testBKTree =
-
-        
 
         testList "Experimental BKTree" [
             testPropertyWithConfig config10k "native empty" <|

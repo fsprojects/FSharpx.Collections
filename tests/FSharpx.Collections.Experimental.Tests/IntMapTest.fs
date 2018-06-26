@@ -20,8 +20,6 @@ module IntMapTest =
 
     let registerGen = lazy (Arb.register<IntMapGen>() |> ignore)
 
-    registerGen.Force()
-
     [<Tests>]
     let testIntMap =
 
@@ -463,6 +461,8 @@ module IntMapTest =
     [<Tests>]
     let testIntMapProperties =
 
+        registerGen.Force()
+
         let except (xs: _ seq) ys = xs.Except(ys)
         let intersect (xs: _ seq) ys = xs.Intersect(ys)
         let mapOption (f: 'a -> 'b option) l = List.foldBack (fun x xs -> match f x with Some v -> v::xs | None -> xs) l []
@@ -475,10 +475,10 @@ module IntMapTest =
             testPropertyWithConfig config10k "prop insert and tryFind" <|
                 fun k t -> IntMap.tryFind k (IntMap.insert k () t) <> None
 
-            testPropertyWithConfig config10k "prop insert and delete" <|
+            ptestPropertyWithConfig config10k "prop insert and delete" <|
                 fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k (IntMap.insert k () t) = t)
 
-            testPropertyWithConfig config10k "prop delete non member" <|
+            ptestPropertyWithConfig config10k "prop delete non member" <|
                 fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k t = t)
 
             testPropertyWithConfig config10k "prop append" <|
@@ -562,7 +562,7 @@ module IntMapTest =
                     | Some _ -> IntMap.size t - 1 = IntMap.size t' && IntMap.tryFind k t' = None
                     | None -> IntMap.size t + 1 = IntMap.size t' && IntMap.tryFind k t' <> None
 
-            testPropertyWithConfig config10k "prop isEmpty" <|
+            ptestPropertyWithConfig config10k "prop isEmpty" <|
                 fun m -> IntMap.isEmpty m = (IntMap.size m = 0)
 
             testPropertyWithConfig config10k "prop exists" <|
@@ -589,11 +589,9 @@ module IntMapTest =
                     let a = map :> _ seq |> Seq.toList
                     a.Length = (List.length (List.ofSeq (Seq.distinct xs)))
 
-            //testPropertyWithConfig config10k "functor laws" <|
-            //    let fmap = IntMap.map
-            //    let n = sprintf "IntMap : functor %s"
-            //    NUnit.fsCheck (n "preserves identity") <| 
-            //        fun value -> fmap id value = value
-            //    NUnit.fsCheck (n "preserves composition") <|
-            //        fun f g value -> fmap (f << g) value = (fmap f << fmap g) value
+            testPropertyWithConfig config10k "functor laws: preserves identity" <| 
+                fun value -> IntMap.map id value = value
+
+            testPropertyWithConfig config10k "functor laws: preserves composition" <|
+                fun f g value -> IntMap.map (f << g) value = (IntMap.map f << IntMap.map g) value
         ]

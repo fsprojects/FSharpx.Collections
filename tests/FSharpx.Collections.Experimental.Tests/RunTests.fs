@@ -25,6 +25,7 @@ module RunTests =
         Tests.runTestsWithArgs defaultConfig args BKTreeTest.testBKTree |> ignore
 
         Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArray |> ignore
+        //Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArrayPropeerties |> ignore
 
         Tests.runTestsWithArgs defaultConfig args BootstrappedQueueTest.testBootstrappedQueue |> ignore
 

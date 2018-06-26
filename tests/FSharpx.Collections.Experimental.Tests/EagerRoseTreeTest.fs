@@ -1,10 +1,8 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
-open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open FsCheck
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open Expecto
 open Expecto.Flip
 
@@ -117,15 +115,6 @@ module EagerRoseTreeTest =
 
         testList "Experimental EagerRoseTree properties" [
             
-            //test "functor laws" {
-            //    registerGen.Force()
-            //    let map = EagerRoseTree.map
-            //    let n = sprintf "EagerRoseTree : functor %s"
-            //    fsCheck (n "preserves identity") <| 
-            //        fun value -> map id value = value
-            //    fsCheck (n "preserves composition") <|
-            //        fun f g value -> map (f << g) value = (map f << map g) value }
-            
             test "functor laws" {
                 //fsCheck version of functor and monad laws stackoverflows 
                 let map = EagerRoseTree.map
@@ -141,20 +130,6 @@ module EagerRoseTreeTest =
                 map (f << g) eRT = (map f << map g) eRT |> Expect.isTrue "" 
                 map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue "" }
 
-            //test "monad laws" {
-            //    registerGen.Force()
-            //    let n = sprintf "EagerRoseTree : monad %s"
-            //    let inline (>>=) m f = EagerRoseTree.bind f m
-            //    let ret = EagerRoseTree.singleton
-            //    fsCheck "left identity" <| 
-            //        fun f a -> ret a >>= f = f a
-            //    fsCheck "right identity" <| 
-            //        fun x -> x >>= ret = x
-            //    fsCheck "associativity" <| 
-            //        fun f g v ->
-            //            let a = (v >>= f) >>= g
-            //            let b = v >>= (fun x -> f x >>= g)
-            //            a = b
             test "monad laws" {
                 //fsCheck version of functor and monad laws stackoverflows
                 let inline (>>=) m f = EagerRoseTree.bind f m

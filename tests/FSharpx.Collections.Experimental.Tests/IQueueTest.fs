@@ -2,7 +2,7 @@
 
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.Tests.Properties
+open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip

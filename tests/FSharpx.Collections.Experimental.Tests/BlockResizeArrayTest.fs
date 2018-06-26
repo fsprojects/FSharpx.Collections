@@ -1,7 +1,6 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx.Collections.Experimental
-open FsCheck
 open Expecto
 open Expecto.Flip
 open FSharpx.Collections.TimeMeasurement
@@ -153,7 +152,11 @@ module BlockResizeArrayTest =
                 let bra = BlockResizeArray.Init testLen (fun i -> i)
                 let braRes = bra.Fold (fun acc elem -> acc + elem) 0
                 Expect.equal "" braRes aRes } 
+        ]
 
+    [<Tests>]
+    let testBlockResizeArrayPropeerties =
+        testList "Experimental BlockResizeArray propeerties" [
             // destabilizing test function
             //test "Random map" {   
             //    let testFun f (bra:BlockResizeArray<int>) =        
