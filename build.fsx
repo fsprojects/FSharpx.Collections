@@ -152,11 +152,18 @@ Target.create "RunTests" (fun _ ->
 // Build a NuGet package
 
 Target.create "NuGet" (fun _ ->
+    let releaseNotes = release.Notes |> String.toLines
+
+    // environment vars for Travis
+    Environment.setEnvironVar "PackageVersion" release.NugetVersion
+    Environment.setEnvironVar "Version" release.NugetVersion
+    Environment.setEnvironVar "PackageReleaseNotes" releaseNotes
+
     Paket.pack(fun p -> 
         { p with
             OutputPath = "bin"
             Version = release.NugetVersion
-            ReleaseNotes = String.toLines release.Notes})
+            ReleaseNotes = releaseNotes})
 )
 
 Target.create "PublishNuget" (fun _ ->
