@@ -151,7 +151,7 @@ Target.create "RunTests" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
 
-Target.create "NuGet" (fun _ ->
+Target.create "Pack" (fun _ ->
     let releaseNotes = release.Notes |> String.toLines
 
     // environment vars for Travis
@@ -369,7 +369,7 @@ Target.create "All" ignore
   =?> ("ReleaseDocs", isLocalBuild)
 
 "All" 
-  ==> "NuGet"
+  ==> "Pack"
   ==> "BuildPackage"
 
 "CleanDocs"
