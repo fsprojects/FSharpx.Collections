@@ -7,6 +7,7 @@ open Expecto
 open Expecto.Flip
 
 module PersistentHashMapTests =
+    [<Tests>]
     let testPersistentHashMap =
 
         testList "PersistentHashMap" [

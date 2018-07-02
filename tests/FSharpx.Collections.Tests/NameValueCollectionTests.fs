@@ -9,6 +9,7 @@ open Expecto.Flip
 
 module NameValueCollectionTests =
 
+    [<Tests>]
     let testNameValueCollection =
 
         let assertKeyIs (l: ILookup<_,_>) a key = 
