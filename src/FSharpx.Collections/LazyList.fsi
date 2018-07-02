@@ -216,7 +216,7 @@ module LazyList =
 
     ///O(n). Checks if two lazy lists are equal using the given equality function, element by element.
     /// Both lists are evaluated until one of them is empty.
-    val areEqual    : ('T -> 'T -> bool) -> LazyList<'T> -> LazyList<'T> -> bool
+    val equalsWith     : ('T -> 'T -> bool) -> LazyList<'T> -> LazyList<'T> -> bool
 
     //--------------------------------------------------------------------------
     // Lazy list active patterns

@@ -348,11 +348,11 @@ module LazyList =
         | Cons _, Nil -> 1
         | Nil, Cons _ -> -1
 
-    let rec areEqual (fEquality: 'a -> 'a -> _) source1 source2 =
+    let rec equalsWith (fEquality: 'a -> 'a -> _) source1 source2 =
         match source1, source2 with
         | Nil, Nil -> true
         | Cons (x1, xs1), Cons (x2, xs2) ->
             match fEquality x1 x2 with
-            | true -> areEqual fEquality xs1 xs2
+            | true -> equalsWith fEquality xs1 xs2
             | false -> false
         | Cons _, Nil | Nil, Cons _ -> false
