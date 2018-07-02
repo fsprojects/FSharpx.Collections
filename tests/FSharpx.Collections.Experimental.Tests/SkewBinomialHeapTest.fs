@@ -120,7 +120,7 @@ module SkewBinomialHeapTest =
     let iComparableGen() : Gen<IComparable> =
         gen{
             let! t = 
-                Arb.generate<'T> 
+                Arb.generate
                 |> Gen.filter (fun x ->
                         match x :> obj with 
                         | :? System.IComparable -> true 
