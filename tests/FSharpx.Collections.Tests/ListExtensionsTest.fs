@@ -7,6 +7,7 @@ open Expecto.Flip
 
 module ListExtensionsTests =
 
+    [<Tests>]
     let testListExtensions =
         testList "ListExtensions" [
 
@@ -71,6 +72,7 @@ module ListExtensionsTests =
                 Expect.equal "transpose" expected (a |> List.transpose) }
         ]
 
+    [<Tests>]
     let propertyTestListExtensions =
         let fill (total:int) (elem:'a) (list:'a list) = 
             let padded = List.fill total elem list 

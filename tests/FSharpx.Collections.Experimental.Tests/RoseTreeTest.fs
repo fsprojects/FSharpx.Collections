@@ -1,4 +1,4 @@
-﻿namespace FSharpx.Collections.Experimental.Tests
+namespace FSharpx.Collections.Experimental.Tests
 
 open FsCheck
 open FSharpx.Collections
@@ -144,7 +144,7 @@ module RoseTreeTest =
         let inline (>>=) m f = RoseTree.bind f m
         let ret = RoseTree.singleton
 
-        testList "Experimental RoseTree propeerties" [
+        testList "Experimental RoseTree properties" [
 
             ptestPropertyWithConfig config10k "RoseTree functor laws: preserves identity" 
                 (Prop.forAll (roseTree()) <|

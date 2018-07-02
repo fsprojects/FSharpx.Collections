@@ -5,6 +5,7 @@ open Expecto
 open Expecto.Flip
 
 module PriorityQueueTests =
+    [<Tests>]
     let testPriorityQueue =
 
         testList "PriorityQueue" [
