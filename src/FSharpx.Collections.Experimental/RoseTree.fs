@@ -23,7 +23,7 @@ type RoseTree<[<EqualityConditionalOn>] 'T> =
 
     interface IEquatable<RoseTree<'T>> with
         member x.Equals y =
-            Unchecked.equals x.Root y.Root && LazyList.areEqual Unchecked.equals x.Children y.Children
+            Unchecked.equals x.Root y.Root && LazyList.equalsWith Unchecked.equals x.Children y.Children
 
 module L = LazyList
 
