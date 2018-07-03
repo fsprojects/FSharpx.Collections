@@ -225,6 +225,9 @@ module LazyList =
             test "array take6"  {Expect.equal "array" (LazyList.toList (LazyList.take 6 nats)) <| Array.toList (LazyList.toArray (LazyList.take 6 nats)) } 
             test "array list"  {Expect.equal "array" (LazyList.toList (LazyList.ofArray [|1;2;3;4|])) <| LazyList.toList (LazyList.ofList [1;2;3;4]) }
 
+            test "equalsWith" {Expect.isTrue "equalsWith" <| LazyList.equalsWith (=) (LazyList.ofList [1;2;3;4;5]) (LazyList.ofList [1..5]) }
+            test "compareWith" {Expect.equal "compareWith" -1 <| LazyList.compareWith Unchecked.compare (LazyList.ofList [1;2;3;4]) (LazyList.ofList [1..5]) }
+
             // This checks that LazyList.map, LazyList.length etc. are tail recursive
             test "LazyList.length 100" {Expect.equal "length" 100 (LazyList.ofSeq (Seq.init 100 (fun c -> c)) |> LazyList.length) }
             test "LazyList.length 1000000" {Expect.equal "length" 1000000 (LazyList.ofSeq (Seq.init 1000000 (fun c -> c)) |> LazyList.length) }
