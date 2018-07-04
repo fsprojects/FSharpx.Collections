@@ -554,7 +554,7 @@ module IntMapTest =
                 fun (xs: int list) ->
                     List.sort (List.ofSeq (Seq.distinct xs)) = [ for (x,()) in IntMap.toList (IntMap.ofList [ for x in xs do yield (x,()) ]) do yield x ]
 
-            testPropertyWithConfig config10k "prop alter" <|
+            ptestPropertyWithConfig config10k "prop alter" <|
                 fun t k ->
                     let f = function | Some () -> None | None -> Some ()
                     let t' = IntMap.alter f k t

@@ -4,7 +4,6 @@
 
 open System.Collections
 open System.Collections.Generic
-open FSharpx
 open FSharpx.Collections
 
 #nowarn "25"
