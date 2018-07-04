@@ -173,6 +173,8 @@ module SkewBinomialHeapTest =
 
     //TODO: Test ofSeq
 
+    //let comparableConfig = {config10k with arbitrary = ComparableGenerator::config10k.arbitrary}
+
     [<Tests>]
     let testSkewBinomialHeap =
 
@@ -203,7 +205,7 @@ module SkewBinomialHeapTest =
             testPropertyWithConfig config10k "string heap isDescending returns correct value" (Prop.forAll (Arb.fromGen heapStringDescGen) <|
                 fun (heap, desc) -> SkewBinomialHeap.isDescending heap = desc )
 
-            //testPropertyWithConfig config10k "isEmpty returns true if count = 0, false otherwise" 
+            //testPropertyWithConfig comparableConfig "isEmpty returns true if count = 0, false otherwise" 
             //    (Prop.forAll (SkewBinomialHeapGenerators.ComparableAndComparable()) <|
             //        fun { Heap = heap } -> (SkewBinomialHeap.count heap) = 0 = SkewBinomialHeap.isEmpty heap )
 
