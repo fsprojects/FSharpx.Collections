@@ -166,7 +166,7 @@ type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVal
     member private this.retrieveValue key valuefunc = 
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
-        valuefunc this.Root key
+        valuefunc this.Root key hashVector section
 
     member this.Item key =
         this.retrieveValue key getValue
