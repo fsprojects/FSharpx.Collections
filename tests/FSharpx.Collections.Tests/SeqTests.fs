@@ -8,6 +8,7 @@ open Expecto
 open Expecto.Flip
 
 module SeqTests =
+    [<Tests>]
     let testSeq =
 
         let data = [1.;2.;3.;4.;5.;6.;7.;8.;9.;10.]

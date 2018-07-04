@@ -12,6 +12,7 @@ open Expecto.Flip
 module RandomAccessListTest =
     let emptyRandomAccessList = RandomAccessList.empty
 
+    [<Tests>]
     let testRandomAccessList =
 
         testList "RandomAccessList" [

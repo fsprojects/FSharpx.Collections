@@ -9,6 +9,7 @@ open Expecto.Flip
 module QueueTests =
     let emptyQueue = Queue.empty
 
+    [<Tests>]
     let testQueue =
 
         testList "Queue" [

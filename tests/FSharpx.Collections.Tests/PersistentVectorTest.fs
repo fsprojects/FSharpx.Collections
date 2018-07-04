@@ -6,6 +6,7 @@ open Expecto
 open Expecto.Flip
 
 module PersistentVectorTests =
+    [<Tests>]
     let testPersistentVector =
 
         testList "PersistentVector" [

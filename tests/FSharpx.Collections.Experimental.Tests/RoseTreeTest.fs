@@ -1,4 +1,4 @@
-﻿namespace FSharpx.Collections.Experimental.Tests
+namespace FSharpx.Collections.Experimental.Tests
 
 open FsCheck
 open FSharpx.Collections
@@ -81,13 +81,17 @@ module RoseTreeTest =
     let testRoseTreeProperties =
 
         let roseTree() = 
-            gen {
-                let! root = Arb.generate<obj>
-                // need to set these frequencies to avoid blowing the stack
-                let! children = Gen.frequency [70, gen.Return LazyList.empty<RoseTree<obj>>; 1, Gen.finiteLazyList()]
-                return RoseTree.create root children 
-            }
-            |> Arb.fromGen
+            let rec impl s =
+                gen {
+                        let! root = Arb.generate
+                    // need to set these frequencies to avoid blowing the stack
+                        let! children =
+                            match s with
+                            | s when s > 0 -> Gen.frequency [70, Gen.constant LazyList.empty; 1, impl (s/2) |> Gen.listOf |> Gen.map LazyList.ofList]
+                            | _ -> Gen.constant LazyList.empty
+                    return RoseTree.create root children 
+                }
+            impl |> Gen.sized |> Arb.fromGen
 
         let roseTreeOfObj n (o : obj) =
             let tail =
@@ -112,8 +116,8 @@ module RoseTreeTest =
 
         let composition() =
             gen {
-                let f = fun x -> x
-                let g = fun x -> x
+                let f = id
+                let g = id
                 let! n = Arb.generate<int> |> Gen.filter (fun n -> n > 0 && n < 10)
 
                 let! xs = Gen.listObj n |> Gen.filter (fun x -> x.Length > 0 && x.Length < 100)
@@ -144,9 +148,9 @@ module RoseTreeTest =
         let inline (>>=) m f = RoseTree.bind f m
         let ret = RoseTree.singleton
 
-        testList "Experimental RoseTree propeerties" [
+        testList "Experimental RoseTree properties" [
 
-            ptestPropertyWithConfig config10k "RoseTree functor laws: preserves identity" 
+            testPropertyWithConfig config10k "RoseTree functor laws: preserves identity"
                 (Prop.forAll (roseTree()) <|
                     fun value -> map id value = value )
 
@@ -158,7 +162,7 @@ module RoseTreeTest =
                 (Prop.forAll (leftIdentity()) <|
                     fun (f, a) -> ret a >>= f = f a )
 
-            ptestPropertyWithConfig config10k "RoseTree monad laws : right identity" 
+            testPropertyWithConfig config10k "RoseTree monad laws : right identity"
                 (Prop.forAll (roseTree()) <|
                     fun x -> x >>= ret = x )
 

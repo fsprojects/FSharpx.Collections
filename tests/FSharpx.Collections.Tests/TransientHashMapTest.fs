@@ -30,6 +30,7 @@ module TransientHashMapTests =
 
         override __.GetHashCode () = 42
 
+    [<Tests>]
     let testTransientHashMap =
 
         testList "TransientHashMap" [
