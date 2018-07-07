@@ -12,6 +12,8 @@ module RunTests =
 
         Tests.runTestsWithArgs defaultConfig args ByteStringTests.testByteString |> ignore
 
+        Tests.runTestsWithArgs defaultConfig args CircularBufferTests.testCircularBuffer |> ignore
+
         Tests.runTestsWithArgs defaultConfig args ResizeArrayTests.testResizeArray |> ignore
 
         Tests.runTestsWithArgs defaultConfig args DequeTests.testDeque |> ignore
