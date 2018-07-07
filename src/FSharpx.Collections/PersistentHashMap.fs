@@ -119,14 +119,14 @@ and private HashCollisionNode(thread,hashCollisionKey,count',array':obj[]) =
             if !i < 2*this.count then !i else -1
 
         member this.ensureEditable(thread1, count1, array1) =
-            if !thread = !thread then
+            if !thread1 = !thread then
                 this.array <- array1
                 this.count <- count1
                 this
             else HashCollisionNode(thread1, hashCollisionKey, count1, array1)
 
         member this.ensureEditable(thread1) =
-            if !thread = !thread then this else
+            if !thread1 = !thread then this else
             let newArray = Array.create (2*(this.count+1)) null // make room for next assoc
             System.Array.Copy(this.array, 0, newArray, 0, 2*this.count)
             HashCollisionNode(thread1, hashCollisionKey, this.count, newArray)
@@ -241,7 +241,7 @@ and private ArrayNode(thread,count',array':INode[]) =
             BitmapIndexedNode(thread, bitmap, newArray)
 
         member this.ensureEditable(thread1) =
-            if !thread = !thread then this else
+            if !thread1 = !thread then this else
             ArrayNode(thread1, this.count, Array.copy this.array) 
 
 
