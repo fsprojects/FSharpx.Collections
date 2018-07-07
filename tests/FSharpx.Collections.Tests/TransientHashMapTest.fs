@@ -55,6 +55,11 @@ module TransientHashMapTests =
                 Expect.isFalse "PersistentHashMap.containsKey" (x.persistent() |> PersistentHashMap.containsKey null) 
                 Expect.isTrue "PersistentHashMap.containsKey" (x.Add(null,"Hello").persistent() |> PersistentHashMap.containsKey null) } 
 
+            //https://github.com/fsprojects/FSharpx.Collections/issues/85
+            ptest "can add None value to empty map" {
+                let x = TransientHashMap<string,string option>.Empty()
+                Expect.isTrue "PersistentHashMap.containsKey" (x.Add("Hello", None).persistent() |> PersistentHashMap.containsKey "Hello") }
+
             test "can add empty string as key to empty map" {
                 let x = TransientHashMap<string,string>.Empty()
                 Expect.isFalse "" (x.persistent() |> PersistentHashMap.containsKey "") 
