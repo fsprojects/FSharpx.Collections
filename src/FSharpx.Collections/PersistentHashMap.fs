@@ -609,6 +609,7 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
 
     static member Empty() : PersistentHashMap<'T, 'S> = PersistentHashMap(0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
     member this.Length : int = this.count
+    member this.Count : int = this.count
 
     internal new (count',root':INode,hasNull', nullValue':'S) = {
         count = count'
@@ -691,8 +692,11 @@ module PersistentHashMap =
     ///O(1), returns an empty PersistentHashMap
     let empty<'T,'S when 'T : equality and 'S : equality> = PersistentHashMap.Empty() :> PersistentHashMap<'T, 'S>
 
-    ///O(1), returns the count of the elements in the PersistentHashMap
+    ///O(1), returns the count of the elements in the PersistentHashMap (same as count)
     let inline length (map:PersistentHashMap<'T, 'S>) = map.Length
+
+    ///O(1), returns the count of the elements in the PersistentHashMap
+    let inline count (map:PersistentHashMap<'T, 'S>) = map.Count
 
     ///O(log32n), returns if the key exists in the map
     let inline containsKey key (map:PersistentHashMap<'T, 'S>) = map.ContainsKey key
