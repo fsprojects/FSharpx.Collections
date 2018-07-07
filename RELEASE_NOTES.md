@@ -1,5 +1,11 @@
+#### 2.0.0-beta4 - unreleased
+* PersistentHashMap implements Count (issues/12)
+* add compareWith and areEqual to LazyList (issues/114) thanks teo-tsirpanis
+* fix experimental RoseTree equality (issues/114) thanks teo-tsirpanis
+* fix Nop thread comparison in PersistentHashMap (issues/66)
+
 #### 2.0.0-beta3 - 2018-06-19
-* pairwise DList
+* pairwise DList, thanks Brendan Fahy
 
 #### 2.0.0-beta2 - 2018-05-26
 * target net45 and netstandard2.0 (beta1 incorrectly targetted net461)

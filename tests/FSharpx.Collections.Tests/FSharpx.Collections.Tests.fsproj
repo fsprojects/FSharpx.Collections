@@ -14,6 +14,7 @@
     <Compile Include="FsCheckProperties.fs" />
     <Compile Include="ArrayTests.fs" />
     <Compile Include="ByteStringTest.fs" />
+    <Compile Include="CircularBufferTests.fs" />
     <Compile Include="ResizeArrayTests.fs" />
     <Compile Include="DequeTest.fs" />
     <Compile Include="DictionaryExtensionsTests.fs" />
