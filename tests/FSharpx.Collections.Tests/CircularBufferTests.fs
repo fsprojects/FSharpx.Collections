@@ -70,105 +70,90 @@ module CircularBufferTests =
                 circularBuffer.Enqueue(3)
                 Expect.equal "buffer 2" [|1;2;3|] <| circularBuffer.Dequeue(3) }
 
-            //test "fail on overflow buffer" {
-            //    let f  =
-            //        fun _  ->   
-            //            let circularBuffer = CircularBuffer 5
-            //            //circularBuffer.Enqueue(1)
-            //            let x = circularBuffer.Enqueue [|1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8|] 
-            //            ()
+            test "fail on overflow buffer" {
+                let f  =
+                    fun _  ->   
+                        let circularBuffer = CircularBuffer<int> 5
+                        circularBuffer.Enqueue [|1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8|] 
 
-            //    Expect.throwsT<ArgumentOutOfRangeException> "" f  }
+                Expect.throwsT<System.InvalidOperationException> "" f  }
 
-            //test "Printing after multiple enqueue circles" {
-            //    let circularBuffer = CircularBuffer 5
+            test "Printing after multiple enqueue circles" {
+                let circularBuffer = CircularBuffer<int> 5
 
-            //    circularBuffer.Enqueue [|1;2;3;4;5|]
-            //    circularBuffer.Enqueue([|6;7;8|])
-            //    circularBuffer.Enqueue([|1;2;3;4;5|])
-            //    circularBuffer.Enqueue([|6;7;8|])
-            //    Expect.equal "buffer" [|4;5;6;7;8|] <| circularBuffer.Dequeue 5 }
+                circularBuffer.Enqueue [|1;2;3;4;5|]
+                circularBuffer.Enqueue [|6;7;8|]
+                circularBuffer.Enqueue [|1;2;3;4;5|]
+                circularBuffer.Enqueue [|6;7;8|]
+                Expect.equal "buffer" [|4;5;6;7;8|] <| circularBuffer.Dequeue 5 }
 
 
 
-//// Printing from a queue 1..5
-//circularBuffer.Enqueue([|1;2;3;4;5|])
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
+            test "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
+                let circularBuffer = CircularBuffer<int> 5
 
-//// Clear out the rest
-//circularBuffer.Dequeue(2)
+                circularBuffer.Enqueue([|1;2;3;4;5|])
+                circularBuffer.Enqueue([|6;7;8|])
+                Expect.equal "buffer" [|4;5;6;7;8|] <| circularBuffer.Dequeue 5
+                circularBuffer.Enqueue([|1;2;3|])
+                Expect.equal "buffer" [|1;2;3|] <| circularBuffer.Dequeue 3 }
 
-//// Printing from a queue 1..3
-//circularBuffer.Enqueue([|1;2;3|])
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
+            test "Consider a large array with various, incoming array segments" {
+                let circularBuffer = CircularBuffer<int> 5
+                let source =
+                    [|  1;2;3;4;5
+                        1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8
+                        1;2;3;4;5
+                        1;2;3
+                        1;2;3;4;5;6;7;8
+                        1;2;3 |]
 
-//// Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3
-//circularBuffer.Enqueue([|1;2;3;4;5|])
-//circularBuffer.Enqueue([|6;7;8|])
-//assert ([|4;5;6;7;8|] = circularBuffer.Dequeue 5)
-//circularBuffer.Enqueue([|1;2;3|])
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
+                let incoming =
+                    let generator =
+                        seq {   yield ArraySegment<_>(source,0,5)
+                                yield ArraySegment<_>(source,5,5)
+                                yield ArraySegment<_>(source,10,3)
+                                yield ArraySegment<_>(source,13,5)
+                                yield ArraySegment<_>(source,18,3)
+                                yield ArraySegment<_>(source,21,5)
+                                yield ArraySegment<_>(source,26,3)
+                                yield ArraySegment<_>(source,29,5)
+                                yield ArraySegment<_>(source,34,3)
+                                yield ArraySegment<_>(source,37,3) } 
+                    in generator.GetEnumerator()
 
-//printfn "Enqueue(array) tests passed in %d ms" stopwatch.ElapsedMilliseconds
+                let enqueueNext() =
+                    incoming.MoveNext() |> ignore
+                    circularBuffer.Enqueue(incoming.Current)
 
-//stopwatch.Reset()
-//stopwatch.Start()
+                // Printing from a queue 1..5
+                enqueueNext()
+                Expect.equal "buffer 1" [|1;2;3;4;5|] <| circularBuffer.Dequeue 5
 
-//// Consider a large array with various, incoming array segments.
-//let source =
-//    [| 1;2;3;4;5
-//       1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8
-//       1;2;3;4;5
-//       1;2;3
-//       1;2;3;4;5;6;7;8
-//       1;2;3 |]
+                // Printing from a queue 1..8, twice
+                enqueueNext()
+                enqueueNext()
+                enqueueNext()
+                enqueueNext()
+                Expect.equal "buffer 2" [|4;5;6;7;8|] <| circularBuffer.Dequeue 5
 
-//let incoming =
-//    let generator =
-//        seq { yield ArraySegment<_>(source,0,5)
-//              yield ArraySegment<_>(source,5,5)
-//              yield ArraySegment<_>(source,10,3)
-//              yield ArraySegment<_>(source,13,5)
-//              yield ArraySegment<_>(source,18,3)
-//              yield ArraySegment<_>(source,21,5)
-//              yield ArraySegment<_>(source,26,3)
-//              yield ArraySegment<_>(source,29,5)
-//              yield ArraySegment<_>(source,34,3)
-//              yield ArraySegment<_>(source,37,3) } 
-//    in generator.GetEnumerator()
+                // Printing from a queue 1..5
+                enqueueNext()
+                Expect.equal "buffer 3" [|1;2;3|] <| circularBuffer.Dequeue 3
 
-//let enqueueNext() =
-//    incoming.MoveNext() |> ignore
-//    circularBuffer.Enqueue(incoming.Current)
+                // Clear out the rest
+                circularBuffer.Dequeue 2 |> ignore
 
-//// Printing from a queue 1..5
-//enqueueNext()
-//assert ([|1;2;3;4;5|] = circularBuffer.Dequeue 5)
+                // Printing from a queue 1..3
+                enqueueNext()
+                Expect.equal "buffer 4" [|1;2;3|] <| circularBuffer.Dequeue 3
 
-//// Printing from a queue 1..8, twice
-//enqueueNext()
-//enqueueNext()
-//enqueueNext()
-//enqueueNext()
-//assert ([|4;5;6;7;8|] = circularBuffer.Dequeue 5)
-
-//// Printing from a queue 1..5
-//enqueueNext()
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
-
-//// Clear out the rest
-//circularBuffer.Dequeue(2)
-
-//// Printing from a queue 1..3
-//enqueueNext()
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
-
-//// Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3
-//enqueueNext()
-//enqueueNext()
-//assert ([|4;5;6;7;8|] = circularBuffer.Dequeue 5)
-//enqueueNext()
-//assert ([|1;2;3|] = circularBuffer.Dequeue(3))
+                // Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3
+                enqueueNext()
+                enqueueNext()
+                Expect.equal "buffer 5" [|4;5;6;7;8|] <| circularBuffer.Dequeue 5
+                enqueueNext()
+                Expect.equal "buffer 6" [|1;2;3|] <| circularBuffer.Dequeue 3 }
 
 //printfn "Enqueue(array) tests passed in %d ms" stopwatch.ElapsedMilliseconds
 
