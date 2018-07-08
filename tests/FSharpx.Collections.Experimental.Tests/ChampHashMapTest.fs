@@ -11,7 +11,7 @@ module champHashMapTests =
                 let startingMap = ChampHashMap<string, int>()
                 let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add (i.ToString()) i) (startingMap) (seq {1..1000})  
                 let valExists i = 
-                    let returnedVal = startingMap.TryGetValue(i.ToString())
+                    let returnedVal = fullMap.TryGetValue(i.ToString())
                     match returnedVal with 
                     | Some(value) -> value = i
                     | None -> false
