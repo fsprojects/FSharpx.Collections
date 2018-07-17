@@ -6,7 +6,7 @@ open Expecto
 module champHashMapTests =
     [<Tests>]
     let testQueue = 
-        testList "CHAMP tests" [
+        testList "Experimental ChampHashMap tests" [
             test "Insert 1000 elements and make sure they are retrieved." {
                 let startingMap = ChampHashMap<string, int>()
                 let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add (i.ToString()) i) (startingMap) (seq {1..1000})  

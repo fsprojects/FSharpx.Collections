@@ -12,7 +12,6 @@ module BitUtilities =
     let inline index (bitmap: BitVector32) pos = 
         bitcount (bitmap.Data &&& (pos - 1)) 
 
-
     let inline mask index =
         1 <<< index
 
@@ -40,6 +39,7 @@ module internal Node =
             let copy = Array.copy items
             Array.set copy index value |> ignore
             copy
+
     let inline keyNotFound key =
         raise (Exceptions.KeyNotFound key)
 
@@ -50,17 +50,25 @@ module internal Node =
         Array.set newItems index value
         newItems
 
+    let inline removeAt (array: array<'T>) index = 
+        let newItems = Array.zeroCreate (array.Length - 1)
+        if (index > 0) then
+            Array.blit array 0 newItems 0 index
+        if (index + 1 < array.Length) then
+            Array.blit array (index + 1) newItems index (array.Length - index - 1)
+        newItems
+
     let rec getValue node key (hash: BitVector32) (section: BitVector32.Section) = 
         match node with
         | BitmapNode(entryMap, nodeMap, items, nodes) -> 
-            let hashIndex = hash.Item section
+            let hashIndex = hash.[section]
             let mask = mask hashIndex
-            if (entryMap.Item mask) then
+            if (entryMap.[mask]) then
                 let entryIndex = index entryMap mask
                 if ((Array.get items entryIndex).Key = key) then
                     (Array.get items entryIndex).Value
                 else keyNotFound key
-            elif (nodeMap.Item mask) then
+            elif (nodeMap.[mask]) then
                 let subNode = Array.get nodes <| index nodeMap mask
                 getValue subNode key hash (BitVector32.CreateSection (PartitionMaxValue, section))
             else keyNotFound key
@@ -70,14 +78,14 @@ module internal Node =
     let rec tryGetValue node key (hash: BitVector32) (section: BitVector32.Section) = 
         match node with
         | BitmapNode(entryMap, nodeMap, items, nodes) -> 
-            let hashIndex = hash.Item section
+            let hashIndex = hash.[section]
             let mask = mask hashIndex
-            if (entryMap.Item mask) then
+            if (entryMap.[mask]) then
                 let entryIndex = index entryMap mask
                 if ((Array.get items entryIndex).Key = key) then
                     Some (Array.get items entryIndex).Value
                 else None
-            elif (nodeMap.Item mask) then
+            elif (nodeMap.[mask]) then
                 let subNode = Array.get nodes <| index nodeMap mask
                 tryGetValue subNode key hash (BitVector32.CreateSection (PartitionMaxValue, section))
             else None
@@ -96,7 +104,7 @@ module internal Node =
             let pair2Index = pair2Hash.Item nextLevel
             if (pair1Index <> pair2Index) then
                 let mutable dataMap = BitVector32 (mask pair1Index)
-                dataMap.Item (mask pair2Index) <- true
+                dataMap.[(mask pair2Index)] <- true
                 if (pair1Index < pair2Index) then
                     BitmapNode(dataMap, BitVector32 0, [|pair1;pair2|], Array.empty)
                 else 
@@ -109,15 +117,15 @@ module internal Node =
     let rec update node inplace change (hash: BitVector32) (section: BitVector32.Section) =
         match node with
         | EmptyNode -> 
-            let dataMap = hash.Item section |> mask |> BitVector32
+            let dataMap = hash.[section] |> mask |> BitVector32
             let items = [|change|]
             let nodes = Array.empty
             let nodeMap = BitVector32(0)
             BitmapNode(dataMap, nodeMap, items, nodes)
         | BitmapNode(entryMap, nodeMap, items, nodes) ->
-            let hashIndex = hash.Item section
+            let hashIndex = hash.[section]
             let mask = mask hashIndex
-            if (entryMap.Item mask) then
+            if (entryMap.[mask]) then
                 let entryIndex = index entryMap mask
                 if ((Array.get items entryIndex).Key = change.Key) then
                     let newItems = set items entryIndex change inplace
@@ -134,7 +142,7 @@ module internal Node =
                     let nodeIndex = index nodeMap mask
                     let newNodes = insert nodes nodeIndex node
                     BitmapNode(newEntryMap, newNodeMap, newItems, newNodes)
-            elif (nodeMap.Item mask) then
+            elif (nodeMap.[mask]) then
                 let nodeIndex = index nodeMap mask
                 let nodeToUpdate = Array.get nodes nodeIndex 
                 let newNode = update nodeToUpdate inplace change hash (BitVector32.CreateSection (PartitionMaxValue, section))
@@ -154,6 +162,59 @@ module internal Node =
             else
                 let newArr = Array.append items [|change|]
                 CollisionNode(newArr, hash)
+
+    let rec remove node key (hash: BitVector32) (section: BitVector32.Section) = 
+        match node with
+        | EmptyNode -> keyNotFound key
+        | CollisionNode(items, _) -> 
+            match Array.length items with
+            | 1 -> EmptyNode
+            | 2 -> 
+                let item = Array.pick (fun (i: KeyValuePair<'T, 'U>) -> if i.Key = key then Some(i) else None) items 
+                update EmptyNode false item hash (BitVector32.CreateSection PartitionMaxValue)
+            | _ -> CollisionNode(Array.filter (fun i -> i.Key <> key) items, hash)
+        | BitmapNode(entryMap, nodeMap, entries, nodes) -> 
+            let hashIndex = hash.Item section
+            let mask = mask hashIndex
+            if (entryMap.[mask]) then
+                let ind = index entryMap mask
+                if (entries.[ind].Key = key) then
+                    let mutable newMap = entryMap
+                    newMap.Item mask <- false
+                    let newItems = removeAt entries ind
+                    BitmapNode(newMap, nodeMap, newItems, nodes)
+                else keyNotFound key
+            elif (nodeMap.[mask]) then
+                let ind = index entryMap mask
+                let subNode = remove nodes.[ind] key hash (BitVector32.CreateSection(PartitionMaxValue, section))
+                match subNode with
+                | EmptyNode -> failwith "Subnode must have at least one element"
+                | BitmapNode(subItemMap, subNodeMap, subItems, subNodes) ->
+                    if ((Array.length subItems = 1 && Array.length subNodes = 0) ||
+                        (Array.length subNodes = 1 && Array.length subItems = 0)) then
+                        // If the node only has one subnode, make that subnode the new node
+                        if (Array.length entries = 0 && Array.length nodes = 1) then
+                            BitmapNode(subItemMap, subNodeMap, subItems, subNodes)
+                        else
+                            let indexToInsert = index entryMap mask 
+                            let mutable newNodeMap = nodeMap
+                            let mutable newEntryMap = entryMap
+                            newNodeMap.[mask] <- false
+                            newEntryMap.[mask] <- true
+                            let newEntries = insert entries indexToInsert subItems.[0]
+                            let newNodes = removeAt nodes ind
+                            BitmapNode(newEntryMap, newNodeMap, newEntries, newNodes)
+                    else
+                        let nodeCopy = Array.copy subNodes
+                        nodeCopy.[ind] <- subNode
+                        BitmapNode(entryMap, nodeMap, entries, nodeCopy)
+                | CollisionNode(items, hash) -> 
+                    let nodeCopy = Array.copy nodes
+                    nodeCopy.[ind] <- subNode
+                    BitmapNode(entryMap, nodeMap, entries, nodeCopy)
+            else 
+                node
+                
     
 open Node
 type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root:Node<'TKey,'TValue>) = 
