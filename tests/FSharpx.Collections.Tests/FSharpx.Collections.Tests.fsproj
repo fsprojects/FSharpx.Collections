@@ -6,7 +6,7 @@
     <RootNamespace>FSharpx.Collections.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Tests</AssemblyName>
     <Name>FSharpx.Collections.Tests</Name>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>

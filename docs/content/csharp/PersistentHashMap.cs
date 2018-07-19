@@ -16,7 +16,7 @@ namespace CSharp
             // Create an empty PersistentHashMap and add some elements
             PersistentHashMap<int,string> map =
                 PersistentHashMap<int, string>.Empty()
-                    .Add(42,"hello")
+                    .Add(42, "hello")
                     .Add(99, "world");
 
             Console.WriteLine(map[42]); // hello
@@ -28,13 +28,13 @@ namespace CSharp
             // [/create-hashmap]
 
             // [modify-hashmap]
-            PersistentHashMap<int, string> map2 = 
+            PersistentHashMap<int, string> map2 =
                 map
                  .Add(104, "!")
                  .Add(42, "hi");  // replace existing value
 
             Console.WriteLine(map2[42]); // hi
-            Console.WriteLine(map[42]);  // hello            
+            Console.WriteLine(map[42]);  // hello
 
             Console.WriteLine(map.Length);  // 2
             Console.WriteLine(map2.Length); // 3
