@@ -44,18 +44,18 @@ let authors = "Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauric
 // Tags for your project (for NuGet package)
 let tags = "F# fsharp fsharpx collections datastructures"
 
-// File system information 
+// File system information
 let solutionFile  = "FSharpx.Collections.sln"
 
 // Target configuration
 let configuration = "Release"
 
 // Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/net47/*Tests.exe"
+let testProjects = "tests/**/*Tests.fsproj"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "fsprojects" 
+let gitOwner = "fsprojects"
 let gitHome = "https://github.com/" + gitOwner
 
 // The name of the project on GitHub
@@ -71,7 +71,7 @@ let website = "/FSharpx.Collections"
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
 
 // Helper active pattern for project types
-let (|Fsproj|Csproj|Vbproj|) (projFileName:string) = 
+let (|Fsproj|Csproj|Vbproj|) (projFileName:string) =
     match projFileName with
     | f when f.EndsWith("fsproj") -> Fsproj
     | f when f.EndsWith("csproj") -> Csproj
@@ -92,7 +92,7 @@ Target.create "AssemblyInfo" (fun _ ->
 
     let getProjectDetails projectPath =
         let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
-        ( projectPath, 
+        ( projectPath,
           projectName,
           System.IO.Path.GetDirectoryName(projectPath),
           (getAssemblyInfoAttributes projectName)
@@ -109,7 +109,7 @@ Target.create "AssemblyInfo" (fun _ ->
 )
 
 // Copies binaries from default VS location to exepcted bin folder
-// But keeps a subdirectory structure for each project in the 
+// But keeps a subdirectory structure for each project in the
 // src folder to support multiple project outputs
 Target.create "CopyBinaries" (fun _ ->
     !! "src/**/*.??proj"
@@ -134,8 +134,8 @@ Target.create "CleanDocs" (fun _ ->
 // Build library & test project
 
 Target.create "Build" (fun _ ->
-    solutionFile 
-    |> DotNet.build (fun p -> 
+    solutionFile
+    |> DotNet.build (fun p ->
         { p with
             Configuration = buildConfiguration })
 )
@@ -144,8 +144,8 @@ Target.create "Build" (fun _ ->
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    !! testAssemblies
-    |> Expecto.run id
+    !! testProjects
+    |> Seq.iter (fun proj -> DotNet.exec id "run" (sprintf "--project %s" proj) |> ignore)
 )
 
 // --------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ Target.create "RunTests" (fun _ ->
 Target.create "NuGet" (fun _ ->
     let releaseNotes = release.Notes |> String.toLines
 
-    Paket.pack(fun p -> 
+    Paket.pack(fun p ->
         { p with
             OutputPath = "bin"
             Version = release.NugetVersion
@@ -162,7 +162,7 @@ Target.create "NuGet" (fun _ ->
 )
 
 Target.create "PublishNuget" (fun _ ->
-    Paket.push(fun p -> 
+    Paket.push(fun p ->
         { p with
             WorkingDir = "bin" })
 )
@@ -180,10 +180,10 @@ let formatting = __SOURCE_DIRECTORY__ @@ "packages/formatting/FSharp.Formatting/
 let docTemplate = "docpage.cshtml"
 
 let copyFiles () =
-    Shell.copyRecursive files output true 
+    Shell.copyRecursive files output true
     |> Trace.logItems "Copying file: "
     Directory.ensure (output @@ "content")
-    Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true 
+    Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true
     |> Trace.logItems "Copying styles and scripts: "
 
 let copyBaseDocs () =
@@ -201,7 +201,7 @@ let githubLink = sprintf "https://github.com/%s/%s" github_release_user gitName
 let referenceBinaries = []
 
 let layoutRootsAll = new System.Collections.Generic.Dictionary<string, string list>()
-layoutRootsAll.Add("en",[   templates; 
+layoutRootsAll.Add("en",[   templates;
                             formatting @@ "templates"
                             formatting @@ "templates/reference" ])
 
@@ -216,21 +216,21 @@ Target.create "GenerateReferenceDocs" (fun _ ->
     Directory.ensure (output @@ "reference")
 
     let binaries () =
-        let manuallyAdded = 
-            referenceBinaries 
+        let manuallyAdded =
+            referenceBinaries
             |> List.map (fun b -> bin @@ b)
-   
-        let conventionBased = 
+
+        let conventionBased =
             DirectoryInfo.getSubDirectories <| DirectoryInfo bin
-            |> Array.map (fun d -> 
-                let net45Bin = 
+            |> Array.map (fun d ->
+                let net45Bin =
                     DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net45"))
-                d.Name, net45Bin.[0] ) 
-            |> Array.map (fun (name, d) -> 
+                d.Name, net45Bin.[0] )
+            |> Array.map (fun (name, d) ->
                 d.GetFiles()
-                |> Array.filter (fun x -> 
+                |> Array.filter (fun x ->
                     x.Name.ToLower() = (sprintf "%s.dll" name).ToLower())
-                |> Array.map (fun x -> x.FullName) 
+                |> Array.map (fun x -> x.FullName)
                 )
             |> Array.concat
             |> List.ofArray
@@ -259,7 +259,7 @@ Target.create "GenerateHelp" (fun _ ->
                                        formatting @@ "templates"
                                        formatting @@ "templates/reference" ]))
     copyFiles ()
-    
+
     for dir in  [ content; ] do
         let langSpecificPath(lang, path:string) =
             path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
@@ -273,7 +273,7 @@ Target.create "GenerateHelp" (fun _ ->
         FSFormatting.createDocs (fun args ->
             { args with
                 Source = content
-                OutputDirectory = output 
+                OutputDirectory = output
                 LayoutRoots = layoutRoots
                 ProjectParameters  = ("root", root)::info
                 Template = docTemplate } )
@@ -283,7 +283,7 @@ Target.create "GenerateDocs" ignore
 
 let createIndexFsx lang =
     let content = """(*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use 
+// This block of code is omitted in the generated HTML documentation. Use
 // it to define helpers that you do not want to show in the documentation.
 #I "../../../bin"
 
@@ -363,7 +363,7 @@ Target.create "All" ignore
   ==> "All"
   =?> ("ReleaseDocs", isLocalBuild)
 
-"All" 
+"All"
   ==> "NuGet"
   ==> "BuildPackage"
 
@@ -371,7 +371,7 @@ Target.create "All" ignore
   ==> "GenerateHelp"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
-   
+
 "ReleaseDocs"
   ==> "Release"
 

@@ -49,7 +49,7 @@ module CircularBufferTests =
                 circularBuffer.Enqueue 3
                 circularBuffer.Enqueue 4
                 circularBuffer.Enqueue 5
-                Expect.equal "buffer" [|1;2;3|] <|circularBuffer.Dequeue 3 
+                Expect.equal "buffer" [|1;2;3|] <|circularBuffer.Dequeue 3
                 Expect.equal "count" 2 <| circularBuffer.Count }
 
 
@@ -72,13 +72,13 @@ module CircularBufferTests =
 
             test "fail on overflow buffer" {
                 let f  =
-                    fun _  ->   
+                    fun _  ->
                         let circularBuffer = CircularBuffer<int> 5
-                        circularBuffer.Enqueue [|1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8|] 
+                        circularBuffer.Enqueue [|1;2;3;4;5;6;7;8;1;2;3;4;5;6;7;8|]
 
                 Expect.throwsT<System.InvalidOperationException> "" f  }
 
-            ptest "Printing after multiple enqueue circles" {
+            test "Printing after multiple enqueue circles" {
                 let circularBuffer = CircularBuffer<int> 5
 
                 circularBuffer.Enqueue [|1;2;3;4;5|]
@@ -89,7 +89,7 @@ module CircularBufferTests =
 
 
 
-            ptest "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
+            test "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
                 let circularBuffer = CircularBuffer<int> 5
 
                 circularBuffer.Enqueue([|1;2;3;4;5|])
@@ -98,7 +98,7 @@ module CircularBufferTests =
                 circularBuffer.Enqueue([|1;2;3|])
                 Expect.equal "buffer" [|1;2;3|] <| circularBuffer.Dequeue 3 }
 
-            ptest "Consider a large array with various, incoming array segments" {
+            test "Consider a large array with various, incoming array segments" {
                 let circularBuffer = CircularBuffer<int> 5
                 let source =
                     [|  1;2;3;4;5
@@ -119,7 +119,7 @@ module CircularBufferTests =
                                 yield ArraySegment<_>(source,26,3)
                                 yield ArraySegment<_>(source,29,5)
                                 yield ArraySegment<_>(source,34,3)
-                                yield ArraySegment<_>(source,37,3) } 
+                                yield ArraySegment<_>(source,37,3) }
                     in generator.GetEnumerator()
 
                 let enqueueNext() =
@@ -159,7 +159,7 @@ module CircularBufferTests =
 
 //let data = [|1;2;3;4;5|]
 //circularBuffer.Enqueue(data)
-//assert ((data |> Array.toList) = (queue |> Seq.toList))    
+//assert ((data |> Array.toList) = (queue |> Seq.toList))
 
 //printfn "Seq.toList matches enqueued data."
 
@@ -177,15 +177,15 @@ module CircularBufferTests =
 //let producerTimeout = 500
 //let consumerTimeout = 1000
 
-//async { 
-//  for i in 0 .. 10 do 
+//async {
+//  for i in 0 .. 10 do
 //    // Sleep for some time and then add value
 //    do! Async.Sleep(producerTimeout)
 //    buffer.Enqueue([|i|])
 //    printfn "Added %d" i }
 //|> Async.Start
 
-//async { 
+//async {
 //  while true do
 //    // Sleep for some time and then get value
 //    do! Async.Sleep(consumerTimeout)
@@ -198,15 +198,15 @@ module CircularBufferTests =
 //stopwatch.Reset()
 //stopwatch.Start()
 //// [snippet: Using CircularQueueAgent with AsyncEnqueue]
-//async { 
-//  for i in 0 .. 10 do 
+//async {
+//  for i in 0 .. 10 do
 //    // Sleep for some time and then add value
 //    do! Async.Sleep(producerTimeout)
 //    do! buffer.AsyncEnqueue([|i|])
 //    printfn "Added %d" i }
 //|> Async.Start
 
-//async { 
+//async {
 //  while true do
 //    // Sleep for some time and then get value
 //    do! Async.Sleep(consumerTimeout)
@@ -221,15 +221,15 @@ module CircularBufferTests =
 //// [snippet: Using CircularStream]
 //let stream = new CircularStream(3)
 
-//async { 
-//  for i in 0uy .. 10uy do 
+//async {
+//  for i in 0uy .. 10uy do
 //    // Sleep for some time and then add value
 //    do! Async.Sleep(producerTimeout)
 //    do! stream.AsyncWrite([|i|], 0, 1)
 //    printfn "Wrote %d" i }
 //|> Async.Start
 
-//async { 
+//async {
 //  let buffer = Array.zeroCreate<byte> 1
 //  while true do
 //    // Sleep for some time and then get value
