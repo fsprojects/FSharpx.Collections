@@ -14,13 +14,13 @@ module internal Literals2 =
 open System.Threading
 #if FX_NO_THREAD
 #else
-type NodeR(thread,array:obj[]) =
-    let mutable thread = thread
-    new() = NodeR(null,Array.create Literals2.blockSize null)
-    static member InCurrentThread() = NodeR(Thread.CurrentThread,Array.create Literals2.blockSize null)
+type NodeR(threadId,array:obj[]) =
+    let mutable threadId = threadId
+    new() = NodeR(None,Array.create Literals2.blockSize null)
+    static member InCurrentThread() = NodeR(Some Thread.CurrentThread.ManagedThreadId,Array.create Literals2.blockSize null)
     member this.Array = array
-    member this.Thread = thread
-    member this.SetThread t = thread <- t
+    member this.ThreadId = threadId
+    member this.SetThread t = threadId <- t
 
 type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
     let mutable count = count
@@ -31,14 +31,14 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
     new() = TransientVect<'T>(0,Literals2.blockSizeShift,NodeR.InCurrentThread(),Array.create Literals2.blockSize null)
     
     member internal this.EnsureEditable(node:NodeR) =
-        if node.Thread = root.Thread then node else
-        NodeR(root.Thread,Array.copy node.Array)
+        if node.ThreadId = root.ThreadId then node else
+        NodeR(root.ThreadId,Array.copy node.Array)
 
     member internal this.NewPath(level,node:NodeR) =
         if level = 0 then node else
         let ret = Array.create Literals2.blockSize null
         ret.[0] <- this.NewPath(level - Literals2.blockSizeShift,node) :> obj
-        NodeR(node.Thread,ret)
+        NodeR(node.ThreadId,ret)
 
     member internal this.PushTail(level,parent:NodeR,tailnode) =
         //if parent is leaf, insert node,
@@ -82,7 +82,7 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
             tail.[count &&& Literals2.blockIndexMask] <- x :> obj
         else
             //full tail, push into tree
-            let tailNode = NodeR(root.Thread,tail)
+            let tailNode = NodeR(root.ThreadId,tail)
             let newShift = shift
             let newTail = Array.create Literals2.blockSize null
             newTail.[0] <- x :> obj
@@ -90,7 +90,7 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
             //overflow root?
             let newRoot = 
                 if (count >>> Literals2.blockSizeShift) > (1 <<< shift) then
-                    let newRoot = NodeR(root.Thread,Array.create Literals2.blockSize null)
+                    let newRoot = NodeR(root.ThreadId,Array.create Literals2.blockSize null)
                     newRoot.Array.[0] <- root :> obj
                     newRoot.Array.[1] <- this.NewPath(shift,tailNode) :> obj
                     shift <- shift + Literals2.blockSizeShift
@@ -106,14 +106,14 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
 
     member this.persistent() : RandomAccessList<'T> =
         this.EnsureEditable()
-        root.SetThread null
+        root.SetThread None
         let l = count - this.TailOff()
         let trimmedTail = Array.init l (fun i -> tail.[i])
         RandomAccessList(count, shift, root, trimmedTail)
 
     member internal this.EnsureEditable() =
-        if root.Thread = Thread.CurrentThread then () else
-        if root.Thread <> null then
+        if root.ThreadId = Some Thread.CurrentThread.ManagedThreadId then () else
+        if root.ThreadId <> None then
             failwith "Transient used by non-owner thread"
         failwith "Transient used after persistent! call"
 
@@ -160,7 +160,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
 
     member internal this.NewPath(level,node:NodeR) =
         if level = 0 then node else
-        let ret = NodeR(root.Thread,Array.create Literals2.blockSize null)
+        let ret = NodeR(root.ThreadId,Array.create Literals2.blockSize null)
         ret.Array.[0] <- this.NewPath(level - Literals2.blockSizeShift,node) :> obj
         ret
 
@@ -170,7 +170,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         // else alloc new path
         //return  nodeToInsert placed in copy of parent
         let subidx = ((count - 1) >>> level) &&& Literals2.blockIndexMask
-        let ret = NodeR(parent.Thread,Array.copy parent.Array)
+        let ret = NodeR(parent.ThreadId,Array.copy parent.Array)
 
         let nodeToInsert =
             if level = Literals2.blockSizeShift then tailnode else
@@ -198,7 +198,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         else raise (System.IndexOutOfRangeException())
 
     member internal this.doAssoc(level,node:NodeR,i,x) =
-        let ret = NodeR(root.Thread,Array.copy node.Array)
+        let ret = NodeR(root.ThreadId,Array.copy node.Array)
         if level = 0 then 
             ret.Array.[i &&& Literals2.blockIndexMask] <- x :> obj 
         else
@@ -211,13 +211,13 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         if level > Literals2.blockSizeShift then
             let newchild = this.PopTail(level - Literals2.blockSizeShift, node.Array.[subidx] :?> NodeR)
             if newchild = Unchecked.defaultof<NodeR> && subidx = 0 then Unchecked.defaultof<NodeR> else
-            let ret = NodeR(root.Thread, Array.copy node.Array);
+            let ret = NodeR(root.ThreadId, Array.copy node.Array);
             ret.Array.[subidx] <- newchild  :> obj
             ret
 
         elif subidx = 0 then Unchecked.defaultof<NodeR> else
 
-        let ret = new NodeR(root.Thread, Array.copy node.Array)
+        let ret = new NodeR(root.ThreadId, Array.copy node.Array)
         ret.Array.[subidx] <- null
         ret
 
@@ -242,7 +242,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
             RandomAccessList<'T>(count + 1,shift,root,newTail) 
         else
             //full tail, push into tree
-            let tailNode = NodeR(root.Thread,tail)
+            let tailNode = NodeR(root.ThreadId,tail)
             let newShift = shift
 
             //overflow root?
@@ -284,7 +284,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         if count = 1 then RandomAccessList<'T>.Empty() else
 
         if count - tailOff > 1 then 
-            let mutable newroot = NodeR(Thread.CurrentThread, root.Array.Clone() :?> obj[])
+            let mutable newroot = NodeR(Some Thread.CurrentThread.ManagedThreadId, root.Array.Clone() :?> obj[])
             let mutable ret = TransientVect(count - 1, shift, newroot, tail.[0..(tail.Length-1)])
             ret.persistent() 
         else
