@@ -15,12 +15,12 @@ open System.Threading
 #if FX_NO_THREAD
 #else
 type NodeR(thread,array:obj[]) =
-    let thread = thread
-    new() = NodeR(ref null,Array.create Literals2.blockSize null)
-    static member InCurrentThread() = NodeR(ref Thread.CurrentThread,Array.create Literals2.blockSize null)
+    let mutable thread = thread
+    new() = NodeR(null,Array.create Literals2.blockSize null)
+    static member InCurrentThread() = NodeR(Thread.CurrentThread,Array.create Literals2.blockSize null)
     member this.Array = array
     member this.Thread = thread
-    member this.SetThread t = thread := t
+    member this.SetThread t = thread <- t
 
 type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
     let mutable count = count
@@ -112,8 +112,8 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
         RandomAccessList(count, shift, root, trimmedTail)
 
     member internal this.EnsureEditable() =
-        if !root.Thread = Thread.CurrentThread then () else
-        if !root.Thread <> null then
+        if root.Thread = Thread.CurrentThread then () else
+        if root.Thread <> null then
             failwith "Transient used by non-owner thread"
         failwith "Transient used after persistent! call"
 
@@ -122,7 +122,7 @@ type internal TransientVect<'T> (count,shift:int,root:NodeR,tail:obj[]) =
         ((count - 1) >>> Literals2.blockSizeShift) <<< Literals2.blockSizeShift
         
 and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
-    let hashCode = ref None
+    let mutable hashCode = None
     let tailOff = 
         if count < Literals2.blockSize then 0 else
         ((count - 1) >>> Literals2.blockSizeShift) <<< Literals2.blockSizeShift
@@ -139,12 +139,12 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         ret.persistent()
 
     override this.GetHashCode() =
-        match !hashCode with
+        match hashCode with
         | None ->
             let mutable hash = 1
             for x in this.rangedIterator(0,count) do
                 hash <- 31 * hash + Unchecked.hash x
-            hashCode := Some hash
+            hashCode <- Some hash
             hash
         | Some hash -> hash
 
@@ -156,7 +156,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
             Seq.forall2 (Unchecked.equals) this y
         | _ -> false
 
-    member internal this.SetHash hash = hashCode := hash; this
+    member internal this.SetHash hash = hashCode <- hash; this
 
     member internal this.NewPath(level,node:NodeR) =
         if level = 0 then node else
@@ -224,16 +224,16 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
         if count = 0 then Seq.empty
         else
-            let i = ref (endIndex - 1)
-            let array = if (endIndex - 1) < count then ref (this.ArrayFor !i) else ref null
+            let mutable i = endIndex - 1
+            let mutable array = if (endIndex - 1) < count then this.ArrayFor i else null
 
             seq {
-                while !i > (startIndex - 1) do
-                    if (!i + 1) % Literals2.blockSize  = 0 then
-                        array := this.ArrayFor !i
+                while i > (startIndex - 1) do
+                    if (i + 1) % Literals2.blockSize  = 0 then
+                        array <- this.ArrayFor i
 
-                    yield (!array).[!i &&& Literals2.blockIndexMask] :?> 'T
-                    i := !i - 1 
+                    yield (array).[i &&& Literals2.blockIndexMask] :?> 'T
+                    i <- i - 1 
                 }
         
     member this.Cons (x : 'T) = 
@@ -284,7 +284,7 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
         if count = 1 then RandomAccessList<'T>.Empty() else
 
         if count - tailOff > 1 then 
-            let mutable newroot = NodeR(ref Thread.CurrentThread, root.Array.Clone() :?> obj[])
+            let mutable newroot = NodeR(Thread.CurrentThread, root.Array.Clone() :?> obj[])
             let mutable ret = TransientVect(count - 1, shift, newroot, tail.[0..(tail.Length-1)])
             ret.persistent() 
         else
