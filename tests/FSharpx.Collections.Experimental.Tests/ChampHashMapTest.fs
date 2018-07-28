@@ -58,5 +58,18 @@ module champHashMapTests =
                 Expect.all (seq {1..500}) valNotExists "Elements were supposed to be removed but were not removed from the collection"
                 Expect.all (seq {501..1000}) valExists "Elements were supposed to be still present in the collection but they were removed"
             }
+            test "Insert 1000 colliding elements and then remove the first 500 elements" {
+                let startingMap = ChampHashMap<CollidingKey<string>, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<CollidingKey<string>,int>) (i: int) -> data.Add ((CollidingKey(i.ToString()))) i) (startingMap) (seq {1..1000})  
+                let filteredMap = Seq.fold (fun (data: ChampHashMap<CollidingKey<string>,int>) (i: int) -> data.Remove (CollidingKey(i.ToString()))) (fullMap) (seq {1..500})
+                let valExists i =
+                    let returnVal = filteredMap.TryGetValue (CollidingKey(i.ToString()))
+                    match returnVal with
+                    | Some(value) -> value = i
+                    | None -> false
+                let valNotExists i = not (valExists i)
+                Expect.all (seq {1..500}) valNotExists "Elements were supposed to be removed but were not removed from the collection"
+                Expect.all (seq {501..1000}) valExists "Elements were supposed to be still present in the collection but they were removed"
+            }
         ]
     
