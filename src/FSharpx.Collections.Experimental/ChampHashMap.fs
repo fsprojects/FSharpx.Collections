@@ -31,7 +31,7 @@ open BitUtilities
 open FSharpx.Collections
 module internal Node = 
 
-    let inline set items index value inplace = 
+    let set items index value inplace = 
         if (inplace) then
             Array.set items index value |> ignore
             items
@@ -40,17 +40,17 @@ module internal Node =
             Array.set copy index value |> ignore
             copy
 
-    let inline keyNotFound key =
+    let keyNotFound key =
         raise (Exceptions.KeyNotFound key)
 
-    let inline insert (array: array<'T>) index value =
+    let insert (array: array<'T>) index value =
         let newItems = Array.zeroCreate (array.Length + 1)
         Array.blit array 0 newItems 0 index
         Array.blit array index newItems (index + 1) (array.Length - index)
         Array.set newItems index value
         newItems
 
-    let inline removeAt (array: array<'T>) index = 
+    let removeAt (array: array<'T>) index = 
         let newItems = Array.zeroCreate (array.Length - 1)
         if (index > 0) then
             Array.blit array 0 newItems 0 index
@@ -155,11 +155,11 @@ module internal Node =
                 let newItems = insert items entryIndex change
                 BitmapNode(entries, nodeMap, newItems, nodes)
         | CollisionNode(items, hash) -> 
-            let index = Array.findIndex (fun i -> i.Key = change.Key) items
-            if (index <> -1) then 
+            match Array.tryFindIndex (fun i -> i.Key = change.Key) items with
+            | Some(index) -> 
                 let newArr = set items index change false
                 CollisionNode(newArr, hash)
-            else
+            | None ->
                 let newArr = Array.append items [|change|]
                 CollisionNode(newArr, hash)
 
@@ -168,9 +168,10 @@ module internal Node =
         | EmptyNode -> keyNotFound key
         | CollisionNode(items, _) -> 
             match Array.length items with
+            | 0 -> failwith "remove was called on CollisionNode but CollisionNode contained 0 elements"
             | 1 -> EmptyNode
             | 2 -> 
-                let item = Array.pick (fun (i: KeyValuePair<'T, 'U>) -> if i.Key = key then Some(i) else None) items 
+                let item = Array.find (fun i -> i.Key = key) items 
                 update EmptyNode false item hash (BitVector32.CreateSection PartitionMaxValue)
             | _ -> CollisionNode(Array.filter (fun i -> i.Key <> key) items, hash)
         | BitmapNode(entryMap, nodeMap, entries, nodes) -> 
@@ -185,13 +186,12 @@ module internal Node =
                     BitmapNode(newMap, nodeMap, newItems, nodes)
                 else keyNotFound key
             elif (nodeMap.[mask]) then
-                let ind = index entryMap mask
+                let ind = index nodeMap mask
                 let subNode = remove nodes.[ind] key hash (BitVector32.CreateSection(PartitionMaxValue, section))
                 match subNode with
                 | EmptyNode -> failwith "Subnode must have at least one element"
                 | BitmapNode(subItemMap, subNodeMap, subItems, subNodes) ->
-                    if ((Array.length subItems = 1 && Array.length subNodes = 0) ||
-                        (Array.length subNodes = 1 && Array.length subItems = 0)) then
+                    if (Array.length subItems = 1 && Array.length subNodes = 0) then
                         // If the node only has one subnode, make that subnode the new node
                         if (Array.length entries = 0 && Array.length nodes = 1) then
                             BitmapNode(subItemMap, subNodeMap, subItems, subNodes)
@@ -205,10 +205,10 @@ module internal Node =
                             let newNodes = removeAt nodes ind
                             BitmapNode(newEntryMap, newNodeMap, newEntries, newNodes)
                     else
-                        let nodeCopy = Array.copy subNodes
+                        let nodeCopy = Array.copy nodes
                         nodeCopy.[ind] <- subNode
                         BitmapNode(entryMap, nodeMap, entries, nodeCopy)
-                | CollisionNode(items, hash) -> 
+                | CollisionNode(_, _) -> 
                     let nodeCopy = Array.copy nodes
                     nodeCopy.[ind] <- subNode
                     BitmapNode(entryMap, nodeMap, entries, nodeCopy)
@@ -217,12 +217,12 @@ module internal Node =
                 
     
 open Node
-type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root:Node<'TKey,'TValue>) = 
-    member internal this.Root: Node<'TKey, 'TValue> = root
+type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root: Node<'TKey,'TValue>) = 
+    member private this.Root = root
 
     new() = ChampHashMap(EmptyNode)
 
-    member this.Item(key, value) = 
+    member public this.Item(key, value) = 
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
         let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
@@ -233,7 +233,7 @@ type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVal
         let section = BitVector32.CreateSection(PartitionMaxValue)
         valuefunc this.Root key hashVector section
 
-    member this.Item key =
+    member public this.Item key =
         this.retrieveValue key getValue
     
     member public this.TryGetValue key = 
@@ -243,4 +243,10 @@ type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVal
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
         let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
+        ChampHashMap(newRoot)
+
+    member public this.Remove key = 
+        let hashVector = BitVector32(int32(key.GetHashCode()))
+        let section = BitVector32.CreateSection PartitionMaxValue
+        let newRoot = remove this.Root key hashVector section
         ChampHashMap(newRoot)
