@@ -20,9 +20,9 @@ module BitUtilities =
     let [<Literal>] PartitionMaxValue = 31s
 
 [<Struct>]
-type internal KeyValuePair<'TKey, 'TValue> = {Key: 'TKey; Value: 'TValue}
+type internal KeyValuePair<'TKey,'TValue> = {Key: 'TKey; Value: 'TValue}
 
-type internal Node<'TKey, 'TValue when 'TKey : equality> = 
+type internal Node<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> = 
     | BitmapNode of entryMap: BitVector32 * nodeMap: BitVector32 * items: array<KeyValuePair<'TKey, 'TValue>> * nodes: array<Node<'TKey, 'TValue>>
     | CollisionNode of items: array<KeyValuePair<'TKey, 'TValue>> * hash: BitVector32
     | EmptyNode
@@ -30,7 +30,7 @@ type internal Node<'TKey, 'TValue when 'TKey : equality> =
 open BitUtilities
 open FSharpx.Collections
 module internal Node = 
-
+       
     let set items index value inplace = 
         if (inplace) then
             Array.set items index value |> ignore
@@ -217,8 +217,16 @@ module internal Node =
                 
     
 open Node
+open System
 type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root: Node<'TKey,'TValue>) = 
     member private this.Root = root
+
+    override this.Equals(other) =
+        match other with
+        | :? ChampHashMap<'TKey, 'TValue> as map -> Unchecked.equals this.Root map.Root
+        | _ -> false
+    
+    override this.GetHashCode() = Unchecked.hash this.Root
 
     new() = ChampHashMap(EmptyNode)
 
@@ -250,3 +258,6 @@ type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVal
         let section = BitVector32.CreateSection PartitionMaxValue
         let newRoot = remove this.Root key hashVector section
         ChampHashMap(newRoot)
+
+    interface IEquatable<ChampHashMap<'TKey, 'TValue>> with
+        member this.Equals(other) = Unchecked.equals root other.Root

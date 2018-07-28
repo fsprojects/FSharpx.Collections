@@ -71,5 +71,18 @@ module champHashMapTests =
                 Expect.all (seq {1..500}) valNotExists "Elements were supposed to be removed but were not removed from the collection"
                 Expect.all (seq {501..1000}) valExists "Elements were supposed to be still present in the collection but they were removed"
             }
+            test "Two references to the same hashmap should be equal" {
+                let startingMap = ChampHashMap<string, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..100})
+                let secondMap = fullMap
+                Expect.isTrue (fullMap = secondMap) "Two references pointing to the same object should be equal"
+            }
+            test "Two maps holding the same values should be equal" {
+                let startingMap = ChampHashMap<string, int>()
+                let secondStartingMap = ChampHashMap<string, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..100})
+                let secondMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (secondStartingMap) (seq {1..100})
+                Expect.isTrue (fullMap = secondMap) "Two maps holding the same values should be equal"
+            }
         ]
     
