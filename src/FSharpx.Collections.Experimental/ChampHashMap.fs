@@ -2,7 +2,7 @@
 open System.Collections.Specialized
 
 
-module BitUtilities =
+module internal BitUtilities =
     let inline bitcount bitmap: int32 = 
         let count2 = bitmap - ((bitmap >>> 1) &&& 0x55555555)
         let count4 = (count2 &&& 0x33333333) + ((count2 >>> 2) &&& 0x33333333)
@@ -20,7 +20,7 @@ module BitUtilities =
     let [<Literal>] PartitionMaxValue = 31s
 
 [<Struct>]
-type internal KeyValuePair<'TKey,'TValue> = {Key: 'TKey; Value: 'TValue}
+type KeyValuePair<'TKey,'TValue> = {Key: 'TKey; Value: 'TValue}
 
 type internal Node<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> = 
     | BitmapNode of entryMap: BitVector32 * nodeMap: BitVector32 * items: array<KeyValuePair<'TKey, 'TValue>> * nodes: array<Node<'TKey, 'TValue>>
@@ -29,6 +29,7 @@ type internal Node<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVa
 
 open BitUtilities
 open FSharpx.Collections
+[<RequireQualifiedAccess>]
 module internal Node = 
        
     let set items index value inplace = 
@@ -74,6 +75,7 @@ module internal Node =
             else keyNotFound key
         | EmptyNode -> keyNotFound key
         | CollisionNode(items, _) -> (Array.find (fun k -> k.Key = key) items).Value
+
 
     let rec tryGetValue node key (hash: BitVector32) (section: BitVector32.Section) = 
         match node with
@@ -214,9 +216,24 @@ module internal Node =
                     BitmapNode(entryMap, nodeMap, entries, nodeCopy)
             else 
                 node
+
+    let rec toSeq = function 
+        | EmptyNode -> Seq.empty
+        | BitmapNode(_ , _, items, nodes) -> 
+            seq {
+                    yield! items
+                    yield! Seq.collect toSeq nodes
+                }
+        | CollisionNode(items, _) -> Array.toSeq items
+
+    let rec count = function
+        | EmptyNode -> 0
+        | BitmapNode(_, _, items, nodes) -> 
+            let itemLength = Array.length items
+            Array.fold (fun acc subNode -> acc + (count subNode)) itemLength nodes
+        | CollisionNode(items, _) -> Array.length items
                 
     
-open Node
 open System
 type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TValue when 'TKey : equality> private (root: Node<'TKey,'TValue>) = 
     member private this.Root = root
@@ -230,34 +247,54 @@ type ChampHashMap<[<EqualityConditionalOn>]'TKey, [<EqualityConditionalOn>]'TVal
 
     new() = ChampHashMap(EmptyNode)
 
-    member public this.Item(key, value) = 
-        let hashVector = BitVector32(int32(key.GetHashCode()))
-        let section = BitVector32.CreateSection(PartitionMaxValue)
-        let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
-        ChampHashMap(newRoot)
+    member public this.Count = Node.count this.Root
 
     member private this.retrieveValue key valuefunc = 
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
         valuefunc this.Root key hashVector section
 
-    member public this.Item key =
-        this.retrieveValue key getValue
+    member public this.GetValue key =
+        this.retrieveValue key Node.getValue
     
     member public this.TryGetValue key = 
-        this.retrieveValue key tryGetValue
+        this.retrieveValue key Node.tryGetValue
 
-    member public this.Add key value =
+    member private this.AddInPlace key value inplace = 
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection(PartitionMaxValue)
-        let newRoot = update this.Root false {Key=key; Value=value} hashVector section 
+        let newRoot = Node.update this.Root inplace {Key=key; Value=value} hashVector section 
         ChampHashMap(newRoot)
+
+    member public this.Add key value =
+        this.AddInPlace key value false
 
     member public this.Remove key = 
         let hashVector = BitVector32(int32(key.GetHashCode()))
         let section = BitVector32.CreateSection PartitionMaxValue
-        let newRoot = remove this.Root key hashVector section
+        let newRoot = Node.remove this.Root key hashVector section
         ChampHashMap(newRoot)
+
+    member this.ToSeq = Node.toSeq this.Root
+
+    static member ofSeq keySelector valueSelector sequence = 
+        let startingMap = ChampHashMap()
+        Seq.fold (fun (acc: ChampHashMap<'TKey, 'TValue>) item -> acc.AddInPlace (keySelector item) (valueSelector item) true) startingMap sequence 
 
     interface IEquatable<ChampHashMap<'TKey, 'TValue>> with
         member this.Equals(other) = Unchecked.equals root other.Root
+
+[<RequireQualifiedAccess>]
+module ChampHashMap =
+
+    let inline count (map: ChampHashMap<_,_>) = map.Count
+
+    let inline getValue (map: ChampHashMap<_,_>) = map.GetValue
+
+    let inline tryGetValue (map: ChampHashMap<_,_>) = map.TryGetValue
+
+    let inline add (map: ChampHashMap<_,_>) = map.Add
+
+    let inline remove (map: ChampHashMap<_,_>) = map.Remove
+
+    let inline toSeq (map: ChampHashMap<_,_>) = map.ToSeq

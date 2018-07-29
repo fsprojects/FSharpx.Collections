@@ -84,5 +84,53 @@ module champHashMapTests =
                 let secondMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (secondStartingMap) (seq {1..100})
                 Expect.isTrue (fullMap = secondMap) "Two maps holding the same values should be equal"
             }
+
+            test "Two colliding maps holding the same values should be equal" {
+                let startingMap = ChampHashMap<CollidingKey<string>, int>()
+                let secondStartingMap = ChampHashMap<CollidingKey<string>, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<CollidingKey<string>,int>) (i: int) -> data.Add (CollidingKey(i.ToString())) i) (startingMap) (seq {1..100})
+                let secondMap = Seq.fold (fun (data: ChampHashMap<CollidingKey<string>,int>) (i: int) -> data.Add (CollidingKey(i.ToString())) i) (secondStartingMap) (seq {1..100})
+                Expect.isTrue (fullMap = secondMap) "Two maps holding the same values should be equal"
+            }
+
+            test "Two maps with removed values but containing the same values should be equal" {
+                let startingMap = ChampHashMap<string, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..1000})  
+                let filteredMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Remove (i.ToString())) (fullMap) (seq {1..500})
+                let secondFullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..1000})  
+                let secondFilteredMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Remove (i.ToString())) (secondFullMap) (seq {1..500})
+                Expect.isTrue (filteredMap = secondFilteredMap) "Two maps holding the same values should be equal"
+            }
+
+            test "Count is correct" {
+                let startingMap = ChampHashMap<string, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..1000})  
+                Expect.equal (ChampHashMap.count fullMap) 1000 ("Count should have been 1000 but was " + (ChampHashMap.count fullMap).ToString())
+            }
+
+            test "Make Sure all values in toSeq are returned" {
+                let startingMap = ChampHashMap<string, int>()
+                let fullMap = Seq.fold (fun (data: ChampHashMap<string,int>) (i: int) -> data.Add ((i.ToString())) i) (startingMap) (seq {1..1000})
+                let fullSeq = fullMap.ToSeq
+                    
+                Expect.equal (Seq.length fullSeq) (ChampHashMap.count fullMap) "Count of sequence should be the same as the map"
+                for pair in fullSeq do 
+                    Expect.equal pair.Value (fullMap.GetValue pair.Key) "Element of sequence should exist in the dictionary"  
+            }
+
+            test "OfSeq gives the correct map" {
+                let map = ChampHashMap.ofSeq (fun i -> i.ToString()) (fun i -> i) {1..1000}
+                let valExists i = 
+                    let returnedVal = map.TryGetValue(i.ToString())
+                    match returnedVal with 
+                    | Some(value) -> value = i
+                    | None -> false
+                Expect.all (seq {1..1000}) valExists "Inserted objects were not retrieved from hashmap"
+            }
+
+            test "" {
+                let map = ChampHashMap.ofSeq (fun i -> i.ToString()) (fun i -> i) {1..10000000}
+                Expect.equal (ChampHashMap.count map) 10000000 ""
+            }
         ]
     
