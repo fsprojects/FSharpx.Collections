@@ -127,10 +127,5 @@ module champHashMapTests =
                     | None -> false
                 Expect.all (seq {1..1000}) valExists "Inserted objects were not retrieved from hashmap"
             }
-
-            test "" {
-                let map = ChampHashMap.ofSeq (fun i -> i.ToString()) (fun i -> i) {1..10000000}
-                Expect.equal (ChampHashMap.count map) 10000000 ""
-            }
         ]
     
