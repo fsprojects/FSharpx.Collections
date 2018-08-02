@@ -19,7 +19,7 @@ type CollidingKey<'T when 'T : equality> (value:'T) =
         member this.Equals(other) = this.item.Equals(other.item)
 
 
-module champHashMapTests =
+module ChampHashMapTests =
     [<Tests>]
     let testQueue = 
         testList "Experimental ChampHashMap tests" [

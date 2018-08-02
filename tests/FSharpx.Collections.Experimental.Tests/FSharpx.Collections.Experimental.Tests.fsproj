@@ -5,7 +5,7 @@
     <RootNamespace>FSharpx.Collections.Experimental.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
     <Name>FSharpx.Collections.Experimental.Tests</Name>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net47;netcoreapp2.0</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
@@ -46,6 +46,7 @@
     <Compile Include="SkewBinaryRandomAccessListTest.fs" />
     <Compile Include="SkewBinomialHeapTest.fs" />
     <Compile Include="TimeSeriesTest.fs" />
+    <Compile Include="ChampHashMapTest.fs" />
     <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
