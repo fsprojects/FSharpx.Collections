@@ -1,6 +1,5 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open System
 open FSharpx.Collections
 open Properties
 open FsCheck
@@ -13,6 +12,7 @@ open Expecto.Flip
 module RandomAccessListTest =
     let emptyRandomAccessList = RandomAccessList.empty
 
+    [<Tests>]
     let testRandomAccessList =
 
         testList "RandomAccessList" [

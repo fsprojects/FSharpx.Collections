@@ -99,3 +99,6 @@ module DList =
 
     ///O(n). Returns a seq of the DList elements.
     val inline toSeq  : DList<'T> ->  seq<'T>
+
+    ///O(n). Returns a pairwise DList of elements.
+    val pairwise : DList<'T> -> DList<'T*'T>

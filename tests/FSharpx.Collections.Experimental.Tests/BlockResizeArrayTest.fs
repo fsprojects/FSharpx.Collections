@@ -1,10 +1,10 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx.Collections.Experimental
-open FsCheck
 open Expecto
 open Expecto.Flip
 open FSharpx.Collections.TimeMeasurement
+open Properties
 
 module BlockResizeArrayTest =
 
@@ -153,77 +153,88 @@ module BlockResizeArrayTest =
                 let bra = BlockResizeArray.Init testLen (fun i -> i)
                 let braRes = bra.Fold (fun acc elem -> acc + elem) 0
                 Expect.equal "" braRes aRes } 
+        ]
 
+    [<Tests>]
+    let testBlockResizeArrayPropeerties =
+        testList "Experimental BlockResizeArray properties" [
             // destabilizing test function
-            //test "Random map" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =        
-            //        let arr = bra.ToArray()
-            //        let b = bra.Map f
-            //        let a = Array.map f arr
-            //        compareByElems b a
-            //    Check.VerboseThrowOnFailure <| testFun (fun e -> e * 2) }
+            ptestPropertyWithConfig config10k "Random map" <|
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =        
+                        let arr = bra.ToArray()
+                        let b = bra.Map f
+                        let a = Array.map f arr
+                        compareByElems b a
+                    testFun (fun e -> e * 2) xs
     
             // destabilizing test function
-            //test "Random filter" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =       
-            //        let arr = bra.ToArray()
-            //        let b = bra.Filter f
-            //        let a = Array.filter f arr
-            //        compareByElems b a        
-            //    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2) }
+            ptestPropertyWithConfig config10k "Random filter" <|  
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =       
+                        let arr = bra.ToArray()
+                        let b = bra.Filter f
+                        let a = Array.filter f arr
+                        compareByElems b a
+                    testFun (fun e -> e % 3 = 2) xs
   
             // destabilizing test function
-            //test "Random TryFind" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =        
-            //        let arr = bra.ToArray()
-            //        let b = bra.TryFind f
-            //        let a = Array.tryFind f arr
-            //        Expect.isTrue "" (b = a)
-            //    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2) }   
+            ptestPropertyWithConfig config10k "Random TryFind" <|
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =        
+                        let arr = bra.ToArray()
+                        let b = bra.TryFind f
+                        let a = Array.tryFind f arr
+                        Expect.isTrue "" (b = a)
+                    testFun (fun e -> e % 3 = 2) xs
 
             // destabilizing test function
-            //test "Random Find" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =        
-            //        let arr = bra.ToArray()
+            ptestPropertyWithConfig config10k "Random Find" <|   
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =        
+                        let arr = bra.ToArray()
                     
-            //        let b = 
-            //            try 
-            //                bra.Find f |> Some
-            //            with
-            //            | :? System.Collections.Generic.KeyNotFoundException -> None
-            //        let a = 
-            //            try 
-            //                Array.find f arr |> Some
-            //            with
-            //            | :? System.Collections.Generic.KeyNotFoundException -> None
+                        let b = 
+                            try 
+                                bra.Find f |> Some
+                            with
+                            | :? System.Collections.Generic.KeyNotFoundException -> None
+                        let a = 
+                            try 
+                                Array.find f arr |> Some
+                            with
+                            | :? System.Collections.Generic.KeyNotFoundException -> None
 
-            //        Expect.isTrue "" (b = a)
-            //    Check.VerboseThrowOnFailure <| testFun (fun e -> e % 3 = 2) }
-
-            // destabilizing test function
-            //test "Random ToArray" {   
-            //    let testFun (bra:BlockResizeArray<int>) =        
-            //        let arr = bra.ToArray()
-            //        compareByElems bra arr
-            //    Check.VerboseThrowOnFailure <| testFun }
+                        Expect.isTrue "" (b = a)
+                    testFun (fun e -> e % 3 = 2) xs
 
             // destabilizing test function
-            //test "Random iter" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =
-            //        let arr = bra.ToArray()
-            //        let acc1 = ref 0
-            //        let acc2 = ref 0
-            //        bra.Iter (f acc1)
-            //        Array.iter (f acc2) arr
-            //        Expect.equal "" !acc1 !acc2
-            //    Check.VerboseThrowOnFailure <| testFun (fun acc -> (fun e -> acc := !acc + e)) }
+            ptestPropertyWithConfig config10k "Random ToArray" <|
+                fun xs ->
+                    let testFun (bra:BlockResizeArray<int>) =        
+                        let arr = bra.ToArray()
+                        compareByElems bra arr
+                    testFun xs
 
             // destabilizing test function
-            //test "Random fold" {   
-            //    let testFun f (bra:BlockResizeArray<int>) =
-            //        let arr = bra.ToArray()        
-            //        let r1 = bra.Fold f 0
-            //        let r2 =  Array.fold f 0 arr
-            //        Expect.equal "" r2 r1
-            //    Check.VerboseThrowOnFailure <| testFun (fun s e -> s + e) }
+            ptestPropertyWithConfig config10k "Random iter" <|
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =
+                        let arr = bra.ToArray()
+                        let acc1 = ref 0
+                        let acc2 = ref 0
+                        bra.Iter (f acc1)
+                        Array.iter (f acc2) arr
+                        Expect.equal "" !acc1 !acc2
+                    testFun (fun acc -> (fun e -> acc := !acc + e)) xs
+
+            // destabilizing test function
+            ptestPropertyWithConfig config10k "Random fold" <|
+                fun xs ->
+                    let testFun f (bra:BlockResizeArray<int>) =
+                        let arr = bra.ToArray()        
+                        let r1 = bra.Fold f 0
+                        let r2 =  Array.fold f 0 arr
+                        Expect.equal "" r2 r1
+                    testFun (fun s e -> s + e) xs
         ]

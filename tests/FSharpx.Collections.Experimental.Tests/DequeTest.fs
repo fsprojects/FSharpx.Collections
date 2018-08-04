@@ -1,6 +1,5 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open Expecto
@@ -383,7 +382,7 @@ module DequeTest =
                 Expect.equal "Deque.cons" "zz" (lena.Cons "zz" |> Deque.head) }
 
             test "IDeque Deque.cons works" {
-                ((lena :> IDeque<string>).Cons "zz").Head |> Expect.equal "zz" }
+                (lena :> IDeque<string>).Cons("zz").Head |> Expect.equal "" "zz" }
 
             test "Deque.ofCatLists and Deque.uncons" {
                 let d = Deque.ofCatLists ["a";"b";"c"] ["d";"e";"f"]

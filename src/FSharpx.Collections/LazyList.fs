@@ -337,3 +337,22 @@ module LazyList =
             | 0 -> leftL, (ll'.Tail)
             | _ -> loop (z - 1)  ((ll'.Head)::leftL) (ll'.Tail)
         loop n [] ll
+
+    let rec compareWith (comparer: 'a -> 'a -> _) source1 source2 =
+        match source1, source2 with
+        | Nil, Nil -> 0
+        | Cons (x1, xs1), Cons (x2, xs2) ->
+            match comparer x1 x2 with
+            | 0 -> compareWith comparer xs1 xs2
+            | x -> x
+        | Cons _, Nil -> 1
+        | Nil, Cons _ -> -1
+
+    let rec equalsWith (fEquality: 'a -> 'a -> _) source1 source2 =
+        match source1, source2 with
+        | Nil, Nil -> true
+        | Cons (x1, xs1), Cons (x2, xs2) ->
+            match fEquality x1 x2 with
+            | true -> equalsWith fEquality xs1 xs2
+            | false -> false
+        | Cons _, Nil | Nil, Cons _ -> false

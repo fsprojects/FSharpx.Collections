@@ -16,7 +16,6 @@ module QueueGen =
         
         loop q l
 
-//BankersQueue
 (*
 IQueue generators from random ofSeq and/or snoc elements from random list 
 *)
@@ -52,7 +51,6 @@ IQueue generators from random ofSeq and/or snoc elements from random list
                   let! y =  Gen.listString n2  
                   return ( (BankersQueue.ofSeq x |> snocThruList y), (x @ y) ) }
 
-//BatchedQueue
 (*
 non-IQueue generators from random ofList
 *)
@@ -95,7 +93,6 @@ IQueue generators from random ofSeq and/or snoc elements from random list
                   let! y =  Gen.listString n2  
                   return ( (BatchedQueue.ofSeq x |> snocThruList y), (x @ y) ) }
 
-                  //HoodMelvilleQueue
 (*
 non-IQueue generators from random ofList
 *)
@@ -138,7 +135,6 @@ IQueue generators from random ofSeq and/or snoc elements from random list
                   let! y =  Gen.listString n2  
                   return ( (HoodMelvilleQueue.ofSeq x |> snocThruList y), (x @ y) ) }
 
-//PhysicistQueue
 (*
 non-IQueue generators from random ofList
 *)

@@ -19,15 +19,15 @@ module DListTest =
             test "test DList.length should return 5" {
               DList.length expected |> Expect.equal "" 5 } 
 
-            test "test ofSeq should create a DList from a seq" {
+            ptest "test ofSeq should create a DList from a seq" {
               let test = seq { for i in 0..4 -> i }
               DList.ofSeq test |> Expect.equal "" expected } 
 
-            test "test ofSeq should create a DList from a list" {
+            ptest "test ofSeq should create a DList from a list" {
               let test = [ for i in 0..4 -> i ]
               DList.ofSeq test |> Expect.equal "" expected } 
 
-            test "test ofSeq should create a DList from an array" {
+            ptest "test ofSeq should create a DList from an array" {
               let test = [| for i in 0..4 -> i |]
               DList.ofSeq test |> Expect.equal "" expected } 
 

@@ -10,6 +10,7 @@ open System.Runtime.CompilerServices
 [<assembly: InternalsVisibleToAttribute("FSharpx.Collections.Experimental.Tests")>]
 [<assembly: AssemblyVersionAttribute("2.0.0")>]
 [<assembly: AssemblyFileVersionAttribute("2.0.0")>]
+[<assembly: AssemblyConfigurationAttribute("Release")>]
 do ()
 
 module internal AssemblyVersionInformation =
@@ -20,3 +21,4 @@ module internal AssemblyVersionInformation =
     let [<Literal>] InternalsVisibleTo_1 = "FSharpx.Collections.Experimental.Tests"
     let [<Literal>] AssemblyVersion = "2.0.0"
     let [<Literal>] AssemblyFileVersion = "2.0.0"
+    let [<Literal>] AssemblyConfiguration = "Release"

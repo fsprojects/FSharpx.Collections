@@ -3,6 +3,8 @@
 /// Resize array fith fixed size block memory allocation.
 /// Provide more optimal space usage for huge arrays than standard ResizeArray.
 /// Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
+/// As evidenced by the tests that cannot run in mono, and pending destabilizing tests,
+/// beware that this data structure can be destabilizing to your assembly.
 open System.Collections
 open System.Collections.Generic
             

@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SetTree - FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
+    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/fsprojects/FSharpx.Collections">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSharpx.Collections/index.html">FSharpx.Collections</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>SetTree</h1>
+<p>
+  <span>Namespace: Microsoft.FSharp.Collections.Tagged</span><br />
+        <span>
+          Attributes:<br />
+[&lt;RequireQualifiedAccess&gt;]<br />
+          
+      </span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="microsoft-fsharp-collections-tagged-settree-setiterator-1.html">SetIterator<'T></a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1005', 1005)" onmouseover="showTip(event, '1005', 1005)">
+            add(comparer k t)
+          </code>
+          <div class="tip" id="1005">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; t:SetTree&lt;&#39;T&gt; -&gt; SetTree&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L102-102" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1006', 1006)" onmouseover="showTip(event, '1006', 1006)">
+            balance(comparer t1 k t2)
+          </code>
+          <div class="tip" id="1006">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8202&gt; -&gt; t1:SetTree&lt;&#39;?8202&gt; -&gt; k:&#39;?8202 -&gt; t2:SetTree&lt;&#39;?8202&gt; -&gt; SetTree&lt;&#39;?8202&gt;<br />
+                          <strong>Type parameters:</strong> '?8202                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L119-119" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1007', 1007)" onmouseover="showTip(event, '1007', 1007)">
+            choose(s)
+          </code>
+          <div class="tip" id="1007">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8296&gt; -&gt; &#39;?8296<br />
+                          <strong>Type parameters:</strong> '?8296                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L534-534" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1008', 1008)" onmouseover="showTip(event, '1008', 1008)">
+            compare(comparer s1 s2)
+          </code>
+          <div class="tip" id="1008">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8294&gt; -&gt; s1:SetTree&lt;&#39;?8294&gt; -&gt; s2:SetTree&lt;&#39;?8294&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?8294                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L527-527" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1009', 1009)" onmouseover="showTip(event, '1009', 1009)">
+            compareStacks(comparer l1 l2)
+          </code>
+          <div class="tip" id="1009">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; l1:SetTree&lt;&#39;T&gt; list -&gt; l2:SetTree&lt;&#39;T&gt; list -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L494-494" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1010', 1010)" onmouseover="showTip(event, '1010', 1010)">
+            contains(comparer k t)
+          </code>
+          <div class="tip" id="1010">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; t:SetTree&lt;&#39;T&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L203-203" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1011', 1011)" onmouseover="showTip(event, '1011', 1011)">
+            copyToArray(s arr i)
+          </code>
+          <div class="tip" id="1011">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8300&gt; -&gt; arr:&#39;?8300 [] -&gt; i:int -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?8300                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L546-546" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1012', 1012)" onmouseover="showTip(event, '1012', 1012)">
+            count(s)
+          </code>
+          <div class="tip" id="1012">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8239&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?8239                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L294-294" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1013', 1013)" onmouseover="showTip(event, '1013', 1013)">
+            countAux(s acc)
+          </code>
+          <div class="tip" id="1013">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8237&gt; -&gt; acc:int -&gt; int<br />
+                          <strong>Type parameters:</strong> '?8237                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L286-286" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1014', 1014)" onmouseover="showTip(event, '1014', 1014)">
+            diff(comparer a b)
+          </code>
+          <div class="tip" id="1014">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8235&gt; -&gt; a:SetTree&lt;&#39;?8235&gt; -&gt; b:SetTree&lt;&#39;?8235&gt; -&gt; SetTree&lt;&#39;?8235&gt;<br />
+                          <strong>Type parameters:</strong> '?8235                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L284-284" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1015', 1015)" onmouseover="showTip(event, '1015', 1015)">
+            diffAux(comparer m acc)
+          </code>
+          <div class="tip" id="1015">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8233&gt; -&gt; m:SetTree&lt;&#39;?8233&gt; -&gt; acc:SetTree&lt;&#39;?8233&gt; -&gt; SetTree&lt;&#39;?8233&gt;<br />
+                          <strong>Type parameters:</strong> '?8233                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L276-276" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1016', 1016)" onmouseover="showTip(event, '1016', 1016)">
+            elements(a)
+          </code>
+          <div class="tip" id="1016">
+            <strong>Signature:</strong> a:SetTree&lt;&#39;?8227&gt; -&gt; &#39;?8227 list<br />
+                          <strong>Type parameters:</strong> '?8227                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L262-262" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1017', 1017)" onmouseover="showTip(event, '1017', 1017)">
+            elementsAux(m acc)
+          </code>
+          <div class="tip" id="1017">
+            <strong>Signature:</strong> m:SetTree&lt;&#39;?8225&gt; -&gt; acc:&#39;?8225 list -&gt; &#39;?8225 list<br />
+                          <strong>Type parameters:</strong> '?8225                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L254-254" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1018', 1018)" onmouseover="showTip(event, '1018', 1018)">
+            empty
+          </code>
+          <div class="tip" id="1018">
+            <strong>Signature:</strong> SetTree&lt;&#39;?8189&gt;<br />
+                          <strong>Type parameters:</strong> '?8189                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L29-29" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1019', 1019)" onmouseover="showTip(event, '1019', 1019)">
+            exists(f m)
+          </code>
+          <div class="tip" id="1019">
+            <strong>Signature:</strong> f:(&#39;?8219 -&gt; bool) -&gt; m:SetTree&lt;&#39;?8219&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8219                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L242-242" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1020', 1020)" onmouseover="showTip(event, '1020', 1020)">
+            filter(comparer f s)
+          </code>
+          <div class="tip" id="1020">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8231&gt; -&gt; f:(&#39;?8231 -&gt; bool) -&gt; s:SetTree&lt;&#39;?8231&gt; -&gt; SetTree&lt;&#39;?8231&gt;<br />
+                          <strong>Type parameters:</strong> '?8231                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L274-274" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1021', 1021)" onmouseover="showTip(event, '1021', 1021)">
+            filterAux(comparer f s acc)
+          </code>
+          <div class="tip" id="1021">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8229&gt; -&gt; f:(&#39;?8229 -&gt; bool) -&gt; s:SetTree&lt;&#39;?8229&gt; -&gt; acc:SetTree&lt;&#39;?8229&gt; -&gt; SetTree&lt;&#39;?8229&gt;<br />
+                          <strong>Type parameters:</strong> '?8229                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L264-264" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1022', 1022)" onmouseover="showTip(event, '1022', 1022)">
+            fold(f m x)
+          </code>
+          <div class="tip" id="1022">
+            <strong>Signature:</strong> f:(&#39;?8214 -&gt; &#39;?8215 -&gt; &#39;?8215) -&gt; m:SetTree&lt;&#39;?8214&gt; -&gt; x:&#39;?8215 -&gt; &#39;?8215<br />
+                          <strong>Type parameters:</strong> '?8214, '?8215                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L226-226" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1023', 1023)" onmouseover="showTip(event, '1023', 1023)">
+            forAll(f m)
+          </code>
+          <div class="tip" id="1023">
+            <strong>Signature:</strong> f:(&#39;?8217 -&gt; bool) -&gt; m:SetTree&lt;&#39;?8217&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8217                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L234-234" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1024', 1024)" onmouseover="showTip(event, '1024', 1024)">
+            height(t)
+          </code>
+          <div class="tip" id="1024">
+            <strong>Signature:</strong> t:SetTree&lt;&#39;?8191&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> '?8191                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L31-31" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1025', 1025)" onmouseover="showTip(event, '1025', 1025)">
+            intersection(comparer a b)
+          </code>
+          <div class="tip" id="1025">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8245&gt; -&gt; a:SetTree&lt;&#39;?8245&gt; -&gt; b:SetTree&lt;&#39;?8245&gt; -&gt; SetTree&lt;&#39;?8245&gt;<br />
+                          <strong>Type parameters:</strong> '?8245                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L329-329" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1026', 1026)" onmouseover="showTip(event, '1026', 1026)">
+            intersectionAux(comparer b m acc)
+          </code>
+          <div class="tip" id="1026">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8243&gt; -&gt; b:SetTree&lt;&#39;?8243&gt; -&gt; m:SetTree&lt;&#39;?8243&gt; -&gt; acc:SetTree&lt;&#39;?8243&gt; -&gt; SetTree&lt;&#39;?8243&gt;<br />
+                          <strong>Type parameters:</strong> '?8243                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L317-317" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1027', 1027)" onmouseover="showTip(event, '1027', 1027)">
+            isEmpty(m)
+          </code>
+          <div class="tip" id="1027">
+            <strong>Signature:</strong> m:SetTree&lt;&#39;?8221&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8221                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L250-250" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1028', 1028)" onmouseover="showTip(event, '1028', 1028)">
+            iter(f t)
+          </code>
+          <div class="tip" id="1028">
+            <strong>Signature:</strong> f:(&#39;?8212 -&gt; unit) -&gt; t:SetTree&lt;&#39;?8212&gt; -&gt; unit<br />
+                          <strong>Type parameters:</strong> '?8212                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L215-215" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1029', 1029)" onmouseover="showTip(event, '1029', 1029)">
+            maximumElement(s)
+          </code>
+          <div class="tip" id="1029">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8273&gt; -&gt; &#39;?8273<br />
+                          <strong>Type parameters:</strong> '?8273                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L416-416" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1030', 1030)" onmouseover="showTip(event, '1030', 1030)">
+            maximumElementAux(s n)
+          </code>
+          <div class="tip" id="1030">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8267&gt; -&gt; n:&#39;?8267 -&gt; &#39;?8267<br />
+                          <strong>Type parameters:</strong> '?8267                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L395-395" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1031', 1031)" onmouseover="showTip(event, '1031', 1031)">
+            maximumElementOpt(s)
+          </code>
+          <div class="tip" id="1031">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L403-403" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1032', 1032)" onmouseover="showTip(event, '1032', 1032)">
+            minimumElement(s)
+          </code>
+          <div class="tip" id="1032">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8271&gt; -&gt; &#39;?8271<br />
+                          <strong>Type parameters:</strong> '?8271                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L411-411" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1033', 1033)" onmouseover="showTip(event, '1033', 1033)">
+            minimumElementAux(s n)
+          </code>
+          <div class="tip" id="1033">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8263&gt; -&gt; n:&#39;?8263 -&gt; &#39;?8263<br />
+                          <strong>Type parameters:</strong> '?8263                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L379-379" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1034', 1034)" onmouseover="showTip(event, '1034', 1034)">
+            minimumElementOpt(s)
+          </code>
+          <div class="tip" id="1034">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L387-387" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1035', 1035)" onmouseover="showTip(event, '1035', 1035)">
+            mk(l hl k r hr)
+          </code>
+          <div class="tip" id="1035">
+            <strong>Signature:</strong> l:SetTree&lt;&#39;?8196&gt; -&gt; hl:int -&gt; k:&#39;?8196 -&gt; r:SetTree&lt;&#39;?8196&gt; -&gt; hr:int -&gt; SetTree&lt;&#39;?8196&gt;<br />
+                          <strong>Type parameters:</strong> '?8196                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L55-55" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1036', 1036)" onmouseover="showTip(event, '1036', 1036)">
+            mkFromEnumerator(comparer acc e)
+          </code>
+          <div class="tip" id="1036">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8304&gt; -&gt; acc:SetTree&lt;&#39;?8304&gt; -&gt; e:IEnumerator&lt;&#39;?8304&gt; -&gt; SetTree&lt;&#39;?8304&gt;<br />
+                          <strong>Type parameters:</strong> '?8304                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L556-556" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1037', 1037)" onmouseover="showTip(event, '1037', 1037)">
+            nextElem(comparer k s)
+          </code>
+          <div class="tip" id="1037">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; s:SetTree&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L366-366" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1038', 1038)" onmouseover="showTip(event, '1038', 1038)">
+            nextElemCont(comparer k s cont)
+          </code>
+          <div class="tip" id="1038">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; s:SetTree&lt;&#39;T&gt; -&gt; cont:(&#39;T option -&gt; &#39;T option) -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L357-357" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1039', 1039)" onmouseover="showTip(event, '1039', 1039)">
+            ofArray(comparer l)
+          </code>
+          <div class="tip" id="1039">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8308&gt; -&gt; l:&#39;?8308 [] -&gt; SetTree&lt;&#39;?8308&gt;<br />
+                          <strong>Type parameters:</strong> '?8308                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L565-565" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1040', 1040)" onmouseover="showTip(event, '1040', 1040)">
+            ofSeq(comparer c)
+          </code>
+          <div class="tip" id="1040">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8306&gt; -&gt; c:IEnumerable&lt;&#39;?8306&gt; -&gt; SetTree&lt;&#39;?8306&gt;<br />
+                          <strong>Type parameters:</strong> '?8306                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L561-561" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1041', 1041)" onmouseover="showTip(event, '1041', 1041)">
+            partition(comparer f s)
+          </code>
+          <div class="tip" id="1041">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8251&gt; -&gt; f:(&#39;?8251 -&gt; bool) -&gt; s:SetTree&lt;&#39;?8251&gt; -&gt; SetTree&lt;&#39;?8251&gt; * SetTree&lt;&#39;?8251&gt;<br />
+                          <strong>Type parameters:</strong> '?8251                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L346-346" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1042', 1042)" onmouseover="showTip(event, '1042', 1042)">
+            partition1(comparer f k (acc1, acc2))
+          </code>
+          <div class="tip" id="1042">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8247&gt; -&gt; f:(&#39;?8247 -&gt; bool) -&gt; k:&#39;?8247 -&gt; (acc1:SetTree&lt;&#39;?8247&gt; * acc2:SetTree&lt;&#39;?8247&gt;) -&gt; SetTree&lt;&#39;?8247&gt; * SetTree&lt;&#39;?8247&gt;<br />
+                          <strong>Type parameters:</strong> '?8247                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L331-331" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1043', 1043)" onmouseover="showTip(event, '1043', 1043)">
+            partitionAux(comparer f s (arg4, arg5))
+          </code>
+          <div class="tip" id="1043">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8249&gt; -&gt; f:(&#39;?8249 -&gt; bool) -&gt; s:SetTree&lt;&#39;?8249&gt; -&gt; (SetTree&lt;&#39;?8249&gt; * SetTree&lt;&#39;?8249&gt;) -&gt; SetTree&lt;&#39;?8249&gt; * SetTree&lt;&#39;?8249&gt;<br />
+                          <strong>Type parameters:</strong> '?8249                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L335-335" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1044', 1044)" onmouseover="showTip(event, '1044', 1044)">
+            prevElem(comparer k s)
+          </code>
+          <div class="tip" id="1044">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; s:SetTree&lt;&#39;T&gt; -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L377-377" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1045', 1045)" onmouseover="showTip(event, '1045', 1045)">
+            prevElemCont(comparer k s cont)
+          </code>
+          <div class="tip" id="1045">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; s:SetTree&lt;&#39;T&gt; -&gt; cont:(&#39;T option -&gt; &#39;T option) -&gt; &#39;T option<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L368-368" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1046', 1046)" onmouseover="showTip(event, '1046', 1046)">
+            rebalance(t1 k t2)
+          </code>
+          <div class="tip" id="1046">
+            <strong>Signature:</strong> t1:SetTree&lt;&#39;?8198&gt; -&gt; k:&#39;?8198 -&gt; t2:SetTree&lt;&#39;?8198&gt; -&gt; SetTree&lt;&#39;?8198&gt;<br />
+                          <strong>Type parameters:</strong> '?8198                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L63-63" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1047', 1047)" onmouseover="showTip(event, '1047', 1047)">
+            remove(comparer k t)
+          </code>
+          <div class="tip" id="1047">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; k:&#39;T -&gt; t:SetTree&lt;&#39;T&gt; -&gt; SetTree&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L182-182" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1048', 1048)" onmouseover="showTip(event, '1048', 1048)">
+            SetOne(x)
+          </code>
+          <div class="tip" id="1048">
+            <strong>Signature:</strong> x:&#39;?8193 -&gt; SetTree&lt;&#39;?8193&gt;<br />
+                          <strong>Type parameters:</strong> '?8193                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L50-50" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1049', 1049)" onmouseover="showTip(event, '1049', 1049)">
+            spliceOutSuccessor(t)
+          </code>
+          <div class="tip" id="1049">
+            <strong>Signature:</strong> t:SetTree&lt;&#39;?8206&gt; -&gt; &#39;?8206 * SetTree&lt;&#39;?8206&gt;<br />
+                          <strong>Type parameters:</strong> '?8206                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L171-171" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1050', 1050)" onmouseover="showTip(event, '1050', 1050)">
+            split(comparer pivot t)
+          </code>
+          <div class="tip" id="1050">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;T&gt; -&gt; pivot:&#39;T -&gt; t:SetTree&lt;&#39;T&gt; -&gt; SetTree&lt;&#39;T&gt; * bool * SetTree&lt;&#39;T&gt;<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L147-147" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1051', 1051)" onmouseover="showTip(event, '1051', 1051)">
+            subset(comparer a b)
+          </code>
+          <div class="tip" id="1051">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8223&gt; -&gt; a:SetTree&lt;&#39;?8223&gt; -&gt; b:SetTree&lt;&#39;?8223&gt; -&gt; bool<br />
+                          <strong>Type parameters:</strong> '?8223                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L252-252" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1052', 1052)" onmouseover="showTip(event, '1052', 1052)">
+            toArray(s)
+          </code>
+          <div class="tip" id="1052">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8302&gt; -&gt; &#39;?8302 []<br />
+                          <strong>Type parameters:</strong> '?8302                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L550-550" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1053', 1053)" onmouseover="showTip(event, '1053', 1053)">
+            tolerance
+          </code>
+          <div class="tip" id="1053">
+            <strong>Signature:</strong> int<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L53-53" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1054', 1054)" onmouseover="showTip(event, '1054', 1054)">
+            toList(s)
+          </code>
+          <div class="tip" id="1054">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8298&gt; -&gt; &#39;?8298 list<br />
+                          <strong>Type parameters:</strong> '?8298                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L536-536" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1055', 1055)" onmouseover="showTip(event, '1055', 1055)">
+            toSeq(s)
+          </code>
+          <div class="tip" id="1055">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8290&gt; -&gt; IEnumerator&lt;&#39;?8290&gt;<br />
+                          <strong>Type parameters:</strong> '?8290                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L479-479" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1056', 1056)" onmouseover="showTip(event, '1056', 1056)">
+            union(comparer t1 t2)
+          </code>
+          <div class="tip" id="1056">
+            <strong>Signature:</strong> comparer:IComparer&lt;&#39;?8241&gt; -&gt; t1:SetTree&lt;&#39;?8241&gt; -&gt; t2:SetTree&lt;&#39;?8241&gt; -&gt; SetTree&lt;&#39;?8241&gt;<br />
+                          <strong>Type parameters:</strong> '?8241                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L296-296" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Active patterns</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Active pattern</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '1057', 1057)" onmouseover="showTip(event, '1057', 1057)">
+            ( |MatchSetNode|MatchSetEmpty| )(s)
+          </code>
+          <div class="tip" id="1057">
+            <strong>Signature:</strong> s:SetTree&lt;&#39;?8253&gt; -&gt; Choice&lt;(&#39;?8253 * SetTree&lt;&#39;?8253&gt; * SetTree&lt;&#39;?8253&gt;),unit&gt;<br />
+                          <strong>Type parameters:</strong> '?8253                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L349-349" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>|MatchSetNode|MatchSetEmpty|</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">FSharpx.Collections</li>
+            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
+            <li><a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+              
+            <li class="nav-header">Using from F#</li>
+            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
+            <li class="nav-header">Using from C#</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
+            <li class="nav-header">Performance tests</li>
+            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
+            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
+                      
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>

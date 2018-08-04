@@ -2,13 +2,10 @@
 
 // originally from http://learnyouahaskell.com/zippers
 
-open System
-open FSharpx
-open FSharpx.Collections.Experimental
 open FSharpx.Collections
 open Expecto
 open Expecto.Flip
-
+#nowarn "25"
 module FileSystemZipperTest =
 
     type FileName = string
@@ -26,7 +23,7 @@ module FileSystemZipperTest =
 
     /// Moves the zipper one directory up
     let up (zipper:FSZipper) : FSZipper = 
-   
+        
         match zipper.Path with
         | Some (name,ls,rs) -> { zipper with Focus = Folder { Name = name; Items = ls @ [zipper.Focus] @ rs} }
 
@@ -104,10 +101,9 @@ module FileSystemZipperTest =
                 let ok = ref false
                 let z1 = disk |> moveTo "pics" |> moveTo "skull_man(scary).bmp"  |> rename "scary.bmp" |> up 
                 try
-                  z1 |> moveTo "skull_man(scary).bmp"
-                  ()
+                  z1 |> moveTo "skull_man(scary).bmp" |> ignore
                 with 
-                | exn -> ok := true
+                | _ -> ok := true
                 Expect.isTrue "" !ok }
 
             test "Can create a new file" {

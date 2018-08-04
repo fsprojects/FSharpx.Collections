@@ -7,6 +7,7 @@ open Expecto
 open Expecto.Flip
 
 module PersistentHashMapTests =
+    [<Tests>]
     let testPersistentHashMap =
 
         testList "PersistentHashMap" [
@@ -23,6 +24,11 @@ module PersistentHashMapTests =
                 Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey "value" PersistentHashMap.empty
                 Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey null PersistentHashMap.empty
                 Expect.isTrue "PersistentHashMap.empty" (PersistentHashMap.add null "Hello" PersistentHashMap.empty |> PersistentHashMap.containsKey null) }
+
+            //https://github.com/fsprojects/FSharpx.Collections/issues/85
+            ptest "can add None value to empty map" {
+                let x = PersistentHashMap<string,string option>.Empty()
+                Expect.isTrue "PersistentHashMap.containsKey" (x.Add("Hello", None) |> PersistentHashMap.containsKey "Hello") }
 
             test "can PersistentHashMap.add PersistentHashMap.empty string as key to PersistentHashMap.empty map" {
                 Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey "" PersistentHashMap.empty

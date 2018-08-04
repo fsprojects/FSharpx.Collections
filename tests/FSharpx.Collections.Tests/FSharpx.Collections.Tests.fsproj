@@ -13,6 +13,7 @@
     <Compile Include="FsCheckProperties.fs" />
     <Compile Include="ArrayTests.fs" />
     <Compile Include="ByteStringTest.fs" />
+    <Compile Include="CircularBufferTests.fs" />
     <Compile Include="ResizeArrayTests.fs" />
     <Compile Include="DequeTest.fs" />
     <Compile Include="DictionaryExtensionsTests.fs" />
@@ -23,6 +24,7 @@
     <Compile Include="MapExtensionsTest.fs" />
     <Compile Include="MapTests.fs" />
     <Compile Include="NameValueCollectionTests.fs" />
+    <Compile Include="NonEmptyListTests.fs" />
     <Compile Include="PriorityQueueTest.fs" />
     <Compile Include="QueueTest.fs" />
     <Compile Include="RandomAccessListTest.fs" />

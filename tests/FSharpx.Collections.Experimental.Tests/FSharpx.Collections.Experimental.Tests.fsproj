@@ -37,7 +37,6 @@
     <Compile Include="IQueueTest.fs" />
     <Compile Include="LeftistHeapTest.fs" />
     <Compile Include="ListZipperTest.fs" />
-    <Compile Include="NonEmptyListTests.fs" />
     <Compile Include="PairingHeapTest.fs" />
     <Compile Include="RealTimeDequeTest.fs" />
     <Compile Include="RealTimeQueueTest.fs" />
