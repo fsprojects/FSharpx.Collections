@@ -325,12 +325,18 @@ and RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[])  =
 
     interface System.Collections.Generic.IEnumerable<'T> with
         member this.GetEnumerator () =
-          this.rangedIterator(0,count).GetEnumerator()
+            this.rangedIterator(0,count).GetEnumerator()
 
     interface System.Collections.IEnumerable with
         member this.GetEnumerator () =
-          (this.rangedIterator(0,count).GetEnumerator())
+            (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator
+
+    interface System.Collections.Generic.IReadOnlyCollection<'T> with
+        member this.Count = this.Length
+    interface System.Collections.Generic.IReadOnlyList<'T> with
+        member this.Item
+            with get i = this.[i]
 
 [<RequireQualifiedAccess>]
 module RandomAccessList = 
