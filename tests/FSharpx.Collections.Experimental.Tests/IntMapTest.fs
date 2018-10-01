@@ -9,16 +9,10 @@ open System.Linq
 
 module IntMapTest =
     type IntMapGen =
-        static member IntMap() =
-            let rec intMapGen() = 
-                gen {
-                    let! ks = Arb.generate
-                    let! xs = Arb.generate
-                    return IntMap.ofSeq (Seq.zip (Seq.ofList xs) (Seq.ofList ks))
-                }
-            Arb.fromGen (intMapGen())
+        static member IntMap() = Arb.generate |> Gen.listOf |> Gen.map IntMap.ofSeq  |> Arb.fromGen
 
-    let registerGen = lazy (Arb.register<IntMapGen>() |> ignore)
+
+    let testPropertyWithConfig config = testPropertyWithConfig {config with arbitrary = typeof<IntMapGen> :: config.arbitrary}
 
     [<Tests>]
     let testIntMap =
@@ -461,8 +455,6 @@ module IntMapTest =
     [<Tests>]
     let testIntMapProperties =
 
-        registerGen.Force()
-
         let except (xs: _ seq) ys = xs.Except(ys)
         let intersect (xs: _ seq) ys = xs.Intersect(ys)
         let mapOption (f: 'a -> 'b option) l = List.foldBack (fun x xs -> match f x with Some v -> v::xs | None -> xs) l []
@@ -475,10 +467,10 @@ module IntMapTest =
             testPropertyWithConfig config10k "prop insert and tryFind" <|
                 fun k t -> IntMap.tryFind k (IntMap.insert k () t) <> None
 
-            ptestPropertyWithConfig config10k "prop insert and delete" <|
+            testPropertyWithConfig config10k "prop insert and delete" <|
                 fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k (IntMap.insert k () t) = t)
 
-            ptestPropertyWithConfig config10k "prop delete non member" <|
+            testPropertyWithConfig config10k "prop delete non member" <|
                 fun k t -> IntMap.tryFind k t = None ==> (IntMap.delete k t = t)
 
             testPropertyWithConfig config10k "prop append" <|
@@ -554,7 +546,7 @@ module IntMapTest =
                 fun (xs: int list) ->
                     List.sort (List.ofSeq (Seq.distinct xs)) = [ for (x,()) in IntMap.toList (IntMap.ofList [ for x in xs do yield (x,()) ]) do yield x ]
 
-            ptestPropertyWithConfig config10k "prop alter" <|
+            testPropertyWithConfig config10k "prop alter" <|
                 fun t k ->
                     let f = function | Some () -> None | None -> Some ()
                     let t' = IntMap.alter f k t
@@ -562,7 +554,7 @@ module IntMapTest =
                     | Some _ -> IntMap.size t - 1 = IntMap.size t' && IntMap.tryFind k t' = None
                     | None -> IntMap.size t + 1 = IntMap.size t' && IntMap.tryFind k t' <> None
 
-            ptestPropertyWithConfig config10k "prop isEmpty" <|
+            testPropertyWithConfig config10k "prop isEmpty" <|
                 fun m -> IntMap.isEmpty m = (IntMap.size m = 0)
 
             testPropertyWithConfig config10k "prop exists" <|
