@@ -68,7 +68,7 @@
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L704-704" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L708-708" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -88,7 +88,7 @@
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L698-698" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L702-702" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -101,54 +101,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
-            empty
+            count(map)
           </code>
           <div class="tip" id="227">
-            <strong>Signature:</strong> PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
-                          <strong>Type parameters:</strong> 'T, 'S                      </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L692-692" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(1), returns an empty PersistentHashMap</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
-            find(key map)
-          </code>
-          <div class="tip" id="228">
-            <strong>Signature:</strong> key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; &#39;S<br />
-                          <strong>Type parameters:</strong> 'T, 'S                      </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L701-701" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>O(log32n), returns the value if the exists in the map</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
-            length(map)
-          </code>
-          <div class="tip" id="229">
             <strong>Signature:</strong> map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; int<br />
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L695-695" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L699-699" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -160,15 +120,75 @@
       <tr>
         <td class="member-name">
 
+          <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
+            empty
+          </code>
+          <div class="tip" id="228">
+            <strong>Signature:</strong> PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
+                          <strong>Type parameters:</strong> 'T, 'S                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L693-693" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), returns an empty PersistentHashMap</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
+            find(key map)
+          </code>
+          <div class="tip" id="229">
+            <strong>Signature:</strong> key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; &#39;S<br />
+                          <strong>Type parameters:</strong> 'T, 'S                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L705-705" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(log32n), returns the value if the exists in the map</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
           <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
-            map(f map)
+            length(map)
           </code>
           <div class="tip" id="230">
+            <strong>Signature:</strong> map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; int<br />
+                          <strong>Type parameters:</strong> 'T, 'S                      </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L696-696" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>O(1), returns the count of the elements in the PersistentHashMap (same as count)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+            map(f map)
+          </code>
+          <div class="tip" id="231">
             <strong>Signature:</strong> f:(&#39;S -&gt; &#39;S1) -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S1&gt;<br />
                           <strong>Type parameters:</strong> 'S, 'S1, 'T                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L716-716" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L720-720" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -180,15 +200,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+          <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
             ofSeq(items)
           </code>
-          <div class="tip" id="231">
+          <div class="tip" id="232">
             <strong>Signature:</strong> items:seq&lt;&#39;T * &#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L713-713" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L717-717" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -200,15 +220,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
+          <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
             remove(key map)
           </code>
-          <div class="tip" id="232">
+          <div class="tip" id="233">
             <strong>Signature:</strong> key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L707-707" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L711-711" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -220,15 +240,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
+          <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
             toSeq(map)
           </code>
-          <div class="tip" id="233">
+          <div class="tip" id="234">
             <strong>Signature:</strong> map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; seq&lt;&#39;T * &#39;S&gt;<br />
                           <strong>Type parameters:</strong> 'T, 'S                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L710-710" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L714-714" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
