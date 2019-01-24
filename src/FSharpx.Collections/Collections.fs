@@ -501,13 +501,13 @@ module Map =
     let splitWithKey pred d = spanWithKey (not << pred) d
 
     /// <summary>
-    /// <code>insertWith f key value mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
-    /// If the key does exist, the function will insert <code>f new_value old_value</code>.
+    /// <code>insertWith f key defaultValue mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
+    /// If the key does exist, the function will insert <code>f defaultValue oldValue</code>.
     /// </summary>
-    let insertWith f key value map =
+    let insertWith f key defaultValue map =
         match Map.tryFind key map with
-        | Some oldValue -> map |> Map.add key (f value oldValue)
-        | None -> map |> Map.add key value
+        | Some oldValue -> map |> Map.add key (f defaultValue oldValue)
+        | None -> map |> Map.add key defaultValue
 
     /// <summary>
     /// <code>update f k map</code> updates the value <code>x</code> at key <code>k</code> (if it is in the map).
