@@ -117,7 +117,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1636', 1636)" onmouseover="showTip(event, '1636', 1636)">
-            Advance(toDate)
+            x.Advance(toDate)
           </code>
           <div class="tip" id="1636">
             <strong>Signature:</strong> toDate:DateTimeOffset -&gt; DateTimeOffset<br />
@@ -138,7 +138,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1637', 1637)" onmouseover="showTip(event, '1637', 1637)">
-            AsTimeseries(startDate)
+            x.AsTimeseries(startDate)
           </code>
           <div class="tip" id="1637">
             <strong>Signature:</strong> (startDate:DateTimeOffset option) -&gt; (DateTimeOffset * &#39;T) []<br />
@@ -156,7 +156,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1638', 1638)" onmouseover="showTip(event, '1638', 1638)">
-            Buffer
+            x.Buffer
           </code>
           <div class="tip" id="1638">
             <strong>Signature:</strong> RingBuffer&lt;&#39;T&gt;<br />
@@ -175,7 +175,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1639', 1639)" onmouseover="showTip(event, '1639', 1639)">
-            Clone()
+            x.Clone()
           </code>
           <div class="tip" id="1639">
             <strong>Signature:</strong> unit -&gt; Timeseries&lt;&#39;T&gt;<br />
@@ -193,7 +193,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1640', 1640)" onmouseover="showTip(event, '1640', 1640)">
-            Granularity
+            x.Granularity
           </code>
           <div class="tip" id="1640">
             <strong>Signature:</strong> TimeSpan<br />
@@ -212,7 +212,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1641', 1641)" onmouseover="showTip(event, '1641', 1641)">
-            Insert(...)
+            x.Insert(...)
           </code>
           <div class="tip" id="1641">
             <strong>Signature:</strong> (op:(&#39;T -&gt; &#39;T -&gt; &#39;T) * startDate:DateTimeOffset * gran:TimeSpan * dataToInsert:seq&lt;&#39;T&gt;) -&gt; unit<br />
@@ -230,7 +230,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1642', 1642)" onmouseover="showTip(event, '1642', 1642)">
-            Merge(f, ts)
+            x.Merge(f, ts)
           </code>
           <div class="tip" id="1642">
             <strong>Signature:</strong> (f:(&#39;T -&gt; &#39;T -&gt; &#39;T) * ts:Timeseries&lt;&#39;T&gt;) -&gt; unit<br />
@@ -248,7 +248,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1643', 1643)" onmouseover="showTip(event, '1643', 1643)">
-            Series
+            x.Series
           </code>
           <div class="tip" id="1643">
             <strong>Signature:</strong> (DateTimeOffset * &#39;T) []<br />
@@ -267,7 +267,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1644', 1644)" onmouseover="showTip(event, '1644', 1644)">
-            StartDate()
+            x.StartDate()
           </code>
           <div class="tip" id="1644">
             <strong>Signature:</strong> unit -&gt; DateTimeOffset<br />
@@ -286,7 +286,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1645', 1645)" onmouseover="showTip(event, '1645', 1645)">
-            StartDate()
+            x.StartDate()
           </code>
           <div class="tip" id="1645">
             <strong>Signature:</strong> unit -&gt; unit<br />
@@ -305,7 +305,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1646', 1646)" onmouseover="showTip(event, '1646', 1646)">
-            ToGranularity(granularity)
+            x.ToGranularity(granularity)
           </code>
           <div class="tip" id="1646">
             <strong>Signature:</strong> granularity:TimeSpan -&gt; Timeseries&lt;&#39;T&gt;<br />
@@ -323,7 +323,7 @@ ArgumentException if toDate is before the Timeseries start date.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1647', 1647)" onmouseover="showTip(event, '1647', 1647)">
-            TryAdvance(toDate)
+            x.TryAdvance(toDate)
           </code>
           <div class="tip" id="1647">
             <strong>Signature:</strong> toDate:DateTimeOffset -&gt; DateTimeOffset option<br />
@@ -353,10 +353,10 @@ otherwise Some containing the start date of the Timeseries.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1648', 1648)" onmouseover="showTip(event, '1648', 1648)">
-            Empty(startDate, granularity, size)
+            Timeseries.Empty(...)
           </code>
           <div class="tip" id="1648">
-            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * size:int) -&gt; Timeseries&lt;&#39;?10835&gt;<br />
+            <strong>Signature:</strong> (startDate:DateTimeOffset * granularity:TimeSpan * size:int) -&gt; Timeseries&lt;&#39;?11083&gt;<br />
                                   </div>
         </td>
         <td class="xmldoc">

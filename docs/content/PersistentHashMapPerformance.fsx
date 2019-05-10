@@ -1,10 +1,35 @@
 (*** hide ***)
-#r "../../bin/FSharpx.Collections/net45/FSharpx.Collections.dll"
+#r "../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.dll"
 //#r "../lib/System.Runtime.dll"
-#r "../../packages/System.Collections.Immutable/lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll"
+#r "../../packages/System.Collections.Immutable.1.5.0/lib/netstandard2.0/System.Collections.Immutable.dll"
 open System
 
+/// Stops the runtime for a given function
+let stopTime f = 
+    let sw = new System.Diagnostics.Stopwatch()
+    sw.Start()
+    let result = f()
+    sw.Stop()
+    result,float sw.ElapsedMilliseconds
 
+/// Stops the average runtime for a given function and applies it the given count
+let stopAverageTime count f = 
+    System.GC.Collect() // force garbage collector before testing
+    let sw = new System.Diagnostics.Stopwatch()
+    sw.Start()
+    for _ in 1..count do
+        f() |> ignore
+
+    sw.Stop()
+    float sw.ElapsedMilliseconds / float count
+
+let printInFsiTags s = printfn " [fsi:%s]" s
+
+/// Stops the average runtime for a given function and applies it the given count
+/// Afterwards it reports it with the given description
+let averageTime count desc f =
+    let time = stopAverageTime count f
+    sprintf "%s %Ams" desc time |> printInFsiTags
 (**
 PersistentHashMap - Performance tests
 =====================================
@@ -12,12 +37,10 @@ PersistentHashMap - Performance tests
 Bulk operations on HashMaps use an internal TransientHashMap in order to get much better performance. The following scripts shows this:
 *)
 
-open FSharpx.Collections.PersistentHashMap
+open FSharpx.Collections
 
 let trials = 5
 let r = new System.Random()
-
-open FSharpx.Collections.TimeMeasurement
 
 let initFSharpMapAndPersistentMapFromList n =
     sprintf "Init with n = %d" n |> printInFsiTags
@@ -28,16 +51,16 @@ let initFSharpMapAndPersistentMapFromList n =
         (fun () -> Map.ofSeq list)
 
     let initPersistentHashMap list = 
-        let m = ref empty
+        let m = ref PersistentHashMap.empty
         for (key,value) in list do
-            m := add key value !m
+            m := PersistentHashMap.add key value !m
         !m
 
     averageTime trials "  Multiple PersistentHashMap.add" 
         (fun () -> initPersistentHashMap list)
 
     averageTime trials "  PersistentHashMap.ofSeq" 
-        (fun () -> ofSeq list)
+        (fun () -> PersistentHashMap.ofSeq list)
 
     let initImmutableDictionary list = 
         let d = ref (System.Collections.Immutable.ImmutableDictionary<int,string>.Empty)
@@ -61,7 +84,7 @@ let lookupInFSharpMapAndPersistentMap n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
     let list = [for i in 0..n-1 -> i.ToString(),r.Next()]
     let fsharpMap = Map.ofSeq list
-    let map = ofSeq list
+    let map = PersistentHashMap.ofSeq list
 
     averageTime trials "  FSharp.Map" 
         (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()])

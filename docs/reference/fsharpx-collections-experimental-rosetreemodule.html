@@ -61,11 +61,11 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
-            ap(x f)
+            RoseTree.ap x f
           </code>
           <div class="tip" id="867">
-            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13220&gt; -&gt; f:RoseTree&lt;(&#39;?13220 -&gt; &#39;?13221)&gt; -&gt; RoseTree&lt;&#39;?13221&gt;<br />
-                          <strong>Type parameters:</strong> '?13220, '?13221                      </div>
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13468&gt; -&gt; f:RoseTree&lt;(&#39;?13468 -&gt; &#39;?13469)&gt; -&gt; RoseTree&lt;&#39;?13469&gt;<br />
+                          <strong>Type parameters:</strong> '?13468, '?13469                      </div>
         </td>
         <td class="xmldoc">
                       <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L44-44" class="github-link">
@@ -79,7 +79,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
-            bind(f x)
+            RoseTree.bind f x
           </code>
           <div class="tip" id="868">
             <strong>Signature:</strong> f:(&#39;c -&gt; RoseTree&lt;&#39;d&gt;) -&gt; x:RoseTree&lt;&#39;c&gt; -&gt; RoseTree&lt;&#39;d&gt;<br />
@@ -97,7 +97,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
-            create(root children)
+            RoseTree.create root children
           </code>
           <div class="tip" id="869">
             <strong>Signature:</strong> root:&#39;b -&gt; children:LazyList&lt;RoseTree&lt;&#39;b&gt;&gt; -&gt; RoseTree&lt;&#39;b&gt;<br />
@@ -115,11 +115,11 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
-            dfsPost(x)
+            RoseTree.dfsPost(x)
           </code>
           <div class="tip" id="870">
-            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13232&gt; -&gt; seq&lt;&#39;?13232&gt;<br />
-                          <strong>Type parameters:</strong> '?13232                        <span>
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13480&gt; -&gt; seq&lt;&#39;?13480&gt;<br />
+                          <strong>Type parameters:</strong> '?13480                        <span>
             <strong>Attributes:</strong><br />
 [&lt;CompiledName(&quot;DfsPost&quot;)&gt;]<br />
 [&lt;Extension&gt;]<br />
@@ -139,11 +139,11 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
-            dfsPre(x)
+            RoseTree.dfsPre(x)
           </code>
           <div class="tip" id="871">
-            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13230&gt; -&gt; seq&lt;&#39;?13230&gt;<br />
-                          <strong>Type parameters:</strong> '?13230                        <span>
+            <strong>Signature:</strong> x:RoseTree&lt;&#39;?13478&gt; -&gt; seq&lt;&#39;?13478&gt;<br />
+                          <strong>Type parameters:</strong> '?13478                        <span>
             <strong>Attributes:</strong><br />
 [&lt;CompiledName(&quot;DfsPre&quot;)&gt;]<br />
 [&lt;Extension&gt;]<br />
@@ -163,7 +163,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
-            lift2(f a b)
+            RoseTree.lift2 f a b
           </code>
           <div class="tip" id="872">
             <strong>Signature:</strong> f:(&#39;d -&gt; &#39;e -&gt; &#39;f) -&gt; a:RoseTree&lt;&#39;d&gt; -&gt; b:RoseTree&lt;&#39;e&gt; -&gt; RoseTree&lt;&#39;f&gt;<br />
@@ -181,7 +181,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
-            map(f x)
+            RoseTree.map f x
           </code>
           <div class="tip" id="873">
             <strong>Signature:</strong> f:(&#39;c -&gt; &#39;d) -&gt; x:RoseTree&lt;&#39;c&gt; -&gt; RoseTree&lt;&#39;d&gt;<br />
@@ -199,7 +199,7 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
-            mapAccum(f state tree)
+            RoseTree.mapAccum f state tree
           </code>
           <div class="tip" id="874">
             <strong>Signature:</strong> f:(&#39;e -&gt; &#39;f -&gt; &#39;e * &#39;g) -&gt; state:&#39;e -&gt; tree:RoseTree&lt;&#39;f&gt; -&gt; &#39;e * RoseTree&lt;&#39;g&gt;<br />
@@ -222,7 +222,7 @@ and returning a final value of this accumulator together with the new tree.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '875', 875)" onmouseover="showTip(event, '875', 875)">
-            singleton(x)
+            RoseTree.singleton(x)
           </code>
           <div class="tip" id="875">
             <strong>Signature:</strong> x:&#39;b -&gt; RoseTree&lt;&#39;b&gt;<br />
@@ -240,11 +240,11 @@ and returning a final value of this accumulator together with the new tree.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '876', 876)" onmouseover="showTip(event, '876', 876)">
-            unfold(f seed)
+            RoseTree.unfold f seed
           </code>
           <div class="tip" id="876">
-            <strong>Signature:</strong> f:(&#39;?13234 -&gt; &#39;?13235 * LazyList&lt;&#39;?13234&gt;) -&gt; seed:&#39;?13234 -&gt; RoseTree&lt;&#39;?13235&gt;<br />
-                          <strong>Type parameters:</strong> '?13234, '?13235                      </div>
+            <strong>Signature:</strong> f:(&#39;?13482 -&gt; &#39;?13483 * LazyList&lt;&#39;?13482&gt;) -&gt; seed:&#39;?13482 -&gt; RoseTree&lt;&#39;?13483&gt;<br />
+                          <strong>Type parameters:</strong> '?13482, '?13483                      </div>
         </td>
         <td class="xmldoc">
                       <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L74-74" class="github-link">
@@ -258,11 +258,11 @@ and returning a final value of this accumulator together with the new tree.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '877', 877)" onmouseover="showTip(event, '877', 877)">
-            unfoldForest(f)
+            RoseTree.unfoldForest(f)
           </code>
           <div class="tip" id="877">
-            <strong>Signature:</strong> f:(&#39;?13237 -&gt; &#39;?13238 * LazyList&lt;&#39;?13237&gt;) -&gt; LazyList&lt;&#39;?13237&gt; -&gt; LazyList&lt;RoseTree&lt;&#39;?13238&gt;&gt;<br />
-                          <strong>Type parameters:</strong> '?13237, '?13238                      </div>
+            <strong>Signature:</strong> f:(&#39;?13485 -&gt; &#39;?13486 * LazyList&lt;&#39;?13485&gt;) -&gt; LazyList&lt;&#39;?13485&gt; -&gt; LazyList&lt;RoseTree&lt;&#39;?13486&gt;&gt;<br />
+                          <strong>Type parameters:</strong> '?13485, '?13486                      </div>
         </td>
         <td class="xmldoc">
                       <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/RoseTree.fs#L78-78" class="github-link">

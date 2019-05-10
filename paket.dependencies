@@ -1,6 +1,6 @@
-source http://nuget.org/api/v2
+framework: auto-detect
 
-nuget FSharp.Core
+source http://nuget.org/api/v2
 
 nuget Expecto
 nuget Expecto.FsCheck
@@ -11,10 +11,9 @@ clitool dotnet-fake
 
 group Formatting
 source https://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/fsharp-formatting
 
-nuget FSharp.Formatting prerelease
-nuget FSharp.Formatting.CommandTool prerelease
+nuget FSharp.Formatting
+nuget FSharp.Formatting.CommandTool
 
 group FakeBuild
 source https://api.nuget.org/v3/index.json

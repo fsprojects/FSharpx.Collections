@@ -1,5 +1,5 @@
 (*** hide ***)
-#r "../build/FSharpx.Collections.dll"
+#r "../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.dll"
 open System
 
 

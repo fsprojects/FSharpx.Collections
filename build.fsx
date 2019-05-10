@@ -51,7 +51,7 @@ let solutionFile  = "FSharpx.Collections.sln"
 let configuration = "Release"
 
 // Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/net47/*Tests.exe"
+let testAssemblies = "tests/**/bin/Release/net472/*Tests.exe"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
@@ -224,14 +224,10 @@ Target.create "GenerateReferenceDocs" (fun _ ->
             DirectoryInfo.getSubDirectories <| DirectoryInfo bin
             |> Array.collect (fun d ->
                 let name, dInfo =
-                    let net45Bin =
-                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net45"))
-                    let net47Bin =
-                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("net47"))
-                    if net45Bin.Length > 0 then
-                        d.Name, net45Bin.[0]
-                    else
-                        d.Name, net47Bin.[0]
+                    let netBin =
+                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("netstandard2.0"))
+                        
+                    d.Name, netBin.[0]
 
                 dInfo.GetFiles()
                 |> Array.filter (fun x -> 

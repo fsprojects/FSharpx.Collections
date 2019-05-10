@@ -1,5 +1,5 @@
 (*** hide ***)
-#r "../../bin/FSharpx.Collections/net45/FSharpx.Collections.dll"
+#r "../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.dll"
 open System
 
 
@@ -11,25 +11,25 @@ A Map is a collection that maps keys to values. Hash maps require keys that corr
 More details can be found in the [API docs](apidocs/fsharpx-collections-persistenthashmap-2.html).
 *)
 
-open FSharpx.Collections.PersistentHashMap
+open FSharpx.Collections
 
 // Create a new HashMap and add some items to it
 let m = 
-    empty 
-    |> add 42 "hello"
-    |> add 99 "world"
+    PersistentHashMap.empty 
+    |> PersistentHashMap.add 42 "hello"
+    |> PersistentHashMap.add 99 "world"
 // [fsi:val m : FSharpx.Collections.PersistentHashMap<int,string>]
 
 // lookup some items
-find 42 m
+PersistentHashMap.find 42 m
 // [fsi:val it : string = "hello"]
-find 99 m
+PersistentHashMap.find 99 m
 // [fsi:val it : string = "world"]
 m.[99]
 // [fsi:val it : string = "world"]
 
 // Check no. of elements in the HashMap
-length m
+PersistentHashMap.length m
 // [fsi:val it : int = 2]
 
 
@@ -39,37 +39,37 @@ PersistentHashMaps are immutable and therefor allow to create new version withou
 
 let m' = 
     m 
-    |> add 104 "!" 
-    |> add 42 "hi" // replace existing value
+    |> PersistentHashMap.add 104 "!" 
+    |> PersistentHashMap.add 42 "hi" // replace existing value
 
-find 42 m'
+PersistentHashMap.find 42 m'
 // [fsi:val it : string = "hi"]
-find 104 m'
+PersistentHashMap.find 104 m'
 // [fsi:val it : string = "!"]
 
-find 42 m
+PersistentHashMap.find 42 m
 // [fsi:val it : string = "hello"]
-length m
+PersistentHashMap.length m
 // [fsi:val it : int = 2]
-length m'
+PersistentHashMap.length m'
 // [fsi:val it : int = 3]
 
 // remove an element
 let m'' = 
     m'
-    |> remove 104
+    |> PersistentHashMap.remove 104
 
-length m''
+PersistentHashMap.length m''
 // [fsi:val it : int = 2]
 
 (** There a couple of interesting operations on HashMaps:
 *)
 
 // Convert a sequence of key value pairs to a HashMap
-let stringBasedMap = ofSeq [("a",1); ("b",2); ("c",3); ("d",4); ("e",5)]
+let stringBasedMap = PersistentHashMap.ofSeq [("a",1); ("b",2); ("c",3); ("d",4); ("e",5)]
 // [fsi:val stringBaseMap : FSharpx.Collections.PersistentHashMap<string,int>]
 
 // Square all values in a HashMap
-let stringBasedMap' = map (fun x -> x * x) stringBasedMap
+let stringBasedMap' = PersistentHashMap.map (fun x -> x * x) stringBasedMap
 stringBasedMap'.["d"]
 // [fsi:val it : int = 16]
