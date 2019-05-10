@@ -127,8 +127,8 @@ module SeqTests =
                 Seq.tail [1;2;3;4]
                 |> Expect.sequenceEqual "tail" (List.toSeq [2;3;4]) }
 
-            test "I should not be able to get the tail of a empty sequence" {
-                Expect.throwsT<AssertException> "empty tail" (fun () -> Seq.tail [] |> ignore) }
+            ptest "I should not be able to get the tail of a empty sequence" {
+                Expect.throwsT<_> "empty tail" (fun () -> Seq.tail [] |> ignore) }
 
             test "I should be able to get the tail of a empty sequence without a fail" {
                 Seq.tailNoFail []
