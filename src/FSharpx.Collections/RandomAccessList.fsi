@@ -2,8 +2,8 @@
 
 #if FX_NO_THREAD
 #else
-/// RandomAccessList is an ordered linear structure implementing the List signature 
-/// (head, tail, cons), as well as inspection (lookup) and update (returning a new 
+/// RandomAccessList is an ordered linear structure implementing the List signature
+/// (head, tail, cons), as well as inspection (lookup) and update (returning a new
 /// immutable instance) of any element in the structure by index. Length is O(1). Indexed
 /// lookup or update (returning a new immutable instance of RandomAccessList) of any element
 /// is O(log32n), which is close enough to O(1) as to make no practical difference: a
@@ -14,6 +14,8 @@
 type RandomAccessList<'T> =
     interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
+    interface System.Collections.Generic.IReadOnlyList<'T>
 
     /// O(1). Returns a new random access list with the element added at the start.
     member Cons : 'T -> RandomAccessList<'T>
@@ -32,7 +34,7 @@ type RandomAccessList<'T> =
 
     /// O(1). Returns the number of items in the random access list.
     member Length : int
-         
+
     /// O(n). Returns random access list reversed.
     member Rev : unit -> RandomAccessList<'T>
 
@@ -49,14 +51,14 @@ type RandomAccessList<'T> =
     member TryUncons : ('T * RandomAccessList<'T>) option
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
-    member Update : int * 'T -> RandomAccessList<'T> 
+    member Update : int * 'T -> RandomAccessList<'T>
 
     /// O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.
     member TryUpdate : int * 'T -> RandomAccessList<'T> option
 
 /// Defines functions which allow to access and manipulate RandomAccessLists.
 [<RequireQualifiedAccess>]
-module RandomAccessList = 
+module RandomAccessList =
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : RandomAccessList<'T> ->  Choice<('T * RandomAccessList<'T> ),unit>
 
@@ -76,7 +78,7 @@ module RandomAccessList =
     /// O(n). Returns a state from the supplied state and a function operating from right to left.
     val inline foldBack : ('T -> 'State -> 'State) -> RandomAccessList<'T> -> 'State -> 'State
 
-    /// O(n). Returns a random access list of the supplied length using the supplied function operating on the index. 
+    /// O(n). Returns a random access list of the supplied length using the supplied function operating on the index.
     val init : int -> (int -> 'T) -> RandomAccessList<'T>
 
     /// O(1). Returns true if the random access list has no elements.
@@ -99,7 +101,7 @@ module RandomAccessList =
 
     /// O(1) for all practical purposes; really O(log32n). Returns option value at the index.
     val inline tryNth : int -> RandomAccessList<'T> -> 'T option
- 
+
     /// O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
     val inline nthNth : int -> int -> RandomAccessList<RandomAccessList<'T>> -> 'T
 
