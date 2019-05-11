@@ -5,6 +5,9 @@ open Properties
 open FsCheck
 open Expecto
 open Expecto.Flip
+open System
+open System.IO
+open System.Runtime.Serialization.Formatters.Binary
 
 //there's a crap-load to test here :)
 //vector blocksizej of 32, need to generate lists up to 100
@@ -32,9 +35,9 @@ module RandomAccessListTest =
                 Expect.equal "RandomAccessList.fold" (List.rev (List.ofSeq q)) <| RandomAccessList.fold (fun (l' : string list) (elem : string) -> elem::l') [] q }
 
             test "TryUncons wind-down to None" {
-                let q = RandomAccessList.ofSeq ["f";"e";"d";"c";"b";"a"] 
+                let q = RandomAccessList.ofSeq ["f";"e";"d";"c";"b";"a"]
 
-                let rec loop (q' : RandomAccessList<string>) = 
+                let rec loop (q' : RandomAccessList<string>) =
                     match (q'.TryUncons) with
                     | Some(hd, tl) ->  loop tl
                     | None -> None
@@ -42,9 +45,9 @@ module RandomAccessListTest =
                 Expect.isNone "TryUncons" <| loop q }
 
             test "Uncons wind-down to None" {
-                let q = RandomAccessList.ofSeq ["f";"e";"d";"c";"b";"a"] 
+                let q = RandomAccessList.ofSeq ["f";"e";"d";"c";"b";"a"]
 
-                let rec loop (q' : RandomAccessList<string>) = 
+                let rec loop (q' : RandomAccessList<string>) =
                     match (q'.Uncons) with
                     | hd, tl when tl.IsEmpty -> true
                     | hd, tl ->  loop tl
@@ -55,18 +58,18 @@ module RandomAccessListTest =
                 Expect.isTrue "RandomAccessList.empty" (RandomAccessList.empty |> RandomAccessList.isEmpty) }
 
             test "RandomAccessList.cons works" {
-                 Expect.isFalse "RandomAccessList.cons" (RandomAccessList.empty|> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.isEmpty) }
+                Expect.isFalse "RandomAccessList.cons" (RandomAccessList.empty|> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.isEmpty) }
 
             test "RandomAccessList.uncons 1 element" {
                 let x, _ = RandomAccessList.empty |> RandomAccessList.cons 1 |>  RandomAccessList.uncons
                 Expect.equal "RandomAccessList.uncons" 1 x }
 
             test "RandomAccessList.uncons 2 elements" {
-                let x, _ = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.uncons 
+                let x, _ = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.uncons
                 Expect.equal "RandomAccessList.uncons" 2 x }
 
             test "RandomAccessList.uncons 3 elements" {
-                let x, _ = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.cons 3 |> RandomAccessList.uncons 
+                let x, _ = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.cons 3 |> RandomAccessList.uncons
                 Expect.equal "RandomAccessList.uncons" 3 x }
 
             test "RandomAccessList.tryUncons 1 element" {
@@ -78,7 +81,7 @@ module RandomAccessListTest =
                 Expect.equal "RandomAccessList.tryUncons" 2  <| fst x.Value }
 
             test "RandomAccessList.tryUncons 3 elements" {
-                let x = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.cons 3 |> RandomAccessList.tryUncons 
+                let x = RandomAccessList.empty |> RandomAccessList.cons 1 |> RandomAccessList.cons 2 |> RandomAccessList.cons 3 |> RandomAccessList.tryUncons
                 Expect.equal "RandomAccessList.tryUncons" 3 <| fst x.Value }
 
             test "RandomAccessList.tryUncons RandomAccessList.empty" {
@@ -104,17 +107,17 @@ module RandomAccessListTest =
                 Expect.equal "RandomAccessList.tail" 1 (RandomAccessList.empty |> RandomAccessList.cons 1 |>  RandomAccessList.cons 2 |> RandomAccessList.tail |> RandomAccessList.head) }
 
             test "RandomAccessList.tryTail on len 2 should return" {
-                let a = RandomAccessList.empty |> RandomAccessList.cons 1 |>  RandomAccessList.cons 2 |> RandomAccessList.tryTail 
+                let a = RandomAccessList.empty |> RandomAccessList.cons 1 |>  RandomAccessList.cons 2 |> RandomAccessList.tryTail
                 Expect.equal "RandomAccessList.tryTail" 1 <| RandomAccessList.head a.Value }
 
             test "randomAccessList of randomAccessLists constructed by consing RandomAccessList.tail" {
 
-                let windowFun windowLength = 
+                let windowFun windowLength =
                     fun (v : RandomAccessList<RandomAccessList<int>>) t ->
                     if v.Head.Length = windowLength then RandomAccessList.cons (RandomAccessList.empty.Cons(t)) v
                     else RandomAccessList.tail v |> RandomAccessList.cons (RandomAccessList.cons t (RandomAccessList.head v))
 
-                let windowed = 
+                let windowed =
                     seq{1..100}
                     |> Seq.fold (windowFun 5) (RandomAccessList.empty.Cons RandomAccessList.empty<int>)
 
@@ -164,7 +167,7 @@ module RandomAccessListTest =
                 Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.empty list" (fun () -> RandomAccessList.empty |> RandomAccessList.nth 0 |> ignore) }
 
             test "RandomAccessList.nth RandomAccessList.length 1" {
-                let x = RandomAccessList.empty |> RandomAccessList.cons "a" 
+                let x = RandomAccessList.empty |> RandomAccessList.cons "a"
                 Expect.equal "RandomAccessList.nth" "a" (x |> RandomAccessList.nth 0) }
 
             test "appending two lists keeps order of items" {
@@ -205,8 +208,8 @@ module RandomAccessListTest =
 
             test "RandomAccessList.nth RandomAccessList.length 3" {
                 let len3 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c"
-                (((len3 |> RandomAccessList.nth 0) = "c") 
-                && ((len3 |> RandomAccessList.nth 1) = "b") 
+                (((len3 |> RandomAccessList.nth 0) = "c")
+                && ((len3 |> RandomAccessList.nth 1) = "b")
                 && ((len3 |> RandomAccessList.nth 2) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 4" {
@@ -215,39 +218,39 @@ module RandomAccessListTest =
 
             test "RandomAccessList.nth RandomAccessList.length 5" {
                 let len5 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e"
-                (((len5 |> RandomAccessList.nth 0) = "e") && ((len5 |> RandomAccessList.nth 1) = "d") && ((len5 |> RandomAccessList.nth 2) = "c") && ((len5 |> RandomAccessList.nth 3) = "b") 
+                (((len5 |> RandomAccessList.nth 0) = "e") && ((len5 |> RandomAccessList.nth 1) = "d") && ((len5 |> RandomAccessList.nth 2) = "c") && ((len5 |> RandomAccessList.nth 3) = "b")
                 && ((len5 |> RandomAccessList.nth 4) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 6" {
                 let len6 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f"
-                (((len6 |> RandomAccessList.nth 0) = "f") && ((len6 |> RandomAccessList.nth 1) = "e") && ((len6 |> RandomAccessList.nth 2) = "d") && ((len6 |> RandomAccessList.nth 3) = "c") 
+                (((len6 |> RandomAccessList.nth 0) = "f") && ((len6 |> RandomAccessList.nth 1) = "e") && ((len6 |> RandomAccessList.nth 2) = "d") && ((len6 |> RandomAccessList.nth 3) = "c")
                 && ((len6 |> RandomAccessList.nth 4) = "b") && ((len6 |> RandomAccessList.nth 5) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 7" {
                 let len7 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g"
-                (((len7 |> RandomAccessList.nth 0) = "g") && ((len7 |> RandomAccessList.nth 1) = "f") && ((len7 |> RandomAccessList.nth 2) = "e") && ((len7 |> RandomAccessList.nth 3) = "d") 
+                (((len7 |> RandomAccessList.nth 0) = "g") && ((len7 |> RandomAccessList.nth 1) = "f") && ((len7 |> RandomAccessList.nth 2) = "e") && ((len7 |> RandomAccessList.nth 3) = "d")
                 && ((len7 |> RandomAccessList.nth 4) = "c") && ((len7 |> RandomAccessList.nth 5) = "b") && ((len7 |> RandomAccessList.nth 6) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 8" {
                 let len8 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h"
-                (((len8 |> RandomAccessList.nth 0) = "h") && ((len8 |> RandomAccessList.nth 1) = "g") && ((len8 |> RandomAccessList.nth 2) = "f") && ((len8 |> RandomAccessList.nth 3) = "e") 
-                && ((len8 |> RandomAccessList.nth 4) = "d") && ((len8 |> RandomAccessList.nth 5) = "c") && ((len8 |> RandomAccessList.nth 6) = "b") && ((len8 |> RandomAccessList.nth 7) = "a")) 
+                (((len8 |> RandomAccessList.nth 0) = "h") && ((len8 |> RandomAccessList.nth 1) = "g") && ((len8 |> RandomAccessList.nth 2) = "f") && ((len8 |> RandomAccessList.nth 3) = "e")
+                && ((len8 |> RandomAccessList.nth 4) = "d") && ((len8 |> RandomAccessList.nth 5) = "c") && ((len8 |> RandomAccessList.nth 6) = "b") && ((len8 |> RandomAccessList.nth 7) = "a"))
                 |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 9" {
                 let len9 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i"
-                (((len9 |> RandomAccessList.nth 0) = "i") && ((len9 |> RandomAccessList.nth 1) = "h") && ((len9 |> RandomAccessList.nth 2) = "g") && ((len9 |> RandomAccessList.nth 3) = "f") 
+                (((len9 |> RandomAccessList.nth 0) = "i") && ((len9 |> RandomAccessList.nth 1) = "h") && ((len9 |> RandomAccessList.nth 2) = "g") && ((len9 |> RandomAccessList.nth 3) = "f")
                 && ((len9 |> RandomAccessList.nth 4) = "e") && ((len9 |> RandomAccessList.nth 5) = "d") && ((len9 |> RandomAccessList.nth 6) = "c") && ((len9 |> RandomAccessList.nth 7) = "b")
                 && ((len9 |> RandomAccessList.nth 8) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.nth RandomAccessList.length 10" {
                 let lena = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i" |> RandomAccessList.cons "j"
-                (((lena |> RandomAccessList.nth 0) = "j") && ((lena |> RandomAccessList.nth 1) = "i") && ((lena |> RandomAccessList.nth 2) = "h") && ((lena |> RandomAccessList.nth 3) = "g") 
+                (((lena |> RandomAccessList.nth 0) = "j") && ((lena |> RandomAccessList.nth 1) = "i") && ((lena |> RandomAccessList.nth 2) = "h") && ((lena |> RandomAccessList.nth 3) = "g")
                 && ((lena |> RandomAccessList.nth 4) = "f") && ((lena |> RandomAccessList.nth 5) = "e") && ((lena |> RandomAccessList.nth 6) = "d") && ((lena |> RandomAccessList.nth 7) = "c")
                 && ((lena |> RandomAccessList.nth 8) = "b") && ((lena |> RandomAccessList.nth 9) = "a")) |> Expect.isTrue "RandomAccessList.nth" }
 
             test "RandomAccessList.tryNth RandomAccessList.length 1" {
-                let a = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.tryNth 0 
+                let a = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.tryNth 0
                 Expect.equal "RandomAccessList.tryNth" "a" a.Value}
 
             test "RandomAccessList.tryNth RandomAccessList.length 2" {
@@ -288,7 +291,7 @@ module RandomAccessListTest =
                 let c = len6 |> RandomAccessList.tryNth 3
                 let b = len6 |> RandomAccessList.tryNth 4
                 let a = len6 |> RandomAccessList.tryNth 5
-                
+
                 Expect.isTrue "RandomAccessList.tryNth" ((f.Value = "f") && (e.Value = "e") && (d.Value = "d") && (c.Value = "c") && (b.Value = "b") && (a.Value = "a")) }
 
             test "RandomAccessList.tryNth RandomAccessList.length 7" {
@@ -300,7 +303,7 @@ module RandomAccessListTest =
                 let c = len7 |> RandomAccessList.tryNth 4
                 let b = len7 |> RandomAccessList.tryNth 5
                 let a = len7 |> RandomAccessList.tryNth 6
-                ((g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d") && (c.Value = "c") && (b.Value = "b") 
+                ((g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d") && (c.Value = "c") && (b.Value = "b")
                 && (a.Value = "a")) |> Expect.isTrue "RandomAccessList.tryNth" }
 
             test "RandomAccessList.tryNth RandomAccessList.length 8" {
@@ -313,7 +316,7 @@ module RandomAccessListTest =
                 let c = len8 |> RandomAccessList.tryNth 5
                 let b = len8 |> RandomAccessList.tryNth 6
                 let a = len8 |> RandomAccessList.tryNth 7
-                ((h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d") && (c.Value = "c")  
+                ((h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d") && (c.Value = "c")
                 && (b.Value = "b")&& (a.Value = "a")) |> Expect.isTrue "RandomAccessList.tryNth" }
 
             test "RandomAccessList.tryNth RandomAccessList.length 9" {
@@ -327,7 +330,7 @@ module RandomAccessListTest =
                 let c = len9 |> RandomAccessList.tryNth 6
                 let b = len9 |> RandomAccessList.tryNth 7
                 let a = len9 |> RandomAccessList.tryNth 8
-                ((i.Value = "i") && (h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d") 
+                ((i.Value = "i") && (h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e") && (d.Value = "d")
                 && (c.Value = "c") && (b.Value = "b")&& (a.Value = "a")) |> Expect.isTrue "RandomAccessList.tryNth" }
 
             test "RandomAccessList.tryNth RandomAccessList.length 10" {
@@ -342,7 +345,7 @@ module RandomAccessListTest =
                 let c = lena |> RandomAccessList.tryNth 7
                 let b = lena |> RandomAccessList.tryNth 8
                 let a = lena |> RandomAccessList.tryNth 9
-                ((j.Value = "j") && (i.Value = "i") && (h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e") 
+                ((j.Value = "j") && (i.Value = "i") && (h.Value = "h") && (g.Value = "g") && (f.Value = "f") && (e.Value = "e")
                 && (d.Value = "d") && (c.Value = "c") && (b.Value = "b")&& (a.Value = "a")) |> Expect.isTrue "RandomAccessList.tryNth" }
 
             test "RandomAccessList.tryNth not found" {
@@ -360,9 +363,9 @@ module RandomAccessListTest =
                 let inner = [1; 2; 3; 4; 5] |> RandomAccessList.ofSeq
                 let outer = RandomAccessList.empty |> RandomAccessList.cons inner |> RandomAccessList.cons inner
 
-                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth 2 2 outer |> ignore) 
-                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth 1 5 outer |> ignore) 
-                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth -1 2 outer |> ignore) 
+                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth 2 2 outer |> ignore)
+                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth 1 5 outer |> ignore)
+                Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth -1 2 outer |> ignore)
                 Expect.throwsT<System.IndexOutOfRangeException> "RandomAccessList.nthNth" (fun () -> RandomAccessList.nthNth 1 -2 outer |> ignore) }
 
             test "list of lists can be accessed with RandomAccessList.tryNthNth" {
@@ -449,55 +452,55 @@ module RandomAccessListTest =
 
             test "RandomAccessList.update RandomAccessList.length 3" {
                 let len3 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c"
-                (((len3 |> RandomAccessList.update 0 "cc"|> RandomAccessList.nth 0) = "cc") && ((len3 |> RandomAccessList.update 1 "bb"|> RandomAccessList.nth 1) = "bb") 
+                (((len3 |> RandomAccessList.update 0 "cc"|> RandomAccessList.nth 0) = "cc") && ((len3 |> RandomAccessList.update 1 "bb"|> RandomAccessList.nth 1) = "bb")
                 && ((len3 |> RandomAccessList.update 2 "aa"|> RandomAccessList.nth 2) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 4" {
                 let len4 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d"
-                (((len4 |> RandomAccessList.update 0 "dd"|> RandomAccessList.nth 0) = "dd") && ((len4 |> RandomAccessList.update 1 "cc"|> RandomAccessList.nth 1) = "cc") 
-                && ((len4 |> RandomAccessList.update 2 "bb"|> RandomAccessList.nth 2) = "bb") && ((len4 |> RandomAccessList.update 3 "aa"|> RandomAccessList.nth 3) = "aa")) 
+                (((len4 |> RandomAccessList.update 0 "dd"|> RandomAccessList.nth 0) = "dd") && ((len4 |> RandomAccessList.update 1 "cc"|> RandomAccessList.nth 1) = "cc")
+                && ((len4 |> RandomAccessList.update 2 "bb"|> RandomAccessList.nth 2) = "bb") && ((len4 |> RandomAccessList.update 3 "aa"|> RandomAccessList.nth 3) = "aa"))
                 |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 5" {
                 let len5 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e"
-                (((len5 |> RandomAccessList.update 0 "ee"|> RandomAccessList.nth 0) = "ee") && ((len5 |> RandomAccessList.update 1 "dd"|> RandomAccessList.nth 1) = "dd") 
-                && ((len5 |> RandomAccessList.update 2 "cc"|> RandomAccessList.nth 2) = "cc") && ((len5 |> RandomAccessList.update 3 "bb"|> RandomAccessList.nth 3) = "bb") 
+                (((len5 |> RandomAccessList.update 0 "ee"|> RandomAccessList.nth 0) = "ee") && ((len5 |> RandomAccessList.update 1 "dd"|> RandomAccessList.nth 1) = "dd")
+                && ((len5 |> RandomAccessList.update 2 "cc"|> RandomAccessList.nth 2) = "cc") && ((len5 |> RandomAccessList.update 3 "bb"|> RandomAccessList.nth 3) = "bb")
                 && ((len5 |> RandomAccessList.update 4 "aa"|> RandomAccessList.nth 4) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 6" {
                 let len6 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f"
-                (((len6 |> RandomAccessList.update 0 "ff"|> RandomAccessList.nth 0) = "ff") && ((len6 |> RandomAccessList.update 1 "ee"|> RandomAccessList.nth 1) = "ee") 
-                && ((len6 |> RandomAccessList.update 2 "dd"|> RandomAccessList.nth 2) = "dd") && ((len6 |> RandomAccessList.update 3 "cc"|> RandomAccessList.nth 3) = "cc") 
+                (((len6 |> RandomAccessList.update 0 "ff"|> RandomAccessList.nth 0) = "ff") && ((len6 |> RandomAccessList.update 1 "ee"|> RandomAccessList.nth 1) = "ee")
+                && ((len6 |> RandomAccessList.update 2 "dd"|> RandomAccessList.nth 2) = "dd") && ((len6 |> RandomAccessList.update 3 "cc"|> RandomAccessList.nth 3) = "cc")
                 && ((len6 |> RandomAccessList.update 4 "bb"|> RandomAccessList.nth 4) = "bb") && ((len6 |> RandomAccessList.update 5 "aa"|> RandomAccessList.nth 5) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 7" {
                 let len7 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g"
-                (((len7 |> RandomAccessList.update 0 "gg"|> RandomAccessList.nth 0) = "gg") && ((len7 |> RandomAccessList.update 1 "ff"|> RandomAccessList.nth 1) = "ff") 
-                && ((len7 |> RandomAccessList.update 2 "ee"|> RandomAccessList.nth 2) = "ee") && ((len7 |> RandomAccessList.update 3 "dd"|> RandomAccessList.nth 3) = "dd") 
-                && ((len7 |> RandomAccessList.update 4 "cc"|> RandomAccessList.nth 4) = "cc") && ((len7 |> RandomAccessList.update 5 "bb"|> RandomAccessList.nth 5) = "bb") 
+                (((len7 |> RandomAccessList.update 0 "gg"|> RandomAccessList.nth 0) = "gg") && ((len7 |> RandomAccessList.update 1 "ff"|> RandomAccessList.nth 1) = "ff")
+                && ((len7 |> RandomAccessList.update 2 "ee"|> RandomAccessList.nth 2) = "ee") && ((len7 |> RandomAccessList.update 3 "dd"|> RandomAccessList.nth 3) = "dd")
+                && ((len7 |> RandomAccessList.update 4 "cc"|> RandomAccessList.nth 4) = "cc") && ((len7 |> RandomAccessList.update 5 "bb"|> RandomAccessList.nth 5) = "bb")
                 && ((len7 |> RandomAccessList.update 6 "aa"|> RandomAccessList.nth 6) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 8" {
                 let len8 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h"
-                (((len8 |> RandomAccessList.update 0 "hh"|> RandomAccessList.nth 0) = "hh") && ((len8 |> RandomAccessList.update 1 "gg"|> RandomAccessList.nth 1) = "gg") 
-                && ((len8 |> RandomAccessList.update 2 "ff"|> RandomAccessList.nth 2) = "ff") && ((len8 |> RandomAccessList.update 3 "ee"|> RandomAccessList.nth 3) = "ee") 
-                && ((len8 |> RandomAccessList.update 4 "dd"|> RandomAccessList.nth 4) = "dd") && ((len8 |> RandomAccessList.update 5 "cc"|> RandomAccessList.nth 5) = "cc") 
-                && ((len8 |> RandomAccessList.update 6 "bb"|> RandomAccessList.nth 6) = "bb") && ((len8 |> RandomAccessList.update 7 "aa"|> RandomAccessList.nth 7) = "aa")) 
+                (((len8 |> RandomAccessList.update 0 "hh"|> RandomAccessList.nth 0) = "hh") && ((len8 |> RandomAccessList.update 1 "gg"|> RandomAccessList.nth 1) = "gg")
+                && ((len8 |> RandomAccessList.update 2 "ff"|> RandomAccessList.nth 2) = "ff") && ((len8 |> RandomAccessList.update 3 "ee"|> RandomAccessList.nth 3) = "ee")
+                && ((len8 |> RandomAccessList.update 4 "dd"|> RandomAccessList.nth 4) = "dd") && ((len8 |> RandomAccessList.update 5 "cc"|> RandomAccessList.nth 5) = "cc")
+                && ((len8 |> RandomAccessList.update 6 "bb"|> RandomAccessList.nth 6) = "bb") && ((len8 |> RandomAccessList.update 7 "aa"|> RandomAccessList.nth 7) = "aa"))
                 |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 9" {
                 let len9 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i"
-                (((len9 |> RandomAccessList.update 0 "ii"|> RandomAccessList.nth 0) = "ii") && ((len9 |> RandomAccessList.update 1 "hh"|> RandomAccessList.nth 1) = "hh") 
-                && ((len9 |> RandomAccessList.update 2 "gg"|> RandomAccessList.nth 2) = "gg") && ((len9 |> RandomAccessList.update 3 "ff"|> RandomAccessList.nth 3) = "ff") 
-                && ((len9 |> RandomAccessList.update 4 "ee"|> RandomAccessList.nth 4) = "ee") && ((len9 |> RandomAccessList.update 5 "dd"|> RandomAccessList.nth 5) = "dd") 
+                (((len9 |> RandomAccessList.update 0 "ii"|> RandomAccessList.nth 0) = "ii") && ((len9 |> RandomAccessList.update 1 "hh"|> RandomAccessList.nth 1) = "hh")
+                && ((len9 |> RandomAccessList.update 2 "gg"|> RandomAccessList.nth 2) = "gg") && ((len9 |> RandomAccessList.update 3 "ff"|> RandomAccessList.nth 3) = "ff")
+                && ((len9 |> RandomAccessList.update 4 "ee"|> RandomAccessList.nth 4) = "ee") && ((len9 |> RandomAccessList.update 5 "dd"|> RandomAccessList.nth 5) = "dd")
                 && ((len9 |> RandomAccessList.update 6 "cc"|> RandomAccessList.nth 6) = "cc") && ((len9 |> RandomAccessList.update 7 "bb"|> RandomAccessList.nth 7) = "bb")
                 && ((len9 |> RandomAccessList.update 8 "aa"|> RandomAccessList.nth 8) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
             test "RandomAccessList.update RandomAccessList.length 10" {
                 let lena = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i" |> RandomAccessList.cons "j"
-                (((lena |> RandomAccessList.update 0 "jj"|> RandomAccessList.nth 0) = "jj") && ((lena |> RandomAccessList.update 1 "ii"|> RandomAccessList.nth 1) = "ii") 
-                && ((lena |> RandomAccessList.update 2 "hh"|> RandomAccessList.nth 2) = "hh") && ((lena |> RandomAccessList.update 3 "gg"|> RandomAccessList.nth 3) = "gg") 
-                && ((lena |> RandomAccessList.update 4 "ff"|> RandomAccessList.nth 4) = "ff") && ((lena |> RandomAccessList.update 5 "ee"|> RandomAccessList.nth 5) = "ee") 
+                (((lena |> RandomAccessList.update 0 "jj"|> RandomAccessList.nth 0) = "jj") && ((lena |> RandomAccessList.update 1 "ii"|> RandomAccessList.nth 1) = "ii")
+                && ((lena |> RandomAccessList.update 2 "hh"|> RandomAccessList.nth 2) = "hh") && ((lena |> RandomAccessList.update 3 "gg"|> RandomAccessList.nth 3) = "gg")
+                && ((lena |> RandomAccessList.update 4 "ff"|> RandomAccessList.nth 4) = "ff") && ((lena |> RandomAccessList.update 5 "ee"|> RandomAccessList.nth 5) = "ee")
                 && ((lena |> RandomAccessList.update 6 "dd"|> RandomAccessList.nth 6) = "dd") && ((lena |> RandomAccessList.update 7 "cc"|> RandomAccessList.nth 7) = "cc")
                 && ((lena |> RandomAccessList.update 8 "bb"|> RandomAccessList.nth 8) = "bb") && ((lena |> RandomAccessList.update 9 "aa"|> RandomAccessList.nth 9) = "aa")) |> Expect.isTrue "RandomAccessList.update" }
 
@@ -524,7 +527,7 @@ module RandomAccessListTest =
                 let c = len4 |> RandomAccessList.tryUpdate 1 "cc"
                 let b = len4 |> RandomAccessList.tryUpdate 2 "bb"
                 let a = len4 |> RandomAccessList.tryUpdate 3 "aa"
-                (((d.Value |> RandomAccessList.nth 0) = "dd") && ((c.Value |> RandomAccessList.nth 1) = "cc") && ((b.Value |> RandomAccessList.nth 2) = "bb") 
+                (((d.Value |> RandomAccessList.nth 0) = "dd") && ((c.Value |> RandomAccessList.nth 1) = "cc") && ((b.Value |> RandomAccessList.nth 2) = "bb")
                 && ((a.Value |> RandomAccessList.nth 3) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 5" {
@@ -534,7 +537,7 @@ module RandomAccessListTest =
                 let c = len5 |> RandomAccessList.tryUpdate 2 "cc"
                 let b = len5 |> RandomAccessList.tryUpdate 3 "bb"
                 let a = len5 |> RandomAccessList.tryUpdate 4 "aa"
-                (((e.Value |> RandomAccessList.nth 0) = "ee") && ((d.Value |> RandomAccessList.nth 1) = "dd") && ((c.Value |> RandomAccessList.nth 2) = "cc") 
+                (((e.Value |> RandomAccessList.nth 0) = "ee") && ((d.Value |> RandomAccessList.nth 1) = "dd") && ((c.Value |> RandomAccessList.nth 2) = "cc")
                 && ((b.Value |> RandomAccessList.nth 3) = "bb") && ((a.Value |> RandomAccessList.nth 4) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 6" {
@@ -545,8 +548,8 @@ module RandomAccessListTest =
                 let c = len6 |> RandomAccessList.tryUpdate 3 "cc"
                 let b = len6 |> RandomAccessList.tryUpdate 4 "bb"
                 let a = len6 |> RandomAccessList.tryUpdate 5 "aa"
-                (((f.Value |> RandomAccessList.nth 0) = "ff") && ((e.Value |> RandomAccessList.nth 1) = "ee") && ((d.Value |> RandomAccessList.nth 2) = "dd") 
-                && ((c.Value |> RandomAccessList.nth 3) = "cc") && ((b.Value |> RandomAccessList.nth 4) = "bb") && ((a.Value |> RandomAccessList.nth 5) = "aa")) 
+                (((f.Value |> RandomAccessList.nth 0) = "ff") && ((e.Value |> RandomAccessList.nth 1) = "ee") && ((d.Value |> RandomAccessList.nth 2) = "dd")
+                && ((c.Value |> RandomAccessList.nth 3) = "cc") && ((b.Value |> RandomAccessList.nth 4) = "bb") && ((a.Value |> RandomAccessList.nth 5) = "aa"))
                 |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 7" {
@@ -558,8 +561,8 @@ module RandomAccessListTest =
                 let c = len7 |> RandomAccessList.tryUpdate 4 "cc"
                 let b = len7 |> RandomAccessList.tryUpdate 5 "bb"
                 let a = len7 |> RandomAccessList.tryUpdate 6 "aa"
-                (((g.Value |> RandomAccessList.nth 0) = "gg") && ((f.Value |> RandomAccessList.nth 1) = "ff") && ((e.Value |> RandomAccessList.nth 2) = "ee") 
-                && ((d.Value |> RandomAccessList.nth 3) = "dd") && ((c.Value |> RandomAccessList.nth 4) = "cc") && ((b.Value |> RandomAccessList.nth 5) = "bb") 
+                (((g.Value |> RandomAccessList.nth 0) = "gg") && ((f.Value |> RandomAccessList.nth 1) = "ff") && ((e.Value |> RandomAccessList.nth 2) = "ee")
+                && ((d.Value |> RandomAccessList.nth 3) = "dd") && ((c.Value |> RandomAccessList.nth 4) = "cc") && ((b.Value |> RandomAccessList.nth 5) = "bb")
                 && ((a.Value |> RandomAccessList.nth 6) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 8" {
@@ -572,8 +575,8 @@ module RandomAccessListTest =
                 let c = len8 |> RandomAccessList.tryUpdate 5 "cc"
                 let b = len8 |> RandomAccessList.tryUpdate 6 "bb"
                 let a = len8 |> RandomAccessList.tryUpdate 7 "aa"
-                (((h.Value |> RandomAccessList.nth 0) = "hh") && ((g.Value |> RandomAccessList.nth 1) = "gg") && ((f.Value |> RandomAccessList.nth 2) = "ff") 
-                && ((e.Value |> RandomAccessList.nth 3) = "ee") && ((d.Value |> RandomAccessList.nth 4) = "dd") && ((c.Value |> RandomAccessList.nth 5) = "cc")  
+                (((h.Value |> RandomAccessList.nth 0) = "hh") && ((g.Value |> RandomAccessList.nth 1) = "gg") && ((f.Value |> RandomAccessList.nth 2) = "ff")
+                && ((e.Value |> RandomAccessList.nth 3) = "ee") && ((d.Value |> RandomAccessList.nth 4) = "dd") && ((c.Value |> RandomAccessList.nth 5) = "cc")
                 && ((b.Value |> RandomAccessList.nth 6) = "bb")&& ((a.Value |> RandomAccessList.nth 7) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 9" {
@@ -587,8 +590,8 @@ module RandomAccessListTest =
                 let c = len9 |> RandomAccessList.tryUpdate 6 "cc"
                 let b = len9 |> RandomAccessList.tryUpdate 7 "bb"
                 let a = len9 |> RandomAccessList.tryUpdate 8 "aa"
-                (((i.Value |> RandomAccessList.nth 0) = "ii") && ((h.Value |> RandomAccessList.nth 1) = "hh") && ((g.Value |> RandomAccessList.nth 2) = "gg") 
-                && ((f.Value |> RandomAccessList.nth 3) = "ff") && ((e.Value |> RandomAccessList.nth 4) = "ee") && ((d.Value |> RandomAccessList.nth 5) = "dd") 
+                (((i.Value |> RandomAccessList.nth 0) = "ii") && ((h.Value |> RandomAccessList.nth 1) = "hh") && ((g.Value |> RandomAccessList.nth 2) = "gg")
+                && ((f.Value |> RandomAccessList.nth 3) = "ff") && ((e.Value |> RandomAccessList.nth 4) = "ee") && ((d.Value |> RandomAccessList.nth 5) = "dd")
                 && ((c.Value |> RandomAccessList.nth 6) = "cc") && ((b.Value |> RandomAccessList.nth 7) = "bb")&& ((a.Value |> RandomAccessList.nth 8) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
             test "RandomAccessList.tryUpdate RandomAccessList.length 10" {
@@ -603,8 +606,8 @@ module RandomAccessListTest =
                 let c = lena |> RandomAccessList.tryUpdate 7 "cc"
                 let b = lena |> RandomAccessList.tryUpdate 8 "bb"
                 let a = lena |> RandomAccessList.tryUpdate 9 "aa"
-                (((j.Value |> RandomAccessList.nth 0) = "jj") && ((i.Value |> RandomAccessList.nth 1) = "ii") && ((h.Value |> RandomAccessList.nth 2) = "hh") 
-                && ((g.Value |> RandomAccessList.nth 3) = "gg") && ((f.Value |> RandomAccessList.nth 4) = "ff") && ((e.Value |> RandomAccessList.nth 5) = "ee") 
+                (((j.Value |> RandomAccessList.nth 0) = "jj") && ((i.Value |> RandomAccessList.nth 1) = "ii") && ((h.Value |> RandomAccessList.nth 2) = "hh")
+                && ((g.Value |> RandomAccessList.nth 3) = "gg") && ((f.Value |> RandomAccessList.nth 4) = "ff") && ((e.Value |> RandomAccessList.nth 5) = "ee")
                 && ((d.Value |> RandomAccessList.nth 6) = "dd") && ((c.Value |> RandomAccessList.nth 7) = "cc") && ((b.Value |> RandomAccessList.nth 8) = "bb")
                 && ((a.Value |> RandomAccessList.nth 9) = "aa")) |> Expect.isTrue "RandomAccessList.tryUpdate" }
 
@@ -626,8 +629,8 @@ module RandomAccessListTest =
                 let len8 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h"
                 let len9 = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i"
                 let lena = RandomAccessList.empty |> RandomAccessList.cons "a" |> RandomAccessList.cons "b" |> RandomAccessList.cons "c" |> RandomAccessList.cons "d" |> RandomAccessList.cons "e" |> RandomAccessList.cons "f" |> RandomAccessList.cons "g" |> RandomAccessList.cons "h" |> RandomAccessList.cons "i" |> RandomAccessList.cons "j"
-                (((RandomAccessList.length len1) = 1) && ((RandomAccessList.length len2) = 2) && ((RandomAccessList.length len3) = 3) && ((RandomAccessList.length len4) = 4) 
-                && ((RandomAccessList.length len5) = 5) && ((RandomAccessList.length len6) = 6) && ((RandomAccessList.length len7) = 7) && ((RandomAccessList.length len8) = 8) 
+                (((RandomAccessList.length len1) = 1) && ((RandomAccessList.length len2) = 2) && ((RandomAccessList.length len3) = 3) && ((RandomAccessList.length len4) = 4)
+                && ((RandomAccessList.length len5) = 5) && ((RandomAccessList.length len6) = 6) && ((RandomAccessList.length len7) = 7) && ((RandomAccessList.length len8) = 8)
                 && ((RandomAccessList.length len9) = 9) && ((RandomAccessList.length lena) = 10)) |> Expect.isTrue "RandomAccessList.length" }
 
             test "allow map" {
@@ -637,8 +640,8 @@ module RandomAccessListTest =
 
             test "RandomAccessList.cons pattern discriminator - randomAccessList" {
                 let q = RandomAccessList.ofSeq ["f";"e";"d";"c";"b";"a"]
-    
-                let h1, t1 = 
+
+                let h1, t1 =
                     match q with
                     | RandomAccessList.Cons(h, t) -> h, t
                     | _ ->  "x", q
@@ -658,19 +661,19 @@ module RandomAccessListTest =
             test "RandomAccessList.ofSeq random access list" {
                 let x = RandomAccessList.ofSeq ["a";"b";"c";"d";"e";"f";"g";"h";"i";"j"]
 
-                (((x |> RandomAccessList.nth 0) = "a") && ((x |> RandomAccessList.nth 1) = "b") && ((x |> RandomAccessList.nth 2) = "c") && ((x |> RandomAccessList.nth 3) = "d") 
+                (((x |> RandomAccessList.nth 0) = "a") && ((x |> RandomAccessList.nth 1) = "b") && ((x |> RandomAccessList.nth 2) = "c") && ((x |> RandomAccessList.nth 3) = "d")
                 && ((x |> RandomAccessList.nth 4) = "e") && ((x |> RandomAccessList.nth 5) = "f") && ((x |> RandomAccessList.nth 6) = "g") && ((x |> RandomAccessList.nth 7) = "h")
                 && ((x |> RandomAccessList.nth 8) = "i") && ((x |> RandomAccessList.nth 9) = "j")) |> Expect.isTrue "RandomAccessList.ofSeq" }
 
             test "allow init" {
-                let randomAccessList = RandomAccessList.init 5 (fun x -> x * 2) 
+                let randomAccessList = RandomAccessList.init 5 (fun x -> x * 2)
                 let s = Seq.init 5 (fun x -> x * 2)
 
                 s |> Seq.toList |> Expect.equal "" [0;2;4;6;8]
                 Expect.equal "init" [0;2;4;6;8] (randomAccessList |> Seq.toList) }
 
             test "RandomAccessList.toSeq to list" {
-                let l = ["f";"e";"d";"c";"b";"a"] 
+                let l = ["f";"e";"d";"c";"b";"a"]
                 let rl = RandomAccessList.ofSeq l
 
                 Expect.equal "RandomAccessList.toSeq" l (rl |> RandomAccessList.toSeq |> List.ofSeq) }
@@ -682,15 +685,25 @@ module RandomAccessListTest =
                 Expect.isTrue "enumerate RandomAccessList.empty" true }
         ]
 
+    let mkSerializationProperty<'a when 'a: equality> name =
+        testPropertyWithConfig config10k (sprintf "RandomAccessList serialization and deserialization work with %ss" name) (fun (l: 'a list) ->
+            let ral1 = RandomAccessList.ofSeq l
+            let f = BinaryFormatter()
+            use memStream = new MemoryStream()
+            f.Serialize(memStream,ral1)
+            memStream.Position <- 0L
+            let ral2 = f.Deserialize memStream :?> 'a RandomAccessList
+            Seq.equalsWith (=) ral1 ral2)
+
     [<Tests>]
-    let propertyTestRandomAccessList = 
+    let propertyTestRandomAccessList =
         let consThruList l q  =
-            let rec loop (q' : 'a RandomAccessList) (l' : 'a list) = 
+            let rec loop (q' : 'a RandomAccessList) (l' : 'a list) =
                 match l' with
                 | hd :: [] -> q'.Cons hd
                 | hd :: tl -> loop (q'.Cons hd) tl
                 | [] -> q'
-        
+
             loop q l
 
         //RandomAccessList
@@ -703,7 +716,7 @@ module RandomAccessListTest =
                     return ( (RandomAccessList.ofSeq x), x) }
 
         (*
-        IRandomAccessList generators from random RandomAccessList.ofSeq and/or conj elements from random list 
+        IRandomAccessList generators from random RandomAccessList.ofSeq and/or conj elements from random list
         *)
         let RandomAccessListIntGen =
             gen {   let! n = Gen.length1thru100
@@ -733,7 +746,7 @@ module RandomAccessListTest =
             gen {   let! n = Gen.length1thru100
                     let! n2 = Gen.length2thru100
                     let! x =  Gen.listString n
-                    let! y =  Gen.listString n2  
+                    let! y =  Gen.listString n2
                     return ( (RandomAccessList.ofSeq x |> consThruList y), ((List.rev y) @ x) ) }
 
         let intGens start =
@@ -748,10 +761,11 @@ module RandomAccessListTest =
         let intGensStart2 =
             intGens 2 // this will accept 11 out of 12
 
+
         testList "RandomAccessList property tests" [
             testPropertyWithConfig config10k  "RandomAccessList.fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
                 fun (q, l) -> q |> RandomAccessList.fold (fun l' elem -> elem::l') [] = (List.rev l) )
-              
+
             testPropertyWithConfig config10k  "RandomAccessList OfSeq RandomAccessList.fold matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
                 fun (q, l) -> q |> RandomAccessList.fold (fun l' elem -> elem::l') [] = (List.rev l) )
 
@@ -760,7 +774,7 @@ module RandomAccessListTest =
 
             testPropertyWithConfig config10k  "RandomAccessList.foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
                 fun (q, l) -> RandomAccessList.foldBack (fun elem l' -> elem::l') q [] = l )
-              
+
             testPropertyWithConfig config10k  "OfSeq RandomAccessList.foldBack matches build list" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
                 fun (q, l) -> RandomAccessList.foldBack (fun elem l' -> elem::l') q [] = l )
 
@@ -820,10 +834,15 @@ module RandomAccessListTest =
 
             testPropertyWithConfig config10k  "rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntGen) <|
                 fun (q, l) -> q |> RandomAccessList.rev |> List.ofSeq = (List.rev l) )
-              
+
             testPropertyWithConfig config10k  "OfSeq rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntOfSeqGen) <|
                 fun (q, l) -> q |> RandomAccessList.rev |> List.ofSeq = (List.rev l) )
 
             testPropertyWithConfig config10k  "Cons rev matches build list rev" (Prop.forAll (Arb.fromGen RandomAccessListIntConsGen) <|
                 fun (q, l) -> q |> RandomAccessList.rev |> List.ofSeq = (List.rev l) )
+
+            mkSerializationProperty<int> "32-bit integer"
+            mkSerializationProperty<string> "string"
+            mkSerializationProperty<Guid> "GUID"
+            mkSerializationProperty<bigint> "big integer"
         ]
