@@ -199,12 +199,12 @@ module Seq =
         seq {
             use e = a.GetEnumerator()
             use e' = b.GetEnumerator()
-            let eNext = ref (e.MoveNext())
-            let eNext' = ref (e'.MoveNext())
-            while !eNext || !eNext' do
+            let mutable eNext = e.MoveNext()
+            let mutable eNext' = e'.MoveNext()
+            while eNext || eNext' do
                yield f e.Current e'.Current
-               eNext := e.MoveNext()
-               eNext' := e'.MoveNext()
+               eNext <- e.MoveNext()
+               eNext' <- e'.MoveNext()
         }
 
     /// Replicates each element in the seq n-times
@@ -223,11 +223,11 @@ module Seq =
 
     let intersperse (sep: 'a) (list: 'a seq) : 'a seq =
         seq {
-            let notFirst = ref false
+            let mutable notFirst = false
             for element in list do
-              if !notFirst then yield sep;
+              if notFirst then yield sep;
               yield element;
-              notFirst := true
+              notFirst <- true
       }
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
@@ -742,7 +742,7 @@ module NameValueCollection =
             member d.GetEnumerator() = a.GetEnumerator() :> IEnumerator
             member d.Remove (item: KeyValuePair<string,string[]>) = notSupported(); false
             member d.Remove (key: string) = notSupported(); false
-            member d.TryGetValue(key: string, value: byref<string[]>) = a.TryGetValue(key, ref value)
+            member d.TryGetValue(key: string, value: byref<string[]>) = a.TryGetValue(key, &value)
         }
 
     [<Extension>]

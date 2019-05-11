@@ -99,18 +99,18 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
         this
 
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
-        let i = ref startIndex
-        let b = ref (!i - (!i % Literals.blockSize))
-        let array = if startIndex < count then ref (this.ArrayFor !i) else ref null
+        let mutable i = startIndex
+        let mutable b = i - (i % Literals.blockSize)
+        let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
-            while !i < endIndex do
-                if !i - !b = Literals.blockSize then
-                    array := this.ArrayFor !i
-                    b := !b + Literals.blockSize
+            while i < endIndex do
+                if i - b = Literals.blockSize then
+                    array <- this.ArrayFor i
+                    b <- b + Literals.blockSize
 
-                yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                i := !i + 1 
+                yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                i <- i + 1 
             }
 
     member this.persistent() : PersistentVector<'T> =
@@ -140,7 +140,7 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
             :> System.Collections.IEnumerator 
 
 and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
-    let hashCode = ref None
+    let mutable hashCode = None
     let tailOff = 
         if count < Literals.blockSize then 0 else
         ((count - 1) >>> Literals.blockSizeShift) <<< Literals.blockSizeShift
@@ -154,12 +154,12 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         ret.persistent()
 
     override this.GetHashCode() =
-        match !hashCode with
+        match hashCode with
         | None ->
             let mutable hash = 1
             for x in this.rangedIterator(0,count) do
                 hash <- 31 * hash + Unchecked.hash x
-            hashCode := Some hash
+            hashCode <- Some hash
             hash
         | Some hash -> hash
 
@@ -171,7 +171,7 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
             Seq.forall2 (Unchecked.equals) this y
         | _ -> false
 
-    member internal this.SetHash hash = hashCode := hash; this
+    member internal this.SetHash hash = hashCode <- hash; this
 
     member internal this.NewPath(level,node:Node) =
         if level = 0 then node else
@@ -237,18 +237,18 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         ret
 
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
-        let i = ref startIndex
-        let b = ref (!i - (!i % Literals.blockSize))
-        let array = if startIndex < count then ref (this.ArrayFor !i) else ref null
+        let mutable i = startIndex
+        let mutable b = i - (i % Literals.blockSize)
+        let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
-            while !i < endIndex do
-                if !i - !b = Literals.blockSize then
-                    array := this.ArrayFor !i
-                    b := !b + Literals.blockSize
+            while i < endIndex do
+                if i - b = Literals.blockSize then
+                    array <- this.ArrayFor i
+                    b <- b + Literals.blockSize
 
-                yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                i := !i + 1 
+                yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                i <- i + 1 
             }
         
     member this.Conj (x : 'T) = 
@@ -310,16 +310,16 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
     member this.Rev() =
         if count = 0 then PersistentVector.Empty() :> PersistentVector<'T>
         else
-            let i = ref (count - 1)
-            let array = ref (this.ArrayFor !i)
+            let mutable i = count - 1
+            let mutable array = this.ArrayFor i
 
             let items = seq {
-                while !i > - 1 do
-                    if (!i + 1) % Literals.blockSize  = 0 then
-                        array := this.ArrayFor !i
+                while i > - 1 do
+                    if (i + 1) % Literals.blockSize  = 0 then
+                        array <- this.ArrayFor i
 
-                    yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                    i := !i - 1 
+                    yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                    i <- i - 1 
                 }
 
             let mutable ret = TransientVector()
