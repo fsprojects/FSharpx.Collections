@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections", "src\FSharpx.Collections\FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections", "src\FSharpx.Collections\FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental", "src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental", "src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Tests", "tests\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Tests", "tests\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental.Tests", "tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental.Tests", "tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{E8AA1CAD-BC7C-4788-B5EF-6C68225B1B5A}"
 	ProjectSection(SolutionItems) = preProject

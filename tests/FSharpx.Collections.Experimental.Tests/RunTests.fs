@@ -11,6 +11,7 @@ module RunTests =
         [
             Tests.runTestsWithArgs defaultConfig args AltBinaryRandomAccessListTest.testAltBinaryRandomAccessList
 
+            Tests.runTestsWithArgs defaultConfig args ChampHashMapTests.testQueue
             Tests.runTestsWithArgs defaultConfig args BankersDequeTest.testBankersDeque
 
             Tests.runTestsWithArgs defaultConfig args BatchDequeTest.testBatchDeque
@@ -26,8 +27,10 @@ module RunTests =
 
             Tests.runTestsWithArgs defaultConfig args BKTreeTest.testBKTree
 
+
             Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArray
             Tests.runTestsWithArgs defaultConfig args BlockResizeArrayTest.testBlockResizeArrayPropeerties
+
 
             Tests.runTestsWithArgs defaultConfig args BootstrappedQueueTest.testBootstrappedQueue
 

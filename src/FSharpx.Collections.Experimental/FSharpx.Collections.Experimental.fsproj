@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>ad3c8e86-f4cf-426f-a31d-015056227777</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSharpx.Collections.Experimental</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental</AssemblyName>
@@ -55,11 +54,10 @@
     <Compile Include="CSharpCompat.fs" />
     <Compile Include="BlockResizeArray.fs" />
     <Compile Include="SkewBinomialHeap.fs" />
+    <Compile Include="ChampHashMap.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSharpx.Collections\FSharpx.Collections.fsproj">
-      <Name>FSharpx.Collections</Name>
-      <Project>{1e95a279-c2a9-498b-bc72-6e7a0d6854ce}</Project>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

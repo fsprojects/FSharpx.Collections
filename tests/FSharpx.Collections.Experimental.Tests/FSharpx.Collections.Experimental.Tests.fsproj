@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>4b763738-cf1a-4dec-a888-7d3d15054231</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FSharpx.Collections.Experimental.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Experimental.Tests</AssemblyName>
@@ -46,12 +45,11 @@
     <Compile Include="SkewBinaryRandomAccessListTest.fs" />
     <Compile Include="SkewBinomialHeapTest.fs" />
     <Compile Include="TimeSeriesTest.fs" />
+    <Compile Include="ChampHashMapTest.fs" />
     <Compile Include="RunTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
-      <Name>FSharpx.Collections.Experimental</Name>
-      <Project>{ad3c8e86-f4cf-426f-a31d-015056227777}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
