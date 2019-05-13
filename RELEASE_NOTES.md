@@ -1,8 +1,13 @@
-#### 2.0.0-beta4 - unreleased
+#### 2.0.0 - unreleased
+* BREAKING CHANGE: only netstandard2.0 supported
 * PersistentHashMap implements Count (issues/12)
 * add compareWith and areEqual to LazyList (issues/114) thanks teo-tsirpanis
 * fix experimental RoseTree equality (issues/114) thanks teo-tsirpanis
 * fix Nop thread comparison in PersistentHashMap (issues/66)
+* make RandomAccessList serializable (issue 127) thanks teo-tsirpanis
+* Implemented CHAMP algorithm for a persistent hash map, thanks bsomes 
+* Implement IReadOnlyList and IReadOnlyCollection for the RandomAccessList (issue 130) thanks teo-tsirpanis
+* LazyListbased on the BCL's Lazy type, thanks teo-tsirpanis
 
 #### 2.0.0-beta3 - 2018-06-19
 * pairwise DList, thanks Brendan Fahy

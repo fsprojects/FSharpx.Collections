@@ -157,10 +157,10 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
-            Map.insertWith f key value map
+            Map.insertWith f key defaultValue map
           </code>
           <div class="tip" id="180">
-            <strong>Signature:</strong> f:(&#39;?10350 -&gt; &#39;?10350 -&gt; &#39;?10350) -&gt; key:&#39;?10351 -&gt; value:&#39;?10350 -&gt; map:Map&lt;&#39;?10351,&#39;?10350&gt; -&gt; Map&lt;&#39;?10351,&#39;?10350&gt;<br />
+            <strong>Signature:</strong> f:(&#39;?10350 -&gt; &#39;?10350 -&gt; &#39;?10350) -&gt; key:&#39;?10351 -&gt; defaultValue:&#39;?10350 -&gt; map:Map&lt;&#39;?10351,&#39;?10350&gt; -&gt; Map&lt;&#39;?10351,&#39;?10350&gt;<br />
                           <strong>Type parameters:</strong> '?10350, '?10351                      </div>
         </td>
         <td class="xmldoc">
@@ -168,8 +168,8 @@
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map.
-If the key does exist, the function will insert f new<em>value old</em>value.</p>
+          <p>insertWith f key defaultValue mp will insert the pair (key, value) into mp if key does not exist in the map.
+If the key does exist, the function will insert f defaultValue oldValue.</p>
 
 
         </td>
