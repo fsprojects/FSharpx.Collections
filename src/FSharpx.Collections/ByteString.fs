@@ -54,27 +54,27 @@ type ByteString(array: byte[], offset: int, count: int) =
             let segment = x.Array
             let minIndex = x.Offset
             let maxIndex = x.Offset + x.Count - 1
-            let currentIndex = ref <| minIndex - 1
+            let mutable currentIndex = minIndex - 1
             { new IEnumerator<_> with 
                 member self.Current =
-                    if !currentIndex < minIndex then
+                    if currentIndex < minIndex then
                         invalidOp "Enumeration has not started. Call MoveNext."
-                    elif !currentIndex > maxIndex then
+                    elif currentIndex > maxIndex then
                         invalidOp "Enumeration already finished."
-                    else segment.[!currentIndex]
+                    else segment.[currentIndex]
               interface System.Collections.IEnumerator with
                 member self.Current =
-                    if !currentIndex < minIndex then
+                    if currentIndex < minIndex then
                         invalidOp "Enumeration has not started. Call MoveNext."
-                    elif !currentIndex > maxIndex then
+                    elif currentIndex > maxIndex then
                         invalidOp "Enumeration already finished."
-                    else box segment.[!currentIndex]
+                    else box segment.[currentIndex]
                 member self.MoveNext() = 
-                    if !currentIndex < maxIndex then
-                        incr currentIndex
+                    if currentIndex < maxIndex then
+                        currentIndex <- currentIndex + 1
                         true
                     else false
-                member self.Reset() = currentIndex := minIndex - 1
+                member self.Reset() = currentIndex <- minIndex - 1
               interface System.IDisposable with 
                 member self.Dispose() = () }
 

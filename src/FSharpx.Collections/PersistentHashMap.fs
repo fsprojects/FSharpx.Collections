@@ -21,16 +21,16 @@ type internal INode =
 module private BitCount =
     let bitCounts = 
         let bitCounts = Array.create 65536 0
-        let position1 = ref -1
-        let position2 = ref -1
+        let mutable position1 = -1
+        let mutable position2 = -1
 
         for i in 1 .. 65535 do
-           if !position1 = !position2 then       
-                position1 := 0
-                position2 := i
+           if position1 = position2 then       
+                position1 <- 0
+                position2 <- i
 
-           bitCounts.[i] <- bitCounts.[!position1] + 1
-           position1 := !position1 + 1
+           bitCounts.[i] <- bitCounts.[position1] + 1
+           position1 <- position1 + 1
         bitCounts
 
     let inline NumberOfSetBits value =
@@ -63,22 +63,21 @@ module private NodeHelpers =
         System.Array.Copy(array, 2*(i+1), newArray, 2*i, newArray.Length - 2*i)
         newArray
 
-
     let inline createNodeSeq(array: obj[]) = 
         seq {
-            let j = ref 0
-            while !j < array.Length do                
-                let isNode = array.[!j+1] :? INode
+            let mutable j = 0
+            while j < array.Length do                
+                let isNode = array.[j+1] :? INode
                 
                 if isNode then
-                    let node = array.[!j+1] :?> INode
+                    let node = array.[j+1] :?> INode
                     if node <> Unchecked.defaultof<INode> then
                         yield! node.nodeSeq()
                 else
-                    if array.[!j] <> null then
-                        yield array.[!j],array.[!j+1]
+                    if array.[j] <> null then
+                        yield array.[j],array.[j+1]
             
-                j := !j + 2 }
+                j <- j + 2 }
              
 open BitCount
 open NodeHelpers
@@ -105,7 +104,6 @@ type private NodeCreation =
             .assoc(shift, key1hash, key1, val1, addedLeaf)
             .assoc(shift, key2hash, key2, val2, addedLeaf)
        
-
 and private HashCollisionNode(thread,hashCollisionKey,count',array':obj[]) =
     let thread = thread
     member val array = array' with get, set
@@ -113,10 +111,10 @@ and private HashCollisionNode(thread,hashCollisionKey,count',array':obj[]) =
         
     with
         member this.findIndex key =
-            let i = ref 0
-            while (!i < 2*this.count) && (key <> this.array.[!i]) do
-                i := !i + 2
-            if !i < 2*this.count then !i else -1
+            let mutable i = 0
+            while (i < 2*this.count) && (key <> this.array.[i]) do
+                i <- i + 2
+            if i < 2*this.count then i else -1
 
         member this.ensureEditable(thread1, count1, array1) =
             if !thread1 = !thread then
@@ -317,12 +315,12 @@ and private ArrayNode(thread,count',array':INode[]) =
 
             member this.nodeSeq() =
                  seq {
-                    let j = ref 0
-                    while !j < this.array.Length do
-                        if this.array.[!j] <> Unchecked.defaultof<INode> then
-                            yield! this.array.[!j].nodeSeq()
+                    let mutable j = 0
+                    while j < this.array.Length do
+                        if this.array.[j] <> Unchecked.defaultof<INode> then
+                            yield! this.array.[j].nodeSeq()
             
-                        j := !j + 1 }
+                        j <- j + 1 }
 
 
 and private BitmapIndexedNode(thread,bitmap',array':obj[]) =    

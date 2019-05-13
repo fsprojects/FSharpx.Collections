@@ -6,19 +6,19 @@ open System.Collections
 open System.Collections.Generic
 
 type Deque<'T> (front, rBack) = 
-    let hashCode = ref None
+    let mutable hashCode = None
     member internal this.front = front
     member internal this.rBack = rBack
 
     override this.GetHashCode() =
-            match !hashCode with
-            | None ->
-                let mutable hash = 1
-                for x in this do
-                    hash <- 31 * hash + Unchecked.hash x
-                hashCode := Some hash
-                hash
-            | Some hash -> hash
+        match hashCode with
+        | None ->
+            let mutable hash = 1
+            for x in this do
+                hash <- 31 * hash + Unchecked.hash x
+            hashCode <- Some hash
+            hash
+        | Some hash -> hash
 
     override this.Equals(other) =
         match other with

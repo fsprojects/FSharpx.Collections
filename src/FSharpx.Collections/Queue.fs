@@ -3,17 +3,17 @@
 namespace FSharpx.Collections
 
 type Queue<'T> (front : list<'T>, rBack : list<'T>) = 
-    let hashCode = ref None
+    let mutable hashCode = None
     member internal this.front = front
     member internal this.rBack = rBack
 
     override this.GetHashCode() =
-        match !hashCode with
+        match hashCode with
         | None ->
             let mutable hash = 1
             for x in this do
                 hash <- 31 * hash + Unchecked.hash x
-            hashCode := Some hash
+            hashCode <- Some hash
             hash
         | Some hash -> hash
 
