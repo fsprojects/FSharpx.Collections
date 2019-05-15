@@ -1,4 +1,4 @@
-#### 2.0.0 - unreleased
+#### 2.0.0 - 2019-05-15
 * BREAKING CHANGE: only netstandard2.0 supported
 * PersistentHashMap implements Count (issues/12)
 * add compareWith and areEqual to LazyList (issues/114) thanks teo-tsirpanis
