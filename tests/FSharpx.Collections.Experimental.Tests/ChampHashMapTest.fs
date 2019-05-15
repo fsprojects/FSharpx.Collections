@@ -16,8 +16,7 @@ type CollidingKey<'T when 'T : equality> (value:'T) =
         | _ -> false
 
     with interface IEquatable<CollidingKey<'T>> with
-        member this.Equals(other) = this.item.Equals(other.item)
-
+            member this.Equals(other) = this.item.Equals(other.item)
 
 module ChampHashMapTests =
     [<Tests>]
