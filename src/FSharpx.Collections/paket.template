@@ -22,5 +22,10 @@ summary
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
 description
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
+dependencies
+  framework: net45
+    FSharp.Core 4.3.4
+  framework: netstandard20
+    FSharp.Core 4.3.4
 files
-	../../bin/FSharpx.Collections ==> lib
+    ../../bin/FSharpx.Collections ==> lib
