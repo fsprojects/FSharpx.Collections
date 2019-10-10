@@ -145,7 +145,7 @@ Target.create "Build" (fun _ ->
 
 Target.create "RunTests" (fun _ ->
     !! testAssemblies
-    |> Expecto.run id
+    |> Expecto.run (fun x -> {x with Parallel = true; ParallelWorkers = System.Environment.ProcessorCount})
 )
 
 // --------------------------------------------------------------------------------------
