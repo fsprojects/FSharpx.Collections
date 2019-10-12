@@ -2,12 +2,11 @@ framework: auto-detect
 
 source http://nuget.org/api/v2
 
+nuget FSharp.Core >= 4.3.4
 nuget Expecto
 nuget Expecto.FsCheck
 nuget FsCheck 
 nuget Expecto.VisualStudio.TestAdapter version_in_path: true
-
-clitool dotnet-fake
 
 group Formatting
 source https://nuget.org/api/v2
@@ -20,6 +19,7 @@ source https://api.nuget.org/v3/index.json
 
 storage: none
 
+clitool dotnet-fake
 nuget Fake.Core.Target
 nuget Fake.IO.FileSystem
 nuget Fake.DotNet.Cli

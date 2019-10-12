@@ -1,3 +1,6 @@
+#### 2.1.0 - ???
+* target net45 and netstandard2.0
+
 #### 2.0.0 - 2019-05-15
 * BREAKING CHANGE: only netstandard2.0 supported
 * PersistentHashMap implements Count (issues/12)

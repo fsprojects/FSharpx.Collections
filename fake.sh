@@ -6,5 +6,5 @@
 set -eu
 set -o pipefail
 
-dotnet restore build.proj
+dotnet restore --verbosity m build.proj
 dotnet fake "$@"
