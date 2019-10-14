@@ -15,7 +15,12 @@ open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
+open Fake.BuildServer
 
+BuildServer.install [
+    AppVeyor.Installer
+    Travis.Installer
+]
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
 // --------------------------------------------------------------------------------------
@@ -69,6 +74,9 @@ let website = "/FSharpx.Collections"
 
 // Read additional information from the release notes document
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
+let buildNumber =
+        Environment.environVarOrNone "APPVEYOR_BUILD_NUMBER"
+        |> Option.orElse (Environment.environVarOrNone "TRAVIS_BUILD_NUMBER")
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|) (projFileName:string) = 
@@ -106,6 +114,14 @@ Target.create "AssemblyInfo" (fun _ ->
         | Csproj -> AssemblyInfoFile.createCSharp ((folderName </> "Properties") </> "AssemblyInfo.cs") attributes
         | Vbproj -> AssemblyInfoFile.createVisualBasic ((folderName </> "My Project") </> "AssemblyInfo.vb") attributes
         )
+)
+
+Target.create "SetCIVersion" (fun _ ->
+    let version =
+        match buildNumber with
+        | Some bn -> release.AssemblyVersion+"."+bn
+        | None -> release.AssemblyVersion
+    Trace.setBuildNumber version
 )
 
 // Copies binaries from default VS location to exepcted bin folder
@@ -150,15 +166,22 @@ Target.create "RunTests" (fun _ ->
 
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
-
-Target.create "NuGet" (fun _ ->
+let nuGet out suffix =
     let releaseNotes = release.Notes |> String.toLines
 
     Paket.pack(fun p -> 
         { p with
-            OutputPath = "bin"
-            Version = release.NugetVersion
+            OutputPath = out
+            Version = release.NugetVersion + (suffix |> Option.defaultValue "")
             ReleaseNotes = releaseNotes})
+
+Target.create "NuGet" (fun _ ->
+    nuGet "bin" None
+)
+
+Target.create "CINuGet" (fun _ ->
+    let suffix = "-alpha" + (buildNumber |> Option.defaultValue "")
+    nuGet "temp" (Some suffix)
 )
 
 Target.create "PublishNuget" (fun _ ->
@@ -353,18 +376,19 @@ Target.create "BuildPackage" ignore
 let isLocalBuild = (BuildServer.buildServer = LocalBuild)
 
 Target.create "All" ignore
-
 "Clean"
   ==> "AssemblyInfo"
+  ==> "SetCIVersion"
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
+  ==> "CINuGet"
   =?> ("GenerateReferenceDocs", isLocalBuild)
   =?> ("GenerateDocs", isLocalBuild)
   ==> "All"
   =?> ("ReleaseDocs", isLocalBuild)
 
-"All" 
+"All"
   ==> "NuGet"
   ==> "BuildPackage"
 

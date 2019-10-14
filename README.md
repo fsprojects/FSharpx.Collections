@@ -12,6 +12,8 @@ Mono | .NET
 ---- | ----
 [![Mono CI Build Status](https://img.shields.io/travis/fsprojects/FSharpx.Collections/master.svg)](https://travis-ci.org/fsprojects/FSharpx.Collections) | [![.NET CI Build Status](https://img.shields.io/appveyor/ci/fsgit/FSharpx-Collections/master.svg)](https://ci.appveyor.com/project/fsgit/fsharpx-collections)
 
+Pre-release nuget packages automatically built from master branch are published to AppVeyor project NuGet feed and avaiable under https://ci.appveyor.com/nuget/fsharpx-collections
+
 ## Maintainer(s)
 
 - [@forki](https://github.com/forki)
