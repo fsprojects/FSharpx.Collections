@@ -565,10 +565,7 @@
         let ofArray comparer l = Array.fold (fun acc k -> add comparer k acc) empty l    
 
 
-#if FX_NO_DEBUG_DISPLAYS
-#else
     [<System.Diagnostics.DebuggerDisplay ("Count = {Count}")>]
-#endif
     [<Sealed>]
     type Set<'T,'ComparerTag> when 'ComparerTag :> IComparer<'T>(comparer: IComparer<'T>, tree: SetTree<'T>) =
 
@@ -1094,10 +1091,7 @@
                   member self.Dispose() = ()}
 
 
-#if FX_NO_DEBUG_DISPLAYS
-#else
     [<System.Diagnostics.DebuggerDisplay ("Count = {Count}")>]
-#endif
     [<Sealed>]
     type Map<'Key,'T,'ComparerTag> when 'ComparerTag :> IComparer<'Key>( comparer: IComparer<'Key>, tree: MapTree<'Key,'T>) =
 

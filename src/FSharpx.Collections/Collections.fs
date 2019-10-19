@@ -574,8 +574,6 @@ module Map =
         Array.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
 
 
-#if FX_PORTABLE
-#else
 [<Extension>]
 /// Extensions for NameValueCollections.
 [<RequireQualifiedAccess>]
@@ -775,4 +773,3 @@ module NameValueCollection =
             member x.Contains key = this.Get key <> null
             member x.GetEnumerator() = getEnumerator()
             member x.GetEnumerator() = getEnumerator() :> IEnumerator }
-#endif

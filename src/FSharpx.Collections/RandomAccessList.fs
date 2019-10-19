@@ -14,8 +14,6 @@ module internal Literals2 =
     let internal blockIndexMask = 0x01f
 
 open System.Threading
-#if FX_NO_THREAD
-#else
 [<Serializable>]
 type NodeR(threadId,array:obj[]) =
     let mutable threadId = threadId
@@ -446,4 +444,3 @@ module RandomAccessList =
     let inline windowSeq windowLength (items: 'T seq) =
         if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
         else (Seq.foldBack (windowFun windowLength) items (empty.Cons empty<'T>)) (*Seq.fold (windowFun windowLength) (empty.Cons empty<'T>) items*) // TODO: Check if this should be foldBack due to inversion effects of prepending
-#endif
