@@ -1,8 +1,6 @@
 ﻿// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentMap.java
 
 namespace FSharpx.Collections
-#if FX_NO_THREAD
-#else
 open System.Threading
 open System.Collections.Generic
 
@@ -720,4 +718,3 @@ module PersistentHashMap =
         for (key,value) in map do
             ret <- ret.Add(key,f value)
         ret.persistent() 
-#endif

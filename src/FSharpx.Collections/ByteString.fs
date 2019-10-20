@@ -5,11 +5,7 @@ open System.Collections
 open System.Collections.Generic
             
 /// An ArraySegment with structural comparison and equality.
-#if FX_PORTABLE
-[<CustomEquality; CustomComparison; StructAttribute>]
-#else
 [<CustomEquality; CustomComparison; SerializableAttribute; StructAttribute>]
-#endif
 type ByteString(array: byte[], offset: int, count: int) =
     new (array: byte[]) = ByteString(array, 0, array.Length)
 
@@ -107,16 +103,7 @@ module ByteString =
     let create arr = ByteString(arr, 0, arr.Length)
 
     /// needs .fsi file
-    let findIndex pred (bs:ByteString) =
-#if FX_PORTABLE
-        let rec loop i = 
-            if i >= bs.Count then -1 
-            elif pred bs.Array.[bs.Offset + i] then i
-            else loop (i+1)
-        loop 0
-#else
-        Array.FindIndex(bs.Array, bs.Offset, bs.Count, Predicate<_>(pred))
-#endif
+    let findIndex pred (bs:ByteString) = Array.FindIndex(bs.Array, bs.Offset, bs.Count, Predicate<_>(pred))
 
     /// needs .fsi file
     let ofArraySegment (segment:ArraySegment<byte>) = ByteString(segment.Array, segment.Offset, segment.Count)
@@ -141,11 +128,8 @@ module ByteString =
     /// needs .fsi file
     let toList (bs:ByteString) = List.ofSeq bs
 
-#if FX_PORTABLE
-#else
     /// needs .fsi file
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
-#endif
 
     /// needs .fsi file
     let isEmpty (bs:ByteString) = 
