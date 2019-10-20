@@ -28,4 +28,9 @@ dependencies
   framework: netstandard20
     FSharp.Core 4.3.4
 files
-    ../../bin/FSharpx.Collections.Experimental ==> lib
+    ../../bin/FSharpx.Collections.Experimental/net45/FSharpx.Collections.Experimental.dll ==> lib/net45
+    ../../bin/FSharpx.Collections.Experimental/net45/FSharpx.Collections.Experimental.pdb ==> lib/net45
+    ../../bin/FSharpx.Collections.Experimental/net45/FSharpx.Collections.Experimental.xml ==> lib/net45
+    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.dll ==> lib/netstandard2.0
+    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.pdb ==> lib/netstandard2.0
+    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.xml ==> lib/netstandard2.0

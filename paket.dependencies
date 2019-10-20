@@ -27,6 +27,8 @@ nuget Fake.Tools.Git
 nuget Fake.DotNet.MSBuild
 nuget Fake.Core.ReleaseNotes 
 nuget Fake.DotNet.AssemblyInfoFile
-nuget Fake.DotNet.Paket
+nuget Fake.DotNet.Paket 5.16.0
 nuget Fake.DotNet.Testing.Expecto 
-nuget Fake.DotNet.FSFormatting 
+nuget Fake.DotNet.FSFormatting
+nuget Fake.BuildServer.AppVeyor
+nuget Fake.BuildServer.Travis
