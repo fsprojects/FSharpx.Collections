@@ -6,9 +6,9 @@ namespace FSharpx.Collections
 
 [<Class>]
 type DList<'T> =
-
-    interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
    
     ///O(1). Returns the count of elememts.
     member Length : int

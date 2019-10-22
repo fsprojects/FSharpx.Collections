@@ -2,7 +2,6 @@ namespace FSharpx.Collections
 
 //This implementation adds an additional parameter to allow O(1) retrieval of the list length.
 
-open FSharpx
 open System.Collections
 open System.Collections.Generic
 
@@ -144,11 +143,10 @@ type DList<'T>(length : int , data : DListData<'T> ) =
                
         (walk [] data).GetEnumerator()
 
-    interface IEnumerable<'T> with
-        member s.GetEnumerator() = s.toSeq()
-
-    interface System.Collections.IEnumerable with
-        override s.GetEnumerator() = (s.toSeq() :> System.Collections.IEnumerator)
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
+        member this.GetEnumerator() = this.toSeq()
+        member this.GetEnumerator() = this.toSeq() :> IEnumerator
             
 and 
     DListData<'T> =

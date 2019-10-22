@@ -8,9 +8,9 @@
 /// Purely functional (immutable) Queue based on Okasaki's batched queue.
 [<Class>]
 type Queue<'T> =
-
-    interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
 
     ///O(1). Returns a new queue with the element added to the end. (Enqueue)
     member Conj : 'T ->  Queue<'T>

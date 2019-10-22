@@ -7,9 +7,9 @@
 /// Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
 [<Class>]
 type PersistentVector<'T> =
-
-    interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
 
     /// O(1). Returns a new vector with the element added at the end.
     member Conj : 'T -> PersistentVector<'T>

@@ -684,11 +684,12 @@
             member s.IsReadOnly = true
             member s.Count = SetTree.count tree  
 
+        interface IReadOnlyCollection<'T> with
+            member s.Count = SetTree.count tree
+
         interface IEnumerable<'T> with
             member s.GetEnumerator() = SetTree.toSeq tree
-
-        interface System.Collections.IEnumerable with
-            override s.GetEnumerator() = (SetTree.toSeq tree :> System.Collections.IEnumerator)
+            member s.GetEnumerator() = SetTree.toSeq tree :> System.Collections.IEnumerator
 
         static member Singleton(comparer,x) : Set<'T,'ComparerTag>  = 
             Set<_,_>.Empty(comparer).Add(x)
@@ -1133,11 +1134,20 @@
         static member Create(comparer : 'ComparerTag, ie : seq<_>) : Map<'Key,'T,'ComparerTag> = 
             Map<_,_,_>(comparer=comparer, tree=MapTree.ofSeq comparer ie)
     
-        interface IEnumerable<KeyValuePair<'Key, 'T>> with
+        interface IReadOnlyDictionary<'Key, 'T> with
+            member s.Item with get key = s.[key]
+            member s.ContainsKey key = s.ContainsKey key
+            member s.TryGetValue(key: 'Key, [<System.Runtime.InteropServices.Out>] v: byref<'T>) =
+                match s.TryFind key with
+                | Some value ->
+                    v <- value
+                    true
+                | None -> false
+            member s.Keys = s |> Seq.map (fun keyValuePair -> keyValuePair.Key)
+            member s.Values = s |> Seq.map (fun keyValuePair -> keyValuePair.Value)
+            member s.Count = s.Count
             member s.GetEnumerator() = MapTree.toSeq tree
-
-        interface System.Collections.IEnumerable with
-            override s.GetEnumerator() = (MapTree.toSeq tree :> System.Collections.IEnumerator)
+            member s.GetEnumerator() = MapTree.toSeq tree :> System.Collections.IEnumerator
 
         override this.Equals(that) = 
             match that with

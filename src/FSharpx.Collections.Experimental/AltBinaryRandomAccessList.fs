@@ -19,6 +19,8 @@ type AltBinRndAccList<'T> =
 
         member this.Count() = AltBinRndAccList.length (0, 1, this)
 
+        member this.Count = AltBinRndAccList.length (0, 1, this)
+
         member this.Head =
             let x, _ = AltBinRndAccList.uncons this
             x
@@ -33,6 +35,8 @@ type AltBinRndAccList<'T> =
         member this.Length() = AltBinRndAccList.length (0, 1, this)
 
         member this.Lookup i = AltBinRndAccList.lookup i this
+
+        member this.Item with get i = AltBinRndAccList.lookup i this
 
         member this.TryLookup i = AltBinRndAccList.tryLookup i this
 

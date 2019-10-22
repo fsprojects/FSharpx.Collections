@@ -82,8 +82,8 @@ type Queue<'T> (front : list<'T>, rBack : list<'T>) =
             | f, r -> Some(hd, Queue(f, r))
         | _ -> None
 
-    interface System.Collections.Generic.IEnumerable<'T> with
-
+    interface System.Collections.Generic.IReadOnlyCollection<'T> with
+        member this.Count = this.Length
         member this.GetEnumerator() = 
             let e = seq {
                   yield! front

@@ -346,11 +346,10 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         if i >= 0 && i < count then Some(this.Update (i,x))
         else None
 
-    interface System.Collections.Generic.IEnumerable<'T> with
+    interface System.Collections.Generic.IReadOnlyCollection<'T> with
+        member this.Count = this.Length
         member this.GetEnumerator () =
           this.rangedIterator(0,count).GetEnumerator()
-
-    interface System.Collections.IEnumerable with
         member this.GetEnumerator () =
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator

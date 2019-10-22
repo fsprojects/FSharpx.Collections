@@ -199,7 +199,9 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
             hash <- Some h
             h
 
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Count
+
         member __.GetEnumerator () = (SBHTreeRoot.toListOrdered descending roots |> List.toSeq).GetEnumerator ()
         
         member this.GetEnumerator (): System.Collections.IEnumerator = upcast (this :> _ seq).GetEnumerator ()        

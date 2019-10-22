@@ -164,7 +164,9 @@ type LeftistHeap<'T when 'T : comparison> =
 
         member this.IsDescending = this.IsDescending 
 
-        member this.Length() = this.Length 
+        member this.Length() = this.Length
+
+        member this.Count = this.Length 
 
         member this.Merge (xs : LeftistHeap<'T>) = LeftistHeap.merge this xs
 

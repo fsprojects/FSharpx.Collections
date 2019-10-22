@@ -1,12 +1,13 @@
 ﻿namespace FSharpx.Collections.Mutable
 
 open System
-open System.Collections.Generic
 
 /// needs doc
 type CircularBuffer<'T> =
-  class
-    interface IEnumerable<'T>
+    interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
+
     /// needs doc
     new : bufferSize:int -> CircularBuffer<'T>
     /// needs doc
@@ -22,7 +23,6 @@ type CircularBuffer<'T> =
     /// needs doc
     member Enqueue : value:'T [] * offset:int * count:int -> unit
     /// needs doc
-    member GetEnumerator : unit -> IEnumerator<'T>
+    member GetEnumerator : unit -> System.Collections.Generic.IEnumerator<'T>
     /// needs doc
     member Count : int
-  end

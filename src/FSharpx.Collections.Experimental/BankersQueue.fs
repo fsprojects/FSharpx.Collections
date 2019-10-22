@@ -111,7 +111,8 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
             | None -> None
             | Some(x, q) -> Some(x, q :> _)
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = seq {

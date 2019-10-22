@@ -160,8 +160,8 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
         if this.heap.IsEmpty then None
         else Some(BinomialHeap.uncons this.IsDescending this.heap)
 
-    interface IEnumerable<'T> with
-
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length()
         member this.GetEnumerator() = 
             let e = 
                 if this.IsDescending

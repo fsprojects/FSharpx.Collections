@@ -8,15 +8,14 @@ open System.Runtime.CompilerServices
 type NonEmptyList<'T> = 
     private { List: 'T list }
 
-    member x.Head = x.List.Head
-    member x.Tail = x.List.Tail
-    member x.Length = x.List.Length
+    member this.Head = this.List.Head
+    member this.Tail = this.List.Tail
+    member this.Length = this.List.Length
 
-    interface IEnumerable<'T> with
-        member x.GetEnumerator() = 
-            (x.List :> seq<_>).GetEnumerator()
-    interface System.Collections.IEnumerable with
-        member x.GetEnumerator() = (x :> _ seq).GetEnumerator() :> IEnumerator
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
+        member this.GetEnumerator() = (this.List :> _ seq).GetEnumerator()
+        member this.GetEnumerator() = (this.List :> _ seq).GetEnumerator() :> IEnumerator
 
 [<Extension>]
 [<RequireQualifiedAccess>]
