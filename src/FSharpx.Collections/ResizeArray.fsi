@@ -7,7 +7,7 @@
 // (c) Microsoft Corporation 2005-2008.  
 //===========================================================================
 
-namespace Microsoft.FSharp.Collections
+namespace FSharpx.Collections
 
 open System
 open System.Collections.Generic

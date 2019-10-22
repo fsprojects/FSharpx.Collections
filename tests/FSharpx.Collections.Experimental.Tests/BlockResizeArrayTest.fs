@@ -1,5 +1,6 @@
 ﻿namespace FSharpx.Collections.Experimental.Tests
 
+open FSharpx.Collections
 open FSharpx.Collections.Experimental
 open Expecto
 open Expecto.Flip
@@ -70,7 +71,7 @@ module BlockResizeArrayTest =
                 let ra = new ResizeArray<uint64>()
                 for i in 0..arraySize do ra.Add x
                 let bra = BlockResizeArray.Init arraySize (fun _ -> x)
-                averageTime testIters "ResizeArray map" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.map (fun x -> x*2UL) ra)) 
+                averageTime testIters "ResizeArray map" (fun () -> (ResizeArray.map (fun x -> x*2UL) ra)) 
                 averageTime testIters "Array map" (fun () -> (Array.map (fun x -> x*2UL) a))       
                 averageTime testIters "BlockResizeArray map" (fun () -> bra.Map (fun x -> x*2UL)) }
 
@@ -79,7 +80,7 @@ module BlockResizeArrayTest =
                 let ra = new ResizeArray<uint64>()
                 for i in 0..arraySize do ra.Add x
                 let bra = BlockResizeArray.Init arraySize (fun _ -> x)
-                averageTime testIters "ResizeArray iter" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.iter (fun i -> ()) ra)) 
+                averageTime testIters "ResizeArray iter" (fun () -> (ResizeArray.iter (fun i -> ()) ra)) 
                 averageTime testIters "Array iter" (fun () -> (Array.iter (fun i -> ())))       
                 averageTime testIters "BlockResizeArray iter" (fun () -> bra.Iter (fun i -> ())) }
 
@@ -88,7 +89,7 @@ module BlockResizeArrayTest =
                 let ra = new ResizeArray<uint64>()
                 for i in 0..arraySize do ra.Add x
                 let bra = BlockResizeArray.Init arraySize (fun _ -> x)
-                averageTime testIters "ResizeArray fold" (fun () -> (Microsoft.FSharp.Collections.ResizeArray.fold (fun x acc -> acc + x*2UL) 0UL ra)) 
+                averageTime testIters "ResizeArray fold" (fun () -> (ResizeArray.fold (fun x acc -> acc + x*2UL) 0UL ra)) 
                 averageTime testIters "Array fold" (fun () -> (Array.fold (fun x acc -> acc + x*2UL) 0UL a))       
                 averageTime testIters "BlockResizeArray fold" (fun () -> (FSharpx.Collections.Experimental.BlockResizeArray.fold (fun x acc -> acc + x*2UL) 0UL bra)) }
 
@@ -99,7 +100,7 @@ module BlockResizeArrayTest =
                 let s = 1010000
                 for i in 0..arraySize do ra.Add (x + i)
                 let bra = BlockResizeArray.Init arraySize (fun i -> x + i)
-                averageTime testIters "ResizeArray find" (fun () -> Microsoft.FSharp.Collections.ResizeArray.find (fun e -> e <> 0 && e % s = 0) ra)
+                averageTime testIters "ResizeArray find" (fun () -> ResizeArray.find (fun e -> e <> 0 && e % s = 0) ra)
                 averageTime testIters "Array find" (fun () -> (Array.find (fun e -> e <> 0 && e % s = 0) a))       
                 averageTime testIters "BlockResizeArray find" (fun () -> (FSharpx.Collections.Experimental.BlockResizeArray.find (fun e -> e <> 0 && e % s = 0) bra)) }
 #endif

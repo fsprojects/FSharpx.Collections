@@ -1,6 +1,6 @@
 ﻿namespace FSharpx.Collections.Tests
 
-open Microsoft.FSharp.Collections
+open FSharpx.Collections
 open Expecto
 open Expecto.Flip
 

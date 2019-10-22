@@ -1,4 +1,4 @@
-﻿namespace Microsoft.FSharp.Collections.Tagged
+﻿namespace FSharpx.Collections.Tagged
 //Copied from https://raw.github.com/fsharp/powerpack/master/src/FSharp.PowerPack/TaggedCollections.fs
 // (c) Microsoft Corporation 2005-2009. 
 
