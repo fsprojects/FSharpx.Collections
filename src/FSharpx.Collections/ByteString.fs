@@ -27,13 +27,13 @@ type ByteString(array: byte[], offset: int, count: int) =
             else
                 1
         else
-            let left, right = x.[o..(o+l-1)], x'.[o'..(o'+l'-1)]
-            if left = right then
-                0
-            elif left < right then
+            if l < l' then
                 -1
+            elif l > l' then
+                 1
             else
-                1
+                let left, right = x.[o..(o+l-1)], x'.[o'..(o'+l'-1)]
+                LanguagePrimitives.GenericComparison left right
 
     /// Compares two objects for equality. When both are byte strings, structural equality is used.
     override x.Equals(other) = 

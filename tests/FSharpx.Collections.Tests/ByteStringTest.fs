@@ -8,29 +8,29 @@ open Expecto.Flip
 module ByteStringTests =
     type BS = ByteString
 
-    let comparisonTests = [|
+    let comparisonTests = [
           // When the base array is different
-          ByteString.create ""B,  ByteString.create ""B,  0
-          ByteString.create ""B, ByteString.create "a"B, -1  
-          ByteString.create "a"B, ByteString.create ""B,  1
-
-          ByteString.create "a"B, ByteString.create "a"B,  0
-          ByteString.create "a"B, ByteString.create "b"B, -1
-          ByteString.create "b"B, ByteString.create "a"B,  1
-
-          ByteString.create "aa"B, ByteString.create "a"B,  1
-          ByteString.create "b"B, ByteString.create "aa"B, -1
+          "empty1",   ByteString.create ""B,   ByteString.create ""B,    0
+          "empty2",   ByteString.create ""B,   ByteString.create "a"B,  -1  
+          "empty3",   ByteString.create "a"B,  ByteString.create ""B,    1
+          
+          "same1",    ByteString.create "a"B,  ByteString.create "a"B,   0
+          "smaller1", ByteString.create "a"B,  ByteString.create "b"B,  -1
+          "bigger1",  ByteString.create "b"B,  ByteString.create "a"B,   1
+          
+          "longer1",  ByteString.create "aa"B, ByteString.create "a"B,   1
+          "shorter1", ByteString.create "b"B,  ByteString.create "aa"B, -1
           
           //when the base array is the same
           let x = "baab"B
-          ByteString(x,0,1), ByteString(x,0,1),  0 
-          ByteString(x,0,1), ByteString(x,3,1),  0 
-          ByteString(x,0,1), ByteString(x,0,2), -1 
-          ByteString(x,0,2), ByteString(x,0,1),  1 
-          ByteString(x,0,2), ByteString(x,0,1),  1 
-          ByteString(x,2,2), ByteString(x,0,1),  1 
-          ByteString(x,0,1), ByteString(x,2,2), -1 
-        |]
+          "same2",    ByteString(x,0,1), ByteString(x,0,1),  0 
+          "same3",    ByteString(x,0,1), ByteString(x,3,1),  0 
+          "shorter2", ByteString(x,0,1), ByteString(x,0,2), -1 
+          "shorter3", ByteString(x,0,1), ByteString(x,2,2), -1 
+          "longer2",  ByteString(x,0,2), ByteString(x,0,1),  1 
+          "longet3",  ByteString(x,1,2), ByteString(x,0,1),  1 
+          "longer4",  ByteString(x,2,2), ByteString(x,0,1),  1 
+        ]
   
     let spanAndSplitTests = [|
             "Howdy! Want to play?"B, ' 'B,   6
@@ -41,9 +41,11 @@ module ByteStringTests =
     [<Tests>]
     let testByteString =
         testList "ByteString" [
-            test "test ByteString comparison should correctly return -1, 0, or 1" {
-                comparisonTests
-                |> Array.iter (fun (x, y, expectedResult) -> BS.Compare(x, y) |> Expect.equal "comparison" expectedResult ) }
+            
+            testList "test ByteString comparison should correctly return -1, 0, or 1"
+                    (comparisonTests
+                    |> List.map (fun (name, x, y, expectedResult) -> test name { BS.Compare(x, y) |> Expect.equal "comparison" expectedResult  }))
+                
 
             test "test ByteString_length should return the length of the byte string" {
               let input = ByteString.create "Hello, world!"B
@@ -130,6 +132,9 @@ module ByteStringTests =
             test "test takeUntil should correctly split the input" {
                 let input = "abcde"B
                 Expect.equal "ByteString" (BS(input, 0, 2)) <| ByteString.takeUntil ((=) 'c'B) (ByteString.create input) }
+            
+            testProperty "test if ByteString Compare follows lexicographic order" <| fun xs ys ->
+                BS.Compare(ByteString xs, ByteString ys) = LanguagePrimitives.GenericComparison xs ys
             
             testSequenced <| testList "performance" [
                 test "Comparision should only compare relevent part of Array" {
