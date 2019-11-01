@@ -9,16 +9,33 @@ module ByteStringTests =
     type BS = ByteString
 
     let comparisonTests = [|
-          [| box (ByteString.create ""B); box (ByteString.create ""B); box 0 |]
-          [| box (ByteString.create "a"B); box (ByteString.create "a"B); box 0 |]
-          [| box (ByteString.create "a"B); box (ByteString.create "b"B); box -1 |]
-          [| box (ByteString.create "b"B); box (ByteString.create "a"B); box 1 |]
+          // When the base array is different
+          ByteString.create ""B,  ByteString.create ""B,  0
+          ByteString.create ""B, ByteString.create "a"B, -1  
+          ByteString.create "a"B, ByteString.create ""B,  1
+
+          ByteString.create "a"B, ByteString.create "a"B,  0
+          ByteString.create "a"B, ByteString.create "b"B, -1
+          ByteString.create "b"B, ByteString.create "a"B,  1
+
+          ByteString.create "aa"B, ByteString.create "a"B,  1
+          ByteString.create "b"B, ByteString.create "aa"B, -1
+          
+          //when the base array is the same
+          let x = "baab"B
+          ByteString(x,0,1), ByteString(x,0,1),  0 
+          ByteString(x,0,1), ByteString(x,3,1),  0 
+          ByteString(x,0,1), ByteString(x,0,2), -1 
+          ByteString(x,0,2), ByteString(x,0,1),  1 
+          ByteString(x,0,2), ByteString(x,0,1),  1 
+          ByteString(x,2,2), ByteString(x,0,1),  1 
+          ByteString(x,0,1), ByteString(x,2,2), -1 
         |]
   
     let spanAndSplitTests = [|
-            [| box "Howdy! Want to play?"B; box ' 'B; box 6 |]
-            [| box "Howdy! Want to play?"B; box '?'B; box 19 |]
-            [| box "Howdy! Want to play?"B; box '\r'B; box 20 |]
+            "Howdy! Want to play?"B, ' 'B,   6
+            "Howdy! Want to play?"B, '?'B,  19
+            "Howdy! Want to play?"B, '\r'B, 20
         |]
 
     [<Tests>]
@@ -26,7 +43,7 @@ module ByteStringTests =
         testList "ByteString" [
             test "test ByteString comparison should correctly return -1, 0, or 1" {
                 comparisonTests
-                |> Array.iter (fun x -> BS.Compare(unbox x.[0], unbox x.[1]) |> (Expect.equal "comparison" <| unbox x.[2]) ) }
+                |> Array.iter (fun (x, y, expectedResult) -> BS.Compare(x, y) |> Expect.equal "comparison" expectedResult ) }
 
             test "test ByteString_length should return the length of the byte string" {
               let input = ByteString.create "Hello, world!"B
@@ -34,10 +51,7 @@ module ByteStringTests =
 
             test "test ByteString_span correctly breaks the ByteString on the specified predicate" {
                 spanAndSplitTests
-                |> Array.iter (fun x -> 
-                    let input = unbox x.[0]
-                    let breakChar = unbox x.[1]
-                    let breakIndex = unbox x.[2]
+                |> Array.iter (fun (input, breakChar, breakIndex) -> 
                     let str = ByteString.create input
                     let expected = if input.Length = breakIndex then str, ByteString.empty
                                     else BS(input, 0, breakIndex), BS(input, breakIndex, input.Length - breakIndex)
@@ -45,10 +59,7 @@ module ByteStringTests =
 
             test "test ByteString_split correctly breaks the ByteString on the specified predicate" {
                 spanAndSplitTests
-                |> Array.iter (fun x -> 
-                    let input = unbox x.[0]
-                    let breakChar = unbox x.[1]
-                    let breakIndex = unbox x.[2]
+                |> Array.iter (fun (input, breakChar, breakIndex) -> 
                     let str = ByteString.create input
                     let expected = if input.Length = breakIndex then str, ByteString.empty
                                     else BS(input, 0, breakIndex), BS(input, breakIndex, input.Length - breakIndex)
@@ -114,9 +125,30 @@ module ByteStringTests =
                 Expect.equal "ByteString" (BS(input, 0, 5)) <| (ByteString.takeWhile ((<>) ' 'B) (ByteString.create input)) }
 
             test "test takeUntil should return an empty ArraySegment when given an empty ArraySegment" {
-              Expect.equal "empty ByteString" ByteString.empty <| ByteString.takeUntil ((=) ' 'B) ByteString.empty }
+                Expect.equal "empty ByteString" ByteString.empty <| ByteString.takeUntil ((=) ' 'B) ByteString.empty }
 
             test "test takeUntil should correctly split the input" {
-              let input = "abcde"B
-              Expect.equal "ByteString" (BS(input, 0, 2)) <| ByteString.takeUntil ((=) 'c'B) (ByteString.create input) }
+                let input = "abcde"B
+                Expect.equal "ByteString" (BS(input, 0, 2)) <| ByteString.takeUntil ((=) 'c'B) (ByteString.create input) }
+            
+            testSequenced <| testList "performance" [
+                test "Comparision should only compare relevent part of Array" {
+                    let veryLargeArray1 = Array.init 2000 byte |> ByteString.create
+                    let veryLargeArray2 = Array.init 2000 byte |> ByteString.create
+                    let compareVeryLargeArray () = BS.Compare(veryLargeArray1, veryLargeArray2) 
+                    
+                    let theExactSameByteString1 = ByteString.take 2000 veryLargeArray1
+                    let theExactSameByteString2 = ByteString.take 2000 veryLargeArray1
+                    let compareExactSameByteArray () = BS.Compare(theExactSameByteString1, theExactSameByteString2) 
+
+                    let smallByteArray1 = ByteString.take 100 veryLargeArray1
+                    let smallByteArray2 = ByteString.take 100 veryLargeArray2
+                    let compareSmallByteArray () = BS.Compare(smallByteArray1, smallByteArray2) 
+                    
+                    Expect.equal "" (compareVeryLargeArray()) (compareExactSameByteArray())
+                    compareExactSameByteArray |> Expect.isFasterThan "" compareVeryLargeArray
+                    compareExactSameByteArray |> Expect.isFasterThan "" compareSmallByteArray
+                    compareSmallByteArray |> Expect.isFasterThan "" compareVeryLargeArray
+                }
+            ]
         ]

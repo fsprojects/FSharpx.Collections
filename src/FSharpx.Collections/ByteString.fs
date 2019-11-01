@@ -17,14 +17,23 @@ type ByteString(array: byte[], offset: int, count: int) =
 
     /// Compares two byte strings based on their structure.
     static member Compare (a:ByteString, b:ByteString) =
-        let x,o,l = a.Array, a.Offset, a.Count
-        let x',o',l' = b.Array, b.Offset, b.Count
-        if o = o' && l = l' && x = x' then 0
-        elif x = x' then
-            if o = o' then if l < l' then -1 else 1
-            else if o < o' then -1 else 1 
-        else let left, right = x.[o..(o+l-1)], x'.[o'..(o'+l'-1)] in
-             if left = right then 0 elif left < right then -1 else 1
+        let x, o, l = a.Array, a.Offset, a.Count
+        let x', o', l' = b.Array, b.Offset, b.Count
+        if LanguagePrimitives.PhysicalEquality x x' && o = o' then
+            if l = l' then
+                0
+            elif l < l' then
+                -1
+            else
+                1
+        else
+            let left, right = x.[o..(o+l-1)], x'.[o'..(o'+l'-1)]
+            if left = right then
+                0
+            elif left < right then
+                -1
+            else
+                1
 
     /// Compares two objects for equality. When both are byte strings, structural equality is used.
     override x.Equals(other) = 
