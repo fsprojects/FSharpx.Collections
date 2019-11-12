@@ -5,8 +5,6 @@
 
 namespace FSharpx.Collections
 
-open System.Collections.Generic
-
 /// LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
 /// uncached sequences. LazyLists normally involve delayed computations without
 /// side-effects.  The results of these computations are cached and evaluations will be
@@ -24,8 +22,9 @@ open System.Collections.Generic
 
 [<Sealed>]
 type LazyList<'T> =
-    interface IEnumerable<'T>
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
 
     ///O(1). Test if a list is empty.  Forces the evaluation of
     /// the first element of the stream if it is not already evaluated.

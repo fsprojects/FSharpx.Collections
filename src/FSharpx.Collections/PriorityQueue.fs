@@ -4,14 +4,12 @@
 
 namespace FSharpx.Collections
 
-open System.Collections
-open System.Collections.Generic
 
 type IPriorityQueue<'T when 'T : comparison> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
-    ///returns true if the queue has no elements
     abstract member IsEmpty : bool with get
 
     ///returns a new queue with the element added to the end
@@ -31,6 +29,10 @@ type IPriorityQueue<'T when 'T : comparison> =
 
     ///returns the first element and tail
     abstract member Pop : unit -> 'T * IPriorityQueue<'T> 
+
+
+open System.Collections
+open System.Collections.Generic
 
 /// Heap is an ordered linear structure where the ordering is either ascending or descending. 
 /// "head" inspects the first element in the ordering, "tail" takes the remaining structure 
@@ -125,7 +127,7 @@ type Heap<'T when 'T : comparison>(isDescending : bool, length : int, data : Hea
     ///O(1). Returns true if the heap has max element at head.
     member this.IsDescending = isDescending
 
-    ///O(n). Returns the count of elememts.
+    ///O(1). Returns the count of elememts.
     member this.Length = length
 
     ///O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.
@@ -215,6 +217,7 @@ type Heap<'T when 'T : comparison>(isDescending : bool, length : int, data : Hea
         member this.TryPeek() = this.TryHead
         member this.Peek() = this.Head
         member this.Length = this.Length
+        member this.Count = this.Length
 
         member this.TryPop() = 
             match this.TryUncons() with

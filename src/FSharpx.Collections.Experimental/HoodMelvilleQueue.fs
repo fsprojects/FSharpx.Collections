@@ -162,7 +162,8 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
             | None -> None
             | Some(x, q) -> Some(x, q :> _)
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = 

@@ -381,7 +381,10 @@ type BankersDeque<'T> (c : int, frontLength : int, front : LazyList<'T>,  rBackL
             | Some(q) -> Some(q :> _)
         
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyList<'T> with
+        member this.Item with get i = this.Lookup i
+
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = seq {

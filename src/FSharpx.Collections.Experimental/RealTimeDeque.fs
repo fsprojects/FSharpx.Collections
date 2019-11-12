@@ -429,7 +429,10 @@ type RealTimeDeque<'T>(c : int, frontLength : int, front : LazyList<'T>,  stream
             | None -> None
             | Some(q) -> Some(q :> _)
 
-    interface IEnumerable<'T> with
+    interface IReadOnlyList<'T> with
+        member this.Count = this.Length
+
+        member this.Item with get i = this.Lookup i
 
         member this.GetEnumerator() = 
             let e = seq {

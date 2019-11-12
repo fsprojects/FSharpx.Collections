@@ -148,8 +148,8 @@ type PairingHeap<'T when 'T : comparison> =
     ///O(log n) amortized time. Returns option head element and tail.
     member this.TryUncons() = PairingHeap.tryUncons this
 
-    interface IEnumerable<'T> with
-
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length()
         member this.GetEnumerator() = 
             let e = 
                 let listH = this::[]

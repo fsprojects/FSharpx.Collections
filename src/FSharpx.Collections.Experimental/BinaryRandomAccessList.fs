@@ -216,7 +216,11 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
 
         member this.Length() = this.Length()
 
+        member this.Count = this.Length()
+
         member this.Lookup i = this.Lookup i
+
+        member this.Item with get i = this.Lookup i
 
         member this.TryLookup i = this.TryLookup i
 

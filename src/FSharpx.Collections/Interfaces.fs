@@ -8,6 +8,8 @@ module FSharpx.Collections.Interfaces
 type IPersistentVector<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
+    inherit System.Collections.Generic.IReadOnlyList<'T>
 
     /// Returns the value at the index. If the index is out of bounds it throws an exception.
     abstract member Item  : int -> 'T with get
@@ -30,6 +32,8 @@ type IPersistentVector<'T> =
 type IDeque<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
+    inherit System.Collections.Generic.IReadOnlyList<'T>
     
     ///returns a new deque with the element added to the beginning
     abstract member Cons : 'T -> IDeque<'T>
@@ -106,6 +110,7 @@ type IDeque<'T> =
 type IHeap<'T when 'T : comparison> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
     ///returns the count of elememts
     abstract member Count : unit -> int
@@ -152,6 +157,8 @@ type IHeap<'c, 'T when 'c :> IHeap<'c, 'T> and 'T : comparison> =
 type IQueue<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
+
  
     ///returns the count of elememts
     abstract member Count : unit -> int
@@ -186,6 +193,8 @@ type IQueue<'T> =
 type IRandomAccessList<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
+    inherit System.Collections.Generic.IReadOnlyCollection<'T>
+    inherit System.Collections.Generic.IReadOnlyList<'T>
     
     ///returns a new random access list with the element added to the beginning
     abstract member Cons : 'T -> IRandomAccessList<'T>

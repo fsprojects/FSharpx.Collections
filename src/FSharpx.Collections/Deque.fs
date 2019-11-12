@@ -143,10 +143,9 @@ type Deque<'T> (front, rBack) =
         match front, rBack with
         | [], [] -> None
         | _, _ -> Some(this.Initial, this.Last)
-          
-    with
-
-    interface IEnumerable<'T> with
+    
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = seq {

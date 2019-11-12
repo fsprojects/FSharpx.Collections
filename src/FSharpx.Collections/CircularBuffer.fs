@@ -77,6 +77,7 @@ type CircularBuffer<'T> (bufferSize: int) =
             yield! loop() }
         loop().GetEnumerator()
 
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Count
         member this.GetEnumerator() = this.GetEnumerator()
         member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator

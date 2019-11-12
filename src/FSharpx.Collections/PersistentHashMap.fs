@@ -2,7 +2,6 @@
 
 namespace FSharpx.Collections
 open System.Threading
-open System.Collections.Generic
 
 type internal Box(value:obj) =
     member val Value = value with get, set
@@ -598,10 +597,10 @@ type internal TransientHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equalit
 /// A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
 /// Hash maps provide fast access (log32N hops). count is O(1).
 and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S : equality>  =
-   val private count: int
-   val private root:INode
-   val private hasNull:bool
-   val private nullValue:'S
+    val private count: int
+    val private root:INode
+    val private hasNull:bool
+    val private nullValue:'S
 
     static member Empty() : PersistentHashMap<'T, 'S> = PersistentHashMap(0, Unchecked.defaultof<INode>, false, Unchecked.defaultof<'S>)
     member this.Length : int = this.count
@@ -673,14 +672,10 @@ and PersistentHashMap<[<EqualityConditionalOn>]'T, 'S when 'T : equality and 'S 
                     |> Seq.map (fun (key,value) -> key :?> 'T,value :?> 'S)
         }
 
-    interface System.Collections.Generic.IEnumerable<'T*'S> with
-        member this.GetEnumerator () =
-          this.Iterator().GetEnumerator()
-
-    interface System.Collections.IEnumerable with
-        member this.GetEnumerator () =
-          (this.Iterator().GetEnumerator())
-            :> System.Collections.IEnumerator
+    interface System.Collections.Generic.IReadOnlyCollection<'T*'S> with
+        member this.Count = this.Count
+        member this.GetEnumerator () = this.Iterator().GetEnumerator()
+        member this.GetEnumerator () = this.Iterator().GetEnumerator() :> System.Collections.IEnumerator
 
 /// Defines functions which allow to access and manipulate PersistentHashMaps.
 [<RequireQualifiedAccess>]

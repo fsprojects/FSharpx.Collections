@@ -74,19 +74,21 @@ type ByteString(array: byte[], offset: int, count: int) =
               interface System.IDisposable with 
                 member self.Dispose() = () }
 
+    member this.Item with get pos = this.Array.[this.Offset + pos]
+
     interface System.IComparable with
         member x.CompareTo(other) =
             match other with
             | :? ByteString as other' -> ByteString.Compare(x, other')
             | _ -> invalidArg "other" "Cannot compare a value of another type."
 
-    interface System.Collections.Generic.IEnumerable<byte> with
+    interface IReadOnlyList<byte> with
+        member this.Item with get pos = this.[pos]
+        member this.Count = this.Count
         /// Gets an enumerator for the bytes stored in the byte string.
-        member x.GetEnumerator() = x.GetEnumerator()
-
-    interface System.Collections.IEnumerable with
+        member this.GetEnumerator() = this.GetEnumerator()
         /// Gets an enumerator for the bytes stored in the byte string.
-        member x.GetEnumerator() = x.GetEnumerator() :> IEnumerator
+        member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator
   
 [<RequireQualifiedAccess>]
 module ByteString =
@@ -141,7 +143,7 @@ module ByteString =
 
     /// needs .fsi file
     let index (bs:ByteString) pos =
-        bs.Array.[bs.Offset + pos]
+        bs.[pos]
 
     /// needs .fsi file
     let head (bs:ByteString) =

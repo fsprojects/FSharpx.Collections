@@ -5,10 +5,10 @@
 /// the first or left-most element in the structure, while "last" inspects the last or 
 /// right-most element. "rev" (reverse) has time complexity O(1). Ordering is by insertion history.
 [<Class>]
-type Deque<'T> = 
-  
-    interface System.Collections.Generic.IEnumerable<'T>
+type Deque<'T> =
     interface System.Collections.IEnumerable
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
 
     ///O(1). Returns a new deque with the element added to the end.
     member Conj : 'T -> Deque<'T>
