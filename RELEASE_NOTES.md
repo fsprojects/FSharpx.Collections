@@ -1,5 +1,5 @@
-#### 2.1.0 - ???
-* target net45 and netstandard2.0
+#### 2.1.0 - 2019-11-12
+* target net45 and netstandard2.0, thanks Grzegorz Dziadkiewicz
 
 #### 2.0.0 - 2019-05-15
 * BREAKING CHANGE: only netstandard2.0 supported

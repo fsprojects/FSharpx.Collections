@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>IntMap<'T> - FSharpx.Collections</title>
+    <title>MapTree<'Key, 'T> - FSharpx.Collections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
@@ -35,11 +35,18 @@
 
 
 
-<h1>IntMap<'T></h1>
+<h1>MapTree<'Key, 'T></h1>
 <p>
 
-    <span>Namespace: FSharpx.Collections.Experimental</span><br />
-    </p>
+    <span>Namespace: FSharpx.Collections.Tagged</span><br />
+            <span>
+            Attributes: <br />
+[&lt;CompilationRepresentation(8)&gt;]<br />
+[&lt;NoEquality&gt;]<br />
+[&lt;NoComparison&gt;]<br />
+            
+        </span>
+</p>
 <div class="xmldoc">
 </div>
   <h3>Union Cases</h3>
@@ -51,33 +58,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1339', 1339)" onmouseover="showTip(event, '1339', 1339)">
-            Bin(int,int,IntMap&lt;&#39;T&gt;,IntMap&lt;&#39;T&gt;)
+          <code onmouseout="hideTip(event, '1484', 1484)" onmouseover="showTip(event, '1484', 1484)">
+            MapEmpty
           </code>
-          <div class="tip" id="1339">
-            <strong>Signature:</strong> int * int * IntMap&lt;&#39;T&gt; * IntMap&lt;&#39;T&gt;<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L14-14" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1340', 1340)" onmouseover="showTip(event, '1340', 1340)">
-            Nil
-          </code>
-          <div class="tip" id="1340">
+          <div class="tip" id="1484">
             <strong>Signature:</strong> <br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L12-12" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L704-704" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -87,59 +76,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1341', 1341)" onmouseover="showTip(event, '1341', 1341)">
-            Tip(int,&#39;T)
+          <code onmouseout="hideTip(event, '1485', 1485)" onmouseover="showTip(event, '1485', 1485)">
+            MapNode(...)
           </code>
-          <div class="tip" id="1341">
-            <strong>Signature:</strong> int * &#39;T<br />
+          <div class="tip" id="1485">
+            <strong>Signature:</strong> &#39;Key * &#39;T * MapTree&lt;&#39;Key,&#39;T&gt; * MapTree&lt;&#39;Key,&#39;T&gt; * int<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L13-13" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1342', 1342)" onmouseover="showTip(event, '1342', 1342)">
-            x.FoldBackWithKey f z
-          </code>
-          <div class="tip" id="1342">
-            <strong>Signature:</strong> (f:(int -&gt; &#39;T -&gt; &#39;?12432 -&gt; &#39;?12432)) -&gt; z:&#39;?12432 -&gt; &#39;?12432<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L16-16" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1343', 1343)" onmouseover="showTip(event, '1343', 1343)">
-            x.ToList()
-          </code>
-          <div class="tip" id="1343">
-            <strong>Signature:</strong> unit -&gt; (int * &#39;T) list<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/IntMap.fs#L27-27" class="github-link">
+                      <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/TaggedCollections.fs#L711-711" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
