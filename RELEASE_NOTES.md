@@ -1,3 +1,6 @@
+#### 2.1.1 - 2019-11-17
+* Fix FSharp.Core dependency version
+
 #### 2.1.0 - 2019-11-12
 * target net45 and netstandard2.0, thanks Grzegorz Dziadkiewicz
 
