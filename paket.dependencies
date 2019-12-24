@@ -2,7 +2,7 @@ framework: auto-detect
 
 source http://nuget.org/api/v2
 
-nuget FSharp.Core >= 4.3.4
+nuget FSharp.Core >= 4.3.4 lowest_matching:true
 nuget Expecto
 nuget Expecto.FsCheck
 nuget FsCheck 
