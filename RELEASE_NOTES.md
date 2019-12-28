@@ -1,3 +1,6 @@
+#### 2.1.2 - 2019-12-24
+* Fix FSharp.Core assembly reference version
+
 #### 2.1.1 - 2019-11-17
 * Fix FSharp.Core dependency version
 
