@@ -22,4 +22,5 @@
       <Name>FSharpx.Collections</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\..\..\.paket\Paket.Restore.targets" />
 </Project>

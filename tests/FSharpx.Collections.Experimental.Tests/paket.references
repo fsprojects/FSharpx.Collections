@@ -1,4 +1,5 @@
 FsCheck
 Expecto
 Expecto.FsCheck
-Expecto.VisualStudio.TestAdapter
+YoloDev.Expecto.TestSdk
+Microsoft.NET.Test.Sdk
