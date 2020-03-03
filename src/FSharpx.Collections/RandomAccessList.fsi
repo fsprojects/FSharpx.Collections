@@ -143,3 +143,12 @@ module RandomAccessList =
 
     /// O(n). Returns a random access list of random access lists of given length from the seq. Result may be a jagged random access list.
     val inline windowSeq : int  -> seq<'T> -> RandomAccessList<RandomAccessList<'T>>
+
+    /// O(n). Combines the two RandomAccessLists into a RandomAccessList of pairs. The two RandomAccessLists must have equal lengths, otherwise an ArgumentException is raised.
+    val zip : randomAccessList1 : RandomAccessList<'T> -> randomAccessList2 : RandomAccessList<'T2> -> RandomAccessList<'T * 'T2>
+
+    /// O(n). Applies a function to each element of the collection, threading an accumulator argument through the computation. This function first applies the function to the first two elements of the list. Then, it passes this result into the function along with the third element and so on. Finally, it returns the final result. If the input function is f and the elements are i0...iN, then it computes f (... (f i0 i1) i2 ...) iN.
+    val reduce : f: ('T -> 'T -> 'T) -> randomAccessList : RandomAccessList<'T> -> 'T
+
+    /// O(n). Builds a new collection whose elements are the results of applying the given function to the corresponding elements of the two collections pairwise. The two input arrays must have the same lengths, otherwise ArgumentException is raised.
+    val map2 : ('T1 -> 'T2 -> 'U) -> randomAccessList1 : RandomAccessList<'T1> ->  randomAccessList2 : RandomAccessList<'T2> -> RandomAccessList<'U>

@@ -444,3 +444,34 @@ module RandomAccessList =
     let inline windowSeq windowLength (items: 'T seq) =
         if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
         else (Seq.foldBack (windowFun windowLength) items (empty.Cons empty<'T>)) (*Seq.fold (windowFun windowLength) (empty.Cons empty<'T>) items*) // TODO: Check if this should be foldBack due to inversion effects of prepending
+
+    let zip (randomAccessList1 : RandomAccessList<'T>) (randomAccessList2 : RandomAccessList<'T2>) =
+        if randomAccessList1.Length = randomAccessList2.Length 
+            || randomAccessList1.IsEmpty
+        then
+            let arr = Array.create randomAccessList1.Length (randomAccessList1.[0], randomAccessList2.[0])
+            for i in [1..arr.Length - 1] do
+                arr.[i] <- randomAccessList1.[i], randomAccessList2.[i]
+
+            RandomAccessList.ofSeq arr
+        else
+            invalidArg "zip" "length of RandomAccessList not the same or both empty"
+
+    let reduce f (randomAccessList : RandomAccessList<'T>) =
+        if randomAccessList.Length > 0 then
+            if randomAccessList.Length = 1 then
+                randomAccessList.[0]
+            else
+                let rec loop i accum =
+                    if i > randomAccessList.Length - 1 then
+                        accum
+                    else
+                        loop (i + 1)(f accum randomAccessList.[i])
+                loop 2 (f randomAccessList.[0] randomAccessList.[1])
+        else
+            invalidArg "zip" "length of RandomAccessList not the same or both empty"
+
+    let map2 f (randomAccessList1 : RandomAccessList<'T1>) (randomAccessList2 : RandomAccessList<'T2>) =
+        randomAccessList2
+        |> zip randomAccessList1
+        |> map (fun (x, y) ->  f x y )
