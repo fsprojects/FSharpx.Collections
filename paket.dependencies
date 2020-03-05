@@ -5,7 +5,7 @@ source http://nuget.org/api/v2
 nuget FSharp.Core >= 4.3.4 lowest_matching:true
 nuget Expecto
 nuget Expecto.FsCheck
-nuget FsCheck 
+nuget FsCheck 2.14.0
 nuget Microsoft.NET.Test.Sdk
 nuget YoloDev.Expecto.TestSdk
 
