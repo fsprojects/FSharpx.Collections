@@ -3,10 +3,10 @@ framework: auto-detect
 source http://nuget.org/api/v2
 
 nuget FSharp.Core >= 4.3.4 lowest_matching:true
-nuget Expecto
-nuget Expecto.FsCheck
-nuget FsCheck 
-nuget Expecto.VisualStudio.TestAdapter version_in_path: true
+nuget Expecto 8.12
+nuget Expecto.FsCheck 8.12
+nuget FsCheck 2.14
+nuget Expecto.VisualStudio.TestAdapter 10.0.2 version_in_path: true
 
 group Formatting
 source https://nuget.org/api/v2
@@ -19,7 +19,6 @@ source https://api.nuget.org/v3/index.json
 
 storage: none
 
-clitool dotnet-fake
 nuget Fake.Core.Target
 nuget Fake.IO.FileSystem
 nuget Fake.DotNet.Cli
@@ -27,7 +26,7 @@ nuget Fake.Tools.Git
 nuget Fake.DotNet.MSBuild
 nuget Fake.Core.ReleaseNotes 
 nuget Fake.DotNet.AssemblyInfoFile
-nuget Fake.DotNet.Paket 5.16.0
+nuget Fake.DotNet.Paket
 nuget Fake.DotNet.Testing.Expecto 
 nuget Fake.DotNet.FSFormatting
 nuget Fake.BuildServer.AppVeyor
