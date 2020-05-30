@@ -5,7 +5,6 @@
     <RootNamespace>FSharpx.Collections.Tests</RootNamespace>
     <AssemblyName>FSharpx.Collections.Tests</AssemblyName>
     <Name>FSharpx.Collections.Tests</Name>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
     <TargetFrameworks>net472;netcoreapp31</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateProgramFile>false</GenerateProgramFile>
