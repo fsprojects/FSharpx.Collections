@@ -56,7 +56,7 @@ let solutionFile  = "FSharpx.Collections.sln"
 let configuration = "Release"
 
 // Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/netcoreapp3.1/*Tests.dll"
+let testAssemblies = "tests/**/bin/Release/netcoreapp31/*Tests.dll"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
@@ -271,37 +271,37 @@ Target.create "GenerateReferenceDocs" (fun _ ->
            )
 )
 
-//Target.create "GenerateHelp" (fun _ ->
-//    copyBaseDocs ()
+Target.create "GenerateHelp" (fun _ ->
+    copyBaseDocs ()
 
-//    DirectoryInfo.getSubDirectories (DirectoryInfo.ofPath templates)
-//    |> Seq.iter (fun d ->
-//                    let name = d.Name
-//                    if name.Length = 2 || name.Length = 3 then
-//                        layoutRootsAll.Add(
-//                                name, [templates @@ name
-//                                       formatting @@ "templates"
-//                                       formatting @@ "templates/reference" ]))
-//    copyFiles ()
+    DirectoryInfo.getSubDirectories (DirectoryInfo.ofPath templates)
+    |> Seq.iter (fun d ->
+                    let name = d.Name
+                    if name.Length = 2 || name.Length = 3 then
+                        layoutRootsAll.Add(
+                                name, [templates @@ name
+                                       formatting @@ "templates"
+                                       formatting @@ "templates/reference" ]))
+    copyFiles ()
     
-//    for dir in  [ content; ] do
-//        let langSpecificPath(lang, path:string) =
-//            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
-//            |> Array.exists(fun i -> i = lang)
-//        let layoutRoots =
-//            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
-//            match key with
-//            | Some lang -> layoutRootsAll.[lang]
-//            | None -> layoutRootsAll.["en"] // "en" is the default language
+    for dir in  [ content; ] do
+        let langSpecificPath(lang, path:string) =
+            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
+            |> Array.exists(fun i -> i = lang)
+        let layoutRoots =
+            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
+            match key with
+            | Some lang -> layoutRootsAll.[lang]
+            | None -> layoutRootsAll.["en"] // "en" is the default language
 
-//        FSFormatting.createDocs (fun args ->
-//            { args with
-//                Source = content
-//                OutputDirectory = output 
-//                LayoutRoots = layoutRoots
-//                ProjectParameters  = ("root", root)::info
-//                Template = docTemplate } )
-//)
+        FSFormatting.createDocs (fun args ->
+            { args with
+                Source = content
+                OutputDirectory = output 
+                LayoutRoots = layoutRoots
+                ProjectParameters  = ("root", root)::info
+                Template = docTemplate } )
+)
 
 Target.create "GenerateDocs" ignore
 
@@ -393,7 +393,7 @@ Target.create "All" ignore
   ==> "BuildPackage"
 
 "CleanDocs"
-//  ==> "GenerateHelp"
+  ==> "GenerateHelp"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
    

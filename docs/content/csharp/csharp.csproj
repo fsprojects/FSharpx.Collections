@@ -10,9 +10,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj">
       <Project>{ad3c8e86-f4cf-426f-a31d-015056227777}</Project>
       <Name>FSharpx.Collections.Experimental</Name>
@@ -22,5 +19,7 @@
       <Name>FSharpx.Collections</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(SolutionDir)\.paket\paket.targets" />
   <Import Project="..\..\..\.paket\Paket.Restore.targets" />
 </Project>
