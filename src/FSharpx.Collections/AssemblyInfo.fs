@@ -8,8 +8,8 @@ open System.Runtime.CompilerServices
 [<assembly: AssemblyDescriptionAttribute("FSharpx.Collections is a collection of datastructures for use with F# and C#.")>]
 [<assembly: InternalsVisibleToAttribute("FSharpx.Collections.Tests")>]
 [<assembly: InternalsVisibleToAttribute("FSharpx.Collections.Experimental.Tests")>]
-[<assembly: AssemblyVersionAttribute("2.1.0")>]
-[<assembly: AssemblyFileVersionAttribute("2.1.0")>]
+[<assembly: AssemblyVersionAttribute("2.1.2")>]
+[<assembly: AssemblyFileVersionAttribute("2.1.2")>]
 [<assembly: AssemblyConfigurationAttribute("Release")>]
 do ()
 
@@ -19,6 +19,6 @@ module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyDescription = "FSharpx.Collections is a collection of datastructures for use with F# and C#."
     let [<Literal>] InternalsVisibleTo = "FSharpx.Collections.Tests"
     let [<Literal>] InternalsVisibleTo_1 = "FSharpx.Collections.Experimental.Tests"
-    let [<Literal>] AssemblyVersion = "2.1.0"
-    let [<Literal>] AssemblyFileVersion = "2.1.0"
+    let [<Literal>] AssemblyVersion = "2.1.2"
+    let [<Literal>] AssemblyFileVersion = "2.1.2"
     let [<Literal>] AssemblyConfiguration = "Release"
