@@ -1,3 +1,7 @@
+#### 2.1.3 - 2020-05-30
+* RandomAccessLists zip, reduce, map2
+* doc projects netcoreapp3.1 build, thanks Grzegorz Dziadkiewicz 
+
 #### 2.1.2 - 2019-12-24
 * Fix FSharp.Core assembly reference version
 
