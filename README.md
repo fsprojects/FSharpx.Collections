@@ -16,6 +16,8 @@ Pre-release nuget packages automatically built from master branch are published 
 
 ## Maintainer(s)
 
+For git history prior to commit 169ced2 on October 19, 2013 refer to [FSharpx.Extras](https://github.com/fsprojects/FSharpx.Extras).
+
 - [@forki](https://github.com/forki)
 - [@mausch](https://github.com/mausch)
 - [@jackfoxy](https://github.com/jackfoxy)
