@@ -9,6 +9,7 @@
 /// end this version prepends elements to the list.
 [<Class>]
 type RandomAccessList<'T> =
+    interface System.IEquatable<RandomAccessList<'T>>
     interface System.Collections.Generic.IEnumerable<'T>
     interface System.Collections.IEnumerable
     interface System.Collections.Generic.IReadOnlyCollection<'T>

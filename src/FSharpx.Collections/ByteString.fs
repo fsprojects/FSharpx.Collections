@@ -3,7 +3,7 @@ namespace FSharpx.Collections
 open System
 open System.Collections
 open System.Collections.Generic
-            
+
 /// An ArraySegment with structural comparison and equality.
 [<CustomEquality; CustomComparison; SerializableAttribute; StructAttribute>]
 type ByteString(array: byte[], offset: int, count: int) =
@@ -36,7 +36,7 @@ type ByteString(array: byte[], offset: int, count: int) =
                 LanguagePrimitives.GenericComparison left right
 
     /// Compares two objects for equality. When both are byte strings, structural equality is used.
-    override x.Equals(other) = 
+    override x.Equals(other) =
         match other with
         | :? ByteString as other' -> ByteString.Compare(x, other') = 0
         | _ -> false
@@ -47,20 +47,20 @@ type ByteString(array: byte[], offset: int, count: int) =
     /// Gets an enumerator for the bytes stored in the byte string.
     member x.GetEnumerator() =
         if x.Count = 0 then
-            { new IEnumerator<_> with 
+            { new IEnumerator<_> with
                 member self.Current = invalidOp "!"
               interface System.Collections.IEnumerator with
                 member self.Current = invalidOp "!"
                 member self.MoveNext() = false
                 member self.Reset() = ()
-              interface System.IDisposable with 
+              interface System.IDisposable with
                 member self.Dispose() = () }
         else
             let segment = x.Array
             let minIndex = x.Offset
             let maxIndex = x.Offset + x.Count - 1
             let mutable currentIndex = minIndex - 1
-            { new IEnumerator<_> with 
+            { new IEnumerator<_> with
                 member self.Current =
                     if currentIndex < minIndex then
                         invalidOp "Enumeration has not started. Call MoveNext."
@@ -74,13 +74,13 @@ type ByteString(array: byte[], offset: int, count: int) =
                     elif currentIndex > maxIndex then
                         invalidOp "Enumeration already finished."
                     else box segment.[currentIndex]
-                member self.MoveNext() = 
+                member self.MoveNext() =
                     if currentIndex < maxIndex then
                         currentIndex <- currentIndex + 1
                         true
                     else false
                 member self.Reset() = currentIndex <- minIndex - 1
-              interface System.IDisposable with 
+              interface System.IDisposable with
                 member self.Dispose() = () }
 
     member this.Item with get pos = this.Array.[this.Offset + pos]
@@ -91,19 +91,25 @@ type ByteString(array: byte[], offset: int, count: int) =
             | :? ByteString as other' -> ByteString.Compare(x, other')
             | _ -> invalidArg "other" "Cannot compare a value of another type."
 
+    interface IEnumerable<byte> with
+        /// Gets an enumerator for the bytes stored in the byte string.
+        member this.GetEnumerator() = this.GetEnumerator()
+
+    interface IEnumerable with
+        /// Gets an enumerator for the bytes stored in the byte string.
+        member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator
+
     interface IReadOnlyList<byte> with
         member this.Item with get pos = this.[pos]
         member this.Count = this.Count
-        /// Gets an enumerator for the bytes stored in the byte string.
-        member this.GetEnumerator() = this.GetEnumerator()
-        /// Gets an enumerator for the bytes stored in the byte string.
-        member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator
-  
+
+
+
 [<RequireQualifiedAccess>]
 module ByteString =
     /// An active pattern for conveniently retrieving the properties of a ByteString.
     let (|BS|) (x:ByteString) = x.Array, x.Offset, x.Count
-    
+
     /// needs .fsi file
     let empty = ByteString()
 
@@ -113,11 +119,15 @@ module ByteString =
     /// needs .fsi file
     let create arr = ByteString(arr, 0, arr.Length)
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let findIndex pred (bs:ByteString) = Array.FindIndex(bs.Array, bs.Offset, bs.Count, Predicate<_>(pred))
+#endif
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let ofArraySegment (segment:ArraySegment<byte>) = ByteString(segment.Array, segment.Offset, segment.Count)
+#endif
 
     /// needs .fsi file
     let ofSeq s = let arr = Array.ofSeq s in ByteString(arr, 0, arr.Length)
@@ -133,21 +143,24 @@ module ByteString =
         if bs.Count = 0 then Array.empty<_>
         else bs.Array.[bs.Offset..(bs.Offset + bs.Count - 1)]
 
-    /// needs .fsi file      
+    /// needs .fsi file
     let toSeq (bs:ByteString) = bs :> seq<byte>
 
     /// needs .fsi file
     let toList (bs:ByteString) = List.ofSeq bs
 
     /// needs .fsi file
+#if FABLE_COMPILER
+    let toString (bs:ByteString) = System.Text.Encoding.UTF8.GetString(bs.Array, bs.Offset, bs.Count)
+#else
     let toString (bs:ByteString) = System.Text.Encoding.ASCII.GetString(bs.Array, bs.Offset, bs.Count)
-
+#endif
     /// needs .fsi file
-    let isEmpty (bs:ByteString) = 
+    let isEmpty (bs:ByteString) =
         bs.Count <= 0
 
     /// needs .fsi file
-    let length (bs:ByteString) = 
+    let length (bs:ByteString) =
         bs.Count
 
     /// needs .fsi file
@@ -164,7 +177,8 @@ module ByteString =
     let tail (bs:ByteString) =
         if bs.Count = 1 then empty
         else ByteString(bs.Array, bs.Offset+1, bs.Count-1)
-    
+
+#if !FABLE_COMPILER
     /// cons uses Buffer.SetByte and Buffer.BlockCopy for efficient array operations.
     /// Please note that a new array is created and both the head and tail are copied in,
     /// disregarding any additional bytes in the original tail array.
@@ -175,11 +189,13 @@ module ByteString =
              Buffer.SetByte(buffer,0,hd)
              Buffer.BlockCopy(x,o,buffer,1,l)
              ByteString(buffer,0,l+1)
-    
+#endif
+
+#if !FABLE_COMPILER
     /// append uses Buffer.BlockCopy for efficient array operations.
     /// Please note that a new array is created and both arrays are copied in,
     /// disregarding any additional bytes in the original, underlying arrays.
-    let append a b = 
+    let append a b =
         if isEmpty a then b
         elif isEmpty b then a
         else let x,o,l = a.Array, a.Offset, a.Count
@@ -188,15 +204,17 @@ module ByteString =
              Buffer.BlockCopy(x,o,buffer,0,l)
              Buffer.BlockCopy(x',o',buffer,l,l')
              ByteString(buffer,0,l+l')
-    
+#endif
+
     /// needs .fsi file
     let fold f seed bs =
         let rec loop bs acc =
-            if isEmpty bs then acc 
+            if isEmpty bs then acc
             else let hd, tl = head bs, tail bs
                  loop tl (f acc hd)
         loop bs seed
-  
+
+#if !FABLE_COMPILER
     /// needs .fsi file
     let split pred (bs:ByteString) =
         if isEmpty bs then empty, empty
@@ -205,31 +223,42 @@ module ByteString =
              else let count = index - bs.Offset
                   ByteString(bs.Array, bs.Offset, count),
                   ByteString(bs.Array, index, bs.Count - count)
-    
+#endif
+
+#if !FABLE_COMPILER
     /// needs .fsi file
     let span pred bs = split (not << pred) bs
-    
+#endif
+
     /// needs .fsi file
     let splitAt n (bs:ByteString) =
         if isEmpty bs then empty, empty
         elif n = 0 then empty, bs
         elif n >= bs.Count then bs, empty
         else let x,o,l = bs.Array, bs.Offset, bs.Count in ByteString(x,o,n), ByteString(x,o+n,l-n)
-    
+
     /// needs .fsi file
     let skip n bs = splitAt n bs |> snd
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let skipWhile pred bs = span pred bs |> snd
+#endif
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let skipUntil pred bs = split pred bs |> snd
+#endif
 
     /// needs .fsi file
-    let take n bs = splitAt n bs |> fst 
+    let take n bs = splitAt n bs |> fst
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let takeWhile pred bs = span pred bs |> fst
+#endif
 
+#if !FABLE_COMPILER
     /// needs .fsi file
     let takeUntil pred bs = split pred bs |> fst
+#endif

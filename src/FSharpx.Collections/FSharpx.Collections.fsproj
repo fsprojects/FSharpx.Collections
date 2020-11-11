@@ -6,7 +6,7 @@
     <RootNamespace>FSharpx.Collections</RootNamespace>
     <AssemblyName>FSharpx.Collections</AssemblyName>
     <Name>FSharpx.Collections</Name>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -15,6 +15,10 @@
     <!-- Optional: Include PDB in the built .nupkg -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
+  <!-- Add source files to "fable" folder in Nuget package -->
+  <ItemGroup>
+    <Content Include="*.fsproj; **\*.fs; **\*.fsi" PackagePath="fable\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
     <None Include="paket.template" />

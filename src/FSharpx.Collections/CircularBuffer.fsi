@@ -14,8 +14,10 @@ type CircularBuffer<'T> =
     member Dequeue : count:int -> 'T []
     /// needs doc
     member Enqueue : value:'T [] -> unit
+#if !FABLE_COMPILER
     /// needs doc
     member Enqueue : value:ArraySegment<'T> -> unit
+#endif
     /// needs doc
     member Enqueue : value:'T -> unit
     /// needs doc

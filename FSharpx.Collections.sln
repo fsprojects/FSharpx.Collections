@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27617.1
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -59,6 +59,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{B3ACB658-17A
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1A2CE886-9043-45B0-8EA6-A302F93F3FC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fable", "fable", "{42162C9C-1380-481F-96F7-5EB3369E8826}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpx.Collections.Tests", "tests\fable\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{275B25A0-523E-4CC4-942E-09C9D0582C89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +91,10 @@ Global
 		{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{275B25A0-523E-4CC4-942E-09C9D0582C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{275B25A0-523E-4CC4-942E-09C9D0582C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{275B25A0-523E-4CC4-942E-09C9D0582C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{275B25A0-523E-4CC4-942E-09C9D0582C89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +103,8 @@ Global
 		{4C22B791-4526-4EA9-8576-CA4A10FD8816} = {F0FAE041-7EC2-4ECC-8FA3-DC8B87310757}
 		{38CF3CF1-8F46-4199-A8C0-8B2B9A4E15E9} = {F0FAE041-7EC2-4ECC-8FA3-DC8B87310757}
 		{1700F933-C7B2-48E6-80F3-E1C1B677BA6D} = {4C22B791-4526-4EA9-8576-CA4A10FD8816}
+		{42162C9C-1380-481F-96F7-5EB3369E8826} = {1A2CE886-9043-45B0-8EA6-A302F93F3FC0}
+		{275B25A0-523E-4CC4-942E-09C9D0582C89} = {42162C9C-1380-481F-96F7-5EB3369E8826}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31425A23-0756-4147-BFFC-0BC38C0A8118}
