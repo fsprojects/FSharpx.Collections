@@ -1,15 +1,22 @@
 ﻿module internal FSharpx.Collections.TimeMeasurement
 
 /// Stops the runtime for a given function
-let stopTime f = 
+let stopTime f =
+#if FABLE_COMPILER
+    failwith "Not implement"
+#else
     let sw = new System.Diagnostics.Stopwatch()
     sw.Start()
     let result = f()
     sw.Stop()
     result,float sw.ElapsedMilliseconds
+#endif
 
 /// Stops the average runtime for a given function and applies it the given count
-let stopAverageTime count f = 
+let stopAverageTime count f =
+#if FABLE_COMPILER
+    failwith "Not implement"
+#else
     System.GC.Collect() // force garbage collector before testing
     let sw = new System.Diagnostics.Stopwatch()
     sw.Start()
@@ -18,6 +25,7 @@ let stopAverageTime count f =
 
     sw.Stop()
     float sw.ElapsedMilliseconds / float count
+#endif
 
 let printInFsiTags s = printfn " [fsi:%s]" s
 

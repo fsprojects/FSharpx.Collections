@@ -2,6 +2,7 @@ namespace FSharpx.Collections
 
 //This implementation adds an additional parameter to allow O(1) retrieval of the list length.
 
+open System
 open System.Collections
 open System.Collections.Generic
 
@@ -11,7 +12,7 @@ type DList<'T>(length : int , data : DListData<'T> ) =
 
     static member ofSeq (s : seq<'T>) =
          DList(Seq.length s, (Seq.fold (fun state x ->
-                    match state with 
+                    match state with
                     | Nil -> Unit x
                     | Unit _ -> Join(state, Unit x)
                     | Join(_,_) as xs -> Join(state, Unit x)) Nil s))
@@ -28,11 +29,8 @@ type DList<'T>(length : int , data : DListData<'T> ) =
 
     override this.Equals(other) =
         match other with
-        | :? DList<'T> as y -> 
-            if this.Length <> y.Length then false 
-            else
-                if this.GetHashCode() <> y.GetHashCode() then false
-                else Seq.forall2 (Unchecked.equals) this y
+        | :? DList<'T> as y ->
+            (this :> IEquatable<DList<'T>>).Equals(y)
         | _ -> false
 
     member this.Length = length
@@ -73,7 +71,7 @@ type DList<'T>(length : int , data : DListData<'T> ) =
                | Nil -> left
                | _ -> Join(left, right)
 
-    static member appendLists ((left : DList<'T>), (right : DList<'T>)) = 
+    static member appendLists ((left : DList<'T>), (right : DList<'T>)) =
         DList( (left.Length + right.Length), (DList<'T>.append(left.dc, right.dc)))
 
     static member head data =
@@ -128,31 +126,42 @@ type DList<'T>(length : int , data : DListData<'T> ) =
 
     member this.toSeq() =
         //adaptation of right-hand side of Norman Ramsey's "fold"
-        let rec walk rights l = 
+        let rec walk rights l =
            seq {match l with
-                | Nil       -> 
+                | Nil       ->
                     match rights with
-                    | []    -> () 
-                    | t::ts -> yield! walk ts t 
-                | Unit x    -> 
+                    | []    -> ()
+                    | t::ts -> yield! walk ts t
+                | Unit x    ->
                     yield x
                     match rights with
-                    | []    -> () 
-                    | t::ts -> yield! walk ts t 
+                    | []    -> ()
+                    | t::ts -> yield! walk ts t
                 | Join(x,y) -> yield! walk (y::rights) x}
-               
+
         (walk [] data).GetEnumerator()
+
+    interface IEquatable<DList<'T>> with
+        member this.Equals(y : DList<'T>) =
+            if this.Length <> y.Length then false
+            else
+                if this.GetHashCode() <> y.GetHashCode() then false
+                else Seq.forall2 (Unchecked.equals) this y
+
+    interface IEnumerable<'T> with
+        member this.GetEnumerator() = this.toSeq()
+
+    interface IEnumerable with
+        member this.GetEnumerator() = this.toSeq() :> IEnumerator
 
     interface IReadOnlyCollection<'T> with
         member this.Count = this.Length
-        member this.GetEnumerator() = this.toSeq()
-        member this.GetEnumerator() = this.toSeq() :> IEnumerator
-            
-and 
+
+and
     DListData<'T> =
     | Nil
     | Unit of 'T
-    | Join of DListData<'T> * DListData<'T>  
+    | Join of DListData<'T> * DListData<'T>
 
 [<RequireQualifiedAccess>]
 module DList =
@@ -162,11 +171,11 @@ module DList =
 
     let append left right = DList<'T>.appendLists(left, right)
 
-    let cons hd (l:DList<'T>) = 
+    let cons hd (l:DList<'T>) =
         match l.Length with
         | 0 -> DList(1, Unit hd)
         | _ -> DList(l.Length + 1, Join(Unit hd, l.dc) )
-    
+
     let empty<'T> : DList<'T> = DList(0, Nil )
 
     let foldBack (f : ('T -> 'State -> 'State)) (l:DList<'T>) (state : 'State) =
@@ -182,7 +191,7 @@ module DList =
     let inline isEmpty (l:DList<'T>) = l.IsEmpty
 
     let inline length (l:DList<'T>) = l.Length
-    
+
     let singleton x = DList(1, Unit x )
 
     let inline conj x (l:DList<'T>) = l.Conj x
@@ -197,10 +206,10 @@ module DList =
 
     let ofSeq s = DList<'T>.ofSeq s
 
-    let inline toList l = foldBack (List.cons) l [] 
+    let inline toList l = foldBack (List.cons) l []
 
-    let inline toSeq (l:DList<'T>) = l :> seq<'T>    
-    
+    let inline toSeq (l:DList<'T>) = l :> seq<'T>
+
     let rec pairWiseDListData cons dlist lastvalue =
         match dlist with
         | Nil -> cons

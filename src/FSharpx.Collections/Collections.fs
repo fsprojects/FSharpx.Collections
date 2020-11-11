@@ -80,6 +80,7 @@ module Seq =
                         cons (pe, neighbours) (go rest)
         go source
 
+#if !FABLE_COMPILER
     /// Converts a streamReader into a seq yielding on each line
     let ofStreamReader (streamReader : System.IO.StreamReader) =
          seq {
@@ -87,14 +88,18 @@ module Seq =
                 while not(sr.EndOfStream) do
                     yield sr.ReadLine()
              }
+#endif
 
+#if !FABLE_COMPILER
     /// Converts a Stream into a sequence of bytes
     let ofStreamByByte (stream: System.IO.Stream) =
         seq { while stream.Length <> stream.Position do
                 let x = stream.ReadByte()
                 if (int x) < 0 then ()
                 else yield x }
+#endif
 
+#if !FABLE_COMPILER
     /// Converts a stream into a seq of byte[] where the array is of the length given
     /// Note: the last chunk maybe less than the given chunk size
     let ofStreamByChunk chunkSize (stream: System.IO.Stream) =
@@ -103,6 +108,7 @@ module Seq =
                 let bytesRead = stream.Read(buffer, 0, chunkSize)
                 if bytesRead = 0 then ()
                 else yield buffer }
+#endif
 
     /// Creates a infinite sequences of the given values
     let asCircular values =
@@ -177,7 +183,20 @@ module Seq =
     /// The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
     /// Alias for Enumerable.Skip
     let inline skipNoFail count (source: seq<_>) =
+#if FABLE_COMPILER
+        seq {
+          let mutable i = 0
+          let e = source.GetEnumerator ()
+          while e.MoveNext () do
+            if i < count
+            then
+              i <- i + 1
+            else
+              yield e.Current
+        }
+#else
         Enumerable.Skip(source, count)
+#endif
 
     /// Creates an infinite sequence of the given value
     let repeat a = seq { while true do yield a }
@@ -286,10 +305,12 @@ module Array =
     let ofTuple (source : obj) : obj array =
         Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields source
 
+#if !FABLE_COMPILER
     /// needs doc
     let toTuple (source : 'T array) : 't =
         let elements = source |> Array.map (fun x -> x :> obj)
         Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(elements, typeof<'t>) :?> 't
+#endif
 
     /// Returns an array of sliding windows of data drawn from the source array.
     /// Each window contains the n elements surrounding the current element.
@@ -574,6 +595,7 @@ module Map =
         Array.compareWith (fun x y -> if eq x y then 0 else 1) xs' ys' = 0
 
 
+#if !FABLE_COMPILER
 [<Extension>]
 /// Extensions for NameValueCollections.
 [<RequireQualifiedAccess>]
@@ -773,3 +795,4 @@ module NameValueCollection =
             member x.Contains key = this.Get key <> null
             member x.GetEnumerator() = getEnumerator()
             member x.GetEnumerator() = getEnumerator() :> IEnumerator }
+#endif

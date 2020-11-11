@@ -1,5 +1,6 @@
-﻿namespace FSharpx.Collections
-/// PersistentVector is an ordered linear structure implementing the inverse of the List signature, 
+﻿#if !FABLE_COMPILER
+namespace FSharpx.Collections
+/// PersistentVector is an ordered linear structure implementing the inverse of the List signature,
 /// (last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
 /// (returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
 /// to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
@@ -13,7 +14,7 @@ type PersistentVector<'T> =
 
     /// O(1). Returns a new vector with the element added at the end.
     member Conj : 'T -> PersistentVector<'T>
-         
+
     /// O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.
     member Initial : PersistentVector<'T>
 
@@ -48,21 +49,21 @@ type PersistentVector<'T> =
     member TryUnconj : (PersistentVector<'T> * 'T) option
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.
-    member Update : int * 'T -> PersistentVector<'T> 
-            
+    member Update : int * 'T -> PersistentVector<'T>
+
     /// O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
     member TryUpdate : int * 'T -> PersistentVector<'T> option
 
 /// Defines functions which allow to access and manipulate PersistentVectors.
 [<RequireQualifiedAccess>]
-module PersistentVector = 
+module PersistentVector =
     //pattern discriminators (active pattern)
     val (|Conj|Nil|) : PersistentVector<'T> ->  Choice<(PersistentVector<'T> * 'T),unit>
-    
+
     /// O(n). Returns a new vector with the elements of the second vector added at the end.
     val append : PersistentVector<'T> -> PersistentVector<'T> -> PersistentVector<'T>
 
-    /// O(1). Returns a new vector with the element added at the end.   
+    /// O(1). Returns a new vector with the element added at the end.
     val inline conj : 'T -> PersistentVector<'T> -> PersistentVector<'T>
 
     /// O(1). Returns vector of no elements.
@@ -78,7 +79,7 @@ module PersistentVector =
     /// O(n). Returns a state from the supplied state and a function operating from right to left.
     val inline foldBack : ('T -> 'State -> 'State) -> PersistentVector<'T> -> 'State -> 'State
 
-    /// O(n). Returns a vector of the supplied length using the supplied function operating on the index. 
+    /// O(n). Returns a vector of the supplied length using the supplied function operating on the index.
     val init : int -> (int -> 'T) -> PersistentVector<'T>
 
     /// O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.
@@ -107,11 +108,11 @@ module PersistentVector =
 
     /// O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
     val inline nthNth : int -> int -> PersistentVector<PersistentVector<'T>> -> 'T
- 
+
     /// O(1) for all practical purposes; really O(log32n). Returns option value at the index.
     val inline tryNth : int -> PersistentVector<'T> -> 'T option
 
-    /// O(log32(m,n)). Returns option value at the indices. 
+    /// O(log32(m,n)). Returns option value at the indices.
     val inline tryNthNth : int -> int -> PersistentVector<PersistentVector<'T>> -> 'T option
 
     /// O(n). Returns a vector of the seq.
@@ -120,7 +121,7 @@ module PersistentVector =
     /// O(n). Returns vector reversed.
     val inline rev : PersistentVector<'T> -> PersistentVector<'T>
 
-    /// O(1). Returns a new vector of one element.   
+    /// O(1). Returns a new vector of one element.
     val inline singleton : 'T -> PersistentVector<'T>
 
     /// O(n). Views the given vector as a sequence.
@@ -135,14 +136,15 @@ module PersistentVector =
     /// O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.
     val inline update : int -> 'T -> PersistentVector<'T> -> PersistentVector<'T>
 
-    /// O(log32(m,n)). Returns a new vector of vectors that contains the given value at the indices. 
+    /// O(log32(m,n)). Returns a new vector of vectors that contains the given value at the indices.
     val inline updateNth : int -> int -> 'T -> PersistentVector<PersistentVector<'T>> -> PersistentVector<PersistentVector<'T>>
 
     /// O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
     val inline tryUpdate : int -> 'T -> PersistentVector<'T> -> PersistentVector<'T> option
 
-    /// O(log32(m,n)). Returns option vector that contains the given value at the indices. 
+    /// O(log32(m,n)). Returns option vector that contains the given value at the indices.
     val inline tryUpdateNth : int -> int -> 'T -> PersistentVector<PersistentVector<'T>> -> PersistentVector<PersistentVector<'T>> option
 
     /// O(n). Returns a vector of vectors of given length from the seq. Result may be a jagged vector.
     val inline windowSeq : int  -> seq<'T> -> PersistentVector<PersistentVector<'T>>
+#endif

@@ -184,3 +184,6 @@ docs/content/license.md
 _NCrunch*
 .fake
 RELEASE_NOTES.md.orig
+
+.paket
+.ionide

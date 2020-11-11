@@ -14,6 +14,24 @@ module internal Literals2 =
     let internal blockIndexMask = 0x01f
 
 open System.Threading
+
+// Work-arounds for the lack of functionality in the Fable support library
+#if FABLE_COMPILER
+module Thread =
+    module CurrentThread =
+        let ManagedThreadId = 1
+#endif
+
+#if FABLE_COMPILER
+module Array =
+    let clone (x : _ array) : obj =
+        Array.init x.Length (fun i -> x.[i]) :> obj
+#else
+module Array =
+    let clone (x : _ array) : obj =
+        x.Clone ()
+#endif
+
 [<Serializable>]
 type NodeR(threadId,array:obj[]) =
     let mutable threadId = threadId
@@ -153,9 +171,7 @@ and [<Serializable>] RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[]
     override this.Equals(other) =
         match other with
         | :? RandomAccessList<'T> as y ->
-            if this.Length <> y.Length then false else
-            if this.GetHashCode() <> y.GetHashCode() then false else
-            Seq.forall2 (Unchecked.equals) this y
+            (this :> IEquatable<RandomAccessList<'T>>).Equals(y)
         | _ -> false
 
     member internal this.SetHash hash = hashCode <- hash; this
@@ -286,7 +302,7 @@ and [<Serializable>] RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[]
         if count = 1 then RandomAccessList<'T>.Empty() else
 
         if count - tailOff > 1 then
-            let mutable newroot = NodeR(Some Thread.CurrentThread.ManagedThreadId, root.Array.Clone() :?> obj[])
+            let mutable newroot = NodeR(Some Thread.CurrentThread.ManagedThreadId, (Array.clone root.Array) :?> obj[])
             let mutable ret = TransientVect(count - 1, shift, newroot, tail.[0..(tail.Length-1)])
             ret.persistent()
         else
@@ -324,6 +340,12 @@ and [<Serializable>] RandomAccessList<'T> (count,shift:int,root:NodeR,tail:obj[]
     member this.TryUpdate(i, x : 'T) =
         if i >= 0 && i < count then Some(this.Update (i,x))
         else None
+
+    interface IEquatable<RandomAccessList<'T>> with
+        member this.Equals(y) =
+            if this.Length <> y.Length then false else
+                if this.GetHashCode() <> y.GetHashCode() then false else
+                    Seq.forall2 (Unchecked.equals) this y
 
     interface System.Collections.Generic.IEnumerable<'T> with
         member this.GetEnumerator () =
@@ -446,7 +468,7 @@ module RandomAccessList =
         else (Seq.foldBack (windowFun windowLength) items (empty.Cons empty<'T>)) (*Seq.fold (windowFun windowLength) (empty.Cons empty<'T>) items*) // TODO: Check if this should be foldBack due to inversion effects of prepending
 
     let zip (randomAccessList1 : RandomAccessList<'T>) (randomAccessList2 : RandomAccessList<'T2>) =
-        if randomAccessList1.Length = randomAccessList2.Length 
+        if randomAccessList1.Length = randomAccessList2.Length
             || randomAccessList1.IsEmpty
         then
             let arr = Array.create randomAccessList1.Length (randomAccessList1.[0], randomAccessList2.[0])

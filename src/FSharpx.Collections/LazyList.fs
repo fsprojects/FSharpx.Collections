@@ -68,10 +68,14 @@ type LazyList<'T> =
         let toSeq s = Seq.unfold (fun ll -> match getCell ll with CellEmpty -> None | CellCons(a,b) -> Some(a,b)) s
         (toSeq s).GetEnumerator()
 
+    interface IEnumerable<'T> with
+        member this.GetEnumerator() = this.GetEnumeratorImpl()
+
+    interface System.Collections.IEnumerable with
+        member this.GetEnumerator() = this.GetEnumeratorImpl() :> System.Collections.IEnumerator
+
     interface IReadOnlyCollection<'T> with
         member this.Count = this.Length()
-        member this.GetEnumerator() = this.GetEnumeratorImpl()
-        member this.GetEnumerator() = this.GetEnumeratorImpl() :> System.Collections.IEnumerator
 
 and
     [<NoEquality; NoComparison>]
