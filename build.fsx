@@ -169,7 +169,7 @@ Target.create "RunTestsFable" (fun _ ->
     let setParams = (fun (o : Yarn.YarnParams) -> { o with WorkingDirectory = "tests/fable" })
 
     Yarn.installPureLock setParams
-    Yarn.exec (Custom "jest") setParams
+    Yarn.exec (YarnCommand.Custom "jest") setParams
 )
 
 // --------------------------------------------------------------------------------------
