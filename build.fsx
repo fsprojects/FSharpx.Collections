@@ -16,7 +16,7 @@ open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.BuildServer
-open Fake.JavaScript
+open Fake.JavaScript.Yarn
 
 BuildServer.install [
     AppVeyor.Installer
