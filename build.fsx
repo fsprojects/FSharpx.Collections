@@ -16,6 +16,7 @@ open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.BuildServer
+open Fake.JavaScript
 
 BuildServer.install [
     AppVeyor.Installer
@@ -165,14 +166,10 @@ Target.create "RunTests" (fun _ ->
 )
 
 Target.create "RunTestsFable" (fun _ ->
-    let run cmd args dir =
-        let result = Shell.Exec (cmd, args, dir)
-        if result <> 0
-        then
-            failwithf "%s %A failed in %s with error-code %i" cmd args dir result
+    let setParams = (fun o -> { o with WorkingDirectory = "tests/fable" })
 
-    run "yarn" "install" "tests/fable"
-    run "yarn" "jest" "tests/fable"
+    Yarn.installPureLock setParams
+    Yarn.exec (Custom "jest") setParams
 )
 
 // --------------------------------------------------------------------------------------

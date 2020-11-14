@@ -32,6 +32,7 @@ nuget Fake.DotNet.Testing.Expecto
 nuget Fake.DotNet.FSFormatting
 nuget Fake.BuildServer.AppVeyor
 nuget Fake.BuildServer.Travis
+nuget Fake.JavaScript.Yarn
 
 group Test.Fable
 source https://api.nuget.org/v3/index.json
