@@ -166,7 +166,7 @@ Target.create "RunTests" (fun _ ->
 
 Target.create "RunTestsFable" (fun _ ->
     let run cmd args dir =
-        let result = Shell.Exec ("yarn", "install", "tests/fable")
+        let result = Shell.Exec (cmd, args, dir)
         if result <> 0
         then
             failwithf "%s %A failed in %s with error-code %i" cmd args dir result
