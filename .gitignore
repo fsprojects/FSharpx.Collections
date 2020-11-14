@@ -187,3 +187,4 @@ RELEASE_NOTES.md.orig
 
 .paket
 .ionide
+*.blob
