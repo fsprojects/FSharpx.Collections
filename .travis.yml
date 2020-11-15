@@ -9,6 +9,11 @@ os:
   - osx
 dist: xenial # Ubuntu 16
 
+addons:
+  homebrew:
+    casks:
+      - yarn
+
 install:
 
   # workaround for missing .net 4.5
