@@ -11,7 +11,7 @@ dist: xenial # Ubuntu 16
 
 addons:
   homebrew:
-    casks:
+    packages:
       - yarn
 
 install:
