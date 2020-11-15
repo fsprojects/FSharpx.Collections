@@ -1,6 +1,6 @@
 framework: auto-detect
 
-source http://nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
 
 nuget FSharp.Core >= 4.3.4 lowest_matching:true
 nuget Expecto
@@ -10,7 +10,7 @@ nuget Microsoft.NET.Test.Sdk
 nuget YoloDev.Expecto.TestSdk
 
 group Formatting
-source https://nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
 
 nuget FSharp.Formatting
 nuget FSharp.Formatting.CommandTool
@@ -32,6 +32,7 @@ nuget Fake.DotNet.Testing.Expecto
 nuget Fake.DotNet.FSFormatting
 nuget Fake.BuildServer.AppVeyor
 nuget Fake.BuildServer.Travis
+nuget Fake.JavaScript.Yarn
 
 group Test.Fable
 source https://api.nuget.org/v3/index.json

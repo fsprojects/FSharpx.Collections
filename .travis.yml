@@ -11,11 +11,17 @@ dist: xenial # Ubuntu 16
 
 install:
 
-  # workaround for missing .net 4.5 
-
+  # workaround for missing .net 4.5
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 
+  - nvm install node
+  - nvm use node
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install yarn ; fi
+
 script:
+  - dotnet --version
+  - node --version
+  - yarn --version
   - ./fake.sh build target all
 
 branches:
