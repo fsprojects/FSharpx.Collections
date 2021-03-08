@@ -46,7 +46,7 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
     ///O(1). Returns true if the queue has no elements.
     member this.IsEmpty = (frontLength = 0)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = BankersQueue.length this
 
     ///O(1). Returns queue reversed
@@ -139,7 +139,7 @@ module BankersQueue =
     ///O(1). Returns true if the queue has no elements.
     let inline isEmpty() (q : BankersQueue<'T>) = q.IsEmpty
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length() (q : BankersQueue<'T>) = q.Length
 
     ///O(1). Returns a queue of the seq.

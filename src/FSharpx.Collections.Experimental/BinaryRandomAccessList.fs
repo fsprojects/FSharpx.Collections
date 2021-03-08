@@ -150,7 +150,7 @@ type BinaryRandomAccessList<'T> (randomAccessList) =
         | [] -> true
         | _ -> false
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     member this.Length() = BinaryRandomAccessList.length (0, 1, randomAccessList)
 
     ///O(log n), worst case. Returns element by index.
@@ -281,7 +281,7 @@ module BinaryRandomAccessList =
     ///O(1). Returns true if the random access list has no elements.
     let inline isEmpty (xs: BinaryRandomAccessList<'T>) = xs.IsEmpty
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     let inline length (xs: BinaryRandomAccessList<'T>) = xs.Length() 
 
     ///O(log n), worst case. Returns element by index.

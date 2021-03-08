@@ -127,7 +127,7 @@ type BankersDeque<'T> (c : int, frontLength : int, front : LazyList<'T>,  rBackL
         | _, LazyList.Cons(x, _) -> Some(x)
         | LazyList.Cons(x, _), LazyList.Nil-> Some(x)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = BankersDeque.length this
 
     ///O(n), worst case. Returns element by index.
@@ -437,7 +437,7 @@ module BankersDeque =
     ///O(1), amortized. Returns option last element.
     let inline tryGetLast (q : BankersDeque<'T>) = q.TryGetLast
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (q : BankersDeque<'T>) = q.Length
 
     ///O(n), worst case. Returns element by index.

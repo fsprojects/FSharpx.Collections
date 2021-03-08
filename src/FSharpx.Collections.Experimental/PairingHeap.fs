@@ -120,7 +120,7 @@ type PairingHeap<'T when 'T : comparison> =
     ///O(1). Returns true if the heap has max element at head.
     member this.IsDescending = PairingHeap.descending this
 
-    ///O(n). Returns the count of elememts.
+    ///O(n). Returns the count of elements.
     member this.Length() : int = 
         let lH = this::[]
         PairingHeap.sumTree lH
@@ -245,7 +245,7 @@ module PairingHeap =
     ///O(1). Returns true if the heap has max element at head.
     let inline isDescending (xs: PairingHeap<'T>) = xs.IsDescending
 
-    ///O(n). Returns the count of elememts.
+    ///O(n). Returns the count of elements.
     let inline length (xs: PairingHeap<'T>) = xs.Length() 
 
     ///O(1) amortized time. Returns heap from merging two heaps, both must have same descending.

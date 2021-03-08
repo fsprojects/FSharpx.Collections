@@ -42,7 +42,7 @@ module Seq =
                 for j in l2 do
                     yield f i j }
 
-    /// Will iterate the current sequence until the given predicate is statisfied
+    /// Will iterate the current sequence until the given predicate is satisfied
     let iterBreak (f:'T -> bool) (seq:seq<_>) =
         use en = seq.GetEnumerator()
         let mutable run = true
@@ -362,7 +362,7 @@ module Array =
                       | _            -> None
         Array.choose chooser xs
 
-    /// Partitions an aray of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+    /// Partitions an array of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
     let inline partitionChoices xs =
         (choice1s xs, choice2s xs)
 

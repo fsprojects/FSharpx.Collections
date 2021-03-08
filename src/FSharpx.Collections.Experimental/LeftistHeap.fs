@@ -125,7 +125,7 @@ type LeftistHeap<'T when 'T : comparison> =
         | E(m) -> m 
         |  T(m, _, _, _, _, _) -> m
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length : int = 
         match this with
         | E(_) -> 0
@@ -229,7 +229,7 @@ module LeftistHeap =
     ///O(1). Returns true if the heap has max element at head.
     let inline isDescending (xs: LeftistHeap<'T>) = xs.IsDescending
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (xs: LeftistHeap<'T>) = xs.Length 
 
     ///O(log n). Returns heap from merging two heaps, both must have same isDescending.

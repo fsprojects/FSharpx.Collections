@@ -231,7 +231,7 @@ and AltBinRndAccList<'T> with
     ///O(1). Returns true if the random access list has no elements.
     member this.IsEmpty = AltBinRndAccList.isEmpty this
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     member this.Length() = AltBinRndAccList.length (0, 1, this)
 
     ///O(log n). Returns element by index.
@@ -343,7 +343,7 @@ module AltBinaryRandomAccessList =
     ///O(1). Returns true if the random access list has no elements.
     let inline isEmpty (xs: AltBinRndAccList<'T>) = xs.IsEmpty
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     let inline length (xs: AltBinRndAccList<'T>) = xs.Length() 
 
     ///O(log n). Returns element by index.

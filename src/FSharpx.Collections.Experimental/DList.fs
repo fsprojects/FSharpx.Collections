@@ -27,7 +27,7 @@ type DList<'T> =
 
     static member op_Nil() = Nil
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member x.Length =
         match x with
         | Nil -> 0 
@@ -97,7 +97,7 @@ module DList =
     ///O(1). Returns true if the DList has no elements.
     let isEmpty (l:DList<_>) = l.IsEmpty
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let length (l:DList<_>) = l.Length
 
     ///O(1). Returns DList of one elements.
