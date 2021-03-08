@@ -1,6 +1,7 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27617.1
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{722621A6-FA45-4129-8B8D-94880DCD7971}"
 	ProjectSection(SolutionItems) = preProject
@@ -9,13 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections", "src\FSharpx.Collections\FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections", "src\FSharpx.Collections\FSharpx.Collections.fsproj", "{1E95A279-C2A9-498B-BC72-6E7A0D6854CE}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental", "src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental", "src\FSharpx.Collections.Experimental\FSharpx.Collections.Experimental.fsproj", "{AD3C8E86-F4CF-426F-A31D-015056227777}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Tests", "tests\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Tests", "tests\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{B397365B-F6EF-4ABC-94F1-8F6EA900BF20}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FSharpx.Collections.Experimental.Tests", "tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Experimental.Tests", "tests\FSharpx.Collections.Experimental.Tests\FSharpx.Collections.Experimental.Tests.fsproj", "{4B763738-CF1A-4DEC-A888-7D3D15054231}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{E8AA1CAD-BC7C-4788-B5EF-6C68225B1B5A}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,9 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{DF9581
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
 		appveyor.yml = appveyor.yml
-		build.cmd = build.cmd
 		build.fsx = build.fsx
 		build.proj = build.proj
+		fake.cmd = fake.cmd
 		fake.sh = fake.sh
 	EndProjectSection
 EndProject
@@ -51,7 +52,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{38CF3CF1
 		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csharp", "docs\content\csharp\csharp.csproj", "{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "csharp", "docs\content\csharp\csharp.csproj", "{1700F933-C7B2-48E6-80F3-E1C1B677BA6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{B3ACB658-17A4-4950-A8F0-6A397CC21FD3}"
 	ProjectSection(SolutionItems) = preProject
@@ -63,7 +64,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1A2CE886
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "fable", "fable", "{42162C9C-1380-481F-96F7-5EB3369E8826}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpx.Collections.Tests", "tests\fable\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{275B25A0-523E-4CC4-942E-09C9D0582C89}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpx.Collections.Tests", "tests\fable\FSharpx.Collections.Tests\FSharpx.Collections.Tests.fsproj", "{275B25A0-523E-4CC4-942E-09C9D0582C89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
