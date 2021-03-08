@@ -98,11 +98,12 @@ type Deque<'T> (front, rBack) =
         match front, rBack with
         | [],  [] -> raise (new System.Exception("Deque is empty"))
         | x::xs,  _ ->  Deque(xs, rBack)
+        | [], [_] -> Deque([], [])
         | _,  _ ->      //splits rear in two, favoring rearbot for odd length
-            let half = rBack.Length / 2
             let a = Array.ofList rBack
-            let frontA = Array.create half rBack.Head
-            let rBackA = Array.create ((rBack.Length - half) - 1) rBack.Head
+            let half = a.Length / 2
+            let frontA = Array.create half Unchecked.defaultof<_>
+            let rBackA = Array.create ((a.Length - half) - 1) Unchecked.defaultof<_>
             Array.blit a 0 rBackA 0 rBackA.Length
             Array.blit a rBackA.Length frontA 0 frontA.Length
             let frontA' = Array.rev frontA
