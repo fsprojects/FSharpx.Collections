@@ -112,7 +112,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     static let hashElements = 20
 
     // Though mutable, this field is only accessed through GetHashCode and is assigned a value depending only on the other fields of the heap
-    // and since those are inmutable the heap is logically inmutable
+    // and since those are immutable the heap is logically immutable
     let mutable hash = None
         
     new() = SkewBinomialHeap(0, false, [])
@@ -138,7 +138,7 @@ type 'T SkewBinomialHeap when 'T: comparison private (count, descending, roots: 
     member this.Merge (other: 'T SkewBinomialHeap) =
         match this.TryMerge other with
         | Some h -> h
-        | _      -> raise (IncompatibleMerge "Can not merge two heaps with diferent comparison methods")
+        | _      -> raise (IncompatibleMerge "Can not merge two heaps with different comparison methods")
 
     member __.TryHead () =
         if count = 0
@@ -284,7 +284,7 @@ module SkewBinomialHeap =
     let inline merge (xs: 'T SkewBinomialHeap) (ys: 'T SkewBinomialHeap) = xs.Merge ys
 
     ///O(log n) - Returns Some h where h is the merged heap, is both original heaps have the same isDescending value.
-    /// Returns None if isDescending is diferent in the heaps supplied.
+    /// Returns None if isDescending is different in the heaps supplied.
     let inline tryMerge (xs: 'T SkewBinomialHeap) (ys: 'T SkewBinomialHeap) = xs.TryMerge ys
 
     ///O(n) - Returns heap from the sequence.

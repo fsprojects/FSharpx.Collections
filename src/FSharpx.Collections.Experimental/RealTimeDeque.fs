@@ -176,7 +176,7 @@ type RealTimeDeque<'T>(c : int, frontLength : int, front : LazyList<'T>,  stream
         | _, LazyList.Cons(x, _) ->  Some(x)
         | LazyList.Cons(x, _), LazyList.Nil-> Some(x)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = RealTimeDeque.length this
 
     ///O(n/2), worst case. Returns element by index.
@@ -485,7 +485,7 @@ module RealTimeDeque =
     ///O(1), worst case. Returns option last element.
     let inline tryGetLast (q : RealTimeDeque<'T>) = q.TryGetLast
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (q : RealTimeDeque<'T>) = q.Length
 
     ///O(n/2), worst case. Returns option element by index.

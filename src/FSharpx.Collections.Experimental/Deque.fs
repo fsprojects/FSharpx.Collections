@@ -107,7 +107,7 @@ type Deque<'T> (front, rBack) =
         | xs, [] -> Some(List.rev xs |> List.head)
         | _, hd::tl -> Some(hd)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = front.Length + rBack.Length
 
     ///O(n), worst case. Returns element by index.
@@ -405,7 +405,7 @@ module Deque =
     ///O(1) amortized, O(n), worst case. Returns option last element.
     let inline tryGetLast (q : Deque<'T>) = q.TryGetLast
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (q : Deque<'T>) = q.Length
 
     ///O(n), worst case. Returns element by index.

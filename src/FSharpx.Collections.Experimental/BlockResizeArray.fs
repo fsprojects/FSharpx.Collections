@@ -50,7 +50,7 @@ type BlockResizeArray<'T> () =
         arrays.[count >>> shift].[count &&& smallPart] <- x
         count <- count + 1
 
-    ///Allaws to get-set element to block resize array.
+    ///Allows to get-set element to block resize array.
     member this.Item
         with get (i:int) = arrays.[i >>> shift].[i &&& smallPart]
         and set i v = arrays.[i >>> shift].[i &&& smallPart] <- v

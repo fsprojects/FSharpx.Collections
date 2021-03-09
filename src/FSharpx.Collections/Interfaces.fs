@@ -38,7 +38,7 @@ type IDeque<'T> =
     ///returns a new deque with the element added to the beginning
     abstract member Cons : 'T -> IDeque<'T>
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Count : int with get
 
     ///returns the first element
@@ -62,7 +62,7 @@ type IDeque<'T> =
     ///returns option last element
     abstract member TryGetLast : 'T option with get
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Length : int with get
 
     ///returns element by index
@@ -112,7 +112,7 @@ type IHeap<'T when 'T : comparison> =
     inherit System.Collections.Generic.IEnumerable<'T>
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Count : unit -> int
 
     ///returns the min or max element
@@ -127,7 +127,7 @@ type IHeap<'T when 'T : comparison> =
     ///returns true if the heap has max element at head
     abstract member IsDescending : bool with get
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Length : unit -> int
 
 type IHeap<'c, 'T when 'c :> IHeap<'c, 'T> and 'T : comparison> =
@@ -160,7 +160,7 @@ type IQueue<'T> =
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
  
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Count : unit -> int
 
     ///returns the first element
@@ -172,7 +172,7 @@ type IQueue<'T> =
     ///returns true if the queue has no elements
     abstract member IsEmpty :bool with get
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Length : unit -> int
 
     ///returns a new queue with the element added to the end
@@ -199,7 +199,7 @@ type IRandomAccessList<'T> =
     ///returns a new random access list with the element added to the beginning
     abstract member Cons : 'T -> IRandomAccessList<'T>
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Count : unit -> int
 
     ///returns the first element
@@ -211,7 +211,7 @@ type IRandomAccessList<'T> =
     ///returns true if the random access list has no elements
     abstract member IsEmpty : bool with get
 
-    ///returns the count of elememts
+    ///returns the count of elements
     abstract member Length : unit -> int
 
     ///returns element by index

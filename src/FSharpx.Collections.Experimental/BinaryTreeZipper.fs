@@ -7,7 +7,7 @@ type BinaryTree<'T> =
 
 type TreeDirection =  Left | Right
 
-/// The zipper datastructure for binary trees
+/// The zipper data structure for binary trees
 type BinaryTreeZipper<'T> = { 
   Focus:BinaryTree<'T>
   Path: (TreeDirection * 'T * BinaryTree<'T>) list }
@@ -17,7 +17,7 @@ type BinaryTreeZipper<'T> = {
 [<RequireQualifiedAccess>]
 module BinaryTreeZipper =
 
-    /// Creates a new branch with the label x and two leafs as subbranches
+    /// Creates a new branch with the label x and two leaves as subbranches
     let branch x = Branch(x,Leaf,Leaf)
 
     /// Moves the zipper one level up

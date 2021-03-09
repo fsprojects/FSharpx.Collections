@@ -147,7 +147,7 @@ type SkewBinaryRandomAccessList<'T> (randomAccessList) =
         | [] -> true
         | _ -> false
 
-    ///O(log n) Returns the count of elememts.
+    ///O(log n) Returns the count of elements.
     member this.Length() = SkewBinaryRandomAccessList.length (0, randomAccessList)
 
     ///O(log n), worst case. Returns element by index.
@@ -276,7 +276,7 @@ module SkewBinaryRandomAccessList =
     ///O(1). Returns true if the random access list has no elements.
     let inline isEmpty (xs: SkewBinaryRandomAccessList<'T>) = xs.IsEmpty
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     let inline length (xs: SkewBinaryRandomAccessList<'T>) = xs.Length() 
 
     ///O(log n), worst case. Returns element by index.

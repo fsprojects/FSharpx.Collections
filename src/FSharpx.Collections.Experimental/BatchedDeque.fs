@@ -88,7 +88,7 @@ type BatchedDeque<'T> (front, rBack) =
         | xs, [] -> Some(List.rev xs |> List.head)
         | _, hd::tl -> Some(hd)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = front.Length + rBack.Length
 
     ///O(n), worst case. Returns element by index.
@@ -390,7 +390,7 @@ module BatchedDeque =
     ///O(1) amortized, O(n), worst case. Returns option last element.
     let inline tryGetLast (q : BatchedDeque<'T>) = q.TryGetLast
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (q : BatchedDeque<'T>) = q.Length
 
     ///O(n), worst case. Returns element by index.

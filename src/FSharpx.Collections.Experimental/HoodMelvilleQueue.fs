@@ -92,7 +92,7 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
     ///returns true if the queue has no elements
     member this.IsEmpty = (frontLength = 0)
 
-    ///returns the count of elememts
+    ///returns the count of elements
     member this.Length = frontLength + rBackLength
 
     ///returns a new queue with the element added to the end
@@ -201,7 +201,7 @@ module HoodMelvilleQueue =
 
     let inline isEmpty (q : HoodMelvilleQueue<'T>) = q.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     let inline length (q : HoodMelvilleQueue<'T>) = q.Length
 
     ///returns a queue of the list

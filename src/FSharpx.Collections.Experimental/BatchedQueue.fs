@@ -54,7 +54,7 @@ type BatchedQueue<'T> (front : list<'T>, rBack : list<'T>) =
     ///returns true if the queue has no elements
     member this.IsEmpty = front.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     member this.Length = BatchedQueue.length this
 
     ///returns queue reversed
@@ -157,7 +157,7 @@ module BatchedQueue =
     ///returns true if the queue has no elements
     let inline isEmpty (q : BatchedQueue<'T>) = q.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     let inline length (q : BatchedQueue<'T>) = q.Length
 
     ///returns a queue of the list

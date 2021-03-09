@@ -106,7 +106,7 @@ module BootstrappedQueue =
     ///O(log* n), worst case. Returns option queue of the elements trailing the first element.
     let inline tryGetTail queue = BootstrappedQueue<'T>.tryGetTail queue
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length queue = BootstrappedQueue<'T>.length queue
 
     ///O(1). Returns a queue of the list.
