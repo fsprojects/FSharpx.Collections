@@ -282,4 +282,44 @@ module PersistentVectorTests =
                 Expect.equal "windowSeq" [7;7;7;7;2] (len7vecs |> PersistentVector.map PersistentVector.length |> PersistentVector.toSeq |> Seq.toList) 
                 Expect.equal "windowSeq" [8;8;8;6] (len8vecs |> PersistentVector.map PersistentVector.length |> PersistentVector.toSeq |> Seq.toList) 
                 Expect.equal "windowSeq" [17;13] (len17vecs |> PersistentVector.map PersistentVector.length |> PersistentVector.toSeq |> Seq.toList) } 
+
+            testList "rangedIterator" [
+                test "0..count is same as toSeq" {
+                    let vector = PersistentVector.init 3 id
+                    let expected = PersistentVector.toSeq vector |> List.ofSeq
+                    let actual = PersistentVector.rangedIterator 0 3 vector |> List.ofSeq
+                    Expect.equal "0..count is same as toSeq" expected actual
+                }
+
+                test "0..0 is empty" {
+                    let vector = PersistentVector.init 3 id
+                    let expected = List.empty
+                    let actual = PersistentVector.rangedIterator 0 0 vector |> List.ofSeq
+                    Expect.equal "should be empty" expected actual
+                }
+
+                test "1..length-1 skips first and last" {
+                    let l = [0;1;2]
+                    let vector = PersistentVector.ofSeq l
+                    let expected = [1]
+                    let actual = PersistentVector.rangedIterator 1 2 vector |> List.ofSeq
+                    Expect.equal "should be [1]" expected actual
+                }
+
+                test "-1..-2 (negative empty range) throws before iteration starts" {
+                    let vector = PersistentVector.init 3 id
+                    Expect.throwsT<IndexOutOfRangeException> "should throw" (fun () -> PersistentVector.rangedIterator -1 -2 vector |> ignore)
+                }
+
+                test "-2..-1 (1 element range, but before start) throws before iteration starts" {
+                    let vector = PersistentVector.init 3 id
+                    Expect.throwsT<IndexOutOfRangeException> "should throw" (fun () -> PersistentVector.rangedIterator -2 -1 vector |> ignore)
+                }
+
+                test "n..length+m throws when iterating outside bounds" {
+                    let vector = PersistentVector.init 3 id
+                    let actual = PersistentVector.rangedIterator 0 10 vector // Doesn't throw on creation
+                    Expect.throwsT<IndexOutOfRangeException> "should throw" (fun () -> actual |> List.ofSeq |> ignore)
+                }
+            ]
         ]

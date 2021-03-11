@@ -124,6 +124,10 @@ module PersistentVector =
     /// O(1). Returns a new vector of one element.
     val inline singleton : 'T -> PersistentVector<'T>
 
+    /// O(n). Views a subset of the given vector. startIndex is inclusive, endIndex is exclusive.
+    /// `rangedIterator 0 count` is the same as toSeq
+    val rangedIterator : int -> int -> PersistentVector<'T> -> seq<'T>
+
     /// O(n). Views the given vector as a sequence.
     val inline toSeq  : PersistentVector<'T> ->  seq<'T>
 
