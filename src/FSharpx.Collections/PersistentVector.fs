@@ -432,6 +432,8 @@ module PersistentVector =
 
     let inline singleton (x : 'T) = empty |> conj x
 
+    let rangedIterator (startIndex : int) (endIndex : int) (vector: PersistentVector<'T>) = vector.rangedIterator (startIndex, endIndex)
+
     let inline toSeq (vector: PersistentVector<'T>) = vector :> seq<'T>
 
     let inline unconj (vector: PersistentVector<'T>) = vector.Unconj
