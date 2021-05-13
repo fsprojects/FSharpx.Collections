@@ -1,0 +1,16 @@
+  
+image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - muhammad-sammy.csharp
+    - ionide.ionide-fsharp
+    - christian-kohler.path-intellisense
+    - PKief.material-icon-theme
+    - zhuangtongfa.material-theme
+    - eamodio.gitlens
+    - ms-azuretools.vscode-docker
+
+tasks:
+  - init: ./build.sh
