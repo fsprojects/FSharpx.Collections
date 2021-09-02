@@ -52,6 +52,20 @@ module SeqTests =
                 data |> Seq.tryAverage
                 |> Expect.equal "tryAverage" (Some (5.5)) }
 
+            test "If I tryHeadTail and I don't have a head, I should return None" {
+                Seq.empty<float> |> Seq.tryHeadTail
+                |> Expect.isNone "tryHeadTail" }
+
+            test "If I tryHeadTail a non-empty seq, I should return both head and tail" {
+                let data = [1; 2; 3]
+                let actual = data |> Seq.tryHeadTail
+                Expect.isSome "tryHeadTail" actual
+                match actual with
+                | Some (head, tail) ->
+                    Expect.equal "tryHeadTail" 1 head
+                    Expect.sequenceEqual "tryHeadTail" [2; 3] tail
+                | _ -> failwith "Unreachable" }                
+
             test "I should be a to split a seq at an index" {
                 let (a,b) = Seq.splitAt 5 data
                 Expect.sequenceEqual "splitAt" (List.toSeq [1.;2.;3.;4.;5.]) a

@@ -61,6 +61,10 @@ module Seq =
         then None
         else Some(LanguagePrimitives.DivideByInt< (^a) > acc count)
 
+    let tryHeadTail<'T> (sequence: seq<'T>): Option<'T * seq<'T>> =
+        match Seq.tryHead sequence with
+        | None -> None
+        | Some head -> Some (head, Seq.tail sequence)
 
     /// Splits a sequences at the given index
     let splitAt n seq = (Seq.take n seq, Seq.skip n seq)
