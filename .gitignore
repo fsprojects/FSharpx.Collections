@@ -185,6 +185,6 @@ _NCrunch*
 .fake
 RELEASE_NOTES.md.orig
 
-.paket
+.paket/
 .ionide
 *.blob

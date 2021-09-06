@@ -1,11 +1,29 @@
+#r @"paket:
+source https://api.nuget.org/v3/index.json
+framework netstandard2.0
+nuget FSharp.Core 4.7.2
+nuget Fake.Core.Target
+nuget Fake.Core.ReleaseNotes 
+nuget Fake.IO.FileSystem
+nuget Fake.Tools.Git
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Cli 
+nuget Fake.DotNet.MSBuild
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.Testing.Expecto
+nuget Fake.DotNet.FSFormatting
+nuget Fake.JavaScript.Yarn
+//"
+
+#if !FAKE
+#load "./.fake/build.fsx/intellisense.fsx"
+#r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
+#endif
+
 // --------------------------------------------------------------------------------------
 // FAKE build script
 // --------------------------------------------------------------------------------------
-
-#r "paket: groupref FakeBuild //"
-
-#load "./.fake/build.fsx/intellisense.fsx"
-
 open System.IO
 open Fake.Core
 open Fake.Core.TargetOperators
@@ -15,13 +33,8 @@ open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
-open Fake.BuildServer
 open Fake.JavaScript
 
-BuildServer.install [
-    AppVeyor.Installer
-    Travis.Installer
-]
 // --------------------------------------------------------------------------------------
 // START TODO: Provide project-specific details below
 // --------------------------------------------------------------------------------------
@@ -179,6 +192,7 @@ let nuGet out suffix =
 
     Paket.pack(fun p ->
         { p with
+            ToolType = ToolType.CreateLocalTool()
             OutputPath = out
             Version = release.NugetVersion + (suffix |> Option.defaultValue "")
             ReleaseNotes = releaseNotes})
@@ -381,7 +395,7 @@ Target.create "BuildPackage" ignore
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
-let isLocalBuild = (BuildServer.buildServer = LocalBuild)
+let isLocalBuild = false // TODO
 
 Target.create "All" ignore
 "Clean"
