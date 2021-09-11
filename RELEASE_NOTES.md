@@ -1,4 +1,4 @@
-#### 3.0.0-beta1 - unreleased
+#### 3.0.0 - unreleased
 * Drop net45 support
 * Dependencies update
 * Build and test with .NET 5 & Node 14

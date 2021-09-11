@@ -35,56 +35,14 @@ open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.JavaScript
 
-// --------------------------------------------------------------------------------------
-// START TODO: Provide project-specific details below
-// --------------------------------------------------------------------------------------
-
-// Information about the project are used
-//  - for version and project name in generated AssemblyInfo file
-//  - by the generated NuGet package
-//  - to run tests and to publish documentation on GitHub gh-pages
-//  - for documentation, you also need to edit info in "docs/tools/generate.fsx"
-
-// The name of the project
-// (used by attributes in AssemblyInfo, name of a NuGet package and directory in 'src')
-let project = "FSharpx.Collections"
-
-// Short summary of the project
-// (used as description in AssemblyInfo and as a short summary for NuGet package)
-let summary = "FSharpx.Collections is a collection of datastructures for use with F# and C#."
-
-// Longer description of the project
-// (used as a description for NuGet package; line breaks are automatically cleaned up)
-let description = "FSharpx.Collections is a collection of datastructures for use with F# and C#."
-
-// List of author names (for NuGet package)
-let authors = "Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox"
-
-// Tags for your project (for NuGet package)
-let tags = "F# fsharp fsharpx collections datastructures"
-
-// File system information
-let solutionFile  = "FSharpx.Collections.sln"
-
 // Target configuration
 let configuration = "Release"
-
-// Pattern specifying assemblies to be tested using NUnit
-let testAssemblies = "tests/**/bin/Release/netcoreapp31/*Tests.dll"
-
-// Git configuration (used for publishing documentation in gh-pages branch)
-// The profile where the project is posted
-let projectRepo = "https://github.com/fsprojects/FSharpx.Collections"
-
-// --------------------------------------------------------------------------------------
-// END TODO: The rest of the file includes standard build steps
-// --------------------------------------------------------------------------------------
 
 // Read additional information from the release notes document
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
 let buildNumber =
-        Environment.environVarOrNone "APPVEYOR_BUILD_NUMBER"
-        |> Option.orElse (Environment.environVarOrNone "TRAVIS_BUILD_NUMBER")
+    Environment.environVarOrNone "APPVEYOR_BUILD_NUMBER"
+    |> Option.orElse (Environment.environVarOrNone "TRAVIS_BUILD_NUMBER")
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|) (projFileName:string) =
@@ -98,8 +56,8 @@ let (|Fsproj|Csproj|Vbproj|) (projFileName:string) =
 Target.create "AssemblyInfo" (fun _ ->
     let getAssemblyInfoAttributes projectName =
         [ AssemblyInfo.Title (projectName)
-          AssemblyInfo.Product project
-          AssemblyInfo.Description summary
+          AssemblyInfo.Product "FSharpx.Collections"
+          AssemblyInfo.Description "FSharpx.Collections is a collection of datastructures for use with F# and C#."
           AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Tests"
           AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
           AssemblyInfo.Version release.AssemblyVersion
@@ -154,18 +112,21 @@ Target.create "Clean" (fun _ ->
 // Build library & test project
 
 Target.create "Build" (fun _ ->
-    solutionFile
+    "FSharpx.Collections.sln"
     |> DotNet.build (fun p ->
         { p with
-            Configuration = buildConfiguration })
+            Configuration = buildConfiguration})
 )
 
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    !! testAssemblies
-    |> Expecto.run (fun x -> {x with Parallel = true; ParallelWorkers = System.Environment.ProcessorCount})
+    !! "tests/**/bin/Release/net5.0/*Tests.dll"
+    |> Expecto.run (fun x -> 
+        { x with 
+            Parallel = true
+            ParallelWorkers = System.Environment.ProcessorCount})
 )
 
 Target.create "RunTestsFable" (fun _ ->
@@ -206,14 +167,16 @@ Target.create "PublishNuget" (fun _ ->
 // Generate the documentation
 
 Target.create "GenerateDocs" (fun _ ->
-   Shell.cleanDir ".fsdocs"
-   DotNet.exec id "build" |> ignore // we need assemblies compiled in debug mode for docs
-   DotNet.exec id "fsdocs" "build --clean --strict" |> ignore
+    Shell.cleanDir ".fsdocs"
+    DotNet.exec id "build" |> ignore // we need assemblies compiled in debug mode for docs
+    DotNet.exec id "fsdocs" "build --clean --strict" |> ignore
 )
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
 Target.create "ReleaseDocs" (fun _ ->
+    let projectRepo = "https://github.com/fsprojects/FSharpx.Collections"
+
     Git.Repository.clone "" projectRepo "temp/gh-pages"
     Git.Branches.checkoutBranch "temp/gh-pages" "gh-pages"
     Shell.copyRecursive "output" "temp/gh-pages" true |> printfn "%A"
