@@ -74,13 +74,7 @@ let testAssemblies = "tests/**/bin/Release/netcoreapp31/*Tests.dll"
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "fsprojects"
-let gitHome = "https://github.com/" + gitOwner
-
-// The name of the project on GitHub
-let gitName = "FSharpx.Collections"
-
-let website = "/FSharpx.Collections"
+let projectRepo = "https://github.com/fsprojects/FSharpx.Collections"
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
@@ -156,10 +150,6 @@ Target.create "Clean" (fun _ ->
     Shell.cleanDirs ["bin"; "temp"]
 )
 
-Target.create "CleanDocs" (fun _ ->
-    Shell.cleanDirs ["docs/output"]
-)
-
 // --------------------------------------------------------------------------------------
 // Build library & test project
 
@@ -215,170 +205,22 @@ Target.create "PublishNuget" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-// Paths with template/source/output locations
-let bin        = __SOURCE_DIRECTORY__ @@ "bin"
-let content    = __SOURCE_DIRECTORY__ @@ "docs/content"
-let output     = __SOURCE_DIRECTORY__ @@ "docs"
-let files      = __SOURCE_DIRECTORY__ @@ "docs/files"
-let templates  = __SOURCE_DIRECTORY__ @@ "docs/tools/templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "packages/formatting/FSharp.Formatting/"
-let docTemplate = "docpage.cshtml"
-
-let copyFiles () =
-    Shell.copyRecursive files output true
-    |> Trace.logItems "Copying file: "
-    Directory.ensure (output @@ "content")
-    Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true
-    |> Trace.logItems "Copying styles and scripts: "
-
-let copyBaseDocs () =
-    File.delete "docs/content/release-notes.md"
-    Shell.copyFile "docs/content/" "RELEASE_NOTES.md"
-    Shell.rename "docs/content/release-notes.md" "docs/content/RELEASE_NOTES.md"
-
-    File.delete "docs/content/license.md"
-    Shell.copyFile "docs/content/" "LICENSE.txt"
-    Shell.rename "docs/content/license.md" "docs/content/LICENSE.txt"
-
-let root = website
-let github_release_user = Environment.environVarOrDefault "github_release_user" gitOwner
-let githubLink = sprintf "https://github.com/%s/%s" github_release_user gitName
-let referenceBinaries = []
-
-let layoutRootsAll = new System.Collections.Generic.Dictionary<string, string list>()
-layoutRootsAll.Add("en",[   templates;
-                            formatting @@ "templates"
-                            formatting @@ "templates/reference" ])
-
-let info =
-  [ "project-name", project
-    "project-author", authors
-    "project-summary", summary
-    "project-github", githubLink
-    "project-nuget", "http://nuget.org/packages/FSharpx.Collections" ]
-
-Target.create "GenerateReferenceDocs" (fun _ ->
-    Directory.ensure (output @@ "reference")
-
-    let binaries () =
-        let manuallyAdded =
-            referenceBinaries
-            |> List.map (fun b -> bin @@ b)
-
-        let conventionBased =
-            DirectoryInfo.getSubDirectories <| DirectoryInfo bin
-            |> Array.collect (fun d ->
-                let name, dInfo =
-                    let netBin =
-                        DirectoryInfo.getSubDirectories d |> Array.filter(fun x -> x.FullName.ToLower().Contains("netstandard2.0"))
-
-                    d.Name, netBin.[0]
-
-                dInfo.GetFiles()
-                |> Array.filter (fun x ->
-                    x.Name.ToLower() = (sprintf "%s.dll" name).ToLower())
-                |> Array.map (fun x -> x.FullName)
-                )
-            |> List.ofArray
-
-        conventionBased @ manuallyAdded
-
-    binaries()
-    |> FSFormatting.createDocsForDlls (fun args ->
-        { args with
-            OutputDirectory = output @@ "reference"
-            LayoutRoots =  layoutRootsAll.["en"]
-            ProjectParameters =  ("root", root)::info
-            SourceRepository = githubLink @@ "tree/master" }
-           )
+Target.create "GenerateDocs" (fun _ ->
+   Shell.cleanDir ".fsdocs"
+   DotNet.exec id "build" |> ignore // we need assemblies compiled in debug mode for docs
+   DotNet.exec id "fsdocs" "build --clean --strict" |> ignore
 )
-
-Target.create "GenerateHelp" (fun _ ->
-    copyBaseDocs ()
-
-    DirectoryInfo.getSubDirectories (DirectoryInfo.ofPath templates)
-    |> Seq.iter (fun d ->
-                    let name = d.Name
-                    if name.Length = 2 || name.Length = 3 then
-                        layoutRootsAll.Add(
-                                name, [templates @@ name
-                                       formatting @@ "templates"
-                                       formatting @@ "templates/reference" ]))
-    copyFiles ()
-
-    for dir in  [ content; ] do
-        let langSpecificPath(lang, path:string) =
-            path.Split([|'/'; '\\'|], System.StringSplitOptions.RemoveEmptyEntries)
-            |> Array.exists(fun i -> i = lang)
-        let layoutRoots =
-            let key = layoutRootsAll.Keys |> Seq.tryFind (fun i -> langSpecificPath(i, dir))
-            match key with
-            | Some lang -> layoutRootsAll.[lang]
-            | None -> layoutRootsAll.["en"] // "en" is the default language
-
-        FSFormatting.createDocs (fun args ->
-            { args with
-                Source = content
-                OutputDirectory = output
-                LayoutRoots = layoutRoots
-                ProjectParameters  = ("root", root)::info
-                Template = docTemplate } )
-)
-
-Target.create "GenerateDocs" ignore
-
-let createIndexFsx lang =
-    let content = """(*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use
-// it to define helpers that you do not want to show in the documentation.
-#I "../../../bin"
-
-(**
-FSharpx.Collections ({0})
-=========================
-*)
-"""
-    let targetDir = "docs/content" @@ lang
-    let targetFile = targetDir @@ "index.fsx"
-    Directory.ensure targetDir
-    System.IO.File.WriteAllText(targetFile, System.String.Format(content, lang))
-
-Target.create "AddLangDocs" (fun _ ->
-    let args = System.Environment.GetCommandLineArgs()
-    if args.Length < 4 then
-        failwith "Language not specified."
-
-    args.[3..]
-    |> Seq.iter (fun lang ->
-        if lang.Length <> 2 && lang.Length <> 3 then
-            failwithf "Language must be 2 or 3 characters (ex. 'de', 'fr', 'ja', 'gsw', etc.): %s" lang
-
-        let templateFileName = "template.cshtml"
-        let templateDir = "docs/tools/templates"
-        let langTemplateDir = templateDir </> lang
-        let langTemplateFileName = langTemplateDir </> templateFileName
-
-        if System.IO.File.Exists(langTemplateFileName) then
-            failwithf "Documents for specified language '%s' have already been added." lang
-
-        Directory.ensure langTemplateDir
-        Shell.copy langTemplateDir [ templateDir </> templateFileName ]
-
-        createIndexFsx lang)
-)
-
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
 Target.create "ReleaseDocs" (fun _ ->
-    let tempDocsDir = "temp/gh-pages"
-    Shell.cleanDir tempDocsDir
-    Git.Repository.cloneSingleBranch "" (gitHome + "/" + gitName + ".git") "gh-pages" tempDocsDir
-
-    Shell.copyRecursive "docs/output" tempDocsDir true |> Trace.tracefn "%A"
-    Git.Staging.stageAll tempDocsDir
-    Git.Commit.exec tempDocsDir (sprintf "Update generated documentation for version %s" release.NugetVersion)
-    Git.Branches.push tempDocsDir
+    Git.Repository.clone "" projectRepo "temp/gh-pages"
+    Git.Branches.checkoutBranch "temp/gh-pages" "gh-pages"
+    Shell.copyRecursive "output" "temp/gh-pages" true |> printfn "%A"
+    Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
+    let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
+    Git.CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
+    Git.Branches.push "temp/gh-pages"
 )
 
 Target.create "Release" (fun _ ->
@@ -395,9 +237,8 @@ Target.create "BuildPackage" ignore
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
-let isLocalBuild = false // TODO
-
 Target.create "All" ignore
+
 "Clean"
   ==> "AssemblyInfo"
   ==> "SetCIVersion"
@@ -406,25 +247,16 @@ Target.create "All" ignore
   ==> "RunTests"
   ==> "RunTestsFable"
   ==> "CINuGet"
-  =?> ("GenerateReferenceDocs", isLocalBuild)
-  =?> ("GenerateDocs", isLocalBuild)
+  ==> "GenerateDocs"
   ==> "All"
-  =?> ("ReleaseDocs", isLocalBuild)
 
 "All"
   ==> "NuGet"
   ==> "BuildPackage"
 
-"CleanDocs"
-  ==> "GenerateHelp"
-  ==> "GenerateReferenceDocs"
-  ==> "GenerateDocs"
-
-"ReleaseDocs"
-  ==> "Release"
-
 "BuildPackage"
   ==> "PublishNuget"
+  ==> "ReleaseDocs"
   ==> "Release"
 
 Target.runOrDefault "All"

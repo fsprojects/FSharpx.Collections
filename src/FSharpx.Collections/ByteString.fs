@@ -92,11 +92,11 @@ type ByteString(array: byte[], offset: int, count: int) =
             | _ -> invalidArg "other" "Cannot compare a value of another type."
 
     interface IEnumerable<byte> with
-        /// Gets an enumerator for the bytes stored in the byte string.
+        // Gets an enumerator for the bytes stored in the byte string.
         member this.GetEnumerator() = this.GetEnumerator()
 
     interface IEnumerable with
-        /// Gets an enumerator for the bytes stored in the byte string.
+        // Gets an enumerator for the bytes stored in the byte string.
         member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator
 
     interface IReadOnlyList<byte> with
