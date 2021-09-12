@@ -195,8 +195,6 @@ Target.create "Release" (fun _ ->
     Git.Branches.pushTag "" "origin" release.NugetVersion
 )
 
-Target.create "BuildPackage" ignore
-
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
@@ -215,9 +213,6 @@ Target.create "All" ignore
 
 "All"
   ==> "NuGet"
-  ==> "BuildPackage"
-
-"BuildPackage"
   ==> "PublishNuget"
   ==> "ReleaseDocs"
   ==> "Release"
