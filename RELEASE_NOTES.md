@@ -1,12 +1,9 @@
-#### 3.0.0 - unreleased
-* Drop net45 support
+#### 3.0.0 - 2021-09-xx (unreleased)
+* Deque.Tail performance tweaks
+* Fast path for single back element. Avoid traversing list for length multiple times. Use Unchecked.defaultOf<_> rather than an actual element. Thanks @simendsjo
+* Expose PersistentVector.rangedIterator. Thanks @simendsjo
 * Dependencies update
 * Build and test with .NET 5 & Node 14
-
-#### 2.1.4 - unreleased
-* Deque.Tail performance tweaks
-* -- Fast path for single back element. Avoid traversing list for length multiple times. Use Unchecked.defaultOf<_> rather than an actual element. Thanks @simendsjo
-* Expose PersistentVector.rangedIterator. Thanks @simendsjo
 
 #### 2.1.3 - 2020-05-30
 * RandomAccessLists zip, reduce, map2

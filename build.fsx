@@ -40,9 +40,6 @@ let configuration = "Release"
 
 // Read additional information from the release notes document
 let release = ReleaseNotes.load "RELEASE_NOTES.md"
-let buildNumber =
-    Environment.environVarOrNone "APPVEYOR_BUILD_NUMBER"
-    |> Option.orElse (Environment.environVarOrNone "TRAVIS_BUILD_NUMBER")
 
 // Helper active pattern for project types
 let (|Fsproj|Csproj|Vbproj|) (projFileName:string) =
@@ -80,23 +77,6 @@ Target.create "AssemblyInfo" (fun _ ->
         | Csproj -> AssemblyInfoFile.createCSharp ((folderName </> "Properties") </> "AssemblyInfo.cs") attributes
         | Vbproj -> AssemblyInfoFile.createVisualBasic ((folderName </> "My Project") </> "AssemblyInfo.vb") attributes
         )
-)
-
-Target.create "SetCIVersion" (fun _ ->
-    let version =
-        match buildNumber with
-        | Some bn -> release.AssemblyVersion+"."+bn
-        | None -> release.AssemblyVersion
-    Trace.setBuildNumber version
-)
-
-// Copies binaries from default VS location to exepcted bin folder
-// But keeps a subdirectory structure for each project in the
-// src folder to support multiple project outputs
-Target.create "CopyBinaries" (fun _ ->
-    !! "src/**/*.??proj"
-    |>  Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) @@ "bin/Release", "bin" @@ (System.IO.Path.GetFileNameWithoutExtension f)))
-    |>  Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
 )
 
 // --------------------------------------------------------------------------------------
@@ -153,7 +133,7 @@ Target.create "NuGet" (fun _ ->
 )
 
 Target.create "CINuGet" (fun _ ->
-    let suffix = "-alpha" + (buildNumber |> Option.defaultValue "")
+    let suffix = "-alpha" + (System.DateTime.UtcNow.ToString("yyyy.MM.dd.HHmmss"))
     nuGet "temp" (Some suffix)
 )
 
@@ -202,9 +182,7 @@ Target.create "All" ignore
 
 "Clean"
   ==> "AssemblyInfo"
-  ==> "SetCIVersion"
   ==> "Build"
-  ==> "CopyBinaries"
   ==> "RunTests"
   ==> "RunTestsFable"
   ==> "CINuGet"

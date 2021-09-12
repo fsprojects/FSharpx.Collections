@@ -26,6 +26,6 @@ dependencies
   framework: netstandard20
     FSharp.Core >= LOCKEDVERSION
 files
-    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.dll ==> lib/netstandard2.0
-    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.pdb ==> lib/netstandard2.0
-    ../../bin/FSharpx.Collections.Experimental/netstandard2.0/FSharpx.Collections.Experimental.xml ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.dll ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.pdb ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.xml ==> lib/netstandard2.0
