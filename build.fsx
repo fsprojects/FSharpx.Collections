@@ -149,7 +149,7 @@ Target.create "PublishNuget" (fun _ ->
 Target.create "GenerateDocs" (fun _ ->
     Shell.cleanDir ".fsdocs"
     DotNet.exec id "build" |> ignore // we need assemblies compiled in debug mode for docs
-    DotNet.exec id "fsdocs" "build --clean --strict" |> ignore
+    DotNet.exec id "fsdocs" "build --clean --eval --strict" |> ignore
 )
 // --------------------------------------------------------------------------------------
 // Release Scripts
