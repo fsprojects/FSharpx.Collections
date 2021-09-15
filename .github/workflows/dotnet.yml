@@ -35,3 +35,8 @@ jobs:
       run: dotnet paket restore
     - name: Build and Test
       run: dotnet fake run build.fsx
+    - name: Publish NuGet
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master'
+      run: dotnet fake run build.fsx -t PublishCINuGet
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

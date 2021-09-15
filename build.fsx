@@ -6,6 +6,7 @@ nuget Fake.Core.Target
 nuget Fake.Core.ReleaseNotes 
 nuget Fake.IO.FileSystem
 nuget Fake.Tools.Git
+nuget Fake.Runtime
 nuget Fake.DotNet.Paket
 nuget Fake.DotNet.AssemblyInfoFile
 nuget Fake.DotNet.Cli 
@@ -34,6 +35,7 @@ open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.JavaScript
+open Fake.Runtime
 
 // Target configuration
 let configuration = "Release"
@@ -137,9 +139,22 @@ Target.create "CINuGet" (fun _ ->
     nuGet "temp" (Some suffix)
 )
 
+let ensureOk (pr:ProcessResult) =
+    if not pr.OK then failwith (String.concat "," pr.Errors)
+
+Target.create "PublishCINuGet" (fun _ ->
+    let token = Environment.environVarOrFail "GITHUB_TOKEN"
+    !! "temp/*.nupkg"
+    |> Seq.iter (fun file ->
+        DotNet.exec id "nuget" (sprintf "push %s -s https://nuget.pkg.github.com/fsprojects/index.json -k %s" file token)
+        |> ensureOk // 
+    )
+)
+
 Target.create "PublishNuget" (fun _ ->
-    Paket.push(fun p ->
+    Paket.push (fun p ->
         { p with
+            ToolType = ToolType.CreateLocalTool()
             WorkingDir = "bin" })
 )
 
@@ -148,8 +163,8 @@ Target.create "PublishNuget" (fun _ ->
 
 Target.create "GenerateDocs" (fun _ ->
     Shell.cleanDir ".fsdocs"
-    DotNet.exec id "build" |> ignore // we need assemblies compiled in debug mode for docs
-    DotNet.exec id "fsdocs" "build --clean --eval --strict" |> ignore
+    DotNet.exec id "build" "" |> ensureOk // we need assemblies compiled in debug mode for docs
+    DotNet.exec id "fsdocs" "build --clean --eval --strict" |> ensureOk
 )
 // --------------------------------------------------------------------------------------
 // Release Scripts

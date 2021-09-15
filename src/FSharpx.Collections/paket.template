@@ -12,6 +12,10 @@ licenseUrl
     http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+repositoryType
+    git
+repositoryUrl
+    https://github.com/fsprojects/FSharpx.Collections
 language
     F#
 copyright
