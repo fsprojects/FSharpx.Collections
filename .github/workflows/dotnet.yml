@@ -19,8 +19,6 @@ jobs:
         node: ['14']
     runs-on: ${{ matrix.os }}
 
-    env:
-      PUSH_PACKAGES: ${{ matrix.os == 'windows-latest' && github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup node
@@ -38,7 +36,7 @@ jobs:
     - name: Build and Test
       run: dotnet fake run build.fsx
     - name: Publish NuGet
-      if: ${{ env.PUSH_PACKAGES }}
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master'
       run: dotnet fake run build.fsx -t PublishCINuGet
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
