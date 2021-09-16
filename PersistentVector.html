@@ -15,10 +15,10 @@
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <link type="text/css" rel="stylesheet" href="http://fsprojects.github.io/FSharpx.Collections/content/navbar-fixed-left.css" />
-    <link type="text/css" rel="stylesheet" href="http://fsprojects.github.io/FSharpx.Collections/content/fsdocs-default.css" />
-    <link type="text/css" rel="stylesheet" href="http://fsprojects.github.io/FSharpx.Collections/content/fsdocs-custom.css" />
-    <script type="text/javascript" src="http://fsprojects.github.io/FSharpx.Collections/content/fsdocs-tips.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://fsprojects.github.io/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://fsprojects.github.io/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://fsprojects.github.io/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://fsprojects.github.io/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -35,7 +35,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
-            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="http://fsprojects.github.io/FSharpx.Collections/img/logo.png" /></a>
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://fsprojects.github.io/FSharpx.Collections/img/logo.png" /></a>
             <!-- BEGIN SEARCH BOX: this adds support for the search box -->
             <div id="header">
                 <div class="searchbox" id="fsdocs-searchbox">
@@ -59,13 +59,13 @@
   Collections
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://fsprojects.github.io/FSharpx.Collections/PersistentVector.html">
+  <a class="nav-link" href="https://fsprojects.github.io/FSharpx.Collections/PersistentVector.html">
     PersistentVector
 
   </a>
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://fsprojects.github.io/FSharpx.Collections/PersistentHashMap.html">
+  <a class="nav-link" href="https://fsprojects.github.io/FSharpx.Collections/PersistentHashMap.html">
     PersistentHashMap
 
   </a>
@@ -74,7 +74,7 @@
   API Reference
 </li>             
 <li class="nav-item">
-  <a class="nav-link" href="http://fsprojects.github.io/FSharpx.Collections/reference/index.html">
+  <a class="nav-link" href="https://fsprojects.github.io/FSharpx.Collections/reference/index.html">
     All Namespaces
   </a>
 </li>
@@ -83,7 +83,7 @@
     </nav>
     <div class="container">
         <div class="masthead">
-            <h3 class="muted"><a href="http://fsprojects.github.io/FSharpx.Collections/">FSharpx.Collections</a></h3>
+            <h3 class="muted"><a href="https://fsprojects.github.io/FSharpx.Collections/">FSharpx.Collections</a></h3>
         </div>
         <hr />
         <div class="container" id="fsdocs-content">
@@ -241,16 +241,16 @@ Console.WriteLine(vector<span class="n">3</span>.Length); <span class="c">// 3</
 </code></pre>
 <table class="pre"><tr><td><pre><code>[fsi:Init with n = 10000]
  [fsi:  Array.ofSeq 0.0ms]
- [fsi:  Multiple PersistentVector.conj 3.2ms]
+ [fsi:  Multiple PersistentVector.conj 2.4ms]
  [fsi:  PersistentVector.ofSeq 0.8ms]
  [fsi:Init with n = 100000]
  [fsi:  Array.ofSeq 0.4ms]
- [fsi:  Multiple PersistentVector.conj 28.6ms]
- [fsi:  PersistentVector.ofSeq 8.8ms]
+ [fsi:  Multiple PersistentVector.conj 26.4ms]
+ [fsi:  PersistentVector.ofSeq 9.4ms]
  [fsi:Init with n = 1000000]
- [fsi:  Array.ofSeq 7.8ms]
- [fsi:  Multiple PersistentVector.conj 324.6ms]
- [fsi:  PersistentVector.ofSeq 123.8ms]</code></pre></td></tr></table>
+ [fsi:  Array.ofSeq 8.2ms]
+ [fsi:  Multiple PersistentVector.conj 334.4ms]
+ [fsi:  PersistentVector.ofSeq 131.2ms]</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs56', 243)" onmouseover="showTip(event, 'fs56', 243)" class="fn">lookupInArrayAndVector</span> <span class="n">10000</span> <span class="n">10000</span>
 <span onmouseout="hideTip(event, 'fs56', 244)" onmouseover="showTip(event, 'fs56', 244)" class="fn">lookupInArrayAndVector</span> <span class="n">100000</span> <span class="n">10000</span>
 <span onmouseout="hideTip(event, 'fs56', 245)" onmouseover="showTip(event, 'fs56', 245)" class="fn">lookupInArrayAndVector</span> <span class="n">1000000</span> <span class="n">10000</span>
@@ -260,23 +260,23 @@ Console.WriteLine(vector<span class="n">3</span>.Length); <span class="c">// 3</
  [fsi:  PersistentVector 0.4ms]
  [fsi:10000 Lookups in size n = 100000]
  [fsi:  Array 0.0ms]
- [fsi:  PersistentVector 0.6ms]
+ [fsi:  PersistentVector 0.8ms]
  [fsi:10000 Lookups in size n = 1000000]
- [fsi:  Array 0.0ms]
- [fsi:  PersistentVector 1.8ms]</code></pre></td></tr></table>
+ [fsi:  Array 0.2ms]
+ [fsi:  PersistentVector 2.8ms]</code></pre></td></tr></table>
 <pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs60', 246)" onmouseover="showTip(event, 'fs60', 246)" class="fn">replaceInArrayAndVector</span> <span class="n">10000</span> <span class="n">10000</span>
 <span onmouseout="hideTip(event, 'fs60', 247)" onmouseover="showTip(event, 'fs60', 247)" class="fn">replaceInArrayAndVector</span> <span class="n">100000</span> <span class="n">10000</span>
 <span onmouseout="hideTip(event, 'fs60', 248)" onmouseover="showTip(event, 'fs60', 248)" class="fn">replaceInArrayAndVector</span> <span class="n">1000000</span> <span class="n">10000</span>
 </code></pre>
 <table class="pre"><tr><td><pre><code>[fsi:10000 writes in size n = 10000]
  [fsi:  Array 0.2ms]
- [fsi:  PersistentVector 8.6ms]
+ [fsi:  PersistentVector 6.2ms]
  [fsi:10000 writes in size n = 100000]
  [fsi:  Array 0.2ms]
- [fsi:  PersistentVector 5.8ms]
+ [fsi:  PersistentVector 10.0ms]
  [fsi:10000 writes in size n = 1000000]
  [fsi:  Array 0.2ms]
- [fsi:  PersistentVector 8.0ms]</code></pre></td></tr></table>
+ [fsi:  PersistentVector 9.4ms]</code></pre></td></tr></table>
 
             <div class="fsdocs-tip" id="fs1">namespace System</div>
 <div class="fsdocs-tip" id="fs2">namespace FSharpx</div>
@@ -444,10 +444,10 @@ type float = Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt
 
         <!-- BEGIN SEARCH BOX: this adds support for the search box -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
-        <script type="text/javascript">var fsdocs_search_baseurl = 'http://fsprojects.github.io/FSharpx.Collections/';</script>
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://fsprojects.github.io/FSharpx.Collections/';</script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
-        <script type="text/javascript" src="http://fsprojects.github.io/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <script type="text/javascript" src="https://fsprojects.github.io/FSharpx.Collections/content/fsdocs-search.js"></script>
         <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
 </body>
