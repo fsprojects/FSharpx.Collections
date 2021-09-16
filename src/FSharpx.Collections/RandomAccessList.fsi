@@ -5,7 +5,7 @@
 /// lookup or update (returning a new immutable instance of RandomAccessList) of any element
 /// is O(log32n), which is close enough to O(1) as to make no practical difference: a
 /// RandomAccessList containing 4 billion items can lookup or update any item in at most 7
-/// steps. Ordering is by insertion history. While PersistentVector<'T> is appending to the
+/// steps. Ordering is by insertion history. While PersistentVector&lt;'T&gt; is appending to the
 /// end this version prepends elements to the list.
 [<Class>]
 type RandomAccessList<'T> =

@@ -2,7 +2,7 @@
 
 /// Resize array fith fixed size block memory allocation.
 /// Provide more optimal space usage for huge arrays than standard ResizeArray.
-/// Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
+/// Basic version created by Avdyukhin Dmitry (dimonbv@gmail.com)
 /// As evidenced by the tests that cannot run in mono, and pending destabilizing tests,
 /// beware that this data structure can be destabilizing to your assembly.
 open System.Collections
@@ -108,7 +108,7 @@ type BlockResizeArray<'T> () =
         bra.setCount initCount
         bra
 
-    ///Creates a block resize array where the entries are initially the default value Unchecked.defaultof<'T>.
+    ///Creates a block resize array where the entries are initially the default value Unchecked.defaultof&lt;'T&gt;.
     static member ZeroCreate initCount =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift

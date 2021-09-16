@@ -166,10 +166,11 @@ $RECYCLE.BIN/
 packages/
 
 # Generated documentation folder
-docs/output/
+output/
 
 # Temp folder used for publishing docs
 temp/
+tmp/
 
 # Test results produced by build
 TestResults.xml
@@ -185,6 +186,7 @@ _NCrunch*
 .fake
 RELEASE_NOTES.md.orig
 
-.paket
+.paket/
 .ionide
+.fsdocs/
 *.blob

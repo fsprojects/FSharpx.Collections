@@ -23,7 +23,7 @@ module ResizeArray =
     val get: ResizeArray<'T> -> int -> 'T
 
 
-    /// Set the value of an element in the collection. You can also use the syntax <c>arr.[idx] <- e</c>.
+    /// Set the value of an element in the collection. You can also use the syntax <c>arr.[idx] &lt;- e</c>.
     val set: ResizeArray<'T> -> int -> 'T -> unit
 
     /// Create an array whose elements are all initially the given value.

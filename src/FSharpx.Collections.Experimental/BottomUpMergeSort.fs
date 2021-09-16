@@ -1,4 +1,4 @@
-﻿// BottomUp merge sort from Chris Okasaki’s “Purely functional data structures”
+﻿// BottomUp merge sort from Chris Okasaki's "Purely functional data structures"
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/bottom-up-merge-sort
 
 namespace FSharpx.Collections.Experimental

@@ -80,7 +80,7 @@ and BootstrappedQueue<'T> =
         let b0 = BootstrappedQueue.Empty
         NonEmptyBootstrappedQueue<'T>.create (l.Length) l b0 0 [] |> NonEmpty
 
-/// bootstrapped queue from Chris Okasaki’s “Purely functional data structures”
+/// bootstrapped queue from Chris Okasaki's "Purely functional data structures"
 /// original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
 [<RequireQualifiedAccess>]
 module BootstrappedQueue =

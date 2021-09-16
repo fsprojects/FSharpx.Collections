@@ -1,4 +1,4 @@
-# FSharpx.Collections [![NuGet Status](http://img.shields.io/nuget/v/FSharpx.Collections.svg?style=flat)](https://www.nuget.org/packages/FSharpx.Collections/)
+# FSharpx.Collections [![NuGet Badge](https://buildstats.info/nuget/FSharpx.Collections)](https://www.nuget.org/packages/FSharpx.Collections)
 
 **FSharpx.Collections** is a collection of data structures for use with F# and C#. 
 
@@ -8,9 +8,7 @@ Please contribute to this project. Don't ask for permission, just fork the repos
 
 ## Build Status
 
-Mono | .NET
----- | ----
-[![Mono CI Build Status](https://img.shields.io/travis/fsprojects/FSharpx.Collections/master.svg)](https://travis-ci.org/fsprojects/FSharpx.Collections) | [![.NET CI Build Status](https://img.shields.io/appveyor/ci/fsgit/FSharpx-Collections/master.svg)](https://ci.appveyor.com/project/fsgit/fsharpx-collections)
+[![Build Status](https://github.com/fsprojects/FSharpx.Collections/workflows/Build%20and%20Test/badge.svg?branch=master)](https://github.com/fsprojects/FSharpx.Collections/actions?query=branch%3Amaster)
 
 Pre-release nuget packages automatically built from master branch are published to AppVeyor project NuGet feed and available under https://ci.appveyor.com/nuget/fsharpx-collections
 
