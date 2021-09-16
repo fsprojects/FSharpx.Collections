@@ -13,4 +13,4 @@ vscode:
     - ms-azuretools.vscode-docker
 
 tasks:
-  - init: ./fake.sh
+  - init: ./build.sh
