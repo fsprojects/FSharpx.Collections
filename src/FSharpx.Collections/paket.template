@@ -7,15 +7,19 @@ authors
 projectUrl
     https://github.com/fsprojects/FSharpx.Collections
 iconUrl
-    https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/files/img/logo.png
+    https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/img/logo.png
 licenseUrl
     http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+repositoryType
+    git
+repositoryUrl
+    https://github.com/fsprojects/FSharpx.Collections
 language
     F#
 copyright
-    Copyright 2018
+    Copyright 2013-2021
 tags
     F# fsharp fsharpx collections datastructures
 summary
@@ -23,14 +27,9 @@ summary
 description
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
 dependencies
-  framework: net45
-    FSharp.Core >= 4.3.4
   framework: netstandard20
-    FSharp.Core >= 4.3.4
+    FSharp.Core >= LOCKEDVERSION
 files
-    ../../bin/FSharpx.Collections/net45/FSharpx.Collections.dll ==> lib/net45
-    ../../bin/FSharpx.Collections/net45/FSharpx.Collections.pdb ==> lib/net45
-    ../../bin/FSharpx.Collections/net45/FSharpx.Collections.xml ==> lib/net45
-    ../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.dll ==> lib/netstandard2.0
-    ../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.pdb ==> lib/netstandard2.0
-    ../../bin/FSharpx.Collections/netstandard2.0/FSharpx.Collections.xml ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.dll ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.pdb ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.xml ==> lib/netstandard2.0

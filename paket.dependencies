@@ -1,5 +1,4 @@
-framework: auto-detect
-
+framework: netstandard2.0, net5.0
 source https://api.nuget.org/v3/index.json
 
 nuget FSharp.Core >= 4.3.4 lowest_matching:true
@@ -9,32 +8,8 @@ nuget FsCheck
 nuget Microsoft.NET.Test.Sdk
 nuget YoloDev.Expecto.TestSdk
 
-group Formatting
-source https://api.nuget.org/v3/index.json
-
-nuget FSharp.Formatting
-nuget FSharp.Formatting.CommandTool
-
-group FakeBuild
-source https://api.nuget.org/v3/index.json
-
-storage: none
-
-nuget Fake.Core.Target
-nuget Fake.IO.FileSystem
-nuget Fake.DotNet.Cli
-nuget Fake.Tools.Git
-nuget Fake.DotNet.MSBuild
-nuget Fake.Core.ReleaseNotes
-nuget Fake.DotNet.AssemblyInfoFile
-nuget Fake.DotNet.Paket
-nuget Fake.DotNet.Testing.Expecto
-nuget Fake.DotNet.FSFormatting
-nuget Fake.BuildServer.AppVeyor
-nuget Fake.BuildServer.Travis
-nuget Fake.JavaScript.Yarn
-
 group Test.Fable
+framework: netstandard2.0
 source https://api.nuget.org/v3/index.json
 
 nuget Fable.Core

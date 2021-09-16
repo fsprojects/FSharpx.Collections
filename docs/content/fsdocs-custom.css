@@ -1,0 +1,17 @@
+#nuget {
+    margin-top:20px;
+    font-size: 11pt;
+    padding:20px;
+    background: #f5f5f5;
+}
+
+#nuget pre {
+    font-size:11pt;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: #404040;
+    border-style:none;
+    color: #e0e0e0;
+    margin-top:15px;
+}

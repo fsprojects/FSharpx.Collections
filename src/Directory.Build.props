@@ -1,0 +1,35 @@
+<Project>
+  <Import Condition="Exists('version.props')" Project="version.props" />
+  <PropertyGroup>
+    <!-- Include PDBs in Nuget package. -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>.pdb; $(AllowedOutputExtensionsInPackageBuildOutputFolder)</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <!-- Copy all project dependencies to bin folder -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- NuGet Metadata -->
+  <PropertyGroup>
+    <!-- Enable IsPackable at individual project files -->
+    <IsPackable>false</IsPackable>
+    <Description>
+      FSharpx.Collections is a collection of datastructures for use with F# and C#.
+    </Description>
+    <Authors>Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox</Authors>
+    <Copyright>Copyright 2013-2021</Copyright>
+    <PackageTags>F# fsharp fsharpx collections datastructures</PackageTags>
+    <RepositoryUrl>https://github.com/fsprojects/FSharpx.Collections</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/fsprojects/FSharpx.Collections</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/img/logo.png</PackageIconUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+
+    <PackageLicenseUrl>https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <FsDocsLogoLink>http://fsprojects.github.io/FSharpx.Collections/</FsDocsLogoLink>
+    <FsDocsLicenseLink>https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt</FsDocsLicenseLink>
+    <FsDocsReleaseNotesLink>https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md</FsDocsReleaseNotesLink>
+    <FsDocsNavbarPosition>fixed-left</FsDocsNavbarPosition>
+    <FsDocsWarnOnMissingDocs>true</FsDocsWarnOnMissingDocs>
+    <FsDocsTheme>default</FsDocsTheme>
+  </PropertyGroup>
+</Project>

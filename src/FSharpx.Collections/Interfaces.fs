@@ -26,7 +26,7 @@ type IPersistentVector<'T> =
     /// Returns a new vector without the last item. If the collection is empty it throws an exception.
     abstract member Pop : unit -> IPersistentVector<'T>
 
-    /// Returns a new vector that contains the given value at the index. Note - index must be <= vector.Count.
+    /// Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.
     abstract member AssocN : int*'T -> IPersistentVector<'T>
 
 type IDeque<'T> =

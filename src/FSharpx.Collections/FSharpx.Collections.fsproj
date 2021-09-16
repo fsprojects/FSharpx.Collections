@@ -6,14 +6,11 @@
     <RootNamespace>FSharpx.Collections</RootNamespace>
     <AssemblyName>FSharpx.Collections</AssemblyName>
     <Name>FSharpx.Collections</Name>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <!-- Optional: Declare that the Repository URL can be published to NuSpec -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <!-- Optional: Include PDB in the built .nupkg -->
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
   <!-- Add source files to "fable" folder in Nuget package -->
   <ItemGroup>

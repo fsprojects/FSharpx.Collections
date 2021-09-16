@@ -9,7 +9,7 @@ open System.Collections.Generic
 /// This implementation adds an additional parameter to allow a more
 /// efficient calculation of the list length.
 /// Note that an alternate form would represent the DList as:
-/// type DList<'T> = DList of ('T list -> 'T list)
+/// type DList&lt;'T&gt; = DList of ('T list -&gt; 'T list)
 /// An example can be found at http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209
 type DList<'T> =
     | Nil
