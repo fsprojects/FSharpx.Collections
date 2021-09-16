@@ -1,0 +1,3061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PersistentVector (FSharpx.Collections)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    PersistentVector Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections.html">
+        FSharpx.Collections
+      </a>
+    </dt>
+    <dt>
+      Assembly: FSharpx.Collections.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Defines functions which allow to access and manipulate PersistentVectors.
+
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
+                <p>
+                  <a id="append">
+                    <a href="#append">
+                      <code><span>PersistentVector.append&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="236">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.append&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.append``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.append``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L363-363" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a new vector with the elements of the second vector added at the end.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
+                <p>
+                  <a id="conj">
+                    <a href="#conj">
+                      <code><span>PersistentVector.conj&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="237">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.conj&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.conj``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.conj``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L371-371" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns a new vector with the element added at the end.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
+                <p>
+                  <a id="empty">
+                    <a href="#empty">
+                      <code><span>PersistentVector.empty&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="238">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.empty&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.empty``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.empty``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L373-373" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns vector of no elements.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+                <p>
+                  <a id="flatten">
+                    <a href="#flatten">
+                      <code><span>PersistentVector.flatten&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="239">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.flatten&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>seq&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.flatten``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.flatten``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L382-382" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(m,n). Returns a seq from a vector of vectors.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+                <p>
+                  <a id="fold">
+                    <a href="#fold">
+                      <code><span>PersistentVector.fold&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="240">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.fold&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'State&#32;->&#32;'T&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.fold``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.fold``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L375-375" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a state from the supplied state and a function operating from left to right.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'State&#32;->&#32;'T&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+                <p>
+                  <a id="foldBack">
+                    <a href="#foldBack">
+                      <code><span>PersistentVector.foldBack&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="241">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.foldBack&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.foldBack``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.foldBack``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L385-385" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a state from the supplied state and a function operating from right to left.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+                <p>
+                  <a id="init">
+                    <a href="#init">
+                      <code><span>PersistentVector.init&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="242">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.init&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'T</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.init``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.init``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L392-392" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a vector of the supplied length using the supplied function operating on the index.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span>int&#32;->&#32;'T</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+                <p>
+                  <a id="initial">
+                    <a href="#initial">
+                      <code><span>PersistentVector.initial&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="243">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.initial&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.initial``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.initial``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L398-398" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
+                <p>
+                  <a id="isEmpty">
+                    <a href="#isEmpty">
+                      <code><span>PersistentVector.isEmpty&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="244">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.isEmpty&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.isEmpty``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.isEmpty``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L402-402" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns true if the vector has no elements.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
+                <p>
+                  <a id="last">
+                    <a href="#last">
+                      <code><span>PersistentVector.last&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="245">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.last&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'T</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.last``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.last``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L404-404" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns the last element in the vector. If the vector is empty it throws an exception.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
+                <p>
+                  <a id="length">
+                    <a href="#length">
+                      <code><span>PersistentVector.length&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="246">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.length&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.length``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.length``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L408-408" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns the number of items in the vector.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
+                <p>
+                  <a id="map">
+                    <a href="#map">
+                      <code><span>PersistentVector.map&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="247">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.map&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;'T1</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T1&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.map``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.map``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L410-410" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a vector whose elements are the results of applying the supplied function to each of the elements of a supplied vector.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;'T1</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
+                <p>
+                  <a id="nth">
+                    <a href="#nth">
+                      <code><span>PersistentVector.nth&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="248">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.nth&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'T</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.nth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.nth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L416-416" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns the value at the index. If the index is out of bounds it throws an exception.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
+                <p>
+                  <a id="nthNth">
+                    <a href="#nthNth">
+                      <code><span>PersistentVector.nthNth&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="249">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.nthNth&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'T</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.nthNth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.nthNth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L418-418" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
+                <p>
+                  <a id="ofSeq">
+                    <a href="#ofSeq">
+                      <code><span>PersistentVector.ofSeq&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="250">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.ofSeq&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>seq&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.ofSeq``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.ofSeq``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L429-429" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a vector of the seq.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
+                <p>
+                  <a id="rangedIterator">
+                    <a href="#rangedIterator">
+                      <code><span>PersistentVector.rangedIterator&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="251">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.rangedIterator&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>seq&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.rangedIterator``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.rangedIterator``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L435-435" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Views a subset of the given vector. startIndex is inclusive, endIndex is exclusive.
+ `rangedIterator 0 count` is the same as toSeq
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '252', 252)" onmouseover="showTip(event, '252', 252)">
+                <p>
+                  <a id="rev">
+                    <a href="#rev">
+                      <code><span>PersistentVector.rev&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="252">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.rev&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.rev``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.rev``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L431-431" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns vector reversed.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '253', 253)" onmouseover="showTip(event, '253', 253)">
+                <p>
+                  <a id="singleton">
+                    <a href="#singleton">
+                      <code><span>PersistentVector.singleton&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="253">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.singleton&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.singleton``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.singleton``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L433-433" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns a new vector of one element.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '254', 254)" onmouseover="showTip(event, '254', 254)">
+                <p>
+                  <a id="toSeq">
+                    <a href="#toSeq">
+                      <code><span>PersistentVector.toSeq&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="254">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.toSeq&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>seq&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.toSeq``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.toSeq``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L437-437" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Views the given vector as a sequence.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '255', 255)" onmouseover="showTip(event, '255', 255)">
+                <p>
+                  <a id="tryInitial">
+                    <a href="#tryInitial">
+                      <code><span>PersistentVector.tryInitial&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="255">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryInitial&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryInitial``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryInitial``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L400-400" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns option vector without the last item.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
+                <p>
+                  <a id="tryLast">
+                    <a href="#tryLast">
+                      <code><span>PersistentVector.tryLast&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="256">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryLast&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryLast``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryLast``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L406-406" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns option last element in the vector.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
+                <p>
+                  <a id="tryNth">
+                    <a href="#tryNth">
+                      <code><span>PersistentVector.tryNth&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="257">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryNth&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryNth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryNth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L420-420" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns option value at the index.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
+                <p>
+                  <a id="tryNthNth">
+                    <a href="#tryNthNth">
+                      <code><span>PersistentVector.tryNthNth&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="258">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryNthNth&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryNthNth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryNthNth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L424-424" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(log32(m,n)). Returns option value at the indices.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
+                <p>
+                  <a id="tryUnconj">
+                    <a href="#tryUnconj">
+                      <code><span>PersistentVector.tryUnconj&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="259">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryUnconj&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span>)</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryUnconj``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryUnconj``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L441-441" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns option tuple last element and vector without last item
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>(<span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span>)</span>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
+                <p>
+                  <a id="tryUpdate">
+                    <a href="#tryUpdate">
+                      <code><span>PersistentVector.tryUpdate&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="260">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryUpdate&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryUpdate``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryUpdate``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L447-447" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
+                <p>
+                  <a id="tryUpdateNth">
+                    <a href="#tryUpdateNth">
+                      <code><span>PersistentVector.tryUpdateNth&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="261">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.tryUpdateNth&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg3
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.tryUpdateNth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.tryUpdateNth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L449-449" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(log32(m,n)). Returns option vector that contains the given value at the indices.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg3
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
+                <p>
+                  <a id="unconj">
+                    <a href="#unconj">
+                      <code><span>PersistentVector.unconj&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="262">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.unconj&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.unconj``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.unconj``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L439-439" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns tuple last element and vector without last item
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
+                <p>
+                  <a id="update">
+                    <a href="#update">
+                      <code><span>PersistentVector.update&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="263">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.update&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.update``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.update``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L443-443" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '264', 264)" onmouseover="showTip(event, '264', 264)">
+                <p>
+                  <a id="updateNth">
+                    <a href="#updateNth">
+                      <code><span>PersistentVector.updateNth&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="264">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.updateNth&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg3
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.updateNth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.updateNth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L445-445" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(log32(m,n)). Returns a new vector of vectors that contains the given value at the indices.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg3
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '265', 265)" onmouseover="showTip(event, '265', 265)">
+                <p>
+                  <a id="windowSeq">
+                    <a href="#windowSeq">
+                      <code><span>PersistentVector.windowSeq&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="265">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.windowSeq&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span>seq&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.windowSeq``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.windowSeq``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L464-464" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a vector of vectors of given length from the seq. Result may be a jagged vector.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div>
+    <h3>
+      Active patterns
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Active pattern
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
+                <p>
+                  <a id="( |Conj|Nil| )">
+                    <a href="#( |Conj|Nil| )">
+                      <code><span>PersistentVector.(|Conj|Nil|)&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="266">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>PersistentVector.(|Conj|Nil|)&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span><span>(<span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span>)</span>,&#32;unit</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.PersistentVector.|Conj|Nil|``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.PersistentVector.|Conj|Nil|``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fs#L361-361" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span><span>(<span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">PersistentVector</a>&lt;'T&gt;</span>&#32;*&#32;'T</span>)</span>,&#32;unit</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

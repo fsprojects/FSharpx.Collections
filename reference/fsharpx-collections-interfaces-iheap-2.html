@@ -1,231 +1,667 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>IHeap<'c, 'T> - fsprojects/FSharpx.Collections</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Steffen Forkmann">
+    <title>IHeap<'c, 'T> (FSharpx.Collections)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
-    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
-
-
-
-<h1>IHeap<'c, 'T></h1>
-<p>
-  <span>Namespace: FSharpx.Collections</span><br />
-  <span>Parent Module: <a href="fsharpx-collections-interfaces.html">Interfaces</a></span>
-</p>
-<div class="xmldoc">
-</div>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1089', 1089)" onmouseover="showTip(event, '1089', 1089)">
-            Insert(arg1)
-          </code>
-          <div class="tip" id="1089">
-            <strong>Signature:</strong> &#39;T -&gt; &#39;c<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L132-132" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns a new heap with the element inserted</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1090', 1090)" onmouseover="showTip(event, '1090', 1090)">
-            Merge(arg1)
-          </code>
-          <div class="tip" id="1090">
-            <strong>Signature:</strong> &#39;c -&gt; &#39;c<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L135-135" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns heap from merging two heaps, both must have same isDescending</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1091', 1091)" onmouseover="showTip(event, '1091', 1091)">
-            Tail()
-          </code>
-          <div class="tip" id="1091">
-            <strong>Signature:</strong> unit -&gt; &#39;c<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L141-141" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns a new heap of the elements trailing the head</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1092', 1092)" onmouseover="showTip(event, '1092', 1092)">
-            TryGetTail()
-          </code>
-          <div class="tip" id="1092">
-            <strong>Signature:</strong> unit -&gt; &#39;c option<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L144-144" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns option heap of the elements trailing the head</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1093', 1093)" onmouseover="showTip(event, '1093', 1093)">
-            TryMerge(arg1)
-          </code>
-          <div class="tip" id="1093">
-            <strong>Signature:</strong> &#39;c -&gt; &#39;c option<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L138-138" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns heap option from merging two heaps</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1094', 1094)" onmouseover="showTip(event, '1094', 1094)">
-            TryUncons()
-          </code>
-          <div class="tip" id="1094">
-            <strong>Signature:</strong> unit -&gt; (&#39;T * &#39;c) option<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L150-150" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns option head element and tail</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1095', 1095)" onmouseover="showTip(event, '1095', 1095)">
-            Uncons()
-          </code>
-          <div class="tip" id="1095">
-            <strong>Signature:</strong> unit -&gt; &#39;T * &#39;c<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L147-147" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>returns the head element and tail</p>
-
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
         </div>
-        <div class="span3">
-          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu">
-            <li class="nav-header">fsprojects/FSharpx.Collections</li>
-            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-              
-            <li class="nav-header">Using from F#</li>
-            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
-            <li class="nav-header">Performance tests</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-            <li class="nav-header">Documentation</li>
-            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
-                      
-          </ul>
-        </div>
-      </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    IHeap<'c, 'T> Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections.html">
+        FSharpx.Collections
+      </a>
+    </dt>
+    <dt>
+      Assembly: FSharpx.Collections.dll
+    </dt>
+    <dt>
+      Parent Module: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-interfaces.html">
+        Interfaces
+      </a>
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-interfaces-iheap-2.html">IHeap</a>&lt;<span>'c,&#32;'T</span>&gt;</span></code>
+      , 
+      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-interfaces-iheap-1.html">IHeap</a>&lt;'T&gt;</span></code>
+      , 
+      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;'T&gt;</span></code>
+      , 
+      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;'T&gt;</span></code>
+      , 
+      <code><a href="https://docs.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
     </div>
-    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-  </body>
-  </html>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Instance members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Instance member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1100', 1100)" onmouseover="showTip(event, '1100', 1100)">
+                <p>
+                  <a id="Insert">
+                    <a href="#Insert">
+                      <code><span>this.Insert<span><span>(<span>arg1</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1100">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Insert<span><span>(<span>arg1</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'c</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.Insert``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.Insert\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L137-137" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns a new heap with the element inserted
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1101', 1101)" onmouseover="showTip(event, '1101', 1101)">
+                <p>
+                  <a id="Merge">
+                    <a href="#Merge">
+                      <code><span>this.Merge<span><span>(<span>arg1</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1101">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Merge<span><span>(<span>arg1</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'c</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.Merge``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.Merge\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L140-140" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns heap from merging two heaps, both must have same isDescending
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1102', 1102)" onmouseover="showTip(event, '1102', 1102)">
+                <p>
+                  <a id="Tail">
+                    <a href="#Tail">
+                      <code><span>this.Tail<span>()</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1102">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Tail<span>()</span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'c</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.Tail``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.Tail\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns a new heap of the elements trailing the head
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1103', 1103)" onmouseover="showTip(event, '1103', 1103)">
+                <p>
+                  <a id="TryGetTail">
+                    <a href="#TryGetTail">
+                      <code><span>this.TryGetTail<span>()</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1103">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.TryGetTail<span>()</span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'c&#32;option</span></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.TryGetTail``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.TryGetTail\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L149-149" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns option heap of the elements trailing the head
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'c&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1104', 1104)" onmouseover="showTip(event, '1104', 1104)">
+                <p>
+                  <a id="TryMerge">
+                    <a href="#TryMerge">
+                      <code><span>this.TryMerge<span><span>(<span>arg1</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1104">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.TryMerge<span><span>(<span>arg1</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'c</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'c&#32;option</span></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.TryMerge``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.TryMerge\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L143-143" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns heap option from merging two heaps
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'c</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'c&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1105', 1105)" onmouseover="showTip(event, '1105', 1105)">
+                <p>
+                  <a id="TryUncons">
+                    <a href="#TryUncons">
+                      <code><span>this.TryUncons<span>()</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1105">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.TryUncons<span>()</span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>(<span>'T&#32;*&#32;'c</span>)</span>&#32;option</span></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.TryUncons``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.TryUncons\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L155-155" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns option head element and tail
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>(<span>'T&#32;*&#32;'c</span>)</span>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1106', 1106)" onmouseover="showTip(event, '1106', 1106)">
+                <p>
+                  <a id="Uncons">
+                    <a href="#Uncons">
+                      <code><span>this.Uncons<span>()</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1106">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Uncons<span>()</span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;*&#32;'c</span></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:FSharpx.Collections.Interfaces.IHeap`2.Uncons``')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Interfaces.IHeap`2.Uncons\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L152-152" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+returns the head element and tail
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;*&#32;'c</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FlatList (FSharpx.Collections)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    FlatList Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental.html">
+        FSharpx.Collections.Experimental
+      </a>
+    </dt>
+    <dt>
+      Assembly: FSharpx.Collections.Experimental.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '673', 673)" onmouseover="showTip(event, '673', 673)">
+                <p>
+                  <a id="append">
+                    <a href="#append">
+                      <code><span>FlatList.append&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="673">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.append&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.append``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.append``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L50-50" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist that contains the elements of one flatlist followed by the elements of another flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '674', 674)" onmouseover="showTip(event, '674', 674)">
+                <p>
+                  <a id="collect">
+                    <a href="#collect">
+                      <code><span>FlatList.collect&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="674">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.collect&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.collect``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.collect``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+O(n). Applies the supplied function to each element of a flatlist, concatenates the results, and returns the combined flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '675', 675)" onmouseover="showTip(event, '675', 675)">
+                <p>
+                  <a id="concat">
+                    <a href="#concat">
+                      <code><span>FlatList.concat&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="675">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.concat&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T[]</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.concat``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.concat``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist that contains the elements of each of the supplied sequence of flatlists.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T[]</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '676', 676)" onmouseover="showTip(event, '676', 676)">
+                <p>
+                  <a id="empty">
+                    <a href="#empty">
+                      <code><span>FlatList.empty&#32;<span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="676">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.empty&#32;<span></span></span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.empty``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.empty``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns flatlist of no elements.
+
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '677', 677)" onmouseover="showTip(event, '677', 677)">
+                <p>
+                  <a id="exists">
+                    <a href="#exists">
+                      <code><span>FlatList.exists&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="677">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.exists&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.exists``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.exists``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n) worst case. Tests whether any element of a flatlist satisfies the supplied predicate.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '678', 678)" onmouseover="showTip(event, '678', 678)">
+                <p>
+                  <a id="filter">
+                    <a href="#filter">
+                      <code><span>FlatList.filter&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="678">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.filter&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.filter``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.filter``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L75-75" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns a flatlist that contains only the elements of the supplied flatlist for which the supplied condition returns true.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '679', 679)" onmouseover="showTip(event, '679', 679)">
+                <p>
+                  <a id="fold">
+                    <a href="#fold">
+                      <code><span>FlatList.fold&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="679">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.fold&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'State&#32;->&#32;'T&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.fold``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.fold``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L80-80" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies a function to each element of a flatlist from left to right (first to last), threading an accumulator argument through the computation. 
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'State&#32;->&#32;'T&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '680', 680)" onmouseover="showTip(event, '680', 680)">
+                <p>
+                  <a id="fold2">
+                    <a href="#fold2">
+                      <code><span>FlatList.fold2&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="680">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.fold2&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'State&#32;->&#32;'T1&#32;->&#32;'T2&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg3
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.fold2``3```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.fold2``3\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies a function to pairs of elements from two supplied flatlists, left-to-right, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'State&#32;->&#32;'T1&#32;->&#32;'T2&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg3
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
+                <p>
+                  <a id="foldBack">
+                    <a href="#foldBack">
+                      <code><span>FlatList.foldBack&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="681">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.foldBack&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.foldBack``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.foldBack``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L91-91" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies a function to each element of a flatlist from right to left (last to first), threading an accumulator argument through the computation.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;'State&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
+                <p>
+                  <a id="foldBack2">
+                    <a href="#foldBack2">
+                      <code><span>FlatList.foldBack2&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="682">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.foldBack2&#32;<span>arg1&#32;arg2&#32;arg3&#32;arg4</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T1&#32;->&#32;'T2&#32;->&#32;'State&#32;->&#32;'State</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg3
+                      </b>
+                      :
+                      <code>'State</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'State</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.foldBack2``3```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.foldBack2``3\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L96-96" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies a function to pairs of elements from two supplied flatlists, right-to-left, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T1&#32;->&#32;'T2&#32;->&#32;'State&#32;->&#32;'State</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg3
+                </span>
+                :
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'State</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
+                <p>
+                  <a id="forall">
+                    <a href="#forall">
+                      <code><span>FlatList.forall&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="683">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.forall&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.forall``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.forall``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L102-102" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Tests whether all elements of a flatlist satisfy the supplied condition.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '684', 684)" onmouseover="showTip(event, '684', 684)">
+                <p>
+                  <a id="forall2">
+                    <a href="#forall2">
+                      <code><span>FlatList.forall2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="684">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.forall2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T1&#32;->&#32;'T2&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.forall2``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.forall2``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L107-107" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Tests whether all corresponding elements of two supplied flatlists satisfy a supplied condition.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T1&#32;->&#32;'T2&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '685', 685)" onmouseover="showTip(event, '685', 685)">
+                <p>
+                  <a id="init">
+                    <a href="#init">
+                      <code><span>FlatList.init&#32;<span>arg1&#32;f</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="685">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.init&#32;<span>arg1&#32;f</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'T</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.init``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.init``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Uses a supplied function to create a flatlist of the supplied dimension.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  f
+                </span>
+                :
+                <code><span>int&#32;->&#32;'T</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '686', 686)" onmouseover="showTip(event, '686', 686)">
+                <p>
+                  <a id="isEmpty">
+                    <a href="#isEmpty">
+                      <code><span>FlatList.isEmpty&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="686">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.isEmpty&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.isEmpty``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.isEmpty``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L119-119" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). O(1). Returns true if the flatlist has no elements.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '687', 687)" onmouseover="showTip(event, '687', 687)">
+                <p>
+                  <a id="iter">
+                    <a href="#iter">
+                      <code><span>FlatList.iter&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="687">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.iter&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.iter``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.iter``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L121-121" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies the supplied function to each element of a flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '688', 688)" onmouseover="showTip(event, '688', 688)">
+                <p>
+                  <a id="iter2">
+                    <a href="#iter2">
+                      <code><span>FlatList.iter2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="688">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.iter2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T1&#32;->&#32;'T2&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.iter2``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.iter2``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies the supplied function to a pair of elements from matching indexes in two flatlists, also passing the index of the elements. The two flatlists must have the same lengths; otherwise, an ArgumentException is raised.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T1&#32;->&#32;'T2&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '689', 689)" onmouseover="showTip(event, '689', 689)">
+                <p>
+                  <a id="iteri">
+                    <a href="#iteri">
+                      <code><span>FlatList.iteri&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="689">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.iteri&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'T&#32;->&#32;unit</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.iteri``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.iteri``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L132-132" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Applies the supplied function to each element of a flatlist. The integer passed to the function indicates the index of the element.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>int&#32;->&#32;'T&#32;->&#32;unit</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '690', 690)" onmouseover="showTip(event, '690', 690)">
+                <p>
+                  <a id="length">
+                    <a href="#length">
+                      <code><span>FlatList.length&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="690">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.length&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.length``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.length``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L137-137" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns the number of items in the flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '691', 691)" onmouseover="showTip(event, '691', 691)">
+                <p>
+                  <a id="map">
+                    <a href="#map">
+                      <code><span>FlatList.map&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="691">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.map&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T1&#32;->&#32;'T2</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.map``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.map``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L139-139" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T1&#32;->&#32;'T2</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '692', 692)" onmouseover="showTip(event, '692', 692)">
+                <p>
+                  <a id="map2">
+                    <a href="#map2">
+                      <code><span>FlatList.map2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="692">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.map2&#32;<span>arg1&#32;arg2&#32;arg3</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T1&#32;->&#32;'T2&#32;->&#32;'T3</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg2
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T3&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.map2``3```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.map2``3\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L144-144" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to the corresponding elements of two supplied flatlists. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T1&#32;->&#32;'T2&#32;->&#32;'T3</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg2
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T3&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '693', 693)" onmouseover="showTip(event, '693', 693)">
+                <p>
+                  <a id="mapi">
+                    <a href="#mapi">
+                      <code><span>FlatList.mapi&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="693">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.mapi&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>int&#32;->&#32;'T1&#32;->&#32;'T2</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.mapi``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.mapi``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L150-150" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist. An integer index passed to the function indicates the index of the element being transformed.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>int&#32;->&#32;'T1&#32;->&#32;'T2</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '694', 694)" onmouseover="showTip(event, '694', 694)">
+                <p>
+                  <a id="ofList">
+                    <a href="#ofList">
+                      <code><span>FlatList.ofList&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="694">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.ofList&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;list</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.ofList``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.ofList``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L155-155" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist from the supplied list.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '695', 695)" onmouseover="showTip(event, '695', 695)">
+                <p>
+                  <a id="ofSeq">
+                    <a href="#ofSeq">
+                      <code><span>FlatList.ofSeq&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="695">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.ofSeq&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>seq&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.ofSeq``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.ofSeq``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L160-160" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Creates a flatlist from the supplied enumerable object.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '696', 696)" onmouseover="showTip(event, '696', 696)">
+                <p>
+                  <a id="partition">
+                    <a href="#partition">
+                      <code><span>FlatList.partition&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="696">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.partition&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span>&#32;*&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.partition``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.partition``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L163-163" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Splits a flatlist into two flatlists, one containing the elements for which the supplied condition returns true, and the other containing those for which it returns false.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span>&#32;*&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
+                <p>
+                  <a id="physicalEquality">
+                    <a href="#physicalEquality">
+                      <code><span>FlatList.physicalEquality&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="697">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.physicalEquality&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.physicalEquality``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.physicalEquality``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L170-170" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). True if the flatlists are reference-equal, false otherwise
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
+                <p>
+                  <a id="rev">
+                    <a href="#rev">
+                      <code><span>FlatList.rev&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="698">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.rev&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.rev``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.rev``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L173-173" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Reverses the order of the elements in a supplied array.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
+                <p>
+                  <a id="singleton">
+                    <a href="#singleton">
+                      <code><span>FlatList.singleton&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="699">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.singleton&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code>'T</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.singleton``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.singleton``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L178-178" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(1). Returns a flatlist of one element.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code>'T</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '700', 700)" onmouseover="showTip(event, '700', 700)">
+                <p>
+                  <a id="sum">
+                    <a href="#sum">
+                      <code><span>FlatList.sum&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="700">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.sum&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;int&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FSharpx.Collections.Experimental.FlatList.sum`')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.sum\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L180-180" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns the sum of the elements in the flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;int&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '701', 701)" onmouseover="showTip(event, '701', 701)">
+                <p>
+                  <a id="sumBy">
+                    <a href="#sumBy">
+                      <code><span>FlatList.sumBy&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="701">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.sumBy&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;int</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>int</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.sumBy``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.sumBy``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L185-185" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns the sum of the results generated by applying a function to each element of a flatlist.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;int</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '702', 702)" onmouseover="showTip(event, '702', 702)">
+                <p>
+                  <a id="toList">
+                    <a href="#toList">
+                      <code><span>FlatList.toList&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="702">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.toList&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;list</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.toList``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.toList``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L190-190" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Converts the supplied flatlist to a list.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;list</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '703', 703)" onmouseover="showTip(event, '703', 703)">
+                <p>
+                  <a id="toMap">
+                    <a href="#toMap">
+                      <code><span>FlatList.toMap&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="703">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.toMap&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'Key&#32;*&#32;'T</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>'Key,&#32;'T</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.toMap``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.toMap``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L195-195" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Converts the supplied flatlist of tuple pairs to a map.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'Key&#32;*&#32;'T</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-fsharpmap-2">Map</a>&lt;<span>'Key,&#32;'T</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '704', 704)" onmouseover="showTip(event, '704', 704)">
+                <p>
+                  <a id="tryFind">
+                    <a href="#tryFind">
+                      <code><span>FlatList.tryFind&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="704">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.tryFind&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'T&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.tryFind``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.tryFind``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L197-197" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Returns the first element in the supplied flatlist for which the supplied function returns true. Returns None if no such element exists.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span>'T&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'T&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '705', 705)" onmouseover="showTip(event, '705', 705)">
+                <p>
+                  <a id="unzip">
+                    <a href="#unzip">
+                      <code><span>FlatList.unzip&#32;<span>arg1</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="705">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.unzip&#32;<span>arg1</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T1&#32;*&#32;'T2</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span>&#32;*&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.unzip``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.unzip``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L202-202" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Splits a flatlist of tuple pairs into a tuple of two flatlists.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T1&#32;*&#32;'T2</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span>&#32;*&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '706', 706)" onmouseover="showTip(event, '706', 706)">
+                <p>
+                  <a id="zip">
+                    <a href="#zip">
+                      <code><span>FlatList.zip&#32;<span>arg1&#32;arg2</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="706">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>FlatList.zip&#32;<span>arg1&#32;arg2</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        arg0
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arg1
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T1&#32;*&#32;'T2</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.FlatList.zip``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.FlatList.zip``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/FlatList.fs#L207-207" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ O(n). Combines two flatlists into a flatlist of tuples that have two elements. The two flatlists must have equal lengths; otherwise, ArgumentException is raised.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg0
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T1&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arg1
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;'T2&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-flatlist-1.html">FlatList</a>&lt;<span>'T1&#32;*&#32;'T2</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

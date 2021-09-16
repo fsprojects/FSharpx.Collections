@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Array (FSharpx.Collections)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    Array Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections.html">
+        FSharpx.Collections
+      </a>
+    </dt>
+    <dt>
+      Assembly: FSharpx.Collections.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ Extensions for F#'s Array module.
+
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+                <p>
+                  <a id="catOptions">
+                    <a href="#catOptions">
+                      <code><span>Array.catOptions&#32;<span>xs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.catOptions&#32;<span>xs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpoption-1">Option</a>&lt;'a&gt;</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.catOptions``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.catOptions``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L349-349" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ The catOptions function takes a list of Options and returns an array of all the Some values.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xs
+                </span>
+                :
+                <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpoption-1">Option</a>&lt;'a&gt;</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+                <p>
+                  <a id="centeredWindow">
+                    <a href="#centeredWindow">
+                      <code><span>Array.centeredWindow&#32;<span>n&#32;source</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="2">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.centeredWindow&#32;<span>n&#32;source</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        source
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>'a[]</span>[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.centeredWindow``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.centeredWindow``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L317-317" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Returns an array of sliding windows of data drawn from the source array.
+ Each window contains the n elements surrounding the current element.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  n
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  source
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>'a[]</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+                <p>
+                  <a id="centralMovingAverage">
+                    <a href="#centralMovingAverage">
+                      <code><span>Array.centralMovingAverage&#32;<span>n&#32;a</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="3">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.centralMovingAverage&#32;<span>n&#32;a</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><span>^t[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>^t[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.centralMovingAverage``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.centralMovingAverage``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L333-333" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Calculates the central moving average for the array using n elements either side
+ of the point where the mean is being calculated.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  n
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><span>^t[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>^t[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+                <p>
+                  <a id="centralMovingAverageOfOption">
+                    <a href="#centralMovingAverageOfOption">
+                      <code><span>Array.centralMovingAverageOfOption&#32;<span>n&#32;a</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="4">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.centralMovingAverageOfOption&#32;<span>n&#32;a</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><span><span>^t&#32;option</span>&#32;array</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>^t&#32;option</span>[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.centralMovingAverageOfOption``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.centralMovingAverageOfOption``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L340-340" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Calculates the central moving average for the array of optional elements using n
+ elements either side of the point where the mean is being calculated. If any of
+ the optional elements in the averaging window are None then the average itself
+ is None.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  n
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><span><span>^t&#32;option</span>&#32;array</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>^t&#32;option</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+                <p>
+                  <a id="choice1s">
+                    <a href="#choice1s">
+                      <code><span>Array.choice1s&#32;<span>xs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="5">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.choice1s&#32;<span>xs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.choice1s``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.choice1s``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L352-352" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xs
+                </span>
+                :
+                <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+                <p>
+                  <a id="choice2s">
+                    <a href="#choice2s">
+                      <code><span>Array.choice2s&#32;<span>xs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="6">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.choice2s&#32;<span>xs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'b[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.choice2s``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.choice2s``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L359-359" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xs
+                </span>
+                :
+                <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'b[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+                <p>
+                  <a id="copyTo">
+                    <a href="#copyTo">
+                      <code><span>Array.copyTo&#32;<span>sourceStartIndx&#32;startIndx&#32;source&#32;target</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="7">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.copyTo&#32;<span>sourceStartIndx&#32;startIndx&#32;source&#32;target</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        sourceStartIndx
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        startIndx
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        source
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        target
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.copyTo``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.copyTo``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L291-291" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ copy items from one array to another
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  sourceStartIndx
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  startIndx
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  source
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  target
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+                <p>
+                  <a id="equalsWith">
+                    <a href="#equalsWith">
+                      <code><span>Array.equalsWith&#32;<span>eq&#32;xs&#32;ys</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="8">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.equalsWith&#32;<span>eq&#32;xs&#32;ys</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        eq
+                      </b>
+                      :
+                      <code><span>'a&#32;->&#32;'a&#32;->&#32;bool</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        ys
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>bool</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.equalsWith``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.equalsWith``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L370-370" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Compares two arrays for equality using the given comparison function, element by element.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  eq
+                </span>
+                :
+                <code><span>'a&#32;->&#32;'a&#32;->&#32;bool</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xs
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ys
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>bool</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+                <p>
+                  <a id="nth">
+                    <a href="#nth">
+                      <code><span>Array.nth&#32;<span>i&#32;arr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="9">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.nth&#32;<span>i&#32;arr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        i
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arr
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'a</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.nth``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.nth``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L285-285" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ nth item of array
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  i
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arr
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+                <p>
+                  <a id="ofTuple">
+                    <a href="#ofTuple">
+                      <code><span>Array.ofTuple&#32;<span>source</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="10">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.ofTuple&#32;<span>source</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        source
+                      </b>
+                      :
+                      <code>obj</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>obj&#32;array</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FSharpx.Collections.Array.ofTuple`')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.ofTuple\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L305-305" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  source
+                </span>
+                :
+                <code>obj</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>obj&#32;array</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+                <p>
+                  <a id="partitionChoices">
+                    <a href="#partitionChoices">
+                      <code><span>Array.partitionChoices&#32;<span>xs</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="11">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.partitionChoices&#32;<span>xs</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        xs
+                      </b>
+                      :
+                      <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span>'a[]</span>&#32;*&#32;<span>'b[]</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.partitionChoices``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.partitionChoices``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L366-366" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Partitions an array of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  xs
+                </span>
+                :
+                <code><span><span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-fsharpchoice-2">Choice</a>&lt;<span>'a,&#32;'b</span>&gt;</span>[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span>'a[]</span>&#32;*&#32;<span>'b[]</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+                <p>
+                  <a id="setAt">
+                    <a href="#setAt">
+                      <code><span>Array.setAt&#32;<span>i&#32;v&#32;arr</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="12">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.setAt&#32;<span>i&#32;v&#32;arr</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        i
+                      </b>
+                      :
+                      <code>int</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        v
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        arr
+                      </b>
+                      :
+                      <code><span>'a[]</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span>'a[]</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.setAt``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.setAt``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L288-288" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ set the ith item of array
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  i
+                </span>
+                :
+                <code>int</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  v
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  arr
+                </span>
+                :
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span>'a[]</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+                <p>
+                  <a id="toTuple">
+                    <a href="#toTuple">
+                      <code><span>Array.toTuple&#32;<span>source</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="13">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>Array.toTuple&#32;<span>source</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        source
+                      </b>
+                      :
+                      <code><span>'T&#32;array</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>'t</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Array.toTuple``2```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Array.toTuple``2\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L310-310" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ needs doc
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  source
+                </span>
+                :
+                <code><span>'T&#32;array</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>'t</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

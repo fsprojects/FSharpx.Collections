@@ -1,0 +1,420 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "FSharp.Core/4.3.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/netstandard1.6/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard1.6/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard1.6/en/FSharp.Core.resources.dll": {
+            "locale": "en"
+          },
+          "lib/netstandard1.6/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard1.6/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard1.6/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard1.6/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard1.6/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard1.6/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard1.6/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard1.6/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Build.Tasks.Git/1.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Build.Tasks.Git.props": {},
+          "build/Microsoft.Build.Tasks.Git.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.props": {},
+          "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets": {}
+        }
+      },
+      "Microsoft.SourceLink.Common/1.0.0": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.SourceLink.Common.props": {},
+          "build/Microsoft.SourceLink.Common.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.Common.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.Common.targets": {}
+        }
+      },
+      "Microsoft.SourceLink.GitHub/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Build.Tasks.Git": "1.0.0",
+          "Microsoft.SourceLink.Common": "1.0.0"
+        },
+        "build": {
+          "build/Microsoft.SourceLink.GitHub.props": {},
+          "build/Microsoft.SourceLink.GitHub.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.props": {},
+          "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets": {}
+        }
+      },
+      "FSharpx.Collections/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FSharp.Core": "4.3.4"
+        },
+        "compile": {
+          "bin/placeholder/FSharpx.Collections.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FSharpx.Collections.dll": {}
+        }
+      },
+      "FSharpx.Collections.Experimental/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "FSharp.Core": "4.3.4",
+          "FSharpx.Collections": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FSharpx.Collections.Experimental.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FSharpx.Collections.Experimental.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FSharp.Core/4.3.4": {
+      "sha512": "u2UeaUl1pt/Lktdpzq3AsaRmOV1mOiQaSbZgYqQQYuqBSjnILWemetff4xMZIAZi0241jlIkcrJQsU5PlLwIJA==",
+      "type": "package",
+      "path": "fsharp.core/4.3.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fsharp.core.4.3.4.nupkg.sha512",
+        "fsharp.core.nuspec",
+        "lib/net45/FSharp.Core.dll",
+        "lib/net45/FSharp.Core.optdata",
+        "lib/net45/FSharp.Core.sigdata",
+        "lib/net45/FSharp.Core.xml",
+        "lib/net45/UnitTests/MockTypeProviders/cs/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/de/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/en/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/es/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/fr/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/it/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/ja/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/ko/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/pl/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/pt-BR/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/ru/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/tr/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/zh-Hans/FSharp.Core.resources.dll",
+        "lib/net45/UnitTests/MockTypeProviders/zh-Hant/FSharp.Core.resources.dll",
+        "lib/net45/cs/FSharp.Core.resources.dll",
+        "lib/net45/de/FSharp.Core.resources.dll",
+        "lib/net45/en/FSharp.Core.resources.dll",
+        "lib/net45/es/FSharp.Core.resources.dll",
+        "lib/net45/fr/FSharp.Core.resources.dll",
+        "lib/net45/it/FSharp.Core.resources.dll",
+        "lib/net45/ja/FSharp.Core.resources.dll",
+        "lib/net45/ko/FSharp.Core.resources.dll",
+        "lib/net45/pl/FSharp.Core.resources.dll",
+        "lib/net45/pt-BR/FSharp.Core.resources.dll",
+        "lib/net45/ru/FSharp.Core.resources.dll",
+        "lib/net45/tr/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hans/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hant/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/FSharp.Core.dll",
+        "lib/netstandard1.6/FSharp.Core.optdata",
+        "lib/netstandard1.6/FSharp.Core.sigdata",
+        "lib/netstandard1.6/FSharp.Core.xml",
+        "lib/netstandard1.6/cs/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/de/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/en/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/es/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/fr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/it/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ja/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ko/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pl/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll"
+      ]
+    },
+    "Microsoft.Build.Tasks.Git/1.0.0": {
+      "sha512": "z2fpmmt+1Jfl+ZnBki9nSP08S1/tbEOxFdsK1rSR+LBehIJz1Xv9/6qOOoGNqlwnAGGVGis1Oj6S8Kt9COEYlQ==",
+      "type": "package",
+      "path": "microsoft.build.tasks.git/1.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "build/Microsoft.Build.Tasks.Git.props",
+        "build/Microsoft.Build.Tasks.Git.targets",
+        "buildMultiTargeting/Microsoft.Build.Tasks.Git.props",
+        "buildMultiTargeting/Microsoft.Build.Tasks.Git.targets",
+        "microsoft.build.tasks.git.1.0.0.nupkg.sha512",
+        "microsoft.build.tasks.git.nuspec",
+        "paket-installmodel.cache",
+        "tools/net461/Microsoft.Build.Tasks.Git.dll",
+        "tools/net461/System.Collections.Immutable.dll",
+        "tools/net461/cs/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/de/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/es/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/fr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/it/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/ja/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/ko/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/pl/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/pt-BR/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/ru/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/tr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/zh-Hans/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/net461/zh-Hant/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/Microsoft.Build.Tasks.Git.dll",
+        "tools/netcoreapp2.0/cs/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/de/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/es/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/fr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/it/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/ja/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/ko/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/pl/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/pt-BR/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/ru/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/tr/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/zh-Hans/Microsoft.Build.Tasks.Git.resources.dll",
+        "tools/netcoreapp2.0/zh-Hant/Microsoft.Build.Tasks.Git.resources.dll"
+      ]
+    },
+    "Microsoft.SourceLink.Common/1.0.0": {
+      "sha512": "G8DuQY8/DK5NN+3jm5wcMcd9QYD90UV7MiLmdljSJixi3U/vNaeBKmmXUqI4DJCOeWizIUEh4ALhSt58mR+5eg==",
+      "type": "package",
+      "path": "microsoft.sourcelink.common/1.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "build/InitializeSourceControlInformation.targets",
+        "build/Microsoft.SourceLink.Common.props",
+        "build/Microsoft.SourceLink.Common.targets",
+        "buildMultiTargeting/Microsoft.SourceLink.Common.props",
+        "buildMultiTargeting/Microsoft.SourceLink.Common.targets",
+        "microsoft.sourcelink.common.1.0.0.nupkg.sha512",
+        "microsoft.sourcelink.common.nuspec",
+        "paket-installmodel.cache",
+        "tools/net461/Microsoft.SourceLink.Common.dll",
+        "tools/net461/cs/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/de/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/es/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/fr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/it/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/ja/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/ko/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/pl/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/pt-BR/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/ru/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/tr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/zh-Hans/Microsoft.SourceLink.Common.resources.dll",
+        "tools/net461/zh-Hant/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/Microsoft.SourceLink.Common.dll",
+        "tools/netcoreapp2.0/cs/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/de/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/es/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/fr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/it/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/ja/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/ko/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/pl/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/pt-BR/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/ru/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/tr/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/zh-Hans/Microsoft.SourceLink.Common.resources.dll",
+        "tools/netcoreapp2.0/zh-Hant/Microsoft.SourceLink.Common.resources.dll"
+      ]
+    },
+    "Microsoft.SourceLink.GitHub/1.0.0": {
+      "sha512": "aZyGyGg2nFSxix+xMkPmlmZSsnGQ3w+mIG23LTxJZHN+GPwTQ5FpPgDo7RMOq+Kcf5D4hFWfXkGhoGstawX13Q==",
+      "type": "package",
+      "path": "microsoft.sourcelink.github/1.0.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "build/Microsoft.SourceLink.GitHub.props",
+        "build/Microsoft.SourceLink.GitHub.targets",
+        "buildMultiTargeting/Microsoft.SourceLink.GitHub.props",
+        "buildMultiTargeting/Microsoft.SourceLink.GitHub.targets",
+        "microsoft.sourcelink.github.1.0.0.nupkg.sha512",
+        "microsoft.sourcelink.github.nuspec",
+        "paket-installmodel.cache",
+        "tools/net461/Microsoft.SourceLink.GitHub.dll",
+        "tools/net461/cs/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/de/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/es/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/fr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/it/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/ja/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/ko/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/pl/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/pt-BR/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/ru/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/tr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/zh-Hans/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/net461/zh-Hant/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/Microsoft.SourceLink.GitHub.dll",
+        "tools/netcoreapp2.0/cs/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/de/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/es/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/fr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/it/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/ja/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/ko/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/pl/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/pt-BR/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/ru/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/tr/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/zh-Hans/Microsoft.SourceLink.GitHub.resources.dll",
+        "tools/netcoreapp2.0/zh-Hant/Microsoft.SourceLink.GitHub.resources.dll"
+      ]
+    },
+    "FSharpx.Collections/1.0.0": {
+      "type": "project",
+      "path": "../../src/FSharpx.Collections/FSharpx.Collections.fsproj",
+      "msbuildProject": "../../src/FSharpx.Collections/FSharpx.Collections.fsproj"
+    },
+    "FSharpx.Collections.Experimental/1.0.0": {
+      "type": "project",
+      "path": "../../src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj",
+      "msbuildProject": "../../src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "FSharpx.Collections >= 1.0.0",
+      "FSharpx.Collections.Experimental >= 1.0.0",
+      "Microsoft.SourceLink.GitHub >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/sergey_tihon/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj",
+      "projectName": "csharp",
+      "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj",
+      "packagesPath": "/Users/sergey_tihon/.nuget/packages/",
+      "outputPath": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/sergey_tihon/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {
+            "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj": {
+              "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj"
+            },
+            "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj": {
+              "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "noWarn": [
+          "NU1603",
+          "NU1604",
+          "NU1605",
+          "NU1608"
+        ],
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "dependencies": {
+          "Microsoft.SourceLink.GitHub": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[1.0.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

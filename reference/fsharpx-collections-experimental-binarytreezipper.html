@@ -1,306 +1,954 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>BinaryTreeZipper - fsprojects/FSharpx.Collections</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Steffen Forkmann">
+    <title>BinaryTreeZipper (FSharpx.Collections)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
-    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
-
-
-
-<h1>BinaryTreeZipper</h1>
-<p>
-  <span>Namespace: FSharpx.Collections.Experimental</span><br />
-</p>
-<div class="xmldoc">
-<p>TreeZipper
-original implementation taken from <a href="http://blog.xquant.net/?p=156">http://blog.xquant.net/?p=156</a></p>
-
-</div>
-
-<!-- Render nested types and modules, if there are any -->
-  <h2>Nested types and modules</h2>
-  <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binarytreezipper-binarytree-1.html">BinaryTree<'T></a>
-          </td>
-          <td class="xmldoc"><p>A simple binary tree</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binarytreezipper-binarytreezipper-1.html">BinaryTreeZipper<'T></a>
-          </td>
-          <td class="xmldoc"><p>The zipper datastructure for binary trees</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binarytreezipper-treedirection.html">TreeDirection</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
-
-  <h3>Functions and values</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Function or value</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '502', 502)" onmouseover="showTip(event, '502', 502)">
-            branch x
-          </code>
-          <div class="tip" id="502">
-            <strong>Signature:</strong> x:&#39;?13994 -&gt; BinaryTree&lt;&#39;?13994&gt;<br />
-                          <strong>Type parameters:</strong> '?13994          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L12-12" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Creates a new branch with the label x and two leafs as subbranches</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '503', 503)" onmouseover="showTip(event, '503', 503)">
-            getMove direction
-          </code>
-          <div class="tip" id="503">
-            <strong>Signature:</strong> direction:TreeZipperDirection -&gt; BinaryTreeZipper&lt;&#39;?14046&gt; -&gt; BinaryTreeZipper&lt;&#39;?14046&gt;<br />
-                          <strong>Type parameters:</strong> '?14046          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L56-56" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '504', 504)" onmouseover="showTip(event, '504', 504)">
-            left z
-          </code>
-          <div class="tip" id="504">
-            <strong>Signature:</strong> z:BinaryTreeZipper&lt;&#39;?14028&gt; -&gt; BinaryTreeZipper&lt;&#39;?14028&gt;<br />
-                          <strong>Type parameters:</strong> '?14028          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L37-37" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Moves the zipper to the left</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '505', 505)" onmouseover="showTip(event, '505', 505)">
-            move directions z
-          </code>
-          <div class="tip" id="505">
-            <strong>Signature:</strong> directions:seq&lt;TreeZipperDirection&gt; -&gt; z:BinaryTreeZipper&lt;&#39;T&gt; -&gt; BinaryTreeZipper&lt;&#39;T&gt;<br />
-                          <strong>Type parameters:</strong> 'T          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L63-63" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Moves the zipper in the directions of the given list</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '506', 506)" onmouseover="showTip(event, '506', 506)">
-            right z
-          </code>
-          <div class="tip" id="506">
-            <strong>Signature:</strong> z:BinaryTreeZipper&lt;&#39;?14030&gt; -&gt; BinaryTreeZipper&lt;&#39;?14030&gt;<br />
-                          <strong>Type parameters:</strong> '?14030          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L43-43" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Moves the zipper to the right</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '507', 507)" onmouseover="showTip(event, '507', 507)">
-            setFocus newFocus zipper
-          </code>
-          <div class="tip" id="507">
-            <strong>Signature:</strong> newFocus:BinaryTree&lt;&#39;?14032&gt; -&gt; zipper:BinaryTreeZipper&lt;&#39;?14032&gt; -&gt; BinaryTreeZipper&lt;&#39;?14032&gt;<br />
-                          <strong>Type parameters:</strong> '?14032          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L49-49" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Modifies the current focus inside the zipper</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '508', 508)" onmouseover="showTip(event, '508', 508)">
-            top z
-          </code>
-          <div class="tip" id="508">
-            <strong>Signature:</strong> z:BinaryTreeZipper&lt;&#39;?14026&gt; -&gt; BinaryTreeZipper&lt;&#39;?14026&gt;<br />
-                          <strong>Type parameters:</strong> '?14026          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L31-31" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Moves the zipper to the top</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '509', 509)" onmouseover="showTip(event, '509', 509)">
-            up z
-          </code>
-          <div class="tip" id="509">
-            <strong>Signature:</strong> z:BinaryTreeZipper&lt;&#39;?14024&gt; -&gt; BinaryTreeZipper&lt;&#39;?14024&gt;<br />
-                          <strong>Type parameters:</strong> '?14024          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L24-24" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Moves the zipper one level up</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '510', 510)" onmouseover="showTip(event, '510', 510)">
-            zipper t
-          </code>
-          <div class="tip" id="510">
-            <strong>Signature:</strong> t:BinaryTree&lt;&#39;?14034&gt; -&gt; BinaryTreeZipper&lt;&#39;?14034&gt;<br />
-                          <strong>Type parameters:</strong> '?14034          </div>
-        </td>
-        <td class="xmldoc">
-            <a href="http://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L52-52" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          <p>Creates a zipper from a tree</p>
-
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
         </div>
-        <div class="span3">
-          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu">
-            <li class="nav-header">fsprojects/FSharpx.Collections</li>
-            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-              
-            <li class="nav-header">Using from F#</li>
-            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
-            <li class="nav-header">Performance tests</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-            <li class="nav-header">Documentation</li>
-            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
-                      
-          </ul>
-        </div>
-      </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2>
+    BinaryTreeZipper Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental.html">
+        FSharpx.Collections.Experimental
+      </a>
+    </dt>
+    <dt>
+      Assembly: FSharpx.Collections.Experimental.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+ TreeZipper
+ original implementation taken from http://blog.xquant.net/?p=156
+
+      </p>
     </div>
-    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-  </body>
-  </html>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="TreeZipperDirection">
+                <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">
+                  TreeZipperDirection
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Experimental.BinaryTreeZipper.TreeZipperDirection`')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Experimental.BinaryTreeZipper.TreeZipperDirection\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '563', 563)" onmouseover="showTip(event, '563', 563)">
+                <p>
+                  <a id="branch">
+                    <a href="#branch">
+                      <code><span>BinaryTreeZipper.branch&#32;<span>x</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="563">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.branch&#32;<span>x</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code>'a</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.branch``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.branch``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L21-21" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Creates a new branch with the label x and two leaves as subbranches
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code>'a</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '564', 564)" onmouseover="showTip(event, '564', 564)">
+                <p>
+                  <a id="getMove">
+                    <a href="#getMove">
+                      <code><span>BinaryTreeZipper.getMove&#32;<span>direction</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="564">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.getMove&#32;<span>direction</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        direction
+                      </b>
+                      :
+                      <code><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span>&#32;->&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.getMove``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.getMove``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  direction
+                </span>
+                :
+                <code><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span>&#32;->&#32;<span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '565', 565)" onmouseover="showTip(event, '565', 565)">
+                <p>
+                  <a id="left">
+                    <a href="#left">
+                      <code><span>BinaryTreeZipper.left&#32;<span>z</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="565">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.left&#32;<span>z</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        z
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.left``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.left``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Moves the zipper to the left
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  z
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '566', 566)" onmouseover="showTip(event, '566', 566)">
+                <p>
+                  <a id="move">
+                    <a href="#move">
+                      <code><span>BinaryTreeZipper.move&#32;<span>directions&#32;z</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="566">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.move&#32;<span>directions&#32;z</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        directions
+                      </b>
+                      :
+                      <code><span>seq&lt;<a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a>&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        z
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'T&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.move``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.move``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Moves the zipper in the directions of the given list
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  directions
+                </span>
+                :
+                <code><span>seq&lt;<a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-treezipperdirection.html">TreeZipperDirection</a>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  z
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '567', 567)" onmouseover="showTip(event, '567', 567)">
+                <p>
+                  <a id="right">
+                    <a href="#right">
+                      <code><span>BinaryTreeZipper.right&#32;<span>z</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="567">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.right&#32;<span>z</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        z
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.right``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.right``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Moves the zipper to the right
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  z
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '568', 568)" onmouseover="showTip(event, '568', 568)">
+                <p>
+                  <a id="setFocus">
+                    <a href="#setFocus">
+                      <code><span>BinaryTreeZipper.setFocus&#32;<span>newFocus&#32;zipper</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="568">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.setFocus&#32;<span>newFocus&#32;zipper</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        newFocus
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        zipper
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.setFocus``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.setFocus``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Modifies the current focus inside the zipper
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  newFocus
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  zipper
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '569', 569)" onmouseover="showTip(event, '569', 569)">
+                <p>
+                  <a id="top">
+                    <a href="#top">
+                      <code><span>BinaryTreeZipper.top&#32;<span>z</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="569">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.top&#32;<span>z</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        z
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.top``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.top``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Moves the zipper to the top
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  z
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '570', 570)" onmouseover="showTip(event, '570', 570)">
+                <p>
+                  <a id="up">
+                    <a href="#up">
+                      <code><span>BinaryTreeZipper.up&#32;<span>z</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="570">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.up&#32;<span>z</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        z
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.up``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.up``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Moves the zipper one level up
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  z
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '571', 571)" onmouseover="showTip(event, '571', 571)">
+                <p>
+                  <a id="zipper">
+                    <a href="#zipper">
+                      <code><span>BinaryTreeZipper.zipper&#32;<span>t</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="571">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>BinaryTreeZipper.zipper&#32;<span>t</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        t
+                      </b>
+                      :
+                      <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:FSharpx.Collections.Experimental.BinaryTreeZipper.zipper``1```')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FSharpx.Collections.Experimental.BinaryTreeZipper.zipper``1\'/>')">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections.Experimental/BinaryTreeZipper.fs#L52-52" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+                <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+ Creates a zipper from a tree
+
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  t
+                </span>
+                :
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytree-1.html">BinaryTree</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><span><a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental-binarytreezipper-1.html">BinaryTreeZipper</a>&lt;'a&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

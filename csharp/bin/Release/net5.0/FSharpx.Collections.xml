@@ -1,0 +1,2885 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharpx.Collections</name></assembly>
+<members>
+<member name="P:FSharpx.Collections.LazyList`1.Uncons">
+<summary>
+O(1). Returns tuple of head element and tail of the list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.TryUncons">
+<summary>
+O(1). Returns option tuple of head element and tail of the list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.TryTail">
+<summary>
+O(1). Return option the list corresponding to the remaining items in the sequence.
+ Forces the evaluation of the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.TryHead">
+<summary>
+O(1). Return option the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.Tail">
+<summary>
+O(1). Return the list corresponding to the remaining items in the sequence.
+ Forces the evaluation of the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.IsEmpty">
+<summary>
+O(1). Test if a list is empty.  Forces the evaluation of
+ the first element of the stream if it is not already evaluated.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.LazyList`1.Head">
+<summary>
+O(1). Return the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList`1.Length">
+<summary>
+O(n). Return the length of the list
+</summary>
+</member>
+<member name="T:FSharpx.Collections.LazyList`1">
+<summary>
+ LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
+ uncached sequences. LazyLists normally involve delayed computations without
+ side-effects.  The results of these computations are cached and evaluations will be
+ performed only once for each element of the lazy list.  In contrast, for sequences
+ (IEnumerable) recomputation happens each time an enumerator is created and the sequence
+ traversed.
+
+ LazyLists can represent cached, potentially-infinite computations.  Because they are
+ cached they may cause memory leaks if some active code or data structure maintains a
+ live reference to the head of an infinite or very large lazy list while iterating it,
+ or if a reference is maintained after the list is no longer required.
+
+ Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns.
+ These may force the computation of elements of the list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Uncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Unconj">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryUncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryUnconj">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryTail">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryLast">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryInitial">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.TryHead">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Tail">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Rev">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Length">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Last">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.IsEmpty">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Initial">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Deque`1.Head">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque`1.Cons(`0)">
+<summary>
+O(1). Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque`1.Conj(`0)">
+<summary>
+O(1). Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Deque`1">
+<summary>
+ Double-ended queue is an ordered linear linear structure implementing the signature of List
+ (head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). &quot;head&quot; inspects
+ the first or left-most element in the structure, while &quot;last&quot; inspects the last or
+ right-most element. &quot;rev&quot; (reverse) has time complexity O(1). Ordering is by insertion history.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.Uncons">
+<summary>
+O(log n). Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.TryUncons">
+<summary>
+O(log n). Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.TryTail">
+<summary>
+O(log n). Returns option DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.TryHead">
+<summary>
+O(log n). Returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.Tail">
+<summary>
+O(log n). Returns a new DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.Length">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.IsEmpty">
+<summary>
+O(1). Returns true if the DList has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.DList`1.Head">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList`1.Cons(`0)">
+<summary>
+O(1). Returns a new DList with the element added to the front.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList`1.Conj(`0)">
+<summary>
+O(1). Returns a new DList with the element added to the end.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.DList`1">
+<summary>
+ DList is an ordered linear structure implementing the List signature (head, tail, cons),
+ end-insertion (conj), and O(1) append. Ordering is by insertion history.
+ DList is an implementation of [John Hughes&apos; append list](http://dl.acm.org/citation.cfm?id=8475).
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteString.GetHashCode">
+<summary>
+ Gets the hash code for the byte string.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteString.GetEnumerator">
+<summary>
+ Gets an enumerator for the bytes stored in the byte string.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteString.Equals(System.Object)">
+<summary>
+ Compares two objects for equality. When both are byte strings, structural equality is used.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteString.Compare(FSharpx.Collections.ByteString,FSharpx.Collections.ByteString)">
+<summary>
+ Compares two byte strings based on their structure.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.ByteString">
+<summary>
+ An ArraySegment with structural comparison and equality.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Heap`1.TryHead">
+<summary>
+O(1) worst case. Returns option first min or max element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Heap`1.Length">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Heap`1.IsEmpty">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Heap`1.IsDescending">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Heap`1.Head">
+<summary>
+O(1) worst case. Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.Uncons">
+<summary>
+O(log n) amortized time. Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.TryUncons">
+<summary>
+O(log n) amortized time. Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.TryTail">
+<summary>
+O(log n) amortized time. Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.TryMerge(FSharpx.Collections.Heap{`0})">
+<summary>
+O(log n) amortized time. Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.Tail">
+<summary>
+O(log n) amortized time. Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.Rev">
+<summary>
+O(n log n). Returns heap reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.Merge(FSharpx.Collections.Heap{`0})">
+<summary>
+O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap`1.Insert(`0)">
+<summary>
+O(log n) amortized time. Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Heap`1">
+<summary>
+ Heap is an ordered linear structure where the ordering is either ascending or descending.
+ &quot;head&quot; inspects the first element in the ordering, &quot;tail&quot; takes the remaining structure
+ after head, and &quot;insert&quot; places elements within the ordering. PriorityQueue is available
+ as an alternate interface.
+ According to Okasaki the time complexity of the heap functions in this Heap implementation
+ (based on the &quot;pairing&quot; heap) have &quot;resisted&quot; time complexity analysis.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.IPriorityQueue`1.Length">
+<summary>
+returns the count of the elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.IPriorityQueue`1.TryPeek">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.IPriorityQueue`1.Pop">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.IPriorityQueue`1.Peek">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.IPriorityQueue`1.Insert(`0)">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.Uncons">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns tuple first element and random access list without first item
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.TryUncons">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option tuple first element and random access list without first item
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.TryTail">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option random access list without the first item.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.TryHead">
+<summary>
+ O(1). Returns option first element in the random access list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.Tail">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new random access list without the first item. If the collection is empty it throws an exception.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.Length">
+<summary>
+ O(1). Returns the number of items in the random access list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.Item(System.Int32)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns random access list element at the index.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.IsEmpty">
+<summary>
+ O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.RandomAccessList`1.Head">
+<summary>
+ O(1). Returns the first element in the random access list. If the random access list is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList`1.Update(System.Int32,`0)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList`1.TryUpdate(System.Int32,`0)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList`1.Rev">
+<summary>
+ O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList`1.Cons(`0)">
+<summary>
+ O(1). Returns a new random access list with the element added at the start.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.RandomAccessList`1">
+<summary>
+ RandomAccessList is an ordered linear structure implementing the List signature
+ (head, tail, cons), as well as inspection (lookup) and update (returning a new
+ immutable instance) of any element in the structure by index. Length is O(1). Indexed
+ lookup or update (returning a new immutable instance of RandomAccessList) of any element
+ is O(log32n), which is close enough to O(1) as to make no practical difference: a
+ RandomAccessList containing 4 billion items can lookup or update any item in at most 7
+ steps. Ordering is by insertion history. While PersistentVector&amp;lt;&apos;T&amp;gt; is appending to the
+ end this version prepends elements to the list.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.Uncons">
+<summary>
+O(1) amortized, O(n) worst-case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.TryUncons">
+<summary>
+O(1) amortized, O(n) worst-case. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.TryTail">
+<summary>
+O(1) amortized, O(n) worst-case. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.TryHead">
+<summary>
+O(1). Returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.Tail">
+<summary>
+O(1) amortized, O(n) worst-case. Returns a new queue of the elements trailing the first element. (Dequeue)
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.Length">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.IsEmpty">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Queue`1.Head">
+<summary>
+O(1). Returns the first element. (Peek)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue`1.Rev">
+<summary>
+O(n). Returns queue reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue`1.Conj(`0)">
+<summary>
+O(1). Returns a new queue with the element added to the end. (Enqueue)
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Queue`1">
+<summary>
+ Queue is an ordered linear data structure where elements are added at the end (right)
+ and inspected and removed at the beginning (left). Ordering is by insertion history.
+ The qualities of the Queue structure make elements first in, first out (fifo).
+ &quot;head&quot; inspects the first or left-most element in the structure, while &quot;conj&quot;
+ inserts an element at the end, or right of the structure.
+ Purely functional (immutable) Queue based on Okasaki&apos;s batched queue.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.Unconj">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns tuple last element and vector without last item
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.TryUnconj">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option tuple last element and vector without last item
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.TryLast">
+<summary>
+ O(1). Returns option last element in the vector.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.TryInitial">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option vector without the last item.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.Length">
+<summary>
+ O(1). Returns the number of items in the vector.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.Last">
+<summary>
+ O(1). Returns the last element in the vector. If the vector is empty it throws an exception.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.Item(System.Int32)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns vector element at the index.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.IsEmpty">
+<summary>
+ O(1). Returns true if the vector has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.PersistentVector`1.Initial">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector`1.Update(System.Int32,`0)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector`1.TryUpdate(System.Int32,`0)">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector`1.Rev">
+<summary>
+ O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector`1.Empty">
+<summary>
+ O(1). Returns a new PersistentVector with no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector`1.Conj(`0)">
+<summary>
+ O(1). Returns a new vector with the element added at the end.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.PersistentVector`1">
+<summary>
+ PersistentVector is an ordered linear structure implementing the inverse of the List signature,
+ (last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
+ (returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
+ to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
+ lookup or update any item in at most 7 steps.
+ Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
+</summary>
+</member>
+<member name="T:FSharpx.Collections.PersistentHashMap`2">
+<summary>
+ A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
+ Hash maps provide fast access (log32N hops). count is O(1).
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.Uncons">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.TryUncons">
+<summary>
+returns the option first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.TryGetTail">
+<summary>
+returns a option random access list of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.TryGetHead">
+<summary>
+returns option first element 
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.Tail">
+<summary>
+returns a new random access list of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.IsEmpty">
+<summary>
+returns true if the random access list has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IRandomAccessList`1.Head">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Update(System.Int32,`0)">
+<summary>
+returns random access list with element updated by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.TryUpdate(System.Int32,`0)">
+<summary>
+returns option random access list with element updated by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.TryLookup(System.Int32)">
+<summary>
+returns option element by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Rev">
+<summary>
+returns random access list reversed
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Lookup(System.Int32)">
+<summary>
+returns element by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Count">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IRandomAccessList`1.Cons(`0)">
+<summary>
+returns a new random access list with the element added to the beginning
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.Uncons">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.TryGetTail">
+<summary>
+returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.TryGetHead">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.Tail">
+<summary>
+returns a new queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.IsEmpty">
+<summary>
+returns true if the queue has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IQueue`1.Head">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IQueue`1.Snoc(`0)">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IQueue`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IQueue`1.Count">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.Uncons">
+<summary>
+returns the head element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.TryUncons">
+<summary>
+returns option head element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.TryMerge(`0)">
+<summary>
+returns heap option from merging two heaps
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.TryGetTail">
+<summary>
+returns option heap of the elements trailing the head
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.Tail">
+<summary>
+returns a new heap of the elements trailing the head
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.Merge(`0)">
+<summary>
+returns heap from merging two heaps, both must have same isDescending
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`2.Insert(`1)">
+<summary>
+returns a new heap with the element inserted
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IHeap`1.IsEmpty">
+<summary>
+returns true if the heap has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IHeap`1.IsDescending">
+<summary>
+returns true if the heap has max element at head
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`1.TryGetHead">
+<summary>
+returns option first min or max element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`1.Head">
+<summary>
+returns the min or max element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IHeap`1.Count">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Unsnoc">
+<summary>
+returns init and the last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Uncons">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.TryUnsnoc">
+<summary>
+returns option init and the last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.TryGetTail">
+<summary>
+returns option deque of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.TryGetLast">
+<summary>
+returns option last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.TryGetInit">
+<summary>
+returns option deque of the elements before the last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.TryGetHead">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Tail">
+<summary>
+returns a new deque of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Rev">
+<summary>
+returns deque reversed
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Last">
+<summary>
+returns the last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.IsEmpty">
+<summary>
+returns true if the deque has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Init">
+<summary>
+returns a new deque of the elements before the last element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Head">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IDeque`1.Count">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.Update(System.Int32,`0)">
+<summary>
+returns deque with element updated by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.TryUpdate(System.Int32,`0)">
+<summary>
+returns option deque with element updated by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.TryLookup(System.Int32)">
+<summary>
+returns option element by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.Snoc(`0)">
+<summary>
+returns a new deque with the element added to the end
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.Remove(System.Int32)">
+<summary>
+returns deque with element removed by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.Lookup(System.Int32)">
+<summary>
+returns element by index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IDeque`1.Cons(`0)">
+<summary>
+returns a new deque with the element added to the beginning
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Interfaces.IPersistentVector`1.Item(System.Int32)">
+<summary>
+ Returns the value at the index. If the index is out of bounds it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IPersistentVector`1.Pop">
+<summary>
+ Returns a new vector without the last item. If the collection is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IPersistentVector`1.Peek">
+<summary>
+ Returns the last element in the vector. If the vector is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IPersistentVector`1.Count">
+<summary>
+ Returns the number of items in the collection.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IPersistentVector`1.Conj(`0)">
+<summary>
+ Returns a new vector with the element &apos;added&apos; at the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Interfaces.IPersistentVector`1.AssocN(System.Int32,`0)">
+<summary>
+ Returns a new vector that contains the given value at the index. Note - index must be &amp;lt;= vector.Count.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.TimeMeasurement.averageTime``1(System.Int32,System.String,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Stops the average runtime for a given function and applies it the given count
+ Afterwards it reports it with the given description
+</summary>
+</member>
+<member name="M:FSharpx.Collections.TimeMeasurement.stopAverageTime``1(System.Int32,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Stops the average runtime for a given function and applies it the given count
+</summary>
+</member>
+<member name="M:FSharpx.Collections.TimeMeasurement.stopTime``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``0})">
+<summary>
+ Stops the runtime for a given function
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.equalsWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},FSharpx.Collections.LazyList{``0},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Checks if two lazy lists are equal using the given equality function, element by element.
+ Both lists are evaluated until one of them is empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.compareWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Int32}},FSharpx.Collections.LazyList{``0},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Compares two lazy lists using the given comparison function, element by element.
+ Both lists are evaluated until one of them is empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.rev``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+ Returns the reverse list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(1). Build a new collection from the given enumerable object
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.toSeq``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Return a view of the collection as an enumerable object
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.toList``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Build a non-lazy list from the given collection. This function will eagerly evaluate all of the
+ list (and thus may not terminate).
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(1). Build a collection from the given list. This function will eagerly evaluate all of the
+ list (and thus may not terminate).
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.toArray``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Build an array from the given collection
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.ofArray``1(``0[])">
+<summary>
+O(1). Build a collection from the given array. This function will eagerly evaluate all of the
+ list (and thus may not terminate).
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.map2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharpx.Collections.LazyList{``0},FSharpx.Collections.LazyList{``1})">
+<summary>
+O(1). Build a new collection whose elements are the results of applying the given function
+ to the corresponding elements of the two collections pairwise.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Build a new collection whose elements are the results of applying the given function
+ to each of the elements of the collection.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.scan``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.LazyList{``1})">
+<summary>
+O(1). Return a new list consisting of the results of applying the given accumulating function
+ to successive elements of the list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Apply the given function to each element of the collection.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return a new collection which on consumption will consist of only the elements of the collection
+ for which the given predicate returns &quot;true&quot;
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.split``1(FSharpx.Collections.LazyList{``0},System.Int32)">
+<summary>
+ Splits the list at the gicen index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.concat``1(FSharpx.Collections.LazyList{FSharpx.Collections.LazyList{``0}})">
+<summary>
+O(1). Return the list which contains on demand the list of elements of the list of lazy lists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.zip``2(FSharpx.Collections.LazyList{``0},FSharpx.Collections.LazyList{``1})">
+<summary>
+O(1). Return the list which contains on demand the pair of elements of the first and second list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.append``1(FSharpx.Collections.LazyList{``0},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return the list which contains on demand the elements of the first list followed
+ by the elements of the second list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.unfold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{System.Tuple{``1,``0}}},``0)">
+<summary>
+O(1). Return a list that contains the elements returned by the given computation.
+ The given computation is not executed until the first element on the list is
+ consumed.  The given argument is passed to the computation.  Subsequent elements
+ in the list are generated by again applying the residual &apos;b to the computation.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.delayed``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,FSharpx.Collections.LazyList{``0}})">
+<summary>
+O(1). Return a list that is in effect the list returned by the given computation.
+ The given computation is not executed until the first element on the list is
+ consumed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.repeat``1(``0)">
+<summary>
+O(1). Return the list which on consumption will consist of an infinite sequence of
+ the given item
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.consDelayed``1(``0,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,FSharpx.Collections.LazyList{``0}})">
+<summary>
+O(1). Return a new list which on consumption contains the given item
+ followed by the list returned by the given computation.  The
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.cons``1(``0,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return a new list which contains the given item followed by the
+ given list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.length``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n). Return the length of the list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.empty``1">
+<summary>
+O(1). Evaluates to the list that contains no items
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.find``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), worst case. Return the first element for which the given function returns &lt;c&gt;true&lt;/c&gt;.
+ Raise &lt;c&gt;KeyNotFoundException&lt;/c&gt; if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tryFind``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), worst case. Apply the given function to successive elements of the list, returning the first
+ result where function returns &lt;c&gt;Some(x)&lt;/c&gt; for some x. If the function never returns
+ true, &apos;None&apos; is returned.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.mapAccum``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}},``0,FSharpx.Collections.LazyList{``1})">
+<summary>
+O(n). Behaves like a combination of map and fold;
+ it applies a function to each element of a list,
+ passing an accumulating parameter from left to right,
+ and returning a final value of this accumulator together with the new list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.LazyList{``1})">
+<summary>
+O(n). /// it applies a function to each element of a list,
+ passing an accumulating parameter from left to right,
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.trySkip``1(System.Int32,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), where n is count. Return option the list which skips the first &apos;n&apos; elements of
+ the input list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.skip``1(System.Int32,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), where n is count. Return the list which on consumption will skip the first &apos;n&apos; elements of
+ the input list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tryTake``1(System.Int32,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), where n is count. Return the list which on consumption will consist of at most &apos;n&apos; elements of
+ the input list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.drop``1(System.Int32,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), where n is count. Return the list which on consumption will remove of at most &apos;n&apos; elements of
+ the input list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.take``1(System.Int32,FSharpx.Collections.LazyList{``0})">
+<summary>
+O(n), where n is count. Return the list which on consumption will consist of at most &apos;n&apos; elements of
+ the input list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tryUncons``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Returns option tuple of head element and tail of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.uncons``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Returns tuple of head element and tail of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tryTail``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return option the list corresponding to the remaining items in the sequence.
+ Forces the evaluation of the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tail``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return the list corresponding to the remaining items in the sequence.
+ Forces the evaluation of the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.tryHead``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return option the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.head``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Return the first element of the list.  Forces the evaluation of
+ the first cell of the list if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.LazyList.isEmpty``1(FSharpx.Collections.LazyList{``0})">
+<summary>
+O(1). Test if a list is empty.  Forces the evaluation of
+ the first element of the stream if it is not already evaluated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.distinct``1(System.Collections.Generic.List{``0})">
+<summary>
+ Returns an array that contains no duplicate entries according to generic hash and
+ equality comparisons on the entries.
+ If an element occurs multiple times in the array then the later occurrences are discarded.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.distinctBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.Collections.Generic.List{``0})">
+<summary>
+ Returns an array that contains no duplicate entries according to the 
+ generic hash and equality comparisons on the keys returned by the given key-generating function.
+ If an element occurs multiple times in the array then the later occurrences are discarded.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.unzip``2(System.Collections.Generic.List{System.Tuple{``0,``1}})">
+<summary>
+ Split an array of pairs into two arrays
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.zip``2(System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Combine the two arrays into an array of pairs. The two arrays must have equal lengths, otherwise an &lt;c&gt;ArgumentException&lt;/c&gt; is
+ raised..
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.tryFindIndexi``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},System.Collections.Generic.List{``0})">
+<summary>
+ Return the index of the first element in the array
+ that satisfies the given predicate.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.tryFindIndex``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Return the index of the first element in the array
+ that satisfies the given predicate.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.singleton``1(``0)">
+<summary>
+ Return an array containing the given element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.scanBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},System.Collections.Generic.List{``0},``1)">
+<summary>
+ Like &lt;c&gt;foldBack&lt;/c&gt;, but return both the intermediary and final results
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.scan``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,System.Collections.Generic.List{``1})">
+<summary>
+ Like &lt;c&gt;fold&lt;/c&gt;, but return the intermediary and final results
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.mapi2``3(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Build a new collection whose elements are the results of applying the given function
+ to the corresponding elements of the two collections pairwise.  The two input
+ arrays must have the same lengths, otherwise an &lt;c&gt;ArgumentException&lt;/c&gt; is
+ raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.iteri2``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit}}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Apply the given function to pair of elements drawn from matching indices in two arrays,
+ also passing the index of the elements. The two arrays must have the same lengths, 
+ otherwise an &lt;c&gt;ArgumentException&lt;/c&gt; is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.isEmpty``1(System.Collections.Generic.List{``0})">
+<summary>
+ Return true if the given array is empty, otherwise false
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.forall2``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Test elements of the two arrays pairwise to see if all pairs of elements satisfy the given predicate.
+ Raise ArgumentException if the arrays have different lengths.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.foldBack2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``2}}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1},``2)">
+<summary>
+ Apply a function to pairs of elements drawn from the two collections, right-to-left, 
+ threading an accumulator argument through the computation.  The two input
+ arrays must have the same lengths, otherwise an &lt;c&gt;ArgumentException&lt;/c&gt; is
+ raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.fold2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``0}}},``0,System.Collections.Generic.List{``1},System.Collections.Generic.List{``2})">
+<summary>
+ Apply a function to pairs of elements drawn from the two collections, 
+ left-to-right, threading an accumulator argument
+ through the computation.  The two input
+ arrays must have the same lengths, otherwise an &lt;c&gt;ArgumentException&lt;/c&gt; is
+ raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.reduceBack``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Collections.Generic.List{``0})">
+<summary>
+ Apply a function to each element of the array, threading an accumulator argument
+ through the computation. If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; then 
+ computes &lt;c&gt;f i0 (...(f iN-1 iN))&lt;/c&gt;. Raises ArgumentException if the array has size zero.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.reduce``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Collections.Generic.List{``0})">
+<summary>
+ Apply a function to each element of the array, threading an accumulator argument
+ through the computation. If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; 
+ then computes &lt;c&gt;f (... (f i0 i1)...) iN&lt;/c&gt;. Raises ArgumentException if the array has size zero.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.findIndexi``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},System.Collections.Generic.List{``0})">
+<summary>
+ Return the index of the first element in the array
+ that satisfies the given predicate. Raise &lt;c&gt;KeyNotFoundException&lt;/c&gt; if 
+ none of the elements satisfy the predicate.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.findIndex``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Return the index of the first element in the array
+ that satisfies the given predicate. Raise &lt;c&gt;KeyNotFoundException&lt;/c&gt; if 
+ none of the elements satisfy the predicate.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.exists2``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Test elements of the two arrays pairwise to see if any pair of element satisfies the given predicate.
+ Raise ArgumentException if the arrays have different lengths.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.toSeq``1(System.Collections.Generic.List{``0})">
+<summary>
+ Return a view of the array as an enumerable object
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.ofArray``1(``0[])">
+<summary>
+ Build a ResizeArray from the given elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.toArray``1(System.Collections.Generic.List{``0})">
+<summary>
+ Return a fixed-length array containing the elements of the input ResizeArray
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.sortBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.Collections.Generic.List{``0})">
+<summary>
+ Sort the elements using the key extractor and generic comparison on the keys
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.sort``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Int32}},System.Collections.Generic.List{``0})">
+<summary>
+ Sort the elements using the given comparison function
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.rev``1(System.Collections.Generic.List{``0})">
+<summary>
+ Return a new array with the elements in reverse order
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.tryPick``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},System.Collections.Generic.List{``0})">
+<summary>
+ Apply the given function to successive elements, returning the first
+ result where function returns &quot;Some(x)&quot; for some x.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.tryFind``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Return the first element for which the given function returns &lt;c&gt;true&lt;/c&gt;.
+ Return None if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.find``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Return the first element for which the given function returns &lt;c&gt;true&lt;/c&gt;.
+ Raise &lt;c&gt;KeyNotFoundException&lt;/c&gt; if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.choose``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}},System.Collections.Generic.List{``0})">
+<summary>
+ Apply the given function to each element of the array. Return
+ the array comprised of the results &quot;x&quot; for each element where
+ the function returns Some(x)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.partition``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Split the collection into two collections, containing the 
+ elements for which the given predicate returns &lt;c&gt;true&lt;/c&gt; and &lt;c&gt;false&lt;/c&gt;
+ respectively 
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Return a new collection containing only the elements of the collection
+ for which the given predicate returns &lt;c&gt;true&lt;/c&gt;
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.forall``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Test if all elements of the array satisfy the given predicate.
+ If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; and &quot;j0...jN&quot;
+ then computes &lt;c&gt;p i0 &amp;&amp; ... &amp;&amp; p iN&lt;/c&gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.exists``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.List{``0})">
+<summary>
+ Test if any element of the array satisfies the given predicate.
+ If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; 
+ then computes &lt;c&gt;p i0 or ... or p iN&lt;/c&gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.mapi``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,``1}},System.Collections.Generic.List{``0})">
+<summary>
+ Build a new array whose elements are the results of applying the given function
+ to each of the elements of the array. The integer index passed to the
+ function indicates the index of element being transformed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.iteri``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit}},System.Collections.Generic.List{``0})">
+<summary>
+ Apply the given function to each element of the array.  The integer passed to the
+ function indicates the index of element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.map2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Build a new collection whose elements are the results of applying the given function
+ to the corresponding elements of the two collections pairwise.  The two input
+ arrays must have the same lengths.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.iter2``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit}},System.Collections.Generic.List{``0},System.Collections.Generic.List{``1})">
+<summary>
+ Apply the given function to two arrays simultaneously. The
+ two arrays must have the same lengths, otherwise an Invalid_argument exception is
+ raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.Collections.Generic.List{``0})">
+<summary>
+ Build a new array whose elements are the results of applying the given function
+ to each of the elements of the array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},System.Collections.Generic.List{``0})">
+<summary>
+ Apply the given function to each element of the array. 
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},System.Collections.Generic.List{``0},``1)">
+<summary>
+ Apply a function to each element of the array, threading an accumulator argument
+ through the computation. If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; then 
+ computes &lt;c&gt;f i0 (...(f iN s))&lt;/c&gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,System.Collections.Generic.List{``1})">
+<summary>
+ Apply a function to each element of the collection, threading an accumulator argument
+ through the computation. If the input function is &lt;c&gt;f&lt;/c&gt; and the elements are &lt;c&gt;i0...iN&lt;/c&gt; 
+ then computes &lt;c&gt;f (... (f s i0)...) iN&lt;/c&gt;
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Build and array from the given seq
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Build an array from the given list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.toList``1(System.Collections.Generic.List{``0})">
+<summary>
+ Build a list from the given array
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.blit``1(System.Collections.Generic.List{``0},System.Int32,System.Collections.Generic.List{``0},System.Int32,System.Int32)">
+<summary>
+ Read a range of elements from the first array and write them into the second.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.fill``1(System.Collections.Generic.List{``0},System.Int32,System.Int32,``0)">
+<summary>
+ Fill a range of the collection with the given element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.copy``1(System.Collections.Generic.List{``0})">
+<summary>
+ Build a new array that contains the elements of the given array
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.sub``1(System.Collections.Generic.List{``0},System.Int32,System.Int32)">
+<summary>
+ Build a new array that contains the given subrange specified by
+ starting index and length.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.concat``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.List{``0}})">
+<summary>
+ Build a new array that contains the elements of each of the given list of arrays
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.append``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+<summary>
+ Build a new array that contains the elements of the first array followed by the elements of the second array
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.init``1(System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,``0})">
+<summary>
+ Create an array by calling the given generator on each index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.create``1(System.Int32,``0)">
+<summary>
+ Create an array whose elements are all initially the given value.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.set``1(System.Collections.Generic.List{``0},System.Int32,``0)">
+<summary>
+ Set the value of an element in the collection. You can also use the syntax &lt;c&gt;arr.[idx] &amp;lt;- e&lt;/c&gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.get``1(System.Collections.Generic.List{``0},System.Int32)">
+<summary>
+ Fetch an element from the collection.  You can also use the syntax &lt;c&gt;arr.[idx]&lt;/c&gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ResizeArray.length``1(System.Collections.Generic.List{``0})">
+<summary>
+ Return the length of the collection.  You can also use property &lt;c&gt;arr.Length&lt;/c&gt;.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.ResizeArray">
+<summary>
+ Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.ofSeq(System.Collections.Generic.IEnumerable{System.Tuple{System.String,System.String}})">
+ <summary>
+ Creates a <see cref="NameValueCollection"/> from a list of key-value pairs
+ </summary>
+ <param name="l"></param>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.toList(System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ Returns a <see cref="NameValueCollection"/> as a list of key-value pairs.
+ Note that keys may be duplicated.
+ </summary>
+ <param name="a"></param>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.ToEnumerable(System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ Returns a <see cref="NameValueCollection"/> as a sequence of key-value pairs.
+ Note that keys may be duplicated.
+ </summary>
+ <param name="a"></param>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.ToArray(System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ Returns a <see cref="NameValueCollection"/> as an array of key-value pairs.
+ Note that keys may be duplicated.
+ </summary>
+ <param name="a"></param>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.add(System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+<summary>
+ Adds an element to a copy of an existing NameValueCollection
+</summary>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.addInPlace(System.Collections.Specialized.NameValueCollection,System.String,System.String)">
+ <summary>
+ In-place add of a key-value pair to a <see cref="NameValueCollection"/>
+ </summary>
+ <param name="x"></param>
+ <param name="a"></param>
+ <param name="b"></param>
+</member>
+<member name="M:FSharpx.Collections.NameValueCollection.Concat(System.Collections.Specialized.NameValueCollection,System.Collections.Specialized.NameValueCollection)">
+ <summary>
+ Returns a new <see cref="NameValueCollection"/> with the concatenation of two <see cref="NameValueCollection"/>s
+ </summary>
+ <param name="a"></param>
+ <param name="b"></param>
+</member>
+<member name="T:FSharpx.Collections.NameValueCollection">
+<summary>
+ Extensions for NameValueCollections.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.equalsWith``2(Microsoft.FSharp.Core.FSharpFunc{System.Tuple{``0,``1},Microsoft.FSharp.Core.FSharpFunc{System.Tuple{``0,``1},System.Boolean}},Microsoft.FSharp.Collections.FSharpMap{``0,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Compares two maps for equality using the given comparison function, element by element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.catOptionValues``2(Microsoft.FSharp.Collections.FSharpMap{``0,Microsoft.FSharp.Core.FSharpOption{``1}})">
+<summary>
+ The catOptions function takes a map of keys and Options and returns a map of all the keys and Some values.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.catOptionKeys``2(Microsoft.FSharp.Collections.FSharpMap{Microsoft.FSharp.Core.FSharpOption{``0},``1})">
+<summary>
+ The catOptions function takes a map of Options and values and returns a map of all the Some keys and values.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.keySet``2(Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Retrieves the key set from a Map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.keys``2(Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Retrieves the keys from a Map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.values``2(Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Retrieves the values from a Map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.removeMany``2(System.Collections.Generic.IEnumerable{``0},Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Allows to remove many keys from a Map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.union``2(Microsoft.FSharp.Collections.FSharpMap{``0,``1},Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ Combines the two Maps into a single Map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Map.updateWith``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}},``1,Microsoft.FSharp.Collections.FSharpMap{``1,``0})">
+ <summary>
+ <code>update f k map</code> updates the value <code>x</code> at key <code>k</code> (if it is in the map).
+ If <code>f x</code> is <code>None</code>, the element is deleted.
+ If it is <code>Some y</code>, the key is bound to the new value <code>y</code>.
+ </summary>
+</member>
+<member name="M:FSharpx.Collections.Map.insertWith``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},``1,``0,Microsoft.FSharp.Collections.FSharpMap{``1,``0})">
+ <summary>
+ <code>insertWith f key defaultValue mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
+ If the key does exist, the function will insert <code>f defaultValue oldValue</code>.
+ </summary>
+</member>
+<member name="T:FSharpx.Collections.Map">
+<summary>
+ Extensions for F#&apos;s Map module.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Dictionary">
+<summary>
+ Extensions for System.Collections.Generic.Dictionary.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.equalsWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Compares two lists for equality using the given comparison function, element by element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.partitionChoices``2(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Partitions a list of Choice into two lists. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.choice2s``2(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.choice1s``2(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Extracts from a list of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.catOptions``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+ The catOptions function takes a list of Options and returns a list of all the Some values.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.merge``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Merges two sequences by the default comparer for &apos;T
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.mergeBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Merges to sequences using the given function to transform the elements for comparision
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.mapAccum``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}},``0,Microsoft.FSharp.Collections.FSharpList{``1})">
+<summary>
+ Behaves like a combination of map and fold;
+ it applies a function to each element of a list,
+ passing an accumulating parameter from left to right,
+ and returning a final value of this accumulator together with the new list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.groupNeighboursBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Applies a key-generating function to each element of a list and yields a list of unique keys and a list of all elements that have each key.
+ This function groups together only neighbouring elements in the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.List.cons``1(``0,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Curried cons
+</summary>
+</member>
+<member name="T:FSharpx.Collections.List">
+<summary>
+ Extensions for F#&apos;s List module.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.equalsWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},``0[],``0[])">
+<summary>
+ Compares two arrays for equality using the given comparison function, element by element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.partitionChoices``2(Microsoft.FSharp.Core.FSharpChoice{``0,``1}[])">
+<summary>
+ Partitions an array of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.choice2s``2(Microsoft.FSharp.Core.FSharpChoice{``0,``1}[])">
+<summary>
+ Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.choice1s``2(Microsoft.FSharp.Core.FSharpChoice{``0,``1}[])">
+<summary>
+ Extracts from an array of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.catOptions``1(Microsoft.FSharp.Core.FSharpOption{``0}[])">
+<summary>
+ The catOptions function takes a list of Options and returns an array of all the Some values.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.centralMovingAverageOfOption``1(System.Int32,Microsoft.FSharp.Core.FSharpOption{``0}[])">
+<summary>
+ Calculates the central moving average for the array of optional elements using n
+ elements either side of the point where the mean is being calculated. If any of
+ the optional elements in the averaging window are None then the average itself
+ is None.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.centralMovingAverage``1(System.Int32,``0[])">
+<summary>
+ Calculates the central moving average for the array using n elements either side
+ of the point where the mean is being calculated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.centeredWindow``1(System.Int32,``0[])">
+<summary>
+ Returns an array of sliding windows of data drawn from the source array.
+ Each window contains the n elements surrounding the current element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.toTuple``2(``0[])">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.copyTo``1(System.Int32,System.Int32,``0[],``0[])">
+<summary>
+ copy items from one array to another
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.setAt``1(System.Int32,``0,``0[])">
+<summary>
+ set the ith item of array
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Array.nth``1(System.Int32,``0[])">
+<summary>
+ nth item of array
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Array">
+<summary>
+ Extensions for F#&apos;s Array module.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.equalsWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Compares two sequences for equality using the given comparison function, element by element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.partitionChoices``2(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Partitions a seq of Choice into two seqs. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.choice2s``2(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Extracts from a seq of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.choice1s``2(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Extracts from a seq of Choice all the Choice1Of2 elements. All the Choice1Of2 elements are extracted in order.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.catOptions``1(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+ The catOptions function takes a list of Options and returns a seq of all the Some values.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.page``1(System.Int32,System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Pages the underlying sequence
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.grow``1(System.Int32)">
+<summary>
+ Replicates each element in the seq n-times
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.combine``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+<summary>
+ Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences.
+ Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.contract``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Contracts a seq selecting every n values
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.repeat``1(``0)">
+<summary>
+ Creates an infinite sequence of the given value
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.skipNoFail``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
+ Alias for Enumerable.Skip
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.tryNth``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ The same as Seq.nth except returns None if the sequence is empty or does not have enough elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.tryHead``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ A safe version of seq head
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.asCircularWithBreak``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Creates a infinite sequences of the given values returning None everytime the given seq is exhausted
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.asCircularOnLoop``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Core.Unit},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.asCircular``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Creates a infinite sequences of the given values
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.ofStreamByChunk(System.Int32,System.IO.Stream)">
+<summary>
+ Converts a stream into a seq of byte[] where the array is of the length given
+ Note: the last chunk maybe less than the given chunk size
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.ofStreamByByte(System.IO.Stream)">
+<summary>
+ Converts a Stream into a sequence of bytes
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.ofStreamReader(System.IO.StreamReader)">
+<summary>
+ Converts a streamReader into a seq yielding on each line
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.groupNeighboursBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Applies a key-generating function to each element of a sequence and yields a sequence of unique keys and a sequence of all elements that have each key.
+ This function groups together only neighbouring elements in the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.span``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Splits a sequences up to the point where the predicate holds
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.splitAt``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Splits a sequences at the given index
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.tryAverage``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ The same as Seq.average except will return None if the seq is empty
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.iterBreak``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Will iterate the current sequence until the given predicate is satisfied
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.tryFindWithIndex``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Returns the first element (with its index) for which the given function returns true.
+ Return None if no such element exists.
+ </summary>
+ <param name="pred">Predicate</param>
+ <param name="l">Sequence</param>
+</member>
+<member name="M:FSharpx.Collections.Seq.index``1(System.Collections.Generic.IEnumerable{``0})">
+ <summary>
+ Adds an index to a sequence
+ </summary>
+ <param name="a"></param>
+</member>
+<member name="M:FSharpx.Collections.Seq.unCons``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Returns the head and tail of the seq. If the seq is empty, returns `None`.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Seq.cons``1(``0,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Prepends `x` to the seq `xs`
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Seq">
+<summary>
+ Extensions for F#&apos;s Seq module.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryUncons``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.toSeq``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(n). Views the given deque as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.uncons``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryUnconj``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.unconj``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryTail``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tail``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.singleton``1(``0)">
+<summary>
+O(1). Returns a deque of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.rev``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n), worst case. Returns a deque of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(n), worst case. Returns a deque of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.ofCatLists``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(n), worst case. Returns a deque of the two lists concatenated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.length``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryLast``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.last``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.isEmpty``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryInitial``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.initial``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.tryHead``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.head``1(FSharpx.Collections.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Deque{``0},``1)">
+<summary>
+O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, right to left
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Deque{``1})">
+<summary>
+O(n). Applies a function to each element of the deque, threading an accumulator argument through the computation, left to right
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.empty``1">
+<summary>
+O(1). Returns deque of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.cons``1(``0,FSharpx.Collections.Deque{``0})">
+<summary>
+O(1). Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Deque.conj``1(``0,FSharpx.Collections.Deque{``0})">
+<summary>
+O(1). Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.pairwise``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(n). Returns a pairwise DList of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.toSeq``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(n). Returns a seq of the DList elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.toList``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(n). Returns a list of the DList elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns a DList of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.tryUncons``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.uncons``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.tryTail``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns option DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.tail``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns a new DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.conj``1(``0,FSharpx.Collections.DList{``0})">
+<summary>
+O(1). Returns a new DList with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.singleton``1(``0)">
+<summary>
+O(1). Returns DList of one elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.length``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.isEmpty``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(1). Returns true if the DList has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.tryHead``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.head``1(FSharpx.Collections.DList{``0})">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.DList{``0},``1)">
+<summary>
+O(n). Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
+ See http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.empty``1">
+<summary>
+O(1). Returns DList of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.cons``1(``0,FSharpx.Collections.DList{``0})">
+<summary>
+O(1). Returns a new DList with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.DList.append``1(FSharpx.Collections.DList{``0},FSharpx.Collections.DList{``0})">
+<summary>
+O(1). Returns a new DList of two lists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.takeUntil(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.takeWhile(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.take(System.Int32,FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.skipUntil(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.skipWhile(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.skip(System.Int32,FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.splitAt(System.Int32,FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.span(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.split(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.fold``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{System.Byte,``0}},``0,FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.append(FSharpx.Collections.ByteString,FSharpx.Collections.ByteString)">
+<summary>
+ append uses Buffer.BlockCopy for efficient array operations.
+ Please note that a new array is created and both arrays are copied in,
+ disregarding any additional bytes in the original, underlying arrays.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.cons(System.Byte,FSharpx.Collections.ByteString)">
+<summary>
+ cons uses Buffer.SetByte and Buffer.BlockCopy for efficient array operations.
+ Please note that a new array is created and both the head and tail are copied in,
+ disregarding any additional bytes in the original tail array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.tail(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.head(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.index(FSharpx.Collections.ByteString,System.Int32)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.length(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.isEmpty(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.toString(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.toList(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.toSeq(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.toArray(FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.ofString(System.String)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.ofList(Microsoft.FSharp.Collections.FSharpList{System.Byte})">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.ofSeq(System.Collections.Generic.IEnumerable{System.Byte})">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.ofArraySegment(System.ArraySegment{System.Byte})">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.findIndex(Microsoft.FSharp.Core.FSharpFunc{System.Byte,System.Boolean},FSharpx.Collections.ByteString)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.create(System.Byte[])">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.singleton(System.Byte)">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="P:FSharpx.Collections.ByteStringModule.empty">
+<summary>
+ needs .fsi file
+</summary>
+</member>
+<member name="M:FSharpx.Collections.ByteStringModule.|BS|(FSharpx.Collections.ByteString)">
+<summary>
+ An active pattern for conveniently retrieving the properties of a ByteString.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Mutable.CircularBuffer`1.Count">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.GetEnumerator">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Enqueue(`0[],System.Int32,System.Int32)">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Enqueue(`0[],System.Int32)">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Enqueue(`0)">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Enqueue(System.ArraySegment{`0})">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Enqueue(`0[])">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.Dequeue(System.Int32)">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Mutable.CircularBuffer`1.#ctor(System.Int32)">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Mutable.CircularBuffer`1">
+<summary>
+ needs doc
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.pop``1(FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(log n) amortized time. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.tryPop``1(FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(log n) amortized time. Returns the option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.peek``1(FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(1). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.tryPeek``1(FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(1). Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.insert``1(``0,FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(log n) amortized time. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.isEmpty``1(FSharpx.Collections.IPriorityQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PriorityQueue.empty``1(System.Boolean)">
+<summary>
+O(1). Returns a empty queue, with indicated ordering.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.tryUncons``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.uncons``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.toSeq``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(n). Views the given heap as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.tryTail``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.tail``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.rev``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(n). Returns heap reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.ofSeq``1(System.Boolean,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n log n). Returns heap, bool isDescending, from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.tryMerge``1(FSharpx.Collections.Heap{``0},FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.merge``1(FSharpx.Collections.Heap{``0},FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns heap from merging two heaps, both must have same descending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.length``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(n). Returns the count of elememts.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.isDescending``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.isEmpty``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.insert``1(``0,FSharpx.Collections.Heap{``0})">
+<summary>
+O(log n) amortized time. Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.tryHead``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(1) worst case. Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.head``1(FSharpx.Collections.Heap{``0})">
+<summary>
+O(1) worst case. Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Heap.empty``1(System.Boolean)">
+<summary>
+O(1). Returns a empty heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.map2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharpx.Collections.RandomAccessList{``0},FSharpx.Collections.RandomAccessList{``1})">
+<summary>
+ O(n). Builds a new collection whose elements are the results of applying the given function to the corresponding elements of the two collections pairwise. The two input arrays must have the same lengths, otherwise ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.reduce``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(n). Applies a function to each element of the collection, threading an accumulator argument through the computation. This function first applies the function to the first two elements of the list. Then, it passes this result into the function along with the third element and so on. Finally, it returns the final result. If the input function is f and the elements are i0...iN, then it computes f (... (f i0 i1) i2 ...) iN.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.zip``2(FSharpx.Collections.RandomAccessList{``0},FSharpx.Collections.RandomAccessList{``1})">
+<summary>
+ O(n). Combines the two RandomAccessLists into a RandomAccessList of pairs. The two RandomAccessLists must have equal lengths, otherwise an ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.windowSeq``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ O(n). Returns a random access list of random access lists of given length from the seq. Result may be a jagged random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryUpdateNth``1(System.Int32,System.Int32,``0,FSharpx.Collections.RandomAccessList{FSharpx.Collections.RandomAccessList{``0}})">
+<summary>
+ O(log32(m,n)). Returns option random access list that contains the given value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryUpdate``1(System.Int32,``0,FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option random access list that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.updateNth``1(System.Int32,System.Int32,``0,FSharpx.Collections.RandomAccessList{FSharpx.Collections.RandomAccessList{``0}})">
+<summary>
+ O(log32(m,n)). Returns a new random access list of random access lists that contains the given value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.update``1(System.Int32,``0,FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new random access list that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryUncons``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option tuple first element and random access list without first item
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.uncons``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns tuple first element and random access list without first item
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.toSeq``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(n). Views the given random access list as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryTail``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option random access list without the first item.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tail``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new random access list without the first item. If the collection is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.singleton``1(``0)">
+<summary>
+ O(1). Returns a new random access list of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.rev``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(n). Returns new random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ O(n). Returns a random access list of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryNthNth``1(System.Int32,System.Int32,FSharpx.Collections.RandomAccessList{FSharpx.Collections.RandomAccessList{``0}})">
+<summary>
+ O(log32(m,n)). Returns option value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.nthNth``1(System.Int32,System.Int32,FSharpx.Collections.RandomAccessList{FSharpx.Collections.RandomAccessList{``0}})">
+<summary>
+ O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryNth``1(System.Int32,FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.nth``1(System.Int32,FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns the value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(n). Returns a random access list whose elements are the results of applying the supplied function to each of the elements of a supplied random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.length``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1). Returns the number of items in the random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.tryHead``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1). Returns option first element in the random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.head``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1). Returns the first element in the random access list. If the random access list is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.isEmpty``1(FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.init``1(System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,``0})">
+<summary>
+ O(n). Returns a random access list of the supplied length using the supplied function operating on the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.RandomAccessList{``0},``1)">
+<summary>
+ O(n). Returns a state from the supplied state and a function operating from right to left.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.RandomAccessList{``1})">
+<summary>
+ O(n). Returns a state from the supplied state and a function operating from left to right.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.empty``1">
+<summary>
+ O(1). Returns random access list of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.cons``1(``0,FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(1). Returns a new random access list with the element added at the start.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.RandomAccessList.append``1(FSharpx.Collections.RandomAccessList{``0},FSharpx.Collections.RandomAccessList{``0})">
+<summary>
+ O(n). Returns a new random access list with the elements of the second random access list added at the end.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.RandomAccessList">
+<summary>
+ Defines functions which allow to access and manipulate RandomAccessLists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.tryUncons``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1) amortized, O(n) worst-case. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.uncons``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1) amortized, O(n) worst-case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.toSeq``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(n). Views the given queue as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.tryTail``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1) amortized, O(n) worst-case. Returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.tail``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1) amortized, O(n) worst-case. Returns a new queue of the elements trailing the first element. (dequeue)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.rev``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(n). Returns queue reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns a queue of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(1). Returns a queue of the list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.length``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1). Returns the count of elememts.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.isEmpty``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.tryHead``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1). Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.head``1(FSharpx.Collections.Queue{``0})">
+<summary>
+O(1). Returns the first element. (peek)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Queue{``0},``1)">
+<summary>
+O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, right to left.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Queue{``1})">
+<summary>
+O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, left to right.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Queue.conj``1(``0,FSharpx.Collections.Queue{``0})">
+<summary>
+O(1). Returns a new queue with the element added to the end. (enqueue)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.windowSeq``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ O(n). Returns a vector of vectors of given length from the seq. Result may be a jagged vector.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryUpdateNth``1(System.Int32,System.Int32,``0,FSharpx.Collections.PersistentVector{FSharpx.Collections.PersistentVector{``0}})">
+<summary>
+ O(log32(m,n)). Returns option vector that contains the given value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryUpdate``1(System.Int32,``0,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option vector that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.updateNth``1(System.Int32,System.Int32,``0,FSharpx.Collections.PersistentVector{FSharpx.Collections.PersistentVector{``0}})">
+<summary>
+ O(log32(m,n)). Returns a new vector of vectors that contains the given value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.update``1(System.Int32,``0,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new vector that contains the given value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryUnconj``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option tuple last element and vector without last item
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.unconj``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns tuple last element and vector without last item
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.toSeq``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(n). Views the given vector as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.rangedIterator``1(System.Int32,System.Int32,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(n). Views a subset of the given vector. startIndex is inclusive, endIndex is exclusive.
+ `rangedIterator 0 count` is the same as toSeq
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.singleton``1(``0)">
+<summary>
+ O(1). Returns a new vector of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.rev``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(n). Returns vector reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ O(n). Returns a vector of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryNthNth``1(System.Int32,System.Int32,FSharpx.Collections.PersistentVector{FSharpx.Collections.PersistentVector{``0}})">
+<summary>
+ O(log32(m,n)). Returns option value at the indices.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryNth``1(System.Int32,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option value at the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.nthNth``1(System.Int32,System.Int32,FSharpx.Collections.PersistentVector{FSharpx.Collections.PersistentVector{``0}})">
+<summary>
+ O(log32(m,n)). Returns the value at the outer index, inner index. If either index is out of bounds it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.nth``1(System.Int32,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns the value at the index. If the index is out of bounds it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(n). Returns a vector whose elements are the results of applying the supplied function to each of the elements of a supplied vector.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.length``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1). Returns the number of items in the vector.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryLast``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1). Returns option last element in the vector.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.last``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1). Returns the last element in the vector. If the vector is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.isEmpty``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1). Returns true if the vector has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.tryInitial``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns option vector without the last item.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.initial``1(FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1) for all practical purposes; really O(log32n). Returns a new vector without the last item. If the collection is empty it throws an exception.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.init``1(System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,``0})">
+<summary>
+ O(n). Returns a vector of the supplied length using the supplied function operating on the index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.PersistentVector{``0},``1)">
+<summary>
+ O(n). Returns a state from the supplied state and a function operating from right to left.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.PersistentVector{``1})">
+<summary>
+ O(n). Returns a state from the supplied state and a function operating from left to right.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.flatten``1(FSharpx.Collections.PersistentVector{FSharpx.Collections.PersistentVector{``0}})">
+<summary>
+ O(m,n). Returns a seq from a vector of vectors.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.empty``1">
+<summary>
+ O(1). Returns vector of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.conj``1(``0,FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(1). Returns a new vector with the element added at the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentVector.append``1(FSharpx.Collections.PersistentVector{``0},FSharpx.Collections.PersistentVector{``0})">
+<summary>
+ O(n). Returns a new vector with the elements of the second vector added at the end.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.PersistentVector">
+<summary>
+ Defines functions which allow to access and manipulate PersistentVectors.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.map``3(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.PersistentHashMap{``2,``0})">
+<summary>
+O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.ofSeq``2(System.Collections.Generic.IEnumerable{System.Tuple{``0,``1}})">
+<summary>
+O(n). Returns a HashMap of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.toSeq``2(FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(n). Views the given HashMap as a sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.remove``2(``0,FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(log32n), removes the element with the given key from the map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.add``2(``0,``1,FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(log32n), adds an element to the map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.find``2(``0,FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(log32n), returns the value if the exists in the map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.containsKey``2(``0,FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(log32n), returns if the key exists in the map
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.count``2(FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(1), returns the count of the elements in the PersistentHashMap
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.length``2(FSharpx.Collections.PersistentHashMap{``0,``1})">
+<summary>
+O(1), returns the count of the elements in the PersistentHashMap (same as count)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.PersistentHashMap.empty``2">
+<summary>
+O(1), returns an empty PersistentHashMap
+</summary>
+</member>
+<member name="T:FSharpx.Collections.PersistentHashMap">
+<summary>
+ Defines functions which allow to access and manipulate PersistentHashMaps.
+</summary>
+</member>
+<member name="F:FSharpx.Collections.Tagged.MapTree.MapIterator`2.started">
+<summary>
+ true when MoveNext has been called
+</summary>
+</member>
+<member name="F:FSharpx.Collections.Tagged.MapTree.MapIterator`2.stack">
+<summary>
+ invariant: always collapseLHS result
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Tagged.MapTree.MapIterator`2">
+<summary>
+ Imperative left-to-right iterators.
+</summary>
+</member>
+</members>
+</doc>

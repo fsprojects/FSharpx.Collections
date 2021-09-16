@@ -1,51 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>FSharpx.Collections
 </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FSharpx.Collections is a collection of datastructures for use with F# and C#.">
-    <meta name="author" content="Steffen Forkmann">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
-    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
-<h1><a name="FSharpx-Collections" class="anchor" href="#FSharpx-Collections">FSharpx.Collections</a></h1>
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <h1><a name="FSharpx-Collections" class="anchor" href="#FSharpx-Collections">FSharpx.Collections</a></h1>
 <p><strong>FSharpx.Collections</strong> is a collection of datastructures for use with F# and C#.</p>
 <p>Please contribute to this project. Don't ask for permission, just fork the repository and send pull requests.</p>
 <p>Please also join the <a href="http://fsharp.github.com">F# Open Source Group</a></p>
 <div class="row">
-  <div class="span1"></div>
-  <div class="span6">
-    <div class="well well-small" id="nuget">
-      The F# DataFrame library can be <a href="https://nuget.org/packages/FSharpx.Collections">installed from NuGet</a>:
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <div class="card card-body p-3" id="nuget">
+      <p class="mb-0">The F# DataFrame library can be <a href="https://nuget.org/packages/FSharpx.Collections">installed from NuGet:</a></p>
       <pre>PM> Install-Package FSharpx.Collections</pre>
     </div>
   </div>
-  <div class="span1"></div>
+  <div class="col-sm-2"></div>
 </div>
 <h2><a name="Contributing-and-copyright" class="anchor" href="#Contributing-and-copyright">Contributing and copyright</a></h2>
 <p>The project is hosted on <a href="https://github.com/fsprojects/FSharpx.Collections">GitHub</a> where you can <a href="https://github.com/fsprojects/FSharpx.Collections/issues">report issues</a>, fork
@@ -56,35 +110,17 @@ also want to read <a href="https://github.com/fsprojects/FSharpx.Collections/blo
 redistribution for both commercial and non-commercial purposes. For more information see the
 <a href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License file</a> in the GitHub repository.</p>
 
+            
+        </div>
 
-        </div>
-        <div class="span3">
-          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu">
-            <li class="nav-header">fsprojects/FSharpx.Collections</li>
-            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-              
-            <li class="nav-header">Using from F#</li>
-            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
-            <li class="nav-header">Performance tests</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-            <li class="nav-header">Documentation</li>
-            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
-                      
-          </ul>
-        </div>
-      </div>
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
-    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-  </body>
-  </html>
+</body>
+
+</html>

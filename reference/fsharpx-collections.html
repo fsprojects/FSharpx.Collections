@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>FSharpx.Collections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
+
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h2 id="fsharpx-collections">
+    FSharpx.Collections Namespace
+  </h2>
+  <div class="fsdocs-xmldoc"></div>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type/Module
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Array">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-array.html">
+                Array
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Array`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Array\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L283-283" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for F#'s Array module.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="ByteString">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-bytestringmodule.html">
+                ByteString (Module)
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.ByteStringModule`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.ByteStringModule\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/ByteString.fs#L109-109" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="ByteString">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-bytestring.html">
+                ByteString (Type)
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.ByteString`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.ByteString\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/ByteString.fs#L9-9" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ An ArraySegment with structural comparison and equality.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Deque">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-deque.html">
+                Deque
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Deque`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Deque\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fsi#L66-66" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Deque<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-deque-1.html">
+                Deque<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.Deque`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Deque`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Deque.fsi#L8-8" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Double-ended queue is an ordered linear linear structure implementing the signature of List
+ (head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects
+ the first or left-most element in the structure, while "last" inspects the last or
+ right-most element. "rev" (reverse) has time complexity O(1). Ordering is by insertion history.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Dictionary">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-dictionary.html">
+                Dictionary
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Dictionary`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Dictionary\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L504-504" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for System.Collections.Generic.Dictionary.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="DList">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-dlist.html">
+                DList
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.DList`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.DList\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fsi#L45-45" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="DList<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-dlist-1.html">
+                DList<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.DList`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.DList`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/DList.fsi#L8-8" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ DList is an ordered linear structure implementing the List signature (head, tail, cons),
+ end-insertion (conj), and O(1) append. Ordering is by insertion history.
+ DList is an implementation of [John Hughes' append list](http://dl.acm.org/citation.cfm?id=8475).
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Exceptions">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-exceptions.html">
+                Exceptions
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Exceptions`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Exceptions\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Exceptions.fs#L7-7" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Heap">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-heap.html">
+                Heap
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Heap`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Heap\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L243-243" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Heap<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-heap-1.html">
+                Heap<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.Heap`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Heap`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L43-43" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Heap is an ordered linear structure where the ordering is either ascending or descending.
+ "head" inspects the first element in the ordering, "tail" takes the remaining structure
+ after head, and "insert" places elements within the ordering. PriorityQueue is available
+ as an alternate interface.
+ According to Okasaki the time complexity of the heap functions in this Heap implementation
+ (based on the "pairing" heap) have "resisted" time complexity analysis.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="HeapData<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-heapdata-1.html">
+                HeapData<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.HeapData`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.HeapData`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L238-238" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Interfaces">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-interfaces.html">
+                Interfaces
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Interfaces`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Interfaces\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Interfaces.fs#L6-6" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="IPriorityQueue<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-ipriorityqueue-1.html">
+                IPriorityQueue<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.IPriorityQueue`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.IPriorityQueue`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L8-8" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LazyList">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-lazylist.html">
+                LazyList
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.LazyList`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.LazyList\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fsi#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="LazyList<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-lazylist-1.html">
+                LazyList<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.LazyList`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.LazyList`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/LazyList.fsi#L24-24" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
+ uncached sequences. LazyLists normally involve delayed computations without
+ side-effects.  The results of these computations are cached and evaluations will be
+ performed only once for each element of the lazy list.  In contrast, for sequences
+ (IEnumerable) recomputation happens each time an enumerator is created and the sequence
+ traversed.
+
+ LazyLists can represent cached, potentially-infinite computations.  Because they are
+ cached they may cause memory leaks if some active code or data structure maintains a
+ live reference to the head of an infinite or very large lazy list while iterating it,
+ or if a reference is maintained after the list is no longer required.
+
+ Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns.
+ These may force the computation of elements of the list.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="List">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-list.html">
+                List
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.List`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.List\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L375-375" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for F#'s List module.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Literals">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-literals.html">
+                Literals
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Literals`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Literals\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Literals.fs#L1-1" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Map">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-map.html">
+                Map
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Map`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Map\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L512-512" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for F#'s Map module.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="NameValueCollection">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-namevaluecollection.html">
+                NameValueCollection
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.NameValueCollection`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.NameValueCollection\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L602-602" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for NameValueCollections.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="NonEmptyList">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-nonemptylist.html">
+                NonEmptyList
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.NonEmptyList`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.NonEmptyList\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="NonEmptyList<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-nonemptylist-1.html">
+                NonEmptyList<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.NonEmptyList`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.NonEmptyList`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/NonEmptyList.fs#L8-8" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PersistentHashMap">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistenthashmap.html">
+                PersistentHashMap
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.PersistentHashMap`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.PersistentHashMap\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L689-689" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Defines functions which allow to access and manipulate PersistentHashMaps.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PersistentHashMap<'T, 'S>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistenthashmap-2.html">
+                PersistentHashMap<'T, 'S>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.PersistentHashMap`2``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.PersistentHashMap`2\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentHashMap.fs#L600-600" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
+ Hash maps provide fast access (log32N hops). count is O(1).
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PersistentVector">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector.html">
+                PersistentVector
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.PersistentVector`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.PersistentVector\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fsi#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Defines functions which allow to access and manipulate PersistentVectors.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PersistentVector<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-persistentvector-1.html">
+                PersistentVector<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.PersistentVector`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.PersistentVector`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PersistentVector.fsi#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ PersistentVector is an ordered linear structure implementing the inverse of the List signature,
+ (last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
+ (returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
+ to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
+ lookup or update any item in at most 7 steps.
+ Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PriorityQueue">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-priorityqueue.html">
+                PriorityQueue
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.PriorityQueue`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.PriorityQueue\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/PriorityQueue.fs#L297-297" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Queue">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-queue.html">
+                Queue
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Queue`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Queue\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fsi#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Queue<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-queue-1.html">
+                Queue<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.Queue`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Queue`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Queue.fsi#L10-10" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Queue is an ordered linear data structure where elements are added at the end (right)
+ and inspected and removed at the beginning (left). Ordering is by insertion history.
+ The qualities of the Queue structure make elements first in, first out (fifo).
+ "head" inspects the first or left-most element in the structure, while "conj"
+ inserts an element at the end, or right of the structure.
+ Purely functional (immutable) Queue based on Okasaki's batched queue.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="RandomAccessList">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-randomaccesslist.html">
+                RandomAccessList
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.RandomAccessList`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.RandomAccessList\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/RandomAccessList.fsi#L59-59" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Defines functions which allow to access and manipulate RandomAccessLists.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="RandomAccessList<'T>">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-randomaccesslist-1.html">
+                RandomAccessList<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:FSharpx.Collections.RandomAccessList`1``')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.RandomAccessList`1\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/RandomAccessList.fsi#L11-11" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ RandomAccessList is an ordered linear structure implementing the List signature
+ (head, tail, cons), as well as inspection (lookup) and update (returning a new
+ immutable instance) of any element in the structure by index. Length is O(1). Indexed
+ lookup or update (returning a new immutable instance of RandomAccessList) of any element
+ is O(log32n), which is close enough to O(1) as to make no practical difference: a
+ RandomAccessList containing 4 billion items can lookup or update any item in at most 7
+ steps. Ordering is by insertion history. While PersistentVector&lt;'T&gt; is appending to the
+ end this version prepends elements to the list.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="ResizeArray">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-resizearray.html">
+                ResizeArray
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.ResizeArray`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.ResizeArray\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/ResizeArray.fsi#L17-17" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Seq">
+              <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-seq.html">
+                Seq
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FSharpx.Collections.Seq`')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FSharpx.Collections.Seq\'/>')">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsprojects/FSharpx.Collections/tree/master/src/FSharpx.Collections/Collections.fs#L11-11" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github.png" class="normal"/>
+              <img src="https://github.com/fsprojects/FSharpx.Collections/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Extensions for F#'s Seq module.
+
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            
+        </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
+    </div>
+</body>
+
+</html>

@@ -1,189 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>PersistentHashMap
 </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FSharpx.Collections is a collection of datastructures for use with F# and C#.">
-    <meta name="author" content="Steffen Forkmann">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
-    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
+        </div>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            
 <h1><a name="PersistentHashMap" class="anchor" href="#PersistentHashMap">PersistentHashMap</a></h1>
 <p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). count is O(1).
-More details can be found in the <a href="apidocs/fsharpx-collections-persistenthashmap-2.html">API docs</a>.</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
-<span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
-<span class="l">20: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">FSharpx</span><span class="o">.</span><span class="i">Collections</span><span class="o">.</span><span class="i">PersistentHashMap</span>
+More details can be found in the <a href="reference/fsharpx-collections-persistenthashmap-2.html">API docs</a>.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">FSharpx</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">Collections</span>
 
 <span class="c">// Create a new HashMap and add some items to it</span>
-<span class="k">let</span> <span class="i">m</span> <span class="o">=</span> 
-    <span class="i">empty</span> 
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">42</span> <span class="s">&quot;hello&quot;</span>
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">99</span> <span class="s">&quot;world&quot;</span>
-<span class="fsi">val m : FSharpx.Collections.PersistentHashMap&lt;int,string&gt;</span>
-
-<span class="c">// lookup some items</span>
-<span class="i">find</span> <span class="n">42</span> <span class="i">m</span>
-<span class="fsi">val it : string = &quot;hello&quot;</span>
-<span class="i">find</span> <span class="n">99</span> <span class="i">m</span>
-<span class="fsi">val it : string = &quot;world&quot;</span>
-<span class="i">m</span><span class="o">.</span>[<span class="n">99</span>]
-<span class="fsi">val it : string = &quot;world&quot;</span>
-
-<span class="c">// Check no. of elements in the HashMap</span>
-<span class="i">length</span> <span class="i">m</span>
-<span class="fsi">val it : int = 2</span>
-</code></pre></td>
-</tr>
-</table>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">m</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="id">empty</span> 
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 8)" onmouseover="showTip(event, 'fs7', 8)" class="id">add</span> <span class="n">42</span> <span class="s">&quot;hello&quot;</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 9)" onmouseover="showTip(event, 'fs5', 9)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 10)" onmouseover="showTip(event, 'fs7', 10)" class="id">add</span> <span class="n">99</span> <span class="s">&quot;world&quot;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>seq [(99, "world"); (42, "hello")]</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// lookup some items</span>
+<span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 12)" onmouseover="showTip(event, 'fs8', 12)" class="id">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs4', 13)" onmouseover="showTip(event, 'fs4', 13)" class="id">m</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"hello"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 15)" onmouseover="showTip(event, 'fs8', 15)" class="id">find</span> <span class="n">99</span> <span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="id">m</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"world"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs4', 17)" onmouseover="showTip(event, 'fs4', 17)" class="id">m</span><span class="pn">.</span><span class="pn">[</span><span class="n">99</span><span class="pn">]</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"world"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Check no. of elements in the HashMap</span>
+<span onmouseout="hideTip(event, 'fs5', 18)" onmouseover="showTip(event, 'fs5', 18)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="id">length</span> <span onmouseout="hideTip(event, 'fs4', 20)" onmouseover="showTip(event, 'fs4', 20)" class="id">m</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>2</code></pre></td></tr></table>
 <p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
-<span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
-<span class="l">20: </span>
-<span class="l">21: </span>
-<span class="l">22: </span>
-<span class="l">23: </span>
-<span class="l">24: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">m&#39;</span> <span class="o">=</span> 
-    <span class="i">m</span> 
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">104</span> <span class="s">&quot;!&quot;</span> 
-    <span class="o">|&gt;</span> <span class="i">add</span> <span class="n">42</span> <span class="s">&quot;hi&quot;</span> <span class="c">// replace existing value</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 21)" onmouseover="showTip(event, 'fs10', 21)" class="id">m&#39;</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="id">m</span> 
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 23)" onmouseover="showTip(event, 'fs5', 23)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 24)" onmouseover="showTip(event, 'fs7', 24)" class="id">add</span> <span class="n">104</span> <span class="s">&quot;!&quot;</span> 
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 25)" onmouseover="showTip(event, 'fs5', 25)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 26)" onmouseover="showTip(event, 'fs7', 26)" class="id">add</span> <span class="n">42</span> <span class="s">&quot;hi&quot;</span> <span class="c">// replace existing value</span>
 
-<span class="i">find</span> <span class="n">42</span> <span class="i">m&#39;</span>
-<span class="fsi">val it : string = &quot;hi&quot;</span>
-<span class="i">find</span> <span class="n">104</span> <span class="i">m&#39;</span>
-<span class="fsi">val it : string = &quot;!&quot;</span>
+<span onmouseout="hideTip(event, 'fs5', 27)" onmouseover="showTip(event, 'fs5', 27)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 28)" onmouseover="showTip(event, 'fs8', 28)" class="id">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs10', 29)" onmouseover="showTip(event, 'fs10', 29)" class="id">m&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"hi"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 30)" onmouseover="showTip(event, 'fs5', 30)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 31)" onmouseover="showTip(event, 'fs8', 31)" class="id">find</span> <span class="n">104</span> <span onmouseout="hideTip(event, 'fs10', 32)" onmouseover="showTip(event, 'fs10', 32)" class="id">m&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"!"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 33)" onmouseover="showTip(event, 'fs5', 33)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 34)" onmouseover="showTip(event, 'fs8', 34)" class="id">find</span> <span class="n">42</span> <span onmouseout="hideTip(event, 'fs4', 35)" onmouseover="showTip(event, 'fs4', 35)" class="id">m</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>"hello"</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 36)" onmouseover="showTip(event, 'fs5', 36)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 37)" onmouseover="showTip(event, 'fs9', 37)" class="id">length</span> <span onmouseout="hideTip(event, 'fs4', 38)" onmouseover="showTip(event, 'fs4', 38)" class="id">m</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>2</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs5', 39)" onmouseover="showTip(event, 'fs5', 39)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 40)" onmouseover="showTip(event, 'fs9', 40)" class="id">length</span> <span onmouseout="hideTip(event, 'fs10', 41)" onmouseover="showTip(event, 'fs10', 41)" class="id">m&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>3</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// remove an element</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 42)" onmouseover="showTip(event, 'fs11', 42)" class="id">m&#39;&#39;</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs10', 43)" onmouseover="showTip(event, 'fs10', 43)" class="id">m&#39;</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs5', 44)" onmouseover="showTip(event, 'fs5', 44)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 45)" onmouseover="showTip(event, 'fs12', 45)" class="id">remove</span> <span class="n">104</span>
 
-<span class="i">find</span> <span class="n">42</span> <span class="i">m</span>
-<span class="fsi">val it : string = &quot;hello&quot;</span>
-<span class="i">length</span> <span class="i">m</span>
-<span class="fsi">val it : int = 2</span>
-<span class="i">length</span> <span class="i">m&#39;</span>
-<span class="fsi">val it : int = 3</span>
-
-<span class="c">// remove an element</span>
-<span class="k">let</span> <span class="i">m&#39;&#39;</span> <span class="o">=</span> 
-    <span class="i">m&#39;</span>
-    <span class="o">|&gt;</span> <span class="i">remove</span> <span class="n">104</span>
-
-<span class="i">length</span> <span class="i">m&#39;&#39;</span>
-<span class="fsi">val it : int = 2</span>
-</code></pre></td>
-</tr>
-</table>
+<span onmouseout="hideTip(event, 'fs5', 46)" onmouseover="showTip(event, 'fs5', 46)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 47)" onmouseover="showTip(event, 'fs9', 47)" class="id">length</span> <span onmouseout="hideTip(event, 'fs11', 48)" onmouseover="showTip(event, 'fs11', 48)" class="id">m&#39;&#39;</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>2</code></pre></td></tr></table>
 <p>There a couple of interesting operations on HashMaps:</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-<span class="l">8: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Convert a sequence of key value pairs to a HashMap</span>
-<span class="k">let</span> <span class="i">stringBasedMap</span> <span class="o">=</span> <span class="i">ofSeq</span> [(<span class="s">&quot;a&quot;</span>,<span class="n">1</span>); (<span class="s">&quot;b&quot;</span>,<span class="n">2</span>); (<span class="s">&quot;c&quot;</span>,<span class="n">3</span>); (<span class="s">&quot;d&quot;</span>,<span class="n">4</span>); (<span class="s">&quot;e&quot;</span>,<span class="n">5</span>)]
-<span class="fsi">val stringBaseMap : FSharpx.Collections.PersistentHashMap&lt;string,int&gt;</span>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Convert a sequence of key value pairs to a HashMap</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 49)" onmouseover="showTip(event, 'fs13', 49)" class="id">stringBasedMap</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs5', 50)" onmouseover="showTip(event, 'fs5', 50)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 51)" onmouseover="showTip(event, 'fs14', 51)" class="id">ofSeq</span> <span class="pn">[</span><span class="pn">(</span><span class="s">&quot;a&quot;</span><span class="pn">,</span><span class="n">1</span><span class="pn">)</span><span class="pn">;</span> <span class="pn">(</span><span class="s">&quot;b&quot;</span><span class="pn">,</span><span class="n">2</span><span class="pn">)</span><span class="pn">;</span> <span class="pn">(</span><span class="s">&quot;c&quot;</span><span class="pn">,</span><span class="n">3</span><span class="pn">)</span><span class="pn">;</span> <span class="pn">(</span><span class="s">&quot;d&quot;</span><span class="pn">,</span><span class="n">4</span><span class="pn">)</span><span class="pn">;</span> <span class="pn">(</span><span class="s">&quot;e&quot;</span><span class="pn">,</span><span class="n">5</span><span class="pn">)</span><span class="pn">]</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>seq [("c", 3); ("e", 5); ("b", 2); ("d", 4); ...]</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Square all values in a HashMap</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 52)" onmouseover="showTip(event, 'fs15', 52)" class="id">stringBasedMap&#39;</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs5', 53)" onmouseover="showTip(event, 'fs5', 53)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 54)" onmouseover="showTip(event, 'fs16', 54)" class="id">map</span> <span class="pn">(</span><span class="k">fun</span> <span onmouseout="hideTip(event, 'fs17', 55)" onmouseover="showTip(event, 'fs17', 55)" class="fn">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs17', 56)" onmouseover="showTip(event, 'fs17', 56)" class="fn">x</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs17', 57)" onmouseover="showTip(event, 'fs17', 57)" class="fn">x</span><span class="pn">)</span> <span onmouseout="hideTip(event, 'fs13', 58)" onmouseover="showTip(event, 'fs13', 58)" class="id">stringBasedMap</span>
+<span onmouseout="hideTip(event, 'fs15', 59)" onmouseover="showTip(event, 'fs15', 59)" class="id">stringBasedMap&#39;</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;d&quot;</span><span class="pn">]</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>16</code></pre></td></tr></table>
+<h2><a name="Using-from-C" class="anchor" href="#Using-from-C">Using from C#</a></h2>
+<p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals. Hash maps provide fast access (log32N hops). Count is O(1).</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="c">// Create an empty PersistentHashMap and add some elements</span>
+PersistentHashMap&lt;<span class="k">int</span>,<span class="k">string</span>&gt; map <span class="o">=</span>
+    PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt;.Empty()
+        .Add(<span class="n">42</span>,<span class="s">"hello"</span>)
+        .Add(<span class="n">99</span>, <span class="s">"world"</span>);
 
-<span class="c">// Square all values in a HashMap</span>
-<span class="k">let</span> <span class="i">stringBasedMap&#39;</span> <span class="o">=</span> <span class="i">map</span> (<span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> <span class="i">x</span> <span class="o">*</span> <span class="i">x</span>) <span class="i">stringBasedMap</span>
-<span class="i">stringBasedMap&#39;</span><span class="o">.</span>[<span class="s">&quot;d&quot;</span>]
-<span class="fsi">val it : int = 16</span>
-</code></pre></td>
-</tr>
-</table>
+Console.WriteLine(map[<span class="n">42</span>]); <span class="c">// hello</span>
+Console.WriteLine(map[<span class="n">99</span>]); <span class="c">// world</span>
 
+<span class="c">// Check no. of elements in the PersistentHashMap</span>
+Console.WriteLine(map.Length);  <span class="c">// 2</span>
+</code></pre></td></tr></table>
+<p>PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="csharp">PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map<span class="n">2</span> <span class="o">=</span> 
+    map
+     .Add(<span class="n">104</span>, <span class="s">"!"</span>)
+     .Add(<span class="n">42</span>, <span class="s">"hi"</span>);  <span class="c">// replace existing value</span>
+
+Console.WriteLine(map<span class="n">2</span>[<span class="n">42</span>]); <span class="c">// hi</span>
+Console.WriteLine(map[<span class="n">42</span>]);  <span class="c">// hello            </span>
+
+Console.WriteLine(map.Length);  <span class="c">// 2</span>
+Console.WriteLine(map<span class="n">2</span>.Length); <span class="c">// 3</span>
+
+<span class="c">// remove the last element from a PersistentHashMap</span>
+PersistentHashMap&lt;<span class="k">int</span>, <span class="k">string</span>&gt; map<span class="n">3</span> <span class="o">=</span> map<span class="n">2</span>.Remove(<span class="n">104</span>);
+
+Console.WriteLine(map<span class="n">3</span>.Length); <span class="c">// 2</span>
+</code></pre></td></tr></table>
+<h2><a name="Performance-Tests" class="anchor" href="#Performance-Tests">Performance Tests</a></h2>
+<p>Bulk operations on HashMaps use an internal TransientHashMap in order to get much better performance. The following scripts shows this:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 113)" onmouseover="showTip(event, 'fs2', 113)" class="id">FSharpx</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 114)" onmouseover="showTip(event, 'fs3', 114)" class="id">Collections</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 115)" onmouseover="showTip(event, 'fs40', 115)" class="id">trials</span> <span class="o">=</span> <span class="n">5</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs41', 116)" onmouseover="showTip(event, 'fs41', 116)" class="id">r</span> <span class="o">=</span> <span class="k">new</span> <span onmouseout="hideTip(event, 'fs1', 117)" onmouseover="showTip(event, 'fs1', 117)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 118)" onmouseover="showTip(event, 'fs42', 118)" class="id">Random</span><span class="pn">(</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 119)" onmouseover="showTip(event, 'fs43', 119)" class="fn">initFSharpMapAndPersistentMapFromList</span> <span onmouseout="hideTip(event, 'fs44', 120)" onmouseover="showTip(event, 'fs44', 120)" class="fn">n</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs39', 121)" onmouseover="showTip(event, 'fs39', 121)" class="fn">sprintf</span> <span class="s">&quot;Init with n = </span><span class="pf">%d</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs44', 122)" onmouseover="showTip(event, 'fs44', 122)" class="fn">n</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 123)" onmouseover="showTip(event, 'fs33', 123)" class="fn">printInFsiTags</span>
+    
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 124)" onmouseover="showTip(event, 'fs45', 124)" class="fn">list</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs46', 125)" onmouseover="showTip(event, 'fs46', 125)" class="m">List</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 126)" onmouseover="showTip(event, 'fs47', 126)" class="id">sortBy</span> <span onmouseout="hideTip(event, 'fs48', 127)" onmouseover="showTip(event, 'fs48', 127)" class="fn">snd</span> <span class="pn">[</span><span class="k">for</span> <span onmouseout="hideTip(event, 'fs49', 128)" onmouseover="showTip(event, 'fs49', 128)" class="fn">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs44', 129)" onmouseover="showTip(event, 'fs44', 129)" class="fn">n</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs49', 130)" onmouseover="showTip(event, 'fs49', 130)" class="fn">i</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs41', 131)" onmouseover="showTip(event, 'fs41', 131)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 132)" onmouseover="showTip(event, 'fs50', 132)" class="id">Next</span><span class="pn">(</span><span class="pn">)</span><span class="pn">.</span><span class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 133)" onmouseover="showTip(event, 'fs36', 133)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 134)" onmouseover="showTip(event, 'fs40', 134)" class="id">trials</span> <span class="s">&quot;  FSharp.Map.ofSeq&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs51', 135)" onmouseover="showTip(event, 'fs51', 135)" class="m">Map</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 136)" onmouseover="showTip(event, 'fs52', 136)" class="id">ofSeq</span> <span onmouseout="hideTip(event, 'fs45', 137)" onmouseover="showTip(event, 'fs45', 137)" class="fn">list</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 138)" onmouseover="showTip(event, 'fs53', 138)" class="fn">initPersistentHashMap</span> <span onmouseout="hideTip(event, 'fs54', 139)" onmouseover="showTip(event, 'fs54', 139)" class="fn">list</span> <span class="o">=</span> 
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs55', 140)" onmouseover="showTip(event, 'fs55', 140)" class="mv">m</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs56', 141)" onmouseover="showTip(event, 'fs56', 141)" class="fn">ref</span> <span onmouseout="hideTip(event, 'fs5', 142)" onmouseover="showTip(event, 'fs5', 142)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 143)" onmouseover="showTip(event, 'fs6', 143)" class="id">empty</span>
+        <span class="k">for</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs57', 144)" onmouseover="showTip(event, 'fs57', 144)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs58', 145)" onmouseover="showTip(event, 'fs58', 145)" class="fn">value</span><span class="pn">)</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs54', 146)" onmouseover="showTip(event, 'fs54', 146)" class="fn">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs55', 147)" onmouseover="showTip(event, 'fs55', 147)" class="mv">m</span> <span class="o">:=</span> <span onmouseout="hideTip(event, 'fs5', 148)" onmouseover="showTip(event, 'fs5', 148)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 149)" onmouseover="showTip(event, 'fs7', 149)" class="id">add</span> <span onmouseout="hideTip(event, 'fs57', 150)" onmouseover="showTip(event, 'fs57', 150)" class="fn">key</span> <span onmouseout="hideTip(event, 'fs58', 151)" onmouseover="showTip(event, 'fs58', 151)" class="fn">value</span> <span class="o">!</span><span onmouseout="hideTip(event, 'fs55', 152)" onmouseover="showTip(event, 'fs55', 152)" class="mv">m</span>
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs55', 153)" onmouseover="showTip(event, 'fs55', 153)" class="mv">m</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 154)" onmouseover="showTip(event, 'fs36', 154)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 155)" onmouseover="showTip(event, 'fs40', 155)" class="id">trials</span> <span class="s">&quot;  Multiple PersistentHashMap.add&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs53', 156)" onmouseover="showTip(event, 'fs53', 156)" class="fn">initPersistentHashMap</span> <span onmouseout="hideTip(event, 'fs45', 157)" onmouseover="showTip(event, 'fs45', 157)" class="fn">list</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 158)" onmouseover="showTip(event, 'fs36', 158)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 159)" onmouseover="showTip(event, 'fs40', 159)" class="id">trials</span> <span class="s">&quot;  PersistentHashMap.ofSeq&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs5', 160)" onmouseover="showTip(event, 'fs5', 160)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 161)" onmouseover="showTip(event, 'fs14', 161)" class="id">ofSeq</span> <span onmouseout="hideTip(event, 'fs45', 162)" onmouseover="showTip(event, 'fs45', 162)" class="fn">list</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 163)" onmouseover="showTip(event, 'fs59', 163)" class="fn">initImmutableDictionary</span> <span onmouseout="hideTip(event, 'fs60', 164)" onmouseover="showTip(event, 'fs60', 164)" class="fn">list</span> <span class="o">=</span> 
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 165)" onmouseover="showTip(event, 'fs61', 165)" class="mv">d</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs56', 166)" onmouseover="showTip(event, 'fs56', 166)" class="fn">ref</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 167)" onmouseover="showTip(event, 'fs1', 167)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 168)" onmouseover="showTip(event, 'fs62', 168)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 169)" onmouseover="showTip(event, 'fs63', 169)" class="id">Immutable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 170)" onmouseover="showTip(event, 'fs64', 170)" class="id">ImmutableDictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs65', 171)" onmouseover="showTip(event, 'fs65', 171)" class="vt">int</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs66', 172)" onmouseover="showTip(event, 'fs66', 172)" class="rt">string</span><span class="pn">&gt;</span><span class="pn">.</span><span class="id">Empty</span><span class="pn">)</span>
+        <span class="k">for</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs67', 173)" onmouseover="showTip(event, 'fs67', 173)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs68', 174)" onmouseover="showTip(event, 'fs68', 174)" class="fn">value</span><span class="pn">)</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs60', 175)" onmouseover="showTip(event, 'fs60', 175)" class="fn">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs61', 176)" onmouseover="showTip(event, 'fs61', 176)" class="mv">d</span> <span class="o">:=</span> <span class="fn">(</span><span class="o">!</span><span onmouseout="hideTip(event, 'fs61', 177)" onmouseover="showTip(event, 'fs61', 177)" class="mv">d</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs67', 178)" onmouseover="showTip(event, 'fs67', 178)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs68', 179)" onmouseover="showTip(event, 'fs68', 179)" class="fn">value</span><span class="pn">)</span>
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs61', 180)" onmouseover="showTip(event, 'fs61', 180)" class="mv">d</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 181)" onmouseover="showTip(event, 'fs36', 181)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 182)" onmouseover="showTip(event, 'fs40', 182)" class="id">trials</span> <span class="s">&quot;  Multiple ImmutableDictionay.add&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs59', 183)" onmouseover="showTip(event, 'fs59', 183)" class="fn">initImmutableDictionary</span> <span onmouseout="hideTip(event, 'fs45', 184)" onmouseover="showTip(event, 'fs45', 184)" class="fn">list</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs69', 185)" onmouseover="showTip(event, 'fs69', 185)" class="fn">initImmutableDictionary</span> <span onmouseout="hideTip(event, 'fs60', 186)" onmouseover="showTip(event, 'fs60', 186)" class="fn">list</span> <span class="o">=</span> 
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs70', 187)" onmouseover="showTip(event, 'fs70', 187)" class="mv">d</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs56', 188)" onmouseover="showTip(event, 'fs56', 188)" class="fn">ref</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 189)" onmouseover="showTip(event, 'fs1', 189)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 190)" onmouseover="showTip(event, 'fs62', 190)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 191)" onmouseover="showTip(event, 'fs63', 191)" class="id">Immutable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 192)" onmouseover="showTip(event, 'fs71', 192)" class="id">ImmutableSortedDictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs65', 193)" onmouseover="showTip(event, 'fs65', 193)" class="vt">int</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs66', 194)" onmouseover="showTip(event, 'fs66', 194)" class="rt">string</span><span class="pn">&gt;</span><span class="pn">.</span><span class="id">Empty</span><span class="pn">)</span>
+        <span class="k">for</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs67', 195)" onmouseover="showTip(event, 'fs67', 195)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs68', 196)" onmouseover="showTip(event, 'fs68', 196)" class="fn">value</span><span class="pn">)</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs60', 197)" onmouseover="showTip(event, 'fs60', 197)" class="fn">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs70', 198)" onmouseover="showTip(event, 'fs70', 198)" class="mv">d</span> <span class="o">:=</span> <span class="fn">(</span><span class="o">!</span><span onmouseout="hideTip(event, 'fs70', 199)" onmouseover="showTip(event, 'fs70', 199)" class="mv">d</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs67', 200)" onmouseover="showTip(event, 'fs67', 200)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs68', 201)" onmouseover="showTip(event, 'fs68', 201)" class="fn">value</span><span class="pn">)</span>
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs70', 202)" onmouseover="showTip(event, 'fs70', 202)" class="mv">d</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 203)" onmouseover="showTip(event, 'fs36', 203)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 204)" onmouseover="showTip(event, 'fs40', 204)" class="id">trials</span> <span class="s">&quot;  Multiple ImmutableSortedDictionay.add&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs69', 205)" onmouseover="showTip(event, 'fs69', 205)" class="fn">initImmutableDictionary</span> <span onmouseout="hideTip(event, 'fs45', 206)" onmouseover="showTip(event, 'fs45', 206)" class="fn">list</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs72', 207)" onmouseover="showTip(event, 'fs72', 207)" class="fn">lookupInFSharpMapAndPersistentMap</span> <span onmouseout="hideTip(event, 'fs44', 208)" onmouseover="showTip(event, 'fs44', 208)" class="fn">n</span> <span onmouseout="hideTip(event, 'fs29', 209)" onmouseover="showTip(event, 'fs29', 209)" class="fn">count</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs39', 210)" onmouseover="showTip(event, 'fs39', 210)" class="fn">sprintf</span> <span class="s">&quot;</span><span class="pf">%d</span><span class="s"> Lookups in size n = </span><span class="pf">%d</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs29', 211)" onmouseover="showTip(event, 'fs29', 211)" class="fn">count</span> <span onmouseout="hideTip(event, 'fs44', 212)" onmouseover="showTip(event, 'fs44', 212)" class="fn">n</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs33', 213)" onmouseover="showTip(event, 'fs33', 213)" class="fn">printInFsiTags</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs73', 214)" onmouseover="showTip(event, 'fs73', 214)" class="fn">list</span> <span class="o">=</span> <span class="pn">[</span><span class="k">for</span> <span onmouseout="hideTip(event, 'fs49', 215)" onmouseover="showTip(event, 'fs49', 215)" class="fn">i</span> <span class="k">in</span> <span class="n">0..</span><span onmouseout="hideTip(event, 'fs44', 216)" onmouseover="showTip(event, 'fs44', 216)" class="fn">n</span><span class="o">-</span><span class="n">1</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs49', 217)" onmouseover="showTip(event, 'fs49', 217)" class="fn">i</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs74', 218)" onmouseover="showTip(event, 'fs74', 218)" class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs41', 219)" onmouseover="showTip(event, 'fs41', 219)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 220)" onmouseover="showTip(event, 'fs50', 220)" class="id">Next</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs75', 221)" onmouseover="showTip(event, 'fs75', 221)" class="fn">fsharpMap</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs51', 222)" onmouseover="showTip(event, 'fs51', 222)" class="m">Map</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 223)" onmouseover="showTip(event, 'fs52', 223)" class="id">ofSeq</span> <span onmouseout="hideTip(event, 'fs73', 224)" onmouseover="showTip(event, 'fs73', 224)" class="fn">list</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs76', 225)" onmouseover="showTip(event, 'fs76', 225)" class="fn">map</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs5', 226)" onmouseover="showTip(event, 'fs5', 226)" class="m">PersistentHashMap</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 227)" onmouseover="showTip(event, 'fs14', 227)" class="id">ofSeq</span> <span onmouseout="hideTip(event, 'fs73', 228)" onmouseover="showTip(event, 'fs73', 228)" class="fn">list</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 229)" onmouseover="showTip(event, 'fs36', 229)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 230)" onmouseover="showTip(event, 'fs40', 230)" class="id">trials</span> <span class="s">&quot;  FSharp.Map&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs77', 231)" onmouseover="showTip(event, 'fs77', 231)" class="fn">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs29', 232)" onmouseover="showTip(event, 'fs29', 232)" class="fn">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs75', 233)" onmouseover="showTip(event, 'fs75', 233)" class="fn">fsharpMap</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs41', 234)" onmouseover="showTip(event, 'fs41', 234)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 235)" onmouseover="showTip(event, 'fs50', 235)" class="id">Next</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 236)" onmouseover="showTip(event, 'fs44', 236)" class="fn">n</span><span class="pn">)</span><span class="pn">.</span><span class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 237)" onmouseover="showTip(event, 'fs36', 237)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 238)" onmouseover="showTip(event, 'fs40', 238)" class="id">trials</span> <span class="s">&quot;  PersistentHashMap&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs77', 239)" onmouseover="showTip(event, 'fs77', 239)" class="fn">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs29', 240)" onmouseover="showTip(event, 'fs29', 240)" class="fn">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs76', 241)" onmouseover="showTip(event, 'fs76', 241)" class="fn">map</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs41', 242)" onmouseover="showTip(event, 'fs41', 242)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 243)" onmouseover="showTip(event, 'fs50', 243)" class="id">Next</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 244)" onmouseover="showTip(event, 'fs44', 244)" class="fn">n</span><span class="pn">)</span><span class="pn">.</span><span class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs78', 245)" onmouseover="showTip(event, 'fs78', 245)" class="fn">dict</span> <span class="o">=</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs79', 246)" onmouseover="showTip(event, 'fs79', 246)" class="mv">d</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs56', 247)" onmouseover="showTip(event, 'fs56', 247)" class="fn">ref</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 248)" onmouseover="showTip(event, 'fs1', 248)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 249)" onmouseover="showTip(event, 'fs62', 249)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 250)" onmouseover="showTip(event, 'fs63', 250)" class="id">Immutable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 251)" onmouseover="showTip(event, 'fs64', 251)" class="id">ImmutableDictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs66', 252)" onmouseover="showTip(event, 'fs66', 252)" class="rt">string</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs65', 253)" onmouseover="showTip(event, 'fs65', 253)" class="vt">int</span><span class="pn">&gt;</span><span class="pn">.</span><span class="id">Empty</span><span class="pn">)</span>
+        <span class="k">for</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs80', 254)" onmouseover="showTip(event, 'fs80', 254)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs81', 255)" onmouseover="showTip(event, 'fs81', 255)" class="fn">value</span><span class="pn">)</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs73', 256)" onmouseover="showTip(event, 'fs73', 256)" class="fn">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs79', 257)" onmouseover="showTip(event, 'fs79', 257)" class="mv">d</span> <span class="o">:=</span> <span class="fn">(</span><span class="o">!</span><span onmouseout="hideTip(event, 'fs79', 258)" onmouseover="showTip(event, 'fs79', 258)" class="mv">d</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs80', 259)" onmouseover="showTip(event, 'fs80', 259)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs81', 260)" onmouseover="showTip(event, 'fs81', 260)" class="fn">value</span><span class="pn">)</span>
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs79', 261)" onmouseover="showTip(event, 'fs79', 261)" class="mv">d</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 262)" onmouseover="showTip(event, 'fs36', 262)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 263)" onmouseover="showTip(event, 'fs40', 263)" class="id">trials</span> <span class="s">&quot;  ImmutableDictionay&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs77', 264)" onmouseover="showTip(event, 'fs77', 264)" class="fn">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs29', 265)" onmouseover="showTip(event, 'fs29', 265)" class="fn">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs78', 266)" onmouseover="showTip(event, 'fs78', 266)" class="fn">dict</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs41', 267)" onmouseover="showTip(event, 'fs41', 267)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 268)" onmouseover="showTip(event, 'fs50', 268)" class="id">Next</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 269)" onmouseover="showTip(event, 'fs44', 269)" class="fn">n</span><span class="pn">)</span><span class="pn">.</span><span class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs82', 270)" onmouseover="showTip(event, 'fs82', 270)" class="fn">dict&#39;</span> <span class="o">=</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs83', 271)" onmouseover="showTip(event, 'fs83', 271)" class="mv">d</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs56', 272)" onmouseover="showTip(event, 'fs56', 272)" class="fn">ref</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 273)" onmouseover="showTip(event, 'fs1', 273)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 274)" onmouseover="showTip(event, 'fs62', 274)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 275)" onmouseover="showTip(event, 'fs63', 275)" class="id">Immutable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 276)" onmouseover="showTip(event, 'fs71', 276)" class="id">ImmutableSortedDictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs66', 277)" onmouseover="showTip(event, 'fs66', 277)" class="rt">string</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs65', 278)" onmouseover="showTip(event, 'fs65', 278)" class="vt">int</span><span class="pn">&gt;</span><span class="pn">.</span><span class="id">Empty</span><span class="pn">)</span>
+        <span class="k">for</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs80', 279)" onmouseover="showTip(event, 'fs80', 279)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs81', 280)" onmouseover="showTip(event, 'fs81', 280)" class="fn">value</span><span class="pn">)</span> <span class="k">in</span> <span onmouseout="hideTip(event, 'fs73', 281)" onmouseover="showTip(event, 'fs73', 281)" class="fn">list</span> <span class="k">do</span>
+            <span onmouseout="hideTip(event, 'fs83', 282)" onmouseover="showTip(event, 'fs83', 282)" class="mv">d</span> <span class="o">:=</span> <span class="fn">(</span><span class="o">!</span><span onmouseout="hideTip(event, 'fs83', 283)" onmouseover="showTip(event, 'fs83', 283)" class="mv">d</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs80', 284)" onmouseover="showTip(event, 'fs80', 284)" class="fn">key</span><span class="pn">,</span><span onmouseout="hideTip(event, 'fs81', 285)" onmouseover="showTip(event, 'fs81', 285)" class="fn">value</span><span class="pn">)</span>
+        <span class="o">!</span><span onmouseout="hideTip(event, 'fs83', 286)" onmouseover="showTip(event, 'fs83', 286)" class="mv">d</span>
+
+    <span onmouseout="hideTip(event, 'fs36', 287)" onmouseover="showTip(event, 'fs36', 287)" class="fn">averageTime</span> <span onmouseout="hideTip(event, 'fs40', 288)" onmouseover="showTip(event, 'fs40', 288)" class="id">trials</span> <span class="s">&quot;  ImmutableSortedDictionay&quot;</span> 
+        <span class="pn">(</span><span class="k">fun</span> <span class="pn">(</span><span class="pn">)</span> <span class="k">-&gt;</span> <span class="k">for</span> <span onmouseout="hideTip(event, 'fs77', 289)" onmouseover="showTip(event, 'fs77', 289)" class="fn">i</span> <span class="k">in</span> <span class="n">1..</span><span onmouseout="hideTip(event, 'fs29', 290)" onmouseover="showTip(event, 'fs29', 290)" class="fn">count</span> <span class="k">do</span> <span onmouseout="hideTip(event, 'fs82', 291)" onmouseover="showTip(event, 'fs82', 291)" class="fn">dict&#39;</span><span class="pn">.</span><span class="pn">[</span><span onmouseout="hideTip(event, 'fs41', 292)" onmouseover="showTip(event, 'fs41', 292)" class="id">r</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 293)" onmouseover="showTip(event, 'fs50', 293)" class="id">Next</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 294)" onmouseover="showTip(event, 'fs44', 294)" class="fn">n</span><span class="pn">)</span><span class="pn">.</span><span class="id">ToString</span><span class="pn">(</span><span class="pn">)</span><span class="pn">]</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs43', 295)" onmouseover="showTip(event, 'fs43', 295)" class="fn">initFSharpMapAndPersistentMapFromList</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs43', 296)" onmouseover="showTip(event, 'fs43', 296)" class="fn">initFSharpMapAndPersistentMapFromList</span> <span class="n">100000</span>
+<span onmouseout="hideTip(event, 'fs43', 297)" onmouseover="showTip(event, 'fs43', 297)" class="fn">initFSharpMapAndPersistentMapFromList</span> <span class="n">1000000</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[fsi:Init with n = 10000]
+ [fsi:  FSharp.Map.ofSeq 5.8ms]
+ [fsi:  Multiple PersistentHashMap.add 9.8ms]
+ [fsi:  PersistentHashMap.ofSeq 9.6ms]
+ [fsi:  Multiple ImmutableDictionay.add 23.2ms]
+ [fsi:  Multiple ImmutableSortedDictionay.add 14.0ms]
+ [fsi:Init with n = 100000]
+ [fsi:  FSharp.Map.ofSeq 133.4ms]
+ [fsi:  Multiple PersistentHashMap.add 170.8ms]
+ [fsi:  PersistentHashMap.ofSeq 116.4ms]
+ [fsi:  Multiple ImmutableDictionay.add 247.4ms]
+ [fsi:  Multiple ImmutableSortedDictionay.add 184.4ms]
+ [fsi:Init with n = 1000000]
+ [fsi:  FSharp.Map.ofSeq 2750.6ms]
+ [fsi:  Multiple PersistentHashMap.add 3580.6ms]
+ [fsi:  PersistentHashMap.ofSeq 3353.2ms]
+ [fsi:  Multiple ImmutableDictionay.add 4557.4ms]
+ [fsi:  Multiple ImmutableSortedDictionay.add 3249.0ms]</code></pre></td></tr></table>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs72', 298)" onmouseover="showTip(event, 'fs72', 298)" class="fn">lookupInFSharpMapAndPersistentMap</span> <span class="n">10000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs72', 299)" onmouseover="showTip(event, 'fs72', 299)" class="fn">lookupInFSharpMapAndPersistentMap</span> <span class="n">100000</span> <span class="n">10000</span>
+<span onmouseout="hideTip(event, 'fs72', 300)" onmouseover="showTip(event, 'fs72', 300)" class="fn">lookupInFSharpMapAndPersistentMap</span> <span class="n">1000000</span> <span class="n">10000</span>
+</code></pre>
+<table class="pre"><tr><td><pre><code>[fsi:10000 Lookups in size n = 10000]
+ [fsi:  FSharp.Map 3.0ms]
+ [fsi:  PersistentHashMap 2.0ms]
+ [fsi:  ImmutableDictionay 2.2ms]
+ [fsi:  ImmutableSortedDictionay 13.0ms]
+ [fsi:10000 Lookups in size n = 100000]
+ [fsi:  FSharp.Map 5.0ms]
+ [fsi:  PersistentHashMap 3.8ms]
+ [fsi:  ImmutableDictionay 4.0ms]
+ [fsi:  ImmutableSortedDictionay 14.2ms]
+ [fsi:10000 Lookups in size n = 1000000]
+ [fsi:  FSharp.Map 11.4ms]
+ [fsi:  PersistentHashMap 6.8ms]
+ [fsi:  ImmutableDictionay 6.6ms]
+ [fsi:  ImmutableSortedDictionay 24.0ms]</code></pre></td></tr></table>
+
+            <div class="fsdocs-tip" id="fs1">namespace System</div>
+<div class="fsdocs-tip" id="fs2">namespace FSharpx</div>
+<div class="fsdocs-tip" id="fs3">namespace FSharpx.Collections</div>
+<div class="fsdocs-tip" id="fs4">val m : PersistentHashMap&lt;int,string&gt;</div>
+<div class="fsdocs-tip" id="fs5">Multiple items<br />module PersistentHashMap
+
+from FSharpx.Collections<br /><em>&lt;summary&gt;
+ Defines functions which allow to access and manipulate PersistentHashMaps.
+&lt;/summary&gt;</em><br /><br />--------------------<br />type PersistentHashMap&lt;&#39;T,&#39;S (requires equality and equality)&gt; =
+  interface IReadOnlyCollection&lt;&#39;T * &#39;S&gt;
+  interface IEnumerable
+  interface IEnumerable&lt;&#39;T * &#39;S&gt;
+  private new : count&#39;:int * root&#39;:INode * hasNull&#39;:bool * nullValue&#39;:&#39;S -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;
+  val private count: int
+  val private root: INode
+  val private hasNull: bool
+  val private nullValue: &#39;S
+  member Add : key:&#39;T * value:&#39;S -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;
+  member ContainsKey : key:&#39;T -&gt; bool
+  ...<br /><em>&lt;summary&gt;
+ A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
+ Hash maps provide fast access (log32N hops). count is O(1).
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs6">val empty&lt;&#39;T,&#39;S (requires equality and equality)&gt; : PersistentHashMap&lt;&#39;T,&#39;S&gt; (requires equality and equality)<br /><em>&lt;summary&gt;
+O(1), returns an empty PersistentHashMap
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">val add : key:&#39;T -&gt; value:&#39;S -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt; (requires equality and equality)<br /><em>&lt;summary&gt;
+O(log32n), adds an element to the map
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val find : key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; &#39;S (requires equality and equality)<br /><em>&lt;summary&gt;
+O(log32n), returns the value if the exists in the map
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val length : map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; int (requires equality and equality)<br /><em>&lt;summary&gt;
+O(1), returns the count of the elements in the PersistentHashMap (same as count)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">val m&#39; : PersistentHashMap&lt;int,string&gt;</div>
+<div class="fsdocs-tip" id="fs11">val m&#39;&#39; : PersistentHashMap&lt;int,string&gt;</div>
+<div class="fsdocs-tip" id="fs12">val remove : key:&#39;T -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt; (requires equality and equality)<br /><em>&lt;summary&gt;
+O(log32n), removes the element with the given key from the map
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val stringBasedMap : PersistentHashMap&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs14">Multiple items<br />val ofSeq : items:seq&lt;&#39;T * &#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt; (requires equality and equality)<br /><em>&lt;summary&gt;
+O(n). Returns a HashMap of the seq.
+&lt;/summary&gt;</em><br /><br />--------------------<br />static member PersistentHashMap.ofSeq : items:seq&lt;&#39;T * &#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S&gt;</div>
+<div class="fsdocs-tip" id="fs15">val stringBasedMap&#39; : PersistentHashMap&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs16">val map : f:(&#39;S -&gt; &#39;S1) -&gt; map:PersistentHashMap&lt;&#39;T,&#39;S&gt; -&gt; PersistentHashMap&lt;&#39;T,&#39;S1&gt; (requires equality and equality and equality)<br /><em>&lt;summary&gt;
+O(n). Returns a HashMap whose elements are the results of applying the supplied function to each of the elements of a supplied HashMap.
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val x : int</div>
+<div class="fsdocs-tip" id="fs18">val stopTime : f:(unit -&gt; &#39;a) -&gt; &#39;a * float<br /><em>&#160;Stops the runtime for a given function</em></div>
+<div class="fsdocs-tip" id="fs19">val f : (unit -&gt; &#39;a)</div>
+<div class="fsdocs-tip" id="fs20">val sw : Diagnostics.Stopwatch</div>
+<div class="fsdocs-tip" id="fs21">namespace System.Diagnostics</div>
+<div class="fsdocs-tip" id="fs22">Multiple items<br />type Stopwatch =
+  new : unit -&gt; unit
+  member Reset : unit -&gt; unit
+  member Restart : unit -&gt; unit
+  member Start : unit -&gt; unit
+  member Stop : unit -&gt; unit
+  static member GetTimestamp : unit -&gt; int64
+  static member StartNew : unit -&gt; Stopwatch
+  static val Frequency : int64
+  static val IsHighResolution : bool
+  member Elapsed : TimeSpan
+  ...<br /><em>&lt;summary&gt;Provides a set of methods and properties that you can use to accurately measure elapsed time.&lt;/summary&gt;</em><br /><br />--------------------<br />Diagnostics.Stopwatch() : Diagnostics.Stopwatch</div>
+<div class="fsdocs-tip" id="fs23">Diagnostics.Stopwatch.Start() : unit</div>
+<div class="fsdocs-tip" id="fs24">val result : &#39;a</div>
+<div class="fsdocs-tip" id="fs25">Diagnostics.Stopwatch.Stop() : unit</div>
+<div class="fsdocs-tip" id="fs26">Multiple items<br />val float : value:&#39;T -&gt; float (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to 64-bit float. This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Double.Parse()&lt;/c&gt;  
+ with InvariantCulture settings. Otherwise the operation requires an appropriate
+ static conversion method on the input type.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted float&lt;/returns&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type float = Double<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type float&lt;&#39;Measure&gt; =
+  float<br /><em>&lt;summary&gt;The type of double-precision floating point numbers, annotated with a unit of measure. 
+ The unit of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Double&quot; /&gt;.&lt;/summary&gt;<br />&lt;category index=&quot;6&quot;&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">property Diagnostics.Stopwatch.ElapsedMilliseconds: int64 with get<br /><em>&lt;summary&gt;Gets the total elapsed time measured by the current instance, in milliseconds.&lt;/summary&gt;<br />&lt;returns&gt;A read-only long integer representing the total number of milliseconds measured by the current instance.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">val stopAverageTime : count:int -&gt; f:(unit -&gt; &#39;a) -&gt; float<br /><em>&#160;Stops the average runtime for a given function and applies it the given count</em></div>
+<div class="fsdocs-tip" id="fs29">val count : int</div>
+<div class="fsdocs-tip" id="fs30">type GC =
+  static member AddMemoryPressure : bytesAllocated: int64 -&gt; unit
+  static member AllocateArray&lt;&#39;T&gt; : length: int *?pinned: bool -&gt; &#39;T []
+  static member AllocateUninitializedArray&lt;&#39;T&gt; : length: int *?pinned: bool -&gt; &#39;T []
+  static member CancelFullGCNotification : unit -&gt; unit
+  static member Collect : unit -&gt; unit + 4 overloads
+  static member CollectionCount : generation: int -&gt; int
+  static member EndNoGCRegion : unit -&gt; unit
+  static member GetAllocatedBytesForCurrentThread : unit -&gt; int64
+  static member GetGCMemoryInfo : unit -&gt; GCMemoryInfo + 1 overload
+  static member GetGeneration : obj: obj -&gt; int + 1 overload
+  ...<br /><em>&lt;summary&gt;Controls the system garbage collector, a service that automatically reclaims unused memory.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">GC.Collect() : unit<br />GC.Collect(generation: int) : unit<br />GC.Collect(generation: int, mode: GCCollectionMode) : unit<br />GC.Collect(generation: int, mode: GCCollectionMode, blocking: bool) : unit<br />GC.Collect(generation: int, mode: GCCollectionMode, blocking: bool, compacting: bool) : unit</div>
+<div class="fsdocs-tip" id="fs32">val ignore : value:&#39;T -&gt; unit<br /><em>&lt;summary&gt;Ignore the passed value. This is often used to throw away results of a computation.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The value to ignore.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">val printInFsiTags : s:string -&gt; unit</div>
+<div class="fsdocs-tip" id="fs34">val s : string</div>
+<div class="fsdocs-tip" id="fs35">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><em>&lt;summary&gt;Print to &lt;c&gt;stdout&lt;/c&gt; using the given format, and add a newline.&lt;/summary&gt;<br />&lt;param name=&quot;format&quot;&gt;The formatter.&lt;/param&gt;<br />&lt;returns&gt;The formatted result.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">val averageTime : count:int -&gt; desc:string -&gt; f:(unit -&gt; &#39;a) -&gt; unit<br /><em>&#160;Stops the average runtime for a given function and applies it the given count<br />&#160;Afterwards it reports it with the given description</em></div>
+<div class="fsdocs-tip" id="fs37">val desc : string</div>
+<div class="fsdocs-tip" id="fs38">val time : float</div>
+<div class="fsdocs-tip" id="fs39">val sprintf : format:Printf.StringFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><em>&lt;summary&gt;Print to a string using the given format.&lt;/summary&gt;<br />&lt;param name=&quot;format&quot;&gt;The formatter.&lt;/param&gt;<br />&lt;returns&gt;The formatted result.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">val trials : int</div>
+<div class="fsdocs-tip" id="fs41">val r : Random</div>
+<div class="fsdocs-tip" id="fs42">Multiple items<br />type Random =
+  new : unit -&gt; unit + 1 overload
+  member Next : unit -&gt; int + 2 overloads
+  member NextBytes : buffer: byte [] -&gt; unit + 1 overload
+  member NextDouble : unit -&gt; float
+  member Sample : unit -&gt; float<br /><em>&lt;summary&gt;Represents a pseudo-random number generator, which is an algorithm that produces a sequence of numbers that meet certain statistical requirements for randomness.&lt;/summary&gt;</em><br /><br />--------------------<br />Random() : Random<br />Random(Seed: int) : Random</div>
+<div class="fsdocs-tip" id="fs43">val initFSharpMapAndPersistentMapFromList : n:int -&gt; unit</div>
+<div class="fsdocs-tip" id="fs44">val n : int</div>
+<div class="fsdocs-tip" id="fs45">Multiple items<br />val list : (int * string) list<br /><br />--------------------<br />type &#39;T list = List&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of immutable singly-linked lists. &lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.ListModule&quot; /&gt; module for further operations related to lists.
+
+ Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1; 2; 3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+
+  See also &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/lists&quot;&gt;F# Language Guide - Lists&lt;/a&gt;.
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">Multiple items<br />module List
+
+from FSharpx.Collections<br /><em>&lt;summary&gt;
+ Extensions for F#&#39;s List module.
+&lt;/summary&gt;</em><br /><br />--------------------<br />module List
+
+from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.list`1&quot; /&gt;.&lt;/summary&gt;<br />&lt;namespacedoc&gt;&lt;summary&gt;Operations for collections such as lists, arrays, sets, maps and sequences. See also 
+    &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/fsharp-collection-types&quot;&gt;F# Collection Types&lt;/a&gt; in the F# Language Guide.
+ &lt;/summary&gt;&lt;/namespacedoc&gt;</em><br /><br />--------------------<br />type List&lt;&#39;T&gt; =
+  | ( [] )
+  | ( :: ) of Head: &#39;T * Tail: &#39;T list
+    interface IReadOnlyList&lt;&#39;T&gt;
+    interface IReadOnlyCollection&lt;&#39;T&gt;
+    interface IEnumerable
+    interface IEnumerable&lt;&#39;T&gt;
+    member GetReverseIndex : rank:int * offset:int -&gt; int
+    member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list
+    static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list
+    member Head : &#39;T
+    member IsEmpty : bool
+    member Item : index:int -&gt; &#39;T with get
+    ...<br /><em>&lt;summary&gt;The type of immutable singly-linked lists.&lt;/summary&gt;<br />&lt;remarks&gt;Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1;2;3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+ &lt;/remarks&gt;<br />&lt;exclude /&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">val sortBy : projection:(&#39;T -&gt; &#39;Key) -&gt; list:&#39;T list -&gt; &#39;T list (requires comparison)<br /><em>&lt;summary&gt;Sorts the given list using keys given by the given projection. Keys are compared using &lt;see cref=&quot;M:Microsoft.FSharp.Core.Operators.compare&quot; /&gt;.&lt;/summary&gt;<br />&lt;remarks&gt;This is a stable sort, i.e. the original order of equal elements is preserved.&lt;/remarks&gt;<br />&lt;param name=&quot;projection&quot;&gt;The function to transform the list elements into the type to be compared.&lt;/param&gt;<br />&lt;param name=&quot;list&quot;&gt;The input list.&lt;/param&gt;<br />&lt;returns&gt;The sorted list.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">val snd : tuple:(&#39;T1 * &#39;T2) -&gt; &#39;T2<br /><em>&lt;summary&gt;Return the second element of a tuple, &lt;c&gt;snd (a,b) = b&lt;/c&gt;.&lt;/summary&gt;<br />&lt;param name=&quot;tuple&quot;&gt;The input tuple.&lt;/param&gt;<br />&lt;returns&gt;The second value.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">val i : int</div>
+<div class="fsdocs-tip" id="fs50">Random.Next() : int<br />Random.Next(maxValue: int) : int<br />Random.Next(minValue: int, maxValue: int) : int</div>
+<div class="fsdocs-tip" id="fs51">Multiple items<br />module Map
+
+from FSharpx.Collections<br /><em>&lt;summary&gt;
+ Extensions for F#&#39;s Map module.
+&lt;/summary&gt;</em><br /><br />--------------------<br />module Map
+
+from Microsoft.FSharp.Collections<br /><em>&lt;summary&gt;Contains operations for working with values of type &lt;see cref=&quot;T:Microsoft.FSharp.Collections.Map`2&quot; /&gt;.&lt;/summary&gt;</em><br /><br />--------------------<br />type Map&lt;&#39;Key,&#39;Value (requires comparison)&gt; =
+  interface IReadOnlyDictionary&lt;&#39;Key,&#39;Value&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface IEnumerable
+  interface IComparable
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface ICollection&lt;KeyValuePair&lt;&#39;Key,&#39;Value&gt;&gt;
+  interface IDictionary&lt;&#39;Key,&#39;Value&gt;
+  new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;
+  member Add : key:&#39;Key * value:&#39;Value -&gt; Map&lt;&#39;Key,&#39;Value&gt;
+  member Change : key:&#39;Key * f:(&#39;Value option -&gt; &#39;Value option) -&gt; Map&lt;&#39;Key,&#39;Value&gt;
+  ...<br /><em>&lt;summary&gt;Immutable maps based on binary trees, where keys are ordered by F# generic comparison. By default
+ comparison is the F# structural comparison function or uses implementations of the IComparable interface on key values.&lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.MapModule&quot; /&gt; module for further operations on maps.
+
+ All members of this class are thread-safe and may be used concurrently from multiple threads.&lt;/remarks&gt;</em><br /><br />--------------------<br />new : elements:seq&lt;&#39;Key * &#39;Value&gt; -&gt; Map&lt;&#39;Key,&#39;Value&gt;</div>
+<div class="fsdocs-tip" id="fs52">val ofSeq : elements:seq&lt;&#39;Key * &#39;T&gt; -&gt; Map&lt;&#39;Key,&#39;T&gt; (requires comparison)<br /><em>&lt;summary&gt;Returns a new map made from the given bindings.&lt;/summary&gt;<br />&lt;param name=&quot;elements&quot;&gt;The input sequence of key/value pairs.&lt;/param&gt;<br />&lt;returns&gt;The resulting map.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">val initPersistentHashMap : (seq&lt;&#39;a * &#39;b&gt; -&gt; PersistentHashMap&lt;&#39;a,&#39;b&gt;) (requires equality and equality)</div>
+<div class="fsdocs-tip" id="fs54">Multiple items<br />val list : seq&lt;&#39;a * &#39;b&gt; (requires equality and equality)<br /><br />--------------------<br />type &#39;T list = List&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of immutable singly-linked lists. &lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.ListModule&quot; /&gt; module for further operations related to lists.
+
+ Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1; 2; 3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+
+  See also &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/lists&quot;&gt;F# Language Guide - Lists&lt;/a&gt;.
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs55">val m : PersistentHashMap&lt;&#39;a,&#39;b&gt; ref (requires equality and equality)</div>
+<div class="fsdocs-tip" id="fs56">Multiple items<br />val ref : value:&#39;T -&gt; &#39;T ref<br /><em>&lt;summary&gt;Create a mutable reference cell&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The value to contain in the cell.&lt;/param&gt;<br />&lt;returns&gt;The created reference cell.&lt;/returns&gt;</em><br /><br />--------------------<br />type &#39;T ref = Ref&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of mutable references. Use the functions [!] and [:=] to get and
+ set values of this type.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">val key : &#39;a (requires equality)</div>
+<div class="fsdocs-tip" id="fs58">val value : &#39;b (requires equality)</div>
+<div class="fsdocs-tip" id="fs59">val initImmutableDictionary : (seq&lt;int * string&gt; -&gt; Collections.Immutable.ImmutableDictionary&lt;int,string&gt;)</div>
+<div class="fsdocs-tip" id="fs60">Multiple items<br />val list : seq&lt;int * string&gt;<br /><br />--------------------<br />type &#39;T list = List&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of immutable singly-linked lists. &lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.ListModule&quot; /&gt; module for further operations related to lists.
+
+ Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1; 2; 3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+
+  See also &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/lists&quot;&gt;F# Language Guide - Lists&lt;/a&gt;.
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs61">val d : Collections.Immutable.ImmutableDictionary&lt;int,string&gt; ref</div>
+<div class="fsdocs-tip" id="fs62">namespace System.Collections</div>
+<div class="fsdocs-tip" id="fs63">namespace System.Collections.Immutable</div>
+<div class="fsdocs-tip" id="fs64">Multiple items<br />type ImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; =
+  interface ICollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable
+  interface IDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IReadOnlyDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface ICollection
+  interface IDictionary
+  interface IImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  new : unit -&gt; unit
+  ...<br /><em>&lt;summary&gt;Represents an immutable, unordered collection of keys and values.  
+  
+ NuGet package: System.Collections.Immutable (about immutable collections and how to install)&lt;/summary&gt;<br />&lt;typeparam name=&quot;TKey&quot;&gt;The type of the keys in the dictionary.&lt;/typeparam&gt;<br />&lt;typeparam name=&quot;TValue&quot;&gt;The type of the values in the dictionary.&lt;/typeparam&gt;</em><br /><br />--------------------<br />type ImmutableDictionary =
+  static member Contains&lt;&#39;TKey,&#39;TValue&gt; : map: IImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; * key: &#39;TKey * value: &#39;TValue -&gt; bool
+  static member Create&lt;&#39;TKey,&#39;TValue&gt; : unit -&gt; ImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member CreateBuilder&lt;&#39;TKey,&#39;TValue&gt; : unit -&gt; Builder&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member CreateRange&lt;&#39;TKey,&#39;TValue&gt; : items: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt; -&gt; ImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member GetValueOrDefault&lt;&#39;TKey,&#39;TValue&gt; : dictionary: IImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; * key: &#39;TKey -&gt; &#39;TValue + 1 overload
+  static member ToImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; : source: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt; -&gt; ImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt; + 8 overloads<br /><em>&lt;summary&gt;Provides a set of initialization methods for instances of the &lt;see cref=&quot;T:System.Collections.Immutable.ImmutableDictionary`2&quot; /&gt; class.  
+  
+ NuGet package: System.Collections.Immutable (about immutable collections and how to install)&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">Multiple items<br />val int : value:&#39;T -&gt; int (requires member op_Explicit)<br /><em>&lt;summary&gt;Converts the argument to signed 32-bit integer. This is a direct conversion for all 
+ primitive numeric types. For strings, the input is converted using &lt;c&gt;Int32.Parse()&lt;/c&gt;  
+ with InvariantCulture settings. Otherwise the operation requires an appropriate
+ static conversion method on the input type.&lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted int&lt;/returns&gt;</em><br /><br />--------------------<br />[&lt;Struct&gt;]
+type int = int32<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.Int32&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em><br /><br />--------------------<br />type int&lt;&#39;Measure&gt; =
+  int<br /><em>&lt;summary&gt;The type of 32-bit signed integer numbers, annotated with a unit of measure. The unit
+ of measure is erased in compiled code and when values of this type
+ are analyzed using reflection. The type is representationally equivalent to 
+ &lt;see cref=&quot;T:System.Int32&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types with Units of Measure&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs66">Multiple items<br />val string : value:&#39;T -&gt; string<br /><em>&lt;summary&gt;Converts the argument to a string using &lt;c&gt;ToString&lt;/c&gt;.&lt;/summary&gt;<br />&lt;remarks&gt;For standard integer and floating point values the and any type that implements &lt;c&gt;IFormattable&lt;/c&gt;&lt;c&gt;ToString&lt;/c&gt; conversion uses &lt;c&gt;CultureInfo.InvariantCulture&lt;/c&gt;. &lt;/remarks&gt;<br />&lt;param name=&quot;value&quot;&gt;The input value.&lt;/param&gt;<br />&lt;returns&gt;The converted string.&lt;/returns&gt;</em><br /><br />--------------------<br />type string = String<br /><em>&lt;summary&gt;An abbreviation for the CLI type &lt;see cref=&quot;T:System.String&quot; /&gt;.&lt;/summary&gt;<br />&lt;category&gt;Basic Types&lt;/category&gt;</em></div>
+<div class="fsdocs-tip" id="fs67">val key : int</div>
+<div class="fsdocs-tip" id="fs68">val value : string</div>
+<div class="fsdocs-tip" id="fs69">val initImmutableDictionary : (seq&lt;int * string&gt; -&gt; Collections.Immutable.ImmutableSortedDictionary&lt;int,string&gt;)</div>
+<div class="fsdocs-tip" id="fs70">val d : Collections.Immutable.ImmutableSortedDictionary&lt;int,string&gt; ref</div>
+<div class="fsdocs-tip" id="fs71">Multiple items<br />type ImmutableSortedDictionary&lt;&#39;TKey,&#39;TValue&gt; =
+  interface ICollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable
+  interface IDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IReadOnlyDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface ICollection
+  interface IDictionary
+  interface IImmutableDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  new : unit -&gt; unit
+  ...<br /><em>&lt;summary&gt;Represents an immutable sorted dictionary.  
+  
+ NuGet package: System.Collections.Immutable (about immutable collections and how to install)&lt;/summary&gt;<br />&lt;typeparam name=&quot;TKey&quot;&gt;The type of the key contained in the dictionary.&lt;/typeparam&gt;<br />&lt;typeparam name=&quot;TValue&quot;&gt;The type of the value contained in the dictionary.&lt;/typeparam&gt;</em><br /><br />--------------------<br />type ImmutableSortedDictionary =
+  static member Create&lt;&#39;TKey,&#39;TValue&gt; : unit -&gt; ImmutableSortedDictionary&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member CreateBuilder&lt;&#39;TKey,&#39;TValue&gt; : unit -&gt; Builder&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member CreateRange&lt;&#39;TKey,&#39;TValue&gt; : keyComparer: IComparer&lt;&#39;TKey&gt; * items: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt; -&gt; ImmutableSortedDictionary&lt;&#39;TKey,&#39;TValue&gt; + 2 overloads
+  static member ToImmutableSortedDictionary&lt;&#39;TKey,&#39;TValue&gt; : source: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt; -&gt; ImmutableSortedDictionary&lt;&#39;TKey,&#39;TValue&gt; + 6 overloads<br /><em>&lt;summary&gt;Provides a set of initialization methods for instances of the &lt;see cref=&quot;T:System.Collections.Immutable.ImmutableSortedDictionary`2&quot; /&gt; class.  
+  
+ NuGet package: System.Collections.Immutable (about immutable collections and how to install)&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs72">val lookupInFSharpMapAndPersistentMap : n:int -&gt; count:int -&gt; unit</div>
+<div class="fsdocs-tip" id="fs73">Multiple items<br />val list : (string * int) list<br /><br />--------------------<br />type &#39;T list = List&lt;&#39;T&gt;<br /><em>&lt;summary&gt;The type of immutable singly-linked lists. &lt;/summary&gt;<br />&lt;remarks&gt;See the &lt;see cref=&quot;T:Microsoft.FSharp.Collections.ListModule&quot; /&gt; module for further operations related to lists.
+
+ Use the constructors &lt;c&gt;[]&lt;/c&gt; and &lt;c&gt;::&lt;/c&gt; (infix) to create values of this type, or
+ the notation &lt;c&gt;[1; 2; 3]&lt;/c&gt;. Use the values in the &lt;c&gt;List&lt;/c&gt; module to manipulate 
+ values of this type, or pattern match against the values directly.
+
+  See also &lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/language-reference/lists&quot;&gt;F# Language Guide - Lists&lt;/a&gt;.
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">Int32.ToString() : string<br />Int32.ToString(format: string) : string<br />Int32.ToString(provider: IFormatProvider) : string<br />Int32.ToString(format: string, provider: IFormatProvider) : string</div>
+<div class="fsdocs-tip" id="fs75">val fsharpMap : Map&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs76">val map : PersistentHashMap&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs77">val i : int32</div>
+<div class="fsdocs-tip" id="fs78">val dict : Collections.Immutable.ImmutableDictionary&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs79">val d : Collections.Immutable.ImmutableDictionary&lt;string,int&gt; ref</div>
+<div class="fsdocs-tip" id="fs80">val key : string</div>
+<div class="fsdocs-tip" id="fs81">val value : int</div>
+<div class="fsdocs-tip" id="fs82">val dict&#39; : Collections.Immutable.ImmutableSortedDictionary&lt;string,int&gt;</div>
+<div class="fsdocs-tip" id="fs83">val d : Collections.Immutable.ImmutableSortedDictionary&lt;string,int&gt; ref</div>
 
         </div>
-        <div class="span3">
-          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu">
-            <li class="nav-header">fsprojects/FSharpx.Collections</li>
-            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-              
-            <li class="nav-header">Using from F#</li>
-            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
-            <li class="nav-header">Performance tests</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-            <li class="nav-header">Documentation</li>
-            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
-                      
-          </ul>
-        </div>
-      </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
-    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-  </body>
-  </html>
+</body>
+
+</html>

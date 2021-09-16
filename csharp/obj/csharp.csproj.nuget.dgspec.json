@@ -1,0 +1,215 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj": {}
+  },
+  "projects": {
+    "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj",
+        "projectName": "csharp",
+        "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/csharp.csproj",
+        "packagesPath": "/Users/sergey_tihon/.nuget/packages/",
+        "outputPath": "/Users/sergey_tihon/git/FSharpx.Collections/docs/csharp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sergey_tihon/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj": {
+                "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj"
+              },
+              "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj": {
+                "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1603",
+            "NU1604",
+            "NU1605",
+            "NU1608"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.SourceLink.GitHub": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj",
+        "projectName": "FSharpx.Collections.Experimental",
+        "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/FSharpx.Collections.Experimental.fsproj",
+        "packagesPath": "/Users/sergey_tihon/.nuget/packages/",
+        "outputPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections.Experimental/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sergey_tihon/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj": {
+                "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1603",
+            "NU1604",
+            "NU1605",
+            "NU1608"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[4.3.4, )",
+              "generatePathProperty": true
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true,
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj",
+        "projectName": "FSharpx.Collections",
+        "projectPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/FSharpx.Collections.fsproj",
+        "packagesPath": "/Users/sergey_tihon/.nuget/packages/",
+        "outputPath": "/Users/sergey_tihon/git/FSharpx.Collections/src/FSharpx.Collections/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sergey_tihon/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1603",
+            "NU1604",
+            "NU1605",
+            "NU1608"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "target": "Package",
+              "version": "[4.3.4, )",
+              "generatePathProperty": true
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true,
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

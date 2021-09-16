@@ -1,0 +1,3657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSharpx.Collections.Experimental</name></assembly>
+<members>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.Uncons">
+<summary>
+O(log n). Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryUncons">
+<summary>
+O(log n). Returns the option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryGetTail">
+<summary>
+O(log n). Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.Tail">
+<summary>
+O(log n). Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.IsEmpty">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.AltBinRndAccList`1.Head">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Update(System.Int32,`0)">
+<summary>
+O(log n). Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(log n). Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryRemove(System.Int32)">
+<summary>
+O(n). Returns option random access list with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryLookup(System.Int32)">
+<summary>
+O(log n). Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.TryGetHead">
+<summary>
+O(log n). Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Rev">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Remove(System.Int32)">
+<summary>
+O(n). Returns random access list with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Lookup(System.Int32)">
+<summary>
+O(log n). Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Length">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinRndAccList`1.Cons(`0)">
+<summary>
+O(log n). Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Unsnoc">
+<summary>
+O(1), amortized. Returns init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Uncons">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryUnsnoc">
+<summary>
+O(1), amortized. Returns option init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryUncons">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryGetTail">
+<summary>
+O(1), amortized. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryGetLast">
+<summary>
+O(1), amortized. Returns option last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryGetInit">
+<summary>
+O(1), amortized. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.TryGetHead">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Tail">
+<summary>
+O(1), amortized. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Rev">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Last">
+<summary>
+O(1), amortized. Returns the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.IsEmpty">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Init">
+<summary>
+O(1), amortized. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersDeque`1.Head">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.Update(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.TryRemove(System.Int32)">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.TryLookup(System.Int32)">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.Snoc(`0)">
+<summary>
+O(1), amortized. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.Remove(System.Int32)">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.Lookup(System.Int32)">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque`1.Cons(`0)">
+<summary>
+O(1), amortized. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.Uncons">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.TryUncons">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.TryGetTail">
+<summary>
+O(1), amortized. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.TryGetHead">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.Tail">
+<summary>
+O(1), amortized. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.Rev">
+<summary>
+O(1). Returns queue reversed
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.IsEmpty">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BankersQueue`1.Head">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue`1.Snoc(`0)">
+<summary>
+O(1), amortized. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Unsnoc">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Uncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryUnsnoc">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryUncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryGetTail">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryGetLast">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryGetInit">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.TryGetHead">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Tail">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Rev">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Last">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.IsEmpty">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Init">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedDeque`1.Head">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.Update(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.TryRemove(System.Int32)">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.TryLookup(System.Int32)">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.Snoc(`0)">
+<summary>
+O(1). Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.Remove(System.Int32)">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.Lookup(System.Int32)">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque`1.Cons(`0)">
+<summary>
+O(1). Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.Uncons">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.TryUncons">
+<summary>
+returns option first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.TryGetTail">
+<summary>
+returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.TryGetHead">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.Tail">
+<summary>
+returns a new queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.Rev">
+<summary>
+returns queue reversed
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.IsEmpty">
+<summary>
+returns true if the queue has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BatchedQueue`1.Head">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue`1.Snoc(`0)">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Uncons">
+<summary>
+O(log n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.TryUncons">
+<summary>
+O(log n), worst case. Returns the option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.TryGetTail">
+<summary>
+O(log n), worst case. Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.TryGetHead">
+<summary>
+O(log n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Tail">
+<summary>
+O(log n), worst case. Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.IsEmpty">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Head">
+<summary>
+O(log n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Update(System.Int32,`0)">
+<summary>
+O(log n), worst case. Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(log n), worst case. Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.TryLookup(System.Int32)">
+<summary>
+O(log n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Rev">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Lookup(System.Int32)">
+<summary>
+O(log n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Length">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList`1.Cons(`0)">
+<summary>
+O(log n), worst case. Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BinaryRoseTree`1">
+<summary>
+ Multi-way tree, also known as rose tree.
+ This RoseTree uses a Vector for the children RoseTree forest.
+ Adapted from @mausch F# adaptation of Experimental.RoseTree.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BinaryTreeZipper`1">
+<summary>
+ The zipper data structure for binary trees
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BinaryTree`1">
+<summary>
+ A simple binary tree
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinomialHeap`1.IsEmpty">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BinomialHeap`1.IsDescending">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Uncons">
+<summary>
+O(log n). Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.TryUncons">
+<summary>
+O(log n). Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.TryMerge(FSharpx.Collections.Experimental.BinomialHeap{`0})">
+<summary>
+O(log n). Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.TryGetTail">
+<summary>
+O(log n). Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.TryGetHead">
+<summary>
+O(log n). Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Tail">
+<summary>
+O(log n). Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Merge(FSharpx.Collections.Experimental.BinomialHeap{`0})">
+<summary>
+O(log n). Returns heap from merging two heaps, both must have same isDescending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Length">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Insert(`0)">
+<summary>
+O(log n). Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap`1.Head">
+<summary>
+O(log n). Returns the min or max element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Unsnoc">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Uncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryUnsnoc">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryUncons">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryGetTail">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryGetLast">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryGetInit">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.TryGetHead">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Tail">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Rev">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Last">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.IsEmpty">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Init">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.Deque`1.Head">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.Update(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.TryRemove(System.Int32)">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.TryLookup(System.Int32)">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.Snoc(`0)">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.Remove(System.Int32)">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.Lookup(System.Int32)">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque`1.Cons(`0)">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList`1.snoc(`0)">
+<summary>
+O(1). Returns a new DList with the element added to the end.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.DList`1.Tail">
+<summary>
+O(log n). Returns a new DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.DList`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.DList`1.IsEmpty">
+<summary>
+O(1). Returns true if the DList has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.DList`1.Head">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.DList`1">
+<summary>
+ The DList is an implementation of John Hughes&apos; append list.
+ See http://dl.acm.org/citation.cfm?id=8475 for more information.
+ This implementation adds an additional parameter to allow a more
+ efficient calculation of the list length.
+ Note that an alternate form would represent the DList as:
+ type DList&amp;lt;&apos;T&amp;gt; = DList of (&apos;T list -&amp;gt; &apos;T list)
+ An example can be found at http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.EagerRoseTree`1">
+<summary>
+ Multi-way tree, also known as rose tree.
+ This RoseTree uses a List for the children RoseTree forest.
+ Adapted from @mausch F# adaptation of Experimental.RoseTree.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.FlatList`1.Length">
+<summary>
+ O(1). Returns the number of items in the flatlist.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.FlatList`1.Item(System.Int32)">
+<summary>
+ O(1). Returns flatlist element at the index.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.FlatList`1.IsEmpty">
+<summary>
+ O(1). Returns true if the flatlist has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PairingHeap`1.IsEmpty">
+<summary>
+O(1) Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PairingHeap`1.IsDescending">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Uncons">
+<summary>
+O(log n) amortized time. Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.TryUncons">
+<summary>
+O(log n) amortized time. Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.TryMerge(FSharpx.Collections.Experimental.PairingHeap{`0})">
+<summary>
+O(1) amortized time. Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.TryGetTail">
+<summary>
+O(log n) amortized time. Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.TryGetHead">
+<summary>
+O(1) worst case. Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Tail">
+<summary>
+O(log n) amortized time. Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Merge(FSharpx.Collections.Experimental.PairingHeap{`0})">
+<summary>
+O(1) amortized time. Returns heap from merging two heaps, both must have same descending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Length">
+<summary>
+O(n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Insert(`0)">
+<summary>
+O(1) amortized time. Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap`1.Head">
+<summary>
+O(1) worst case. Returns the min or max element.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.PairingHeap`1">
+<summary>
+ PairingHeap performs extremely well in practice, however (according to Okasaki) it should be avoided for applications taking advantage of persistence.
+ Also according to Okasaki the time complexity of the heap functions in the PairingHeap implementation have &quot;resisted&quot; time complexity analysis. 
+ ofSeq: superior performance; insert: superior performance; tail: superior performance
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.Uncons">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.TryUncons">
+<summary>
+returns option first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.TryGetTail">
+<summary>
+returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.TryGetHead">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.Tail">
+<summary>
+returns a new queue of the elements trailing the first element
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.Length">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.IsEmpty">
+<summary>
+returns true if the queue has no elements
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.Head">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue`1.Snoc(`0)">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.IndexedRoseTree`1">
+<summary>
+ Multi-way tree, also known as rose tree.
+ This RoseTree uses a Vector for the children RoseTree forest.
+ Adapted from @mausch F# adaptation of Experimental.RoseTree.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.LeftistHeap`1.TryGetHead">
+<summary>
+O(1). Returns option first min or max element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.LeftistHeap`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.LeftistHeap`1.IsEmpty">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.LeftistHeap`1.IsDescending">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.LeftistHeap`1.Head">
+<summary>
+O(1). Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.Uncons">
+<summary>
+O(log n). Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.TryUncons">
+<summary>
+O(log n). Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.TryMerge(FSharpx.Collections.Experimental.LeftistHeap{`0})">
+<summary>
+O(log n). Returns heap option from merging two heaps
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.TryGetTail">
+<summary>
+O(log n). Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.Tail">
+<summary>
+O(log n) Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.Merge(FSharpx.Collections.Experimental.LeftistHeap{`0})">
+<summary>
+O(log n). Returns heap from merging two heaps, both must have same isDescending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap`1.Insert(`0)">
+<summary>
+O(log n). Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.ListZipper`1">
+<summary>
+ A zipper for lists
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.Uncons">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.TryUncons">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.TryGetTail">
+<summary>
+O(1), amortized. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.TryGetHead">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.Tail">
+<summary>
+O(1), amortized. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.Rev">
+<summary>
+O(1). Returns queue reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.IsEmpty">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.PhysicistQueue`1.Head">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue`1.Snoc(`0)">
+<summary>
+O(1), amortized. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Unsnoc">
+<summary>
+O(1), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Uncons">
+<summary>
+O(1), worst case. Returns the first element and tail
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryUnsnoc">
+<summary>
+O(1), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryUncons">
+<summary>
+O(1), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryGetTail">
+<summary>
+O(1), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryGetLast">
+<summary>
+O(1), worst case. Returns option last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryGetInit">
+<summary>
+O(1), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.TryGetHead">
+<summary>
+O(1), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Tail">
+<summary>
+O(1), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Rev">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Length">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Last">
+<summary>
+O(1), worst case. Returns the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.IsEmpty">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Init">
+<summary>
+O(1), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.RealTimeDeque`1.Head">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.Update(System.Int32,`0)">
+<summary>
+O(n/2), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(n/2), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.TryRemove(System.Int32)">
+<summary>
+O(n/2), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.TryLookup(System.Int32)">
+<summary>
+O(n/2), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.Snoc(`0)">
+<summary>
+O(1), worst case. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.Remove(System.Int32)">
+<summary>
+O(n/2), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.Lookup(System.Int32)">
+<summary>
+O(n/2), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque`1.Cons(`0)">
+<summary>
+O(1), worst case. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RingBuffer`1.TryAdvance(System.Int32)">
+<summary>
+ Tries to advance the position of the RingBuffer by the offset.
+ Returns None if offset is negative, otherwise Some containing 
+ the position of the RingBuffer.    
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RingBuffer`1.Advance(System.Int32)">
+<summary>
+ Advances the position of the RingBuffer by the offset.
+ Returns the position of the RingBuffer. Throws an ArgumentException if
+ the offset is negative.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.RoseTree`1">
+<summary>
+ Multi-way tree, also known as rose tree.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Uncons">
+<summary>
+O(1), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.TryUncons">
+<summary>
+O(1), worst case. Returns the option first element and tail.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.TryGetTail">
+<summary>
+O(1), worst case. Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.TryGetHead">
+<summary>
+O(1), worst case. Returns option first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Tail">
+<summary>
+O(1), worst case. Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.IsEmpty">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Head">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Update(System.Int32,`0)">
+<summary>
+O(log n), worst case. Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.TryUpdate(System.Int32,`0)">
+<summary>
+O(log n), worst case. Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.TryLookup(System.Int32)">
+<summary>
+O(log n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Rev">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Lookup(System.Int32)">
+<summary>
+O(log n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Length">
+<summary>
+O(log n) Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList`1.Cons(`0)">
+<summary>
+O(1), worst case. Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Timeseries`1.TryAdvance(System.DateTimeOffset)">
+<summary>
+ Tries to advance the start date of the Timeseries to toDate.
+ Returns None if toDate is before the start date of the Timeseries, 
+ otherwise Some containing the start date of the Timeseries.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Timeseries`1.Advance(System.DateTimeOffset)">
+<summary>
+ Advances the start date of the Timeseries to toDate. Throws an 
+ ArgumentException if toDate is before the Timeseries start date.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BlockResizeArray`1.Item(System.Int32,`0)">
+<summary>
+Allows to get-set element to block resize array.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BlockResizeArray`1.Shift">
+<summary>
+Returns the shift size for block resize array.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BlockResizeArray`1.Length">
+<summary>
+Returns the length of a block resize array.
+</summary>
+</member>
+<member name="P:FSharpx.Collections.Experimental.BlockResizeArray`1.Item(System.Int32)">
+<summary>
+Allows to get-set element to block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.ZeroCreate``1(System.Int32)">
+<summary>
+Creates a block resize array where the entries are initially the default value Unchecked.defaultof&amp;lt;&apos;T&amp;gt;.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.TryFind(Microsoft.FSharp.Core.FSharpFunc{`0,System.Boolean})">
+<summary>
+Returns the first element for which the given function returns true. Return None if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.ToArray">
+<summary>
+Creates an array from the given block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Map``1(Microsoft.FSharp.Core.FSharpFunc{`0,``0})">
+<summary>
+Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Iter(Microsoft.FSharp.Core.FSharpFunc{`0,Microsoft.FSharp.Core.Unit})">
+<summary>
+Applies the given function to each element of the block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Init(System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,`0})">
+<summary>
+Creates a block resize array given the dimension and a generator function to compute the elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Fold``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{`0,``0}},``0)">
+<summary>
+Applies a function to each element of the collection, threading an accumulator argument through the computation.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Find(Microsoft.FSharp.Core.FSharpFunc{`0,System.Boolean})">
+<summary>
+Returns the first element for which the given function returns true. Raise KeyNotFoundException if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Filter(Microsoft.FSharp.Core.FSharpFunc{`0,System.Boolean})">
+<summary>
+Returns a new collection containing only the elements of the collection for which the given predicate returns true.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.DeleteBlock(System.Int32)">
+<summary>
+Deletes block given index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray`1.Add(`0)">
+<summary>
+Adds element to the block resize array.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BlockResizeArray`1">
+<summary>
+ Resize array fith fixed size block memory allocation.
+ Provide more optimal space usage for huge arrays than standard ResizeArray.
+ Basic version created by Avdyukhin Dmitry (dimonbv@gmail.com)
+ As evidenced by the tests that cannot run in mono, and pending destabilizing tests,
+ beware that this data structure can be destabilizing to your assembly.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.SkewBinomialHeap`1">
+<summary>
+ A SkewBinomialHeap is a priority queue where elements are inserted in any order, using &quot;insert&quot; and are 
+ extracted in either ascending or descending order using &quot;head&quot;, &quot;peek&quot;, &quot;tail&quot;, &quot;pop&quot; or any of their 
+ &quot;try&quot; variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
+ insertions in constant time O(1). (Based on &quot;Purely Functional Data Structures&quot; - 1996 by Chris Okasaki)
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.update``1(System.Int32,``0,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryUncons``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns the option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.uncons``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryGetTail``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tail``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.rev``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryRemove``1(System.Int32,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(n). Returns option random access list with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.remove``1(System.Int32,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(n). Returns random access list with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns random access list from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.lookup``1(System.Int32,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.length``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.isEmpty``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.tryGetHead``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.empty``1">
+<summary>
+O(1). Returns a empty random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.head``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.cons``1(``0,FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(log n). Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.AltBinaryRandomAccessList.append``1(FSharpx.Collections.Experimental.AltBinRndAccList{``0},FSharpx.Collections.Experimental.AltBinRndAccList{``0})">
+<summary>
+O(xs). Returns random access list from elements of 2 random access lists concatenated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.update``1(System.Int32,``0,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryUnsnoc``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.unsnoc``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryUncons``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.uncons``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryGetTail``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tail``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.snoc``1(``0,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.singletonC``1(System.Int32,``0)">
+<summary>
+O(1). Returns a deque of one element, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.singleton``1(``0)">
+<summary>
+O(1). Returns a deque of one element, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.rev``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryRemove``1(System.Int32,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.remove``1(System.Int32,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofSeqC``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(1). Returns a deque of the seq, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(1). Returns a deque of the seq, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofCatSeqsC``1(System.Int32,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(ys). Returns a deque of the two seqs concatenated, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofCatSeqs``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(ys). Returns a deque of the two seqs concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofCatListsC``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(ys-xs). Returns a deque of the two lists concatenated, c is front-back stream ration constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.ofCatLists``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(ys-xs). Returns a deque of the two lists concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.lookup``1(System.Int32,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.length``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryGetLast``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.last``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.isEmpty``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryGetInit``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.init``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.tryGetHead``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.head``1(FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.empty``1(System.Int32)">
+<summary>
+O(1). Returns deque of no elements, c is front-back stream ration constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.cons``1(``0,FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(1), amortized. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.appendC``1(System.Int32,FSharpx.Collections.Experimental.BankersDeque{``0},FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(ys-xs). Returns a deque of the two deques concatenated, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersDeque.append``1(FSharpx.Collections.Experimental.BankersDeque{``0},FSharpx.Collections.Experimental.BankersDeque{``0})">
+<summary>
+O(ys-xs). Returns a deque of the two deques concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.tryUncons``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.uncons``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.tryGetTail``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.tail``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.snoc``1(``0,FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.rev``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1). Returns queue reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(1). Returns a queue of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.length``1(Microsoft.FSharp.Core.Unit,FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.isEmpty``1(Microsoft.FSharp.Core.Unit,FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.tryGetHead``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.head``1(FSharpx.Collections.Experimental.BankersQueue{``0})">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BankersQueue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.update``1(System.Int32,``0,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryUnsnoc``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.unsnoc``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryUncons``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.uncons``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryGetTail``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tail``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.snoc``1(``0,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1). Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.singleton``1(``0)">
+<summary>
+O(1). Returns a deque of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.rev``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryRemove``1(System.Int32,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.remove``1(System.Int32,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n), worst case. Returns a deque of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(n), worst case. Returns a deque of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.ofCatLists``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(n), worst case. Returns a deque of the two lists concatenated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.lookup``1(System.Int32,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.length``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryGetLast``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.last``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.isEmpty``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryGetInit``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.init``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.tryGetHead``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.head``1(FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.empty``1">
+<summary>
+O(1). Returns deque of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedDeque.cons``1(``0,FSharpx.Collections.Experimental.BatchedDeque{``0})">
+<summary>
+O(1). Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.tryUncons``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns option first element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.uncons``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.tryGetTail``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.tail``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns a new queue of the elements trailing the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.snoc``1(``0,FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.rev``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns queue reversed
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+returns a queue of the seq
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+returns a queue of the list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.length``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.isEmpty``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns true if the queue has no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.tryGetHead``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.head``1(FSharpx.Collections.Experimental.BatchedQueue{``0})">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Experimental.BatchedQueue{``0},``1)">
+<summary>
+applies a function to each element of the queue, threading an accumulator argument through the computation, right to left
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.BatchedQueue{``1})">
+<summary>
+applies a function to each element of the queue, threading an accumulator argument through the computation, left to right
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BatchedQueue.empty``1">
+<summary>
+returns queue of no elements
+c is front-back stream ration constant, should be at least 2
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.update``1(System.Int32,``0,FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tryUncons``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns the option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.uncons``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tryGetTail``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tail``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.rev``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns random access list from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.lookup``1(System.Int32,FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.length``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.isEmpty``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.empty``1">
+<summary>
+O(1). Returns a empty random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.tryGetHead``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.head``1(FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRandomAccessList.cons``1(``0,FSharpx.Collections.Experimental.BinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryRoseTree.ofSeq(System.Collections.Generic.IEnumerable{System.Object})">
+<summary>
+ loads from sequences of objects and sequences of objects, assumed to be well-constructed
+ elements in final tree will be objects, regardless of original type
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.move``1(System.Collections.Generic.IEnumerable{FSharpx.Collections.Experimental.BinaryTreeZipper.TreeZipperDirection},FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Moves the zipper in the directions of the given list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.zipper``1(FSharpx.Collections.Experimental.BinaryTree{``0})">
+<summary>
+ Creates a zipper from a tree
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.setFocus``1(FSharpx.Collections.Experimental.BinaryTree{``0},FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Modifies the current focus inside the zipper
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.right``1(FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Moves the zipper to the right
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.left``1(FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Moves the zipper to the left
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.top``1(FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Moves the zipper to the top
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.up``1(FSharpx.Collections.Experimental.BinaryTreeZipper{``0})">
+<summary>
+ Moves the zipper one level up
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinaryTreeZipper.branch``1(``0)">
+<summary>
+ Creates a new branch with the label x and two leaves as subbranches
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BinaryTreeZipper">
+<summary>
+ TreeZipper
+ original implementation taken from http://blog.xquant.net/?p=156
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.tryUncons``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+ O(log n). Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.uncons``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+ O(log n). Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.tryGetTail``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns option heap of the elements trailing the head
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.tail``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.ofSeq``1(System.Boolean,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n * log n). Returns heap from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.tryMerge``1(FSharpx.Collections.Experimental.BinomialHeap{``0},FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.merge``1(FSharpx.Collections.Experimental.BinomialHeap{``0},FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n) Returns heap from merging two heaps, both must have same isDescending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.length``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.isDescending``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.isEmpty``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.insert``1(``0,FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.tryGetHead``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.head``1(FSharpx.Collections.Experimental.BinomialHeap{``0})">
+<summary>
+O(log n). Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BinomialHeap.empty``1(System.Boolean)">
+<summary>
+O(1). Returns a empty heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.isProperSubmapOf``1(FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n+m). Is this a proper submap? (ie. a submap but not equal). Defined as (isProperSubmapOf = isProperSubmapOfBy (==)). Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.isProperSubmapOfBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). Is this a proper submap? (ie. a submap but not equal). The expression (isProperSubmapOfBy f m1 m2) returns True when m1 and m2 are not equal, all keys in m1 are in m2, and when f returns True when applied to their respective values.  Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.isSubmapOf``1(FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n+m). Is this a submap? Defined as (isSubmapOf = isSubmapOfBy (==)). Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.isSubmapOfBy``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). The expression (isSubmapOfBy f m1 m2) returns True if all keys in m1 are in m2, and when f returns True when applied to their respective values. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapKeysWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},Microsoft.FSharp.Core.FSharpFunc{System.Int32,System.Int32})">
+<summary>
+O(n*log n). mapKeysWith c f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the associated values will be combined using c. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapKeys``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,System.Int32})">
+<summary>
+O(n*min(n,W)). mapKeys f s is the map obtained by applying f to each key of s. The size of the result may be smaller if f maps two or more distinct keys to the same new key. In this case the value at the greatest of the original keys is retained. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofArrayWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Tuple{System.Int32,``0}[])">
+<summary>
+O(n*min(n,W)). Create a map from an array of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofArrayWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}}},System.Tuple{System.Int32,``0}[])">
+<summary>
+O(n*min(n,W)). Build a map from an array of key/value pairs with a combining function. See also fromAscListWithKey&apos;. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofArray``1(System.Tuple{System.Int32,``0}[])">
+<summary>
+O(n*min(n,W)). Create a map from an array of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofSeqWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Create a map from a seq of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofSeqWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}}},System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Build a map from a seq of key/value pairs with a combining function. See also fromAscListWithKey&apos;. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofSeq``1(System.Collections.Generic.IEnumerable{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Create a map from a seq of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofListWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Create a map from a list of key/value pairs with a combining function. See also fromAscListWith. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofListWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}}},Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Build a map from a list of key/value pairs with a combining function. See also fromAscListWithKey&apos;. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.ofList``1(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.Int32,``0}})">
+<summary>
+O(n*min(n,W)). Create a map from a list of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.toArray``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Convert the map to an array of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.toSeq``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Convert the map to a seq of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.toList``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Convert the map to a list of key/value pairs. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.keys``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Return all keys of the map in ascending order. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.values``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Return all elements of the map in the ascending order of their keys. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.foldWithKey``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``1,``0}}},``0)">
+<summary>
+O(n). Fold the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.foldBackWithKey``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}}},``1,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). FoldBack the keys and values in the map, such that foldWithKey f z == Prelude.foldr (uncurry f) z . toAscList. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0)">
+<summary>
+O(n). Fold the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},``1)">
+<summary>
+O(n). FoldBack the values in the map, such that fold f z == Prelude.foldr f z . elems. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.splitTryFind``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Performs a split but also returns whether the pivot key was found in the original map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.split``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). The expression (split k map) is a pair (map1,map2) where all keys in map1 are lower than k and all keys in map2 larger than k. Any key equal to k is found in neither map1 nor map2. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapChoice``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpChoice{``1,``2}})">
+<summary>
+O(n). Map values and separate the Left and Right results. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapChoiceWithKey``3(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpChoice{``1,``2}}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Map keys/values and separate the Left and Right results. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapOption``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}})">
+<summary>
+O(n). Map values and collect the Just results. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapOptionWithKey``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``1}}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Map keys/values and collect the Just results. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.partition``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.partitionWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). partition the map according to some predicate. The first map contains all elements that satisfy the predicate, the second all elements that fail the predicate. See also split. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Filter all values that satisfy some predicate. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.filterWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Filter all keys/values that satisfy some predicate. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapAccum``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}})">
+<summary>
+O(n). The function mapAccumWithKey threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapAccumWithKey``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}}},``0,FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n). The function mapAccum threads an accumulating argument through the map in ascending order of keys. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Map a function over all values in the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mapWithKey``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,``1}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Map a function over all values in the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.deleteMax``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Delete the maximal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.deleteMin``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Delete the minimal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.findMax``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). The maximal key of the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.findMin``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). The minimal key of the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.deleteFindMin``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Retrieves the minimal key of the map, and the map stripped from that element. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.deleteFindMax``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Retrieves the maximal key of the map, and the map stripped from that element. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.minView``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Retrieves the minimal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.maxView``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Retrieves the maximal key of the map, and the map stripped of that element, or Nothing if passed an empty map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateMin``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+O(log n). Update the value at the minimal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateMax``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}})">
+<summary>
+O(log n). Update the value at the maximal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.minViewWithKey``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Retrieves the minimal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.maxViewWithKey``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Retrieves the maximal (key,value) couple of the map, and the map stripped from that element. fails (in the monad) when passed an empty map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateMaxWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Update the value at the maximal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateMinWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}}},FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Update the value at the minimal key. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.intersectionWith``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). The intersection with a combining function. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.intersectionWithKey``3(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). The intersection with a combining function. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.intersection``2(FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). The (left-biased) intersection of two maps (based on keys). Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.differenceWith``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpOption{``0}}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). Difference with a combining function. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.differenceWithKey``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpOption{``0}}}},FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). Difference with a combining function. When two equal keys are encountered, the combining function is applied to the key and both values. If it returns Nothing, the element is discarded (proper set difference). If it returns (Just y), the element is updated with a new value y. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.difference``2(FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``1})">
+<summary>
+O(n+m). Difference between two maps (based on keys). Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.mergeWithKey``3(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpOption{``2}}}},Microsoft.FSharp.Core.FSharpFunc{FSharpx.Collections.Experimental.IntMap{``0},FSharpx.Collections.Experimental.IntMap{``2}},Microsoft.FSharp.Core.FSharpFunc{FSharpx.Collections.Experimental.IntMap{``1},FSharpx.Collections.Experimental.IntMap{``2}})">
+<summary>
+Refer to Haskell documentation. Unexpected code growth or corruption of the data structure can occur from wrong use. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.alter``1(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpOption{``0},Microsoft.FSharp.Core.FSharpOption{``0}},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). The expression (alter f k map) alters the value x at k, or absence thereof. alter can be used to insert, delete, or update a value in an IntMap. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateTryFindWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}}},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Lookup and update. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.adjust``1(Microsoft.FSharp.Core.FSharpFunc{``0,``0},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.adjustWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Adjust a value at a specific key. When the key is not a member of the map, the original map is returned. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.update``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.updateWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpOption{``0}}},System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). The expression (update f k map) updates the value x at k (if it is in the map). If (f k x) is Nothing, the element is deleted. If it is (Just y), the key k is bound to the new value y. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.delete``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Delete a key and its value from the map. When the key is not a member of the map, the original map is returned. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.insertTryFindWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}}},System.Int32,``0,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). The expression (insertLookupWithKey f k x map) is a pair where the first element is equal to (lookup k map) and the second element equal to (insertWithKey f k x map). Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.insertWith``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}},System.Int32,``0,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Insert with a combining function. insertWith f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f new_value old_value. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.insertWithKey``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``0,``0}}},System.Int32,``0,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Insert with a combining function. insertWithKey f key value mp will insert the pair (key, value) into mp if key does not exist in the map. If the key does exist, the function will insert f key new_value old_value. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.insert``1(System.Int32,``0,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Insert a new key/value pair in the map. If the key is already present in the map, the associated value is replaced with the supplied value, i.e. insert is equivalent to insertWith const. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.singleton``1(System.Int32,``0)">
+<summary>
+O(1). A map of one element. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.empty``1">
+<summary>
+O(1). The empty map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.tryFindGE``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Find smallest key greater or equal to the given one and return the corresponding (key, value) pair Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.tryFindLE``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Find largest key smaller or equal to the given one and return the corresponding (key, value) pair. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.tryFindGT``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Find smallest key greater than the given one and return the corresponding (key, value) pair. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.tryFindLT``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Find largest key smaller than the given one and return the corresponding (key, value) pair.  Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.findWithDefault``1(``0,System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). The expression (findWithDefault def k map) returns the value at key k or returns def when the key is not an element of the map.  Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.find``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Lookup the value at a key in the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.notExists``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(log n). Is the key not a member of the map? Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.exists``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Is the key a member of the map? Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.tryFind``1(System.Int32,FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(min(n,W)). Lookup the value at a key in the map. Returns &apos;T option. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.size``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(n). Number of elements in the map. Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.IntMap.isEmpty``1(FSharpx.Collections.Experimental.IntMap{``0})">
+<summary>
+O(1). Map is empty.  Credit: Haskell.org
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(1). Returns a queue of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.length``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.tryGetTail``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(log* n), worst case. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.tail``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(log* n), worst case. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.tryGetHead``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(1), worst case.  Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.head``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.snoc``1(``0,FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(log* n). Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.isEmpty``1(FSharpx.Collections.Experimental.BootstrappedQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BootstrappedQueue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.BootstrappedQueue">
+<summary>
+ bootstrapped queue from Chris Okasaki&apos;s &quot;Purely functional data structures&quot;
+ original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/bootstrapped-queue
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.update``1(System.Int32,``0,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryUnsnoc``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.unsnoc``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryUncons``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, /O(n), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.uncons``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryGetTail``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tail``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.snoc``1(``0,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.singleton``1(``0)">
+<summary>
+O(1). Returns a deque of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.rev``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryRemove``1(System.Int32,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.remove``1(System.Int32,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n/2). Returns a deque of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.ofCatLists``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(ys). Returns a deque of the two lists concatenated.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.lookup``1(System.Int32,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.length``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryGetLast``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.last``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.isEmpty``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryGetInit``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.init``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.tryGetHead``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.head``1(FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(1) amortized, O(n), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.empty``1">
+<summary>
+O(1). Returns deque of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.Deque.cons``1(``0,FSharpx.Collections.Experimental.Deque{``0})">
+<summary>
+O(n), worst case. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.DList{``1})">
+<summary>
+ Fold walks the DList using constant stack space. Implementation is from Norman Ramsey.
+ See http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5334068#5334068
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.tail``1(FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(log n). Returns a new DList of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.snoc``1(FSharpx.Collections.Experimental.DList{``0},``0)">
+<summary>
+O(1). Returns a new DList with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.head``1(FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(log n). Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.append``1(FSharpx.Collections.Experimental.DList{``0},FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(1). Returns a new DList of two lists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.cons``1(``0,FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(1). Returns a new DList with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.toSeq``1(FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(n). Returns a seq of the DList elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns a DList of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.singleton``1(``0)">
+<summary>
+O(1). Returns DList of one elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.length``1(FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.isEmpty``1(FSharpx.Collections.Experimental.DList{``0})">
+<summary>
+O(1). Returns true if the DList has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.DList.empty``1">
+<summary>
+O(1). Returns DList of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.EagerRoseTree.mapAccum``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}},``0,FSharpx.Collections.Experimental.EagerRoseTree{``1})">
+<summary>
+ Behaves like a combination of map and fold; 
+ it applies a function to each element of a tree, 
+ passing an accumulating parameter, 
+ and returning a final value of this accumulator together with the new tree.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.zip``2(FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``1})">
+<summary>
+ O(n). Combines two flatlists into a flatlist of tuples that have two elements. The two flatlists must have equal lengths; otherwise, ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.unzip``2(FSharpx.Collections.Experimental.FlatList{System.Tuple{``0,``1}})">
+<summary>
+ O(n). Splits a flatlist of tuple pairs into a tuple of two flatlists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.tryFind``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Returns the first element in the supplied flatlist for which the supplied function returns true. Returns None if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.toMap``2(FSharpx.Collections.Experimental.FlatList{System.Tuple{``0,``1}})">
+<summary>
+ O(n). Converts the supplied flatlist of tuple pairs to a map.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.toList``1(FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Converts the supplied flatlist to a list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.sumBy``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Int32},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Returns the sum of the results generated by applying a function to each element of a flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.sum(FSharpx.Collections.Experimental.FlatList{System.Int32})">
+<summary>
+ O(n). Returns the sum of the elements in the flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.singleton``1(``0)">
+<summary>
+ O(1). Returns a flatlist of one element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.rev``1(FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Reverses the order of the elements in a supplied array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.physicalEquality``1(FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(1). True if the flatlists are reference-equal, false otherwise
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.partition``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Splits a flatlist into two flatlists, one containing the elements for which the supplied condition returns true, and the other containing those for which it returns false.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ O(n). Creates a flatlist from the supplied enumerable object.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ O(n). Creates a flatlist from the supplied list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.mapi``2(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,``1}},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist. An integer index passed to the function indicates the index of the element being transformed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.map2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}},FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``1})">
+<summary>
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to the corresponding elements of two supplied flatlists. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Creates a flatlist whose elements are the results of applying the supplied function to each of the elements of a supplied flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.length``1(FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(1). Returns the number of items in the flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.iteri``1(Microsoft.FSharp.Core.FSharpFunc{System.Int32,Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit}},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Applies the supplied function to each element of a flatlist. The integer passed to the function indicates the index of the element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.iter2``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.Unit}},FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``1})">
+<summary>
+ O(n). Applies the supplied function to a pair of elements from matching indexes in two flatlists, also passing the index of the elements. The two flatlists must have the same lengths; otherwise, an ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Applies the supplied function to each element of a flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.isEmpty``1(FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(1). O(1). Returns true if the flatlist has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.init``1(System.Int32,Microsoft.FSharp.Core.FSharpFunc{System.Int32,``0})">
+<summary>
+ O(n). Uses a supplied function to create a flatlist of the supplied dimension.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.forall2``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Boolean}},FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``1})">
+<summary>
+ O(n). Tests whether all corresponding elements of two supplied flatlists satisfy a supplied condition.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.forall``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Tests whether all elements of a flatlist satisfy the supplied condition.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.foldBack2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``2}}},FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``1},``2)">
+<summary>
+ O(n). Applies a function to pairs of elements from two supplied flatlists, right-to-left, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Experimental.FlatList{``0},``1)">
+<summary>
+ O(n). Applies a function to each element of a flatlist from right to left (last to first), threading an accumulator argument through the computation.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.fold2``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,Microsoft.FSharp.Core.FSharpFunc{``2,``0}}},``0,FSharpx.Collections.Experimental.FlatList{``1},FSharpx.Collections.Experimental.FlatList{``2})">
+<summary>
+ O(n). Applies a function to pairs of elements from two supplied flatlists, left-to-right, threading an accumulator argument through the computation. The two input flatlists must have the same lengths; otherwise, ArgumentException is raised.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.FlatList{``1})">
+<summary>
+ O(n). Applies a function to each element of a flatlist from left to right (first to last), threading an accumulator argument through the computation. 
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Returns a flatlist that contains only the elements of the supplied flatlist for which the supplied condition returns true.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.exists``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n) worst case. Tests whether any element of a flatlist satisfies the supplied predicate.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.empty``1">
+<summary>
+ O(1). Returns flatlist of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.concat``1(FSharpx.Collections.Experimental.FlatList{``0[]})">
+<summary>
+ O(n). Creates a flatlist that contains the elements of each of the supplied sequence of flatlists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.collect``1(Microsoft.FSharp.Core.FSharpFunc{``0,FSharpx.Collections.Experimental.FlatList{``0}},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+O(n). Applies the supplied function to each element of a flatlist, concatenates the results, and returns the combined flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.FlatList.append``1(FSharpx.Collections.Experimental.FlatList{``0},FSharpx.Collections.Experimental.FlatList{``0})">
+<summary>
+ O(n). Creates a flatlist that contains the elements of one flatlist followed by the elements of another flatlist.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.tryUncons``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(log n) amortized time. Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.uncons``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(log n) amortized time. Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.tryGetTail``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(log n) amortized time. Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.tail``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(log n) amortized time. Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.ofSeq``1(System.Boolean,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns heap from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.tryMerge``1(FSharpx.Collections.Experimental.PairingHeap{``0},FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) amortized time. Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.merge``1(FSharpx.Collections.Experimental.PairingHeap{``0},FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) amortized time. Returns heap from merging two heaps, both must have same descending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.length``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.isDescending``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.isEmpty``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.insert``1(``0,FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) amortized time. Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.tryGetHead``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) worst case. Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.head``1(FSharpx.Collections.Experimental.PairingHeap{``0})">
+<summary>
+O(1) worst case. Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PairingHeap.empty``1(System.Boolean)">
+<summary>
+O(1) Returns a empty heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.tryUncons``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns option first element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.uncons``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns the first element and tail
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.tryGetTail``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns option queue of the elements trailing the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.tail``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns a new queue of the elements trailing the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.snoc``1(``0,FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns a new queue with the element added to the end
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+returns a queue of the seq
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.ofList``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+returns a queue of the list
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.length``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns the count of elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.isEmpty``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns true if the queue has no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.tryGetHead``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns option first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.head``1(FSharpx.Collections.Experimental.HoodMelvilleQueue{``0})">
+<summary>
+returns the first element
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Experimental.HoodMelvilleQueue{``0},``1)">
+<summary>
+applies a function to each element of the queue, threading an accumulator argument through the computation, right to left
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.HoodMelvilleQueue{``1})">
+<summary>
+applies a function to each element of the queue, threading an accumulator argument through the computation, left to right
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.HoodMelvilleQueue.empty``1">
+<summary>
+returns queue of no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.tryGetTail``1(FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1), amortized. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.tail``1(FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.tryGetHead``1(FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.head``1(FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.snoc``1(``0,FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.isEmpty``1(FSharpx.Collections.Experimental.ImplicitQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ImplicitQueue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.ImplicitQueue">
+<summary>
+ implicit queue from Chris Okasaki&apos;s &quot;Purely functional data structures&quot;
+ original implementation taken from http://lepensemoi.free.fr/index.php/2010/02/18/implicit-queue
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.tryUncons``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns option head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.uncons``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns the head element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.tryGetTail``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns option heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.tail``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns a new heap of the elements trailing the head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.ofSeq``1(System.Boolean,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(log n). Returns heap from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.tryMerge``1(FSharpx.Collections.Experimental.LeftistHeap{``0},FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns heap option from merging two heaps.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.merge``1(FSharpx.Collections.Experimental.LeftistHeap{``0},FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns heap from merging two heaps, both must have same isDescending.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.length``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.isDescending``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(1). Returns true if the heap has max element at head.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.isEmpty``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(1). Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.insert``1(``0,FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(log n). Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.tryGetHead``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(1). Returns option first min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.head``1(FSharpx.Collections.Experimental.LeftistHeap{``0})">
+<summary>
+O(1). Returns the min or max element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.LeftistHeap.empty``1(System.Boolean)">
+<summary>
+O(1). Returns a empty heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.getList``1(FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Returns the whole list from the zipper
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.zipper``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Creates a list zipper
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.front``1(FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Moves the zipper to the front
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.back``1(FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Moves the zipper backwards
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.forward``1(FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Moves the zipper forward
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.modify``1(``0,FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Changes the element under the focus
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.ListZipper.focus``1(FSharpx.Collections.Experimental.ListZipper{``0})">
+<summary>
+ Returns the head element from the list under focus
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.tryUncons``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.uncons``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.tryGetTail``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.tail``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.snoc``1(``0,FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.rev``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1). Returns queue reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(1). Returns a queue of the seq.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.ofList``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(1). Returns a queue of the list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.length``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.isEmpty``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.tryGetHead``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.head``1(FSharpx.Collections.Experimental.PhysicistQueue{``0})">
+<summary>
+O(1), amortized. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.foldBack``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``1}},FSharpx.Collections.Experimental.PhysicistQueue{``0},``1)">
+<summary>
+O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, right to left.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.PhysicistQueue{``1})">
+<summary>
+O(n). Applies a function to each element of the queue, threading an accumulator argument through the computation, left to right.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.PhysicistQueue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns option deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.update``1(System.Int32,``0,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns deque with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryUnsnoc``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.unsnoc``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns init and the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryUncons``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.uncons``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryGetTail``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tail``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns a new deque of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.snoc``1(``0,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns a new deque with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.singletonC``1(System.Int32,``0)">
+<summary>
+O(1). Returns a deque of one element, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.singleton``1(``0)">
+<summary>
+O(1). Returns a deque of one element, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.rev``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1). Returns deque reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryRemove``1(System.Int32,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns option deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.remove``1(System.Int32,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns deque with element removed by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofSeqC``1(System.Int32,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns a deque of the seq, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n). Returns a deque of the seq, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofCatSeqsC``1(System.Int32,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two seqs concatenated, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofCatSeqs``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two seqs concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofCatListsC``1(System.Int32,Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two lists concatenated, c is front-back stream ration constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.ofCatLists``1(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two lists concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.lookup``1(System.Int32,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(n/2), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.length``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryGetLast``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.last``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.isEmpty``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1). Returns true if the deque has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryGetInit``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.init``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns a new deque of the elements before the last element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.tryGetHead``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.head``1(FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.empty``1(System.Int32)">
+<summary>
+O(1). Returns deque of no elements, c is front-back stream ration constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.cons``1(``0,FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(1), worst case. Returns a new deque with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.appendC``1(System.Int32,FSharpx.Collections.Experimental.RealTimeDeque{``0},FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two deques concatenated, c is front-back stream ratio constant, should be at least 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeDeque.append``1(FSharpx.Collections.Experimental.RealTimeDeque{``0},FSharpx.Collections.Experimental.RealTimeDeque{``0})">
+<summary>
+O(|ys-xs|). Returns a deque of the two deques concatenated, front-back stream ratio constant defaulted to 2.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.tryGetTail``1(FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1), worst case. Returns option queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.tail``1(FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1), worst case. Returns a new queue of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.tryGetHead``1(FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1), worst case.  Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.head``1(FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.snoc``1(``0,FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1), worst case. Returns a new queue with the element added to the end.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.isEmpty``1(FSharpx.Collections.Experimental.RealTimeQueue{``0})">
+<summary>
+O(1). Returns true if the queue has no elements
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RealTimeQueue.empty``1">
+<summary>
+O(1). Returns queue of no elements.
+</summary>
+</member>
+<member name="T:FSharpx.Collections.Experimental.RealTimeQueue">
+<summary>
+ RealTime queue from Chris Okasaki&apos;s &quot;Purely functional data structures&quot;
+ original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/real-time-queue
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.RoseTreeModule.mapAccum``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,System.Tuple{``0,``2}}},``0,FSharpx.Collections.Experimental.RoseTree{``1})">
+<summary>
+ Behaves like a combination of map and fold;
+ it applies a function to each element of a tree,
+ passing an accumulating parameter,
+ and returning a final value of this accumulator together with the new tree.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tryUpdate``1(System.Int32,``0,FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns option random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.update``1(System.Int32,``0,FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns random access list with element updated by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tryUncons``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns the option first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.uncons``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns the first element and tail.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tryGetTail``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns a option random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tail``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns a new random access list of the elements trailing the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.rev``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(n). Returns random access list reversed.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.ofSeq``1(System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n) Returns random access list from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tryLookup``1(System.Int32,FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns option element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.lookup``1(System.Int32,FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(log n), worst case. Returns element by index.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.length``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(log n). Returns the count of elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.isEmpty``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1). Returns true if the random access list has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.empty``1">
+<summary>
+returns a empty random access list.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.tryGetHead``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns option first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.head``1(FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns the first element.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinaryRandomAccessList.cons``1(``0,FSharpx.Collections.Experimental.SkewBinaryRandomAccessList{``0})">
+<summary>
+O(1), worst case. Returns a new random access list with the element added to the beginning.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.add``1(``0,FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Adds element to the block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.toArray``1(FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Creates an array from the given block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.find``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Returns the first element for which the given function returns true. 
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.tryFind``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Returns the first element for which the given function returns true. Return None if no such element exists.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.filter``1(Microsoft.FSharp.Core.FSharpFunc{``0,System.Boolean},FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Returns a new collection containing only the elements of the collection for which the given predicate returns true.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.map``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Builds a new block resize array whose elements are the results of applying the given function to each of the elements of the array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.count``1(FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Returns the length of a block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.fold``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``0}},``0,FSharpx.Collections.Experimental.BlockResizeArray{``1})">
+<summary>
+Applies a function to each element of the collection, threading an accumulator argument through the computation.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.BlockResizeArray.iter``1(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.Unit},FSharpx.Collections.Experimental.BlockResizeArray{``0})">
+<summary>
+Applies the given function to each element of the block resize array.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.toList``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+ O(n * log n) - Returns and ordered list of the elements in the heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.toSeq``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+ O(n * log n) - Returns and ordered sequence of the elements in the heap.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.tryUncons``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+ O(log n) - Returns Some (h, t) where h is the head and t is the tail.
+ Returns None if the collection is empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.uncons``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+ O(log n) - Returns the head element and tail. Throws if empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.tryTail``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns Some h where h is the heap with the front (head) element removed.
+ Returns None if the collection is empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.tail``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns a new heap with the front (head) element removed. Throws if empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.ofSeq``1(System.Boolean,System.Collections.Generic.IEnumerable{``0})">
+<summary>
+O(n) - Returns heap from the sequence.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.tryMerge``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0},FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns Some h where h is the merged heap, is both original heaps have the same isDescending value.
+ Returns None if isDescending is different in the heaps supplied.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.merge``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0},FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns a new heap with the elements of both heaps. The two heaps must have the same isDescending value.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.count``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(1) - Returns the number of elements in the collection.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.length``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(1) - Returns the number of elements in the collection.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.isDescending``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(1) - Returns true if a call to head of tryHead would return the maximum element in the collection.
+ Returns false if the element at the head is the minimum.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.isEmpty``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(1) - Returns true if the heap has no elements.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.insert``1(``0,FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(1) - Returns a new heap with the element inserted.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.tryHead``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns Some x where x is the element at the front.
+Returns None if the collection is empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.head``1(FSharpx.Collections.Experimental.SkewBinomialHeap{``0})">
+<summary>
+O(log n) - Returns the element at the front. Throws if empty.
+</summary>
+</member>
+<member name="M:FSharpx.Collections.Experimental.SkewBinomialHeap.empty``1(System.Boolean)">
+<summary>
+O(1) - Returns an empty heap.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,930 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>Namespaces - fsprojects/FSharpx.Collections</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Steffen Forkmann">
+    <title>FSharpx.Collections (API Reference)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley, Mauricio Scheffer, Phil Trelford, JackFox">
 
-    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" id="theme_link" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/materia/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link type="text/css" rel="stylesheet" href="/FSharpx.Collections/content/style.css" />
-    <script type="text/javascript" src="/FSharpx.Collections/content/tips.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/navbar-fixed-left.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-default.css" />
+    <link type="text/css" rel="stylesheet" href="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-custom.css" />
+    <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-tips.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
+    <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+    <!-- END SEARCH BOX: this adds support for the search box -->
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-left" id="fsdocs-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-nav-scroll" id="navbarsExampleDefault">
+            <a href="http://fsprojects.github.io/FSharpx.Collections/"><img id="fsdocs-logo" src="https://github.com/fsprojects/FSharpx.Collections/img/logo.png" /></a>
+            <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+            <div id="header">
+                <div class="searchbox" id="fsdocs-searchbox">
+                    <label for="search-by">
+                        <i class="fas fa-search"></i>
+                    </label>
+                    <input data-search-input="" id="search-by" type="search" placeholder="Search..." />
+                    <span data-search-clear="">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- END SEARCH BOX: this adds support for the search box -->
+            <ul class="navbar-nav">
+                <li class="nav-header">Links</li>
+                <li class="nav-item" id="fsdocs-license-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt">License</a></li>
+                <li class="nav-item" id="fsdocs-release-notes-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+                <li class="nav-item" id="fsdocs-repository-link"><a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/">Source Repository</a></li>
+                <li class="nav-header">
+  Collections
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentVector.html">
+    PersistentVector
+
+  </a>
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/PersistentHashMap.html">
+    PersistentHashMap
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/fsprojects/FSharpx.Collections/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="http://github.com/fsprojects/FSharpx.Collections">github page</a></li>
-        </ul>
-        <h3 class="muted"><a href="/FSharpx.Collections/index.html">fsprojects/FSharpx.Collections</a></h3>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span9" id="main">
-          
-
-<h1>fsprojects/FSharpx.Collections</h1>
-
-
-  <h2>FSharpx.Collections Namespace</h2>
-    <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-bytestring.html">ByteString</a>
-          </td>
-          <td class="xmldoc"><p>An ArraySegment with structural comparison and equality.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-dlist-1.html">DList<'T></a>
-          </td>
-          <td class="xmldoc"><p>DList is an ordered linear structure implementing the List signature (head, tail, cons),
-end-insertion (conj), and O(1) append. Ordering is by insertion history.
-DList is an implementation of <a href="http://dl.acm.org/citation.cfm?id=8475">John Hughes' append list</a>.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-deque-1.html">Deque<'T></a>
-          </td>
-          <td class="xmldoc"><p>Double-ended queue is an ordered linear linear structure implementing the signature of List
-(head, tail, cons) as well as the mirror-image Vector signature (last, initial, conj). "head" inspects
-the first or left-most element in the structure, while "last" inspects the last or
-right-most element. "rev" (reverse) has time complexity O(1). Ordering is by insertion history.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-heap-1.html">Heap<'T></a>
-          </td>
-          <td class="xmldoc"><p>Heap is an ordered linear structure where the ordering is either ascending or descending.
-"head" inspects the first element in the ordering, "tail" takes the remaining structure
-after head, and "insert" places elements within the ordering. PriorityQueue is available
-as an alternate interface.
-According to Okasaki the time complexity of the heap functions in this Heap implementation
-(based on the "pairing" heap) have "resisted" time complexity analysis.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-heapdata-1.html">HeapData<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-ipriorityqueue-1.html">IPriorityQueue<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-lazylist-1.html">LazyList<'T></a>
-          </td>
-          <td class="xmldoc"><p>LazyLists are possibly-infinite, cached sequences.  See also IEnumerable/Seq for
-uncached sequences. LazyLists normally involve delayed computations without
-side-effects.  The results of these computations are cached and evaluations will be
-performed only once for each element of the lazy list.  In contrast, for sequences
-(IEnumerable) recomputation happens each time an enumerator is created and the sequence
-traversed.</p>
-<p>LazyLists can represent cached, potentially-infinite computations.  Because they are
-cached they may cause memory leaks if some active code or data structure maintains a
-live reference to the head of an infinite or very large lazy list while iterating it,
-or if a reference is maintained after the list is no longer required.</p>
-<p>Lazy lists may be matched using the LazyList.Cons and LazyList.Nil active patterns.
-These may force the computation of elements of the list.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-nonemptylist-1.html">NonEmptyList<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-persistenthashmap-2.html">PersistentHashMap<'T, 'S></a>
-          </td>
-          <td class="xmldoc"><p>A Map is a collection that maps keys to values. Hash maps require keys that correctly support GetHashCode and Equals.
-Hash maps provide fast access (log32N hops). count is O(1).</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-persistentvector-1.html">PersistentVector<'T></a>
-          </td>
-          <td class="xmldoc"><p>PersistentVector is an ordered linear structure implementing the inverse of the List signature,
-(last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
-(returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
-to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
-lookup or update any item in at most 7 steps.
-Ordering is by insertion history. The original idea can be found in <a href="http://clojure.org/data_structures">Clojure</a>.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-queue-1.html">Queue<'T></a>
-          </td>
-          <td class="xmldoc"><p>Queue is an ordered linear data structure where elements are added at the end (right)
-and inspected and removed at the beginning (left). Ordering is by insertion history.
-The qualities of the Queue structure make elements first in, first out (fifo).
-"head" inspects the first or left-most element in the structure, while "conj"
-inserts an element at the end, or right of the structure.
-Purely functional (immutable) Queue based on Okasaki's batched queue.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-randomaccesslist-1.html">RandomAccessList<'T></a>
-          </td>
-          <td class="xmldoc"><p>RandomAccessList is an ordered linear structure implementing the List signature
-(head, tail, cons), as well as inspection (lookup) and update (returning a new
-immutable instance) of any element in the structure by index. Length is O(1). Indexed
-lookup or update (returning a new immutable instance of RandomAccessList) of any element
-is O(log32n), which is close enough to O(1) as to make no practical difference: a
-RandomAccessList containing 4 billion items can lookup or update any item in at most 7
-steps. Ordering is by insertion history. While PersistentVector<'T> is appending to the
-end this version prepends elements to the list.</p>
-
-</td>
-        </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-arraymodule.html">Array</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for F#'s Array module.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-bytestringmodule.html">ByteString</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-dlistmodule.html">DList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-dequemodule.html">Deque</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-dictionarymodule.html">Dictionary</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for System.Collections.Generic.Dictionary.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-exceptions.html">Exceptions</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-heapmodule.html">Heap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-interfaces.html">Interfaces</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-lazylistmodule.html">LazyList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-list.html">List</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for F#'s List module.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-literals.html">Literals</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-map.html">Map</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for F#'s Map module.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-namevaluecollectionmodule.html">NameValueCollection</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for NameValueCollections.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-nonemptylist.html">NonEmptyList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-persistenthashmapmodule.html">PersistentHashMap</a>
-          </td>
-          <td class="xmldoc"><p>Defines functions which allow to access and manipulate PersistentHashMaps.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-persistentvectormodule.html">PersistentVector</a>
-          </td>
-          <td class="xmldoc"><p>Defines functions which allow to access and manipulate PersistentVectors.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-priorityqueue.html">PriorityQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-queuemodule.html">Queue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-randomaccesslistmodule.html">RandomAccessList</a>
-          </td>
-          <td class="xmldoc"><p>Defines functions which allow to access and manipulate RandomAccessLists.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-seq.html">Seq</a>
-          </td>
-          <td class="xmldoc"><p>Extensions for F#'s Seq module.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-timemeasurement.html">TimeMeasurement</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-  <h2>FSharpx.Collections.Experimental Namespace</h2>
-    <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-altbinrndacclist-1.html">AltBinRndAccList<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-bktree-1.html">BKTree<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-bankersdeque-1.html">BankersDeque<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-bankersqueue-1.html">BankersQueue<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-batcheddeque-1.html">BatchedDeque<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-batchedqueue-1.html">BatchedQueue<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binaryrandomaccesslist-1.html">BinaryRandomAccessList<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binaryrosetree-1.html">BinaryRoseTree<'T></a>
-          </td>
-          <td class="xmldoc"><p>Multi-way tree, also known as rose tree.
-This RoseTree uses a Vector for the children RoseTree forest.
-Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binomialheap-1.html">BinomialHeap<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-binomialtree-1.html">BinomialTree<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-blockresizearray-1.html">BlockResizeArray<'T></a>
-          </td>
-          <td class="xmldoc"><p>Resize array fith fixed size block memory allocation.
-Provide more optimal space usage for huge arrays than standard ResizeArray.
-Basic version created by Avdyukhin Dmitry <a href="dimonbv@gmail.com">dimonbv@gmail.com</a></p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-dlist-1.html">DList<'T></a>
-          </td>
-          <td class="xmldoc"><p>The DList is an implementation of John Hughes' append list.
-See <a href="http://dl.acm.org/citation.cfm?id=8475">http://dl.acm.org/citation.cfm?id=8475</a> for more information.
-This implementation adds an additional parameter to allow a more
-efficient calculation of the list length.
-Note that an alternate form would represent the DList as:
-type DList<'T> = DList of ('T list -&gt; 'T list)
-An example can be found at <a href="http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209">http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209</a></p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-deque-1.html">Deque<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-digit-1.html">Digit<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-eagerroseforest-1.html">EagerRoseForest<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-eagerrosetree-1.html">EagerRoseTree<'T></a>
-          </td>
-          <td class="xmldoc"><p>Multi-way tree, also known as rose tree.
-This RoseTree uses a List for the children RoseTree forest.
-Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-flatlist-1.html">FlatList<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-hoodmelvillequeue-1.html">HoodMelvilleQueue<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-incompatiblemerge.html">IncompatibleMerge</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-indexedrosetree-1.html">IndexedRoseTree<'T></a>
-          </td>
-          <td class="xmldoc"><p>Multi-way tree, also known as rose tree.
-This RoseTree uses a Vector for the children RoseTree forest.
-Adapted from @mausch F# adaptation of Experimental.RoseTree.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-intmap-1.html">IntMap<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-leftistheap-1.html">LeftistHeap<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-pairingheap-1.html">PairingHeap<'T></a>
-          </td>
-          <td class="xmldoc"><p>PairingHeap performs extremely well in practice, however (according to Okasaki) it should be avoided for applications taking advantage of persistence.
-Also according to Okasaki the time complexity of the heap functions in the PairingHeap implementation have "resisted" time complexity analysis.
-ofSeq: superior performance; insert: superior performance; tail: superior performance</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-patternmatchedbug.html">PatternMatchedBug</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-physicistqueue-1.html">PhysicistQueue<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-realtimedeque-1.html">RealTimeDeque<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-ringbuffer-1.html">RingBuffer<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-roseforest-1.html">RoseForest<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-rosetree-1.html">RoseTree<'T></a>
-          </td>
-          <td class="xmldoc"><p>Multi-way tree, also known as rose tree.</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-rosetree.html">RoseTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-rotationstate-1.html">RotationState<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-skewbinaryrandomaccesslist-1.html">SkewBinaryRandomAccessList<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-skewbinomialheap-1.html">SkewBinomialHeap<'T></a>
-          </td>
-          <td class="xmldoc"><p>A SkewBinomialHeap is a priority queue where elements are inserted in any order, using "insert" and are
-extracted in either ascending or descending order using "head", "peek", "tail", "pop" or any of their
-"try" variants. The main advantage of the SkewBinomialHeap over the BinomialHeap is that it supports
-insertions in constant time O(1). (Based on "Purely Functional Data Structures" - 1996 by Chris Okasaki)</p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-timeseries-1.html">Timeseries<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-treebral-1.html">TreeBRAL<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-experimental-treesbral-1.html">TreeSBRAL<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-altbinaryrandomaccesslistmodule.html">AltBinaryRandomAccessList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-bktree.html">BKTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-bankersdequemodule.html">BankersDeque</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-bankersqueuemodule.html">BankersQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-batcheddequemodule.html">BatchedDeque</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-batchedqueuemodule.html">BatchedQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-binaryrandomaccesslistmodule.html">BinaryRandomAccessList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-binaryrosetreemodule.html">BinaryRoseTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-binarytreezipper.html">BinaryTreeZipper</a>
-          </td>
-          <td class="xmldoc"><p>TreeZipper
-original implementation taken from <a href="http://blog.xquant.net/?p=156">http://blog.xquant.net/?p=156</a></p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-binomialheap.html">BinomialHeap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-blockresizearray.html">BlockResizeArray</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-bootstrappedqueue.html">BootstrappedQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-bottomupmergesort.html">BottomUpMergeSort</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-dlistmodule.html">DList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-dequemodule.html">Deque</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-eagerrosetreemodule.html">EagerRoseTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-flatlistmodule.html">FlatList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-heappriorityqueue.html">HeapPriorityQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-hoodmelvillequeuemodule.html">HoodMelvilleQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-implicitqueue.html">ImplicitQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-indexedrosetreemodule.html">IndexedRoseTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-intmap.html">IntMap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-leftistheapmodule.html">LeftistHeap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-listzipper.html">ListZipper</a>
-          </td>
-          <td class="xmldoc"><p>ListZipper
-original implementation taken from <a href="http://learnyouahaskell.com/zippers">http://learnyouahaskell.com/zippers</a></p>
-
-</td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-pairingheapmodule.html">PairingHeap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-physicistqueuemodule.html">PhysicistQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-realtimedeque.html">RealTimeDeque</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-realtimequeue.html">RealTimeQueue</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-ringbuffer.html">RingBuffer</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-rosetreemodule.html">RoseTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-skewbinaryrandomaccesslistmodule.html">SkewBinaryRandomAccessList</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="fsharpx-collections-experimental-skewbinomialheap.html">SkewBinomialHeap</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-  <h2>FSharpx.Collections.Mutable Namespace</h2>
-    <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="fsharpx-collections-mutable-circularbuffer-1.html">CircularBuffer<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-  <h2>Microsoft.FSharp.Collections Namespace</h2>
-    <div>
-      <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="microsoft-fsharp-collections-resizearraymodule.html">ResizeArray</a>
-          </td>
-          <td class="xmldoc"><p>Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.</p>
-
-</td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-  <h2>Microsoft.FSharp.Collections.Tagged Namespace</h2>
-    <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-map-3.html">Map<'Key, 'T, 'ComparerTag></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-map-2.html">Map<'Key, 'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-maptree-2.html">MapTree<'Key, 'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-set-2.html">Set<'T, 'ComparerTag></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-set-1.html">Set<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="type-name">
-            <a href="microsoft-fsharp-collections-tagged-settree-1.html">SetTree<'T></a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="module-name">
-            <a href="microsoft-fsharp-collections-tagged-maptreemodule.html">MapTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-        <tr>
-          <td class="module-name">
-            <a href="microsoft-fsharp-collections-tagged-settreemodule.html">SetTree</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-    </div>
-
+        <div class="masthead">
+            <h3 class="muted"><a href="https://github.com/fsprojects/FSharpx.Collections/">FSharpx.Collections</a></h3>
         </div>
-        <div class="span3">
-          <img src="/FSharpx.Collections/img/logo.png" alt="F# Project" style="float:left;width:150px;margin:10px" />  
-          <ul class="nav nav-list" id="menu">
-            <li class="nav-header">fsprojects/FSharpx.Collections</li>
-            <li><a href="/FSharpx.Collections/index.html">Home page</a></li>
-            <li class="divider"></li>
-            <li><a href="https://www.nuget.org/packages/FSharpx.Collections">Get Library via NuGet</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections">Source Code on GitHub</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.md">License</a></li>
-            <li><a href="http://github.com/fsprojects/FSharpx.Collections/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
-              
-            <li class="nav-header">Using from F#</li>
-            <li><a href="/FSharpx.Collections/PersistentVector.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMap.html">PersistentHashMap</a></li>
-            <li class="nav-header">Using from C#</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorC.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapC.html">PersistentHashMap</a></li>
-            <li class="nav-header">Performance tests</li>
-            <li><a href="/FSharpx.Collections/PersistentVectorPerformance.html">PersistentVector</a></li>
-            <li><a href="/FSharpx.Collections/PersistentHashMapPerformance.html">PersistentHashMap</a></li>
-            <li class="nav-header">Documentation</li>
-            <li><a href="/FSharpx.Collections/reference/index.html">API Reference</a></li>
-                      
-          </ul>
+        <hr />
+        <div class="container" id="fsdocs-content">
+            <div>
+  <h1>
+    API Reference
+  </h1>
+  <h2>
+    Available Namespaces:
+  </h2>
+  <table class="table outer-list fsdocs-member-list">
+    <thead>
+      <tr>
+        <td class="fsdocs-member-list-header">
+          Namespace
+        </td>
+        <td class="fsdocs-member-list-header">
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections.html">
+            FSharpx.Collections
+          </a>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-experimental.html">
+            FSharpx.Collections.Experimental
+          </a>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-mutable.html">
+            FSharpx.Collections.Mutable
+          </a>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://github.com/fsprojects/FSharpx.Collections/reference/fsharpx-collections-tagged.html">
+            FSharpx.Collections.Tagged
+          </a>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            
         </div>
-      </div>
+
+        <!-- BEGIN SEARCH BOX: this adds support for the search box -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.css" />
+        <script type="text/javascript">var fsdocs_search_baseurl = 'https://github.com/fsprojects/FSharpx.Collections/';</script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.8/lunr.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/JavaScript-autoComplete/1.0.4/auto-complete.min.js"></script>
+        <script type="text/javascript" src="https://github.com/fsprojects/FSharpx.Collections/content/fsdocs-search.js"></script>
+        <!-- END SEARCH BOX: this adds support for the search box -->
     </div>
-    <a href="http://github.com/fsprojects/FSharpx.Collections"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-  </body>
-  </html>
+</body>
+
+</html>
