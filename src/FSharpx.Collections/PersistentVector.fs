@@ -1,10 +1,9 @@
 ﻿/// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/Vector.java
-
 namespace FSharpx.Collections
 
+#if !FABLE_COMPILER
+
 open FSharpx.Collections
-#if FX_NO_THREAD
-#else
 open System.Threading
 
 type Node(thread,array:obj[]) =
@@ -23,7 +22,7 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     let mutable shift = shift
 
     new() = TransientVector<'T>(0,Literals.blockSizeShift,Node.InCurrentThread(),Array.create Literals.blockSize null)
-    
+
     member internal this.EnsureEditable(node:Node) =
         if node.Thread = root.Thread then node else
         Node(root.Thread,Array.copy node.Array)
@@ -82,7 +81,7 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
             newTail.[0] <- x :> obj
 
             //overflow root?
-            let newRoot = 
+            let newRoot =
                 if (count >>> Literals.blockSizeShift) > (1 <<< shift) then
                     let newRoot = Node(root.Thread,Array.create Literals.blockSize null)
                     newRoot.Array.[0] <- root :> obj
@@ -99,18 +98,18 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
         this
 
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
-        let i = ref startIndex
-        let b = ref (!i - (!i % Literals.blockSize))
-        let array = if startIndex < count then ref (this.ArrayFor !i) else ref null
+        let mutable i = startIndex
+        let mutable b = i - (i % Literals.blockSize)
+        let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
-            while !i < endIndex do
-                if !i - !b = Literals.blockSize then
-                    array := this.ArrayFor !i
-                    b := !b + Literals.blockSize
+            while i < endIndex do
+                if i - b = Literals.blockSize then
+                    array <- this.ArrayFor i
+                    b <- b + Literals.blockSize
 
-                yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                i := !i + 1 
+                yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                i <- i + 1
             }
 
     member this.persistent() : PersistentVector<'T> =
@@ -129,7 +128,7 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     member internal this.TailOff() =
         if count < Literals.blockSize then 0 else
         ((count - 1) >>> Literals.blockSizeShift) <<< Literals.blockSizeShift
-        
+
     interface System.Collections.Generic.IEnumerable<'T> with
         member this.GetEnumerator () =
           this.rangedIterator(0,count).GetEnumerator()
@@ -137,11 +136,11 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     interface System.Collections.IEnumerable with
         member this.GetEnumerator () =
           (this.rangedIterator(0,count).GetEnumerator())
-            :> System.Collections.IEnumerator 
+            :> System.Collections.IEnumerator
 
 and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
-    let hashCode = ref None
-    let tailOff = 
+    let mutable hashCode = None
+    let tailOff =
         if count < Literals.blockSize then 0 else
         ((count - 1) >>> Literals.blockSizeShift) <<< Literals.blockSizeShift
 
@@ -154,24 +153,24 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         ret.persistent()
 
     override this.GetHashCode() =
-        match !hashCode with
+        match hashCode with
         | None ->
             let mutable hash = 1
             for x in this.rangedIterator(0,count) do
                 hash <- 31 * hash + Unchecked.hash x
-            hashCode := Some hash
+            hashCode <- Some hash
             hash
         | Some hash -> hash
 
     override this.Equals(other) =
         match other with
-        | :? PersistentVector<'T> as y -> 
+        | :? PersistentVector<'T> as y ->
             if this.Length <> y.Length then false else
             if this.GetHashCode() <> y.GetHashCode() then false else
             Seq.forall2 (Unchecked.equals) this y
         | _ -> false
 
-    member internal this.SetHash hash = hashCode := hash; this
+    member internal this.SetHash hash = hashCode <- hash; this
 
     member internal this.NewPath(level,node:Node) =
         if level = 0 then node else
@@ -214,8 +213,8 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
 
     member internal this.doAssoc(level,node:Node,i,x) =
         let ret = Node(root.Thread,Array.copy node.Array)
-        if level = 0 then 
-            ret.Array.[i &&& Literals.blockIndexMask] <- x :> obj 
+        if level = 0 then
+            ret.Array.[i &&& Literals.blockIndexMask] <- x :> obj
         else
             let subidx = (i >>> level) &&& Literals.blockIndexMask
             ret.Array.[subidx] <- this.doAssoc(level - Literals.blockSizeShift, node.Array.[subidx] :?> Node, i, x) :> obj
@@ -237,24 +236,24 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         ret
 
     member this.rangedIterator<'T>(startIndex,endIndex) : 'T seq =
-        let i = ref startIndex
-        let b = ref (!i - (!i % Literals.blockSize))
-        let array = if startIndex < count then ref (this.ArrayFor !i) else ref null
+        let mutable i = startIndex
+        let mutable b = i - (i % Literals.blockSize)
+        let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
-            while !i < endIndex do
-                if !i - !b = Literals.blockSize then
-                    array := this.ArrayFor !i
-                    b := !b + Literals.blockSize
+            while i < endIndex do
+                if i - b = Literals.blockSize then
+                    array <- this.ArrayFor i
+                    b <- b + Literals.blockSize
 
-                yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                i := !i + 1 
+                yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                i <- i + 1
             }
-        
-    member this.Conj (x : 'T) = 
+
+    member this.Conj (x : 'T) =
         if count - tailOff < Literals.blockSize then
             let newTail = Array.append tail [|x:>obj|]
-            PersistentVector<'T>(count + 1,shift,root,newTail) 
+            PersistentVector<'T>(count + 1,shift,root,newTail)
         else
             //full tail, push into tree
             let tailNode = Node(root.Thread,tail)
@@ -274,10 +273,10 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         if count = 0 then failwith "Can't initial empty vector" else
         if count = 1 then PersistentVector<'T>.Empty() else
 
-        if count - tailOff > 1 then 
+        if count - tailOff > 1 then
             let mutable newroot = Node(ref Thread.CurrentThread, root.Array.Clone() :?> obj[])
             let mutable ret = TransientVector(count - 1, shift, newroot, tail.[0..(tail.Length-1)])
-            ret.persistent() 
+            ret.persistent()
         else
             let newtail = this.ArrayFor(count - 2)
 
@@ -296,8 +295,8 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
 
     member this.IsEmpty = (count = 0)
 
-    member this.Item 
-        with get i = 
+    member this.Item
+        with get i =
             let node = this.ArrayFor i
             node.[i &&& Literals.blockIndexMask] :?> 'T
 
@@ -305,21 +304,21 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
 
     member this.TryLast = if count > 0 then Some (this.[count - 1]) else None
 
-    member this.Length : int = count    
+    member this.Length : int = count
 
     member this.Rev() =
         if count = 0 then PersistentVector.Empty() :> PersistentVector<'T>
         else
-            let i = ref (count - 1)
-            let array = ref (this.ArrayFor !i)
+            let mutable i = count - 1
+            let mutable array = this.ArrayFor i
 
             let items = seq {
-                while !i > - 1 do
-                    if (!i + 1) % Literals.blockSize  = 0 then
-                        array := this.ArrayFor !i
+                while i > - 1 do
+                    if (i + 1) % Literals.blockSize  = 0 then
+                        array <- this.ArrayFor i
 
-                    yield (!array).[!i &&& Literals.blockIndexMask] :?> 'T
-                    i := !i - 1 
+                    yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                    i <- i - 1
                 }
 
             let mutable ret = TransientVector()
@@ -333,7 +332,7 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
 
     member this.TryUnconj = if count > 0 then Some(this.Initial, this.[count - 1])  else None
 
-    member this.Update(i, x : 'T) = 
+    member this.Update(i, x : 'T) =
         if i >= 0 && i < count then
             if i >= tailOff then
                 let newTail = Array.copy tail
@@ -341,61 +340,60 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
                 PersistentVector(count, shift, root, newTail)
             else
                 PersistentVector(count, shift, this.doAssoc(shift, root, i, x),tail)
-        elif i = count then this.Conj x 
+        elif i = count then this.Conj x
         else raise (new System.IndexOutOfRangeException())
 
     member this.TryUpdate(i, x : 'T) =
         if i >= 0 && i < count then Some(this.Update (i,x))
         else None
 
-    interface System.Collections.Generic.IEnumerable<'T> with
+    interface System.Collections.Generic.IReadOnlyCollection<'T> with
+        member this.Count = this.Length
         member this.GetEnumerator () =
           this.rangedIterator(0,count).GetEnumerator()
-
-    interface System.Collections.IEnumerable with
         member this.GetEnumerator () =
           (this.rangedIterator(0,count).GetEnumerator())
             :> System.Collections.IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
-module PersistentVector = 
+[<RequireQualifiedAccess>]
+module PersistentVector =
     //pattern discriminators  (active pattern)
     let (|Conj|Nil|) (v : PersistentVector<'T>) = match v.TryUnconj with Some(a,b) -> Conj(a,b) | None -> Nil
-     
-    let append (vectorA : PersistentVector<'T>) (vectorB : PersistentVector<'T>) = 
+
+    let append (vectorA : PersistentVector<'T>) (vectorB : PersistentVector<'T>) =
         let mutable ret = TransientVector()
         for i in 0..(vectorA.Length - 1) do
             ret <- ret.conj vectorA.[i]
         for i in 0..(vectorB.Length - 1) do
             ret <- ret.conj vectorB.[i]
-        ret.persistent() 
+        ret.persistent()
 
     let inline conj (x : 'T) (vector : PersistentVector<'T>) = vector.Conj x
 
     let empty<'T> = PersistentVector.Empty() :> PersistentVector<'T>
 
-    let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : PersistentVector<'T>) = 
+    let inline fold (f : ('State -> 'T -> 'State)) (state : 'State) (v : PersistentVector<'T>) =
         let rec loop state' (v' : PersistentVector<'T>) count =
             match count with
             | _ when count = v'.Length -> state'
-            | _ -> loop (f state' v'.[count]) v' (count + 1)  
+            | _ -> loop (f state' v'.[count]) v' (count + 1)
         loop state v 0
 
     let inline flatten (v : PersistentVector<PersistentVector<'T>>) =
         fold (fun (s : seq<'T>) (v' : PersistentVector<'T>) -> Seq.append s v') Seq.empty<'T> v
 
-    let inline foldBack (f : ('T -> 'State -> 'State)) (v : PersistentVector<'T>) (state : 'State) =  
+    let inline foldBack (f : ('T -> 'State -> 'State)) (v : PersistentVector<'T>) (state : 'State) =
         let rec loop state' (v' : PersistentVector<'T>) count =
             match count with
             | -1 -> state'
-            | _ -> loop (f v'.[count] state') v' (count - 1)  
+            | _ -> loop (f v'.[count] state') v' (count - 1)
         loop state v (v.Length - 1)
 
     let init count (f: int -> 'T) : PersistentVector<'T> =
         let mutable ret = TransientVector()
         for i in 0..(count-1) do
             ret <- ret.conj(f i)
-        ret.persistent() 
+        ret.persistent()
 
     let inline initial (vector: PersistentVector<'T>) = vector.Initial
 
@@ -409,16 +407,16 @@ module PersistentVector =
 
     let inline length (vector: PersistentVector<'T>) : int = vector.Length
 
-    let map (f : 'T -> 'T1) (vector: PersistentVector<'T>) : 'T1 PersistentVector = 
+    let map (f : 'T -> 'T1) (vector: PersistentVector<'T>) : 'T1 PersistentVector =
         let mutable ret = TransientVector()
         for item in vector do
             ret <- ret.conj(f item)
-        ret.persistent() 
+        ret.persistent()
 
     let inline nth i (vector: PersistentVector<'T>) : 'T = vector.[i]
 
     let inline nthNth i j (vector: PersistentVector<PersistentVector<'T>>) : 'T = vector.[i] |> nth j
- 
+
     let inline tryNth i (vector: PersistentVector<'T>) =
         if i >= 0 && i < vector.Length then Some(vector.[i])
         else None
@@ -426,13 +424,15 @@ module PersistentVector =
     let inline tryNthNth i j (vector: PersistentVector<PersistentVector<'T>>) =
         match tryNth i vector with
         | Some v' -> tryNth j v'
-        | None -> None    
+        | None -> None
 
-    let ofSeq (items : 'T seq) = PersistentVector.ofSeq items 
+    let ofSeq (items : 'T seq) = PersistentVector.ofSeq items
 
     let inline rev (vector: PersistentVector<'T>) = vector.Rev()
 
     let inline singleton (x : 'T) = empty |> conj x
+
+    let rangedIterator (startIndex : int) (endIndex : int) (vector: PersistentVector<'T>) = vector.rangedIterator (startIndex, endIndex)
 
     let inline toSeq (vector: PersistentVector<'T>) = vector :> seq<'T>
 
@@ -451,17 +451,18 @@ module PersistentVector =
         then Some(updateNth i j x vector)
         else None
 
-    let inline windowFun windowLength = 
+    let inline windowFun windowLength =
         fun (v : PersistentVector<PersistentVector<'T>>) x ->
-        if v.Last.Length = windowLength 
-        then 
-            v 
+        if v.Last.Length = windowLength
+        then
+            v
             |> conj (empty.Conj(x))
-        else 
-            initial v 
+        else
+            initial v
             |> conj (last v |> conj x)
 
-    let inline windowSeq windowLength (items : 'T seq) = 
+    let inline windowSeq windowLength (items : 'T seq) =
         if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
         else (Seq.fold (windowFun windowLength) (empty.Conj empty<'T>) items)
+
 #endif

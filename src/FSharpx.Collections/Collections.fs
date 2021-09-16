@@ -7,6 +7,7 @@ open System.Collections.Generic
 open System.Runtime.CompilerServices
 
 /// Extensions for F#'s Seq module.
+[<RequireQualifiedAccess>]
 module Seq =
 
     /// Prepends `x` to the seq `xs`
@@ -45,7 +46,7 @@ module Seq =
                 for j in l2 do
                     yield f i j }
 
-    /// Will iterate the current sequence until the given predicate is statisfied
+    /// Will iterate the current sequence until the given predicate is satisfied
     let iterBreak (f:'T -> bool) (seq:seq<_>) =
         use en = seq.GetEnumerator()
         let mutable run = true
@@ -83,6 +84,7 @@ module Seq =
                         cons (pe, neighbours) (go rest)
         go source
 
+#if !FABLE_COMPILER
     /// Converts a streamReader into a seq yielding on each line
     let ofStreamReader (streamReader : System.IO.StreamReader) =
          seq {
@@ -90,14 +92,18 @@ module Seq =
                 while not(sr.EndOfStream) do
                     yield sr.ReadLine()
              }
+#endif
 
+#if !FABLE_COMPILER
     /// Converts a Stream into a sequence of bytes
     let ofStreamByByte (stream: System.IO.Stream) =
         seq { while stream.Length <> stream.Position do
                 let x = stream.ReadByte()
                 if (int x) < 0 then ()
                 else yield x }
+#endif
 
+#if !FABLE_COMPILER
     /// Converts a stream into a seq of byte[] where the array is of the length given
     /// Note: the last chunk maybe less than the given chunk size
     let ofStreamByChunk chunkSize (stream: System.IO.Stream) =
@@ -106,6 +112,7 @@ module Seq =
                 let bytesRead = stream.Read(buffer, 0, chunkSize)
                 if bytesRead = 0 then ()
                 else yield buffer }
+#endif
 
     /// Creates a infinite sequences of the given values
     let asCircular values =
@@ -180,7 +187,20 @@ module Seq =
     /// The same as Seq.skip except it returns empty if the sequence is empty or does not have enough elements.
     /// Alias for Enumerable.Skip
     let inline skipNoFail count (source: seq<_>) =
+#if FABLE_COMPILER
+        seq {
+          let mutable i = 0
+          let e = source.GetEnumerator ()
+          while e.MoveNext () do
+            if i < count
+            then
+              i <- i + 1
+            else
+              yield e.Current
+        }
+#else
         Enumerable.Skip(source, count)
+#endif
 
     /// Creates an infinite sequence of the given value
     let repeat a = seq { while true do yield a }
@@ -202,12 +222,12 @@ module Seq =
         seq {
             use e = a.GetEnumerator()
             use e' = b.GetEnumerator()
-            let eNext = ref (e.MoveNext())
-            let eNext' = ref (e'.MoveNext())
-            while !eNext || !eNext' do
+            let mutable eNext = e.MoveNext()
+            let mutable eNext' = e'.MoveNext()
+            while eNext || eNext' do
                yield f e.Current e'.Current
-               eNext := e.MoveNext()
-               eNext' := e'.MoveNext()
+               eNext <- e.MoveNext()
+               eNext' <- e'.MoveNext()
         }
 
     /// Replicates each element in the seq n-times
@@ -226,11 +246,11 @@ module Seq =
 
     let intersperse (sep: 'a) (list: 'a seq) : 'a seq =
         seq {
-            let notFirst = ref false
+            let mutable notFirst = false
             for element in list do
-              if !notFirst then yield sep;
+              if notFirst then yield sep;
               yield element;
-              notFirst := true
+              notFirst <- true
       }
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
@@ -257,17 +277,20 @@ module Seq =
     /// Compares two sequences for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = Seq.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for F#'s Array module.
+[<RequireQualifiedAccess>]
 module Array =
+    /// nth item of array
     let inline nth i arr = Array.get arr i
+
+    /// set the ith item of array
     let inline setAt i v arr = Array.set arr i v; arr
 
     /// Returns the only element of the array for which the given function returns true.
     let inline findExactlyOne (predicate : 'a -> bool) (source:'a[]) : 'a =
         source |> Array.filter predicate |> Array.exactlyOne
 
+    /// copy items from one array to another
     let copyTo sourceStartIndx startIndx source target =
         let targetLength = (Array.length target)
         if startIndx < 0 || startIndx > targetLength - 1 then
@@ -285,9 +308,12 @@ module Array =
     let ofTuple (source : obj) : obj array =
         Microsoft.FSharp.Reflection.FSharpValue.GetTupleFields source
 
+#if !FABLE_COMPILER
+    /// needs doc
     let toTuple (source : 'T array) : 't =
         let elements = source |> Array.map (fun x -> x :> obj)
         Microsoft.FSharp.Reflection.FSharpValue.MakeTuple(elements, typeof<'t>) :?> 't
+#endif
 
     /// Returns an array of sliding windows of data drawn from the source array.
     /// Each window contains the n elements surrounding the current element.
@@ -339,7 +365,7 @@ module Array =
                                | _            -> None
         Array.choose chooser xs
 
-    /// Partitions an aray of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
+    /// Partitions an array of Choice into two arrays. All the Choice1Of2 elements are extracted, in order, to the first component of the output. Similarly the Choice2Of2 elements are extracted to the second component of the output.
     let inline partitionChoices xs =
         (choice1s xs, choice2s xs)
 
@@ -348,6 +374,7 @@ module Array =
 
 
 /// Extensions for F#'s List module.
+[<RequireQualifiedAccess>]
 module List =
     /// Curried cons
     let inline cons hd tl = hd::tl
@@ -484,9 +511,8 @@ module List =
     /// Compares two lists for equality using the given comparison function, element by element.
     let inline equalsWith eq xs ys = List.compareWith (fun x y -> if eq x y then 0 else 1) xs ys = 0
 
-
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Extensions for System.Collections.Generic.Dictionary.
+[<RequireQualifiedAccess>]
 module Dictionary =
     let tryFind key (d: IDictionary<_,_>) =
         match d.TryGetValue key with
@@ -515,6 +541,7 @@ type ExtraIReadOnlyDictionary() =
 
 
 /// Extensions for F#'s Map module.
+[<RequireQualifiedAccess>]
 module Map =
     /// <summary>
     /// Returns a new map made from the given Dictionary (or anything else that implements <code>seq&lt;KeyValuePair&lt;&apos;a, &apos;b&gt;&gt;</code>).
@@ -534,13 +561,13 @@ module Map =
     let splitWithKey pred d = spanWithKey (not << pred) d
 
     /// <summary>
-    /// <code>insertWith f key value mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
-    /// If the key does exist, the function will insert <code>f new_value old_value</code>.
+    /// <code>insertWith f key defaultValue mp</code> will insert the pair <code>(key, value)</code> into <code>mp</code> if <code>key</code> does not exist in the map.
+    /// If the key does exist, the function will insert <code>f defaultValue oldValue</code>.
     /// </summary>
-    let insertWith f key value map =
+    let insertWith f key defaultValue map =
         match Map.tryFind key map with
-        | Some oldValue -> map |> Map.add key (f value oldValue)
-        | None -> map |> Map.add key value
+        | Some oldValue -> map |> Map.add key (f defaultValue oldValue)
+        | None -> map |> Map.add key defaultValue
 
     /// <summary>
     /// <code>update f k map</code> updates the value <code>x</code> at key <code>k</code> (if it is in the map).
@@ -618,11 +645,10 @@ module Map =
         Seq.equalsWith eq' xs' ys'
 
 
-#if FX_PORTABLE
-#else
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+#if !FABLE_COMPILER
 [<Extension>]
 /// Extensions for NameValueCollections.
+[<RequireQualifiedAccess>]
 module NameValueCollection =
     open System.Collections.Specialized
     open System.Linq
@@ -786,7 +812,7 @@ module NameValueCollection =
             member d.GetEnumerator() = a.GetEnumerator() :> IEnumerator
             member d.Remove (item: KeyValuePair<string,string[]>) = notSupported(); false
             member d.Remove (key: string) = notSupported(); false
-            member d.TryGetValue(key: string, value: byref<string[]>) = a.TryGetValue(key, ref value)
+            member d.TryGetValue(key: string, value: byref<string[]>) = a.TryGetValue(key, &value)
         }
 
     [<Extension>]

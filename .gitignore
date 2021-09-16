@@ -17,6 +17,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+.vs/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
@@ -165,10 +166,11 @@ $RECYCLE.BIN/
 packages/
 
 # Generated documentation folder
-docs/output/
+output/
 
 # Temp folder used for publishing docs
 temp/
+tmp/
 
 # Test results produced by build
 TestResults.xml
@@ -183,3 +185,8 @@ docs/content/license.md
 _NCrunch*
 .fake
 RELEASE_NOTES.md.orig
+
+.paket/
+.ionide
+.fsdocs/
+*.blob

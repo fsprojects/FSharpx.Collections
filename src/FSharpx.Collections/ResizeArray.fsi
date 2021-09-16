@@ -7,14 +7,13 @@
 // (c) Microsoft Corporation 2005-2008.  
 //===========================================================================
 
-namespace Microsoft.FSharp.Collections
-
+namespace FSharpx.Collections
 
 open System
 open System.Collections.Generic
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 /// Generic operations on the type System.Collections.Generic.List, which is called ResizeArray in the F# libraries.
+[<RequireQualifiedAccess>]
 module ResizeArray =
 
     /// Return the length of the collection.  You can also use property <c>arr.Length</c>.
@@ -24,7 +23,7 @@ module ResizeArray =
     val get: ResizeArray<'T> -> int -> 'T
 
 
-    /// Set the value of an element in the collection. You can also use the syntax <c>arr.[idx] <- e</c>.
+    /// Set the value of an element in the collection. You can also use the syntax <c>arr.[idx] &lt;- e</c>.
     val set: ResizeArray<'T> -> int -> 'T -> unit
 
     /// Create an array whose elements are all initially the given value.

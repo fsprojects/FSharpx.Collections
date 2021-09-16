@@ -1,61 +1,55 @@
-﻿module FSharpx.Collections.Experimental.Tests.ImplicitQueueTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.ImplicitQueue
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``empty queue should be empty``() =
-    isEmpty empty |> should equal true
+module ImplicitQueueTest =
 
-[<Test>]
-let ``it should allow to enqueue``() =
-    empty |> snoc 1 |> snoc 2 |> isEmpty |> should equal false
+    [<Tests>]
+    let testImplicitQueue =
 
-[<Test>]
-let ``it should allow to dequeue``() =
-    empty |> snoc 1 |> tail |> isEmpty |> should equal true
+        testList "Experimental ImplicitQueue" [
+            test "ImplicitQueue.empty queue should be ImplicitQueue.empty" {
+                ImplicitQueue.isEmpty ImplicitQueue.empty |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should fail if there is no head in the queue``() =
-    let ok = ref false
-    try
-        empty |> head |> ignore
-    with x when x = Exceptions.Empty -> ok := true
-    !ok |> should equal true
+            test "it should allow to enqueue" {
+                ImplicitQueue.empty |> ImplicitQueue.snoc 1 |> ImplicitQueue.snoc 2 |> ImplicitQueue.isEmpty |> Expect.isFalse "" }
 
-[<Test>]
-let ``it should give None if there is no head in the queue``() =
-    empty |> tryGetHead |> should equal None
+            test "it should allow to dequeue" {
+                ImplicitQueue.empty |> ImplicitQueue.snoc 1 |> ImplicitQueue.tail |> ImplicitQueue.isEmpty |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should fail if there is no tail the queue``() =
-    let ok = ref false
-    try
-        empty |> tail |> ignore
-    with x when x = Exceptions.Empty -> ok := true
-    !ok |> should equal true
+            test "it should fail if there is no ImplicitQueue.head in the queue" {
+                let ok = ref false
+                try
+                    ImplicitQueue.empty |> ImplicitQueue.head |> ignore
+                with x when x = Exceptions.Empty -> ok := true
+                !ok |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should give None if there is no tail in the queue``() =
-    empty |> tryGetTail |> should equal None
+            test "it should give None if there is no ImplicitQueue.head in the queue" {
+                ImplicitQueue.empty |> ImplicitQueue.tryGetHead |> Expect.isNone "" }
 
-[<Test>]
-let ``it should allow to get the head from a queue``() =
-    empty |> snoc 1 |> snoc 2 |> head |> should equal 1
+            test "it should fail if there is no ImplicitQueue.tail the queue" {
+                let ok = ref false
+                try
+                    ImplicitQueue.empty |> ImplicitQueue.tail |> ignore
+                with x when x = Exceptions.Empty -> ok := true
+                !ok |> Expect.isTrue "" }
 
-[<Test>]
-let ``it should allow to get the head from a queue safely``() =
-    empty |> snoc 1 |> snoc 2 |> tryGetHead |> should equal (Some 1)
+            test "it should give None if there is no ImplicitQueue.tail in the queue" {
+                ImplicitQueue.empty |> ImplicitQueue.tryGetTail |> Expect.isNone "" }
 
-[<Test>]
-let ``it should allow to get the tail from the queue``() =
-    empty |> snoc "a" |> snoc "b" |> snoc "c" |> tail |> head |> should equal "b"
+            test "it should allow to get the ImplicitQueue.head from a queue" {
+                ImplicitQueue.empty |> ImplicitQueue.snoc 1 |> ImplicitQueue.snoc 2 |> ImplicitQueue.head |> Expect.equal "" 1 } 
 
-[<Test>]
-let ``it should allow to get the tail from a queue safely``() =
-    let value = empty |> snoc 1 |> snoc 2 |> tryGetTail
-    value.Value |> head |> should equal 2
+            test "it should allow to get the ImplicitQueue.head from a queue safely" {
+                ImplicitQueue.empty |> ImplicitQueue.snoc 1 |> ImplicitQueue.snoc 2 |> ImplicitQueue.tryGetHead |> Expect.equal "" (Some 1) } 
+
+            test "it should allow to get the ImplicitQueue.tail from the queue" {
+                ImplicitQueue.empty |> ImplicitQueue.snoc "a" |> ImplicitQueue.snoc "b" |> ImplicitQueue.snoc "c" |> ImplicitQueue.tail |> ImplicitQueue.head |> Expect.equal "" "b" } 
+
+            test "it should allow to get the ImplicitQueue.tail from a queue safely" {
+                let value = ImplicitQueue.empty |> ImplicitQueue.snoc 1 |> ImplicitQueue.snoc 2 |> ImplicitQueue.tryGetTail
+                value.Value |> ImplicitQueue.head |> Expect.equal "" 2 } 
+        ]

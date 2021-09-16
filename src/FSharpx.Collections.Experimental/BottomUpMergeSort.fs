@@ -1,40 +1,42 @@
-﻿// BottomUp merge sort from Chris Okasaki’s “Purely functional data structures”
+﻿// BottomUp merge sort from Chris Okasaki's "Purely functional data structures"
 // original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/bottom-up-merge-sort
-module FSharpx.Collections.Experimental.BottomUpMergeSort
 
-open FSharpx
+namespace FSharpx.Collections.Experimental
 
-type Sortable<'T> = {
-    Size: int
-    Segments: Lazy<list<list<'T>>> }
+[<RequireQualifiedAccess>]
+module BottomUpMergeSort =
 
-let rec merge xs ys =
-    match xs, ys with
-    | [], ys -> ys
-    | xs, [] -> xs
-    | x::tlx, y::tly ->
-        if x <= y then
-            x :: merge tlx ys
+    type Sortable<'T> = {
+        Size: int
+        Segments: Lazy<list<list<'T>>> }
+
+    let rec merge xs ys =
+        match xs, ys with
+        | [], ys -> ys
+        | xs, [] -> xs
+        | x::tlx, y::tly ->
+            if x <= y then
+                x :: merge tlx ys
+            else
+                y :: merge xs tly
+
+    let empty<'T> : Sortable<'T> = { Size = 0; Segments = lazy [] }
+
+    let isEmpty x = x.Size = 0
+
+    let singleton x = { Size = 1; Segments = lazy [[x]] }
+
+    let rec addSeg seg segs size =
+        if size % 2 = 0 then
+            seg::segs
         else
-            y :: merge xs tly
+            addSeg (merge seg (List.head segs)) (List.tail segs) (size / 2)
 
-let empty<'T> : Sortable<'T> = { Size = 0; Segments = lazy [] }
+    let add x y = { Size = y.Size + 1; Segments = lazy addSeg [x] (y.Segments.Force()) y.Size }
 
-let isEmpty x = x.Size = 0
+    let rec mergeAll xs ys =
+        match xs, ys with
+        | xs, [] -> xs
+        | xs, seg::segs -> mergeAll (merge xs seg) segs
 
-let singleton x = { Size = 1; Segments = lazy [[x]] }
-
-let rec addSeg seg segs size =
-    if size % 2 = 0 then
-        seg::segs
-    else
-        addSeg (merge seg (List.head segs)) (List.tail segs) (size / 2)
-
-let add x y = { Size = y.Size + 1; Segments = lazy addSeg [x] (y.Segments.Force()) y.Size }
-
-let rec mergeAll xs ys =
-    match xs, ys with
-    | xs, [] -> xs
-    | xs, seg::segs -> mergeAll (merge xs seg) segs
-
-let sort x = mergeAll [] (x.Segments.Force())
+    let sort x = mergeAll [] (x.Segments.Force())

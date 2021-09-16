@@ -1,15 +1,16 @@
 namespace FSharpx.Collections
 
-/// DList is an ordered linear structure implementing the List signature (head, tail, cons), 
+/// DList is an ordered linear structure implementing the List signature (head, tail, cons),
 /// end-insertion (conj), and O(1) append. Ordering is by insertion history.
 /// DList is an implementation of [John Hughes' append list](http://dl.acm.org/citation.cfm?id=8475).
 
 [<Class>]
 type DList<'T> =
-
-    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.IEquatable<DList<'T>>
     interface System.Collections.IEnumerable
-   
+    interface System.Collections.Generic.IEnumerable<'T>
+    interface System.Collections.Generic.IReadOnlyCollection<'T>
+
     ///O(1). Returns the count of elememts.
     member Length : int
 
@@ -17,7 +18,7 @@ type DList<'T> =
     member Cons : 'T ->  DList<'T>
 
     ///O(log n). Returns the first element.
-    member Head : 'T 
+    member Head : 'T
 
     ///O(log n). Returns option first element
     member TryHead : 'T  option
@@ -30,17 +31,17 @@ type DList<'T> =
 
     ///O(log n). Returns a new DList of the elements trailing the first element.
     member Tail : DList<'T>
-           
+
     ///O(log n). Returns option DList of the elements trailing the first element.
     member TryTail : DList<'T> option
 
     ///O(log n). Returns the first element and tail.
-    member Uncons : 'T * DList<'T> 
- 
+    member Uncons : 'T * DList<'T>
+
     ///O(log n). Returns option first element and tail.
     member TryUncons : ('T * DList<'T>) option
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module DList =
     //pattern discriminators (active pattern)
     val (|Cons|Nil|) : DList<'T> -> Choice<('T * DList<'T>),unit>
@@ -99,3 +100,6 @@ module DList =
 
     ///O(n). Returns a seq of the DList elements.
     val inline toSeq  : DList<'T> ->  seq<'T>
+
+    ///O(n). Returns a pairwise DList of elements.
+    val pairwise : DList<'T> -> DList<'T*'T>

@@ -1,44 +1,43 @@
-﻿module FSharpx.DataStructures.Tests.BinaryTreeZipperTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
-open FSharpx.DataStructures
-open FSharpx.DataStructures.BinaryTreeZipper
-open NUnit.Framework
+open FSharpx.Collections.Experimental
+open Expecto
+open Expecto.Flip
 
-let tree  = Branch("a", Branch("b", Leaf, Branch("c", Leaf, Leaf)), Branch("d", Leaf, Leaf))
+module BinaryTreeZipperTest =
+    let tree  = Branch("a", Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)), Branch("d", BinaryTree.Leaf, BinaryTree.Leaf))
 
-[<Test>]
-let ``Can create zipper from tree``() =       
-   let z1 = tree |> zipper
-   Assert.AreEqual(z1.Focus,tree)
+    [<Tests>]
+    let testBinaryTreeZipper =
 
-[<Test>]
-let ``Can move down to the left inside the zipper``() =       
-   let z1 = tree |> zipper |> left
-   Assert.AreEqual(z1.Focus,Branch("b", Leaf, Branch("c", Leaf, Leaf)))
+        testList "Experimental BinaryTreeZipper" [
 
-[<Test>]
-let ``Can move down to the right inside the zipper``() =       
-   let z1 = tree |> zipper |> right
-   Assert.AreEqual(z1.Focus,Branch("d", Leaf, Leaf))
+            test "Can create BinaryTreeZipper.zipper from tree" {      
+               let z1 = tree |> BinaryTreeZipper.zipper
+               Expect.equal "" tree z1.Focus }
 
-[<Test>]
-let ``Can move down to the left and the right inside the zipper``() =       
-   let z1 = tree |> zipper |> move [Left;Right]
-   Assert.AreEqual(z1.Focus,Branch("c", Leaf, Leaf))
+            test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.left inside the BinaryTreeZipper.zipper" {      
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.left
+               Expect.equal "" (Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf))) z1.Focus }
 
-[<Test>]
-let ``Can move up inside the zipper``() =       
-   let z1 = tree |> zipper |> move [Left;Right;Right;Up;Up;Up]
-   Assert.AreEqual(z1.Focus,tree)
+            test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.right inside the BinaryTreeZipper.zipper" {      
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.right
+               Expect.equal "" (Branch("d", BinaryTree.Leaf, BinaryTree.Leaf)) z1.Focus }
 
-[<Test>]
-let ``Can move to the top from inside the zipper``() =       
-   let z1 = tree |> zipper |> move [Left;Right;Right] |> top
-   Assert.AreEqual(z1.Focus,tree)
+            test "Can BinaryTreeZipper.move down to the BinaryTreeZipper.left and the BinaryTreeZipper.right inside the BinaryTreeZipper.zipper" {      
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.move [BinaryTreeZipper.TreeZipperDirection.Left;BinaryTreeZipper.TreeZipperDirection.Right]
+               Expect.equal "" (Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)) z1.Focus }
 
-[<Test>]
-let ``Can modify inside the zipper``() =
-   let z1 = tree |> zipper |> right |> setFocus (branch "e") |> top
+            test "Can BinaryTreeZipper.move up inside the BinaryTreeZipper.zipper" {      
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.move [BinaryTreeZipper.TreeZipperDirection.Left;BinaryTreeZipper.TreeZipperDirection.Right;BinaryTreeZipper.TreeZipperDirection.Right;BinaryTreeZipper.Up;BinaryTreeZipper.Up;BinaryTreeZipper.Up]
+               Expect.equal "" tree z1.Focus }
 
-   Assert.AreEqual(z1.Focus,Branch("a", Branch("b", Leaf, Branch("c", Leaf, Leaf)), Branch("e", Leaf, Leaf)))
+            test "Can BinaryTreeZipper.move to the top from inside the BinaryTreeZipper.zipper" {      
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.move [BinaryTreeZipper.TreeZipperDirection.Left;BinaryTreeZipper.TreeZipperDirection.Right;BinaryTreeZipper.TreeZipperDirection.Right] |> BinaryTreeZipper.top
+               Expect.equal "" tree z1.Focus }
+
+            test "Can modify inside the BinaryTreeZipper.zipper" { 
+               let z1 = tree |> BinaryTreeZipper.zipper |> BinaryTreeZipper.right |> BinaryTreeZipper.setFocus (BinaryTreeZipper.branch "e") |> BinaryTreeZipper.top
+
+               Expect.equal "" (Branch("a", Branch("b", BinaryTree.Leaf, Branch("c", BinaryTree.Leaf, BinaryTree.Leaf)), Branch("e", BinaryTree.Leaf, BinaryTree.Leaf))) z1.Focus }
+        ]

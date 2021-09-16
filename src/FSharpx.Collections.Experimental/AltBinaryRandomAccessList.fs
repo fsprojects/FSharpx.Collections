@@ -19,6 +19,8 @@ type AltBinRndAccList<'T> =
 
         member this.Count() = AltBinRndAccList.length (0, 1, this)
 
+        member this.Count = AltBinRndAccList.length (0, 1, this)
+
         member this.Head =
             let x, _ = AltBinRndAccList.uncons this
             x
@@ -33,6 +35,8 @@ type AltBinRndAccList<'T> =
         member this.Length() = AltBinRndAccList.length (0, 1, this)
 
         member this.Lookup i = AltBinRndAccList.lookup i this
+
+        member this.Item with get i = AltBinRndAccList.lookup i this
 
         member this.TryLookup i = AltBinRndAccList.tryLookup i this
 
@@ -227,7 +231,7 @@ and AltBinRndAccList<'T> with
     ///O(1). Returns true if the random access list has no elements.
     member this.IsEmpty = AltBinRndAccList.isEmpty this
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     member this.Length() = AltBinRndAccList.length (0, 1, this)
 
     ///O(log n). Returns element by index.
@@ -310,9 +314,8 @@ and AltBinRndAccList<'T> with
         | None -> None
         | Some(x) -> Some(x)
       
-      
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
- module AltBinaryRandomAccessList = 
+[<RequireQualifiedAccess>]      
+module AltBinaryRandomAccessList = 
     //pattern discriminator
 
     let (|Cons|Nil|) (l: AltBinRndAccList<'T>) = match l.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil
@@ -340,7 +343,7 @@ and AltBinRndAccList<'T> with
     ///O(1). Returns true if the random access list has no elements.
     let inline isEmpty (xs: AltBinRndAccList<'T>) = xs.IsEmpty
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     let inline length (xs: AltBinRndAccList<'T>) = xs.Length() 
 
     ///O(log n). Returns element by index.

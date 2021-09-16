@@ -125,7 +125,7 @@ type LeftistHeap<'T when 'T : comparison> =
         | E(m) -> m 
         |  T(m, _, _, _, _, _) -> m
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length : int = 
         match this with
         | E(_) -> 0
@@ -164,7 +164,9 @@ type LeftistHeap<'T when 'T : comparison> =
 
         member this.IsDescending = this.IsDescending 
 
-        member this.Length() = this.Length 
+        member this.Length() = this.Length
+
+        member this.Count = this.Length 
 
         member this.Merge (xs : LeftistHeap<'T>) = LeftistHeap.merge this xs
 
@@ -203,7 +205,7 @@ type LeftistHeap<'T when 'T : comparison> =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator  
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module LeftistHeap =   
     //pattern discriminator
 
@@ -227,7 +229,7 @@ module LeftistHeap =
     ///O(1). Returns true if the heap has max element at head.
     let inline isDescending (xs: LeftistHeap<'T>) = xs.IsDescending
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length (xs: LeftistHeap<'T>) = xs.Length 
 
     ///O(log n). Returns heap from merging two heaps, both must have same isDescending.

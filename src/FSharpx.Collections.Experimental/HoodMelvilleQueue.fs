@@ -92,7 +92,7 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
     ///returns true if the queue has no elements
     member this.IsEmpty = (frontLength = 0)
 
-    ///returns the count of elememts
+    ///returns the count of elements
     member this.Length = frontLength + rBackLength
 
     ///returns a new queue with the element added to the end
@@ -162,7 +162,8 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
             | None -> None
             | Some(x, q) -> Some(x, q :> _)
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = 
@@ -176,7 +177,7 @@ type HoodMelvilleQueue<'T> (frontLength : int, front : list<'T>, state : Rotatio
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module HoodMelvilleQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : HoodMelvilleQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil
@@ -200,7 +201,7 @@ module HoodMelvilleQueue =
 
     let inline isEmpty (q : HoodMelvilleQueue<'T>) = q.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     let inline length (q : HoodMelvilleQueue<'T>) = q.Length
 
     ///returns a queue of the list

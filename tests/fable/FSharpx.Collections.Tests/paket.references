@@ -1,0 +1,6 @@
+group Test.Fable
+    Fable.Core
+    Fable.FastCheck
+    Fable.FastCheck.Jest
+    Fable.Jester
+    FSharp.Core

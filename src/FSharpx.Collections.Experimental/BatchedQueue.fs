@@ -54,7 +54,7 @@ type BatchedQueue<'T> (front : list<'T>, rBack : list<'T>) =
     ///returns true if the queue has no elements
     member this.IsEmpty = front.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     member this.Length = BatchedQueue.length this
 
     ///returns queue reversed
@@ -122,7 +122,8 @@ type BatchedQueue<'T> (front : list<'T>, rBack : list<'T>) =
             | None -> None
             | Some(x, q) -> Some(x, q :> _)
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = seq {
@@ -132,7 +133,7 @@ type BatchedQueue<'T> (front : list<'T>, rBack : list<'T>) =
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module BatchedQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : BatchedQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil
@@ -156,7 +157,7 @@ module BatchedQueue =
     ///returns true if the queue has no elements
     let inline isEmpty (q : BatchedQueue<'T>) = q.IsEmpty
 
-    ///returns the count of elememts
+    ///returns the count of elements
     let inline length (q : BatchedQueue<'T>) = q.Length
 
     ///returns a queue of the list

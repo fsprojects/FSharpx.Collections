@@ -18,7 +18,7 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
     ///O(1). Returns true if the heap has max element at head.
     member this.IsDescending = isDescending
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     member this.Length() = List.fold (fun acc (Node(r, _, _)) -> acc + int (2.0**(float r))) 0 this.heap
 
     static member internal  empty isDescending = BinomialHeap<'T>(isDescending, [])
@@ -86,13 +86,13 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
             let pairWiseMerge (l: list<list<BinomialTree<'T>>>) =
                 let rec loop (acc: list<list<BinomialTree<'T>>>) : list<list<BinomialTree<'T>>> -> list<list<BinomialTree<'T>>> = function
                     | h1::h2::tl -> loop ((BinomialHeap.merge descending h1 h2)::acc) tl
-                    | h1::[] -> h1::acc
+                    | [ h1 ] -> h1::acc
                     | [] -> acc
 
                 loop [] l
 
             let rec loop : list<list<BinomialTree<'T>>> -> list<BinomialTree<'T>> = function
-                | h::[] -> h
+                | [ h ] -> h
                 | x -> loop (pairWiseMerge x)
                 
             BinomialHeap<'T>(descending, (loop x)) 
@@ -160,8 +160,8 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
         if this.heap.IsEmpty then None
         else Some(BinomialHeap.uncons this.IsDescending this.heap)
 
-    interface IEnumerable<'T> with
-
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length()
         member this.GetEnumerator() = 
             let e = 
                 if this.IsDescending
@@ -232,6 +232,7 @@ type BinomialHeap<'T when 'T : comparison> (isDescending : bool, heap : list<Bin
             let element,newHeap = this.Uncons()
             element,(newHeap  :> IPriorityQueue<'T>)
 
+[<RequireQualifiedAccess>]
 module BinomialHeap = 
     //pattern discriminator
     let (|Cons|Nil|) (h: BinomialHeap<'T>) = match h.TryUncons() with Some(a,b) -> Cons(a,b) | None -> Nil
@@ -254,7 +255,7 @@ module BinomialHeap =
     ///O(1). Returns true if the heap has max element at head.
     let inline isDescending (xs: BinomialHeap<'T>) = xs.IsDescending
 
-    ///O(log n). Returns the count of elememts.
+    ///O(log n). Returns the count of elements.
     let inline length (xs: BinomialHeap<'T>) = xs.Length() 
 
     ///O(log n) Returns heap from merging two heaps, both must have same isDescending.

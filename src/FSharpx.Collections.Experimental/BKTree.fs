@@ -26,6 +26,7 @@ type BKTree<'T> =
     member x.GetEnumerator() =
         (x :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module BKTree =
 
     let isEmpty = function

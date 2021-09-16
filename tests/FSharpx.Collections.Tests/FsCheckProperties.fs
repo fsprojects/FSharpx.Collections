@@ -1,21 +1,11 @@
 ﻿module FSharpx.Collections.Tests.Properties
 
-open FSharpx
+open Expecto
 open FSharpx.Collections
 open FsCheck
-open FsCheck.NUnit
 
-let checkEquality<'a when 'a : equality> name =
-    let n = sprintf "%s : equality %s" name
-    fsCheck (n "identity") <| 
-        fun (x: 'a) -> x = x
-    fsCheck (n "predicate") <|
-        // depends a lot on the quality of the generated predicates, i.e. a constant predicate isn't useful.
-        fun (f: 'a -> bool) x y -> f x = f y
-    fsCheck (n "transitive") <|
-        // not very useful, it's not likely that relevant values will be generated
-        fun (x: 'a) (y: 'a) (z: 'a) ->
-            if x = y && y = z then x = z else true
+let configReplay = { FsCheckConfig.defaultConfig with maxTest = 10000 ; replay = Some <| (1940624926, 296296394) }
+let config10k = { FsCheckConfig.defaultConfig with maxTest = 10000 }
 
 let classifyCollect xs (count : int) (y : bool) =
     y |> Prop.collect count
@@ -37,6 +27,16 @@ module Gen =
 
     let finiteLazyList() =
         Gen.map LazyList.ofList Arb.generate
+
+    let ArbitrarySeqGen() =
+        gen {
+            let! len = Gen.choose (0, 10)
+            let! l = Gen.listOfLength len Arb.generate
+            return seq { for i = 0 to len - 1 do yield l.[i] }
+        }
+
+    let ArbitrarySeq() = 
+        ArbitrarySeqGen() |> Arb.fromGen
 
 (*
 Recommend a range of size 1 - 12 for lists used to build test data structures:

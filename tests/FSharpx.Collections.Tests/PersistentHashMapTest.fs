@@ -1,263 +1,237 @@
-﻿module FSharpx.Collections.Experimental.Tests.PersistentHashMapTest
+﻿namespace FSharpx.Collections.Tests
 
 open System
 open FSharpx.Collections
-open FSharpx.Collections.PersistentHashMap
-open NUnit.Framework
-open FsUnit
+open FSharpx.Collections.Tests.TransientHashMapTests
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``empty map should be empty``() =
-    let x = empty<int,int>
-    x |> length |> should equal 0
+module PersistentHashMapTests =
+    [<Tests>]
+    let testPersistentHashMap =
 
+        testList "PersistentHashMap" [
 
-[<Test>]
-let ``empty map should not contain key 0``() =
-    let x = empty
-    x |> containsKey 1 |> should equal false
+            test "PersistentHashMap.empty map should be PersistentHashMap.empty" {
+                let x = PersistentHashMap.empty<int,int>
+                Expect.equal "length" 0 <| PersistentHashMap.length x }
 
-[<Test>]
-let ``can add null entry to empty map``() =
-    let x = empty
-    x |> containsKey "value" |> should equal false
-    x |> containsKey null |> should equal false
-    x |> add null "Hello" |> containsKey null |> should equal true
+            test "PersistentHashMap.empty map should not contain key 0" {
+                let x = PersistentHashMap.empty
+                Expect.isFalse "PersistentHashMap.containsKey" <| PersistentHashMap.containsKey 1 x } 
 
+            test "can PersistentHashMap.add null entry to PersistentHashMap.empty map" {
+                Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey "value" PersistentHashMap.empty
+                Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey null PersistentHashMap.empty
+                Expect.isTrue "PersistentHashMap.empty" (PersistentHashMap.add null "Hello" PersistentHashMap.empty |> PersistentHashMap.containsKey null) }
 
-[<Test>]
-let ``can add empty string as key to empty map``() =
-    let x = empty
-    x |> containsKey "" |> should equal false
-    x |> add "" "Hello" |> containsKey null |> should equal false
-    x |> add "" "Hello" |> containsKey "" |> should equal true
-    x |> add "" "Hello" |> length |> shouldEqual 1
+            //https://github.com/fsprojects/FSharpx.Collections/issues/85
+            ptest "can add None value to empty map" {
+                let x = PersistentHashMap<string,string option>.Empty()
+                Expect.isTrue "PersistentHashMap.containsKey" (x.Add("Hello", None) |> PersistentHashMap.containsKey "Hello") }
 
-[<Test>]
-let ``can add some integers to empty map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
+            test "can PersistentHashMap.add PersistentHashMap.empty string as key to PersistentHashMap.empty map" {
+                Expect.isFalse "PersistentHashMap.empty" <| PersistentHashMap.containsKey "" PersistentHashMap.empty
+                Expect.isFalse "PersistentHashMap.empty" (PersistentHashMap.add "" "Hello" PersistentHashMap.empty |> PersistentHashMap.containsKey null)
+                Expect.isTrue "PersistentHashMap.empty" (PersistentHashMap.add "" "Hello" PersistentHashMap.empty |> PersistentHashMap.containsKey "")
+                Expect.equal "PersistentHashMap.empty" 1 (PersistentHashMap.add "" "Hello" PersistentHashMap.empty |> PersistentHashMap.length) }
 
-    x |> containsKey 1 |> shouldEqual true
-    x |> containsKey 5 |> shouldEqual true
-    x |> containsKey 6 |> shouldEqual false
-    x |> length |> shouldEqual 5
+            test "can PersistentHashMap.add some integers to PersistentHashMap.empty map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
 
-[<Test>]
-let ``add operates immutable``() =
-    let y =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-    let x =
-        y
-        |> add 4 "l"
-        |> add 5 "o"
+                Expect.isTrue "PersistentHashMap.add" <| PersistentHashMap.containsKey 1 x
+                Expect.isTrue "PersistentHashMap.add" <| PersistentHashMap.containsKey 5 x
+                Expect.isFalse "PersistentHashMap.add" <| PersistentHashMap.containsKey 6 x
+                Expect.equal "PersistentHashMap.add" 5 <| PersistentHashMap.length x }
 
-    y |> length |> shouldEqual 3
-    x |> length |> shouldEqual 5
+            test "PersistentHashMap.add operates immutable" {
+                let y =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                let x =
+                    y
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
 
+                Expect.equal "" 3 <| PersistentHashMap.length y
+                Expect.equal "" 5 <| PersistentHashMap.length x }
 
-[<Test>]
-let ``can remove some integers from a map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
-        |> remove 1
-        |> remove 4
+            test "can remove some integers from a map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
+                    |> PersistentHashMap.remove 1
+                    |> PersistentHashMap.remove 4
             
-    x |> containsKey 1 |> shouldEqual false
-    x |> containsKey 4 |> shouldEqual false
-    x |> containsKey 5 |> shouldEqual true
-    x |> containsKey 6 |> shouldEqual false
-    x |> length |> shouldEqual 3
+                Expect.isFalse "PersistentHashMap.add remove" <| PersistentHashMap.containsKey 1 x
+                Expect.isFalse "PersistentHashMap.add remove" <| PersistentHashMap.containsKey 4 x
+                Expect.isTrue "PersistentHashMap.add remove" <| PersistentHashMap.containsKey 5 x
+                Expect.isFalse "PersistentHashMap.add remove" <| PersistentHashMap.containsKey 6 x
+                Expect.equal "PersistentHashMap.add remove" 3 <| PersistentHashMap.length x }
 
-[<Test>]
-let ``remove operates``() =
-    let y =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
-    let x =
-        y
-        |> remove 1
-        |> remove 4
+            test "remove operates" {
+                let y =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
+                let x =
+                    y
+                    |> PersistentHashMap.remove 1
+                    |> PersistentHashMap.remove 4
             
-    x |> length |> shouldEqual 3
-    y |> length |> shouldEqual 5
+                Expect.equal "remove" 3 <| PersistentHashMap.length x
+                Expect.equal "PersistentHashMap.add" 5 <| PersistentHashMap.length y }
 
-[<Test>]
-let ``can find integers in a map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
+            test "can find integers in a map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
             
-    x |> find 1 |> shouldEqual "h"
-    x |> find 4 |> shouldEqual "l"
-    x |> find 5 |> shouldEqual "o"
+                Expect.equal "PersistentHashMap.add" "h" <| PersistentHashMap.find 1 x
+                Expect.equal "PersistentHashMap.add" "l" <| PersistentHashMap.find 4 x
+                Expect.equal "PersistentHashMap.add" "o" <| PersistentHashMap.find 5 x }
 
-[<Test>]
-let ``can lookup integers from a map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
+            test "can lookup integers from a map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
             
-    x.[1] |> shouldEqual "h"
-    x.[4] |> shouldEqual "l"
-    x.[5] |> shouldEqual "o"
+                Expect.equal "lookup" "h" x.[1]
+                Expect.equal "lookup" "l" x.[4]
+                Expect.equal "lookup" "o" x.[5] }
 
-
-[<Test>]
-let ``can add the same key multiple to a map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
-        |> add 3 "a"
-        |> add 4 "a"
+            test "can PersistentHashMap.add the same key multiple to a map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
+                    |> PersistentHashMap.add 3 "a"
+                    |> PersistentHashMap.add 4 "a"
             
-    x |> find 1 |> shouldEqual "h"
-    x |> find 4 |> shouldEqual "a"
-    x |> find 5 |> shouldEqual "o"
-    x |> length |> shouldEqual 5
+                Expect.equal "find" "h" <| PersistentHashMap.find 1 x
+                Expect.equal "find" "a" <| PersistentHashMap.find 4 x
+                Expect.equal "find" "o" <| PersistentHashMap.find 5 x
+                Expect.equal "length" 5 <| PersistentHashMap.length x }
 
-[<Test>]
-let ``can iterate through a map``() =
-    let x =
-        empty
-        |> add 1 "h"
-        |> add 2 "a"
-        |> add 3 "l"
-        |> add 4 "l"
-        |> add 5 "o"
+            test "can iterate through a map" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 "h"
+                    |> PersistentHashMap.add 2 "a"
+                    |> PersistentHashMap.add 3 "l"
+                    |> PersistentHashMap.add 4 "l"
+                    |> PersistentHashMap.add 5 "o"
             
-    x |> find 1 |> shouldEqual "h"
-    x |> find 4 |> shouldEqual "l"
-    x |> find 5 |> shouldEqual "o"
+                Expect.equal "find" "h" <| PersistentHashMap.find 1 x
+                Expect.equal "find" "l" <| PersistentHashMap.find 4 x
+                Expect.equal "find" "o" <| PersistentHashMap.find 5 x }
 
+            test "can convert a seq to a map" {
+                let list = [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+                Expect.equal "ofSeq" [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"] (PersistentHashMap.ofSeq list |> PersistentHashMap.toSeq |> Seq.toList) }
 
-[<Test>]
-let ``can convert a seq to a map``() =
-    let list = [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
+            test "a map is always sorter" {
+                let list = [ 4,"l"; 5,"o"; 2,"a"; 1,"h"; 3,"l"]
+                Expect.equal "toSeq" [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"] (PersistentHashMap.ofSeq list |> PersistentHashMap.toSeq |> Seq.toList) }
 
-    let x = ofSeq list
-
-    x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
-
-[<Test>]
-let ``a map is always sorter``() =
-    let list = [ 4,"l"; 5,"o"; 2,"a"; 1,"h"; 3,"l"]
-
-    let x = ofSeq list
-
-    x |> toSeq |> Seq.toList |> shouldEqual [1,"h"; 2,"a"; 3,"l"; 4,"l"; 5,"o"]
-
-[<Test>]
-let ``can map a HashMap``() =
-    let x =
-        empty
-        |> add 1 1
-        |> add 2 2
-        |> add 3 3
-        |> add 4 4
-        |> add 5 5
+            test "can map a HashMap" {
+                let x =
+                    PersistentHashMap.empty
+                    |> PersistentHashMap.add 1 1
+                    |> PersistentHashMap.add 2 2
+                    |> PersistentHashMap.add 3 3
+                    |> PersistentHashMap.add 4 4
+                    |> PersistentHashMap.add 5 5
             
-    x |> map (fun x -> x + 1) |> Seq.toList |> shouldEqual [1,2; 2,3; 3,4; 4,5; 5,6]
+                Expect.equal "map" [1,2; 2,3; 3,4; 4,5; 5,6] (x |> PersistentHashMap.map (fun x -> x + 1) |> Seq.toList) }
+
+            test "can PersistentHashMap.add tons of integers to PersistentHashMap.empty map" {
+                let x = ref PersistentHashMap.empty
+                let counter = 1000
+
+                for i in 0 .. counter do 
+                    x := PersistentHashMap.add i i !x
+
+                for i in 0 .. counter do 
+                    !x |> PersistentHashMap.containsKey i |> Expect.isTrue "PersistentHashMap.containsKey" }
+
+            test "can find tons of integers in a map" {
+                let x = ref PersistentHashMap.empty
+                let counter = 1000
+
+                for i in 0 .. counter do 
+                    x := PersistentHashMap.add i i !x
+
+                for i in 0 .. counter do 
+                    !x |> PersistentHashMap.find i |> Expect.equal "find" i }
+
+            test "can PersistentHashMap.add keys with colliding hashes to PersistentHashMap.empty map" {
+                let x = { Name = "Test"}
+                let y = { Name = "Test1"}
+                let map = 
+                    PersistentHashMap.empty 
+                    |> PersistentHashMap.add x x.Name 
+                    |> PersistentHashMap.add y y.Name
     
-[<Test>]
-let ``can add tons of integers to empty map``() =
-    let x = ref empty
-    let counter = 1000
+                Expect.isTrue "" <| PersistentHashMap.containsKey x map
+                Expect.isTrue "" <| PersistentHashMap.containsKey y map
+                Expect.isFalse "" <| PersistentHashMap.containsKey y PersistentHashMap.empty }
 
-    for i in 0 .. counter do 
-        x := add i i !x
-
-    for i in 0 .. counter do 
-        !x |> containsKey i |> should equal true
-
-[<Test>]
-let ``can find tons of integers in a map``() =
-    let x = ref empty
-    let counter = 1000
-
-    for i in 0 .. counter do 
-        x := add i i !x
-
-    for i in 0 .. counter do 
-        !x |> find i |> shouldEqual i
-
-open FSharpx.Collections.Experimental.Tests.TransientHashMapTest
-
-[<Test>]
-let ``can add keys with colliding hashes to empty map``() =
-    let x = { Name = "Test"}
-    let y = { Name = "Test1"}
-    let map = 
-        empty 
-        |> add x x.Name 
-        |> add y y.Name
+            test "can lookup keys with colliding hashes from map" {
+                let x = { Name = "Test"}
+                let y = { Name = "Test1"}
+                let map = 
+                    PersistentHashMap.empty 
+                    |> PersistentHashMap.add x x
+                    |> PersistentHashMap.add y y
     
-    map |> containsKey x |> should equal true
-    map |> containsKey y |> should equal true
+                Expect.equal "colliding hashes" { Name = "Test"} <| PersistentHashMap.find x map
+                Expect.equal "colliding hashes" { Name = "Test1"} <| PersistentHashMap.find y map }
 
-    empty |> containsKey y |> should equal false
+            test "can PersistentHashMap.add lots of keys with colliding hashes to PersistentHashMap.empty map" {
+                let x = ref PersistentHashMap.empty
+                let counter = 1000
 
+                for i in 0 .. counter do 
+                    x := PersistentHashMap.add { Name = i.ToString() } i !x
 
-[<Test>]
-let ``can lookup keys with colliding hashes from map``() =
-    let x = { Name = "Test"}
-    let y = { Name = "Test1"}
-    let map = 
-        empty 
-        |> add x x
-        |> add y y
-    
-    map |> find x |> shouldEqual { Name = "Test"}
-    map |> find y |> shouldEqual { Name = "Test1"}
+                for i in 0 .. counter do 
+                    !x |> PersistentHashMap.containsKey { Name = i.ToString() } |> Expect.isTrue "colliding hashes" }
 
-[<Test>]
-let ``can add lots of keys with colliding hashes to empty map``() =
-    let x = ref empty
-    let counter = 1000
+            test "can find tons of strings in a map" {
+                let x = ref PersistentHashMap.empty
+                let n = 10000
+                let r = new Random()
 
-    for i in 0 .. counter do 
-        x := add { Name = i.ToString() } i !x
+                for i in 0 .. n do 
+                    x := PersistentHashMap.add (i.ToString()) i !x
 
-    for i in 0 .. counter do 
-        !x |> containsKey { Name = i.ToString() } |> should equal true
-
-[<Test>]
-let ``can find tons of strings in a map``() =
-    let x = ref empty
-    let n = 10000
-    let r = new Random()
-
-    for i in 0 .. n do 
-        x := add (i.ToString()) i !x
-
-    for i in 0 .. 1000000 do 
-        !x |> containsKey ((r.Next n).ToString()) |> should equal true
+                for i in 0 .. 1000000 do 
+                    !x |> PersistentHashMap.containsKey ((r.Next n).ToString()) |> Expect.isTrue "Next" }
+        ]

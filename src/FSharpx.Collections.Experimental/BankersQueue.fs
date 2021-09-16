@@ -46,7 +46,7 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
     ///O(1). Returns true if the queue has no elements.
     member this.IsEmpty = (frontLength = 0)
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member this.Length = BankersQueue.length this
 
     ///O(1). Returns queue reversed
@@ -111,7 +111,8 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
             | None -> None
             | Some(x, q) -> Some(x, q :> _)
           
-    interface IEnumerable<'T> with
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
         member this.GetEnumerator() = 
             let e = seq {
@@ -121,7 +122,7 @@ type BankersQueue<'T> (frontLength : int, front : LazyList<'T>, backLength : int
 
         member this.GetEnumerator() = (this :> _ seq).GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module BankersQueue =
     //pattern discriminators
     let (|Cons|Nil|) (q : BankersQueue<'T>) = match q.TryUncons with Some(a,b) -> Cons(a,b) | None -> Nil
@@ -138,7 +139,7 @@ module BankersQueue =
     ///O(1). Returns true if the queue has no elements.
     let inline isEmpty() (q : BankersQueue<'T>) = q.IsEmpty
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let inline length() (q : BankersQueue<'T>) = q.Length
 
     ///O(1). Returns a queue of the seq.

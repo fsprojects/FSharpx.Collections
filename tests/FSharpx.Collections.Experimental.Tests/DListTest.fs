@@ -1,72 +1,63 @@
-﻿module FSharpx.Collections.Experimental.Tests.DListTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
-open System
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.DList
-open NUnit.Framework
-open FsUnit
+open Expecto
+open Expecto.Flip
 
-[<Test>]
-let ``test should verify empty is Nil``() =
-  empty<_> |> should equal Nil
+module DListTest =
 
-let expected = Join(Unit 0, Join(Unit 1, Join(Unit 2, Join(Unit 3, Unit 4, 2), 3), 4), 5)
-let expected2 = Join(Unit 1, Join(Unit 2, Join(Unit 3, Unit 4, 2), 3), 4)
+    [<Tests>]
+    let testDList =
 
-[<Test>]
-let ``test length should return 5``() =
-  length expected |> should equal 5
+        let expected = Join(Unit 0, Join(Unit 1, Join(Unit 2, Join(Unit 3, Unit 4, 2), 3), 4), 5)
+        let expected2 = Join(Unit 1, Join(Unit 2, Join(Unit 3, Unit 4, 2), 3), 4)
 
-[<Test>]
-let ``test ofSeq should create a DList from a seq``() =
-  let test = seq { for i in 0..4 -> i }
-  DList.ofSeq test |> should equal expected
+        testList "Experimental DList" [
+            test "test should verify DList.empty is Nil" {
+              DList.empty<_> |> Expect.equal "" DList.Nil } 
 
-[<Test>]
-let ``test ofSeq should create a DList from a list``() =
-  let test = [ for i in 0..4 -> i ]
-  DList.ofSeq test |> should equal expected
+            test "test DList.length should return 5" {
+              DList.length expected |> Expect.equal "" 5 } 
 
-[<Test>]
-let ``test ofSeq should create a DList from an array``() =
-  let test = [| for i in 0..4 -> i |]
-  DList.ofSeq test |> should equal expected
+            ptest "test ofSeq should create a DList from a seq" {
+              let test = seq { for i in 0..4 -> i }
+              DList.ofSeq test |> Expect.equal "" expected } 
 
-[<Test>]
-let ``test cons should prepend 10 to the front of the original list``() =
-  cons 10 expected |> should equal (Join(Unit 10, expected, 6))
+            ptest "test ofSeq should create a DList from a list" {
+              let test = [ for i in 0..4 -> i ]
+              DList.ofSeq test |> Expect.equal "" expected } 
 
-[<Test>]
-let ``test singleton should return a Unit containing the solo value``() =
-  singleton 1 |> should equal (Unit 1)
+            ptest "test ofSeq should create a DList from an array" {
+              let test = [| for i in 0..4 -> i |]
+              DList.ofSeq test |> Expect.equal "" expected } 
 
-[<Test>]
-let ``test cons should return a Unit when the tail is Nil``() =
-  cons 1 DList.empty |> should equal (Unit 1)
+            test "test DList.cons should prepend 10 to the front of the original list" {
+              DList.cons 10 expected |> Expect.equal "" (Join(Unit 10, expected, 6)) } 
 
-[<Test>]
-let ``test subsequent cons should create a DList just as the constructor functions``() =
-  cons 0 (cons 1 (cons 2 (cons 3 (cons 4 empty)))) |> should equal expected
+            test "test DList.singleton should return a Unit containing the solo value" {
+              DList.singleton 1 |> Expect.equal "" (Unit 1) } 
 
-[<Test>]
-let ``test append should join two DLists together``() =
-  append expected expected2 |> should equal (Join(expected, expected2, 9))
+            test "test DList.cons should return a Unit when the tail is Nil" {
+              DList.cons 1 DList.empty |> Expect.equal "" (Unit 1) } 
 
-[<Test>]
-let ``test snoc should join DList and one element together``() =
-  snoc expected 5 |> should equal (Join(expected, Unit 5, 6))
+            test "test subsequent DList.cons should create a DList just as the constructor functions" {
+              DList.cons 0 (DList.cons 1 (DList.cons 2 (DList.cons 3 (DList.cons 4 DList.empty)))) |> Expect.equal "" expected } 
 
-[<Test>]
-let ``test head should return the first item in the DList``() =
-  head (append expected expected) |> should equal 0
+            test "test DList.append should join two DLists together" {
+              DList.append expected expected2 |> Expect.equal "" (Join(expected, expected2, 9)) } 
 
-[<Test>]
-let ``test tail should return all items except the head``() =
-  tail (append expected expected) |> should equal (Join(cons 1 (cons 2 (cons 3 (cons 4 empty))), expected, 9))
+            test "test DList.snoc should join DList and one element together" {
+              DList.snoc expected 5 |> Expect.equal "" (Join(expected, Unit 5, 6)) } 
 
-[<Test>]
-let ``test DList should respond to Seq functions such as map``() =
-  let testmap x = x*x
-  let actual = Seq.map testmap (append expected expected)
-  let expected = seq { yield 0; yield 1; yield 2; yield 3; yield 4; yield 0; yield 1; yield 2; yield 3; yield 4 } |> Seq.map testmap
-  Assert.That(actual, Is.EquivalentTo expected)
+            test "test head should return the first item in the DList" {
+              DList.head (DList.append expected expected) |> Expect.equal "" 0 } 
+
+            test "test tail should return all items except the head" {
+              DList.tail (DList.append expected expected) |> Expect.equal "" (Join(DList.cons 1 (DList.cons 2 (DList.cons 3 (DList.cons 4 DList.empty))), expected, 9)) } 
+
+            test "test DList should respond to Seq functions such as map" {
+              let testmap x = x*x
+              let actual = Seq.map testmap (DList.append expected expected)
+              let expected = seq { yield 0; yield 1; yield 2; yield 3; yield 4; yield 0; yield 1; yield 2; yield 3; yield 4 } |> Seq.map testmap
+              Expect.sequenceEqual ""  expected actual }
+        ]

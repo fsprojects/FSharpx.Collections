@@ -5,26 +5,32 @@ open System.Collections
 open System.Collections.Generic
 open System.Runtime.CompilerServices
 
-type NonEmptyList<'T> = 
+type NonEmptyList<'T> =
     private { List: 'T list }
 
-    member x.Head = x.List.Head
-    member x.Tail = x.List.Tail
-    member x.Length = x.List.Length
+    member this.Head = this.List.Head
+    member this.Tail = this.List.Tail
+    member this.Length = this.List.Length
 
     interface IEnumerable<'T> with
-        member x.GetEnumerator() = 
-            (x.List :> seq<_>).GetEnumerator()
-    interface System.Collections.IEnumerable with
-        member x.GetEnumerator() = (x :> _ seq).GetEnumerator() :> IEnumerator
+        member this.GetEnumerator() = (this.List :> _ seq).GetEnumerator()
+
+    interface IEnumerable with
+        member this.GetEnumerator() = (this.List :> _ seq).GetEnumerator() :> IEnumerator
+
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
 [<Extension>]
+[<RequireQualifiedAccess>]
 module NonEmptyList =
     [<CompiledName("Create")>]
     let create head tail = { List = head :: tail }
 
+#if !FABLE_COMPILER
     [<CompiledName("Create")>]
     let createParamsArray(head, [<ParamArray>] tail) = { List = head :: List.ofArray tail }
+#endif
 
     [<CompiledName("Singleton")>]
     let inline singleton value = create value []
@@ -78,10 +84,12 @@ module NonEmptyList =
     let cons head tail =
         { List = head :: tail.List }
 
+#if !FABLE_COMPILER
     [<CompiledName("Concat")>]
+#endif
     let appendList list1 list2 =
         { List = list1.List @ list2 }
-            
+
     [<CompiledName("Concat")>]
     let append list1 list2 =
         { List = list1.List @ list2.List }

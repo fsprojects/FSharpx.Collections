@@ -1,14 +1,19 @@
-source http://nuget.org/api/v2
-framework: >= net4
+framework: netstandard2.0, net5.0
+source https://api.nuget.org/v3/index.json
 
-nuget FAKE
-nuget NUnit.Runners
-nuget FSharp.Formatting
-nuget FsCheck 0.9.2
-nuget FsUnit
-nuget NUnit ~> 2
-nuget NUnit.Runners.Net4
-nuget FSharp.Core redirects: force
-nuget SourceLink.Fake
+nuget FSharp.Core >= 4.3.4 lowest_matching:true
+nuget Expecto
+nuget Expecto.FsCheck
+nuget FsCheck
+nuget Microsoft.NET.Test.Sdk
+nuget YoloDev.Expecto.TestSdk
 
-github fsharp/FAKE modules/Octokit/Octokit.fsx
+group Test.Fable
+framework: netstandard2.0
+source https://api.nuget.org/v3/index.json
+
+nuget Fable.Core
+nuget Fable.FastCheck
+nuget Fable.FastCheck.Jest
+nuget Fable.Jester
+nuget FSharp.Core

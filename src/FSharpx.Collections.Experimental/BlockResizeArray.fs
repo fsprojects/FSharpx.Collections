@@ -2,7 +2,9 @@
 
 /// Resize array fith fixed size block memory allocation.
 /// Provide more optimal space usage for huge arrays than standard ResizeArray.
-/// Basic version created by Avdyukhin Dmitry <dimonbv@gmail.com>
+/// Basic version created by Avdyukhin Dmitry (dimonbv@gmail.com)
+/// As evidenced by the tests that cannot run in mono, and pending destabilizing tests,
+/// beware that this data structure can be destabilizing to your assembly.
 open System.Collections
 open System.Collections.Generic
             
@@ -48,7 +50,7 @@ type BlockResizeArray<'T> () =
         arrays.[count >>> shift].[count &&& smallPart] <- x
         count <- count + 1
 
-    ///Allaws to get-set element to block resize array.
+    ///Allows to get-set element to block resize array.
     member this.Item
         with get (i:int) = arrays.[i >>> shift].[i &&& smallPart]
         and set i v = arrays.[i >>> shift].[i &&& smallPart] <- v
@@ -106,7 +108,7 @@ type BlockResizeArray<'T> () =
         bra.setCount initCount
         bra
 
-    ///Creates a block resize array where the entries are initially the default value Unchecked.defaultof<'T>.
+    ///Creates a block resize array where the entries are initially the default value Unchecked.defaultof&lt;'T&gt;.
     static member ZeroCreate initCount =
         let bra = new BlockResizeArray<_>()
         let blockSize = 1 <<< bra.Shift
@@ -219,6 +221,7 @@ type BlockResizeArray<'T> () =
         for i in 0..top do
             f a.[i] 
 
+[<RequireQualifiedAccess>]
 module BlockResizeArray = 
 
     ///Applies the given function to each element of the block resize array.

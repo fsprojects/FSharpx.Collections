@@ -3,11 +3,11 @@
 
 // (c) Microsoft Corporation 2005-2009. 
 
-namespace Microsoft.FSharp.Collections
+namespace FSharpx.Collections
 
 open Microsoft.FSharp.Core.OptimizedClosures
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module ResizeArray =
 
     let length (arr: ResizeArray<'T>) =  arr.Count

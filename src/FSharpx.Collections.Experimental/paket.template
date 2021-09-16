@@ -1,21 +1,35 @@
-﻿type project
+﻿type file
+id FSharpx.Collections.Experimental
 owners
-    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford
+    Steffen Forkmann, Mauricio Scheffer, Jack Fox
 authors 
-    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford
+    Steffen Forkmann, Daniel Mohl, Tomas Petricek, Ryan Riley,Mauricio Scheffer, Phil Trelford, Jack Fox
 projectUrl
     https://github.com/fsprojects/FSharpx.Collections
 iconUrl
-    https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/files/img/logo.png
+    https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/img/logo.png
 licenseUrl
     http://github.com/fsprojects/FSharpx.Collections/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
+repositoryType
+    git
+repositoryUrl
+    https://github.com/fsprojects/FSharpx.Collections
+language
+    F#
 copyright
-    Copyright 2015
+    Copyright 2013-2021
 tags
     F# fsharp fsharpx collections datastructures
 summary
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
 description
     FSharpx.Collections is a collection of datastructures for use with F# and C#.
+dependencies
+  framework: netstandard20
+    FSharp.Core >= LOCKEDVERSION
+files
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.dll ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.pdb ==> lib/netstandard2.0
+    ./bin/Release/netstandard2.0/FSharpx.Collections.Experimental.xml ==> lib/netstandard2.0

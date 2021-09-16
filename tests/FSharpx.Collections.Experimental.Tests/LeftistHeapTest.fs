@@ -1,189 +1,290 @@
-﻿module FSharpx.Collections.Experimental.Tests.LeftistHeapTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
 open FSharpx.Collections
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.LeftistHeap
-open FSharpx.Collections.Tests.Properties
-open NUnit.Framework
+open Properties
 open FsCheck
-open FsCheck.NUnit
-open FsUnit
+open Expecto
+open Expecto.Flip
 open HeapGen
 
 //only going up to 5 elements is probably sufficient to test all edge cases
 
-(*
-Could not get IHeap<'c, 'a when 'c :> IHeap<'c, 'a> and 'a : comparison> interface working smoothly between shared code,
-NUnit TestCaseSource(), FsCheck, and trying to pass around the tuple of heap generator and list. So need individual test
-file for each heap type, unlike IQueue.
+module LeftistHeapTest =
 
-Even restricting only to this type, never got generic element type 'a to work. Need separate tests for int and string.
-*)
+    let intGens start =
+        let v = Array.create 6 maxLeftistHeapIntGen
+        v.[1] <- maxLeftistHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start) // "max LeftistHeap OfSeq")
+        v.[2] <- maxLeftistHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start) // "max LeftistHeap from Insert")
+        v.[3] <- minLeftistHeapIntGen // "min LeftistHeap int")
+        v.[4] <- minLeftistHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start) // "min LeftistHeap OfSeq")
+        v.[5] <- minLeftistHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start) // "min LeftistHeap from Insert")
+        v
 
-// NUnit TestCaseSource does not understand array of tuples at runtime
-let intGens start =
-    let v = Array.create 6 (box (maxLeftistHeapIntGen, "max LeftistHeap int"))
-    v.[1] <- box ((maxLeftistHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max LeftistHeap OfSeq")
-    v.[2] <- box ((maxLeftistHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max LeftistHeap from Insert")
-    v.[3] <- box (minLeftistHeapIntGen , "min LeftistHeap int")
-    v.[4] <- box ((minLeftistHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min LeftistHeap OfSeq")
-    v.[5] <- box ((minLeftistHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min LeftistHeap from Insert")
-    v
+    let stringGens =
+        let v = Array.create 2 maxLeftistHeapStringGen
+        v.[1] <- minLeftistHeapStringGen
+        v
 
-let stringGens =
-    let v = Array.create 2 (box (maxLeftistHeapStringGen, "max LeftistHeap string"))
-    v.[1] <- box (minLeftistHeapStringGen, "min LeftistHeap string")
-    v
+    let intGensStart1 =
+        intGens 1  //this will accept all
 
-let intGensStart1 =
-    intGens 1  //this will accept all
+    let intGensStart2 =
+        intGens 2 // this will accept 11 out of 12
 
-let intGensStart2 =
-    intGens 2 // this will accept 11 out of 12
+    [<Tests>]
+    let testLeftistHeap =
 
-[<Test>]
-let ``cons pattern discriminator``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h1, t1 = uncons h 
+        testList "Experimental LeftistHeap" [
 
-    let h2, t2 = 
-        match t1 with
-        | Cons(h, t) -> h, t
-        | _ ->  "x", t1
+            test "cons pattern discriminator" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = LeftistHeap.uncons h 
 
-    ((h2 = "e") && ((length t2) = 4)) |> should equal true
+                let h2, t2 = 
+                    match t1 with
+                    | LeftistHeap.Cons(h, t) -> h, t
+                    | _ ->  "x", t1
 
-[<Test>]
-let ``cons pattern discriminator 2``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+                ((h2 = "e") && ((LeftistHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-    let t2 = 
-        match h with
-        | Cons("f", Cons(_, t)) -> t
-        | _ ->  h
+            test "cons pattern discriminator 2" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-    let h1, t3 = uncons t2 
+                let t2 = 
+                    match h with
+                    | LeftistHeap.Cons("f", LeftistHeap.Cons(_, t)) -> t
+                    | _ ->  h
 
-    ((h1 = "d") && ((length t2) = 4)) |> should equal true
+                let h1, t3 = LeftistHeap.uncons t2 
 
-[<Test>]
-let ``empty list should be empty``() = 
-    (LeftistHeap.empty true).IsEmpty |> should equal true
+                ((h1 = "d") && ((LeftistHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``head should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
-                                                                            (h.Head = l.Head)     
-                                                                            |> classifyCollect h h.Length))
+            test "empty list should be empty" { 
+                (LeftistHeap.empty true).IsEmpty |> Expect.isTrue "" }
 
-[<Test>]
-let ``IHeap insert works``() =
-    let h = empty true |> insert "a" |> insert "b" |> insert "c" |> insert "d" |> insert "e" |> insert "f" |> insert "g" |> insert "h" |> insert "i" |> insert "j"
-    ((h :> IHeap<_, string>).Insert "zz").Head |> should equal "zz"
+            test "IHeap insert works" {
+                let h = 
+                    LeftistHeap.empty true |> LeftistHeap.insert "a" |> LeftistHeap.insert "b" |> LeftistHeap.insert "c" 
+                    |> LeftistHeap.insert "d" |> LeftistHeap.insert "e" |> LeftistHeap.insert "f" |> LeftistHeap.insert "g" 
+                    |> LeftistHeap.insert "h" |> LeftistHeap.insert "i" |> LeftistHeap.insert "j"
+                ((h :> IHeap<_, string>).Insert "zz").Head |> Expect.equal "" "zz" } 
 
-[<Test>]
-let ``insert works``() =
-    (((LeftistHeap.empty true).Insert 1).Insert 2).IsEmpty |> should equal false
+            test "insert works" {
+                (((LeftistHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
 
-[<Test>]
-let ``seq enumerate matches build list``() =
+            test "length of empty is 0" {
+                (LeftistHeap.empty true).Length |> Expect.equal "" 0 }
 
-    fsCheck "maxLeftistHeap" (Prop.forAll (Arb.fromGen maxLeftistHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length))
+            test "structure pattern match and merge" {
+                let h = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-    fsCheck "minLeftistHeap" (Prop.forAll (Arb.fromGen minLeftistHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length))
+                let x, h1, h2 = 
+                    match h with
+                    | LeftistHeap.T(_, _, _, x', h1', h2') -> x', h1', h2'
+                    | _ ->  "zz", h, h
 
-[<Test>]
-let ``length of empty is 0``() =
-    (LeftistHeap.empty true).Length |> should equal 0
+                let h3 = LeftistHeap.merge h1 h2 
 
-[<Test>]
-[<TestCaseSource("intGensStart1")>]
-let ``seq enumerate matches build list int``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : LeftistHeap<int>, l) -> h |> Seq.toList = l |> classifyCollect h h.Length))
+                let x2, t3 = LeftistHeap.uncons h3 
 
-[<Test>]
-[<TestCaseSource("stringGens")>]
-let ``seq enumerate matches build list string``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : LeftistHeap<string>, l) -> h |> Seq.toList = l |> classifyCollect h h.Length))
+                ((x = "f") && (x2 = "e") && ((LeftistHeap.length t3) = 4)) |> Expect.isTrue "" }
 
-[<Test>]
-let ``structure pattern match and merge``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+            test "tryGetHead on empty should return None" {
+                (LeftistHeap.empty true).TryGetHead |> Expect.isNone "" }
 
-    let x, h1, h2 = 
-        match h with
-        | LeftistHeap.T(_, _, _, x', h1', h2') -> x', h1', h2'
-        | _ ->  "zz", h, h
+            test "tryGetTail on empty should return None" {
+                (LeftistHeap.empty true).TryGetTail() |> Expect.isNone "" }
 
-    let h3 = merge h1 h2 
+            test "tryGetTail on len 1 should return Some empty" {
+                (LeftistHeap.empty true |> LeftistHeap.insert 1 |> LeftistHeap.tryGetTail).Value |> LeftistHeap.isEmpty |> Expect.isTrue "" }
 
-    let x2, t3 = uncons h3 
+            test "tryMerge max and mis should be None" {
+                let h1 = LeftistHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = LeftistHeap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
 
-    ((x = "f") && (x2 = "e") && ((length t3) = 4)) |> should equal true
+                LeftistHeap.tryMerge h1 h2 |> Expect.isNone "" }
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tail should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
-                                                                            let tl = h.Tail()
-                                                                            let tlHead =
-                                                                                if (tl.Length > 0) then (tl.Head = l.Item(1))
-                                                                                else true
-                                                                            (tlHead && (tl.Length = (l.Length - 1)))     
-                                                                            |> classifyCollect h h.Length))
+            test "tryUncons empty" {
+                (LeftistHeap.empty true).TryUncons() |> Expect.isNone "" }
+        ]
 
-[<Test>]
-let ``tryGetHead on empty should return None``() =
-    (LeftistHeap.empty true).TryGetHead |> should equal None
+    [<Tests>]
+    let testLeftistHeapProperties =
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryGetHead should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
-                                                                            (h.TryGetHead.Value = l.Head)     
-                                                                            |> classifyCollect h h.Length))
+        testList "Experimental LeftistHeap properties" [
 
-[<Test>]
-let ``tryGetTail on empty should return None``() =
-    (LeftistHeap.empty true).TryGetTail() |> should equal None
+            testPropertyWithConfig config10k "max LeftistHeap int head should return" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length) 
 
-[<Test>]
-let ``tryGetTail on len 1 should return Some empty``() =
-    (LeftistHeap.empty true |> insert 1 |> tryGetTail).Value |> isEmpty |> should equal true
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq head should return" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length)
 
-[<Test>]
-let ``tryMerge max and mis should be None``() =
-    let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+            testPropertyWithConfig config10k "max LeftistHeap from Insert head should return" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length)
 
-    tryMerge h1 h2 |> should equal None
+            testPropertyWithConfig config10k "min LeftistHeap int head should return" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length)
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryUncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.TryUncons().Value
-                                                                            ((x = l.Head) && (tl.Length = (l.Length - 1)))     
-                                                                            |> classifyCollect h h.Length))
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq head should return" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length)
 
-[<Test>]
-let ``tryUncons empty``() =
-    (LeftistHeap.empty true).TryUncons() |> should equal None
+            testPropertyWithConfig config10k "min LeftistHeap from Insert head should return" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.Head = l.Head) |> classifyCollect h h.Length)
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``uncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : LeftistHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.Uncons()
-                                                                            ((x = l.Head) && (tl.Length = (l.Length - 1)))     
-                                                                            |> classifyCollect h h.Length))
+            testPropertyWithConfig config10k "seq enumerate matches build list maxLeftistHeap" (Prop.forAll (Arb.fromGen maxLeftistHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "seq enumerate matches build list minLeftistHeap" (Prop.forAll (Arb.fromGen minLeftistHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap int seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap from Insert seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap int seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[3]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[4]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap from Insert seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[5]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+
+            testPropertyWithConfig config10k "max LeftistHeap string seq enumerate matches build list string" (Prop.forAll (Arb.fromGen stringGens.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap string seq enumerate matches build list string" (Prop.forAll (Arb.fromGen stringGens.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap int tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap from Insert tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap int tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap from Insert tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length > 0) then (tl.Head = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap int tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap from Insert tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap int tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap from Insert tryGetHead should return`" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.TryGetHead.Value = l.Head) |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap int tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap from Insert tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap int tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap from Insert tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap int uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap OfSeq uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "max LeftistHeap from Insert uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap int uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+                          
+            testPropertyWithConfig config10k "min LeftistHeap OfSeq uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+
+            testPropertyWithConfig config10k "min LeftistHeap from Insert uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length = (l.Length - 1)))     
+                                |> classifyCollect h h.Length)
+        ]

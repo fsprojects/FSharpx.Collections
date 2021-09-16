@@ -9,7 +9,7 @@ open System.Collections.Generic
 /// This implementation adds an additional parameter to allow a more
 /// efficient calculation of the list length.
 /// Note that an alternate form would represent the DList as:
-/// type DList<'T> = DList of ('T list -> 'T list)
+/// type DList&lt;'T&gt; = DList of ('T list -&gt; 'T list)
 /// An example can be found at http://stackoverflow.com/questions/5324623/functional-o1-append-and-on-iteration-from-first-element-list-data-structure/5327209#5327209
 type DList<'T> =
     | Nil
@@ -27,7 +27,7 @@ type DList<'T> =
 
     static member op_Nil() = Nil
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     member x.Length =
         match x with
         | Nil -> 0 
@@ -89,7 +89,7 @@ type DList<'T> =
                     yield! y :> seq<'T> }
             enumerable.GetEnumerator() :> IEnumerator
 
-[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
+[<RequireQualifiedAccess>]
 module DList =
     ///O(1). Returns DList of no elements.
     let empty<'T> : DList<'T> = Nil
@@ -97,7 +97,7 @@ module DList =
     ///O(1). Returns true if the DList has no elements.
     let isEmpty (l:DList<_>) = l.IsEmpty
 
-    ///O(1). Returns the count of elememts.
+    ///O(1). Returns the count of elements.
     let length (l:DList<_>) = l.Length
 
     ///O(1). Returns DList of one elements.

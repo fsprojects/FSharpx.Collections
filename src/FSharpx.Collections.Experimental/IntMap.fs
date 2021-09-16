@@ -4,7 +4,6 @@
 
 open System.Collections
 open System.Collections.Generic
-open FSharpx
 open FSharpx.Collections
 
 #nowarn "25"
@@ -35,6 +34,7 @@ type IntMap<'T> =
         member x.GetEnumerator() =
             (x :> _ seq).GetEnumerator() :> IEnumerator
 
+[<RequireQualifiedAccess>]
 module IntMap =
 
     let inline private maskW i m = int (i &&& (~~~ (m - 1ul) ^^^ m))
@@ -353,7 +353,7 @@ module IntMap =
             | Nil, t2 -> g2 t2
         go
 
-    ///Refer to Haskell documentation. Unexpected code growth or corruption of the data structure can occure from wrong use. Credit: Haskell.org
+    ///Refer to Haskell documentation. Unexpected code growth or corruption of the data structure can occur from wrong use. Credit: Haskell.org
     let mergeWithKey f g1 g2 =
         let combine =
             fun (Tip(k1, x1)) (Tip(_, x2)) ->

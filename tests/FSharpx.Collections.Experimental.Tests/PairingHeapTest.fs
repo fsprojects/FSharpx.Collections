@@ -1,13 +1,10 @@
-﻿module FSharpx.Collections.Experimental.Tests.PairingHeapTest
+﻿namespace FSharpx.Collections.Experimental.Tests
 
-open FSharpx
 open FSharpx.Collections.Experimental
-open FSharpx.Collections.Experimental.PairingHeap
-open FSharpx.Collections.Tests.Properties
-open NUnit.Framework
+open Properties
 open FsCheck
-open FsCheck.NUnit
-open FsUnit
+open Expecto
+open Expecto.Flip
 open HeapGen
 
 //only going up to 5 elements is probably sufficient to test all edge cases
@@ -21,149 +18,261 @@ Even restricting only to this type, never got generic element type 'a to work. N
 *)
 
 // NUnit TestCaseSource does not understand array of tuples at runtime
-let intGens start =
-    let v = Array.create 6 (box (maxPairingHeapIntGen, "max PairingHeap int"))
-    v.[1] <- box ((maxPairingHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max PairingHeap OfSeq")
-    v.[2] <- box ((maxPairingHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "max PairingHeap from Insert")
-    v.[3] <- box (minPairingHeapIntGen , "min PairingHeap int")
-    v.[4] <- box ((minPairingHeapIntOfSeqGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min PairingHeap OfSeq")
-    v.[5] <- box ((minPairingHeapIntInsertGen  |> Gen.suchThat (fun (q, l) -> l.Length >= start)), "min PairingHeap from Insert")
-    v
 
-let stringGens =
-    let v = Array.create 2 (box (maxPairingHeapStringGen, "max PairingHeap string"))
-    v.[1] <- box (minPairingHeapStringGen, "min PairingHeap string")
-    v
+module PairingHeapTest =
 
-let intGensStart1 =
-    intGens 1  //this will accept all
+    let intGens start =
+        let v = Array.create 6 maxPairingHeapIntGen
+        v.[1] <- maxPairingHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[2] <- maxPairingHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[3] <- minPairingHeapIntGen
+        v.[4] <- minPairingHeapIntOfSeqGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v.[5] <- minPairingHeapIntInsertGen  |> Gen.filter (fun (q, l) -> l.Length >= start)
+        v
 
-let intGensStart2 =
-    intGens 2 // this will accept 11 out of 12
+    let stringGens =
+        let v = Array.create 2 maxPairingHeapStringGen
+        v.[1] <- minPairingHeapStringGen
+        v
 
-[<Test>]
-let ``cons pattern discriminator``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h1, t1 = uncons h 
+    let intGensStart1 =
+        intGens 1  //this will accept all
 
-    let h2, t2 = 
-        match t1 with
-        | Cons(h, t) -> h, t
-        | _ ->  "x", t1
+    let intGensStart2 =
+        intGens 2 // this will accept 11 out of 12
 
-    ((h2 = "e") && ((length t2) = 4)) |> should equal true
+    [<Tests>]
+    let testPairingHeap =
 
-[<Test>]
-let ``cons pattern discriminator 2``() =
-    let h = ofSeq true ["f";"e";"d";"c";"b";"a"]
+        testList "Experimental PairingHeap" [
+            test "cons pattern discriminator" {
+                let h = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h1, t1 = PairingHeap.uncons h 
 
-    let t2 = 
-        match h with
-        | Cons("f", Cons(_, t)) -> t
-        | _ ->  h
+                let h2, t2 = 
+                    match t1 with
+                    | PairingHeap.Cons(h, t) -> h, t
+                    | _ ->  "x", t1
 
-    let h1, t3 = uncons t2 
+                ((h2 = "e") && ((PairingHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-    ((h1 = "d") && ((length t2) = 4)) |> should equal true
+            test "cons pattern discriminator 2" {
+                let h = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
 
-[<Test>]
-let ``empty list should be empty``() = 
-    (PairingHeap.empty true).IsEmpty |> should equal true
+                let t2 = 
+                    match h with
+                    | PairingHeap.Cons("f", PairingHeap.Cons(_, t)) -> t
+                    | _ ->  h
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``head should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
-                                                                            (h.Head() = l.Head)     
-                                                                            |> classifyCollect h (h.Length())))
-[<Test>]
-let ``insert works``() =
-    (((PairingHeap.empty true).Insert 1).Insert 2).IsEmpty |> should equal false
+                let h1, t3 = PairingHeap.uncons t2 
 
-[<Test>]
-let ``seq enumerate matches build list``() =
+                ((h1 = "d") && ((PairingHeap.length t2) = 4)) |> Expect.isTrue "" }
 
-    fsCheck "maxPairingHeap" (Prop.forAll (Arb.fromGen maxPairingHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length())))
+            test "empty list should be empty" { 
+                (PairingHeap.empty true).IsEmpty |> Expect.isTrue "" }
 
-    fsCheck "minPairingHeap" (Prop.forAll (Arb.fromGen minPairingHeapIntGen) 
-        (fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length())))
+            test "insert works" {
+                (((PairingHeap.empty true).Insert 1).Insert 2).IsEmpty |> Expect.isFalse "" }
 
-[<Test>]
-let ``length of empty is 0``() =
-    (PairingHeap.empty true).Length() |> should equal 0
+            test "length of empty is 0" {
+                (PairingHeap.empty true).Length() |> Expect.equal "" 0 }
 
-[<Test>]
-[<TestCaseSource("intGensStart1")>]
-let ``seq enumerate matches build list int``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : PairingHeap<int>, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length())))
+            test "tryGetHead on empty should return None" {
+                (PairingHeap.empty true).TryGetHead() |> Expect.isNone "" }
 
-[<Test>]
-[<TestCaseSource("stringGens")>]
-let ``seq enumerate matches build list string``(x : obj) =
-    let genAndName = unbox x
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun (h : PairingHeap<string>, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length())))
+            test "tryGetTail on empty should return None" {
+                (PairingHeap.empty true).TryGetTail() |> Expect.isNone "" }
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tail should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
-                                                                            let tl = h.Tail()
-                                                                            let tlHead =
-                                                                                if (tl.Length() > 0) then (tl.Head() = l.Item(1))
-                                                                                else true
-                                                                            (tlHead && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+            test "tryGetTail on len 1 should return Some empty" {
+                let h = PairingHeap.empty true |> PairingHeap.insert 1 |> PairingHeap.tryGetTail
+                h.Value |> PairingHeap.isEmpty |> Expect.isTrue "" }
 
-[<Test>]
-let ``tryGetHead on empty should return None``() =
-    (PairingHeap.empty true).TryGetHead() |> should equal None
+            test "tryMerge max and mis should be None" {
+                let h1 = PairingHeap.ofSeq true ["f";"e";"d";"c";"b";"a"]
+                let h2 = PairingHeap.ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryGetHead should return``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
-                                                                            (h.TryGetHead().Value = l.Head)     
-                                                                            |> classifyCollect h (h.Length())))
+                PairingHeap.tryMerge h1 h2 |> Expect.isNone "" }
 
-[<Test>]
-let ``tryGetTail on empty should return None``() =
-    (PairingHeap.empty true).TryGetTail() |> should equal None
+            test "tryUncons empty" {
+                (PairingHeap.empty true).TryUncons() |> Expect.isNone "" }
+        ]
 
-[<Test>]
-let ``tryGetTail on len 1 should return Some empty``() =
-    let h = PairingHeap.empty true |> insert 1 |> tryGetTail
-    h.Value |> isEmpty |> should equal true
+    [<Tests>]
+    let testPairingHeapProperties =
 
-[<Test>]
-let ``tryMerge max and mis should be None``() =
-    let h1 = ofSeq true ["f";"e";"d";"c";"b";"a"]
-    let h2 = ofSeq false ["t";"u";"v";"w";"x";"y";"z"]
+        testList "Experimental PairingHeap properties" [
 
-    tryMerge h1 h2 |> should equal None
+            testPropertyWithConfig config10k "max PairingHeap int head should return" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``tryUncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.TryUncons().Value
-                                                                            ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+            testPropertyWithConfig config10k "max PairingHeap OfSeq head should return" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-let ``tryUncons empty``() =
-    (PairingHeap.empty true).TryUncons() |> should equal None
+            testPropertyWithConfig config10k "max PairingHeap from Insert head should return" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
 
-[<Test>]
-[<TestCaseSource("intGensStart2")>]
-let ``uncons 1 element``(x : obj) =
-    let genAndName = unbox x 
-    fsCheck (snd genAndName) (Prop.forAll (Arb.fromGen (fst genAndName)) (fun ((h : PairingHeap<int>), (l : int list)) ->    
-                                                                            let x, tl = h.Uncons()
-                                                                            ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
-                                                                            |> classifyCollect h (h.Length())))
+            testPropertyWithConfig config10k "min PairingHeap int head should return" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq head should return" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert head should return" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.Head() = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "maxPairingHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen maxPairingHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "minPairingHeap seq enumerate matches build list" (Prop.forAll (Arb.fromGen minPairingHeapIntGen) <|
+                fun (h, l) -> h |> List.ofSeq = l |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap int seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "max PairingHeap OfSeq seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "max PairingHeap from Insert seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[2]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "min PairingHeap int seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[3]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[4]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert seq enumerate matches build list int" (Prop.forAll (Arb.fromGen intGensStart1.[5]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "max PairingHeap string seq enumerate matches build list string" (Prop.forAll (Arb.fromGen stringGens.[0]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "min PairingHeap string seq enumerate matches build list string" (Prop.forAll (Arb.fromGen stringGens.[1]) <|
+                fun (h, l) -> h |> Seq.toList = l |> classifyCollect h (h.Length()) )
+
+            testPropertyWithConfig config10k "max PairingHeap int tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap OfSeq tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap from Insert tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap int tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert tail should return" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let tl = h.Tail()
+                                let tlHead =
+                                    if (tl.Length() > 0) then (tl.Head() = l.Item(1))
+                                    else true
+                                (tlHead && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap int tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap OfSeq tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap from Insert tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap int tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert tryGetHead should return" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) -> (h.TryGetHead().Value = l.Head) |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap int tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap OfSeq tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[1]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap from Insert tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[2]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap int tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[3]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[4]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert tryUncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[5]) <|
+                fun (h, l) ->   let x, tl = h.TryUncons().Value
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap int uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap OfSeq uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "max PairingHeap from Insert uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap int uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap OfSeq uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+
+            testPropertyWithConfig config10k "min PairingHeap from Insert uncons 1 element" (Prop.forAll (Arb.fromGen intGensStart2.[0]) <|
+                fun (h, l) ->   let x, tl = h.Uncons()
+                                ((x = l.Head) && (tl.Length() = (l.Length - 1)))     
+                                |> classifyCollect h (h.Length()))
+        ]

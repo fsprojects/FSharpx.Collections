@@ -62,5 +62,6 @@ type RingBuffer<'T>(position:int, values:seq<'T>) =
     member x.Clone() = 
         RingBuffer<'T>(x.Position, x.ToArray())
 
+[<RequireQualifiedAccess>]
 module RingBuffer =
     let create (seq: 'T seq) = new RingBuffer<'T>(seq)

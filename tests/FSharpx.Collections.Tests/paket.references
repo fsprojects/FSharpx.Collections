@@ -1,3 +1,5 @@
 FsCheck
-FsUnit
-NUnit
+Expecto
+Expecto.FsCheck
+Microsoft.NET.Test.Sdk
+YoloDev.Expecto.TestSdk

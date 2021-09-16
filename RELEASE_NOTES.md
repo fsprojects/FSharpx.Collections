@@ -1,3 +1,52 @@
+#### 3.0.0 - 2021-09-xx (unreleased)
+* Deque.Tail performance tweaks
+* Fast path for single back element. Avoid traversing list for length multiple times. Use Unchecked.defaultOf<_> rather than an actual element. Thanks @simendsjo
+* Expose PersistentVector.rangedIterator. Thanks @simendsjo
+* Dependencies update
+* Build and test with .NET 5 & Node 14
+
+#### 2.1.3 - 2020-05-30
+* RandomAccessLists zip, reduce, map2
+* doc projects netcoreapp3.1 build, thanks Grzegorz Dziadkiewicz 
+
+#### 2.1.2 - 2019-12-24
+* Fix FSharp.Core assembly reference version
+
+#### 2.1.1 - 2019-11-17
+* Fix FSharp.Core dependency version
+
+#### 2.1.0 - 2019-11-12
+* target net45 and netstandard2.0, thanks Grzegorz Dziadkiewicz
+
+#### 2.0.0 - 2019-05-15
+* BREAKING CHANGE: only netstandard2.0 supported
+* PersistentHashMap implements Count (issues/12)
+* add compareWith and areEqual to LazyList (issues/114) thanks teo-tsirpanis
+* fix experimental RoseTree equality (issues/114) thanks teo-tsirpanis
+* fix Nop thread comparison in PersistentHashMap (issues/66)
+* make RandomAccessList serializable (issue 127) thanks teo-tsirpanis
+* Implemented CHAMP algorithm for a persistent hash map, thanks bsomes 
+* Implement IReadOnlyList and IReadOnlyCollection for the RandomAccessList (issue 130) thanks teo-tsirpanis
+* LazyListbased on the BCL's Lazy type, thanks teo-tsirpanis
+
+#### 2.0.0-beta3 - 2018-06-19
+* pairwise DList, thanks Brendan Fahy
+
+#### 2.0.0-beta2 - 2018-05-26
+* target net45 and netstandard2.0 (beta1 incorrectly targetted net461)
+
+#### 2.0.0-beta1 - 2018-05-26
+* Microsoft.NET.Sdk projects
+* target net45 and netstandard2.0
+* BREAKING CHANGE: RequireQualifiedAccess
+* BREAKING CHANGE: type RealTimeQueue under Experimental namespace
+* BREAKING CHANGE: type BootstrappedQueue under Experimental namespace
+* BREAKING CHANGE: type ListZipper under Experimental namespace
+* BREAKING CHANGE: types BinaryTree, TreeDirection, BinaryTreeZipper under Experimental namespace
+* BREAKING CHANGE: type ImplicitQueue under Experimental namespace
+* BREAKING CHANGE: type BinaryRandomAccessList under Experimental namespace
+* BREAKING CHANGE: type Digit for BinaryRandomAccessList renamed TreeBRALDigit
+
 #### 1.17.0 - 26.06.2017
 * PERFORMANCE: NonEmptyList Collect had poor performance - https://github.com/fsprojects/FSharpx.Collections/pull/75
 
@@ -52,4 +101,4 @@
 * Fixing nuget package
 
 #### 1.9.1 - 14.01.2013 
-* Initial release from new location
+* Initial release from new location; previous contributor history lost

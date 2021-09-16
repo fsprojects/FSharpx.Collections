@@ -3,7 +3,7 @@ namespace FSharpx.Collections.Mutable
 open System
 open System.Collections
 open System.Collections.Generic
-            
+
 // NOTE: A special version for primitives would increase
 // performance for primitive types, especially for I/O,
 // byte-based operations.
@@ -64,8 +64,10 @@ type CircularBuffer<'T> (bufferSize: int) =
     member this.Enqueue(value: _[], offset) =
         this.Enqueue(value, offset, value.Length - offset)
 
+#if !FABLE_COMPILER
     member this.Enqueue(value: ArraySegment<_>) =
         this.Enqueue(value.Array, value.Offset, value.Count)
+#endif
 
     member this.Enqueue(value) =
         this.Enqueue([|value|], 0, 1)
@@ -78,5 +80,10 @@ type CircularBuffer<'T> (bufferSize: int) =
         loop().GetEnumerator()
 
     interface IEnumerable<'T> with
-        member this.GetEnumerator() = this.GetEnumerator()
-        member this.GetEnumerator() = this.GetEnumerator() :> IEnumerator
+        member this.GetEnumerator() = (this :> IEnumerable<'T>).GetEnumerator()
+
+    interface IEnumerable with
+        member this.GetEnumerator() = (this :> IEnumerable).GetEnumerator()
+
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Count
