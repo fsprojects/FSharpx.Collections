@@ -19,7 +19,7 @@
     <Copyright>Copyright 2013-2021</Copyright>
     <PackageTags>F# fsharp fsharpx collections datastructures</PackageTags>
     <RepositoryUrl>https://github.com/fsprojects/FSharpx.Collections</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/fsprojects/FSharpx.Collections</PackageProjectUrl>
+    <PackageProjectUrl>https://fsprojects.github.io/FSharpx.Collections/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/fsprojects/FSharpx.Collections/master/docs/img/logo.png</PackageIconUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
