@@ -1,6 +1,5 @@
   
-image:
-  file: gitpod/workspace-dotnet
+image: gitpod/workspace-dotnet
 
 vscode:
   extensions:
