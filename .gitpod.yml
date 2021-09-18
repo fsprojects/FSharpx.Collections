@@ -3,7 +3,6 @@ image: gitpod/workspace-dotnet
 
 vscode:
   extensions:
-    - muhammad-sammy.csharp
     - ionide.ionide-fsharp
     - christian-kohler.path-intellisense
     - PKief.material-icon-theme
