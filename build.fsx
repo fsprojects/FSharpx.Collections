@@ -135,7 +135,7 @@ Target.create "NuGet" (fun _ ->
 )
 
 Target.create "CINuGet" (fun _ ->
-    let suffix = "-alpha" + (System.DateTime.UtcNow.ToString("yyyy.MM.dd.HHmmss"))
+    let suffix = "-alpha" + (System.DateTime.UtcNow.ToString("yyyyMMddHHmmss"))
     nuGet "temp" (Some suffix)
 )
 
