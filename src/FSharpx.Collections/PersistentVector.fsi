@@ -1,11 +1,11 @@
 ﻿namespace FSharpx.Collections
+
 /// PersistentVector is an ordered linear structure implementing the inverse of the List signature,
 /// (last, initial, conj) in place of (head, tail, cons). Length is O(1). Indexed lookup or update
 /// (returning a new immutable instance of Vector) of any element is O(log32n), which is close enough
 /// to O(1) as to make no practical difference: a PersistentVector containing 4 billion items can
 /// lookup or update any item in at most 7 steps.
 /// Ordering is by insertion history. The original idea can be found in [Clojure](http://clojure.org/data_structures).
-
 [<Class>]
 type PersistentVector<'T> =
     interface System.Collections.IEnumerable
