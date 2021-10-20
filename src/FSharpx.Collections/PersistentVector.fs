@@ -146,9 +146,8 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
 
     member internal this.EnsureEditable() =
         #if !FABLE_COMPILER
-        if !root.Thread = Thread.CurrentThread then
-            ()
-        else if not (isNull !root.Thread) then
+        if !root.Thread = Thread.CurrentThread then () else
+        if !root.Thread <> null then
             failwith "Transient used by non-owner thread"
         failwith "Transient used after persistent! call"
         #else
