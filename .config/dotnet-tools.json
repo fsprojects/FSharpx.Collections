@@ -19,6 +19,12 @@
       "commands": [
         "fsdocs"
       ]
+    },
+    "fable": {
+      "version": "3.4.4",
+      "commands": [
+        "fable"
+      ]
     }
   }
 }

@@ -9,8 +9,8 @@
     <Compile Include="NonEmptyList.test.fs" />
     <Compile Include="Deque.test.fs" />
     <Compile Include="LazyList.test.fs" />
+    <Compile Include="PersistentVector.test.fs" />
     <None Include="paket.references" />
-    <None Include="splitter.config.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\FSharpx.Collections\FSharpx.Collections.fsproj" />
