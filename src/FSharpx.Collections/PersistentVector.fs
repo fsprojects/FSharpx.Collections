@@ -1,11 +1,11 @@
 ﻿/// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/Vector.java
 namespace FSharpx.Collections
 
-#if !FABLE_COMPILER
 
 open FSharpx.Collections
 open System.Threading
 
+#if !FABLE_COMPILER
 type Node(thread,array:obj[]) =
     let thread = thread
     new() = Node(ref null,Array.create Literals.blockSize null)
@@ -14,6 +14,13 @@ type Node(thread,array:obj[]) =
         member this.Array = array
         member this.Thread = thread
         member this.SetThread t = thread := t
+#else
+type Node(array:obj[]) =
+    new() = Node(Array.create Literals.blockSize null)
+    with
+        static member InCurrentThread() = Node(Array.create Literals.blockSize null)
+        member this.Array = array
+#endif
 
 type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     let mutable count = count
@@ -24,14 +31,22 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
     new() = TransientVector<'T>(0,Literals.blockSizeShift,Node.InCurrentThread(),Array.create Literals.blockSize null)
 
     member internal this.EnsureEditable(node:Node) =
+#if !FABLE_COMPILER
         if node.Thread = root.Thread then node else
         Node(root.Thread,Array.copy node.Array)
+#else
+        node
+#endif
 
     member internal this.NewPath(level,node:Node) =
         if level = 0 then node else
         let ret = Array.create Literals.blockSize null
         ret.[0] <- this.NewPath(level - Literals.blockSizeShift,node) :> obj
+#if !FABLE_COMPILER
         Node(node.Thread,ret)
+#else
+        Node(ret)
+#endif
 
     member internal this.PushTail(level,parent:Node,tailnode) =
         //if parent is leaf, insert node,
@@ -75,7 +90,11 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
             tail.[count &&& Literals.blockIndexMask] <- x :> obj
         else
             //full tail, push into tree
+            #if !FABLE_COMPILER
             let tailNode = Node(root.Thread,tail)
+            #else
+            let tailNode = Node(tail)
+            #endif
             let newShift = shift
             let newTail = Array.create Literals.blockSize null
             newTail.[0] <- x :> obj
@@ -83,7 +102,11 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
             //overflow root?
             let newRoot =
                 if (count >>> Literals.blockSizeShift) > (1 <<< shift) then
+                    #if !FABLE_COMPILER
                     let newRoot = Node(root.Thread,Array.create Literals.blockSize null)
+                    #else
+                    let newRoot = Node(Array.create Literals.blockSize null)
+                    #endif
                     newRoot.Array.[0] <- root :> obj
                     newRoot.Array.[1] <- this.NewPath(shift,tailNode) :> obj
                     shift <- shift + Literals.blockSizeShift
@@ -114,16 +137,22 @@ type internal TransientVector<'T> (count,shift:int,root:Node,tail:obj[]) =
 
     member this.persistent() : PersistentVector<'T> =
         this.EnsureEditable()
+        #if !FABLE_COMPILER
         root.SetThread null
+        #endif
         let l = count - this.TailOff()
         let trimmedTail = Array.init l (fun i -> tail.[i])
         PersistentVector(count, shift, root, trimmedTail)
 
     member internal this.EnsureEditable() =
+        #if !FABLE_COMPILER
         if !root.Thread = Thread.CurrentThread then () else
         if !root.Thread <> null then
             failwith "Transient used by non-owner thread"
         failwith "Transient used after persistent! call"
+        #else
+        ()
+        #endif
 
     member internal this.TailOff() =
         if count < Literals.blockSize then 0 else
@@ -174,7 +203,11 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
 
     member internal this.NewPath(level,node:Node) =
         if level = 0 then node else
+        #if !FABLE_COMPILER
         let ret = Node(root.Thread,Array.create Literals.blockSize null)
+        #else
+        let ret = Node(Array.create Literals.blockSize null)
+        #endif
         ret.Array.[0] <- this.NewPath(level - Literals.blockSizeShift,node) :> obj
         ret
 
@@ -184,7 +217,11 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         // else alloc new path
         //return  nodeToInsert placed in copy of parent
         let subidx = ((count - 1) >>> level) &&& Literals.blockIndexMask
+        #if !FABLE_COMPILER
         let ret = Node(parent.Thread,Array.copy parent.Array)
+        #else
+        let ret = Node(Array.copy parent.Array)
+        #endif
 
         let nodeToInsert =
             if level = Literals.blockSizeShift then tailnode else
@@ -212,7 +249,11 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         else raise (System.IndexOutOfRangeException())
 
     member internal this.doAssoc(level,node:Node,i,x) =
+        #if !FABLE_COMPILER
         let ret = Node(root.Thread,Array.copy node.Array)
+        #else
+        let ret = Node(Array.copy node.Array)
+        #endif
         if level = 0 then
             ret.Array.[i &&& Literals.blockIndexMask] <- x :> obj
         else
@@ -225,13 +266,21 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         if level > Literals.blockSizeShift then
             let newchild = this.PopTail(level - Literals.blockSizeShift, node.Array.[subidx] :?> Node)
             if newchild = Unchecked.defaultof<Node> && subidx = 0 then Unchecked.defaultof<Node> else
+            #if !FABLE_COMPILER
             let ret = Node(root.Thread, Array.copy node.Array);
+            #else
+            let ret = Node(Array.copy node.Array);
+            #endif
             ret.Array.[subidx] <- newchild  :> obj
             ret
 
         elif subidx = 0 then Unchecked.defaultof<Node> else
 
+        #if !FABLE_COMPILER
         let ret = new Node(root.Thread, Array.copy node.Array)
+        #else
+        let ret = new Node(Array.copy node.Array)
+        #endif
         ret.Array.[subidx] <- null
         ret
 
@@ -256,7 +305,11 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
             PersistentVector<'T>(count + 1,shift,root,newTail)
         else
             //full tail, push into tree
+            #if !FABLE_COMPILER
             let tailNode = Node(root.Thread,tail)
+            #else
+            let tailNode = Node(tail)
+            #endif
             let newShift = shift
 
             //overflow root?
@@ -274,7 +327,11 @@ and PersistentVector<'T> (count,shift:int,root:Node,tail:obj[])  =
         if count = 1 then PersistentVector<'T>.Empty() else
 
         if count - tailOff > 1 then
-            let mutable newroot = Node(ref Thread.CurrentThread, root.Array.Clone() :?> obj[])
+            #if !FABLE_COMPILER
+            let mutable newroot = Node(ref Thread.CurrentThread, Array.copy root.Array)
+            #else
+            let mutable newroot = Node(Array.copy root.Array)
+            #endif
             let mutable ret = TransientVector(count - 1, shift, newroot, tail.[0..(tail.Length-1)])
             ret.persistent()
         else
@@ -464,5 +521,3 @@ module PersistentVector =
     let inline windowSeq windowLength (items : 'T seq) =
         if windowLength < 1 then invalidArg "windowLength" "length is less than 1"
         else (Seq.fold (windowFun windowLength) (empty.Conj empty<'T>) items)
-
-#endif

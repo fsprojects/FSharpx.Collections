@@ -190,3 +190,6 @@ RELEASE_NOTES.md.orig
 .ionide
 .fsdocs/
 *.blob
+
+*.fs.js
+fable_modules
