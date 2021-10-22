@@ -3,6 +3,7 @@
 * Fast path for single back element. Avoid traversing list for length multiple times. Use Unchecked.defaultOf<_> rather than an actual element. Thanks @simendsjo
 * Expose PersistentVector.rangedIterator. Thanks @simendsjo
 * Seq extensions: add tryHeadTail #176. Thanks @knocte
+* some helper functions #92. Thanks @sideeffffect
 * Dependencies update
 * Build and test with .NET 5 & Node 14
 
