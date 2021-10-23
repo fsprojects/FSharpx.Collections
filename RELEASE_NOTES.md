@@ -1,3 +1,6 @@
+#### 3.0.1 - 2021-10-23
+* Fix choice2s #184. Thanks @sideeffffect
+
 #### 3.0.0 - 2021-10-22
 * Deque.Tail performance tweaks
 * Fast path for single back element. Avoid traversing list for length multiple times. Use Unchecked.defaultOf<_> rather than an actual element. Thanks @simendsjo
