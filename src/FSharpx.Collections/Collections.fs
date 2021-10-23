@@ -270,7 +270,7 @@ module Seq =
     /// Extracts from a seq of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
         let inline chooser a = match a with
-                               | Choice1Of2 x -> Some x
+                               | Choice2Of2 x -> Some x
                                | _            -> None
         Seq.choose chooser xs
 
@@ -365,7 +365,7 @@ module Array =
     /// Extracts from an array of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
         let inline chooser a = match a with
-                               | Choice1Of2 x -> Some x
+                               | Choice2Of2 x -> Some x
                                | _            -> None
         Array.choose chooser xs
 
@@ -499,7 +499,7 @@ module List =
     /// Extracts from a list of Choice all the Choice2Of2 elements. All the Choice2Of2 elements are extracted in order.
     let inline choice2s xs =
         let inline chooser a = match a with
-                               | Choice1Of2 x -> Some x
+                               | Choice2Of2 x -> Some x
                                | _            -> None
         List.choose chooser xs
 
