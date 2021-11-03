@@ -103,6 +103,9 @@ module PersistentVector =
     /// O(n). Returns a vector whose elements are the results of applying the supplied function to each of the elements of a supplied vector.
     val map : ('T -> 'T1) -> PersistentVector<'T> -> PersistentVector<'T1>
 
+    /// O(n). Returns a vector whose elements are the results of applying the supplied function to each of the indices and elements of a supplied vector.
+    val mapi : (int -> 'T -> 'T1) -> PersistentVector<'T> -> PersistentVector<'T1>
+
     /// O(1) for all practical purposes; really O(log32n). Returns the value at the index. If the index is out of bounds it throws an exception.
     val inline nth : int -> PersistentVector<'T> -> 'T
 
