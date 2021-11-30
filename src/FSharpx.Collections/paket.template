@@ -33,3 +33,7 @@ files
     ./bin/Release/netstandard2.0/FSharpx.Collections.dll ==> lib/netstandard2.0
     ./bin/Release/netstandard2.0/FSharpx.Collections.pdb ==> lib/netstandard2.0
     ./bin/Release/netstandard2.0/FSharpx.Collections.xml ==> lib/netstandard2.0
+    *.fs ==> fable/
+    *.fsi ==> fable/
+    *.fsproj ==> fable/
+
