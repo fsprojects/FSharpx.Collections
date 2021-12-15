@@ -6,6 +6,8 @@ See [the home page](http://fsprojects.github.io/FSharpx.Collections/) and [API d
 
 Please contribute to this project. Don't ask for permission, just fork the repository and send pull requests.
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fsprojects/fsharpx.collections)
+
 ## Build Status
 
 [![Build Status](https://github.com/fsprojects/FSharpx.Collections/workflows/Build%20and%20Test/badge.svg?branch=master)](https://github.com/fsprojects/FSharpx.Collections/actions?query=branch%3Amaster)

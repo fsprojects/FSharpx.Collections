@@ -1,0 +1,13 @@
+  
+image: gitpod/workspace-dotnet
+
+vscode:
+  extensions:
+    - ionide.ionide-fsharp
+    - christian-kohler.path-intellisense
+    - PKief.material-icon-theme
+    - zhuangtongfa.material-theme
+    - eamodio.gitlens
+
+tasks:
+  - init: ./build.sh

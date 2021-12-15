@@ -104,7 +104,7 @@ Target.create "Build" (fun _ ->
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    !! "tests/**/bin/Release/net5.0/*Tests.dll"
+    !! "tests/**/bin/Release/net6.0/*Tests.dll"
     |> Expecto.run (fun x -> 
         { x with 
             Parallel = true
@@ -164,7 +164,7 @@ Target.create "PublishNuget" (fun _ ->
 Target.create "GenerateDocs" (fun _ ->
     Shell.cleanDir ".fsdocs"
     DotNet.exec id "build" "" |> ensureOk // we need assemblies compiled in debug mode for docs
-    DotNet.exec id "fsdocs" "build --clean --eval --strict" |> ensureOk
+    DotNet.exec id "fsdocs" "build --clean --eval" |> ensureOk
 )
 // --------------------------------------------------------------------------------------
 // Release Scripts
