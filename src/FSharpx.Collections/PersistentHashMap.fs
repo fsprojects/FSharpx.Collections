@@ -1,4 +1,4 @@
-﻿// vector implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentMap.java
+// hash map implementation ported from https://github.com/clojure/clojure/blob/master/src/jvm/clojure/lang/APersistentMap.java
 namespace FSharpx.Collections
 
 #if !FABLE_COMPILER
