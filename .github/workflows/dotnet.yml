@@ -26,9 +26,11 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: ${{ matrix.dotnet }}
+        dotnet-version: |
+          5.0.x
+          ${{ matrix.dotnet }}
     - name: Install local tools
       run: dotnet tool restore
     - name: Paket Restore
