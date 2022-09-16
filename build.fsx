@@ -1,7 +1,7 @@
 #r @"paket:
 source https://api.nuget.org/v3/index.json
-framework netstandard2.0
-nuget FSharp.Core 4.7.2
+framework net6.0
+nuget FSharp.Core
 nuget Fake.Core.Target
 nuget Fake.Core.ReleaseNotes 
 nuget Fake.IO.FileSystem
@@ -63,7 +63,7 @@ Target.create "AssemblyInfo" (fun _ ->
           AssemblyInfo.FileVersion release.AssemblyVersion
           AssemblyInfo.Configuration configuration ]
 
-    let getProjectDetails projectPath =
+    let getProjectDetails (projectPath:string) =
         let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
         ( projectPath,
           projectName,
