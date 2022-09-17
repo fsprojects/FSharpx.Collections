@@ -53,15 +53,16 @@ let (|Fsproj|Csproj|Vbproj|)(projFileName: string) =
 
 // Generate assembly info files with the right version & up-to-date information
 Target.create "AssemblyInfo" (fun _ ->
-    let getAssemblyInfoAttributes projectName = [ AssemblyInfo.Title(projectName)
-                                                  AssemblyInfo.Product "FSharpx.Collections"
-                                                  AssemblyInfo.Description
-                                                      "FSharpx.Collections is a collection of datastructures for use with F# and C#."
-                                                  AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Tests"
-                                                  AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
-                                                  AssemblyInfo.Version release.AssemblyVersion
-                                                  AssemblyInfo.FileVersion release.AssemblyVersion
-                                                  AssemblyInfo.Configuration configuration ]
+    let getAssemblyInfoAttributes projectName = [
+        AssemblyInfo.Title(projectName)
+        AssemblyInfo.Product "FSharpx.Collections"
+        AssemblyInfo.Description "FSharpx.Collections is a collection of datastructures for use with F# and C#."
+        AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Tests"
+        AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
+        AssemblyInfo.Version release.AssemblyVersion
+        AssemblyInfo.FileVersion release.AssemblyVersion
+        AssemblyInfo.Configuration configuration
+    ]
 
     let getProjectDetails(projectPath: string) =
         let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
@@ -89,7 +90,10 @@ Target.create "Clean" (fun _ -> Shell.cleanDirs [ "bin"; "temp" ])
 
 Target.create "Build" (fun _ ->
     "FSharpx.Collections.sln"
-    |> DotNet.build(fun p -> { p with Configuration = buildConfiguration }))
+    |> DotNet.build(fun p ->
+        { p with
+            Configuration = buildConfiguration
+        }))
 
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
@@ -99,11 +103,15 @@ Target.create "RunTests" (fun _ ->
     |> Expecto.run(fun x ->
         { x with
             Parallel = true
-            ParallelWorkers = System.Environment.ProcessorCount }))
+            ParallelWorkers = System.Environment.ProcessorCount
+        }))
 
 Target.create "RunTestsFable" (fun _ ->
     let setParams =
-        (fun (o: Yarn.YarnParams) -> { o with WorkingDirectory = "tests/fable" })
+        (fun (o: Yarn.YarnParams) ->
+            { o with
+                WorkingDirectory = "tests/fable"
+            })
 
     Yarn.installPureLock setParams
     Yarn.exec "test" setParams)
@@ -118,7 +126,8 @@ let nuGet out suffix =
             ToolType = ToolType.CreateLocalTool()
             OutputPath = out
             Version = release.NugetVersion + (suffix |> Option.defaultValue "")
-            ReleaseNotes = releaseNotes })
+            ReleaseNotes = releaseNotes
+        })
 
 Target.create "NuGet" (fun _ -> nuGet "bin" None)
 
@@ -143,7 +152,8 @@ Target.create "PublishNuget" (fun _ ->
     Paket.push(fun p ->
         { p with
             ToolType = ToolType.CreateLocalTool()
-            WorkingDir = "bin" }))
+            WorkingDir = "bin"
+        }))
 
 // --------------------------------------------------------------------------------------
 // Generate the documentation

@@ -1,2 +1,4 @@
 # https://github.com/fsprojects/fantomas/issues/2511
 NonEmptyList.fs
+# https://github.com/fsprojects/fantomas/issues/2517
+Collections.fs
