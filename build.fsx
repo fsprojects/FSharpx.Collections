@@ -3,13 +3,13 @@ source https://api.nuget.org/v3/index.json
 framework net6.0
 nuget FSharp.Core
 nuget Fake.Core.Target
-nuget Fake.Core.ReleaseNotes 
+nuget Fake.Core.ReleaseNotes
 nuget Fake.IO.FileSystem
 nuget Fake.Tools.Git
 nuget Fake.Runtime
 nuget Fake.DotNet.Paket
 nuget Fake.DotNet.AssemblyInfoFile
-nuget Fake.DotNet.Cli 
+nuget Fake.DotNet.Cli
 nuget Fake.DotNet.MSBuild
 nuget Fake.DotNet.Paket
 nuget Fake.DotNet.Testing.Expecto
@@ -105,8 +105,8 @@ Target.create "Build" (fun _ ->
 
 Target.create "RunTests" (fun _ ->
     !! "tests/**/bin/Release/net6.0/*Tests.dll"
-    |> Expecto.run (fun x -> 
-        { x with 
+    |> Expecto.run (fun x ->
+        { x with
             Parallel = true
             ParallelWorkers = System.Environment.ProcessorCount})
 )
@@ -147,7 +147,7 @@ Target.create "PublishCINuGet" (fun _ ->
     !! "temp/*.nupkg"
     |> Seq.iter (fun file ->
         DotNet.exec id "nuget" (sprintf "push %s -s https://nuget.pkg.github.com/fsprojects/index.json -k %s" file token)
-        |> ensureOk // 
+        |> ensureOk //
     )
 )
 
@@ -191,12 +191,50 @@ Target.create "Release" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
+// Fantomas code formatting and style checking
+
+let sourceFiles =
+    !! "**/*.fs" ++ "**/*.fsx"
+    -- "packages/**/*.*"
+    -- "paket-files/**/*.*"
+    -- ".fake/**/*.*"
+    -- "**/obj/**/*.*"
+    -- "**/AssemblyInfo.fs"
+
+Target.create "Format" (fun _ ->
+    let result =
+        sourceFiles
+        |> Seq.map(sprintf "\"%s\"")
+        |> String.concat " "
+        |> DotNet.exec id "fantomas"
+
+    if not result.OK then
+        printfn "Errors while formatting all files: %A" result.Messages)
+
+Target.create "CheckFormat" (fun _ ->
+    let result =
+        sourceFiles
+        |> Seq.map(sprintf "\"%s\"")
+        |> String.concat " "
+        |> sprintf "%s --check"
+        |> DotNet.exec id "fantomas"
+
+    if result.ExitCode = 0 then
+        Trace.log "No files need formatting"
+    elif result.ExitCode = 99 then
+        failwith "Some files need formatting, run `dotnet fake build -t Format` to format them"
+    else
+        Trace.logf "Errors while formatting: %A" result.Errors
+        failwith "Unknown errors while formatting")
+
+// --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build <Target>' to override
 
 Target.create "All" ignore
 
 "Clean"
   ==> "AssemblyInfo"
+  ==> "CheckFormat"
   ==> "Build"
   ==> "RunTests"
   ==> "RunTestsFable"
