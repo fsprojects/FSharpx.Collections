@@ -12,8 +12,10 @@ open System.Runtime.CompilerServices
 // Ported from http://hackage.haskell.org/packages/archive/containers/latest/doc/html/src/Data-Tree.html
 [<CustomEquality; NoComparison>]
 type IndexedRoseTree<'T> =
-    { Root: 'T
-      Children: PersistentVector<IndexedRoseTree<'T>> }
+    {
+        Root: 'T
+        Children: PersistentVector<IndexedRoseTree<'T>>
+    }
 
     override x.Equals y =
         match y with
@@ -36,14 +38,18 @@ module IndexedRoseTree =
     let inline singleton x =
         create x PersistentVector.empty
 
-    let rec map f (x: _ IndexedRoseTree) = { IndexedRoseTree.Root = f x.Root
-                                             Children = PersistentVector.map (map f) x.Children }
+    let rec map f (x: _ IndexedRoseTree) = {
+        IndexedRoseTree.Root = f x.Root
+        Children = PersistentVector.map (map f) x.Children
+    }
 
-    let rec ap x f = { IndexedRoseTree.Root = f.Root x.Root
-                       Children =
-                         let a = PersistentVector.map (map f.Root) x.Children
-                         let b = PersistentVector.map (fun c -> ap x c) f.Children
-                         PersistentVector.append a b }
+    let rec ap x f = {
+        IndexedRoseTree.Root = f.Root x.Root
+        Children =
+            let a = PersistentVector.map (map f.Root) x.Children
+            let b = PersistentVector.map (fun c -> ap x c) f.Children
+            PersistentVector.append a b
+    }
 
     let inline lift2 f a b =
         singleton f |> ap a |> ap b
@@ -51,8 +57,10 @@ module IndexedRoseTree =
     let rec bind f x =
         let a = f x.Root
 
-        { IndexedRoseTree.Root = a.Root
-          Children = PersistentVector.append a.Children (PersistentVector.map (bind f) x.Children) }
+        {
+            IndexedRoseTree.Root = a.Root
+            Children = PersistentVector.append a.Children (PersistentVector.map (bind f) x.Children)
+        }
 
     let rec preOrder(x: _ IndexedRoseTree) = seq {
         yield x.Root

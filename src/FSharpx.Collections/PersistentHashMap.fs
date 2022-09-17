@@ -803,10 +803,12 @@ and PersistentHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equality and 'S:
     member this.Count: int = this.count
 
     internal new(count', root': INode, hasNull', nullValue': 'S) =
-        { count = count'
-          root = root'
-          hasNull = hasNull'
-          nullValue = nullValue' }
+        {
+            count = count'
+            root = root'
+            hasNull = hasNull'
+            nullValue = nullValue'
+        }
 
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull

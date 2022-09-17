@@ -14,7 +14,9 @@ exception UndefinedException
 
 [<NoEquality; NoComparison>]
 type LazyList<'T> =
-    { status: Lazy<LazyListCell<'T>> }
+    {
+        status: Lazy<LazyListCell<'T>>
+    }
 
     member x.Value = x.status.Value
 

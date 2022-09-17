@@ -30,10 +30,12 @@ type FlatList<'T> =
     val internal array: 'T[]
 
     internal new(arr: 'T[]) =
-        { array =
-            (match arr with
-             | null -> null
-             | arr -> if arr.Length = 0 then null else arr) }
+        {
+            array =
+                (match arr with
+                 | null -> null
+                 | arr -> if arr.Length = 0 then null else arr)
+        }
 
     member x.Item
         with get (n: int) = x.array.[n]
