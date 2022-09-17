@@ -7,13 +7,9 @@ open FsCheck
 let configReplay =
     { FsCheckConfig.defaultConfig with
         maxTest = 10000
-        replay = Some <| (1940624926, 296296394)
-    }
+        replay = Some <| (1940624926, 296296394) }
 
-let config10k =
-    { FsCheckConfig.defaultConfig with
-        maxTest = 10000
-    }
+let config10k = { FsCheckConfig.defaultConfig with maxTest = 10000 }
 
 let fsCheck name testable =
     FsCheck.Check.One(name, FsCheck.Config.Default, testable)

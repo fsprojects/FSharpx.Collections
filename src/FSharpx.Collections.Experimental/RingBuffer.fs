@@ -22,10 +22,8 @@ type RingBuffer<'T>(position: int, values: seq<'T>) =
     member private x.IndexOffset(i, offset) =
         (i + offset) % x.Buffer.Length
 
-    member x.ToArray() = [|
-        for i in 0 .. x.Buffer.Length - 1 do
-            yield x.Buffer.[x.IndexOffset(x.Position, i)]
-    |]
+    member x.ToArray() = [| for i in 0 .. x.Buffer.Length - 1 do
+                                yield x.Buffer.[x.IndexOffset(x.Position, i)] |]
 
     member x.Insert(op, offset, items) =
         if offset >= 0 && offset < x.Buffer.Length then

@@ -8,10 +8,8 @@ open System.Runtime.CompilerServices
 // Ported from http://hackage.haskell.org/packages/archive/containers/latest/doc/html/src/Data-Tree.html
 [<CustomEquality; NoComparison>]
 type RoseTree<[<EqualityConditionalOn>] 'T> =
-    {
-        Root: 'T
-        Children: LazyList<RoseTree<'T>>
-    }
+    { Root: 'T
+      Children: LazyList<RoseTree<'T>> }
 
     override x.Equals y =
         match y with
@@ -41,18 +39,14 @@ module RoseTree =
     let inline singleton x =
         create x L.empty
 
-    let rec map f (x: _ RoseTree) = {
-        RoseTree.Root = f x.Root
-        Children = L.map (map f) x.Children
-    }
+    let rec map f (x: _ RoseTree) = { RoseTree.Root = f x.Root
+                                      Children = L.map (map f) x.Children }
 
-    let rec ap x f = {
-        RoseTree.Root = f.Root x.Root
-        Children =
-            let a = L.map (map f.Root) x.Children
-            let b = L.map (fun c -> ap x c) f.Children
-            L.append a b
-    }
+    let rec ap x f = { RoseTree.Root = f.Root x.Root
+                       Children =
+                         let a = L.map (map f.Root) x.Children
+                         let b = L.map (fun c -> ap x c) f.Children
+                         L.append a b }
 
     let inline lift2 f a b =
         singleton f |> ap a |> ap b
@@ -60,10 +54,8 @@ module RoseTree =
     let rec bind f x =
         let a = f x.Root
 
-        {
-            RoseTree.Root = a.Root
-            Children = L.append a.Children (L.map (bind f) x.Children)
-        }
+        { RoseTree.Root = a.Root
+          Children = L.append a.Children (L.map (bind f) x.Children) }
 
     [<CompiledName("DfsPre")>]
     [<Extension>]

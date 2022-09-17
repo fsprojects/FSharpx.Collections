@@ -1,0 +1,11 @@
+# Fantomas issues
+SkewBinomialHeapTest.fs
+IndexedRoseTreeTest.fs
+RoseTreeTest.fs
+BinaryTreeZipper.fs
+BottomUpMergeSort.fs
+RealTimeQueue.fs
+Collections.fs
+
+# https://github.com/fsprojects/fantomas/issues/2511
+NonEmptyList.fs

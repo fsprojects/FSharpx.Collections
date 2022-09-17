@@ -8,6 +8,7 @@ index: 2
 
 (*** hide ***)
 #r "../src/FSharpx.Collections/bin/Debug/netstandard2.0/FSharpx.Collections.dll"
+
 open System
 
 (**
@@ -20,8 +21,8 @@ More details can be found in the [API docs](reference/fsharpx-collections-persis
 open FSharpx.Collections
 
 // Create a new HashMap and add some items to it
-let m = 
-    PersistentHashMap.empty 
+let m =
+    PersistentHashMap.empty
     |> PersistentHashMap.add 42 "hello"
     |> PersistentHashMap.add 99 "world"
 (*** include-value: m ***)
@@ -45,10 +46,7 @@ PersistentHashMap.length m
 PersistentHashMaps are immutable and therefor allow to create new version without destruction of the old ones.
 *)
 
-let m' = 
-    m 
-    |> PersistentHashMap.add 104 "!" 
-    |> PersistentHashMap.add 42 "hi" // replace existing value
+let m' = m |> PersistentHashMap.add 104 "!" |> PersistentHashMap.add 42 "hi" // replace existing value
 
 PersistentHashMap.find 42 m'
 (*** include-it ***)
@@ -66,8 +64,7 @@ PersistentHashMap.length m'
 (*** include-it ***)
 
 // remove an element
-let m'' = 
-    m' |> PersistentHashMap.remove 104
+let m'' = m' |> PersistentHashMap.remove 104
 
 PersistentHashMap.length m''
 (*** include-it ***)
@@ -77,14 +74,13 @@ There a couple of interesting operations on HashMaps:
 *)
 
 // Convert a sequence of key value pairs to a HashMap
-let stringBasedMap = 
-    PersistentHashMap.ofSeq [("a",1); ("b",2); ("c",3); ("d",4); ("e",5)]
+let stringBasedMap =
+    PersistentHashMap.ofSeq [ ("a", 1); ("b", 2); ("c", 3); ("d", 4); ("e", 5) ]
 (*** include-value: stringBasedMap ***)
 
 
 // Square all values in a HashMap
-let stringBasedMap' = 
-    PersistentHashMap.map (fun x -> x * x) stringBasedMap
+let stringBasedMap' = PersistentHashMap.map (fun x -> x * x) stringBasedMap
 stringBasedMap'.["d"]
 (*** include-it ***)
 
@@ -108,25 +104,27 @@ PersistentHashMaps are immutable and therefor allow to create new version withou
 open System
 
 /// Stops the runtime for a given function
-let stopTime f = 
+let stopTime f =
     let sw = Diagnostics.Stopwatch()
     sw.Start()
     let result = f()
     sw.Stop()
-    result,float sw.ElapsedMilliseconds
+    result, float sw.ElapsedMilliseconds
 
 /// Stops the average runtime for a given function and applies it the given count
-let stopAverageTime count f = 
+let stopAverageTime count f =
     System.GC.Collect() // force garbage collector before testing
     let sw = Diagnostics.Stopwatch()
     sw.Start()
+
     for _ in 1..count do
         f() |> ignore
 
     sw.Stop()
     float sw.ElapsedMilliseconds / float count
 
-let printInFsiTags s = printfn " [fsi:%s]" s
+let printInFsiTags s =
+    printfn " [fsi:%s]" s
 
 /// Stops the average runtime for a given function and applies it the given count
 /// Afterwards it reports it with the given description
@@ -146,71 +144,82 @@ let r = new System.Random()
 
 let initFSharpMapAndPersistentMapFromList n =
     sprintf "Init with n = %d" n |> printInFsiTags
-    
-    let list = List.sortBy snd [for i in 1..n -> i,r.Next().ToString()]
 
-    averageTime trials "  FSharp.Map.ofSeq" 
-        (fun () -> Map.ofSeq list)
+    let list = List.sortBy snd [ for i in 1..n -> i, r.Next().ToString() ]
 
-    let initPersistentHashMap list = 
+    averageTime trials "  FSharp.Map.ofSeq" (fun () -> Map.ofSeq list)
+
+    let initPersistentHashMap list =
         let m = ref PersistentHashMap.empty
-        for (key,value) in list do
+
+        for (key, value) in list do
             m := PersistentHashMap.add key value !m
+
         !m
 
-    averageTime trials "  Multiple PersistentHashMap.add" 
-        (fun () -> initPersistentHashMap list)
+    averageTime trials "  Multiple PersistentHashMap.add" (fun () -> initPersistentHashMap list)
 
-    averageTime trials "  PersistentHashMap.ofSeq" 
-        (fun () -> PersistentHashMap.ofSeq list)
+    averageTime trials "  PersistentHashMap.ofSeq" (fun () -> PersistentHashMap.ofSeq list)
 
-    let initImmutableDictionary list = 
-        let d = ref (System.Collections.Immutable.ImmutableDictionary<int,string>.Empty)
-        for (key,value) in list do
-            d := (!d).Add(key,value)
+    let initImmutableDictionary list =
+        let d = ref(System.Collections.Immutable.ImmutableDictionary<int, string>.Empty)
+
+        for (key, value) in list do
+            d := (!d).Add(key, value)
+
         !d
 
-    averageTime trials "  Multiple ImmutableDictionay.add" 
-        (fun () -> initImmutableDictionary list)
+    averageTime trials "  Multiple ImmutableDictionay.add" (fun () -> initImmutableDictionary list)
 
-    let initImmutableDictionary list = 
-        let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<int,string>.Empty)
-        for (key,value) in list do
-            d := (!d).Add(key,value)
+    let initImmutableDictionary list =
+        let d =
+            ref(System.Collections.Immutable.ImmutableSortedDictionary<int, string>.Empty)
+
+        for (key, value) in list do
+            d := (!d).Add(key, value)
+
         !d
 
-    averageTime trials "  Multiple ImmutableSortedDictionay.add" 
-        (fun () -> initImmutableDictionary list)
+    averageTime trials "  Multiple ImmutableSortedDictionay.add" (fun () -> initImmutableDictionary list)
 
 let lookupInFSharpMapAndPersistentMap n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
-    let list = [for i in 0..n-1 -> i.ToString(),r.Next()]
+    let list = [ for i in 0 .. n - 1 -> i.ToString(), r.Next() ]
     let fsharpMap = Map.ofSeq list
     let map = PersistentHashMap.ofSeq list
 
-    averageTime trials "  FSharp.Map" 
-        (fun () -> for i in 1..count do fsharpMap.[r.Next(n).ToString()])
+    averageTime trials "  FSharp.Map" (fun () ->
+        for i in 1..count do
+            fsharpMap.[r.Next(n).ToString()])
 
-    averageTime trials "  PersistentHashMap" 
-        (fun () -> for i in 1..count do map.[r.Next(n).ToString()])
+    averageTime trials "  PersistentHashMap" (fun () ->
+        for i in 1..count do
+            map.[r.Next(n).ToString()])
 
     let dict =
-        let d = ref (System.Collections.Immutable.ImmutableDictionary<string,int>.Empty)
-        for (key,value) in list do
-            d := (!d).Add(key,value)
+        let d = ref(System.Collections.Immutable.ImmutableDictionary<string, int>.Empty)
+
+        for (key, value) in list do
+            d := (!d).Add(key, value)
+
         !d
 
-    averageTime trials "  ImmutableDictionay" 
-        (fun () -> for i in 1..count do dict.[r.Next(n).ToString()])
+    averageTime trials "  ImmutableDictionay" (fun () ->
+        for i in 1..count do
+            dict.[r.Next(n).ToString()])
 
     let dict' =
-        let d = ref (System.Collections.Immutable.ImmutableSortedDictionary<string,int>.Empty)
-        for (key,value) in list do
-            d := (!d).Add(key,value)
+        let d =
+            ref(System.Collections.Immutable.ImmutableSortedDictionary<string, int>.Empty)
+
+        for (key, value) in list do
+            d := (!d).Add(key, value)
+
         !d
 
-    averageTime trials "  ImmutableSortedDictionay" 
-        (fun () -> for i in 1..count do dict'.[r.Next(n).ToString()])
+    averageTime trials "  ImmutableSortedDictionay" (fun () ->
+        for i in 1..count do
+            dict'.[r.Next(n).ToString()])
 
 initFSharpMapAndPersistentMapFromList 10000
 initFSharpMapAndPersistentMapFromList 100000
