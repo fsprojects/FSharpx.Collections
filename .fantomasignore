@@ -1,6 +1,0 @@
-# https://github.com/fsprojects/fantomas/issues/2511
-NonEmptyList.fs
-# https://github.com/fsprojects/fantomas/issues/2517
-Collections.fs
-# https://github.com/fsprojects/fantomas/issues/2518
-ChampHashMap.fs
