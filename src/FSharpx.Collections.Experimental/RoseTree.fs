@@ -5,7 +5,7 @@ open System
 open System.Runtime.CompilerServices
 
 /// Multi-way tree, also known as rose tree.
-// Ported from http://hackage.haskell.org/packages/archive/containers/latest/doc/html/src/Data-Tree.html
+// Ported from https://hackage.haskell.org/package/containers-0.6.6/docs/Data-Tree.html
 [<CustomEquality; NoComparison>]
 type RoseTree<[<EqualityConditionalOn>] 'T> =
     { Root: 'T; Children: LazyList<RoseTree<'T>> }
