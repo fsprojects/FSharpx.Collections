@@ -470,6 +470,14 @@ module PersistentVector =
             ret <- ret.conj(f item)
         ret.persistent()
 
+    let mapi (f : int -> 'T -> 'T1) (vector: PersistentVector<'T>) : 'T1 PersistentVector =
+        let mutable ret = TransientVector()
+        let mutable index = 0
+        for item in vector do
+            ret <- ret.conj(f index item)
+            index <- index + 1
+        ret.persistent()
+
     let inline nth i (vector: PersistentVector<'T>) : 'T = vector.[i]
 
     let inline nthNth i j (vector: PersistentVector<PersistentVector<'T>>) : 'T = vector.[i] |> nth j
