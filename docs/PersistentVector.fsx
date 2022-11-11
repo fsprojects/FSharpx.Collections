@@ -8,6 +8,7 @@ index: 1
 
 (*** hide ***)
 #r "../src/FSharpx.Collections/bin/Debug/netstandard2.0/FSharpx.Collections.dll"
+
 open System
 
 (**
@@ -20,8 +21,8 @@ More details can be found in the [API docs](reference/fsharpx-collections-persis
 open FSharpx.Collections
 
 // Create a new PersistentVector and add some items to it
-let v = 
-    PersistentVector.empty 
+let v =
+    PersistentVector.empty
     |> PersistentVector.conj "hello"
     |> PersistentVector.conj "world"
     |> PersistentVector.conj "!"
@@ -45,10 +46,7 @@ PersistentVector.length v
 PersistentVectors are immutable and therefor allow to create new version without destruction of the old ones.
 *)
 
-let v' = 
-    v
-    |> PersistentVector.conj "!!!" 
-    |> PersistentVector.update 0 "hi" // replace existing value
+let v' = v |> PersistentVector.conj "!!!" |> PersistentVector.update 0 "hi" // replace existing value
 
 PersistentVector.nth 0 v'
 (*** include-it ***)
@@ -77,13 +75,11 @@ There a couple of interesting operations on PersistentVectors:
 *)
 
 // Convert a sequence of values to a PersistentVectors
-let intVector = 
-    PersistentVector.ofSeq [1..10]
+let intVector = PersistentVector.ofSeq [ 1..10 ]
 (*** include-value: intVector ***)
 
 // Square all values in a PersistentVector
-let intVector' = 
-    PersistentVector.map (fun x -> x * x) intVector
+let intVector' = PersistentVector.map (fun x -> x * x) intVector
 intVector'.[3]
 (*** include-it ***)
 
@@ -103,25 +99,27 @@ PersistentVectors are immutable and therefor allow to create new version without
 (*** hide ***)
 
 /// Stops the runtime for a given function
-let stopTime f = 
+let stopTime f =
     let sw = new System.Diagnostics.Stopwatch()
     sw.Start()
     let result = f()
     sw.Stop()
-    result,float sw.ElapsedMilliseconds
+    result, float sw.ElapsedMilliseconds
 
 /// Stops the average runtime for a given function and applies it the given count
-let stopAverageTime count f = 
+let stopAverageTime count f =
     System.GC.Collect() // force garbage collector before testing
     let sw = new System.Diagnostics.Stopwatch()
     sw.Start()
+
     for _ in 1..count do
         f() |> ignore
 
     sw.Stop()
     float sw.ElapsedMilliseconds / float count
 
-let printInFsiTags s = printfn " [fsi:%s]" s
+let printInFsiTags s =
+    printfn " [fsi:%s]" s
 
 /// Stops the average runtime for a given function and applies it the given count
 /// Afterwards it reports it with the given description
@@ -142,47 +140,50 @@ let r = new System.Random()
 
 let initArrayAndVectorFromList n =
     sprintf "Init with n = %d" n |> printInFsiTags
-    let list = [for i in 1..n -> r.Next()]
+    let list = [ for i in 1..n -> r.Next() ]
 
-    let initvector list = 
+    let initvector list =
         let v = ref PersistentVector.empty
+
         for x in list do
             v := PersistentVector.conj x !v
+
         !v
 
-    averageTime trials "  Array.ofSeq" 
-        (fun () -> Array.ofSeq list)
+    averageTime trials "  Array.ofSeq" (fun () -> Array.ofSeq list)
 
-    averageTime trials "  Multiple PersistentVector.conj" 
-        (fun () -> initvector list)
+    averageTime trials "  Multiple PersistentVector.conj" (fun () -> initvector list)
 
-    averageTime trials "  PersistentVector.ofSeq" 
-        (fun () -> PersistentVector.ofSeq list)
+    averageTime trials "  PersistentVector.ofSeq" (fun () -> PersistentVector.ofSeq list)
 
 let lookupInArrayAndVector n count =
     sprintf "%d Lookups in size n = %d" count n |> printInFsiTags
-    let list = [for i in 1..n -> r.Next()]
+    let list = [ for i in 1..n -> r.Next() ]
     let array = Array.ofSeq list
     let vector = PersistentVector.ofSeq list
 
-    averageTime trials "  Array" 
-        (fun () -> for i in 1..count do array.[r.Next n])
+    averageTime trials "  Array" (fun () ->
+        for i in 1..count do
+            array.[r.Next n])
 
-    averageTime trials "  PersistentVector" 
-        (fun () -> for i in 1..count do PersistentVector.nth (r.Next n) vector)
+    averageTime trials "  PersistentVector" (fun () ->
+        for i in 1..count do
+            PersistentVector.nth (r.Next n) vector)
 
 
 let replaceInArrayAndVector n count =
     sprintf "%d writes in size n = %d" count n |> printInFsiTags
-    let list = [for i in 1..n -> r.Next()]
+    let list = [ for i in 1..n -> r.Next() ]
     let array = Array.ofSeq list
     let vector = PersistentVector.ofSeq list
 
-    averageTime trials "  Array" 
-        (fun () -> for i in 1..count do array.[r.Next n] <- r.Next())
+    averageTime trials "  Array" (fun () ->
+        for i in 1..count do
+            array.[r.Next n] <- r.Next())
 
-    averageTime trials "  PersistentVector" 
-        (fun () -> for i in 1..count do PersistentVector.update (r.Next n) (r.Next()) vector)
+    averageTime trials "  PersistentVector" (fun () ->
+        for i in 1..count do
+            PersistentVector.update (r.Next n) (r.Next()) vector)
 
 initArrayAndVectorFromList 10000
 initArrayAndVectorFromList 100000

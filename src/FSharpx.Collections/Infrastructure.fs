@@ -9,7 +9,7 @@ let stopTime f =
     sw.Start()
     let result = f()
     sw.Stop()
-    result,float sw.ElapsedMilliseconds
+    result, float sw.ElapsedMilliseconds
 #endif
 
 /// Stops the average runtime for a given function and applies it the given count
@@ -20,6 +20,7 @@ let stopAverageTime count f =
     System.GC.Collect() // force garbage collector before testing
     let sw = new System.Diagnostics.Stopwatch()
     sw.Start()
+
     for _ in 1..count do
         f() |> ignore
 
@@ -27,7 +28,8 @@ let stopAverageTime count f =
     float sw.ElapsedMilliseconds / float count
 #endif
 
-let printInFsiTags s = printfn " [fsi:%s]" s
+let printInFsiTags s =
+    printfn " [fsi:%s]" s
 
 /// Stops the average runtime for a given function and applies it the given count
 /// Afterwards it reports it with the given description

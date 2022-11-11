@@ -4,7 +4,7 @@ namespace FSharpx.Collections.Experimental
 
 #nowarn "25"
 /// A zipper for lists
-type ListZipper<'T> = { Focus : 'T list; Path : 'T list } 
+type ListZipper<'T> = { Focus: 'T list; Path: 'T list }
 
 [<RequireQualifiedAccess>]
 module ListZipper =
@@ -12,22 +12,22 @@ module ListZipper =
     /// Returns the head element from the list under focus
     let focus zipper =
         match zipper.Focus with
-        | x::_ -> x
+        | x :: _ -> x
 
     /// Changes the element under the focus
     let modify newElement zipper =
         match zipper.Focus with
-        | x::xs -> { zipper with Focus = newElement::xs } 
+        | x :: xs -> { zipper with Focus = newElement :: xs }
 
     /// Moves the zipper forward
-    let forward zipper = 
+    let forward zipper =
         match zipper.Focus with
-        | x::xs -> { Focus = xs; Path = x::zipper.Path }
+        | x :: xs -> { Focus = xs; Path = x :: zipper.Path }
 
     /// Moves the zipper backwards
-    let back zipper = 
+    let back zipper =
         match zipper.Path with
-        | b::bs -> { Focus = b::zipper.Focus; Path = bs }
+        | b :: bs -> { Focus = b :: zipper.Focus; Path = bs }
 
     /// Moves the zipper to the front
     let rec front zipper =
@@ -39,4 +39,5 @@ module ListZipper =
     let zipper list = { Focus = list; Path = [] }
 
     /// Returns the whole list from the zipper
-    let getList zipper = (front zipper).Focus
+    let getList zipper =
+        (front zipper).Focus

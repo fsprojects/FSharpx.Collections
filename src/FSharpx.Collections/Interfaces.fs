@@ -12,231 +12,231 @@ type IPersistentVector<'T> =
     inherit System.Collections.Generic.IReadOnlyList<'T>
 
     /// Returns the value at the index. If the index is out of bounds it throws an exception.
-    abstract member Item  : int -> 'T with get
+    abstract member Item: int -> 'T with get
 
     /// Returns a new vector with the element 'added' at the end.
-    abstract member Conj : 'T -> IPersistentVector<'T>
+    abstract member Conj: 'T -> IPersistentVector<'T>
 
     /// Returns the number of items in the collection.
-    abstract member Count : unit -> int
+    abstract member Count: unit -> int
 
     /// Returns the last element in the vector. If the vector is empty it throws an exception.
-    abstract member Peek : unit -> 'T
+    abstract member Peek: unit -> 'T
 
     /// Returns a new vector without the last item. If the collection is empty it throws an exception.
-    abstract member Pop : unit -> IPersistentVector<'T>
+    abstract member Pop: unit -> IPersistentVector<'T>
 
     /// Returns a new vector that contains the given value at the index. Note - index must be &lt;= vector.Count.
-    abstract member AssocN : int*'T -> IPersistentVector<'T>
+    abstract member AssocN: int * 'T -> IPersistentVector<'T>
 
 type IDeque<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
     inherit System.Collections.Generic.IReadOnlyList<'T>
-    
+
     ///returns a new deque with the element added to the beginning
-    abstract member Cons : 'T -> IDeque<'T>
+    abstract member Cons: 'T -> IDeque<'T>
 
     ///returns the count of elements
-    abstract member Count : int with get
+    abstract member Count: int
 
     ///returns the first element
-    abstract member Head : 'T with get
+    abstract member Head: 'T
 
     ///returns option first element
-    abstract member TryGetHead : 'T option with get
+    abstract member TryGetHead: 'T option
 
     ///returns a new deque of the elements before the last element
-    abstract member Init : IDeque<'T> with get
+    abstract member Init: IDeque<'T>
 
     ///returns option deque of the elements before the last element
-    abstract member TryGetInit : IDeque<'T> option with get
+    abstract member TryGetInit: IDeque<'T> option
 
     ///returns true if the deque has no elements
-    abstract member IsEmpty : bool with get
+    abstract member IsEmpty: bool
 
     ///returns the last element
-    abstract member Last : 'T with get
+    abstract member Last: 'T
 
     ///returns option last element
-    abstract member TryGetLast : 'T option with get
+    abstract member TryGetLast: 'T option
 
     ///returns the count of elements
-    abstract member Length : int with get
+    abstract member Length: int
 
     ///returns element by index
-    abstract member Lookup : int -> 'T
+    abstract member Lookup: int -> 'T
 
     ///returns option element by index
-    abstract member TryLookup : int -> 'T option
+    abstract member TryLookup: int -> 'T option
 
     ///returns deque with element removed by index
-    abstract member Remove : int -> IDeque<'T>
+    abstract member Remove: int -> IDeque<'T>
 
     //returns option deque with element removed by index
-    abstract member TryRemove : int -> IDeque<'T> option
+    abstract member TryRemove: int -> IDeque<'T> option
 
     ///returns deque reversed
-    abstract member Rev : IDeque<'T> with get
+    abstract member Rev: IDeque<'T>
 
     ///returns a new deque with the element added to the end
-    abstract member Snoc : 'T -> IDeque<'T>
+    abstract member Snoc: 'T -> IDeque<'T>
 
     ///returns a new deque of the elements trailing the first element
-    abstract member Tail : IDeque<'T> with get
+    abstract member Tail: IDeque<'T>
 
     ///returns option deque of the elements trailing the first element
-    abstract member TryGetTail : IDeque<'T> option with get
+    abstract member TryGetTail: IDeque<'T> option
 
     ///returns the first element and tail
-    abstract member Uncons : 'T * IDeque<'T> with get
+    abstract member Uncons: 'T * IDeque<'T>
 
     //returns the option first element and tail
-    abstract member TryUncons : ('T * IDeque<'T>) option with get
+    abstract member TryUncons: ('T * IDeque<'T>) option
 
     ///returns init and the last element
-    abstract member Unsnoc : IDeque<'T> * 'T with get
+    abstract member Unsnoc: IDeque<'T> * 'T
 
     ///returns option init and the last element
-    abstract member TryUnsnoc : (IDeque<'T> * 'T) option with get
+    abstract member TryUnsnoc: (IDeque<'T> * 'T) option
 
     ///returns deque with element updated by index
-    abstract member Update : int -> 'T -> IDeque<'T>
+    abstract member Update: int -> 'T -> IDeque<'T>
 
     ///returns option deque with element updated by index
-    abstract member TryUpdate : int -> 'T -> IDeque<'T> option
+    abstract member TryUpdate: int -> 'T -> IDeque<'T> option
 
-type IHeap<'T when 'T : comparison> =
+type IHeap<'T when 'T: comparison> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
     ///returns the count of elements
-    abstract member Count : unit -> int
+    abstract member Count: unit -> int
 
     ///returns the min or max element
-    abstract member Head : unit -> 'T 
+    abstract member Head: unit -> 'T
 
     ///returns option first min or max element
-    abstract member TryGetHead : unit -> 'T option
+    abstract member TryGetHead: unit -> 'T option
 
     ///returns true if the heap has no elements
-    abstract member IsEmpty : bool with get
+    abstract member IsEmpty: bool
 
     ///returns true if the heap has max element at head
-    abstract member IsDescending : bool with get
+    abstract member IsDescending: bool
 
     ///returns the count of elements
-    abstract member Length : unit -> int
+    abstract member Length: unit -> int
 
-type IHeap<'c, 'T when 'c :> IHeap<'c, 'T> and 'T : comparison> =
+type IHeap<'c, 'T when 'c :> IHeap<'c, 'T> and 'T: comparison> =
     inherit IHeap<'T>
 
     ///returns a new heap with the element inserted
-    abstract member Insert : 'T -> 'c
+    abstract member Insert: 'T -> 'c
 
     ///returns heap from merging two heaps, both must have same isDescending
-    abstract member Merge : 'c -> 'c
+    abstract member Merge: 'c -> 'c
 
     ///returns heap option from merging two heaps
-    abstract member TryMerge : 'c -> 'c option
+    abstract member TryMerge: 'c -> 'c option
 
     ///returns a new heap of the elements trailing the head
-    abstract member Tail : unit -> 'c 
+    abstract member Tail: unit -> 'c
 
     ///returns option heap of the elements trailing the head
-    abstract member TryGetTail : unit -> 'c option 
+    abstract member TryGetTail: unit -> 'c option
 
     ///returns the head element and tail
-    abstract member Uncons : unit -> ('T * 'c) 
+    abstract member Uncons: unit -> ('T * 'c)
 
     ///returns option head element and tail
-    abstract member TryUncons : unit -> ('T * 'c) option
+    abstract member TryUncons: unit -> ('T * 'c) option
 
 type IQueue<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
 
- 
+
     ///returns the count of elements
-    abstract member Count : unit -> int
+    abstract member Count: unit -> int
 
     ///returns the first element
-    abstract member Head :'T with get
+    abstract member Head: 'T
 
     ///returns option first element
-    abstract member TryGetHead :'T option with get
+    abstract member TryGetHead: 'T option
 
     ///returns true if the queue has no elements
-    abstract member IsEmpty :bool with get
+    abstract member IsEmpty: bool
 
     ///returns the count of elements
-    abstract member Length : unit -> int
+    abstract member Length: unit -> int
 
     ///returns a new queue with the element added to the end
-    abstract member Snoc : 'T -> IQueue<'T>
+    abstract member Snoc: 'T -> IQueue<'T>
 
     ///returns a new queue of the elements trailing the first element
-    abstract member Tail : IQueue<'T> with get
+    abstract member Tail: IQueue<'T>
 
     ///returns option queue of the elements trailing the first element
-    abstract member TryGetTail : IQueue<'T> option with get
+    abstract member TryGetTail: IQueue<'T> option
 
     ///returns the first element and tail
-    abstract member Uncons : 'T * IQueue<'T> with get
+    abstract member Uncons: 'T * IQueue<'T>
 
     //returns the option first element and tail
-    abstract member TryUncons : ('T * IQueue<'T>) option with get
+    abstract member TryUncons: ('T * IQueue<'T>) option
 
 type IRandomAccessList<'T> =
     inherit System.Collections.IEnumerable
     inherit System.Collections.Generic.IEnumerable<'T>
     inherit System.Collections.Generic.IReadOnlyCollection<'T>
     inherit System.Collections.Generic.IReadOnlyList<'T>
-    
+
     ///returns a new random access list with the element added to the beginning
-    abstract member Cons : 'T -> IRandomAccessList<'T>
+    abstract member Cons: 'T -> IRandomAccessList<'T>
 
     ///returns the count of elements
-    abstract member Count : unit -> int
+    abstract member Count: unit -> int
 
     ///returns the first element
-    abstract member Head : 'T with get
+    abstract member Head: 'T
 
-    ///returns option first element 
-    abstract member TryGetHead : 'T option with get
+    ///returns option first element
+    abstract member TryGetHead: 'T option
 
     ///returns true if the random access list has no elements
-    abstract member IsEmpty : bool with get
+    abstract member IsEmpty: bool
 
     ///returns the count of elements
-    abstract member Length : unit -> int
+    abstract member Length: unit -> int
 
     ///returns element by index
-    abstract member Lookup : int -> 'T
+    abstract member Lookup: int -> 'T
 
     ///returns option element by index
-    abstract member TryLookup : int -> 'T option
+    abstract member TryLookup: int -> 'T option
 
     ///returns random access list reversed
-    abstract member Rev : unit -> IRandomAccessList<'T> 
+    abstract member Rev: unit -> IRandomAccessList<'T>
 
     ///returns a new random access list of the elements trailing the first element
-    abstract member Tail : IRandomAccessList<'T> with get
+    abstract member Tail: IRandomAccessList<'T>
 
     ///returns a option random access list of the elements trailing the first element
-    abstract member TryGetTail : IRandomAccessList<'T> option with get
+    abstract member TryGetTail: IRandomAccessList<'T> option
 
     ///returns the first element and tail
-    abstract member Uncons : 'T * IRandomAccessList<'T> with get
+    abstract member Uncons: 'T * IRandomAccessList<'T>
 
     ///returns the option first element and tail
-    abstract member TryUncons : ('T * IRandomAccessList<'T>) option with get
+    abstract member TryUncons: ('T * IRandomAccessList<'T>) option
 
     ///returns random access list with element updated by index
-    abstract member Update : int -> 'T -> IRandomAccessList<'T>
+    abstract member Update: int -> 'T -> IRandomAccessList<'T>
 
     ///returns option random access list with element updated by index
-    abstract member TryUpdate : int -> 'T -> IRandomAccessList<'T> option
+    abstract member TryUpdate: int -> 'T -> IRandomAccessList<'T> option

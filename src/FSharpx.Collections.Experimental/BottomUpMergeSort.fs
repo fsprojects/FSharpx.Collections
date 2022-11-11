@@ -8,35 +8,37 @@ module BottomUpMergeSort =
 
     type Sortable<'T> = {
         Size: int
-        Segments: Lazy<list<list<'T>>> }
+        Segments: Lazy<list<list<'T>>>
+    }
 
     let rec merge xs ys =
         match xs, ys with
         | [], ys -> ys
         | xs, [] -> xs
-        | x::tlx, y::tly ->
-            if x <= y then
-                x :: merge tlx ys
-            else
-                y :: merge xs tly
+        | x :: tlx, y :: tly -> if x <= y then x :: merge tlx ys else y :: merge xs tly
 
     let empty<'T> : Sortable<'T> = { Size = 0; Segments = lazy [] }
 
-    let isEmpty x = x.Size = 0
+    let isEmpty x =
+        x.Size = 0
 
-    let singleton x = { Size = 1; Segments = lazy [[x]] }
+    let singleton x = { Size = 1; Segments = lazy [ [ x ] ] }
 
     let rec addSeg seg segs size =
         if size % 2 = 0 then
-            seg::segs
+            seg :: segs
         else
             addSeg (merge seg (List.head segs)) (List.tail segs) (size / 2)
 
-    let add x y = { Size = y.Size + 1; Segments = lazy addSeg [x] (y.Segments.Force()) y.Size }
+    let add x y = {
+        Size = y.Size + 1
+        Segments = lazy addSeg [ x ] (y.Segments.Force()) y.Size
+    }
 
     let rec mergeAll xs ys =
         match xs, ys with
         | xs, [] -> xs
-        | xs, seg::segs -> mergeAll (merge xs seg) segs
+        | xs, seg :: segs -> mergeAll (merge xs seg) segs
 
-    let sort x = mergeAll [] (x.Segments.Force())
+    let sort x =
+        mergeAll [] (x.Segments.Force())
