@@ -430,6 +430,20 @@ module PersistentVectorTests =
                     i * 2 |> Expect.equal "map" a.[i - 1]
             }
 
+            test "vector should allow mapi" {
+                let vector = ref PersistentVector.empty
+
+                for i in 1..300 do
+                    vector := PersistentVector.conj i (!vector)
+
+                let vector2 = PersistentVector.mapi (fun index x -> index + x * 2) (!vector)
+
+                let a = vector2 |> Seq.toArray
+
+                for i in 1..300 do
+                    (i - 1) + i * 2 |> Expect.equal "map" a.[i - 1]
+            }
+
             test "vector should allow init" {
                 let vector = PersistentVector.init 5 (fun x -> x * 2)
                 let s = Seq.init 5 (fun x -> x * 2)

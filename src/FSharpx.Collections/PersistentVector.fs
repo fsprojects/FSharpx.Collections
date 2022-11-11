@@ -140,6 +140,7 @@ type internal TransientVector<'T>(count, shift: int, root: Node, tail: obj[]) =
     member this.rangedIterator<'T>(startIndex, endIndex) : 'T seq =
         let mutable i = startIndex
         let mutable b = i - (i % Literals.blockSize)
+
         let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
@@ -335,6 +336,7 @@ and PersistentVector<'T>(count, shift: int, root: Node, tail: obj[]) =
     member this.rangedIterator<'T>(startIndex, endIndex) : 'T seq =
         let mutable i = startIndex
         let mutable b = i - (i % Literals.blockSize)
+
         let mutable array = if startIndex < count then (this.ArrayFor i) else null
 
         seq {
@@ -560,6 +562,16 @@ module PersistentVector =
 
         for item in vector do
             ret <- ret.conj(f item)
+
+        ret.persistent()
+
+    let mapi (f: int -> 'T -> 'T1) (vector: PersistentVector<'T>) : 'T1 PersistentVector =
+        let mutable ret = TransientVector()
+        let mutable index = 0
+
+        for item in vector do
+            ret <- ret.conj(f index item)
+            index <- index + 1
 
         ret.persistent()
 
