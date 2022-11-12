@@ -124,7 +124,7 @@ module ByteString =
         x.Array, x.Offset, x.Count
 
     /// needs .fsi file
-    let empty = ByteString()
+    let empty = ByteString([||])
 
     /// needs .fsi file
     let singleton c =
