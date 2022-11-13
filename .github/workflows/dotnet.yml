@@ -7,6 +7,13 @@ on:
   pull_request:
     branches:
     - master
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release NuGet package'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -35,8 +42,13 @@ jobs:
       run: dotnet paket restore
     - name: Build and Test
       run: dotnet fake run build.fsx
-    - name: Publish NuGet
-      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master'
+    - name: Publish prerelease NuGet to GitHub
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
       run: dotnet fake run build.fsx -t PublishCINuGet
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish NuGet to NuGet.org
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
+      run: dotnet fake run build.fsx -t Release
+      env:
+        NUGET_KEY: ${{ secrets.NUGETKEY }}
