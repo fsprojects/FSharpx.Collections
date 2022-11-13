@@ -43,7 +43,7 @@ jobs:
     - name: Build and Test
       run: dotnet fake run build.fsx
     - name: Publish prerelease NuGet to GitHub
-      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && (github.event.inputs.release == null || github.event.inputs.release == 'false')
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
       run: dotnet fake run build.fsx -t PublishCINuGet
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
