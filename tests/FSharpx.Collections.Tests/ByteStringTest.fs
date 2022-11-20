@@ -13,6 +13,9 @@ module ByteStringTests =
         "empty1", ByteString.create ""B, ByteString.create ""B, 0
         "empty2", ByteString.create ""B, ByteString.create "a"B, -1
         "empty3", ByteString.create "a"B, ByteString.create ""B, 1
+        "empty5", ByteString.empty, ByteString.create "a"B, -1
+        "empty6", ByteString.create "a"B, ByteString.empty, 1
+        "empty7", ByteString.empty, ByteString.create ""B, 0
 
         "same1", ByteString.create "a"B, ByteString.create "a"B, 0
         "smaller1", ByteString.create "a"B, ByteString.create "b"B, -1
