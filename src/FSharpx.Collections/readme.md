@@ -4,7 +4,7 @@
 
 This namespace is for Purely Functional (immutable) Data Structures. Mutable structures belong in FSharpx.Collections.Mutable. FSharpx.Collections and FSharpx.Collections.Mutable auto-open in client projects opening FSharpx.
 
-##Structure Type and Module
+## Structure Type and Module
 
 The structure’s type should exist directly in the namespace, as well as a module with the same name as the type, but not the type under the module. The type should have all the members that operate on an instantiated type. The module should have let bindings to all the the type members as well as let bindings for all other "utility" functions on the type, like ofSeq and empty.
 
