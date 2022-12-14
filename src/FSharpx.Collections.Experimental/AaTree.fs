@@ -9,7 +9,7 @@ open System.Collections.Generic
 /// A balanced binary tree similar to a red-black tree which may have less predictable performance.
 type AaTree<'T when 'T: comparison> = 
     | E
-    | T of int * AaTree<'T> * 'T * AaTree<'T>
+    | T of length:int * leftSubtree:AaTree<'T> * value:'T * rightSubtree:AaTree<'T>
     
     member x.ToList() = 
         AaTree.toList x
