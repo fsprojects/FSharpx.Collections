@@ -1,6 +1,6 @@
 # FSharpx.Collections [![NuGet Badge](https://buildstats.info/nuget/FSharpx.Collections)](https://www.nuget.org/packages/FSharpx.Collections)
 
-**FSharpx.Collections** is a collection of data structures for use with F# and C#. 
+**FSharpx.Collections** is a collection of data structures for use with F# and C#.
 
 See [the home page](http://fsprojects.github.io/FSharpx.Collections/) and [API docs](http://fsprojects.github.io/FSharpx.Collections/reference/index.html) for details.
 
@@ -20,6 +20,6 @@ For git history prior to commit 169ced2 on October 19, 2013 refer to [FSharpx.Ex
 
 - [@forki](https://github.com/forki)
 - [@mausch](https://github.com/mausch)
-- [@jackfoxy](https://github.com/jackfoxy)
+- [@gdziadkiewicz](https://github.com/gdziadkiewicz)
 
 The default maintainer account for projects under "fsprojects" is [@fsprojectsgit](https://github.com/fsprojectsgit) - F# Community Project Incubation Space (repo management)
