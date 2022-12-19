@@ -10,17 +10,23 @@ open System.Collections.Generic
 type AaTree<'T when 'T: comparison> = 
     | E
     | T of length:int * leftSubtree:AaTree<'T> * value:'T * rightSubtree:AaTree<'T>
-    
+
+    member x.ToArray() =
+        AaTree.toArray x
+
     member x.ToList() = 
         AaTree.toList x
 
+    member x.ToSeq() =
+        AaTree.toSeq x
+
     interface IEnumerable<'T> with
         member x.GetEnumerator() =
-            (x.ToList() :> _ seq).GetEnumerator()
+            (x.ToSeq() :> _ seq).GetEnumerator()
 
     interface System.Collections.IEnumerable with
         member x.GetEnumerator() =
-            (x :> _ seq).GetEnumerator()
+            (x.ToSeq() :> _ seq).GetEnumerator()
 
 [<RequireQualifiedAccess>]
 module AaTree =
@@ -175,8 +181,6 @@ module AaTree =
     type AaTree<'T when 'T: comparison> with
         member x.Insert(y) = insert y x
         member x.Delete(y) = delete y x
-        member x.ToSeq() = toSeq x
-        member x.ToArray() = toArray x
         member x.Fold(folder, initialState) = fold folder initialState x
         member x.FoldBack(folder, initialState) = foldBack folder initialState x
         member x.Find(y) = find y x
