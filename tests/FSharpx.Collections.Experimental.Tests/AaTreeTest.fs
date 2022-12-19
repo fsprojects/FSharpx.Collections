@@ -11,11 +11,13 @@ module AaTreeTest =
 
         (* Existence tests. *)
         test "test isEmpty returns true for an empty AaTree" {
-            Expect.isTrue <| AaTree.isEmpty AaTree.empty <| "expect isEmpty returns true"
+            let tree = AaTree.empty
+            Expect.isTrue <| AaTree.isEmpty tree <| "expect isEmpty returns true"
         }
 
         test "test isEmpty returns false for an AaTree with at least one value" {
-            Expect.isFalse <| AaTree.isEmpty (AaTree.ofList [9]) <| "expect isEmpty returns false"            
+            let tree = AaTree.ofList [9]
+            Expect.isFalse <| AaTree.isEmpty tree <| "expect isEmpty returns false"            
         }
 
         test "test isEmpty returns true when we delete an AaTree's last element " {
