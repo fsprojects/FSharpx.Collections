@@ -35,10 +35,6 @@ module AaTree =
         | E -> true
         | _ -> false
 
-    let private isLeaf = function
-        | T(_, E, _, R) -> true
-        | _ -> false
-
     let private sngl = function
         | E -> false
         | T(_, _, _, E) -> true
@@ -82,14 +78,14 @@ module AaTree =
         | _ -> failwith "unexpected nlvl case"
 
     let private adjust = function
-        | T(lvt, lt, kt, rt) as t when lvl lt >= lvt - 1 && lvl rt >= (lvt - 1) 
-            -> t
+        | T(lvt, lt, kt, rt) as t when lvl lt >= lvt - 1 && lvl rt >= (lvt - 1) ->
+            t
         | T(lvt, lt, kt, rt) when lvl rt < lvt - 1 && sngl lt-> 
             skew <| T(lvt - 1, lt, kt, rt)
-        | T(lvt, T(lv1, a, kl, T(lvb, lb, kb, rb)), kt, rt) when lvl rt < lvt - 1 
-            -> T(lvb + 1, T(lv1, a, kl, lb), kb, T(lvt - 1, rb, kt, rt))
-        | T(lvt, lt, kt, rt) when lvl rt < lvt 
-            -> split <| T(lvt - 1, lt, kt, rt)
+        | T(lvt, T(lv1, a, kl, T(lvb, lb, kb, rb)), kt, rt) when lvl rt < lvt - 1 ->
+            T(lvb + 1, T(lv1, a, kl, lb), kb, T(lvt - 1, rb, kt, rt))
+        | T(lvt, lt, kt, rt) when lvl rt < lvt ->
+            split <| T(lvt - 1, lt, kt, rt)
         | T(lvt, lt, kt, T(lvr, T(lva, c, ka, d), kr, b)) -> 
             let a = T(lva, c, ka, d)
             T(lva + 1, T(lvt - 1, lt, kt, c), ka, (split (T(nlvl a, d, kr, b))))
@@ -113,10 +109,12 @@ module AaTree =
             if item < v
             then adjust <| T(h, delete item l, v, r)
             elif item > v
-            then T(h, l, v, delete item r)
+            then adjust <| T(h, l, v, delete item r)
+            elif isEmpty l
+            then r
             else 
                 let (newLeft, newVal) = splitMax l
-                T(h, newLeft, newVal, r)
+                adjust <| T(h, newLeft, newVal, r)
 
     /// O(log n): Returns true if the given item exists in the tree.
     let rec exists item = function
