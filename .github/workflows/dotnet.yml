@@ -2,11 +2,7 @@ name: Build and Test
 
 on:
   push:
-    branches:
-    - master
   pull_request:
-    branches:
-    - master
   workflow_dispatch:
     inputs:
       release:
@@ -46,13 +42,30 @@ jobs:
       run: dotnet paket restore
     - name: Build and Test
       run: dotnet fake run build.fsx
+
+    - name: Check secrets presence
+      id: checksecrets
+      shell: bash
+      run: |
+        echo "secretspresent=YES" >> $GITHUB_OUTPUT
+        if [ "$GITHUB_TOKEN" == "" ]; then
+          echo "secretspresent=NO" >> $GITHUB_OUTPUT
+        fi
+        if [ "$NUGET_KEY" == "" ]; then
+          echo "secretspresent=NO" >> $GITHUB_OUTPUT
+        fi
+      env:
+        NUGET_KEY: ${{ secrets.NUGETKEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Publish prerelease NuGet to GitHub
-      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
+      if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
       run: dotnet fake run build.fsx -t PublishCINuGet
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Publish NuGet to NuGet.org
-      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
+      if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
       run: dotnet fake run build.fsx -t Release
       env:
         NUGET_KEY: ${{ secrets.NUGETKEY }}
+
