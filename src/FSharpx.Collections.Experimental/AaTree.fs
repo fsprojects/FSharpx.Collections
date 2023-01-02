@@ -35,6 +35,10 @@ module AaTree =
         | E -> true
         | _ -> false
 
+    let private isLeaf = function
+        | T(_, E, _, R) -> true
+        | _ -> false
+
     let private sngl = function
         | E -> false
         | T(_, _, _, E) -> true
@@ -46,13 +50,6 @@ module AaTree =
     let private lvl = function
         | E -> 0
         | T(lvt, _, _, _) -> lvt
-
-    let private nlvl = function
-        | T(lvt, _, _, _) as t -> 
-            if sngl t
-            then (lvt - 1)
-            else lvt
-        | _ -> failwith "unexpected nlvl case"
 
     let private skew = function
         | T(lvx, T(lvy, a, ky, b), kx, c) when lvx = lvy
@@ -75,6 +72,15 @@ module AaTree =
             then split <| (skew <| T(h, l, v, insert item r))
             else node
 
+    (* nlvl function fixed according to Isabelle HOL prrof below: *)
+    (* https://isabelle.in.tum.de/library/HOL/HOL-Data_Structures/AA_Set.html#:~:text=text%E2%80%B9In%20the%20paper%2C%20the%20last%20case%20of%20%5C%3C%5Econst%3E%E2%80%B9adjust%E2%80%BA%20is%20expressed%20with%20the%20help%20of%20an%0Aincorrect%20auxiliary%20function%20%5Ctexttt%7Bnlvl%7D. *)
+    let private nlvl = function
+        | T(lvt, _, _, _) as t -> 
+            if sngl t
+            then lvt
+            else lvt + 1
+        | _ -> failwith "unexpected nlvl case"
+
     let private adjust = function
         | T(lvt, lt, kt, rt) as t when lvl lt >= lvt - 1 && lvl rt >= (lvt - 1) 
             -> t
@@ -89,11 +95,13 @@ module AaTree =
             T(lva + 1, T(lvt - 1, lt, kt, c), ka, (split (T(nlvl a, d, kr, b))))
         | _ -> failwith "unexpected adjust case"
 
-    let rec private dellrg = function
+    (* splitMax fixed as in Isabelle HOL proof below: *)
+    (* https://isabelle.in.tum.de/library/HOL/HOL-Data_Structures/AA_Set.html#:~:text=Function%20%E2%80%B9split_max%E2%80%BA%20below%20is%20called%20%5Ctexttt%7Bdellrg%7D%20in%20the%20paper.%0AThe%20latter%20is%20incorrect%20for%20two%20reasons%3A%20%5Ctexttt%7Bdellrg%7D%20is%20meant%20to%20delete%20the%20largest%0Aelement%20but%20recurses%20on%20the%20left%20instead%20of%20the%20right%20subtree%3B%20the%20invariant%0Ais%20not%20restored.%E2%80%BA *)
+    let rec private splitMax = function
         | T(_, l, v, E) -> (l, v)
-        | T(h, l, v, r) ->
-            let (newLeft, newVal) = dellrg l
-            T(h, newLeft, v, r), newVal
+        | T(h, l, v, r) as node ->
+            let (r', b) = splitMax r
+            in adjust <| node, b
         | _ -> failwith "unexpected dellrg case"
 
     /// O(log n): Returns an AaTree with the parameter removed.
@@ -107,7 +115,7 @@ module AaTree =
             elif item > v
             then T(h, l, v, delete item r)
             else 
-                let (newLeft, newVal) = dellrg l
+                let (newLeft, newVal) = splitMax l
                 T(h, newLeft, newVal, r)
 
     /// O(log n): Returns true if the given item exists in the tree.
