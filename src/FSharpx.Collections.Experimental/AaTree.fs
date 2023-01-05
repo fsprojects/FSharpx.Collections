@@ -95,7 +95,7 @@ module AaTree =
     let rec private splitMax =
         function
         | T(_, l, v, E) -> (l, v)
-        | T(h, l, v, r) as node -> let (r', b) = splitMax r in adjust <| node, b
+        | T(h, l, v, r) as node -> let (r', b) = splitMax r in adjust <| T(h, l, v, r'), b
         | _ -> failwith "unexpected dellrg case"
 
     /// O(log n): Returns an AaTree with the parameter removed.
