@@ -1,4 +1,4 @@
-# FSharpx.Collections [![NuGet Badge](https://buildstats.info/nuget/FSharpx.Collections)](https://www.nuget.org/packages/FSharpx.Collections)
+# FSharpx.Collections [![NuGet Status](http://img.shields.io/nuget/v/FSharpx.Collections.svg?style=flat)](https://www.nuget.org/packages/FSharpx.Collections/)
 
 **FSharpx.Collections** is a collection of data structures for use with F# and C#.
 
