@@ -10,7 +10,7 @@ Please contribute to this project. Don't ask for permission, just fork the repos
 
 ## Build Status
 
-[![Build Status](https://github.com/fsprojects/FSharpx.Collections/workflows/Build%20and%20Test/badge.svg?branch=master)](https://github.com/fsprojects/FSharpx.Collections/actions?query=branch%3Amaster)
+[![Build status](https://github.com/fsprojects/FSharpx.Collections/actions/workflows/dotnet.yml/badge.svg?branch=master&event=push)](https://github.com/fsprojects/FSharpx.Collections/actions?query=branch%3Amaster)
 
 Pre-release nuget packages automatically built from master branch are published to [GitHub fsproject NuGet feed](https://github.com/orgs/fsprojects/packages?repo_name=FSharpx.Collections) (`https://nuget.pkg.github.com/fsprojects/index.json`)
 
