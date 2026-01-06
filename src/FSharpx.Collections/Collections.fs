@@ -166,11 +166,6 @@ module Seq =
 
         next()
 
-    /// A safe version of seq head
-    let tryHead(source: seq<_>) =
-        use e = source.GetEnumerator()
-        if e.MoveNext() then Some(e.Current) else None //empty list
-
     let tail(source: seq<_>) = seq {
         use e = source.GetEnumerator()
 
