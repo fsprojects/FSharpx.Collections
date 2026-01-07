@@ -81,6 +81,15 @@ module Seq =
     let splitAt n seq =
         (Seq.take n seq, Seq.skip n seq)
 
+    /// The same as Seq.skip except will return None if not enough elements to skip or count passed is < 1
+    let rec trySkip<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
+        if count < 1 then
+            None
+        else
+            match tryHeadTail source with
+            | None -> None
+            | Some(head, tail) -> if count = 1 then Some tail else trySkip (count - 1) tail
+
     /// Splits a sequences up to the point where the predicate holds
     let span predicate source =
         (Seq.takeWhile predicate source, Seq.skipWhile predicate source)
