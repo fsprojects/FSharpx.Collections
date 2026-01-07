@@ -69,6 +69,7 @@ module Seq =
         else
             Some(LanguagePrimitives.DivideByInt<( ^a)> acc count)
 
+    /// The same as Seq.tryHead but also returning the tail alongside the head (in a tuple)
     let tryHeadTail<'T>(sequence: seq<'T>) : Option<'T * seq<'T>> =
         match Seq.tryHead sequence with
         | None -> None
