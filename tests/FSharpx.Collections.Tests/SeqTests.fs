@@ -164,7 +164,9 @@ module SeqTests =
 
             test "I should get some if try to get a index inside the seq" { Seq.tryNth 2 data |> Expect.equal "tryNth" (Some(3.)) }
 
-            test "I should get empty seq when skipNoFail past the end of the seq" { Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty }
+            test "I should get empty seq when skipNoFail past the end of the seq" {
+                Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty
+            }
 
             test "I should get Some when skipNoFail" {
                 Seq.skipNoFail 5 data
