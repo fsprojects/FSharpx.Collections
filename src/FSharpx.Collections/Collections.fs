@@ -82,6 +82,7 @@ module Seq =
         (Seq.take n seq, Seq.skip n seq)
 
     /// The same as Seq.skip except will return None if not enough elements to skip or count passed is < 1
+    [<TailCall>]
     let rec trySkip<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
         if count < 1 then
             None
