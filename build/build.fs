@@ -1,27 +1,3 @@
-#r @"paket:
-source https://api.nuget.org/v3/index.json
-framework net6.0
-nuget FSharp.Core
-nuget Fake.Core.Target
-nuget Fake.Core.ReleaseNotes
-nuget Fake.IO.FileSystem
-nuget Fake.Tools.Git
-nuget Fake.Runtime
-nuget Fake.DotNet.Paket
-nuget Fake.DotNet.AssemblyInfoFile
-nuget Fake.DotNet.Cli
-nuget Fake.DotNet.MSBuild
-nuget Fake.DotNet.Paket
-nuget Fake.DotNet.Testing.Expecto
-nuget Fake.DotNet.FSFormatting
-nuget Fake.JavaScript.Yarn
-//"
-
-#if !FAKE
-#load "./.fake/build.fsx/intellisense.fsx"
-#r "netstandard" // Temp fix for https://github.com/fsharp/FAKE/issues/1985
-#endif
-
 // --------------------------------------------------------------------------------------
 // FAKE build script
 // --------------------------------------------------------------------------------------
@@ -36,6 +12,12 @@ open Fake.DotNet.Testing
 open Fake.Tools
 open Fake.JavaScript
 open Fake.Runtime
+
+let initializeContext() =
+    let execContext = Context.FakeExecutionContext.Create false "build.fsx" []
+    Context.setExecutionContext(Context.RuntimeContext.Fake execContext)
+
+initializeContext()
 
 // Target configuration
 let configuration = "Release"
@@ -243,7 +225,19 @@ Target.create "All" ignore
 ==> "CINuGet"
 ==> "GenerateDocs"
 ==> "All"
+|> ignore
 
 "All" ==> "NuGet" ==> "PublishNuget" ==> "ReleaseDocs" ==> "Release"
+|> ignore
 
-Target.runOrDefault "All"
+[<EntryPoint>]
+let main args =
+    try
+        match args with
+        | [| target |] -> Target.runOrDefault target
+        | _ -> Target.runOrDefault "Run"
+
+        0
+    with e ->
+        printfn "%A" e
+        1

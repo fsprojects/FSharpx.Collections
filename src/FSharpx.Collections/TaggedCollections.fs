@@ -548,7 +548,7 @@ module SetTree =
         | [], [] -> 0
         | [], _ -> -1
         | _, [] -> 1
-        | (SetEmpty _ :: t1), (SetEmpty :: t2) -> compareStacks comparer t1 t2
+        | (SetEmpty :: t1), (SetEmpty :: t2) -> compareStacks comparer t1 t2
 #if ONE
         | (SetOne(n1k) :: t1), (SetOne(n2k) :: t2) ->
             let c = comparer.Compare(n1k, n2k)
