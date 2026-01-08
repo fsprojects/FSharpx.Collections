@@ -235,7 +235,7 @@ let main args =
     try
         match args with
         | [| target |] -> Target.runOrDefault target
-        | _ -> Target.runOrDefault "Run"
+        | _ -> Target.runOrDefault "All"
 
         0
     with e ->
