@@ -13,9 +13,7 @@ framework: netstandard2.0
 source https://api.nuget.org/v3/index.json
 
 nuget Fable.Core
-nuget Fable.FastCheck
-nuget Fable.FastCheck.Jest
-nuget Fable.Jester
+nuget Fable.Mocha
 nuget FSharp.Core
 
 group Build

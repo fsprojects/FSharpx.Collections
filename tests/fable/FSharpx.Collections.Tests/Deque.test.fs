@@ -1,21 +1,19 @@
 module DequeTests
 
-open Fable.Jester
-open Fable.FastCheck
-open Fable.FastCheck.Jest
+open Fable.Mocha
 open FSharpx.Collections
 
-Jest.test(
-    "NonEmptyList works",
-    async {
-        let d = Deque.empty
+let tests =
+    testList "DequeTests" [
+        test "NonEmptyList works" {
+            let d = Deque.empty
 
-        Jest.expect(Deque.isEmpty d).toEqual(true)
+            Expect.equal (Deque.isEmpty d) true "should be empty"
 
-        let d = d |> Deque.conj "b" |> Deque.conj "a"
+            let d = d |> Deque.conj "b" |> Deque.conj "a"
 
-        Jest.expect(Deque.isEmpty d).toEqual(false)
-        Jest.expect(Deque.head d).toEqual("b")
-        Jest.expect(Deque.length d).toEqual(2)
-    }
-)
+            Expect.equal (Deque.isEmpty d) false "should not be empty anymore"
+            Expect.equal (Deque.head d) "b" "b should be at top"
+            Expect.equal (Deque.length d) 2 "Should have length 2"
+        }
+    ]
