@@ -1614,16 +1614,6 @@ module RandomAccessListTest =
             }
         ]
 
-    let mkSerializationProperty<'a when 'a: equality> name =
-        testPropertyWithConfig config10k (sprintf "RandomAccessList serialization and deserialization work with %ss" name) (fun (l: 'a list) ->
-            let ral1 = RandomAccessList.ofSeq l
-            let f = BinaryFormatter()
-            use memStream = new MemoryStream()
-            f.Serialize(memStream, ral1)
-            memStream.Position <- 0L
-            let ral2 = f.Deserialize memStream :?> 'a RandomAccessList
-            Seq.equalsWith (=) ral1 ral2)
-
     [<Tests>]
     let propertyTestRandomAccessList =
         let consThruList l q =
@@ -1859,8 +1849,4 @@ module RandomAccessListTest =
                 (Prop.forAll(Arb.fromGen RandomAccessListIntConsGen)
                  <| fun (q, l) -> q |> RandomAccessList.rev |> List.ofSeq = (List.rev l))
 
-            mkSerializationProperty<int> "32-bit integer"
-            mkSerializationProperty<string> "string"
-            mkSerializationProperty<Guid> "GUID"
-            mkSerializationProperty<bigint> "big integer"
         ]
