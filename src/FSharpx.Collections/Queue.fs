@@ -89,10 +89,11 @@ type Queue<'T>(front: list<'T>, rBack: list<'T>) =
 
     interface System.Collections.Generic.IEnumerable<'T> with
         override this.GetEnumerator() : System.Collections.Generic.IEnumerator<'T> =
-            let e = seq {
-                yield! front
-                yield! (List.rev rBack)
-            }
+            let e =
+                seq {
+                    yield! front
+                    yield! (List.rev rBack)
+                }
 
             e.GetEnumerator()
 

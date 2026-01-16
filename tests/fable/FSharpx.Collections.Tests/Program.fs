@@ -3,13 +3,13 @@ module Program
 open Fable.Mocha
 
 let allTests =
-    testList "All" [
-        QueueTests.tests
-        PersistentVectorTests.tests
-        NonEmptyListTests.tests
-        LazyListTests.tests
-        DequeTests.tests
-    ]
+    testList
+        "All"
+        [ QueueTests.tests
+          PersistentVectorTests.tests
+          NonEmptyListTests.tests
+          LazyListTests.tests
+          DequeTests.tests ]
 
 [<EntryPoint>]
 let main args =

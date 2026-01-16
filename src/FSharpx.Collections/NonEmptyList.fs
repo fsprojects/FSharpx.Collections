@@ -7,9 +7,7 @@ open System.Runtime.CompilerServices
 
 type NonEmptyList<'T> =
     private
-        {
-            List: 'T list
-        }
+        { List: 'T list }
 
     member this.Head = this.List.Head
     member this.Tail = this.List.Tail
@@ -30,11 +28,13 @@ type NonEmptyList<'T> =
 [<RequireQualifiedAccess>]
 module NonEmptyList =
     [<CompiledName("Create")>]
-    let create head tail = { List = head :: tail }
+    let create head tail =
+        { List = head :: tail }
 
 #if !FABLE_COMPILER
     [<CompiledName("Create")>]
-    let createParamsArray(head, [<ParamArray>] tail) = { List = head :: List.ofArray tail }
+    let createParamsArray(head, [<ParamArray>] tail) =
+        { List = head :: List.ofArray tail }
 #endif
 
     [<CompiledName("Singleton")>]
@@ -84,18 +84,22 @@ module NonEmptyList =
             { List = List.ofSeq e }
 
     [<CompiledName("Select")>]
-    let map f list = { List = List.map f list.List }
+    let map f list =
+        { List = List.map f list.List }
 
     [<CompiledName("Cons")>]
-    let cons head tail = { List = head :: tail.List }
+    let cons head tail =
+        { List = head :: tail.List }
 
 #if !FABLE_COMPILER
     [<CompiledName("Concat")>]
 #endif
-    let appendList list1 list2 = { List = list1.List @ list2 }
+    let appendList list1 list2 =
+        { List = list1.List @ list2 }
 
     [<CompiledName("Concat")>]
-    let append list1 list2 = { List = list1.List @ list2.List }
+    let append list1 list2 =
+        { List = list1.List @ list2.List }
 
     [<CompiledName("Aggregate")>]
     let reduce reduction list =
@@ -107,13 +111,13 @@ module NonEmptyList =
 
     [<CompiledName("Reverse")>]
     [<Extension>]
-    let rev list = { List = List.rev list.List }
+    let rev list =
+        { List = List.rev list.List }
 
     [<CompiledName("SelectMany")>]
     let collect (mapping: 'a -> NonEmptyList<'b>) (list: NonEmptyList<'a>) =
         list.List |> List.collect(fun x -> (mapping x).List) |> ofList
 
     [<CompiledName("Zip")>]
-    let zip list1 list2 = {
-        List = List.zip list1.List list2.List
-    }
+    let zip list1 list2 =
+        { List = List.zip list1.List list2.List }

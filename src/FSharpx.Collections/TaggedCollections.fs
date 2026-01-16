@@ -536,8 +536,7 @@ module SetTree =
               member __.Reset() =
                   i <- SetIterator s
           interface System.IDisposable with
-              member __.Dispose() = ()
-        }
+              member __.Dispose() = () }
 
     //--------------------------------------------------------------------------
     // Set comparison.  This can be expensive.
@@ -688,10 +687,10 @@ type Set<'T, 'ComparerTag> when 'ComparerTag :> IComparer<'T>(comparer: ICompare
         SetTree.forAll f tree
 
     static member (-)((a: Set<'T, 'ComparerTag>), (b: Set<'T, 'ComparerTag>)) =
-        Set<_, _>.Difference (a, b)
+        Set<_, _>.Difference(a, b)
 
     static member (+)((a: Set<'T, 'ComparerTag>), (b: Set<'T, 'ComparerTag>)) =
-        Set<_, _>.Union (a, b)
+        Set<_, _>.Union(a, b)
 
     static member Intersection((a: Set<'T, 'ComparerTag>), (b: Set<'T, 'ComparerTag>)) : Set<'T, 'ComparerTag> =
         match b.Tree with
@@ -1237,8 +1236,7 @@ module MapTree =
               member self.Reset() =
                   i <- MapIterator(s)
           interface System.IDisposable with
-              member self.Dispose() = ()
-        }
+              member self.Dispose() = () }
 
 
 [<System.Diagnostics.DebuggerDisplay("Count = {Count}")>]

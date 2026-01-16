@@ -35,22 +35,21 @@ let (|Fsproj|Csproj|Vbproj|)(projFileName: string) =
 
 // Generate assembly info files with the right version & up-to-date information
 Target.create "AssemblyInfo" (fun _ ->
-    let getAssemblyInfoAttributes projectName = [
-        AssemblyInfo.Title(projectName)
-        AssemblyInfo.Product "FSharpx.Collections"
-        AssemblyInfo.Description "FSharpx.Collections is a collection of datastructures for use with F# and C#."
-        AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Tests"
-        AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
-        AssemblyInfo.Version release.AssemblyVersion
-        AssemblyInfo.FileVersion release.AssemblyVersion
-        AssemblyInfo.Configuration configuration
-    ]
+    let getAssemblyInfoAttributes projectName =
+        [ AssemblyInfo.Title(projectName)
+          AssemblyInfo.Product "FSharpx.Collections"
+          AssemblyInfo.Description "FSharpx.Collections is a collection of datastructures for use with F# and C#."
+          AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Tests"
+          AssemblyInfo.InternalsVisibleTo "FSharpx.Collections.Experimental.Tests"
+          AssemblyInfo.Version release.AssemblyVersion
+          AssemblyInfo.FileVersion release.AssemblyVersion
+          AssemblyInfo.Configuration configuration ]
 
     let getProjectDetails(projectPath: string) =
         let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
         (projectPath, projectName, System.IO.Path.GetDirectoryName(projectPath), (getAssemblyInfoAttributes projectName))
 
-    !! "src/**/*.??proj"
+    !!"src/**/*.??proj"
     |> Seq.map getProjectDetails
     |> Seq.iter(fun (projFileName, _, folderName, attributes) ->
         match projFileName with
@@ -74,26 +73,23 @@ Target.create "Build" (fun _ ->
     "FSharpx.Collections.sln"
     |> DotNet.build(fun p ->
         { p with
-            Configuration = buildConfiguration
-        }))
+            Configuration = buildConfiguration }))
 
 // --------------------------------------------------------------------------------------
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    !! "tests/**/bin/Release/net8.0/*Tests.dll"
+    !!"tests/**/bin/Release/net8.0/*Tests.dll"
     |> Expecto.run(fun x ->
         { x with
             Parallel = true
-            ParallelWorkers = System.Environment.ProcessorCount
-        }))
+            ParallelWorkers = System.Environment.ProcessorCount }))
 
 Target.create "RunTestsFable" (fun _ ->
     let setParams =
         (fun (o: Yarn.YarnParams) ->
             { o with
-                WorkingDirectory = "tests/fable"
-            })
+                WorkingDirectory = "tests/fable" })
 
     Yarn.installPureLock setParams
     Yarn.exec "test" setParams)
@@ -108,8 +104,7 @@ let nuGet out suffix =
             ToolType = ToolType.CreateLocalTool()
             OutputPath = out
             Version = release.NugetVersion + (suffix |> Option.defaultValue "")
-            ReleaseNotes = releaseNotes
-        })
+            ReleaseNotes = releaseNotes })
 
 Target.create "NuGet" (fun _ -> nuGet "bin" None)
 
@@ -124,7 +119,7 @@ let ensureOk(pr: ProcessResult) =
 Target.create "PublishCINuGet" (fun _ ->
     let token = Environment.environVarOrFail "GITHUB_TOKEN"
 
-    !! "temp/*.nupkg"
+    !!"temp/*.nupkg"
     |> Seq.iter(fun file ->
         DotNet.exec id "nuget" (sprintf "push %s -s https://nuget.pkg.github.com/fsprojects/index.json -k %s" file token)
         |> ensureOk //
@@ -134,8 +129,7 @@ Target.create "PublishNuget" (fun _ ->
     Paket.push(fun p ->
         { p with
             ToolType = ToolType.CreateLocalTool()
-            WorkingDir = "bin"
-        }))
+            WorkingDir = "bin" }))
 
 // --------------------------------------------------------------------------------------
 // Generate the documentation
@@ -177,7 +171,7 @@ Target.create "Release" (fun _ ->
 // Fantomas code formatting and style checking
 
 let sourceFiles =
-    !! "**/*.fs" ++ "**/*.fsx"
+    !!"**/*.fs" ++ "**/*.fsx"
     -- "**/fable_modules/**/**.fs"
     -- "packages/**/*.*"
     -- "paket-files/**/*.*"

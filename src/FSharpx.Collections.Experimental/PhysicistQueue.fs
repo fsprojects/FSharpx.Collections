@@ -170,10 +170,11 @@ type PhysicistQueue<'T>(prefix: list<'T>, frontLength: int, front: Lazy<list<'T>
         member this.Count = this.Length
 
         member this.GetEnumerator() =
-            let e = seq {
-                yield! front.Value
-                yield! (List.rev rBack)
-            }
+            let e =
+                seq {
+                    yield! front.Value
+                    yield! (List.rev rBack)
+                }
 
             e.GetEnumerator()
 

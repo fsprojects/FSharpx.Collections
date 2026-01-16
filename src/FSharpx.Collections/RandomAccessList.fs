@@ -355,10 +355,9 @@ and [<Serializable>] RandomAccessList<'T>(count, shift: int, root: NodeR, tail: 
         if count = 0 then
             failwith "Can't tail empty randomAccessList"
         else if count = 1 then
-            RandomAccessList<'T>.Empty ()
-        else
+            RandomAccessList<'T>.Empty()
+        else if
 
-        if
             count - tailOff > 1
         then
             let mutable newroot =

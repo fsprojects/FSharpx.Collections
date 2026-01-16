@@ -52,8 +52,7 @@ type ByteString(array: byte[], offset: int, count: int) =
                   member self.MoveNext() = false
                   member self.Reset() = ()
               interface System.IDisposable with
-                  member self.Dispose() = ()
-            }
+                  member self.Dispose() = () }
         else
             let segment = x.Array
             let minIndex = x.Offset
@@ -87,8 +86,7 @@ type ByteString(array: byte[], offset: int, count: int) =
                   member self.Reset() =
                       currentIndex <- minIndex - 1
               interface System.IDisposable with
-                  member self.Dispose() = ()
-            }
+                  member self.Dispose() = () }
 
     member this.Item
         with get pos = this.Array.[this.Offset + pos]

@@ -2,11 +2,10 @@
 
 open FSharpx.Collections
 
-type RealTimeQueue<'T> = {
-    F: LazyList<'T>
-    R: list<'T>
-    S: LazyList<'T>
-}
+type RealTimeQueue<'T> =
+    { F: LazyList<'T>
+      R: list<'T>
+      S: LazyList<'T> }
 
 /// RealTime queue from Chris Okasaki's "Purely functional data structures"
 /// original implementation taken from http://lepensemoi.free.fr/index.php/2010/01/07/real-time-queue
@@ -14,11 +13,10 @@ type RealTimeQueue<'T> = {
 module RealTimeQueue =
 
     ///O(1). Returns queue of no elements.
-    let empty<'T> : RealTimeQueue<'T> = {
-        F = LazyList.empty
-        R = []
-        S = LazyList.empty
-    }
+    let empty<'T> : RealTimeQueue<'T> =
+        { F = LazyList.empty
+          R = []
+          S = LazyList.empty }
 
     ///O(1). Returns true if the queue has no elements
     let isEmpty queue =
