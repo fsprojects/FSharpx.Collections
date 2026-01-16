@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         dotnet: [8.0.416]
-        node: ['14']
+        node: ['24']
     runs-on: ${{ matrix.os }}
 
     steps:
