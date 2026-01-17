@@ -13,15 +13,14 @@ module IndexedRoseTreeTest =
     let atree = tree 1 [ tree 2 [ tree 3 [] ]; tree 4 [ tree 5 [ tree 6 [] ] ] ]
 
     let ctree =
-        tree "f" [
-            tree "b" [ tree "a" []; tree "d" [ tree "c" []; tree "e" [] ] ]
-            tree "g" [ tree "i" [ tree "h" [] ] ]
-        ]
+        tree
+            "f"
+            [ tree "b" [ tree "a" []; tree "d" [ tree "c" []; tree "e" [] ] ]
+              tree "g" [ tree "i" [ tree "h" [] ] ] ]
 
-    type HtmlElement = {
-        TagName: string
-        Attributes: (string * string) list
-    }
+    type HtmlElement =
+        { TagName: string
+          Attributes: (string * string) list }
 
     type HtmlNode =
         | Element of HtmlElement
@@ -60,105 +59,105 @@ module IndexedRoseTreeTest =
 
         let htmldoc = tree (elem "body") [ tree (elem "div") [ text "hello world" ] ]
 
-        testList "Experimental IndexedRoseTree" [
-            test "preOrder works" {
-                let actual = IndexedRoseTree.preOrder ctree |> Seq.toList
-                Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
-            }
+        testList
+            "Experimental IndexedRoseTree"
+            [ test "preOrder works" {
+                  let actual = IndexedRoseTree.preOrder ctree |> Seq.toList
+                  Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
+              }
 
-            test "postOrder works" {
-                let actual = IndexedRoseTree.postOrder ctree |> Seq.toList
-                Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
-            }
+              test "postOrder works" {
+                  let actual = IndexedRoseTree.postOrder ctree |> Seq.toList
+                  Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
+              }
 
-            test "map" {
-                let actual = IndexedRoseTree.map ((+) 1) atree
-                let expected = tree 2 [ tree 3 [ tree 4 [] ]; tree 5 [ tree 6 [ tree 7 [] ] ] ]
-                Expect.equal "" expected actual
-            }
+              test "map" {
+                  let actual = IndexedRoseTree.map ((+) 1) atree
+                  let expected = tree 2 [ tree 3 [ tree 4 [] ]; tree 5 [ tree 6 [ tree 7 [] ] ] ]
+                  Expect.equal "" expected actual
+              }
 
-            test "fold via preOrder" {
-                let actual = IndexedRoseTree.preOrder atree |> Seq.fold (*) 1
-                Expect.equal "" 720 actual
-            }
+              test "fold via preOrder" {
+                  let actual = IndexedRoseTree.preOrder atree |> Seq.fold (*) 1
+                  Expect.equal "" 720 actual
+              }
 
-            test "bind" {
-                let wrapText =
-                    function
-                    | Text t -> tree (elem "span") [ text t ]
-                    | x -> IndexedRoseTree.singleton x
+              test "bind" {
+                  let wrapText =
+                      function
+                      | Text t -> tree (elem "span") [ text t ]
+                      | x -> IndexedRoseTree.singleton x
 
-                let newDoc = htmldoc |> IndexedRoseTree.bind wrapText
+                  let newDoc = htmldoc |> IndexedRoseTree.bind wrapText
 
-                let expected =
-                    tree (elem "body") [ tree (elem "div") [ tree (elem "span") [ text "hello world" ] ] ]
+                  let expected =
+                      tree (elem "body") [ tree (elem "div") [ tree (elem "span") [ text "hello world" ] ] ]
 
-                Expect.equal "" expected newDoc
-            }
+                  Expect.equal "" expected newDoc
+              }
 
-            test "unfold" {
-                let a = IndexedRoseTree.unfold (fun i -> i, PersistentVector.ofSeq { i + 1 .. 3 }) 0
+              test "unfold" {
+                  let a = IndexedRoseTree.unfold (fun i -> i, PersistentVector.ofSeq { i + 1 .. 3 }) 0
 
-                let expected =
-                    tree 0 [ tree 1 [ tree 2 [ tree 3 [] ]; tree 3 [] ]; tree 2 [ tree 3 [] ]; tree 3 [] ]
+                  let expected =
+                      tree 0 [ tree 1 [ tree 2 [ tree 3 [] ]; tree 3 [] ]; tree 2 [ tree 3 [] ]; tree 3 [] ]
 
-                Expect.equal "" expected a
-            }
+                  Expect.equal "" expected a
+              }
 
-            test "functor laws" {
-                //fsCheck version of functor and monad laws stackoverflows
-                let map = IndexedRoseTree.map
+              test "functor laws" {
+                  //fsCheck version of functor and monad laws stackoverflows
+                  let map = IndexedRoseTree.map
 
-                //preserves identity
-                ((map id iRT) = iRT) |> Expect.isTrue ""
-                ((map id singleRT) = singleRT) |> Expect.isTrue ""
+                  //preserves identity
+                  ((map id iRT) = iRT) |> Expect.isTrue ""
+                  ((map id singleRT) = singleRT) |> Expect.isTrue ""
 
-                let f = (fun x -> x + 5)
-                let g = (fun x -> x - 2)
+                  let f = (fun x -> x + 5)
+                  let g = (fun x -> x - 2)
 
-                //preserves composition
-                map (f << g) iRT = (map f << map g) iRT |> Expect.isTrue ""
+                  //preserves composition
+                  map (f << g) iRT = (map f << map g) iRT |> Expect.isTrue ""
 
-                map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue ""
-            }
+                  map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue ""
+              }
 
-            test "monad laws" {
-                //fsCheck version of functor and monad laws stackoverflows
-                let inline (>>=) m f =
-                    IndexedRoseTree.bind f m
+              test "monad laws" {
+                  //fsCheck version of functor and monad laws stackoverflows
+                  let inline (>>=) m f =
+                      IndexedRoseTree.bind f m
 
-                let ret = IndexedRoseTree.singleton
+                  let ret = IndexedRoseTree.singleton
 
-                let myF x =
-                    IndexedRoseTree.create
-                        x
-                        (PersistentVector.empty
-                         |> PersistentVector.conj(IndexedRoseTree.singleton x)
-                         |> PersistentVector.conj(IndexedRoseTree.singleton x))
+                  let myF x =
+                      IndexedRoseTree.create
+                          x
+                          (PersistentVector.empty
+                           |> PersistentVector.conj(IndexedRoseTree.singleton x)
+                           |> PersistentVector.conj(IndexedRoseTree.singleton x))
 
-                let a = 1
+                  let a = 1
 
-                //left identity
-                ret a >>= myF = myF a |> Expect.isTrue ""
+                  //left identity
+                  ret a >>= myF = myF a |> Expect.isTrue ""
 
-                //right identity
-                iRT >>= ret = iRT |> Expect.isTrue ""
-                singleRT >>= ret = singleRT |> Expect.isTrue ""
+                  //right identity
+                  iRT >>= ret = iRT |> Expect.isTrue ""
+                  singleRT >>= ret = singleRT |> Expect.isTrue ""
 
-                //associativity
-                let myG x =
-                    IndexedRoseTree.create
-                        (x = x)
-                        (PersistentVector.empty
-                         |> PersistentVector.conj(IndexedRoseTree.singleton(x = x))
-                         |> PersistentVector.conj(IndexedRoseTree.singleton(x = x)))
+                  //associativity
+                  let myG x =
+                      IndexedRoseTree.create
+                          (x = x)
+                          (PersistentVector.empty
+                           |> PersistentVector.conj(IndexedRoseTree.singleton(x = x))
+                           |> PersistentVector.conj(IndexedRoseTree.singleton(x = x)))
 
-                let a' = (iRT >>= myF) >>= myG
-                let b' = iRT >>= (fun x -> myF x >>= myG)
-                a' = b' |> Expect.isTrue ""
+                  let a' = (iRT >>= myF) >>= myG
+                  let b' = iRT >>= (fun x -> myF x >>= myG)
+                  a' = b' |> Expect.isTrue ""
 
-                let a'' = (singleRT >>= myF) >>= myG
-                let b'' = singleRT >>= (fun x -> myF x >>= myG)
-                a'' = b'' |> Expect.isTrue ""
-            }
-        ]
+                  let a'' = (singleRT >>= myF) >>= myG
+                  let b'' = singleRT >>= (fun x -> myF x >>= myG)
+                  a'' = b'' |> Expect.isTrue ""
+              } ]

@@ -11,10 +11,11 @@ open System.Runtime.CompilerServices
 module Seq =
 
     /// Prepends `x` to the seq `xs`
-    let cons x xs = seq {
-        yield x
-        yield! xs
-    }
+    let cons x xs =
+        seq {
+            yield x
+            yield! xs
+        }
 
     /// Returns the head and tail of the seq. If the seq is empty, returns `None`.
     let unCons s =
@@ -40,11 +41,12 @@ module Seq =
     let inline findExactlyOne (predicate: 'a -> bool) (source: seq<'a>) : 'a =
         source |> Seq.filter predicate |> Seq.exactlyOne
 
-    let inline lift2 f l1 l2 = seq {
-        for i in l1 do
-            for j in l2 do
-                yield f i j
-    }
+    let inline lift2 f l1 l2 =
+        seq {
+            for i in l1 do
+                for j in l2 do
+                    yield f i j
+        }
 
     /// Will iterate the current sequence until the given predicate is satisfied
     let iterBreak (f: 'T -> bool) (seq: seq<_>) =
@@ -57,7 +59,7 @@ module Seq =
     /// The same as Seq.average except will return None if the seq is empty
     let inline tryAverage(seq: seq<(^a)>) : ^a option =
         use e = seq.GetEnumerator()
-        let mutable acc = LanguagePrimitives.GenericZero<( ^a)>
+        let mutable acc = LanguagePrimitives.GenericZero<(^a)>
         let mutable count = 0
 
         while e.MoveNext() do
@@ -67,7 +69,7 @@ module Seq =
         if count = 0 then
             None
         else
-            Some(LanguagePrimitives.DivideByInt<( ^a)> acc count)
+            Some(LanguagePrimitives.DivideByInt<(^a)> acc count)
 
     /// The same as Seq.tryHead but also returning the tail alongside the head (in a tuple)
     let tryHeadTail<'T>(sequence: seq<'T>) : Option<'T * seq<'T>> =
@@ -102,21 +104,23 @@ module Seq =
 
 #if !FABLE_COMPILER
     /// Converts a streamReader into a seq yielding on each line
-    let ofStreamReader(streamReader: System.IO.StreamReader) = seq {
-        use sr = streamReader
+    let ofStreamReader(streamReader: System.IO.StreamReader) =
+        seq {
+            use sr = streamReader
 
-        while not(sr.EndOfStream) do
-            yield sr.ReadLine()
-    }
+            while not(sr.EndOfStream) do
+                yield sr.ReadLine()
+        }
 #endif
 
 #if !FABLE_COMPILER
     /// Converts a Stream into a sequence of bytes
-    let ofStreamByByte(stream: System.IO.Stream) = seq {
-        while stream.Length <> stream.Position do
-            let x = stream.ReadByte()
-            if (int x) < 0 then () else yield x
-    }
+    let ofStreamByByte(stream: System.IO.Stream) =
+        seq {
+            while stream.Length <> stream.Position do
+                let x = stream.ReadByte()
+                if (int x) < 0 then () else yield x
+        }
 #endif
 
 #if !FABLE_COMPILER
@@ -134,58 +138,63 @@ module Seq =
 
     /// Creates a infinite sequences of the given values
     let asCircular values =
-        let rec next() = seq {
-            for element in values do
-                yield element
+        let rec next() =
+            seq {
+                for element in values do
+                    yield element
 
-            yield! next()
-        }
+                yield! next()
+            }
 
         next()
 
     /// Creates a infinite sequences of the given values, executing the given function everytime the given seq is exhausted
     let asCircularOnLoop f values =
-        let rec next() = seq {
-            for element in values do
-                yield element
+        let rec next() =
+            seq {
+                for element in values do
+                    yield element
 
-            f()
-            yield! next()
-        }
+                f()
+                yield! next()
+            }
 
         next()
 
     /// Creates a infinite sequences of the given values returning None everytime the given seq is exhausted
     let asCircularWithBreak values =
-        let rec next() = seq {
-            for element in values do
-                yield Some(element)
+        let rec next() =
+            seq {
+                for element in values do
+                    yield Some(element)
 
-            yield None
-            yield! next()
-        }
+                yield None
+                yield! next()
+            }
 
         next()
 
-    let tail(source: seq<_>) = seq {
-        use e = source.GetEnumerator()
+    let tail(source: seq<_>) =
+        seq {
+            use e = source.GetEnumerator()
 
-        if e.MoveNext() then
-            while e.MoveNext() do
-                yield e.Current
-        else
-            invalidArg "source" "source sequence cannot be empty"
-    }
+            if e.MoveNext() then
+                while e.MoveNext() do
+                    yield e.Current
+            else
+                invalidArg "source" "source sequence cannot be empty"
+        }
 
-    let tailNoFail(source: seq<_>) = seq {
-        use e = source.GetEnumerator()
+    let tailNoFail(source: seq<_>) =
+        seq {
+            use e = source.GetEnumerator()
 
-        if e.MoveNext() then
-            while e.MoveNext() do
-                yield e.Current
-        else
-            ()
-    }
+            if e.MoveNext() then
+                while e.MoveNext() do
+                    yield e.Current
+            else
+                ()
+        }
 
     /// The same as Seq.nth except returns None if the sequence is empty or does not have enough elements
     let tryNth index (source: seq<_>) =
@@ -214,35 +223,38 @@ module Seq =
 #endif
 
     /// Creates an infinite sequence of the given value
-    let repeat a = seq {
-        while true do
-            yield a
-    }
+    let repeat a =
+        seq {
+            while true do
+                yield a
+        }
 
     /// Contracts a seq selecting every n values
-    let rec contract n (source: seq<_>) = seq {
-        let values = source |> skipNoFail(n - 1)
+    let rec contract n (source: seq<_>) =
+        seq {
+            let values = source |> skipNoFail(n - 1)
 
-        match values |> tryNth 0 with
-        | Some(v) ->
-            yield v
-            yield! contract n (tailNoFail values)
-        | None -> ()
-    }
+            match values |> tryNth 0 with
+            | Some(v) ->
+                yield v
+                yield! contract n (tailNoFail values)
+            | None -> ()
+        }
 
     /// Creates a new collection whose elements are the results of applying the given function to the corresponding pairs of elements from the two sequences.
     /// Unlike Seq.map2, if one input sequence is shorter than the other then the remaining elements of the longer sequence are not ignored, they are yielded at the end of the resulting sequence.
-    let rec combine f (a: seq<_>) (b: seq<_>) = seq {
-        use e = a.GetEnumerator()
-        use e' = b.GetEnumerator()
-        let mutable eNext = e.MoveNext()
-        let mutable eNext' = e'.MoveNext()
+    let rec combine f (a: seq<_>) (b: seq<_>) =
+        seq {
+            use e = a.GetEnumerator()
+            use e' = b.GetEnumerator()
+            let mutable eNext = e.MoveNext()
+            let mutable eNext' = e'.MoveNext()
 
-        while eNext || eNext' do
-            yield f e.Current e'.Current
-            eNext <- e.MoveNext()
-            eNext' <- e'.MoveNext()
-    }
+            while eNext || eNext' do
+                yield f e.Current e'.Current
+                eNext <- e.MoveNext()
+                eNext' <- e'.MoveNext()
+        }
 
     /// Replicates each element in the seq n-times
     let grow n =
@@ -252,22 +264,24 @@ module Seq =
     let page page pageSize (source: seq<_>) =
         source |> skipNoFail(page * pageSize) |> Seq.truncate pageSize
 
-    let prependToAll sep list = seq {
-        for element in list do
-            yield sep
-            yield element
-    }
-
-    let intersperse (sep: 'a) (list: 'a seq) : 'a seq = seq {
-        let mutable notFirst = false
-
-        for element in list do
-            if notFirst then
+    let prependToAll sep list =
+        seq {
+            for element in list do
                 yield sep
+                yield element
+        }
 
-            yield element
-            notFirst <- true
-    }
+    let intersperse (sep: 'a) (list: 'a seq) : 'a seq =
+        seq {
+            let mutable notFirst = false
+
+            for element in list do
+                if notFirst then
+                    yield sep
+
+                yield element
+                notFirst <- true
+        }
 
     /// The catOptions function takes a list of Options and returns a seq of all the Some values.
     let inline catOptions(xs: seq<Option<'a>>) =
@@ -421,11 +435,10 @@ module List =
     let inline findExactlyOne (predicate: 'a -> bool) (source: 'a list) : 'a =
         source |> List.filter predicate |> List.exactlyOne
 
-    let inline lift2 f (l1: _ list) (l2: _ list) = [
-        for i in l1 do
-            for j in l2 do
-                yield f i j
-    ]
+    let inline lift2 f (l1: _ list) (l2: _ list) =
+        [ for i in l1 do
+              for j in l2 do
+                  yield f i j ]
 
 
     let span pred l =
@@ -513,18 +526,17 @@ module List =
         | _ -> []
 
     /// Merges to sequences using the given function to transform the elements for comparision
-    let rec mergeBy f (a: _ list) (b: _ list) = [
-        match a, b with
-        | h :: t, h' :: t' when f(h) < f(h') ->
-            yield h
-            yield! mergeBy f t b
-        | h :: t, h' :: t' ->
-            yield h'
-            yield! mergeBy f a t'
-        | h :: t, [] -> yield! a
-        | [], h :: t -> yield! b
-        | [], [] -> ()
-    ]
+    let rec mergeBy f (a: _ list) (b: _ list) =
+        [ match a, b with
+          | h :: t, h' :: t' when f(h) < f(h') ->
+              yield h
+              yield! mergeBy f t b
+          | h :: t, h' :: t' ->
+              yield h'
+              yield! mergeBy f a t'
+          | h :: t, [] -> yield! a
+          | [], h :: t -> yield! b
+          | [], [] -> () ]
 
     /// Merges two sequences by the default comparer for 'T
     let merge a b =
@@ -830,8 +842,7 @@ module NameValueCollection =
                     enum.Reset()
 
                 member e.Dispose() = ()
-                member e.Current = box(wrapElem enum.Current)
-            }
+                member e.Current = box(wrapElem enum.Current) }
 
         { new IDictionary<string, string[]> with
             member d.Count = x.Count
@@ -906,8 +917,7 @@ module NameValueCollection =
                     value <- d.[key]
                     true
                 else
-                    false
-        }
+                    false }
 
     [<Extension>]
     [<CompiledName("AsReadonlyDictionary")>]
@@ -961,8 +971,7 @@ module NameValueCollection =
                 false
 
             member d.TryGetValue(key: string, value: byref<string[]>) =
-                a.TryGetValue(key, &value)
-        }
+                a.TryGetValue(key, &value) }
 
     [<Extension>]
     [<CompiledName("AsLookup")>]
@@ -981,8 +990,7 @@ module NameValueCollection =
                         values.GetEnumerator()
 
                     member x.GetEnumerator() =
-                        values.GetEnumerator() :> IEnumerator
-                }
+                        values.GetEnumerator() :> IEnumerator }
 
             { new IEnumerator<IGrouping<string, string>> with
                 member x.Current = wrapElem e.Current
@@ -992,8 +1000,7 @@ module NameValueCollection =
 
                 member x.Reset() = e.Reset()
                 member x.Dispose() = ()
-                member x.Current = box(wrapElem e.Current)
-            }
+                member x.Current = box(wrapElem e.Current) }
 
         { new ILookup<string, string> with
             member x.Count = this.Count
@@ -1011,6 +1018,5 @@ module NameValueCollection =
                 getEnumerator()
 
             member x.GetEnumerator() =
-                getEnumerator() :> IEnumerator
-        }
+                getEnumerator() :> IEnumerator }
 #endif

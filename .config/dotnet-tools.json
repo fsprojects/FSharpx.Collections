@@ -2,35 +2,33 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "fake-cli": {
-      "version": "5.23.0",
-      "commands": [
-        "fake"
-      ]
-    },
     "paket": {
-      "version": "7.1.5",
+      "version": "9.0.2",
       "commands": [
         "paket"
-      ]
+      ],
+      "rollForward": false
     },
     "fsdocs-tool": {
       "version": "14.0.1",
       "commands": [
         "fsdocs"
-      ]
+      ],
+      "rollForward": false
     },
     "fable": {
-      "version": "3.4.4",
+      "version": "4.28.0",
       "commands": [
         "fable"
-      ]
+      ],
+      "rollForward": false
     },
     "fantomas": {
-      "version": "5.0.3",
+      "version": "7.0.5",
       "commands": [
         "fantomas"
-      ]
+      ],
+      "rollForward": false
     }
   }
 }

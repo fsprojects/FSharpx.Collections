@@ -15,15 +15,14 @@ module RoseTreeTest =
     let atree = tree 1 [ tree 2 [ tree 3 [] ]; tree 4 [ tree 5 [ tree 6 [] ] ] ]
 
     let ctree =
-        tree "f" [
-            tree "b" [ tree "a" []; tree "d" [ tree "c" []; tree "e" [] ] ]
-            tree "g" [ tree "i" [ tree "h" [] ] ]
-        ]
+        tree
+            "f"
+            [ tree "b" [ tree "a" []; tree "d" [ tree "c" []; tree "e" [] ] ]
+              tree "g" [ tree "i" [ tree "h" [] ] ] ]
 
-    type HtmlElement = {
-        TagName: string
-        Attributes: (string * string) list
-    }
+    type HtmlElement =
+        { TagName: string
+          Attributes: (string * string) list }
 
     type HtmlNode =
         | Element of HtmlElement
@@ -46,92 +45,91 @@ module RoseTreeTest =
     [<Tests>]
     let testRoseTree =
 
-        testList "Experimental RoseTree" [
-            test "dfs pre" {
-                let actual = RoseTree.dfsPre ctree |> Seq.toList
-                Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
-            }
+        testList
+            "Experimental RoseTree"
+            [ test "dfs pre" {
+                  let actual = RoseTree.dfsPre ctree |> Seq.toList
+                  Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
+              }
 
-            test "dfs post" {
-                let actual = RoseTree.dfsPost ctree |> Seq.toList
-                Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
-            }
+              test "dfs post" {
+                  let actual = RoseTree.dfsPost ctree |> Seq.toList
+                  Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
+              }
 
-            test "map" {
-                let actual = RoseTree.map ((+) 1) atree
-                let expected = tree 2 [ tree 3 [ tree 4 [] ]; tree 5 [ tree 6 [ tree 7 [] ] ] ]
-                Expect.equal "" expected actual
-            }
+              test "map" {
+                  let actual = RoseTree.map ((+) 1) atree
+                  let expected = tree 2 [ tree 3 [ tree 4 [] ]; tree 5 [ tree 6 [ tree 7 [] ] ] ]
+                  Expect.equal "" expected actual
+              }
 
-            test "fold via dfs" {
-                let actual = RoseTree.dfsPre atree |> Seq.fold (*) 1
-                Expect.equal "" 720 actual
-            }
+              test "fold via dfs" {
+                  let actual = RoseTree.dfsPre atree |> Seq.fold (*) 1
+                  Expect.equal "" 720 actual
+              }
 
-            test "unfold" {
-                let a = RoseTree.unfold (fun i -> i, LazyList.ofSeq { i + 1 .. 3 }) 0
+              test "unfold" {
+                  let a = RoseTree.unfold (fun i -> i, LazyList.ofSeq { i + 1 .. 3 }) 0
 
-                let expected =
-                    tree 0 [ tree 1 [ tree 2 [ tree 3 [] ]; tree 3 [] ]; tree 2 [ tree 3 [] ]; tree 3 [] ]
+                  let expected =
+                      tree 0 [ tree 1 [ tree 2 [ tree 3 [] ]; tree 3 [] ]; tree 2 [ tree 3 [] ]; tree 3 [] ]
 
-                Expect.equal "" expected a
-            }
+                  Expect.equal "" expected a
+              }
 
-            test "mapAccum" {
-                let e, taggedHtmlDoc =
-                    RoseTree.mapAccum
-                        (fun i ->
-                            function
-                            | Element x ->
-                                i + 1,
-                                Element
-                                    { x with
-                                        Attributes = ("data-i", i.ToString()) :: x.Attributes
-                                    }
-                            | x -> i, x)
-                        0
-                        htmldoc
+              test "mapAccum" {
+                  let e, taggedHtmlDoc =
+                      RoseTree.mapAccum
+                          (fun i ->
+                              function
+                              | Element x ->
+                                  i + 1,
+                                  Element
+                                      { x with
+                                          Attributes = ("data-i", i.ToString()) :: x.Attributes }
+                              | x -> i, x)
+                          0
+                          htmldoc
 
-                let expected =
-                    tree (elemA "body" [ "data-i", "0" ]) [ tree (elemA "div" [ "data-i", "1" ]) [ text "hello world" ] ]
+                  let expected =
+                      tree (elemA "body" [ "data-i", "0" ]) [ tree (elemA "div" [ "data-i", "1" ]) [ text "hello world" ] ]
 
-                Expect.equal "" expected taggedHtmlDoc
-                Expect.equal "" 2 e
-            }
+                  Expect.equal "" expected taggedHtmlDoc
+                  Expect.equal "" 2 e
+              }
 
-            test "bind" {
-                let wrapText =
-                    function
-                    | Text t -> tree (elem "span") [ text t ]
-                    | x -> RoseTree.singleton x
+              test "bind" {
+                  let wrapText =
+                      function
+                      | Text t -> tree (elem "span") [ text t ]
+                      | x -> RoseTree.singleton x
 
-                let newDoc = htmldoc |> RoseTree.bind wrapText
+                  let newDoc = htmldoc |> RoseTree.bind wrapText
 
-                let expected =
-                    tree (elem "body") [ tree (elem "div") [ tree (elem "span") [ text "hello world" ] ] ]
+                  let expected =
+                      tree (elem "body") [ tree (elem "div") [ tree (elem "span") [ text "hello world" ] ] ]
 
-                Expect.equal "" expected newDoc
-            }
-        ]
+                  Expect.equal "" expected newDoc
+              } ]
 
     [<Tests>]
     let testRoseTreeProperties =
 
         let roseTree() =
-            let rec impl s = gen {
-                let! root = Arb.generate
-                // need to set these frequencies to avoid blowing the stack
-                let! children =
-                    match s with
-                    | s when s > 0 ->
-                        Gen.frequency [
-                            70, Gen.constant LazyList.empty
-                            1, impl(s / 2) |> Gen.listOf |> Gen.map LazyList.ofList
-                        ]
-                    | _ -> Gen.constant LazyList.empty
+            let rec impl s =
+                gen {
+                    let! root = Arb.generate
+                    // need to set these frequencies to avoid blowing the stack
+                    let! children =
+                        match s with
+                        | s when s > 0 ->
+                            Gen.frequency
+                                [ 70, Gen.constant LazyList.empty
+                                  1, impl(s / 2) |> Gen.listOf |> Gen.map LazyList.ofList ]
+                        | _ -> Gen.constant LazyList.empty
 
-                return RoseTree.create root children
-            }
+                    return RoseTree.create root children
+                }
 
             impl |> Gen.sized |> Arb.fromGen
 
@@ -197,31 +195,33 @@ module RoseTreeTest =
 
         let ret = RoseTree.singleton
 
-        testList "Experimental RoseTree properties" [
+        testList
+            "Experimental RoseTree properties"
+            [
 
-            testPropertyWithConfig
-                config10k
-                "RoseTree functor laws: preserves identity"
-                (Prop.forAll(roseTree()) <| fun value -> map id value = value)
+              testPropertyWithConfig
+                  config10k
+                  "RoseTree functor laws: preserves identity"
+                  (Prop.forAll(roseTree()) <| fun value -> map id value = value)
 
-            testPropertyWithConfig
-                config10k
-                "RoseTree functor laws: preserves composition"
-                (Prop.forAll(composition())
-                 <| fun (f, g, value) -> map (f << g) value = (map f << map g) value)
+              testPropertyWithConfig
+                  config10k
+                  "RoseTree functor laws: preserves composition"
+                  (Prop.forAll(composition())
+                   <| fun (f, g, value) -> map (f << g) value = (map f << map g) value)
 
-            testPropertyWithConfig config10k "RoseTree monad laws : left identity" (Prop.forAll(leftIdentity()) <| fun (f, a) -> ret a >>= f = f a)
+              testPropertyWithConfig config10k "RoseTree monad laws : left identity" (Prop.forAll(leftIdentity()) <| fun (f, a) -> ret a >>= f = f a)
 
-            testPropertyWithConfig config10k "RoseTree monad laws : right identity" (Prop.forAll(roseTree()) <| fun x -> x >>= ret = x)
+              testPropertyWithConfig config10k "RoseTree monad laws : right identity" (Prop.forAll(roseTree()) <| fun x -> x >>= ret = x)
 
-            testPropertyWithConfig
-                config10k
-                "RoseTree monad laws : associativity"
-                (Prop.forAll(associativity())
-                 <| fun (f, g, v) ->
-                     let a = (v >>= f) >>= g
-                     let b = v >>= (fun x -> f x >>= g)
-                     a = b)
+              testPropertyWithConfig
+                  config10k
+                  "RoseTree monad laws : associativity"
+                  (Prop.forAll(associativity())
+                   <| fun (f, g, v) ->
+                       let a = (v >>= f) >>= g
+                       let b = v >>= (fun x -> f x >>= g)
+                       a = b)
 
-        //// TODO port example from http://blog.moertel.com/articles/2007/03/07/directory-tree-printing-in-haskell-part-two-refactoring
-        ]
+              //// TODO port example from http://blog.moertel.com/articles/2007/03/07/directory-tree-printing-in-haskell-part-two-refactoring
+              ]

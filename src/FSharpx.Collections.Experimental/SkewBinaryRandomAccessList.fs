@@ -285,13 +285,14 @@ type SkewBinaryRandomAccessList<'T>(randomAccessList) =
             | Some(ts) -> Some(ts :> _)
 
         member this.GetEnumerator() =
-            let e = seq {
-                match this.TryUncons with
-                | None -> ()
-                | Some(x, ts) ->
-                    yield x
-                    yield! ts
-            }
+            let e =
+                seq {
+                    match this.TryUncons with
+                    | None -> ()
+                    | Some(x, ts) ->
+                        yield x
+                        yield! ts
+                }
 
             e.GetEnumerator()
 

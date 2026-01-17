@@ -18,22 +18,22 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        dotnet: [6.0.401]
-        node: ['14']
+        dotnet: [8.0.416]
+        node: ['24']
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v6
     - name: setup git config
       run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
     - name: Setup node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node }}
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: ${{ matrix.dotnet }}
     - name: Install local tools
@@ -41,7 +41,7 @@ jobs:
     - name: Paket Restore
       run: dotnet paket restore
     - name: Build and Test
-      run: dotnet fake run build.fsx
+      run: dotnet run --project build/build.fsproj
 
     - name: Check secrets presence
       id: checksecrets
@@ -60,12 +60,12 @@ jobs:
 
     - name: Publish prerelease NuGet to GitHub
       if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
-      run: dotnet fake run build.fsx -t PublishCINuGet
+      run: dotnet run --project build/build.fsproj -- PublishCINuGet
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Publish NuGet to NuGet.org
       if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
-      run: dotnet fake run build.fsx -t Release
+      run: dotnet run --project build/build.fsproj -- Release
       env:
         NUGET_KEY: ${{ secrets.NUGETKEY }}
 

@@ -1,4 +1,4 @@
-framework: netstandard2.0, net6.0
+framework: netstandard2.0, net8.0
 source https://api.nuget.org/v3/index.json
 
 nuget FSharp.Core >= 4.3.4 lowest_matching:true
@@ -13,7 +13,29 @@ framework: netstandard2.0
 source https://api.nuget.org/v3/index.json
 
 nuget Fable.Core
-nuget Fable.FastCheck
-nuget Fable.FastCheck.Jest
-nuget Fable.Jester
+nuget Fable.Mocha
 nuget FSharp.Core
+
+group Build
+framework net8.0
+source https://api.nuget.org/v3/index.json
+
+nuget FSharp.Core
+nuget Fake.Core.Target
+nuget Fake.Core.ReleaseNotes
+nuget Fake.IO.FileSystem
+nuget Fake.Tools.Git
+nuget Fake.Runtime
+nuget Fake.DotNet.Paket
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Cli
+nuget Fake.DotNet.MSBuild
+nuget Fake.DotNet.Testing.Expecto
+nuget Fake.DotNet.FSFormatting
+nuget Fake.JavaScript.Yarn
+
+//Pinned for net8 (see https://github.com/fsprojects/FAKE/issues/2722)
+nuget Microsoft.Build ~> 17.11.48
+nuget Microsoft.Build.Framework ~> 17.11.48
+nuget Microsoft.Build.Tasks.Core ~> 17.11.48
+nuget Microsoft.Build.Utilities.Core ~> 17.11.48

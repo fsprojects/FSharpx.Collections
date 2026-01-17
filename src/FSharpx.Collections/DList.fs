@@ -84,7 +84,7 @@ type DList<'T>(length: int, data: DListData<'T>) =
             | _ -> Join(left, right)
 
     static member appendLists((left: DList<'T>), (right: DList<'T>)) =
-        DList((left.Length + right.Length), (DList<'T>.append (left.dc, right.dc)))
+        DList((left.Length + right.Length), (DList<'T>.append(left.dc, right.dc)))
 
     static member head data =
         match data with
@@ -113,14 +113,14 @@ type DList<'T>(length: int, data: DListData<'T>) =
         | _ -> false
 
     member this.Conj(x: 'T) =
-        DList((length + 1), DList<'T>.append (data, Unit x))
+        DList((length + 1), DList<'T>.append(data, Unit x))
 
     member this.Tail =
         let rec step (xs: DListData<'T>) (acc: DListData<'T>) =
             match xs with
             | Nil -> acc
             | Unit _ -> acc
-            | Join(x, y) -> step x (DList<'T>.append (y, acc))
+            | Join(x, y) -> step x (DList<'T>.append(y, acc))
 
         if this.IsEmpty then
             failwith "DList.tail: empty DList"
@@ -132,7 +132,7 @@ type DList<'T>(length: int, data: DListData<'T>) =
             match xs with
             | Nil -> acc
             | Unit _ -> acc
-            | Join(x, y) -> step x (DList<'T>.append (y, acc))
+            | Join(x, y) -> step x (DList<'T>.append(y, acc))
 
         if this.IsEmpty then
             None
@@ -148,20 +148,21 @@ type DList<'T>(length: int, data: DListData<'T>) =
 
     member this.toSeq() =
         //adaptation of right-hand side of Norman Ramsey's "fold"
-        let rec walk rights l = seq {
-            match l with
-            | Nil ->
-                match rights with
-                | [] -> ()
-                | t :: ts -> yield! walk ts t
-            | Unit x ->
-                yield x
+        let rec walk rights l =
+            seq {
+                match l with
+                | Nil ->
+                    match rights with
+                    | [] -> ()
+                    | t :: ts -> yield! walk ts t
+                | Unit x ->
+                    yield x
 
-                match rights with
-                | [] -> ()
-                | t :: ts -> yield! walk ts t
-            | Join(x, y) -> yield! walk (y :: rights) x
-        }
+                    match rights with
+                    | [] -> ()
+                    | t :: ts -> yield! walk ts t
+                | Join(x, y) -> yield! walk (y :: rights) x
+            }
 
         (walk [] data).GetEnumerator()
 
@@ -197,7 +198,7 @@ module DList =
         | None -> Nil
 
     let append left right =
-        DList<'T>.appendLists (left, right)
+        DList<'T>.appendLists(left, right)
 
     let cons hd (l: DList<'T>) =
         match l.Length with

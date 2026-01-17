@@ -14,9 +14,7 @@ exception UndefinedException
 
 [<NoEquality; NoComparison>]
 type LazyList<'T> =
-    {
-        status: Lazy<LazyListCell<'T>>
-    }
+    { status: Lazy<LazyListCell<'T>> }
 
     member x.Value = x.status.Value
 
@@ -96,10 +94,13 @@ and [<NoEquality; NoComparison>] LazyListCell<'T> =
 [<RequireQualifiedAccess>]
 module LazyList =
 
-    let lzy f = { status = Lazy<_>.Create f }
+    let lzy f =
+        { status = Lazy<_>.Create f }
+
     let force(x: LazyList<'T>) = x.Value
 
-    let notlazy v = { status = Lazy<_>.CreateFromValue v }
+    let notlazy v =
+        { status = Lazy<_>.CreateFromValue v }
 
     let getCell(x: LazyList<'T>) = force x
     let empty<'T> : LazyList<'T> = notlazy CellEmpty

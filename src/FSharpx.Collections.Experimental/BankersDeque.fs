@@ -458,10 +458,11 @@ type BankersDeque<'T>(c: int, frontLength: int, front: LazyList<'T>, rBackLength
         member this.Count = this.Length
 
         member this.GetEnumerator() =
-            let e = seq {
-                yield! front
-                yield! (LazyList.rev this.rBack)
-            }
+            let e =
+                seq {
+                    yield! front
+                    yield! (LazyList.rev this.rBack)
+                }
 
             e.GetEnumerator()
 

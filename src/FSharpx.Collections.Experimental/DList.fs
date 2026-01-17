@@ -83,26 +83,28 @@ type DList<'T> =
 
     interface IEnumerable<'T> with
         member x.GetEnumerator() =
-            let enumerable = seq {
-                match x with
-                | Nil -> ()
-                | Unit x -> yield x
-                | Join(x, y, _) ->
-                    yield! x :> seq<'T>
-                    yield! y :> seq<'T>
-            }
+            let enumerable =
+                seq {
+                    match x with
+                    | Nil -> ()
+                    | Unit x -> yield x
+                    | Join(x, y, _) ->
+                        yield! x :> seq<'T>
+                        yield! y :> seq<'T>
+                }
 
             enumerable.GetEnumerator()
 
         member x.GetEnumerator() =
-            let enumerable = seq {
-                match x with
-                | Nil -> ()
-                | Unit x -> yield x
-                | Join(x, y, _) ->
-                    yield! x :> seq<'T>
-                    yield! y :> seq<'T>
-            }
+            let enumerable =
+                seq {
+                    match x with
+                    | Nil -> ()
+                    | Unit x -> yield x
+                    | Join(x, y, _) ->
+                        yield! x :> seq<'T>
+                        yield! y :> seq<'T>
+                }
 
             enumerable.GetEnumerator() :> IEnumerator
 

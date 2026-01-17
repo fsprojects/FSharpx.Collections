@@ -3,22 +3,13 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "fsprojects",
+  "type": "module",
   "scripts": {
     "pretest": "dotnet fable ./FSharpx.Collections.Tests --sourceMaps --outDir ./dist",
-    "test": "jest"
+    "test": "mocha dist"
   },
-  "dependencies": {},
   "private": true,
-  "jest": {
-    "roots": [
-      "./dist"
-    ]
-  },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/plugin-transform-runtime": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "babel-jest": "^27.3.1",
-    "jest": "^27.2"
+    "mocha": "^11.7.5"
   }
 }

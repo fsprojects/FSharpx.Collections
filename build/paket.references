@@ -1,0 +1,12 @@
+group Build
+FSharp.Core
+Fake.Core.Target
+Fake.Core.ReleaseNotes
+Fake.Runtime
+Fake.DotNet.Cli
+Fake.DotNet.MSBuild
+Fake.DotNet.Testing.Expecto
+Fake.DotNet.Paket
+Fake.DotNet.AssemblyInfoFile
+Fake.JavaScript.Yarn
+Fake.Tools.Git

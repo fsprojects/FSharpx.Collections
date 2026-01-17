@@ -7,13 +7,11 @@ open FsCheck
 let configReplay =
     { FsCheckConfig.defaultConfig with
         maxTest = 10000
-        replay = Some <| (1940624926, 296296394)
-    }
+        replay = Some <| (1940624926, 296296394) }
 
 let config10k =
     { FsCheckConfig.defaultConfig with
-        maxTest = 10000
-    }
+        maxTest = 10000 }
 
 let classifyCollect xs (count: int) (y: bool) =
     y
@@ -24,11 +22,12 @@ let classifyCollect xs (count: int) (y: bool) =
     |> Prop.classify (xs.GetType().FullName.Contains("System.Object")) "object"
 
 module Gen =
-    let rec infiniteSeq() = gen {
-        let! x = Arb.generate
-        let! xs = infiniteSeq()
-        return Seq.append (Seq.singleton x) xs
-    }
+    let rec infiniteSeq() =
+        gen {
+            let! x = Arb.generate
+            let! xs = infiniteSeq()
+            return Seq.append (Seq.singleton x) xs
+        }
 
     let infiniteLazyList() =
         Gen.map LazyList.ofSeq (infiniteSeq())
@@ -36,15 +35,17 @@ module Gen =
     let finiteLazyList() =
         Gen.map LazyList.ofList Arb.generate
 
-    let ArbitrarySeqGen() = gen {
-        let! len = Gen.choose(0, 10)
-        let! l = Gen.listOfLength len Arb.generate
+    let ArbitrarySeqGen() =
+        gen {
+            let! len = Gen.choose(0, 10)
+            let! l = Gen.listOfLength len Arb.generate
 
-        return seq {
-            for i = 0 to len - 1 do
-                yield l.[i]
+            return
+                seq {
+                    for i = 0 to len - 1 do
+                        yield l.[i]
+                }
         }
-    }
 
     let ArbitrarySeq() =
         ArbitrarySeqGen() |> Arb.fromGen

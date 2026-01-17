@@ -3,21 +3,18 @@
 open FSharpx.Collections
 
 type NonEmptyBootstrappedQueue<'T> =
-    {
-        FrontAndSuspensionsLength: int
-        Front: list<'T>
-        Suspensions: BootstrappedQueue<Lazy<list<'T>>>
-        RBackLength: int
-        RBack: list<'T>
-    }
+    { FrontAndSuspensionsLength: int
+      Front: list<'T>
+      Suspensions: BootstrappedQueue<Lazy<list<'T>>>
+      RBackLength: int
+      RBack: list<'T> }
 
-    static member create lenfm f m lenr r = {
-        FrontAndSuspensionsLength = lenfm
-        Front = f
-        Suspensions = m
-        RBackLength = lenr
-        RBack = r
-    }
+    static member create lenfm f m lenr r =
+        { FrontAndSuspensionsLength = lenfm
+          Front = f
+          Suspensions = m
+          RBackLength = lenr
+          RBack = r }
 
 and BootstrappedQueue<'T> =
     | Empty
