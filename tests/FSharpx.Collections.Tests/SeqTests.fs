@@ -91,9 +91,9 @@ module SeqTests =
                   let actual = data |> Seq.trySkip 2
                   Expect.isSome "trySkip2" actual
 
-                    match actual with
-                    | Some subSeq -> Expect.sequenceEqual "trySkip2" [ 3 ] subSeq
-                    | _ -> failwith "Unreachable"
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip2" [ 3 ] subSeq
+                  | _ -> failwith "Unreachable"
               }
 
               test "If I trySkip2 and seq only contains 1 element, I should return None" {
@@ -164,7 +164,9 @@ module SeqTests =
 
               test "I should get some if try to get a index inside the seq" { Seq.tryNth 2 data |> Expect.equal "tryNth" (Some(3.)) }
 
-              test "I should get empty seq when skipNoFail past the end of the seq" { Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty }
+              test "I should get empty seq when skipNoFail past the end of the seq" {
+                  Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty
+              }
 
               test "I should get Some when skipNoFail" {
                   Seq.skipNoFail 5 data
