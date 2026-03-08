@@ -13,6 +13,7 @@ type internal INode =
     abstract member assoc: Thread ref * int * int * obj * obj * Box -> INode
     abstract member find: int * int * obj -> obj
     abstract member tryFind: int * int * obj -> obj option
+    abstract member containsKey: int * int * obj -> bool
     abstract member without: int * int * obj -> INode
     abstract member without: Thread ref * int * int * obj * Box -> INode
     abstract member nodeSeq: unit -> (obj * obj) seq
@@ -220,6 +221,10 @@ and private HashCollisionNode(thread, hashCollisionKey, count', array': obj[]) =
             else
                 None
 
+        member this.containsKey(shift, hash, key) =
+            let idx = this.findIndex(key)
+            idx >= 0 && key = this.array.[idx]
+
         member this.without(shift, hashKey, key) =
             let idx = this.findIndex(key)
 
@@ -345,6 +350,13 @@ and private ArrayNode(thread, count', array': INode[]) =
             else
                 node.tryFind(shift + 5, hash, key)
 
+        member this.containsKey(shift, hash, key) =
+            let idx = mask(hash, shift)
+            let node = this.array.[idx]
+
+            node <> Unchecked.defaultof<INode>
+            && node.containsKey(shift + 5, hash, key)
+
         member this.without(shift, hashKey, key) =
             let idx = mask(hashKey, shift)
             let node = this.array.[idx]
@@ -469,6 +481,21 @@ and private BitmapIndexedNode(thread, bitmap', array': obj[]) =
                     Some valOrNode
                 else
                     None
+
+        member this.containsKey(shift, hash, key) =
+            let bit = bitpos(hash, shift)
+
+            if this.bitmap &&& bit = 0 then
+                false
+            else
+                let idx' = index(this.bitmap, bit) * 2
+                let keyOrNull = this.array.[idx']
+                let valOrNode = this.array.[idx' + 1]
+
+                if keyOrNull = null then
+                    (valOrNode :?> INode).containsKey(shift + 5, hash, key)
+                else
+                    key = keyOrNull
 
         member this.assoc(shift, hashKey, key, value, addedLeaf) =
             let bit = bitpos(hashKey, shift)
@@ -698,7 +725,7 @@ type internal TransientHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equalit
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.tryFind(0, hash(key), key).IsSome
+        else this.root.containsKey(0, hash(key), key)
 
     member this.Add(key: 'T, value: 'S) =
         if key = Unchecked.defaultof<'T> then
@@ -793,7 +820,7 @@ and PersistentHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equality and 'S:
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.tryFind(0, hash(key), key).IsSome
+        else this.root.containsKey(0, hash(key), key)
 
     static member ofSeq(items: ('T * 'S) seq) =
         let mutable ret = TransientHashMap<'T, 'S>.Empty()
