@@ -698,7 +698,7 @@ type internal TransientHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equalit
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.find(0, hash(key), key) <> null
+        else this.root.tryFind(0, hash(key), key).IsSome
 
     member this.Add(key: 'T, value: 'S) =
         if key = Unchecked.defaultof<'T> then
@@ -793,7 +793,7 @@ and PersistentHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equality and 'S:
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.find(0, hash(key), key) <> null
+        else this.root.tryFind(0, hash(key), key).IsSome
 
     static member ofSeq(items: ('T * 'S) seq) =
         let mutable ret = TransientHashMap<'T, 'S>.Empty()
