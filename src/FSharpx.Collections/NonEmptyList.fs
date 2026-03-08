@@ -121,3 +121,47 @@ module NonEmptyList =
     [<CompiledName("Zip")>]
     let zip list1 list2 =
         { List = List.zip list1.List list2.List }
+
+    [<CompiledName("Iterate")>]
+    let iter action list =
+        List.iter action list.List
+
+    [<CompiledName("IterateIndexed")>]
+    let iteri action list =
+        List.iteri action list.List
+
+    [<CompiledName("SelectIndexed")>]
+    let mapi mapping list =
+        { List = List.mapi mapping list.List }
+
+    [<CompiledName("Exists")>]
+    let exists predicate list =
+        List.exists predicate list.List
+
+    [<CompiledName("ForAll")>]
+    let forall predicate list =
+        List.forall predicate list.List
+
+    [<CompiledName("Contains")>]
+    let inline contains value list =
+        List.contains value list.List
+
+    [<CompiledName("SortWith")>]
+    let sortWith comparer list =
+        { List = List.sortWith comparer list.List }
+
+    [<CompiledName("SortBy")>]
+    let sortBy projection list =
+        { List = List.sortBy projection list.List }
+
+    [<CompiledName("Sort")>]
+    let inline sort list =
+        { List = List.sort list.List }
+
+    [<CompiledName("MaximumBy")>]
+    let maxBy projection list =
+        List.maxBy projection list.List
+
+    [<CompiledName("MinimumBy")>]
+    let minBy projection list =
+        List.minBy projection list.List
