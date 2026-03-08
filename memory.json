@@ -1,1 +1,1 @@
-{"last_run":"2026-03-08T18:13:01Z","run_id":"22826850149","monthly_issue":230,"cursor":232,"prs_created":["#229 NonEmptyList+Seq tests","#233 CircularBuffer fix","pending: AGENTS.md #232","pending: CI cache"],"notes":"PR #203 human-owned, skip. #228 workflow failure notice ignore. #85 fix attempt pending.","checked_off":[]}
+{"run": "22827407109", "m": 230, "prs": ["229", "233", "236", "237", "85fix-pending"], "n": "next:#115#116#118"}
