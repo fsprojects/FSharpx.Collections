@@ -154,10 +154,11 @@ type Deque<'T>(front, rBack) =
 
     interface IEnumerable<'T> with
         member this.GetEnumerator() =
-            let e = seq {
-                yield! front
-                yield! (List.rev rBack)
-            }
+            let e =
+                seq {
+                    yield! front
+                    yield! (List.rev rBack)
+                }
 
             e.GetEnumerator()
 

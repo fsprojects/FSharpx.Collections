@@ -36,15 +36,16 @@ type BinaryRoseTree<'T> = //{ Root: 'T; Children: 'T BinaryRoseTree Vector }
 
     interface IEnumerable<'T> with
         member x.GetEnumerator() =
-            (let rec loop x = seq {
-                match x with
-                | Node(a, Nil, Nil) -> yield a
-                | Node(a, children, siblings) ->
-                    yield a
-                    yield! loop children
-                    yield! loop siblings
-                | Nil -> ()
-             }
+            (let rec loop x =
+                seq {
+                    match x with
+                    | Node(a, Nil, Nil) -> yield a
+                    | Node(a, children, siblings) ->
+                        yield a
+                        yield! loop children
+                        yield! loop siblings
+                    | Nil -> ()
+                }
 
              loop x)
                 .GetEnumerator()
@@ -109,22 +110,24 @@ module BinaryRoseTree =
     let map f (tree: _ BinaryRoseTree) =
         (map2 (fun x (l: BinaryRoseTree<_>) (r: BinaryRoseTree<_>) -> Node(f x, l, r)) Nil tree)
 
-    let rec preOrder(x: _ BinaryRoseTree) = seq {
-        match x with
-        | Node(a, Nil, Nil) -> yield a
-        | Node(a, children, siblings) ->
-            yield a
-            yield! preOrder children
-            yield! preOrder siblings
-        | Nil -> ()
-    }
+    let rec preOrder(x: _ BinaryRoseTree) =
+        seq {
+            match x with
+            | Node(a, Nil, Nil) -> yield a
+            | Node(a, children, siblings) ->
+                yield a
+                yield! preOrder children
+                yield! preOrder siblings
+            | Nil -> ()
+        }
 
-    let rec postOrder(x: _ BinaryRoseTree) = seq {
-        match x with
-        | Node(a, Nil, Nil) -> yield a
-        | Node(a, children, siblings) ->
-            yield! postOrder children
-            yield a
-            yield! postOrder siblings
-        | Nil -> ()
-    }
+    let rec postOrder(x: _ BinaryRoseTree) =
+        seq {
+            match x with
+            | Node(a, Nil, Nil) -> yield a
+            | Node(a, children, siblings) ->
+                yield! postOrder children
+                yield a
+                yield! postOrder siblings
+            | Nil -> ()
+        }

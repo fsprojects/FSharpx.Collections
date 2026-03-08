@@ -140,10 +140,11 @@ type BankersQueue<'T>(frontLength: int, front: LazyList<'T>, backLength: int, ba
         member this.Count = this.Length
 
         member this.GetEnumerator() =
-            let e = seq {
-                yield! front
-                yield! (LazyList.rev back)
-            }
+            let e =
+                seq {
+                    yield! front
+                    yield! (LazyList.rev back)
+                }
 
             e.GetEnumerator()
 

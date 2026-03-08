@@ -146,56 +146,55 @@ type HoodMelvilleQueue<'T>(frontLength: int, front: list<'T>, state: RotationSta
             )
         | _ -> None
 
-    with
-        interface IQueue<'T> with
+    interface IQueue<'T> with
 
-            member this.Count() =
-                this.Length
+        member this.Count() =
+            this.Length
 
-            member this.Head = this.Head
+        member this.Head = this.Head
 
-            member this.TryGetHead = this.TryGetHead
+        member this.TryGetHead = this.TryGetHead
 
-            member this.IsEmpty = this.IsEmpty
+        member this.IsEmpty = this.IsEmpty
 
-            member this.Length() =
-                this.Length
+        member this.Length() =
+            this.Length
 
-            member this.Snoc x =
-                this.Snoc x :> _
+        member this.Snoc x =
+            this.Snoc x :> _
 
-            member this.Tail = this.Tail :> _
+        member this.Tail = this.Tail :> _
 
-            member this.TryGetTail =
-                match this.TryGetTail with
-                | None -> None
-                | Some(q) -> Some(q :> _)
+        member this.TryGetTail =
+            match this.TryGetTail with
+            | None -> None
+            | Some(q) -> Some(q :> _)
 
-            member this.Uncons =
-                let x, xs = this.Uncons
-                x, xs :> _
+        member this.Uncons =
+            let x, xs = this.Uncons
+            x, xs :> _
 
-            member this.TryUncons =
-                match this.TryUncons with
-                | None -> None
-                | Some(x, q) -> Some(x, q :> _)
+        member this.TryUncons =
+            match this.TryUncons with
+            | None -> None
+            | Some(x, q) -> Some(x, q :> _)
 
-        interface IReadOnlyCollection<'T> with
-            member this.Count = this.Length
+    interface IReadOnlyCollection<'T> with
+        member this.Count = this.Length
 
-            member this.GetEnumerator() =
-                let e =
-                    let q = HoodMelvilleQueue.readyQ this
+        member this.GetEnumerator() =
+            let e =
+                let q = HoodMelvilleQueue.readyQ this
 
-                    seq {
-                        yield! q.front
-                        yield! (List.rev q.rBack)
-                    }
+                seq {
+                    yield! q.front
+                    yield! (List.rev q.rBack)
+                }
 
-                e.GetEnumerator()
+            e.GetEnumerator()
 
-            member this.GetEnumerator() =
-                (this :> _ seq).GetEnumerator() :> IEnumerator
+        member this.GetEnumerator() =
+            (this :> _ seq).GetEnumerator() :> IEnumerator
 
 [<RequireQualifiedAccess>]
 module HoodMelvilleQueue =

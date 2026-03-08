@@ -9,23 +9,23 @@ open System.Threading
 type Node(thread, array: obj[]) =
     let thread = thread
     new() = Node(ref null, Array.create Literals.blockSize null)
-    with
-        static member InCurrentThread() =
-            Node(ref Thread.CurrentThread, Array.create Literals.blockSize null)
 
-        member this.Array = array
-        member this.Thread = thread
+    static member InCurrentThread() =
+        Node(ref Thread.CurrentThread, Array.create Literals.blockSize null)
 
-        member this.SetThread t =
-            thread := t
+    member this.Array = array
+    member this.Thread = thread
+
+    member this.SetThread t =
+        thread := t
 #else
 type Node(array: obj[]) =
     new() = Node(Array.create Literals.blockSize null)
-    with
-        static member InCurrentThread() =
-            Node(Array.create Literals.blockSize null)
 
-        member this.Array = array
+    static member InCurrentThread() =
+        Node(Array.create Literals.blockSize null)
+
+    member this.Array = array
 #endif
 
 type internal TransientVector<'T>(count, shift: int, root: Node, tail: obj[]) =
@@ -376,10 +376,9 @@ and PersistentVector<'T>(count, shift: int, root: Node, tail: obj[]) =
         if count = 0 then
             failwith "Can't initial empty vector"
         else if count = 1 then
-            PersistentVector<'T>.Empty ()
-        else
+            PersistentVector<'T>.Empty()
+        else if
 
-        if
             count - tailOff > 1
         then
 #if !FABLE_COMPILER
@@ -432,14 +431,15 @@ and PersistentVector<'T>(count, shift: int, root: Node, tail: obj[]) =
             let mutable i = count - 1
             let mutable array = this.ArrayFor i
 
-            let items = seq {
-                while i > - 1 do
-                    if (i + 1) % Literals.blockSize = 0 then
-                        array <- this.ArrayFor i
+            let items =
+                seq {
+                    while i > -1 do
+                        if (i + 1) % Literals.blockSize = 0 then
+                            array <- this.ArrayFor i
 
-                    yield array.[i &&& Literals.blockIndexMask] :?> 'T
-                    i <- i - 1
-            }
+                        yield array.[i &&& Literals.blockIndexMask] :?> 'T
+                        i <- i - 1
+                }
 
             let mutable ret = TransientVector()
 

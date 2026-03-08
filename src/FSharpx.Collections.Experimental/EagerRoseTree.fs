@@ -11,10 +11,8 @@ open System.Runtime.CompilerServices
 // Ported from http://hackage.haskell.org/packages/archive/containers/latest/doc/html/src/Data-Tree.html
 [<CustomEquality; NoComparison>]
 type EagerRoseTree<'T> =
-    {
-        Root: 'T
-        Children: EagerRoseForest<'T>
-    }
+    { Root: 'T
+      Children: EagerRoseForest<'T> }
 
     override x.Equals y =
         match y with
@@ -37,23 +35,22 @@ and EagerRoseForest<'T> = EagerRoseTree<'T> list
 module EagerRoseTree =
     open FSharpx
 
-    let inline create root children = { Root = root; Children = children }
+    let inline create root children =
+        { Root = root; Children = children }
 
     let inline singleton x =
         create x List.empty
 
-    let rec map f (x: _ EagerRoseTree) = {
-        EagerRoseTree.Root = f x.Root
-        Children = List.map (map f) x.Children
-    }
+    let rec map f (x: _ EagerRoseTree) =
+        { EagerRoseTree.Root = f x.Root
+          Children = List.map (map f) x.Children }
 
-    let rec ap x f = {
-        EagerRoseTree.Root = f.Root x.Root
-        Children =
+    let rec ap x f =
+        { EagerRoseTree.Root = f.Root x.Root
+          Children =
             let a = List.map (map f.Root) x.Children
             let b = List.map (fun c -> ap x c) f.Children
-            List.append a b
-    }
+            List.append a b }
 
     let inline lift2 f a b =
         singleton f |> ap a |> ap b
@@ -61,24 +58,24 @@ module EagerRoseTree =
     let rec bind f x =
         let a = f x.Root
 
-        {
-            EagerRoseTree.Root = a.Root
-            Children = List.append a.Children (List.map (bind f) x.Children)
-        }
+        { EagerRoseTree.Root = a.Root
+          Children = List.append a.Children (List.map (bind f) x.Children) }
 
     [<CompiledName("DfsPre")>]
     [<Extension>]
-    let rec dfsPre(x: _ EagerRoseTree) = seq {
-        yield x.Root
-        yield! Seq.collect dfsPre x.Children
-    }
+    let rec dfsPre(x: _ EagerRoseTree) =
+        seq {
+            yield x.Root
+            yield! Seq.collect dfsPre x.Children
+        }
 
     [<CompiledName("DfsPost")>]
     [<Extension>]
-    let rec dfsPost(x: _ EagerRoseTree) = seq {
-        yield! Seq.collect dfsPost x.Children
-        yield x.Root
-    }
+    let rec dfsPost(x: _ EagerRoseTree) =
+        seq {
+            yield! Seq.collect dfsPost x.Children
+            yield x.Root
+        }
 
     let rec unfold f seed =
         let root, bs = f seed

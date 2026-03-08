@@ -33,11 +33,8 @@ module FileSystemZipperTest =
             { zipper with
                 Focus =
                     Folder
-                        {
-                            Name = name
-                            Items = ls @ [ zipper.Focus ] @ rs
-                        }
-            }
+                        { Name = name
+                          Items = ls @ [ zipper.Focus ] @ rs } }
 
     let getName =
         function
@@ -53,10 +50,8 @@ module FileSystemZipperTest =
         | Folder folder ->
             let (ls, item :: rs) = List.split (nameIs name) folder.Items
 
-            {
-                Focus = item
-                Path = Some(folder.Name, ls, rs)
-            }
+            { Focus = item
+              Path = Some(folder.Name, ls, rs) }
 
     /// Renames the given focus
     let rename newName zipper =
@@ -64,8 +59,7 @@ module FileSystemZipperTest =
         | File name -> { zipper with Focus = File newName }
         | Folder folder ->
             { zipper with
-                Focus = Folder { folder with Name = newName }
-            }
+                Focus = Folder { folder with Name = newName } }
 
     /// Creates a new file in the current directory
     let newFile name zipper =
@@ -75,9 +69,7 @@ module FileSystemZipperTest =
                 Focus =
                     Folder
                         { folder with
-                            Items = File name :: folder.Items
-                        }
-            }
+                            Items = File name :: folder.Items } }
 
     /// Creates a new folder in the current directory
     let newFolder name zipper =
@@ -87,106 +79,99 @@ module FileSystemZipperTest =
                 Focus =
                     Folder
                         { folder with
-                            Items = Folder { Name = name; Items = [] } :: folder.Items
-                        }
-            }
+                            Items = Folder { Name = name; Items = [] } :: folder.Items } }
 
-    let zipper fileSystem : FSZipper = { Focus = fileSystem; Path = None }
+    let zipper fileSystem : FSZipper =
+        { Focus = fileSystem; Path = None }
 
     let disk =
         folder(
             "root",
-            [
-                File "goat_yelling_like_man.wmv"
-                File "pope_time.avi"
-                folder(
-                    "pics",
-                    [
-                        File "ape_throwing_up.jpg"
-                        File "watermelon_smash.gif"
-                        File "skull_man(scary).bmp"
-                    ]
-                )
-                File "dijon_poupon.doc"
-                folder(
-                    "programs",
-                    [
-                        File "fartwizard.exe"
-                        File "owl_bandit.dmg"
-                        File "not_a_virus.exe"
-                        folder("source code", [ File "best_hs_prog.hs"; File "random.hs" ])
-                    ]
-                )
-            ]
+            [ File "goat_yelling_like_man.wmv"
+              File "pope_time.avi"
+              folder(
+                  "pics",
+                  [ File "ape_throwing_up.jpg"
+                    File "watermelon_smash.gif"
+                    File "skull_man(scary).bmp" ]
+              )
+              File "dijon_poupon.doc"
+              folder(
+                  "programs",
+                  [ File "fartwizard.exe"
+                    File "owl_bandit.dmg"
+                    File "not_a_virus.exe"
+                    folder("source code", [ File "best_hs_prog.hs"; File "random.hs" ]) ]
+              ) ]
         )
         |> zipper
 
     [<Tests>]
     let testFileSystemZipper =
 
-        testList "Experimental FileSystemZipper" [
-            test "Can move to subdir" {
-                let z = disk |> moveTo "pics" |> moveTo "skull_man(scary).bmp"
-                Expect.equal "" (File "skull_man(scary).bmp") z.Focus
-            }
+        testList
+            "Experimental FileSystemZipper"
+            [ test "Can move to subdir" {
+                  let z = disk |> moveTo "pics" |> moveTo "skull_man(scary).bmp"
+                  Expect.equal "" (File "skull_man(scary).bmp") z.Focus
+              }
 
-            test "Can move to subdir and up again" {
-                let z = disk |> moveTo "pics" |> moveTo "skull_man(scary).bmp" |> up
-                Expect.equal "" "pics" <| getName z.Focus
-            }
+              test "Can move to subdir and up again" {
+                  let z = disk |> moveTo "pics" |> moveTo "skull_man(scary).bmp" |> up
+                  Expect.equal "" "pics" <| getName z.Focus
+              }
 
-            test "Can rename a folder" {
-                let z = disk |> moveTo "pics" |> rename "photo" |> up |> moveTo "photo"
-                Expect.equal "" "photo" <| getName z.Focus
-            }
+              test "Can rename a folder" {
+                  let z = disk |> moveTo "pics" |> rename "photo" |> up |> moveTo "photo"
+                  Expect.equal "" "photo" <| getName z.Focus
+              }
 
-            test "Can rename a file" {
-                let z =
-                    disk
-                    |> moveTo "pics"
-                    |> moveTo "skull_man(scary).bmp"
-                    |> rename "scary.bmp"
-                    |> up
-                    |> moveTo "scary.bmp"
+              test "Can rename a file" {
+                  let z =
+                      disk
+                      |> moveTo "pics"
+                      |> moveTo "skull_man(scary).bmp"
+                      |> rename "scary.bmp"
+                      |> up
+                      |> moveTo "scary.bmp"
 
-                Expect.equal "" "scary.bmp" <| getName z.Focus
-            }
+                  Expect.equal "" "scary.bmp" <| getName z.Focus
+              }
 
-            test "Can't access a renamed file with the old name" {
-                let ok = ref false
+              test "Can't access a renamed file with the old name" {
+                  let ok = ref false
 
-                let z1 =
-                    disk
-                    |> moveTo "pics"
-                    |> moveTo "skull_man(scary).bmp"
-                    |> rename "scary.bmp"
-                    |> up
+                  let z1 =
+                      disk
+                      |> moveTo "pics"
+                      |> moveTo "skull_man(scary).bmp"
+                      |> rename "scary.bmp"
+                      |> up
 
-                try
-                    z1 |> moveTo "skull_man(scary).bmp" |> ignore
-                with _ ->
-                    ok := true
+                  try
+                      z1 |> moveTo "skull_man(scary).bmp" |> ignore
+                  with _ ->
+                      ok := true
 
-                Expect.isTrue "" !ok
-            }
+                  Expect.isTrue "" !ok
+              }
 
-            test "Can create a new file" {
-                let z = disk |> moveTo "pics" |> newFile "scary.bmp" |> moveTo "scary.bmp"
-                Expect.equal "" "scary.bmp" <| getName z.Focus
-            }
+              test "Can create a new file" {
+                  let z = disk |> moveTo "pics" |> newFile "scary.bmp" |> moveTo "scary.bmp"
+                  Expect.equal "" "scary.bmp" <| getName z.Focus
+              }
 
-            test "Can still access old files if a new one is created" {
-                let z =
-                    disk
-                    |> moveTo "pics"
-                    |> newFile "scary.bmp"
-                    |> moveTo "skull_man(scary).bmp"
+              test "Can still access old files if a new one is created" {
+                  let z =
+                      disk
+                      |> moveTo "pics"
+                      |> newFile "scary.bmp"
+                      |> moveTo "skull_man(scary).bmp"
 
-                Expect.equal "" "skull_man(scary).bmp" <| getName z.Focus
-            }
+                  Expect.equal "" "skull_man(scary).bmp" <| getName z.Focus
+              }
 
-            test "Can create a new folder" {
-                let z = disk |> moveTo "pics" |> newFolder "wedding" |> moveTo "wedding"
-                Expect.equal "" (Folder { Name = "wedding"; Items = [] }) z.Focus
-            }
-        ]
+              test "Can create a new folder" {
+                  let z = disk |> moveTo "pics" |> newFolder "wedding" |> moveTo "wedding"
+                  Expect.equal "" (Folder { Name = "wedding"; Items = [] }) z.Focus
+              } ]

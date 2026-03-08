@@ -41,43 +41,43 @@ module BinaryRoseTreeTest =
     [<Tests>]
     let testBinaryRoseTree =
 
-        testList "Experimental BinaryRoseTree" [
-            test "preOrder works" {
-                let actual = BinaryRoseTree.preOrder ctree |> Seq.toList
-                Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
-            }
+        testList
+            "Experimental BinaryRoseTree"
+            [ test "preOrder works" {
+                  let actual = BinaryRoseTree.preOrder ctree |> Seq.toList
+                  Expect.equal "" [ "f"; "b"; "a"; "d"; "c"; "e"; "g"; "i"; "h" ] actual
+              }
 
-            test "postOrder works" {
-                let actual = BinaryRoseTree.postOrder ctree |> Seq.toList
-                Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
-            }
+              test "postOrder works" {
+                  let actual = BinaryRoseTree.postOrder ctree |> Seq.toList
+                  Expect.equal "" [ "a"; "c"; "e"; "d"; "b"; "h"; "i"; "g"; "f" ] actual
+              }
 
-            test "map" {
-                let actual = BinaryRoseTree.map ((+) 1) atree
-                Expect.equal "" expected actual
-            }
+              test "map" {
+                  let actual = BinaryRoseTree.map ((+) 1) atree
+                  Expect.equal "" expected actual
+              }
 
-            test "fold via preOrder" {
-                let actual = BinaryRoseTree.preOrder atree |> Seq.fold (*) 1
-                Expect.equal "" 720 actual
-            }
+              test "fold via preOrder" {
+                  let actual = BinaryRoseTree.preOrder atree |> Seq.fold (*) 1
+                  Expect.equal "" 720 actual
+              }
 
-            test "functor laws" {
-                let iRT = BinaryRoseTree.createTree 1 (BinaryRoseTree.createForest 2 atree expected)
-                let singleRT = BinaryRoseTree.singleton 1
+              test "functor laws" {
+                  let iRT = BinaryRoseTree.createTree 1 (BinaryRoseTree.createForest 2 atree expected)
+                  let singleRT = BinaryRoseTree.singleton 1
 
-                //fsCheck version of functor and monad laws stackoverflows
-                let map = BinaryRoseTree.map
+                  //fsCheck version of functor and monad laws stackoverflows
+                  let map = BinaryRoseTree.map
 
-                //preserves identity
-                ((map id iRT) = iRT) |> Expect.isTrue ""
-                ((map id singleRT) = singleRT) |> Expect.isTrue ""
+                  //preserves identity
+                  ((map id iRT) = iRT) |> Expect.isTrue ""
+                  ((map id singleRT) = singleRT) |> Expect.isTrue ""
 
-                let f = (fun x -> x + 5)
-                let g = (fun x -> x - 2)
+                  let f = (fun x -> x + 5)
+                  let g = (fun x -> x - 2)
 
-                //preserves composition
-                map (f << g) iRT = (map f << map g) iRT |> Expect.isTrue ""
-                map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue ""
-            }
-        ]
+                  //preserves composition
+                  map (f << g) iRT = (map f << map g) iRT |> Expect.isTrue ""
+                  map (f << g) singleRT = (map f << map g) singleRT |> Expect.isTrue ""
+              } ]

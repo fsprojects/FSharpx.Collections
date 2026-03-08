@@ -239,9 +239,8 @@ type Heap<'T when 'T: comparison>(isDescending: bool, length: int, data: HeapDat
         member this.GetEnumerator() =
             (this :> _ seq).GetEnumerator() :> IEnumerator
 
-    interface IPriorityQueue<'T>
+    interface IPriorityQueue<'T> with
 
-     with
         member this.IsEmpty = this.IsEmpty
 
         member this.Insert element =

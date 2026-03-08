@@ -36,7 +36,8 @@ module ListZipper =
         | _ -> back zipper |> front
 
     /// Creates a list zipper
-    let zipper list = { Focus = list; Path = [] }
+    let zipper list =
+        { Focus = list; Path = [] }
 
     /// Returns the whole list from the zipper
     let getList zipper =

@@ -10,6 +10,7 @@
     <Compile Include="Deque.test.fs" />
     <Compile Include="LazyList.test.fs" />
     <Compile Include="PersistentVector.test.fs" />
+    <Compile Include="Program.fs" />
     <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>

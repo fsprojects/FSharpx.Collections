@@ -12,10 +12,8 @@ open System.Runtime.CompilerServices
 // Ported from http://hackage.haskell.org/packages/archive/containers/latest/doc/html/src/Data-Tree.html
 [<CustomEquality; NoComparison>]
 type IndexedRoseTree<'T> =
-    {
-        Root: 'T
-        Children: PersistentVector<IndexedRoseTree<'T>>
-    }
+    { Root: 'T
+      Children: PersistentVector<IndexedRoseTree<'T>> }
 
     override x.Equals y =
         match y with
@@ -33,23 +31,22 @@ type IndexedRoseTree<'T> =
 [<RequireQualifiedAccess>]
 module IndexedRoseTree =
 
-    let inline create root children = { Root = root; Children = children }
+    let inline create root children =
+        { Root = root; Children = children }
 
     let inline singleton x =
         create x PersistentVector.empty
 
-    let rec map f (x: _ IndexedRoseTree) = {
-        IndexedRoseTree.Root = f x.Root
-        Children = PersistentVector.map (map f) x.Children
-    }
+    let rec map f (x: _ IndexedRoseTree) =
+        { IndexedRoseTree.Root = f x.Root
+          Children = PersistentVector.map (map f) x.Children }
 
-    let rec ap x f = {
-        IndexedRoseTree.Root = f.Root x.Root
-        Children =
+    let rec ap x f =
+        { IndexedRoseTree.Root = f.Root x.Root
+          Children =
             let a = PersistentVector.map (map f.Root) x.Children
             let b = PersistentVector.map (fun c -> ap x c) f.Children
-            PersistentVector.append a b
-    }
+            PersistentVector.append a b }
 
     let inline lift2 f a b =
         singleton f |> ap a |> ap b
@@ -57,20 +54,20 @@ module IndexedRoseTree =
     let rec bind f x =
         let a = f x.Root
 
-        {
-            IndexedRoseTree.Root = a.Root
-            Children = PersistentVector.append a.Children (PersistentVector.map (bind f) x.Children)
+        { IndexedRoseTree.Root = a.Root
+          Children = PersistentVector.append a.Children (PersistentVector.map (bind f) x.Children) }
+
+    let rec preOrder(x: _ IndexedRoseTree) =
+        seq {
+            yield x.Root
+            yield! Seq.collect preOrder x.Children
         }
 
-    let rec preOrder(x: _ IndexedRoseTree) = seq {
-        yield x.Root
-        yield! Seq.collect preOrder x.Children
-    }
-
-    let rec postOrder(x: _ IndexedRoseTree) = seq {
-        yield! Seq.collect postOrder x.Children
-        yield x.Root
-    }
+    let rec postOrder(x: _ IndexedRoseTree) =
+        seq {
+            yield! Seq.collect postOrder x.Children
+            yield x.Root
+        }
 
     let rec unfold f seed =
         let root, bs = f seed

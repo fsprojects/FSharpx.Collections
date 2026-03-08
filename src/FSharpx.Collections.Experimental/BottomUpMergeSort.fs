@@ -6,10 +6,9 @@ namespace FSharpx.Collections.Experimental
 [<RequireQualifiedAccess>]
 module BottomUpMergeSort =
 
-    type Sortable<'T> = {
-        Size: int
-        Segments: Lazy<list<list<'T>>>
-    }
+    type Sortable<'T> =
+        { Size: int
+          Segments: Lazy<list<list<'T>>> }
 
     let rec merge xs ys =
         match xs, ys with
@@ -22,7 +21,8 @@ module BottomUpMergeSort =
     let isEmpty x =
         x.Size = 0
 
-    let singleton x = { Size = 1; Segments = lazy [ [ x ] ] }
+    let singleton x =
+        { Size = 1; Segments = lazy [ [ x ] ] }
 
     let rec addSeg seg segs size =
         if size % 2 = 0 then
@@ -30,10 +30,9 @@ module BottomUpMergeSort =
         else
             addSeg (merge seg (List.head segs)) (List.tail segs) (size / 2)
 
-    let add x y = {
-        Size = y.Size + 1
-        Segments = lazy addSeg [ x ] (y.Segments.Force()) y.Size
-    }
+    let add x y =
+        { Size = y.Size + 1
+          Segments = lazy addSeg [ x ] (y.Segments.Force()) y.Size }
 
     let rec mergeAll xs ys =
         match xs, ys with

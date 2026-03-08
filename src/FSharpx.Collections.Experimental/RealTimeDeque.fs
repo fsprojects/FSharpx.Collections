@@ -13,15 +13,7 @@ open System.Collections
 open System.Collections.Generic
 
 type RealTimeDeque<'T>
-    (
-        c: int,
-        frontLength: int,
-        front: LazyList<'T>,
-        streamFront: LazyList<'T>,
-        rBackLength: int,
-        rBack: LazyList<'T>,
-        streamRBack: LazyList<'T>
-    ) =
+    (c: int, frontLength: int, front: LazyList<'T>, streamFront: LazyList<'T>, rBackLength: int, rBack: LazyList<'T>, streamRBack: LazyList<'T>) =
 
     member private this.c = c
 
@@ -577,10 +569,11 @@ type RealTimeDeque<'T>
             with get i = this.Lookup i
 
         member this.GetEnumerator() =
-            let e = seq {
-                yield! front
-                yield! (LazyList.rev this.rBack)
-            }
+            let e =
+                seq {
+                    yield! front
+                    yield! (LazyList.rev this.rBack)
+                }
 
             e.GetEnumerator()
 

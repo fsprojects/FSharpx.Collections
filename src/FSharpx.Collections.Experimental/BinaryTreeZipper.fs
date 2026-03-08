@@ -10,10 +10,9 @@ type TreeDirection =
     | Right
 
 /// The zipper data structure for binary trees
-type BinaryTreeZipper<'T> = {
-    Focus: BinaryTree<'T>
-    Path: (TreeDirection * 'T * BinaryTree<'T>) list
-}
+type BinaryTreeZipper<'T> =
+    { Focus: BinaryTree<'T>
+      Path: (TreeDirection * 'T * BinaryTree<'T>) list }
 
 /// TreeZipper
 /// original implementation taken from http://blog.xquant.net/?p=156
@@ -27,14 +26,12 @@ module BinaryTreeZipper =
     /// Moves the zipper one level up
     let up z =
         match z.Path with
-        | (Left, v, other) :: ep -> {
-            Focus = Branch(v, z.Focus, other)
-            Path = ep
-          }
-        | (Right, v, other) :: ep -> {
-            Focus = Branch(v, other, z.Focus)
-            Path = ep
-          }
+        | (Left, v, other) :: ep ->
+            { Focus = Branch(v, z.Focus, other)
+              Path = ep }
+        | (Right, v, other) :: ep ->
+            { Focus = Branch(v, other, z.Focus)
+              Path = ep }
         | [] -> failwith "can't go up" // because ep only goes down and is empty
 
     /// Moves the zipper to the top
@@ -46,19 +43,17 @@ module BinaryTreeZipper =
     /// Moves the zipper to the left
     let left z =
         match z.Focus with
-        | (Branch(v, explored, other)) -> {
-            Focus = explored
-            Path = (Left, v, other) :: z.Path
-          }
+        | (Branch(v, explored, other)) ->
+            { Focus = explored
+              Path = (Left, v, other) :: z.Path }
         | Leaf -> failwith "can't go down on leaf"
 
     /// Moves the zipper to the right
     let right z =
         match z.Focus with
-        | (Branch(v, other, explored)) -> {
-            Focus = explored
-            Path = (Right, v, other) :: z.Path
-          }
+        | (Branch(v, other, explored)) ->
+            { Focus = explored
+              Path = (Right, v, other) :: z.Path }
         | Leaf -> failwith "can't go down on leaf"
 
     /// Modifies the current focus inside the zipper
@@ -66,7 +61,8 @@ module BinaryTreeZipper =
         { zipper with Focus = newFocus }
 
     /// Creates a zipper from a tree
-    let zipper t = { Focus = t; Path = [] }
+    let zipper t =
+        { Focus = t; Path = [] }
 
     type TreeZipperDirection =
         | Up

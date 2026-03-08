@@ -1,24 +1,22 @@
 module LazyListTests
 
-open Fable.Jester
-open Fable.FastCheck
-open Fable.FastCheck.Jest
+open Fable.Mocha
 open FSharpx.Collections
 
-Jest.test(
-    "LazyList works",
-    async {
-        let xs = LazyList.empty
+let tests =
+    testList
+        "LazyListTests"
+        [ test "LazyList works" {
+              let xs = LazyList.empty
 
-        Jest.expect(LazyList.isEmpty xs).toEqual(true)
+              Expect.equal (LazyList.isEmpty xs) true "should be empty"
 
-        let xs = LazyList.ofList [ 1; 2; 3 ]
+              let xs = LazyList.ofList [ 1; 2; 3 ]
 
-        Jest.expect(LazyList.isEmpty xs).toEqual(false)
-        Jest.expect(LazyList.tryHead xs).toEqual(1)
+              Expect.equal (LazyList.isEmpty xs) false "should not be empty"
+              Expect.equal (LazyList.tryHead xs) (Some 1) "should get first element"
 
-        let xs = xs |> LazyList.tail |> LazyList.tail
+              let xs = xs |> LazyList.tail |> LazyList.tail
 
-        Jest.expect(LazyList.tryHead xs).toEqual(3)
-    }
-)
+              Expect.equal (LazyList.tryHead xs) (Some 3) "should reach third element"
+          } ]

@@ -1,38 +1,34 @@
 module QueueTests
 
-open Fable.Jester
-open Fable.FastCheck
-open Fable.FastCheck.Jest
+open Fable.Mocha
 open FSharpx.Collections
 
-Jest.test(
-    "Queue works",
-    async {
-        let q = Queue.empty
+let tests =
+    testList
+        "QueueTests"
+        [ test "Queue works" {
+              let q = Queue.empty
 
-        Jest.expect(Queue.isEmpty q).toEqual(true)
+              Expect.equal (Queue.isEmpty q) true "should start empty"
 
-        let q = Queue.conj "a" q
+              let q = Queue.conj "a" q
 
-        Jest.expect(Queue.isEmpty q).toEqual(false)
-        Jest.expect(Queue.tryHead q).toEqual(Some "a")
+              Expect.equal (Queue.isEmpty q) false "should no longer be empty"
+              Expect.equal (Queue.tryHead q) (Some "a") "should read first element"
 
-        let q = Queue.conj "b" q
+              let q = Queue.conj "b" q
 
-        Jest.expect(Queue.tryHead q).toEqual(Some "a")
+              Expect.equal (Queue.tryHead q) (Some "a") "should preserve head"
 
-        let q = Queue.conj "c" q
+              let q = Queue.conj "c" q
 
-        Jest
-            .expect(Queue.tryTail q)
-            .toEqual(Queue.empty |> Queue.conj "b" |> Queue.conj "c")
+              Expect.equal (Queue.tryTail q) (Queue.empty |> Queue.conj "b" |> Queue.conj "c" |> Some) "should drop head"
 
-        let popped, q = Queue.uncons q
+              let popped, q = Queue.uncons q
 
-        Jest.expect(popped).toEqual("a")
+              Expect.equal popped "a" "should pop in order"
 
-        let popped, q = Queue.uncons q
+              let popped, _ = Queue.uncons q
 
-        Jest.expect(popped).toEqual("b")
-    }
-)
+              Expect.equal popped "b" "should pop second"
+          } ]

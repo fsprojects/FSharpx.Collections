@@ -12,44 +12,44 @@ module ListZipperTest =
     [<Tests>]
     let testListZipper =
 
-        testList "Experimental ListZipper" [
-            test "Can move forward" {
-                let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward
-                Expect.equal "" 'c' <| ListZipper.focus z
-            }
+        testList
+            "Experimental ListZipper"
+            [ test "Can move forward" {
+                  let z = chars |> ListZipper.zipper |> ListZipper.forward |> ListZipper.forward
+                  Expect.equal "" 'c' <| ListZipper.focus z
+              }
 
-            test "Can move back" {
-                let z =
-                    chars
-                    |> ListZipper.zipper
-                    |> ListZipper.forward
-                    |> ListZipper.forward
-                    |> ListZipper.back
+              test "Can move back" {
+                  let z =
+                      chars
+                      |> ListZipper.zipper
+                      |> ListZipper.forward
+                      |> ListZipper.forward
+                      |> ListZipper.back
 
-                Expect.equal "" 'b' <| ListZipper.focus z
-            }
+                  Expect.equal "" 'b' <| ListZipper.focus z
+              }
 
-            test "Can move to the front" {
-                let z =
-                    chars
-                    |> ListZipper.zipper
-                    |> ListZipper.forward
-                    |> ListZipper.forward
-                    |> ListZipper.front
+              test "Can move to the front" {
+                  let z =
+                      chars
+                      |> ListZipper.zipper
+                      |> ListZipper.forward
+                      |> ListZipper.forward
+                      |> ListZipper.front
 
-                Expect.equal "" 'a' <| ListZipper.focus z
-            }
+                  Expect.equal "" 'a' <| ListZipper.focus z
+              }
 
-            test "Can modify an element" {
-                let z =
-                    chars
-                    |> ListZipper.zipper
-                    |> ListZipper.forward
-                    |> ListZipper.forward
-                    |> ListZipper.modify 'e'
-                    |> ListZipper.back
-                    |> ListZipper.forward
+              test "Can modify an element" {
+                  let z =
+                      chars
+                      |> ListZipper.zipper
+                      |> ListZipper.forward
+                      |> ListZipper.forward
+                      |> ListZipper.modify 'e'
+                      |> ListZipper.back
+                      |> ListZipper.forward
 
-                Expect.equal "" 'e' <| ListZipper.focus z
-            }
-        ]
+                  Expect.equal "" 'e' <| ListZipper.focus z
+              } ]

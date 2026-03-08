@@ -77,13 +77,14 @@ type AltBinRndAccList<'T> =
             | Some(x) -> Some(x :> _)
 
         member this.GetEnumerator() =
-            let e = seq {
-                match AltBinRndAccList.tryUncons this with
-                | None -> ()
-                | Some(x, xs) ->
-                    yield x
-                    yield! xs
-            }
+            let e =
+                seq {
+                    match AltBinRndAccList.tryUncons this with
+                    | None -> ()
+                    | Some(x, xs) ->
+                        yield x
+                        yield! xs
+                }
 
             e.GetEnumerator()
 

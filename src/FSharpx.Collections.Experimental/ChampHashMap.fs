@@ -272,10 +272,11 @@ module internal Node =
     let rec toSeq =
         function
         | EmptyNode -> Seq.empty
-        | BitmapNode(_, _, items, nodes) -> seq {
-            yield! items
-            yield! Seq.collect toSeq nodes
-          }
+        | BitmapNode(_, _, items, nodes) ->
+            seq {
+                yield! items
+                yield! Seq.collect toSeq nodes
+            }
         | CollisionNode(items, _) -> Array.toSeq items
 
     //Returns the number of entries in the node and all of its sub-nodes

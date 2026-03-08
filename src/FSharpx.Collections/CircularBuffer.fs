@@ -17,15 +17,16 @@ type CircularBuffer<'T>(bufferSize: int) =
     let mutable tail = 0
     let mutable length = 0
 
-    let rec nextBuffer offset count = seq {
-        let overflow = count + offset - bufferSize
+    let rec nextBuffer offset count =
+        seq {
+            let overflow = count + offset - bufferSize
 
-        if overflow > 0 then
-            yield (offset, bufferSize - offset)
-            yield! nextBuffer 0 overflow
-        else
-            yield (offset, count)
-    }
+            if overflow > 0 then
+                yield (offset, bufferSize - offset)
+                yield! nextBuffer 0 overflow
+            else
+                yield (offset, count)
+        }
 
     member this.Count = length
 
@@ -83,12 +84,13 @@ type CircularBuffer<'T>(bufferSize: int) =
         this.Enqueue([| value |], 0, 1)
 
     member this.GetEnumerator() =
-        let rec loop() = seq {
-            if length > 0 then
-                yield this.Dequeue(1).[0]
+        let rec loop() =
+            seq {
+                if length > 0 then
+                    yield this.Dequeue(1).[0]
 
-            yield! loop()
-        }
+                yield! loop()
+            }
 
         loop().GetEnumerator()
 
