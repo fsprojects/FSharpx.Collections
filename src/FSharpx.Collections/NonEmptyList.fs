@@ -143,7 +143,7 @@ module NonEmptyList =
         List.forall predicate list.List
 
     [<CompiledName("Contains")>]
-    let inline contains value list =
+    let contains value list =
         List.contains value list.List
 
     [<CompiledName("SortWith")>]
@@ -155,7 +155,7 @@ module NonEmptyList =
         { List = List.sortBy projection list.List }
 
     [<CompiledName("Sort")>]
-    let inline sort list =
+    let sort list =
         { List = List.sort list.List }
 
     [<CompiledName("MaximumBy")>]
