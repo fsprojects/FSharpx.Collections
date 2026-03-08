@@ -1,13 +1,38 @@
 {
-  "last_run": "2026-03-08T18:01:47Z",
-  "run_id": "22826651287",
-  "labels_applied": ["15","71","72","122","134","166","174","180","202","218","226"],
+  "last_run": "2026-03-08T17:55:25Z",
+  "run_id": "22826541228",
+  "comments_made": [],
+  "labels_applied": {
+    "15": ["question", "enhancement"],
+    "71": ["enhancement"],
+    "72": ["enhancement"],
+    "122": ["enhancement", "question"],
+    "134": ["enhancement"],
+    "166": ["performance"],
+    "174": ["enhancement", "help wanted"],
+    "180": ["bug"],
+    "202": ["question", "documentation"],
+    "218": ["question"],
+    "226": ["question"]
+  },
   "fix_attempts": [
-    {"issue": 85, "status": "needs-retry", "desc": "PersistentHashMap null values"},
-    {"issue": 125, "status": "pr_created", "desc": "CircularBuffer Enqueue array fix"}
+    {
+      "issue": 85,
+      "branch": "repo-assist/fix-issue-85-containskey-null-values",
+      "status": "pr_created",
+      "description": "Fix PersistentHashMap.ContainsKey for null/None values"
+    }
   ],
-  "cursor": 226,
-  "monthly_issue": 230,
-  "open_ra_prs": [229, "circ-buffer-pr-tbd", "ci-cache-pr-tbd"],
-  "notes": "PR #229=NonEmptyList funcs. Issue #85 needs re-attempt. CI cache PR created. Next run: get PR numbers for CircularBuffer and CI cache PRs."
+  "pr_attempts": [
+    {
+      "branch": "repo-assist/improve-nonemptylist-and-seq-tests",
+      "status": "pr_created",
+      "description": "Add missing NonEmptyList functions (iter/iteri/mapi/exists/forall/contains/sort/sortBy/sortWith/maxBy/minBy) and tests for Seq/NonEmptyList untested functions",
+      "related_issues": [174]
+    }
+  ],
+  "issue_backlog_cursor": 226,
+  "notes": "Monthly Activity issue created for 2026-03 (aw_mar2026b). PR created for NonEmptyList improvements + tests. Issue #228 is a workflow failure notice from run 22825946046 (push to PR #203 failed). PR #203 was opened by a human - do not try to push to it again.",
+  "monthly_activity_issue": "2026-03 (temporary_id: aw_mar2026b)",
+  "checked_off_items": []
 }
