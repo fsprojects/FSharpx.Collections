@@ -42,6 +42,7 @@ safe-outputs:
     draft: true
     title-prefix: "[Repo Assist] "
     labels: [automation, repo-assist]
+    base-branch: master
     max: 4
   push-to-pull-request-branch:
     target: "*"
