@@ -47,9 +47,7 @@ module PersistentHashMapTests =
               }
 
               test "containsKey returns true for unit value" {
-                  let map =
-                      PersistentHashMap.empty
-                      |> PersistentHashMap.add "key" ()
+                  let map = PersistentHashMap.empty |> PersistentHashMap.add "key" ()
 
                   Expect.isTrue "containsKey with unit value" (PersistentHashMap.containsKey "key" map)
                   Expect.isFalse "containsKey absent key" (PersistentHashMap.containsKey "other" map)
