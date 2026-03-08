@@ -53,11 +53,13 @@ type CircularBuffer<'T>(bufferSize: int) =
 
         let mutable offset = offset
 
-        head <- (head + 1) % bufferSize
+        let startPos = (head + 1) % bufferSize
 
-        for x, y in nextBuffer head count do
+        for x, y in nextBuffer startPos count do
             Array.blit value offset buffer x y
             offset <- offset + y
+
+        head <- (head + count) % bufferSize
 
         if length = bufferSize then
             tail <- (tail + count) % bufferSize
