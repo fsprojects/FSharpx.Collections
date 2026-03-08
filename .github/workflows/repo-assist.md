@@ -43,6 +43,7 @@ safe-outputs:
     title-prefix: "[Repo Assist] "
     labels: [automation, repo-assist]
     base-branch: master
+    protected-files: fallback-to-issue
     max: 4
   push-to-pull-request-branch:
     target: "*"
