@@ -279,8 +279,7 @@ module NonEmptyListTests =
                   config10k
                   "toSeq yields all elements"
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
-                   <| fun nel ->
-                       Seq.forall2 (=) (NonEmptyList.toSeq nel) (NonEmptyList.toList nel))
+                   <| fun nel -> Seq.forall2 (=) (NonEmptyList.toSeq nel) (NonEmptyList.toList nel))
 
               testPropertyWithConfig
                   config10k
@@ -298,7 +297,7 @@ module NonEmptyListTests =
                    <| fun nel ->
                        let pairs = System.Collections.Generic.List<int * int>()
                        NonEmptyList.iteri (fun i x -> pairs.Add(i, x)) nel
-                       let expected = nel |> NonEmptyList.toList |> List.mapi (fun i x -> i, x)
+                       let expected = nel |> NonEmptyList.toList |> List.mapi(fun i x -> i, x)
                        Seq.toList pairs = expected)
 
               testPropertyWithConfig
@@ -307,22 +306,20 @@ module NonEmptyListTests =
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
                    <| fun nel ->
                        let actual = NonEmptyList.mapi (fun i x -> i, x) nel |> NonEmptyList.toList
-                       let expected = nel |> NonEmptyList.toList |> List.mapi (fun i x -> i, x)
+                       let expected = nel |> NonEmptyList.toList |> List.mapi(fun i x -> i, x)
                        actual = expected)
 
               testPropertyWithConfig
                   config10k
                   "exists returns true when element satisfies predicate"
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
-                   <| fun nel ->
-                       NonEmptyList.exists (fun _ -> true) nel = true)
+                   <| fun nel -> NonEmptyList.exists (fun _ -> true) nel = true)
 
               testPropertyWithConfig
                   config10k
                   "forall returns true when all elements satisfy predicate"
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
-                   <| fun nel ->
-                       NonEmptyList.forall (fun _ -> true) nel = true)
+                   <| fun nel -> NonEmptyList.forall (fun _ -> true) nel = true)
 
               testPropertyWithConfig config10k "contains finds a present element"
               <| fun (xs: int list) ->
@@ -363,12 +360,10 @@ module NonEmptyListTests =
                   config10k
                   "maxBy returns maximum element"
                   (Prop.forAll(neListOfInt())
-                   <| fun nel ->
-                       NonEmptyList.maxBy id nel = (nel |> NonEmptyList.toList |> List.max))
+                   <| fun nel -> NonEmptyList.maxBy id nel = (nel |> NonEmptyList.toList |> List.max))
 
               testPropertyWithConfig
                   config10k
                   "minBy returns minimum element"
                   (Prop.forAll(neListOfInt())
-                   <| fun nel ->
-                       NonEmptyList.minBy id nel = (nel |> NonEmptyList.toList |> List.min)) ]
+                   <| fun nel -> NonEmptyList.minBy id nel = (nel |> NonEmptyList.toList |> List.min)) ]

@@ -267,22 +267,30 @@ module SeqTests =
 
               test "catOptions extracts Some values from a seq of options" {
                   let opts = [ Some 1; None; Some 2; None; Some 3 ]
-                  Seq.catOptions opts |> Expect.sequenceEqual "catOptions" (List.toSeq [ 1; 2; 3 ])
+
+                  Seq.catOptions opts
+                  |> Expect.sequenceEqual "catOptions" (List.toSeq [ 1; 2; 3 ])
               }
 
               test "catOptions returns empty seq when all are None" {
                   let opts: int option list = [ None; None ]
-                  Seq.catOptions opts |> Expect.sequenceEqual "catOptions empty" Seq.empty
+
+                  Seq.catOptions opts
+                  |> Expect.sequenceEqual "catOptions empty" Seq.empty
               }
 
               test "choice1s extracts Choice1Of2 values" {
                   let choices = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
-                  Seq.choice1s choices |> Expect.sequenceEqual "choice1s" (List.toSeq [ 1; 2 ])
+
+                  Seq.choice1s choices
+                  |> Expect.sequenceEqual "choice1s" (List.toSeq [ 1; 2 ])
               }
 
               test "choice2s extracts Choice2Of2 values" {
                   let choices = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
-                  Seq.choice2s choices |> Expect.sequenceEqual "choice2s" (List.toSeq [ "a"; "b" ])
+
+                  Seq.choice2s choices
+                  |> Expect.sequenceEqual "choice2s" (List.toSeq [ "a"; "b" ])
               }
 
               test "partitionChoices splits into two seqs" {
@@ -292,13 +300,9 @@ module SeqTests =
                   Expect.sequenceEqual "partitionChoices c2s" (List.toSeq [ "a"; "b" ]) c2s
               }
 
-              test "equalsWith returns true for equal seqs" {
-                  Expect.isTrue "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ])
-              }
+              test "equalsWith returns true for equal seqs" { Expect.isTrue "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ]) }
 
-              test "equalsWith returns false for unequal seqs" {
-                  Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ])
-              }
+              test "equalsWith returns false for unequal seqs" { Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ]) }
 
               test "equalsWith returns true for empty seqs" {
                   Expect.isTrue "equalsWith empty" (Seq.equalsWith (=) (Seq.empty<int>) (Seq.empty<int>))
@@ -309,12 +313,14 @@ module SeqTests =
                   let result = Seq.groupNeighboursBy id input |> Seq.toList
                   let keys = result |> List.map fst
                   Expect.equal "groupNeighboursBy keys" [ 1; 2; 1 ] keys
-                  let groups = result |> List.map (snd >> Seq.toList)
+                  let groups = result |> List.map(snd >> Seq.toList)
                   Expect.equal "groupNeighboursBy groups" [ [ 1; 1 ]; [ 2; 2 ]; [ 1; 1 ] ] groups
               }
 
               test "groupNeighboursBy on empty seq gives empty result" {
-                  Seq.groupNeighboursBy id (Seq.empty<int>) |> Seq.isEmpty |> Expect.isTrue "groupNeighboursBy empty"
+                  Seq.groupNeighboursBy id (Seq.empty<int>)
+                  |> Seq.isEmpty
+                  |> Expect.isTrue "groupNeighboursBy empty"
               }
 
               test "groupNeighboursBy on singleton gives one group" {
