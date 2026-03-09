@@ -114,6 +114,9 @@ module LazyList =
     let consDelayed x l =
         lzy(fun () -> (consc x (lzy(fun () -> (force(l()))))))
 
+    let consLazy x (l: Lazy<LazyList<'T>>) =
+        lzy(fun () -> consc x l.Value)
+
     let uncons(s: LazyList<'T>) = s.Uncons
 
     let tryUncons(s: LazyList<'T>) =
