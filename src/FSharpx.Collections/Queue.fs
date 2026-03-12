@@ -148,6 +148,55 @@ module Queue =
     let inline toSeq(q: Queue<'T>) =
         q :> seq<'T>
 
+    ///O(n). Returns a list of the queue elements in FIFO order.
+    let toList(q: Queue<'T>) : 'T list =
+        q.front @ List.rev q.rBack
+
+    ///O(n). Returns an array of the queue elements in FIFO order.
+    let toArray(q: Queue<'T>) : 'T[] =
+        let arr = Array.zeroCreate q.Length
+        let mutable i = 0
+
+        List.iter
+            (fun x ->
+                arr.[i] <- x
+                i <- i + 1)
+            q.front
+
+        List.iter
+            (fun x ->
+                arr.[i] <- x
+                i <- i + 1)
+            (List.rev q.rBack)
+
+        arr
+
+    ///O(n). Returns a new queue whose elements are the results of applying the given function to each element.
+    let map (f: 'T -> 'U) (q: Queue<'T>) : Queue<'U> =
+        Queue<'U>(List.map f q.front, List.map f q.rBack)
+
+    ///O(n). Returns a new queue containing only the elements of the original for which the given predicate returns true.
+    let filter (predicate: 'T -> bool) (q: Queue<'T>) : Queue<'T> =
+        let f = List.filter predicate q.front
+        let r = List.filter predicate q.rBack
+
+        match f with
+        | [] -> Queue<'T>(List.rev r, [])
+        | _ -> Queue<'T>(f, r)
+
+    ///O(n). Applies the given function to each element of the queue.
+    let iter (f: 'T -> unit) (q: Queue<'T>) =
+        List.iter f q.front
+        List.iter f (List.rev q.rBack)
+
+    ///O(n). Returns true if any element of the queue satisfies the given predicate.
+    let exists (predicate: 'T -> bool) (q: Queue<'T>) : bool =
+        List.exists predicate q.front || List.exists predicate q.rBack
+
+    ///O(n). Returns true if all elements of the queue satisfy the given predicate.
+    let forall (predicate: 'T -> bool) (q: Queue<'T>) : bool =
+        List.forall predicate q.front && List.forall predicate q.rBack
+
     let inline uncons(q: Queue<'T>) = q.Uncons
 
     let inline tryUncons(q: Queue<'T>) =
