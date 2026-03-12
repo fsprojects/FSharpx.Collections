@@ -80,6 +80,91 @@ module ListExtensionsTests =
                   let a = [ [ 1; 2; 3 ]; [ 4; 5; 6 ] ]
                   let expected = [ [ 1; 4 ]; [ 2; 5 ]; [ 3; 6 ] ]
                   Expect.equal "transpose" expected (a |> List.transpose)
+              }
+
+              test "singleton creates a one-element list" { Expect.equal "singleton" [ 42 ] (List.singleton 42) }
+
+              test "cons prepends an element" { Expect.equal "cons" [ 1; 2; 3 ] (List.cons 1 [ 2; 3 ]) }
+
+              test "findExactlyOne returns the sole matching element" {
+                  Expect.equal "findExactlyOne" 3 (List.findExactlyOne ((=) 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "findExactlyOne throws when no element matches" {
+                  Expect.throws "findExactlyOne no match" (fun () -> List.findExactlyOne ((=) 99) [ 1; 2; 3 ] |> ignore)
+              }
+
+              test "findExactlyOne throws when multiple elements match" {
+                  Expect.throws "findExactlyOne multiple" (fun () -> List.findExactlyOne ((=) 1) [ 1; 1; 2 ] |> ignore)
+              }
+
+              test "skip removes first n elements" { Expect.equal "skip" [ 3; 4; 5 ] (List.skip 2 [ 1; 2; 3; 4; 5 ]) }
+
+              test "skip 0 returns whole list" { Expect.equal "skip 0" [ 1; 2; 3 ] (List.skip 0 [ 1; 2; 3 ]) }
+
+              test "take returns first n elements" { Expect.equal "take" [ 1; 2 ] (List.take 2 [ 1; 2; 3; 4; 5 ]) }
+
+              test "take 0 returns empty list" { Expect.equal "take 0" [] (List.take 0 [ 1; 2; 3 ]) }
+
+              test "skipWhile skips leading elements satisfying predicate" {
+                  Expect.equal "skipWhile" [ 3; 4; 5 ] (List.skipWhile (fun x -> x < 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "skipUntil skips until predicate is satisfied" {
+                  Expect.equal "skipUntil" [ 3; 4; 5 ] (List.skipUntil (fun x -> x = 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "takeWhile takes leading elements satisfying predicate" {
+                  Expect.equal "takeWhile" [ 1; 2 ] (List.takeWhile (fun x -> x < 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "takeUntil takes until predicate is satisfied" {
+                  Expect.equal "takeUntil" [ 1; 2 ] (List.takeUntil (fun x -> x = 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "groupNeighboursBy groups consecutive equal keys" {
+                  let result = List.groupNeighboursBy id [ 1; 1; 2; 2; 1 ]
+                  Expect.equal "groupNeighboursBy" [ (1, [ 1; 1 ]); (2, [ 2; 2 ]); (1, [ 1 ]) ] result
+              }
+
+              test "groupNeighboursBy on empty list" { Expect.equal "groupNeighboursBy empty" [] (List.groupNeighboursBy id []) }
+
+              test "mapIf maps elements matching predicate, leaves others unchanged" {
+                  let result = List.mapIf (fun x -> x % 2 = 0) ((*) 10) [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "mapIf" [ 1; 20; 3; 40; 5 ] result
+              }
+
+              test "catOptions extracts Some values from list of options" {
+                  Expect.equal "catOptions" [ 1; 3 ] (List.catOptions [ Some 1; None; Some 3; None ])
+              }
+
+              test "catOptions on all-None list" { Expect.equal "catOptions all-None" [] (List.catOptions [ None; None ]) }
+
+              test "choice1s extracts Choice1Of2 values" {
+                  let xs = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+                  Expect.equal "choice1s" [ 1; 2 ] (List.choice1s xs)
+              }
+
+              test "choice2s extracts Choice2Of2 values" {
+                  let xs = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+                  Expect.equal "choice2s" [ "a"; "b" ] (List.choice2s xs)
+              }
+
+              test "partitionChoices separates Choice1Of2 and Choice2Of2" {
+                  let xs = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+                  let c1s, c2s = List.partitionChoices xs
+                  Expect.equal "partitionChoices c1s" [ 1; 2 ] c1s
+                  Expect.equal "partitionChoices c2s" [ "a"; "b" ] c2s
+              }
+
+              test "equalsWith returns true for element-wise equal lists" {
+                  Expect.isTrue "equalsWith true" (List.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ])
+              }
+
+              test "equalsWith returns false for unequal lists" { Expect.isFalse "equalsWith false" (List.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ]) }
+
+              test "equalsWith returns false for lists of different length" {
+                  Expect.isFalse "equalsWith length" (List.equalsWith (=) [ 1; 2 ] [ 1; 2; 3 ])
               } ]
 
     [<Tests>]
