@@ -156,7 +156,9 @@ module SeqTests =
                   |> Expect.sequenceEqual "tail" (List.toSeq [ 2; 3; 4 ])
               }
 
-              ptest "I should not be able to get the tail of a empty sequence" { Expect.throwsT<_> "empty tail" (fun () -> Seq.tail [] |> ignore) }
+              test "I should not be able to get the tail of an empty sequence" {
+                  Expect.throwsT<System.ArgumentException> "empty tail" (fun () -> Seq.tail [] |> Seq.toList |> ignore)
+              }
 
               test "I should be able to get the tail of a empty sequence without a fail" {
                   Seq.tailNoFail [] |> Expect.sequenceEqual "tailNoFail" Seq.empty
@@ -244,4 +246,90 @@ module SeqTests =
                   Expect.sequenceEqual "" a (a |> Seq.intersperse ',')
               }
 
-              testPropertyWithConfig config10k "I should interperse always 2n-1 elements" intersperse ]
+              testPropertyWithConfig config10k "I should interperse always 2n-1 elements" intersperse
+
+              test "span should split sequence at predicate boundary" {
+                  let before, after = Seq.span (fun x -> x < 5.0) data
+                  Expect.sequenceEqual "before" [ 1.; 2.; 3.; 4. ] (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [ 5.; 6.; 7.; 8.; 9.; 10. ] (after |> Seq.toList)
+              }
+
+              test "span on empty sequence yields two empty sequences" {
+                  let before, after = Seq.span (fun (x: float) -> x < 5.0) Seq.empty
+                  Expect.sequenceEqual "before" [] (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [] (after |> Seq.toList)
+              }
+
+              test "span where predicate is always true returns whole sequence and empty" {
+                  let before, after = Seq.span (fun x -> x < 100.0) data
+                  Expect.sequenceEqual "before" data (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [] (after |> Seq.toList)
+              }
+
+              test "groupNeighboursBy groups consecutive equal elements" {
+                  let input = [ 1; 1; 2; 2; 2; 1; 3 ]
+                  let groups = Seq.groupNeighboursBy id input |> Seq.toList
+                  let keys = groups |> List.map fst
+                  let values = groups |> List.map(snd >> Seq.toList)
+                  Expect.equal "keys" [ 1; 2; 1; 3 ] keys
+                  Expect.equal "groups" [ [ 1; 1 ]; [ 2; 2; 2 ]; [ 1 ]; [ 3 ] ] values
+              }
+
+              test "groupNeighboursBy on empty sequence returns empty" {
+                  let groups = Seq.groupNeighboursBy id (Seq.empty<int>) |> Seq.toList
+                  Expect.equal "empty groups" [] groups
+              }
+
+              test "groupNeighboursBy with projection" {
+                  let input = [ "a1"; "a2"; "b1"; "b2"; "a3" ]
+
+                  let groups = Seq.groupNeighboursBy (fun (s: string) -> s.[0]) input |> Seq.toList
+
+                  let keys = groups |> List.map fst
+                  Expect.equal "keys" [ 'a'; 'b'; 'a' ] keys
+              }
+
+              test "catOptions returns only Some values" {
+                  let input = [ Some 1; None; Some 2; None; Some 3 ]
+                  let result = Seq.catOptions input |> Seq.toList
+                  Expect.equal "catOptions" [ 1; 2; 3 ] result
+              }
+
+              test "catOptions on all None returns empty" {
+                  let input = [ None; None; None ]
+                  let result = Seq.catOptions input |> Seq.toList
+                  Expect.equal "catOptions all None" [] result
+              }
+
+              test "choice1s extracts Choice1Of2 values" {
+                  let input: Choice<int, string> list =
+                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  let result = Seq.choice1s input |> Seq.toList
+                  Expect.equal "choice1s" [ 1; 2 ] result
+              }
+
+              test "choice2s extracts Choice2Of2 values" {
+                  let input: Choice<int, string> list =
+                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  let result = Seq.choice2s input |> Seq.toList
+                  Expect.equal "choice2s" [ "a"; "b" ] result
+              }
+
+              test "partitionChoices splits into two sequences" {
+                  let input: Choice<int, string> list =
+                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  let lefts, rights = Seq.partitionChoices input
+                  Expect.equal "lefts" [ 1; 2 ] (lefts |> Seq.toList)
+                  Expect.equal "rights" [ "a"; "b" ] (rights |> Seq.toList)
+              }
+
+              test "equalsWith returns true for equal sequences" { Expect.isTrue "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ]) }
+
+              test "equalsWith returns false for different sequences" { Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ]) }
+
+              test "equalsWith returns false for sequences of different lengths" {
+                  Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2 ] [ 1; 2; 3 ])
+              } ]
