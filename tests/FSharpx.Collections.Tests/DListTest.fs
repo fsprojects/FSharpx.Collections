@@ -164,7 +164,76 @@ module DListTests =
                   let testDList = DList.ofSeq testList
                   let paired = DList.pairwise testDList
                   Expect.sequenceEqual "pairwise does not match List.pairwise" expectedPairs paired
-              } ]
+              }
+
+              test "DList.map transforms elements" {
+                  let q = DList.ofSeq [ 1; 2; 3; 4; 5 ]
+                  let mapped = DList.map (fun x -> x * 2) q
+                  Expect.equal "map values" [ 2; 4; 6; 8; 10 ] (DList.toList mapped)
+                  Expect.equal "map length" 5 (DList.length mapped)
+              }
+
+              test "DList.map on empty returns empty" {
+                  let mapped = DList.map (fun x -> x * 2) DList.empty<int>
+                  Expect.isTrue "map empty" (DList.isEmpty mapped)
+              }
+
+              test "DList.filter keeps matching elements" {
+                  let q = DList.ofSeq [ 1; 2; 3; 4; 5; 6 ]
+                  let evens = DList.filter (fun x -> x % 2 = 0) q
+                  Expect.equal "filter values" [ 2; 4; 6 ] (DList.toList evens)
+                  Expect.equal "filter length" 3 (DList.length evens)
+              }
+
+              test "DList.filter with all matching returns same elements" {
+                  let q = DList.ofSeq [ 1; 2; 3 ]
+                  let result = DList.filter (fun _ -> true) q
+                  Expect.equal "filter all" [ 1; 2; 3 ] (DList.toList result)
+              }
+
+              test "DList.filter with none matching returns empty" {
+                  let q = DList.ofSeq [ 1; 2; 3 ]
+                  let result = DList.filter (fun _ -> false) q
+                  Expect.isTrue "filter none" (DList.isEmpty result)
+              }
+
+              test "DList.iter visits all elements in order" {
+                  let q = DList.ofSeq [ 1; 2; 3 ]
+                  let visited = System.Collections.Generic.List<int>()
+                  DList.iter visited.Add q
+                  Expect.equal "iter order" [ 1; 2; 3 ] (List.ofSeq visited)
+              }
+
+              test "DList.exists returns true when element matches" {
+                  let q = DList.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "exists found" (DList.exists (fun x -> x = 2) q)
+              }
+
+              test "DList.exists returns false when no element matches" {
+                  let q = DList.ofSeq [ 1; 2; 3 ]
+                  Expect.isFalse "exists not found" (DList.exists (fun x -> x = 99) q)
+              }
+
+              test "DList.exists on empty returns false" { Expect.isFalse "exists empty" (DList.exists (fun _ -> true) DList.empty<int>) }
+
+              test "DList.forall returns true when all elements match" {
+                  let q = DList.ofSeq [ 2; 4; 6 ]
+                  Expect.isTrue "forall true" (DList.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "DList.forall returns false when any element does not match" {
+                  let q = DList.ofSeq [ 2; 3; 6 ]
+                  Expect.isFalse "forall false" (DList.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "DList.forall on empty returns true" { Expect.isTrue "forall empty" (DList.forall (fun _ -> false) DList.empty<int>) }
+
+              test "DList.toArray returns elements in order" {
+                  let q = DList.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "toArray" [| 1; 2; 3; 4; 5 |] (DList.toArray q)
+              }
+
+              test "DList.toArray on empty returns empty array" { Expect.equal "toArray empty" [||] (DList.toArray DList.empty<int>) } ]
 
     [<Tests>]
     let propertyTestDList =
@@ -383,4 +452,46 @@ module DListTests =
                   config10k
                   "string DList builds and serializes"
                   (Prop.forAll(Arb.fromGen DListStringGen)
-                   <| fun (q, l) -> q |> Seq.toList = l) ]
+                   <| fun (q, l) -> q |> Seq.toList = l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.map matches List.map 0"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.map (fun x -> x * 2) q |> DList.toList = List.map (fun x -> x * 2) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.map matches List.map 1"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[1])
+                   <| fun (q, l) -> DList.map (fun x -> x * 2) q |> DList.toList = List.map (fun x -> x * 2) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.filter matches List.filter 0"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.filter (fun x -> x % 2 = 0) q |> DList.toList = List.filter (fun x -> x % 2 = 0) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.filter matches List.filter 1"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[1])
+                   <| fun (q, l) -> DList.filter (fun x -> x % 2 = 0) q |> DList.toList = List.filter (fun x -> x % 2 = 0) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.exists matches List.exists 0"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.exists (fun x -> x % 3 = 0) q = List.exists (fun x -> x % 3 = 0) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.forall matches List.forall 0"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.forall (fun x -> x >= 0) q = List.forall (fun x -> x >= 0) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.toArray matches Seq.toArray 0"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.toArray q = Array.ofList l) ]
