@@ -158,10 +158,10 @@ module NonEmptyList =
     let sort list =
         { List = List.sort list.List }
 
-    [<CompiledName("MaximumBy")>]
+    [<CompiledName("MaxBy")>]
     let maxBy projection list =
         List.maxBy projection list.List
 
-    [<CompiledName("MinimumBy")>]
+    [<CompiledName("MinBy")>]
     let minBy projection list =
         List.minBy projection list.List
