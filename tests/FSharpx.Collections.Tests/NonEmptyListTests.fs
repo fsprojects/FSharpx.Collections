@@ -340,11 +340,20 @@ module NonEmptyListTests =
 
               testPropertyWithConfig
                   config10k
-                  "sortBy produces sorted output"
+                  "sortBy with identity projection produces ascending sorted output"
                   (Prop.forAll(neListOfInt())
                    <| fun nel ->
                        let sorted = NonEmptyList.sortBy id nel |> NonEmptyList.toList
-                       let expected = nel |> NonEmptyList.toList |> List.sort
+                       let expected = nel |> NonEmptyList.toList |> List.sortBy id
+                       sorted = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "sortBy with negation projection produces descending sorted output"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let sorted = NonEmptyList.sortBy (fun x -> -x) nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.sortBy (fun x -> -x)
                        sorted = expected)
 
               testPropertyWithConfig
@@ -358,12 +367,24 @@ module NonEmptyListTests =
 
               testPropertyWithConfig
                   config10k
-                  "maxBy returns maximum element"
+                  "maxBy with identity projection returns maximum element"
                   (Prop.forAll(neListOfInt())
                    <| fun nel -> NonEmptyList.maxBy id nel = (nel |> NonEmptyList.toList |> List.max))
 
               testPropertyWithConfig
                   config10k
-                  "minBy returns minimum element"
+                  "maxBy with negation projection returns minimum element"
                   (Prop.forAll(neListOfInt())
-                   <| fun nel -> NonEmptyList.minBy id nel = (nel |> NonEmptyList.toList |> List.min)) ]
+                   <| fun nel -> NonEmptyList.maxBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.min))
+
+              testPropertyWithConfig
+                  config10k
+                  "minBy with identity projection returns minimum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.minBy id nel = (nel |> NonEmptyList.toList |> List.min))
+
+              testPropertyWithConfig
+                  config10k
+                  "minBy with negation projection returns maximum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.minBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.max)) ]
