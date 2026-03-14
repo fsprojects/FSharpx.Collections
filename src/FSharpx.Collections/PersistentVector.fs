@@ -592,6 +592,112 @@ module PersistentVector =
         | Some v' -> tryNth j v'
         | None -> None
 
+    let choose (f: 'T -> 'T1 option) (vector: PersistentVector<'T>) : PersistentVector<'T1> =
+        let mutable ret = TransientVector()
+
+        for item in vector do
+            match f item with
+            | Some v -> ret <- ret.conj v
+            | None -> ()
+
+        ret.persistent()
+
+    let exists (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        let mutable found = false
+        let mutable i = 0
+
+        while not found && i < vector.Length do
+            if f vector.[i] then
+                found <- true
+
+            i <- i + 1
+
+        found
+
+    let filter (f: 'T -> bool) (vector: PersistentVector<'T>) : PersistentVector<'T> =
+        let mutable ret = TransientVector()
+
+        for item in vector do
+            if f item then
+                ret <- ret.conj item
+
+        ret.persistent()
+
+    let findIndex (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        let mutable result = -1
+        let mutable i = 0
+
+        while result = -1 && i < vector.Length do
+            if f vector.[i] then
+                result <- i
+
+            i <- i + 1
+
+        if result = -1 then
+            raise(System.Collections.Generic.KeyNotFoundException("An element satisfying the predicate was not found in the collection."))
+        else
+            result
+
+    let tryFindIndex (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        let mutable result = -1
+        let mutable i = 0
+
+        while result = -1 && i < vector.Length do
+            if f vector.[i] then
+                result <- i
+
+            i <- i + 1
+
+        if result = -1 then None else Some result
+
+    let find (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        vector.[findIndex f vector]
+
+    let tryFind (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        match tryFindIndex f vector with
+        | Some i -> Some vector.[i]
+        | None -> None
+
+    let forall (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        let mutable allMatch = true
+        let mutable i = 0
+
+        while allMatch && i < vector.Length do
+            if not(f vector.[i]) then
+                allMatch <- false
+
+            i <- i + 1
+
+        allMatch
+
+    let inline head(vector: PersistentVector<'T>) =
+        if vector.IsEmpty then
+            invalidArg "vector" "The input vector was empty."
+        else
+            vector.[0]
+
+    let inline tryHead(vector: PersistentVector<'T>) =
+        if vector.IsEmpty then None else Some vector.[0]
+
+    let iter (f: 'T -> unit) (vector: PersistentVector<'T>) =
+        for item in vector do
+            f item
+
+    let iteri (f: int -> 'T -> unit) (vector: PersistentVector<'T>) =
+        let mutable i = 0
+
+        for item in vector do
+            f i item
+            i <- i + 1
+
+    let ofList(items: 'T list) : PersistentVector<'T> =
+        let mutable ret = TransientVector()
+
+        for item in items do
+            ret <- ret.conj item
+
+        ret.persistent()
+
     let ofSeq(items: 'T seq) =
         PersistentVector.ofSeq items
 
@@ -600,6 +706,19 @@ module PersistentVector =
 
     let inline singleton(x: 'T) =
         empty |> conj x
+
+    let toArray(vector: PersistentVector<'T>) =
+        let arr = Array.zeroCreate vector.Length
+        let mutable i = 0
+
+        for item in vector do
+            arr.[i] <- item
+            i <- i + 1
+
+        arr
+
+    let toList(vector: PersistentVector<'T>) : 'T list =
+        foldBack (fun item acc -> item :: acc) vector []
 
     let rangedIterator (startIndex: int) (endIndex: int) (vector: PersistentVector<'T>) =
         vector.rangedIterator(startIndex, endIndex)
