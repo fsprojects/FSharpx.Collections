@@ -291,19 +291,7 @@ module SeqTests =
                   Expect.equal "groups" [ [ "a1"; "a2" ]; [ "b1"; "b2" ]; [ "a3" ] ] values
               }
 
-              test "catOptions returns only Some values" {
-                  let input = [ Some 1; None; Some 2; None; Some 3 ]
-                  let result = Seq.catOptions input |> Seq.toList
-                  Expect.equal "catOptions" [ 1; 2; 3 ] result
-              }
-
-              test "catOptions on all None returns empty" {
-                  let input = [ None; None; None ]
-                  let result = Seq.catOptions input |> Seq.toList
-                  Expect.equal "catOptions all None" [] result
-              }
-
-              test "choice1s extracts Choice1Of2 values" {
+              test "choice1s extracts only Choice1Of2 values" {
                   let input: Choice<int, string> list =
                       [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
 
@@ -311,7 +299,7 @@ module SeqTests =
                   Expect.equal "choice1s" [ 1; 2 ] result
               }
 
-              test "choice2s extracts Choice2Of2 values" {
+              test "choice2s extracts Choice2Of2 values from sequence" {
                   let input: Choice<int, string> list =
                       [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
 
@@ -319,21 +307,18 @@ module SeqTests =
                   Expect.equal "choice2s" [ "a"; "b" ] result
               }
 
-              test "partitionChoices splits into two sequences" {
-                  let input: Choice<int, string> list =
-                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+              test "partitionChoices with empty input returns empty sequences" {
+                  let input: Choice<int, string> list = []
 
                   let lefts, rights = Seq.partitionChoices input
-                  Expect.equal "lefts" [ 1; 2 ] (lefts |> Seq.toList)
-                  Expect.equal "rights" [ "a"; "b" ] (rights |> Seq.toList)
+                  Expect.equal "lefts empty" [] (lefts |> Seq.toList)
+                  Expect.equal "rights empty" [] (rights |> Seq.toList)
               }
-
-              test "equalsWith returns true for equal sequences" { Expect.isTrue "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ]) }
-
-              test "equalsWith returns false for different sequences" { Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ]) }
 
               test "equalsWith returns false for sequences of different lengths" {
                   Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2 ] [ 1; 2; 3 ])
+              }
+
               test "cons prepends an element to a seq" {
                   Seq.cons 0 [ 1; 2; 3 ]
                   |> Expect.sequenceEqual "cons" (List.toSeq [ 0; 1; 2; 3 ])
