@@ -445,6 +445,153 @@ module PersistentVectorTests =
                       (i - 1) + i * 2 |> Expect.equal "map" a.[i - 1]
               }
 
+              test "filter should return elements satisfying predicate" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3; 4; 5; 6 ]
+                  let result = PersistentVector.filter (fun x -> x % 2 = 0) v
+                  Expect.equal "filter even" [ 2; 4; 6 ] (result |> Seq.toList)
+              }
+
+              test "filter empty vector returns empty" {
+                  let result = PersistentVector.filter (fun x -> x > 0) PersistentVector.empty<int>
+                  Expect.equal "filter empty" 0 (result |> PersistentVector.length)
+              }
+
+              test "filter all excluded returns empty" {
+                  let v = PersistentVector.ofSeq [ 1; 3; 5 ]
+                  let result = PersistentVector.filter (fun x -> x % 2 = 0) v
+                  Expect.equal "filter none" 0 (result |> PersistentVector.length)
+              }
+
+              test "iter applies function to each element" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  let mutable sum = 0
+                  PersistentVector.iter (fun x -> sum <- sum + x) v
+                  Expect.equal "iter sum" 6 sum
+              }
+
+              test "iter on empty vector does nothing" {
+                  let mutable count = 0
+                  PersistentVector.iter (fun _ -> count <- count + 1) PersistentVector.empty<int>
+                  Expect.equal "iter empty" 0 count
+              }
+
+              test "iteri passes correct indices" {
+                  let v = PersistentVector.ofSeq [ 10; 20; 30 ]
+                  let mutable idxSum = 0
+                  PersistentVector.iteri (fun i _ -> idxSum <- idxSum + i) v
+                  Expect.equal "iteri indices" 3 idxSum // 0+1+2
+              }
+
+              test "exists returns true when element found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "exists" (PersistentVector.exists (fun x -> x = 2) v)
+              }
+
+              test "exists returns false when no element found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.isFalse "exists none" (PersistentVector.exists (fun x -> x = 9) v)
+              }
+
+              test "exists on empty returns false" {
+                  Expect.isFalse "exists empty" (PersistentVector.exists (fun _ -> true) PersistentVector.empty<int>)
+              }
+
+              test "forall returns true when all elements match" {
+                  let v = PersistentVector.ofSeq [ 2; 4; 6 ]
+                  Expect.isTrue "forall even" (PersistentVector.forall (fun x -> x % 2 = 0) v)
+              }
+
+              test "forall returns false when some element does not match" {
+                  let v = PersistentVector.ofSeq [ 2; 3; 6 ]
+                  Expect.isFalse "forall not all even" (PersistentVector.forall (fun x -> x % 2 = 0) v)
+              }
+
+              test "forall on empty returns true" {
+                  Expect.isTrue "forall empty" (PersistentVector.forall (fun _ -> false) PersistentVector.empty<int>)
+              }
+
+              test "find returns first matching element" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3; 4 ]
+                  Expect.equal "find" 3 (PersistentVector.find (fun x -> x > 2) v)
+              }
+
+              test "find throws when not found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.throws "find throws" (fun () -> PersistentVector.find (fun x -> x > 9) v |> ignore)
+              }
+
+              test "tryFind returns Some for matching element" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "tryFind" (Some 2) (PersistentVector.tryFind (fun x -> x = 2) v)
+              }
+
+              test "tryFind returns None when not found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "tryFind none" None (PersistentVector.tryFind (fun x -> x = 9) v)
+              }
+
+              test "findIndex returns index of first matching element" {
+                  let v = PersistentVector.ofSeq [ 10; 20; 30; 20 ]
+                  Expect.equal "findIndex" 1 (PersistentVector.findIndex (fun x -> x = 20) v)
+              }
+
+              test "tryFindIndex returns Some index when found" {
+                  let v = PersistentVector.ofSeq [ 10; 20; 30 ]
+                  Expect.equal "tryFindIndex" (Some 2) (PersistentVector.tryFindIndex (fun x -> x = 30) v)
+              }
+
+              test "tryFindIndex returns None when not found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "tryFindIndex none" None (PersistentVector.tryFindIndex (fun x -> x = 99) v)
+              }
+
+              test "choose returns mapped Some values" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3; 4; 5 ]
+
+                  let result =
+                      PersistentVector.choose (fun x -> if x % 2 = 0 then Some(x * 10) else None) v
+
+                  Expect.equal "choose" [ 20; 40 ] (result |> Seq.toList)
+              }
+
+              test "head returns first element" {
+                  let v = PersistentVector.ofSeq [ 7; 8; 9 ]
+                  Expect.equal "head" 7 (PersistentVector.head v)
+              }
+
+              test "head throws on empty" { Expect.throws "head empty" (fun () -> PersistentVector.head PersistentVector.empty<int> |> ignore) }
+
+              test "tryHead returns Some for non-empty" {
+                  let v = PersistentVector.ofSeq [ 42; 43 ]
+                  Expect.equal "tryHead" (Some 42) (PersistentVector.tryHead v)
+              }
+
+              test "tryHead returns None for empty" { Expect.equal "tryHead empty" None (PersistentVector.tryHead PersistentVector.empty<int>) }
+
+              test "toArray returns all elements" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "toArray" [| 1; 2; 3 |] (PersistentVector.toArray v)
+              }
+
+              test "toArray on empty returns empty array" { Expect.equal "toArray empty" [||] (PersistentVector.toArray PersistentVector.empty<int>) }
+
+              test "toList returns all elements as list" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "toList" [ 1; 2; 3 ] (PersistentVector.toList v)
+              }
+
+              test "ofList creates vector from list" {
+                  let v = PersistentVector.ofList [ 5; 6; 7 ]
+                  Expect.equal "ofList length" 3 (PersistentVector.length v)
+                  Expect.equal "ofList nth 0" 5 (PersistentVector.nth 0 v)
+                  Expect.equal "ofList nth 2" 7 (PersistentVector.nth 2 v)
+              }
+
+              test "ofList empty creates empty vector" {
+                  let v = PersistentVector.ofList []
+                  Expect.equal "ofList empty" 0 (PersistentVector.length v)
+              }
+
               test "vector should allow init" {
                   let vector = PersistentVector.init 5 (fun x -> x * 2)
                   let s = Seq.init 5 (fun x -> x * 2)
