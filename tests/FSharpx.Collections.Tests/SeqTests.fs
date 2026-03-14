@@ -265,6 +265,16 @@ module SeqTests =
                   Expect.equal "findExactlyOne" 3 (Seq.findExactlyOne ((=) 3) [ 1; 2; 3; 4; 5 ])
               }
 
+              test "findExactlyOne throws when no element matches" {
+                  Expect.throws "findExactlyOne should throw when there are no matching elements" (fun () ->
+                      Seq.findExactlyOne ((=) 42) [ 1; 2; 3 ] |> ignore)
+              }
+
+              test "findExactlyOne throws when multiple elements match" {
+                  Expect.throws "findExactlyOne should throw when there are multiple matching elements" (fun () ->
+                      Seq.findExactlyOne (fun x -> x % 2 = 0) [ 1; 2; 3; 4 ] |> ignore)
+              }
+
               test "catOptions extracts Some values from a seq of options" {
                   let opts = [ Some 1; None; Some 2; None; Some 3 ]
 

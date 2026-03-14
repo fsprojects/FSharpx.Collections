@@ -311,15 +311,21 @@ module NonEmptyListTests =
 
               testPropertyWithConfig
                   config10k
-                  "exists returns true when element satisfies predicate"
+                  "exists behaves like List.exists"
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
-                   <| fun nel -> NonEmptyList.exists (fun _ -> true) nel = true)
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+                       let predicate x = x % 2 = 0
+                       NonEmptyList.exists predicate nel = List.exists predicate list)
 
               testPropertyWithConfig
                   config10k
-                  "forall returns true when all elements satisfy predicate"
+                  "forall behaves like List.forall"
                   (Prop.forAll(NonEmptyListGen.NonEmptyList())
-                   <| fun nel -> NonEmptyList.forall (fun _ -> true) nel = true)
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+                       let predicate x = x % 2 = 0
+                       NonEmptyList.forall predicate nel = List.forall predicate list)
 
               testPropertyWithConfig config10k "contains finds a present element"
               <| fun (xs: int list) ->
@@ -327,7 +333,14 @@ module NonEmptyListTests =
                       true
                   else
                       let nel = NonEmptyList.create xs.Head xs.Tail
-                      NonEmptyList.contains xs.Head nel
+                      let containsPresent = NonEmptyList.contains xs.Head nel
+                      let sentinel = System.Int32.MinValue
+                      let containsAbsent =
+                          if List.contains sentinel xs then
+                              true
+                          else
+                              not (NonEmptyList.contains sentinel nel)
+                      containsPresent && containsAbsent
 
               testPropertyWithConfig
                   config10k
