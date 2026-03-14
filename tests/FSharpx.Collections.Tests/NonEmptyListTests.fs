@@ -335,11 +335,13 @@ module NonEmptyListTests =
                       let nel = NonEmptyList.create xs.Head xs.Tail
                       let containsPresent = NonEmptyList.contains xs.Head nel
                       let sentinel = System.Int32.MinValue
+
                       let containsAbsent =
                           if List.contains sentinel xs then
                               true
                           else
-                              not (NonEmptyList.contains sentinel nel)
+                              not(NonEmptyList.contains sentinel nel)
+
                       containsPresent && containsAbsent
 
               testPropertyWithConfig
@@ -366,7 +368,7 @@ module NonEmptyListTests =
                   (Prop.forAll(neListOfInt())
                    <| fun nel ->
                        let sorted = NonEmptyList.sortBy (fun x -> -x) nel |> NonEmptyList.toList
-                       let expected = nel |> NonEmptyList.toList |> List.sortBy (fun x -> -x)
+                       let expected = nel |> NonEmptyList.toList |> List.sortBy(fun x -> -x)
                        sorted = expected)
 
               testPropertyWithConfig
