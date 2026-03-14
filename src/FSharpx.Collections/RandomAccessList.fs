@@ -577,10 +577,9 @@ module RandomAccessList =
             (Seq.foldBack (windowFun windowLength) items (empty.Cons empty<'T>)) (*Seq.fold (windowFun windowLength) (empty.Cons empty<'T>) items*) // TODO: Check if this should be foldBack due to inversion effects of prepending
 
     let zip (randomAccessList1: RandomAccessList<'T>) (randomAccessList2: RandomAccessList<'T2>) =
-        if
-            randomAccessList1.Length = randomAccessList2.Length
-            || randomAccessList1.IsEmpty
-        then
+        if randomAccessList1.IsEmpty && randomAccessList2.IsEmpty then
+            empty
+        elif randomAccessList1.Length = randomAccessList2.Length then
             let arr =
                 Array.create randomAccessList1.Length (randomAccessList1.[0], randomAccessList2.[0])
 
