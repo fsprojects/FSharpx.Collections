@@ -91,11 +91,11 @@ module ListExtensionsTests =
               }
 
               test "findExactlyOne throws when no element matches" {
-                  Expect.throws "findExactlyOne no match" (fun () -> List.findExactlyOne ((=) 99) [ 1; 2; 3 ] |> ignore)
+                  Expect.throwsT<System.ArgumentException> "findExactlyOne no match" (fun () -> List.findExactlyOne ((=) 99) [ 1; 2; 3 ] |> ignore)
               }
 
               test "findExactlyOne throws when multiple elements match" {
-                  Expect.throws "findExactlyOne multiple" (fun () -> List.findExactlyOne ((=) 1) [ 1; 1; 2 ] |> ignore)
+                  Expect.throwsT<System.ArgumentException> "findExactlyOne multiple" (fun () -> List.findExactlyOne ((=) 1) [ 1; 1; 2 ] |> ignore)
               }
 
               test "skip removes first n elements" { Expect.equal "skip" [ 3; 4; 5 ] (List.skip 2 [ 1; 2; 3; 4; 5 ]) }

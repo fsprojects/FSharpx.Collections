@@ -67,7 +67,7 @@ module ArrayTests =
               }
 
               test "findExactlyOne throws when no element matches" {
-                  Expect.throws "findExactlyOne no match"
+                  Expect.throwsT<System.ArgumentException> "findExactlyOne no match"
                   <| fun () -> Array.findExactlyOne ((=) 99) [| 1; 2; 3 |] |> ignore
               }
 
