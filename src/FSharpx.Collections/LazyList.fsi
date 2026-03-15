@@ -123,6 +123,16 @@ module LazyList =
     /// Raise <c>KeyNotFoundException</c> if no such element exists.
     val find: predicate: ('T -> bool) -> source: LazyList<'T> -> 'T
 
+    ///O(n), worst case. Returns true if any element of the list satisfies the given predicate.
+    val exists: predicate: ('T -> bool) -> source: LazyList<'T> -> bool
+
+    ///O(n), worst case. Returns true if all elements of the list satisfy the given predicate.
+    val forall: predicate: ('T -> bool) -> source: LazyList<'T> -> bool
+
+    ///O(1). Returns a new list consisting of the results of applying the given function to each element,
+    /// keeping only the values where the function returns Some.
+    val choose: mapping: ('T -> 'U option) -> source: LazyList<'T> -> LazyList<'U>
+
     ///O(1). Evaluates to the list that contains no items
     [<GeneralizableValue>]
     val empty<'T> : LazyList<'T>

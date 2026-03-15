@@ -184,6 +184,27 @@ module LazyList =
         | Some a -> a
         | None -> indexNotFound()
 
+    let rec exists p s =
+        match getCell s with
+        | CellCons(a, b) -> if p a then true else exists p b
+        | CellEmpty -> false
+
+    let rec forall p s =
+        match getCell s with
+        | CellCons(a, b) -> if not(p a) then false else forall p b
+        | CellEmpty -> true
+
+    let rec choose f s1 =
+        lzy(fun () -> choosec f s1)
+
+    and choosec f s1 =
+        match getCell s1 with
+        | CellCons(a, b) ->
+            match f a with
+            | Some v -> consc v (choose f b)
+            | None -> choosec f b
+        | CellEmpty -> CellEmpty
+
     let rec scan f acc s1 =
         lzy(fun () ->
             match getCell s1 with
