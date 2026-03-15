@@ -286,7 +286,7 @@ module SeqTests =
                   let groups = Seq.groupNeighboursBy (fun (s: string) -> s.[0]) input |> Seq.toList
 
                   let keys = groups |> List.map fst
-                  let values = groups |> List.map (snd >> Seq.toList)
+                  let values = groups |> List.map(snd >> Seq.toList)
                   Expect.equal "keys" [ 'a'; 'b'; 'a' ] keys
                   Expect.equal "groups" [ [ "a1"; "a2" ]; [ "b1"; "b2" ]; [ "a3" ] ] values
               }
