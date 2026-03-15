@@ -257,4 +257,149 @@ module NonEmptyListTests =
                   (Prop.forAll(twoDifferentLengths())
                    <| fun (nel1, nel2) ->
                        Expect.throwsT<System.ArgumentException> (sprintf "length %i; length %i" nel1.Length nel2.Length) (fun () ->
-                           NonEmptyList.zip nel1 nel2 |> ignore)) ]
+                           NonEmptyList.zip nel1 nel2 |> ignore))
+
+              testPropertyWithConfig
+                  config10k
+                  "cons prepends an element"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let consed = NonEmptyList.cons 42 nel
+                       consed.Head = 42 && consed.Length = nel.Length + 1)
+
+              testPropertyWithConfig config10k "appendList combines NonEmptyList with plain list"
+              <| fun (a: _ list) (b: _ list) ->
+                  if a.IsEmpty then
+                      true
+                  else
+                      let neA = NonEmptyList.create a.Head a.Tail
+                      (NonEmptyList.appendList neA b).Length = neA.Length + b.Length
+
+              testPropertyWithConfig
+                  config10k
+                  "toSeq yields all elements"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel -> Seq.forall2 (=) (NonEmptyList.toSeq nel) (NonEmptyList.toList nel))
+
+              testPropertyWithConfig
+                  config10k
+                  "iter visits all elements"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let visited = System.Collections.Generic.List<int>()
+                       NonEmptyList.iter visited.Add nel
+                       Seq.toList visited = NonEmptyList.toList nel)
+
+              testPropertyWithConfig
+                  config10k
+                  "iteri visits all elements with correct indices"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let pairs = System.Collections.Generic.List<int * int>()
+                       NonEmptyList.iteri (fun i x -> pairs.Add(i, x)) nel
+                       let expected = nel |> NonEmptyList.toList |> List.mapi(fun i x -> i, x)
+                       Seq.toList pairs = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "mapi produces indexed values"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let actual = NonEmptyList.mapi (fun i x -> i, x) nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.mapi(fun i x -> i, x)
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "exists behaves like List.exists"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+                       let predicate x = x % 2 = 0
+                       NonEmptyList.exists predicate nel = List.exists predicate list)
+
+              testPropertyWithConfig
+                  config10k
+                  "forall behaves like List.forall"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+                       let predicate x = x % 2 = 0
+                       NonEmptyList.forall predicate nel = List.forall predicate list)
+
+              testPropertyWithConfig config10k "contains finds a present element"
+              <| fun (xs: int list) ->
+                  if xs.IsEmpty then
+                      true
+                  else
+                      let nel = NonEmptyList.create xs.Head xs.Tail
+                      let containsPresent = NonEmptyList.contains xs.Head nel
+                      let sentinel = System.Int32.MinValue
+
+                      let containsAbsent =
+                          if List.contains sentinel xs then
+                              true
+                          else
+                              not(NonEmptyList.contains sentinel nel)
+
+                      containsPresent && containsAbsent
+
+              testPropertyWithConfig
+                  config10k
+                  "sort produces sorted output"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let sorted = NonEmptyList.sort nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.sort
+                       sorted = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "sortBy with identity projection produces ascending sorted output"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let sorted = NonEmptyList.sortBy id nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.sortBy id
+                       sorted = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "sortBy with negation projection produces descending sorted output"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let sorted = NonEmptyList.sortBy (fun x -> -x) nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.sortBy(fun x -> -x)
+                       sorted = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "sortWith produces sorted output"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let sorted = NonEmptyList.sortWith compare nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.sort
+                       sorted = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "maxBy with identity projection returns maximum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.maxBy id nel = (nel |> NonEmptyList.toList |> List.max))
+
+              testPropertyWithConfig
+                  config10k
+                  "maxBy with negation projection returns minimum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.maxBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.min))
+
+              testPropertyWithConfig
+                  config10k
+                  "minBy with identity projection returns minimum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.minBy id nel = (nel |> NonEmptyList.toList |> List.min))
+
+              testPropertyWithConfig
+                  config10k
+                  "minBy with negation projection returns maximum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.minBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.max)) ]

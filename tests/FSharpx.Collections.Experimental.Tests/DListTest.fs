@@ -20,19 +20,31 @@ module DListTest =
 
               test "test DList.length should return 5" { DList.length expected |> Expect.equal "" 5 }
 
-              ptest "test ofSeq should create a DList from a seq" {
-                  let test = seq { for i in 0..4 -> i }
-                  DList.ofSeq test |> Expect.equal "" expected
+              test "test ofSeq should create a DList from a seq" {
+                  let input = seq { for i in 0..4 -> i }
+
+                  DList.ofSeq input
+                  |> DList.toSeq
+                  |> Seq.toList
+                  |> Expect.equal "" [ 0; 1; 2; 3; 4 ]
               }
 
-              ptest "test ofSeq should create a DList from a list" {
-                  let test = [ for i in 0..4 -> i ]
-                  DList.ofSeq test |> Expect.equal "" expected
+              test "test ofSeq should create a DList from a list" {
+                  let input = [ for i in 0..4 -> i ]
+
+                  DList.ofSeq input
+                  |> DList.toSeq
+                  |> Seq.toList
+                  |> Expect.equal "" [ 0; 1; 2; 3; 4 ]
               }
 
-              ptest "test ofSeq should create a DList from an array" {
-                  let test = [| for i in 0..4 -> i |]
-                  DList.ofSeq test |> Expect.equal "" expected
+              test "test ofSeq should create a DList from an array" {
+                  let input = [| for i in 0..4 -> i |]
+
+                  DList.ofSeq input
+                  |> DList.toSeq
+                  |> Seq.toList
+                  |> Expect.equal "" [ 0; 1; 2; 3; 4 ]
               }
 
               test "test DList.cons should prepend 10 to the front of the original list" {
