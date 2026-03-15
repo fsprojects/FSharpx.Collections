@@ -1,1 +1,1 @@
-{"run":"23100219167","m":230,"n":"#218","note":"03-15: Heap PR(fold/map/filter/iter/exists/forall/toList/toArray/ofList/ofArray/choose,18t), LazyList PR(exists/forall/choose,9t). #152."}
+{"run":"23110689390","m":230,"n":"#218","note":"03-15: PersistentHashMap PR(tryFind/filter/iter/fold/exists/forall/choose/toList/toArray/ofList/ofArray/keys/values,16t). Comment #110. Previous: Heap+LazyList PRs."}
