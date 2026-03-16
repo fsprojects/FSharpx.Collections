@@ -1,1 +1,1 @@
-{"run":"23110689390","m":230,"n":"#218","note":"03-15: PersistentHashMap PR(tryFind/filter/iter/fold/exists/forall/choose/toList/toArray/ofList/ofArray/keys/values,16t). Comment #110. Previous: Heap+LazyList PRs."}
+{"run":"23123593296","m":230,"n":"#218","note":"03-16: Updated PR#239(consLazy fix-head forcing tail). Comments #202(AA Tree PR#203),#15(ordered map). Previous: PersistentHashMap PR(#254). Heap(#252)+LazyList(#253) PRs."}
