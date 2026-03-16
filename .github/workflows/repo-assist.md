@@ -14,13 +14,16 @@ description: |
   Always polite, constructive, and mindful of the project's goals.
 
 on:
-  schedule: every 12h
+  schedule: weekly
   workflow_dispatch:
   slash_command:
     name: repo-assist
   reaction: "eyes"
 
 timeout-minutes: 60
+
+checkout:
+  fetch: ["*"]      # fetch all remote branches
 
 permissions: read-all
 
