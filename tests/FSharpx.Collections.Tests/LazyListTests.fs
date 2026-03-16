@@ -329,7 +329,17 @@ module LazyList =
 
               test "consLazy lazy divergence" {
                   // tail is not evaluated unless the tail is consumed
-                  Expect.isTrue "consLazy divergence" (let _ = LazyList.consLazy 1 (lazy (failwith "diverge")) in true)
+                  let mutable tailForced = false
+
+                  let tail =
+                      lazy
+                          (tailForced <- true
+                           LazyList.ofList [ 2; 3 ])
+
+                  let ll = LazyList.consLazy 1 tail
+                  Expect.isFalse "consLazy divergence: construction should not force the tail" tailForced
+                  let _ = LazyList.head ll
+                  Expect.isFalse "consLazy divergence: head should not force the tail" tailForced
               }
 
               test "consLazy infinite" {
