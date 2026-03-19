@@ -22,9 +22,6 @@ on:
 
 timeout-minutes: 60
 
-checkout:
-  fetch: ["*"]      # fetch all remote branches
-
 permissions: read-all
 
 network:
@@ -35,6 +32,19 @@ network:
   - python
   - rust
   - java
+
+checkout:
+  fetch: ["*"]     # fetch all remote branches to allow working on PR branches
+  fetch-depth: 0   # fetch full history
+
+tools:
+  web-fetch:
+  github:
+    toolsets: [all]
+    min-integrity: none # This workflow is allowed to examine and comment on any issues or PRs
+    repos: all
+  bash: true
+  repo-memory: true
 
 safe-outputs:
   add-comment:
@@ -68,13 +78,6 @@ safe-outputs:
     allowed: [bug, enhancement, "help wanted", "good first issue", "spam", "off topic", documentation, question, duplicate, wontfix, "needs triage", "needs investigation", "breaking change", performance, security, refactor]
     max: 5
     target: "*"
-
-tools:
-  web-fetch:
-  github:
-    toolsets: [all]
-  bash: true
-  repo-memory: true
 
 steps:
   - name: Fetch repo data for task weighting
@@ -169,7 +172,7 @@ steps:
           json.dump(result, f, indent=2)
       EOF
 
-source: githubnext/agentics/workflows/repo-assist.md@d7e73661688ef2fdea152135a791e28008f73ebd
+source: githubnext/agentics/workflows/repo-assist.md@d1d884596e62351dd652ae78465885dd32f0dd7d
 ---
 
 # Repo Assist
