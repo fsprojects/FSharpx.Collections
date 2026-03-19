@@ -84,7 +84,7 @@ module CircularBufferTests =
                   Expect.throwsT<System.InvalidOperationException> "" f
               }
 
-              ptest "Printing after multiple enqueue circles" {
+              test "Printing after multiple enqueue circles" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   circularBuffer.Enqueue [| 1; 2; 3; 4; 5 |]
@@ -96,7 +96,7 @@ module CircularBufferTests =
 
 
 
-              ptest "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
+              test "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   circularBuffer.Enqueue([| 1; 2; 3; 4; 5 |])
@@ -106,7 +106,7 @@ module CircularBufferTests =
                   Expect.equal "buffer" [| 1; 2; 3 |] <| circularBuffer.Dequeue 3
               }
 
-              ptest "Consider a large array with various, incoming array segments" {
+              test "Consider a large array with various, incoming array segments" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   let source =
