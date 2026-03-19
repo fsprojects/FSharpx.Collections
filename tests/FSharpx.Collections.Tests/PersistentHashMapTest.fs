@@ -40,10 +40,30 @@ module PersistentHashMapTests =
               }
 
               //https://github.com/fsprojects/FSharpx.Collections/issues/85
-              ptest "can add None value to empty map" {
+              test "containsKey returns true for None value" {
                   let x = PersistentHashMap<string, string option>.Empty()
 
                   Expect.isTrue "PersistentHashMap.containsKey" (x.Add("Hello", None) |> PersistentHashMap.containsKey "Hello")
+              }
+
+              test "containsKey returns true for unit value" {
+                  let map = PersistentHashMap.empty |> PersistentHashMap.add "key" ()
+
+                  Expect.isTrue "containsKey with unit value" (PersistentHashMap.containsKey "key" map)
+                  Expect.isFalse "containsKey absent key" (PersistentHashMap.containsKey "other" map)
+              }
+
+              test "containsKey returns true for None value after multiple adds" {
+                  let map =
+                      PersistentHashMap.empty
+                      |> PersistentHashMap.add "a" (None: string option)
+                      |> PersistentHashMap.add "b" (Some "hello")
+                      |> PersistentHashMap.add "c" None
+
+                  Expect.isTrue "key a with None" (PersistentHashMap.containsKey "a" map)
+                  Expect.isTrue "key b with Some" (PersistentHashMap.containsKey "b" map)
+                  Expect.isTrue "key c with None" (PersistentHashMap.containsKey "c" map)
+                  Expect.isFalse "absent key" (PersistentHashMap.containsKey "d" map)
               }
 
               test "can PersistentHashMap.add PersistentHashMap.empty string as key to PersistentHashMap.empty map" {
