@@ -313,4 +313,91 @@ module PersistentHashMapTests =
                       !x
                       |> PersistentHashMap.containsKey((r.Next n).ToString())
                       |> Expect.isTrue "Next"
+              }
+
+              test "tryFind returns Some for existing key" {
+                  let m = PersistentHashMap.ofSeq [ ("a", 1); ("b", 2) ]
+                  Expect.equal "tryFind existing" (Some 1) (PersistentHashMap.tryFind "a" m)
+              }
+
+              test "tryFind returns None for missing key" {
+                  let m = PersistentHashMap.ofSeq [ ("a", 1) ]
+                  Expect.equal "tryFind missing" None (PersistentHashMap.tryFind "z" m)
+              }
+
+              test "filter keeps only matching entries" {
+                  let m = PersistentHashMap.ofSeq [ (1, "a"); (2, "b"); (3, "c") ]
+                  let result = PersistentHashMap.filter (fun k _ -> k > 1) m
+                  Expect.equal "filter count" 2 (PersistentHashMap.count result)
+                  Expect.isFalse "filter excludes 1" (PersistentHashMap.containsKey 1 result)
+                  Expect.isTrue "filter keeps 2" (PersistentHashMap.containsKey 2 result)
+              }
+
+              test "iter visits all entries" {
+                  let m = PersistentHashMap.ofSeq [ (1, 10); (2, 20); (3, 30) ]
+                  let seen = System.Collections.Generic.HashSet<int>()
+                  PersistentHashMap.iter (fun k _ -> seen.Add(k) |> ignore) m
+                  Expect.equal "iter visits all" 3 seen.Count
+              }
+
+              test "fold sums all values" {
+                  let m = PersistentHashMap.ofSeq [ ("a", 1); ("b", 2); ("c", 3) ]
+                  let total = PersistentHashMap.fold (fun acc _ v -> acc + v) 0 m
+                  Expect.equal "fold sum" 6 total
+              }
+
+              test "exists returns true when predicate matches" {
+                  let m = PersistentHashMap.ofSeq [ (1, "x"); (2, "y") ]
+                  Expect.isTrue "exists" (PersistentHashMap.exists (fun k _ -> k = 2) m)
+              }
+
+              test "exists returns false when no match" {
+                  let m = PersistentHashMap.ofSeq [ (1, "x"); (2, "y") ]
+                  Expect.isFalse "exists false" (PersistentHashMap.exists (fun k _ -> k = 99) m)
+              }
+
+              test "forall returns true when all entries match" {
+                  let m = PersistentHashMap.ofSeq [ (1, 10); (2, 20) ]
+                  Expect.isTrue "forall" (PersistentHashMap.forall (fun _ v -> v > 0) m)
+              }
+
+              test "forall returns false when some entry does not match" {
+                  let m = PersistentHashMap.ofSeq [ (1, 10); (2, -1) ]
+                  Expect.isFalse "forall false" (PersistentHashMap.forall (fun _ v -> v > 0) m)
+              }
+
+              test "choose keeps and transforms matching entries" {
+                  let m = PersistentHashMap.ofSeq [ (1, 10); (2, 20); (3, 30) ]
+
+                  let result =
+                      PersistentHashMap.choose (fun _ v -> if v > 15 then Some(v * 2) else None) m
+
+                  Expect.equal "choose count" 2 (PersistentHashMap.count result)
+                  Expect.equal "choose value" 40 (PersistentHashMap.find 2 result)
+              }
+
+              test "toList round-trips via ofList" {
+                  let pairs = [ (1, "one"); (2, "two"); (3, "three") ]
+                  let m = PersistentHashMap.ofList pairs
+                  let result = PersistentHashMap.toList m |> List.sortBy fst
+                  Expect.equal "toList/ofList round-trip" (pairs |> List.sortBy fst) result
+              }
+
+              test "toArray round-trips via ofArray" {
+                  let pairs = [| (1, "one"); (2, "two") |]
+                  let m = PersistentHashMap.ofArray pairs
+                  let result = PersistentHashMap.toArray m |> Array.sortBy fst
+                  Expect.equal "toArray/ofArray round-trip" (pairs |> Array.sortBy fst) result
+              }
+
+              test "keys returns all keys" {
+                  let m = PersistentHashMap.ofSeq [ (1, "a"); (2, "b"); (3, "c") ]
+                  let ks = PersistentHashMap.keys m |> Seq.sort |> Seq.toList
+                  Expect.equal "keys" [ 1; 2; 3 ] ks
+              }
+
+              test "values returns all values" {
+                  let m = PersistentHashMap.ofSeq [ ("a", 1); ("b", 2); ("c", 3) ]
+                  let vs = PersistentHashMap.values m |> Seq.sort |> Seq.toList
+                  Expect.equal "values" [ 1; 2; 3 ] vs
               } ]
