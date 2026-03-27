@@ -317,6 +317,37 @@ module LazyList =
               test "dropDiverge1" { Expect.isTrue "divergence" (let ss = LazyList.skip 1 (LazyList.consDelayed 1 diverge) in true) } (* testing for lazy divergence *)
               test "dropDiverge0" { Expect.isTrue "divergence" (let ss = LazyList.skip 0 (LazyList.delayed(fun () -> failwith "errors")) in true) } (* testing for lazy divergence *)
 
+              test "consLazy head" {
+                  let tail = lazy (LazyList.ofList [ 2; 3 ])
+                  Expect.equal "consLazy head" 1 (LazyList.head(LazyList.consLazy 1 tail))
+              }
+
+              test "consLazy toList" {
+                  let tail = lazy (LazyList.ofList [ 2; 3 ])
+                  Expect.equal "consLazy toList" [ 1; 2; 3 ] (LazyList.toList(LazyList.consLazy 1 tail))
+              }
+
+              test "consLazy lazy divergence" {
+                  // tail is not evaluated unless the tail is consumed
+                  let mutable tailForced = false
+
+                  let tail =
+                      lazy
+                          (tailForced <- true
+                           LazyList.ofList [ 2; 3 ])
+
+                  let ll = LazyList.consLazy 1 tail
+                  Expect.isFalse "consLazy divergence: construction should not force the tail" tailForced
+                  let _ = LazyList.head ll
+                  Expect.isFalse "consLazy divergence: head should not force the tail" tailForced
+              }
+
+              test "consLazy infinite" {
+                  // build ones = 1 :: 1 :: ... using consLazy
+                  let rec ones: LazyList<int> = LazyList.consLazy 1 (lazy ones)
+                  Expect.equal "consLazy infinite" [ 1; 1; 1; 1; 1 ] (LazyList.take 5 ones |> LazyList.toList)
+              }
+
               test "takedrop" {
                   Expect.equal "takedrop" [ 4; 5; 6 ]
                   <| LazyList.toList(LazyList.take 3 (LazyList.skip 4 nats))
