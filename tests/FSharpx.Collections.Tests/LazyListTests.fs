@@ -534,51 +534,73 @@ module LazyList =
               test "scan 3" { Expect.equal "scan" [ 0; 1; 3 ] (LazyList.scan (+) 0 (LazyList.ofList [ 1; 2 ]) |> LazyList.toList) }
               test "scan 0" { Expect.equal "scan" [ 0 ] (LazyList.scan (+) 0 (LazyList.ofList []) |> LazyList.toList) }
 
-              test "rev empty" { Expect.isTrue "rev empty" (LazyList.isEmpty(LazyList.rev LazyList.empty)) }
+              test "rev empty" {
+                  Expect.isTrue "rev empty"
+                  <| LazyList.isEmpty(LazyList.rev LazyList.empty)
+              }
 
               test "rev singleton" { Expect.equal "rev singleton" [ 1 ] (LazyList.rev(LazyList.ofList [ 1 ]) |> LazyList.toList) }
 
-              test "rev list" { Expect.equal "rev" [ 5; 4; 3; 2; 1 ] (LazyList.rev(LazyList.ofList [ 1; 2; 3; 4; 5 ]) |> LazyList.toList) }
+              test "rev list" { Expect.equal "rev list" [ 5; 4; 3; 2; 1 ] (LazyList.rev(LazyList.ofList [ 1; 2; 3; 4; 5 ]) |> LazyList.toList) }
 
-              test "concat empty outer" { Expect.isTrue "concat empty" (LazyList.isEmpty(LazyList.concat LazyList.empty)) }
-
-              test "concat list of lists" {
-                  let lls =
-                      LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.ofList [ 3; 4 ]; LazyList.ofList [ 5 ] ]
-
-                  Expect.equal "concat" [ 1; 2; 3; 4; 5 ] (LazyList.concat lls |> LazyList.toList)
+              test "rev involution" {
+                  let xs = LazyList.ofList [ 10; 20; 30; 40 ]
+                  Expect.equal "rev twice" (LazyList.toList xs) (LazyList.rev(LazyList.rev xs) |> LazyList.toList)
               }
 
-              test "concat list with empty inner lists" {
-                  let lls =
-                      LazyList.ofList
-                          [ LazyList.empty
-                            LazyList.ofList [ 1; 2 ]
-                            LazyList.empty
-                            LazyList.ofList [ 3 ] ]
-
-                  Expect.equal "concat with empties" [ 1; 2; 3 ] (LazyList.concat lls |> LazyList.toList)
+              test "concat empty outer" {
+                  Expect.isTrue "concat empty outer"
+                  <| LazyList.isEmpty(LazyList.concat LazyList.empty)
               }
 
-              // split ll i returns (first i elements reversed, elements after position i)
-              // i.e., it extracts position i; left++right reconstructs the list without element i
-              test "split produces reversed prefix and suffix-after-index" {
-                  // split [1;2;3;4;5] 2 → ([2;1], [4;5])  (element at index 2, value 3, is dropped)
-                  let ll = LazyList.ofList [ 1; 2; 3; 4; 5 ]
-                  let left, right = LazyList.split ll 2
-                  Expect.equal "left reversed prefix" [ 2; 1 ] left
-                  Expect.equal "right suffix after index" [ 4; 5 ] (LazyList.toList right)
+              test "concat empty inner" {
+                  Expect.isTrue "concat empty inner"
+                  <| LazyList.isEmpty(LazyList.concat(LazyList.ofList [ LazyList.empty; LazyList.empty ]))
               }
 
-              test "split used for removal reconstructs list without element" {
-                  let ll = LazyList.ofList [ 10; 20; 30; 40; 50 ]
-                  let left, right = LazyList.split ll 2
-
-                  let reconstructed =
-                      LazyList.append (List.rev left |> LazyList.ofList) right
-                      |> LazyList.toList
-                  // Element at index 2 (value 30) is removed
-                  Expect.equal "removal via split" [ 10; 20; 40; 50 ] reconstructed
+              test "concat two lists" {
+                  Expect.equal
+                      "concat two lists"
+                      [ 1; 2; 3; 4 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.ofList [ 3; 4 ] ])
+                       |> LazyList.toList)
               }
 
-              ]
+              test "concat three lists" {
+                  Expect.equal
+                      "concat three lists"
+                      [ 1; 2; 3; 4; 5; 6 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.ofList [ 3; 4 ]; LazyList.ofList [ 5; 6 ] ])
+                       |> LazyList.toList)
+              }
+
+              test "concat with empty inner" {
+                  Expect.equal
+                      "concat with empty inner"
+                      [ 1; 2; 3 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.empty; LazyList.ofList [ 3 ] ])
+                       |> LazyList.toList)
+              }
+
+              // LazyList.split collects the first n elements (in reverse order) and
+              // drops the element at index n, returning elements from index n+1 onward.
+              // It is a utility designed for deque operations.
+              test "split collects first n elements reversed" {
+                  let left, _ = LazyList.split (LazyList.ofList [ 1; 2; 3; 4; 5 ]) 3
+                  Expect.equal "split left" [ 3; 2; 1 ] left
+              }
+
+              test "split returns rest from index n+1" {
+                  let _, right = LazyList.split (LazyList.ofList [ 1; 2; 3; 4; 5 ]) 3
+                  Expect.equal "split right" [ 5 ] (LazyList.toList right)
+              }
+
+              test "split n=1 collects first element reversed" {
+                  let left, _ = LazyList.split (LazyList.ofList [ 10; 20; 30 ]) 1
+                  Expect.equal "split n=1 left" [ 10 ] left
+              }
+
+              test "split n=1 returns from index 2" {
+                  let _, right = LazyList.split (LazyList.ofList [ 10; 20; 30 ]) 1
+                  Expect.equal "split n=1 right" [ 30 ] (LazyList.toList right)
+              } ]
