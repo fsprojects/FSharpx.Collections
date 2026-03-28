@@ -620,4 +620,101 @@ module LazyList =
                   let first = LazyList.head chosen
                   Expect.equal "choose lazy first" 2 first
                   Expect.equal "choose lazy counter after first head" 2 !counter
+              }
+
+              test "rev empty" {
+                  Expect.isTrue "rev empty"
+                  <| LazyList.isEmpty(LazyList.rev LazyList.empty)
+              }
+
+              test "rev singleton" { Expect.equal "rev singleton" [ 1 ] (LazyList.rev(LazyList.ofList [ 1 ]) |> LazyList.toList) }
+
+              test "rev list" { Expect.equal "rev list" [ 5; 4; 3; 2; 1 ] (LazyList.rev(LazyList.ofList [ 1; 2; 3; 4; 5 ]) |> LazyList.toList) }
+
+              test "rev involution" {
+                  let xs = LazyList.ofList [ 10; 20; 30; 40 ]
+                  Expect.equal "rev twice" (LazyList.toList xs) (LazyList.rev(LazyList.rev xs) |> LazyList.toList)
+              }
+
+              test "concat empty outer" {
+                  Expect.isTrue "concat empty outer"
+                  <| LazyList.isEmpty(LazyList.concat LazyList.empty)
+              }
+
+              test "concat empty inner" {
+                  Expect.isTrue "concat empty inner"
+                  <| LazyList.isEmpty(LazyList.concat(LazyList.ofList [ LazyList.empty; LazyList.empty ]))
+              }
+
+              test "concat two lists" {
+                  Expect.equal
+                      "concat two lists"
+                      [ 1; 2; 3; 4 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.ofList [ 3; 4 ] ])
+                       |> LazyList.toList)
+              }
+
+              test "concat three lists" {
+                  Expect.equal
+                      "concat three lists"
+                      [ 1; 2; 3; 4; 5; 6 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.ofList [ 3; 4 ]; LazyList.ofList [ 5; 6 ] ])
+                       |> LazyList.toList)
+              }
+
+              test "concat with empty inner" {
+                  Expect.equal
+                      "concat with empty inner"
+                      [ 1; 2; 3 ]
+                      (LazyList.concat(LazyList.ofList [ LazyList.ofList [ 1; 2 ]; LazyList.empty; LazyList.ofList [ 3 ] ])
+                       |> LazyList.toList)
+              }
+
+              // LazyList.split collects the first n elements (in reverse order) and
+              // drops the element at index n, returning elements from index n+1 onward.
+              // It is a utility designed for deque operations.
+              test "split collects first n elements reversed" {
+                  let left, _ = LazyList.split (LazyList.ofList [ 1; 2; 3; 4; 5 ]) 3
+                  Expect.equal "split left" [ 3; 2; 1 ] left
+              }
+
+              test "split returns rest from index n+1" {
+                  let _, right = LazyList.split (LazyList.ofList [ 1; 2; 3; 4; 5 ]) 3
+                  Expect.equal "split right" [ 5 ] (LazyList.toList right)
+              }
+
+              test "split n=1 collects first element reversed" {
+                  let left, _ = LazyList.split (LazyList.ofList [ 10; 20; 30 ]) 1
+                  Expect.equal "split n=1 left" [ 10 ] left
+              }
+
+              test "split n=1 returns from index 2" {
+                  let _, right = LazyList.split (LazyList.ofList [ 10; 20; 30 ]) 1
+                  Expect.equal "split n=1 right" [ 30 ] (LazyList.toList right)
+              }
+
+              test "drop 0 returns same list" { Expect.equal "drop 0" [ 1; 2; 3 ] (LazyList.drop 0 (LazyList.ofList [ 1; 2; 3 ]) |> LazyList.toList) }
+
+              test "drop n returns tail elements" {
+                  Expect.equal "drop 2" [ 3; 4; 5 ] (LazyList.drop 2 (LazyList.ofList [ 1; 2; 3; 4; 5 ]) |> LazyList.toList)
+              }
+
+              test "drop more than length returns empty" {
+                  Expect.isTrue "drop excess" (LazyList.drop 10 (LazyList.ofList [ 1; 2; 3 ]) |> LazyList.isEmpty)
+              }
+
+              test "drop from empty list returns empty" { Expect.isTrue "drop from empty" (LazyList.drop 3 LazyList.empty |> LazyList.isEmpty) }
+
+              test "drop negative throws" {
+                  Expect.throwsT<System.ArgumentException> "drop negative" (fun () -> LazyList.drop -1 (LazyList.ofList [ 1; 2 ]) |> ignore)
+              }
+
+              test "unfold generates sequence" {
+                  let result = LazyList.unfold (fun n -> if n > 3 then None else Some(n * n, n + 1)) 1
+                  Expect.equal "unfold" [ 1; 4; 9 ] (LazyList.toList result)
+              }
+
+              test "unfold empty when initial state rejected" {
+                  let result = LazyList.unfold (fun _ -> None) 0
+                  Expect.isTrue "unfold empty" (LazyList.isEmpty result)
               } ]
