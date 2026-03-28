@@ -1913,4 +1913,30 @@ module RandomAccessListTest =
                   Expect.equal "map2 length" 5 (RandomAccessList.map2 (*) xs ys |> RandomAccessList.length)
               }
 
+              test "map2 on different lengths throws" {
+                  let xs = RandomAccessList.ofSeq [ 1; 2; 3 ]
+                  let ys = RandomAccessList.ofSeq [ 1; 2 ]
+                  Expect.throwsT<System.ArgumentException> "map2 throws" (fun () -> RandomAccessList.map2 (+) xs ys |> ignore)
+              }
+
+              test "singleton tail is empty" {
+                  Expect.isTrue
+                      "tail empty"
+                      (RandomAccessList.singleton 5
+                       |> RandomAccessList.tail
+                       |> RandomAccessList.isEmpty)
+              }
+
+              test "zip result length matches input length" {
+                  let xs = RandomAccessList.ofSeq [ 1..4 ]
+                  let ys = RandomAccessList.ofSeq [ 5..8 ]
+                  Expect.equal "zip length" 4 (RandomAccessList.zip xs ys |> RandomAccessList.length)
+              }
+
+              test "reduce with non-commutative op folds left" {
+                  let ral = RandomAccessList.ofSeq [ 1; 2; 3; 4 ]
+                  // ((1 - 2) - 3) - 4 = -8
+                  Expect.equal "reduce subtraction" -8 (RandomAccessList.reduce (-) ral)
+              }
+
               ]
