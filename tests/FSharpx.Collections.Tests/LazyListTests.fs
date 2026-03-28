@@ -603,4 +603,30 @@ module LazyList =
               test "split n=1 returns from index 2" {
                   let _, right = LazyList.split (LazyList.ofList [ 10; 20; 30 ]) 1
                   Expect.equal "split n=1 right" [ 30 ] (LazyList.toList right)
+              }
+
+              test "drop 0 returns same list" { Expect.equal "drop 0" [ 1; 2; 3 ] (LazyList.drop 0 (LazyList.ofList [ 1; 2; 3 ]) |> LazyList.toList) }
+
+              test "drop n returns tail elements" {
+                  Expect.equal "drop 2" [ 3; 4; 5 ] (LazyList.drop 2 (LazyList.ofList [ 1; 2; 3; 4; 5 ]) |> LazyList.toList)
+              }
+
+              test "drop more than length returns empty" {
+                  Expect.isTrue "drop excess" (LazyList.drop 10 (LazyList.ofList [ 1; 2; 3 ]) |> LazyList.isEmpty)
+              }
+
+              test "drop from empty list returns empty" { Expect.isTrue "drop from empty" (LazyList.drop 3 LazyList.empty |> LazyList.isEmpty) }
+
+              test "drop negative throws" {
+                  Expect.throwsT<System.ArgumentException> "drop negative" (fun () -> LazyList.drop -1 (LazyList.ofList [ 1; 2 ]) |> ignore)
+              }
+
+              test "unfold generates sequence" {
+                  let result = LazyList.unfold (fun n -> if n > 3 then None else Some(n * n, n + 1)) 1
+                  Expect.equal "unfold" [ 1; 4; 9 ] (LazyList.toList result)
+              }
+
+              test "unfold empty when initial state rejected" {
+                  let result = LazyList.unfold (fun _ -> None) 0
+                  Expect.isTrue "unfold empty" (LazyList.isEmpty result)
               } ]
