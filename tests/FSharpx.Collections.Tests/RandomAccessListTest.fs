@@ -1860,4 +1860,83 @@ module RandomAccessListTest =
                   (Prop.forAll(Arb.fromGen RandomAccessListIntConsGen)
                    <| fun (q, l) -> q |> RandomAccessList.rev |> List.ofSeq = (List.rev l))
 
+              test "singleton creates a one-element list" {
+                  let ral = RandomAccessList.singleton 42
+                  Expect.equal "length" 1 (RandomAccessList.length ral)
+                  Expect.equal "head" 42 (RandomAccessList.head ral)
+              }
+
+              test "singleton is not empty" { Expect.isFalse "not empty" (RandomAccessList.isEmpty(RandomAccessList.singleton "x")) }
+
+              test "zip two equal-length lists" {
+                  let xs = RandomAccessList.ofSeq [ 1; 2; 3 ]
+                  let ys = RandomAccessList.ofSeq [ 4; 5; 6 ]
+                  let result = RandomAccessList.zip xs ys |> List.ofSeq
+                  Expect.equal "zip" [ (1, 4); (2, 5); (3, 6) ] result
+              }
+
+              test "zip two empty lists returns empty" {
+                  let result = RandomAccessList.zip RandomAccessList.empty RandomAccessList.empty
+                  Expect.isTrue "empty" (RandomAccessList.isEmpty result)
+              }
+
+              test "zip of different lengths throws" {
+                  let xs = RandomAccessList.ofSeq [ 1; 2 ]
+                  let ys = RandomAccessList.ofSeq [ 1; 2; 3 ]
+                  Expect.throwsT<System.ArgumentException> "zip throws" (fun () -> RandomAccessList.zip xs ys |> ignore)
+              }
+
+              test "reduce sums a list" {
+                  let ral = RandomAccessList.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "reduce sum" 15 (RandomAccessList.reduce (+) ral)
+              }
+
+              test "reduce single-element list returns that element" {
+                  let ral = RandomAccessList.singleton 99
+                  Expect.equal "reduce single" 99 (RandomAccessList.reduce (+) ral)
+              }
+
+              test "reduce empty list throws" {
+                  Expect.throwsT<System.ArgumentException> "reduce empty" (fun () -> RandomAccessList.reduce (+) RandomAccessList.empty |> ignore)
+              }
+
+              test "map2 combines two lists element-wise" {
+                  let xs = RandomAccessList.ofSeq [ 1; 2; 3 ]
+                  let ys = RandomAccessList.ofSeq [ 10; 20; 30 ]
+                  let result = RandomAccessList.map2 (+) xs ys |> List.ofSeq
+                  Expect.equal "map2" [ 11; 22; 33 ] result
+              }
+
+              test "map2 on equal-length lists has correct length" {
+                  let xs = RandomAccessList.ofSeq [ 1..5 ]
+                  let ys = RandomAccessList.ofSeq [ 6..10 ]
+                  Expect.equal "map2 length" 5 (RandomAccessList.map2 (*) xs ys |> RandomAccessList.length)
+              }
+
+              test "map2 on different lengths throws" {
+                  let xs = RandomAccessList.ofSeq [ 1; 2; 3 ]
+                  let ys = RandomAccessList.ofSeq [ 1; 2 ]
+                  Expect.throwsT<System.ArgumentException> "map2 throws" (fun () -> RandomAccessList.map2 (+) xs ys |> ignore)
+              }
+
+              test "singleton tail is empty" {
+                  Expect.isTrue
+                      "tail empty"
+                      (RandomAccessList.singleton 5
+                       |> RandomAccessList.tail
+                       |> RandomAccessList.isEmpty)
+              }
+
+              test "zip result length matches input length" {
+                  let xs = RandomAccessList.ofSeq [ 1..4 ]
+                  let ys = RandomAccessList.ofSeq [ 5..8 ]
+                  Expect.equal "zip length" 4 (RandomAccessList.zip xs ys |> RandomAccessList.length)
+              }
+
+              test "reduce with non-commutative op folds left" {
+                  let ral = RandomAccessList.ofSeq [ 1; 2; 3; 4 ]
+                  // ((1 - 2) - 3) - 4 = -8
+                  Expect.equal "reduce subtraction" -8 (RandomAccessList.reduce (-) ral)
+              }
+
               ]

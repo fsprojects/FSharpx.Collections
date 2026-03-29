@@ -11,6 +11,9 @@ on:
         default: false
         type: boolean
 
+permissions:
+  id-token: write
+
 jobs:
   build:
 
@@ -36,6 +39,13 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: ${{ matrix.dotnet }}
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/paket.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
     - name: Install local tools
       run: dotnet tool restore
     - name: Paket Restore
@@ -43,29 +53,15 @@ jobs:
     - name: Build and Test
       run: dotnet run --project build/build.fsproj
 
-    - name: Check secrets presence
-      id: checksecrets
-      shell: bash
-      run: |
-        echo "secretspresent=YES" >> $GITHUB_OUTPUT
-        if [ "$GITHUB_TOKEN" == "" ]; then
-          echo "secretspresent=NO" >> $GITHUB_OUTPUT
-        fi
-        if [ "$NUGET_KEY" == "" ]; then
-          echo "secretspresent=NO" >> $GITHUB_OUTPUT
-        fi
-      env:
-        NUGET_KEY: ${{ secrets.NUGETKEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Publish prerelease NuGet to GitHub
-      if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release != 'true'
-      run: dotnet run --project build/build.fsproj -- PublishCINuGet
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Obtain NuGet key
+      # this hash is v1.1.0
+      uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544
+      id: login
+      with:
+          user: dsyme
     - name: Publish NuGet to NuGet.org
-      if: (steps.checksecrets.outputs.secretspresent != 'NO') && matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
+      if: matrix.os == 'windows-latest' && github.ref == 'refs/heads/master' && github.event.inputs.release == 'true'
       run: dotnet run --project build/build.fsproj -- Release
       env:
-        NUGET_KEY: ${{ secrets.NUGETKEY }}
+        NUGET_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
 
