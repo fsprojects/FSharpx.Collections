@@ -84,6 +84,33 @@ module CircularBufferTests =
                   Expect.throwsT<System.InvalidOperationException> "" f
               }
 
+              test "fail on negative offset" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], -1, 2)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
+              test "fail on negative count" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], 0, -1)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
+              test "fail when offset + count exceeds array length" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], 2, 3)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
               test "Printing after multiple enqueue circles" {
                   let circularBuffer = CircularBuffer<int> 5
 
