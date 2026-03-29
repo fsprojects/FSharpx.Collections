@@ -534,6 +534,94 @@ module LazyList =
               test "scan 3" { Expect.equal "scan" [ 0; 1; 3 ] (LazyList.scan (+) 0 (LazyList.ofList [ 1; 2 ]) |> LazyList.toList) }
               test "scan 0" { Expect.equal "scan" [ 0 ] (LazyList.scan (+) 0 (LazyList.ofList []) |> LazyList.toList) }
 
+              test "exists returns true when element satisfies predicate" {
+                  let ll = LazyList.ofList [ 1; 2; 3; 4; 5 ]
+                  Expect.isTrue "exists" (LazyList.exists (fun x -> x = 3) ll)
+              }
+
+              test "exists returns false when no element satisfies predicate" {
+                  let ll = LazyList.ofList [ 1; 2; 3; 4; 5 ]
+                  Expect.isFalse "exists" (LazyList.exists (fun x -> x = 6) ll)
+              }
+
+              test "exists empty returns false" { Expect.isFalse "exists empty" (LazyList.exists (fun _ -> true) LazyList.empty<int>) }
+
+              test "exists on infinite list short-circuits" {
+                  let counter = ref 0
+
+                  let infinite =
+                      LazyList.unfold
+                          (fun state ->
+                              incr counter
+                              Some(state, state + 1))
+                          0
+
+                  let result = LazyList.exists (fun x -> x = 3) infinite
+
+                  Expect.isTrue "exists infinite" result
+                  // should only evaluate elements 0,1,2,3
+                  Expect.equal "exists infinite evaluation count" 4 !counter
+              }
+
+              test "forall returns true when all elements satisfy predicate" {
+                  let ll = LazyList.ofList [ 2; 4; 6; 8 ]
+                  Expect.isTrue "forall" (LazyList.forall (fun x -> x % 2 = 0) ll)
+              }
+
+              test "forall returns false when some element does not satisfy predicate" {
+                  let ll = LazyList.ofList [ 2; 3; 4 ]
+                  Expect.isFalse "forall" (LazyList.forall (fun x -> x % 2 = 0) ll)
+              }
+
+              test "forall empty returns true" { Expect.isTrue "forall empty" (LazyList.forall (fun _ -> false) LazyList.empty<int>) }
+
+              test "forall on infinite list short-circuits" {
+                  let counter = ref 0
+
+                  let infinite =
+                      LazyList.unfold
+                          (fun state ->
+                              incr counter
+                              Some(state, state + 1))
+                          1
+
+                  let result = LazyList.forall (fun x -> x < 3) infinite
+
+                  Expect.isFalse "forall infinite" result
+                  // should only evaluate elements 1,2,3
+                  Expect.equal "forall infinite evaluation count" 3 !counter
+              }
+
+              test "choose keeps Some values in order" {
+                  let ll = LazyList.ofList [ 1; 2; 3; 4; 5 ]
+                  let result = LazyList.choose (fun x -> if x % 2 = 0 then Some(x * 10) else None) ll
+                  Expect.equal "choose" [ 20; 40 ] (LazyList.toList result)
+              }
+
+              test "choose all None returns empty" {
+                  let ll = LazyList.ofList [ 1; 3; 5 ]
+                  let result = LazyList.choose (fun _ -> None) ll
+                  Expect.isTrue "choose none" (LazyList.isEmpty result)
+              }
+
+              test "choose lazy: only evaluates up to consumed elements" {
+                  let counter = ref 0
+
+                  let ll =
+                      LazyList.ofSeq(
+                          seq {
+                              for i in 1..10 do
+                                  incr counter
+                                  yield i
+                          }
+                      )
+
+                  let chosen = LazyList.choose (fun x -> if x % 2 = 0 then Some x else None) ll
+                  let first = LazyList.head chosen
+                  Expect.equal "choose lazy first" 2 first
+                  Expect.equal "choose lazy counter after first head" 2 !counter
+              }
+
               test "rev empty" {
                   Expect.isTrue "rev empty"
                   <| LazyList.isEmpty(LazyList.rev LazyList.empty)
