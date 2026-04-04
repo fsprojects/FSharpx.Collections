@@ -148,6 +148,11 @@ module LazyList =
     /// followed by the list returned by the given computation.  The
     val consDelayed: 'T -> (unit -> LazyList<'T>) -> LazyList<'T>
 
+    ///O(1). Return a new list which on consumption contains the given item
+    /// followed by the list wrapped in the given lazy value. More efficient than
+    /// <c>consDelayed</c> when a <c>Lazy</c> value is already available.
+    val consLazy: 'T -> Lazy<LazyList<'T>> -> LazyList<'T>
+
     ///O(1). Return the list which on consumption will consist of an infinite sequence of
     /// the given item
     val repeat: 'T -> LazyList<'T>
