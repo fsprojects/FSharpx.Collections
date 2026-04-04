@@ -103,3 +103,21 @@ module DList =
 
     ///O(n). Returns a pairwise DList of elements.
     val pairwise: DList<'T> -> DList<'T * 'T>
+
+    ///O(n). Returns a new DList whose elements are the results of applying the given function to each element.
+    val map: ('T -> 'U) -> DList<'T> -> DList<'U>
+
+    ///O(n). Returns a new DList containing only the elements for which the given predicate returns true.
+    val filter: ('T -> bool) -> DList<'T> -> DList<'T>
+
+    ///O(n). Applies the given function to each element of the DList.
+    val inline iter: ('T -> unit) -> DList<'T> -> unit
+
+    ///O(n). Returns true if the given predicate returns true for at least one element.
+    val inline exists: ('T -> bool) -> DList<'T> -> bool
+
+    ///O(n). Returns true if the given predicate returns true for all elements.
+    val inline forall: ('T -> bool) -> DList<'T> -> bool
+
+    ///O(n). Returns an array of the DList elements.
+    val inline toArray: DList<'T> -> 'T[]
