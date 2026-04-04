@@ -929,4 +929,75 @@ module PersistentHashMap =
 
         ret.persistent()
 
+    ///O(log32n), returns the value option for the given key.
+    let tryFind key (map: PersistentHashMap<'T, 'S>) =
+        if map.ContainsKey key then Some map.[key] else None
+
+    ///O(n). Returns a new HashMap containing only the entries for which the predicate returns true.
+    let filter (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S> =
+        let mutable ret = TransientHashMap<'T, 'S>.Empty()
+
+        for (key, value) in map do
+            if predicate key value then
+                ret <- ret.Add(key, value)
+
+        ret.persistent()
+
+    ///O(n). Applies the supplied function to each element of the HashMap.
+    let iter (action: 'T -> 'S -> unit) (map: PersistentHashMap<'T, 'S>) =
+        for (key, value) in map do
+            action key value
+
+    ///O(n). Applies a function to each entry of the HashMap, threading an accumulator argument.
+    let fold (folder: 'State -> 'T -> 'S -> 'State) (state: 'State) (map: PersistentHashMap<'T, 'S>) =
+        let mutable acc = state
+
+        for (key, value) in map do
+            acc <- folder acc key value
+
+        acc
+
+    ///O(n). Returns true if any entry satisfies the predicate.
+    let exists (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.exists(fun (k, v) -> predicate k v)
+
+    ///O(n). Returns true if all entries satisfy the predicate.
+    let forall (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.forall(fun (k, v) -> predicate k v)
+
+    ///O(n). Builds a new HashMap whose entries are the results of applying the given function to each entry. Entries for which the function returns None are excluded.
+    let choose (chooser: 'T -> 'S -> 'S1 option) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S1> =
+        let mutable ret = TransientHashMap<'T, 'S1>.Empty()
+
+        for (key, value) in map do
+            match chooser key value with
+            | Some v -> ret <- ret.Add(key, v)
+            | None -> ()
+
+        ret.persistent()
+
+    ///O(n). Returns a list of all key-value pairs in the HashMap.
+    let toList(map: PersistentHashMap<'T, 'S>) =
+        [ for kv in map -> kv ]
+
+    ///O(n). Returns an array of all key-value pairs in the HashMap.
+    let toArray(map: PersistentHashMap<'T, 'S>) =
+        [| for kv in map -> kv |]
+
+    ///O(n). Creates a HashMap from a list of key-value pairs.
+    let ofList(items: ('T * 'S) list) =
+        PersistentHashMap<'T, 'S>.ofSeq items
+
+    ///O(n). Creates a HashMap from an array of key-value pairs.
+    let ofArray(items: ('T * 'S) array) =
+        PersistentHashMap<'T, 'S>.ofSeq items
+
+    ///O(n). Returns a sequence of all keys in the HashMap.
+    let keys(map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.map fst
+
+    ///O(n). Returns a sequence of all values in the HashMap.
+    let values(map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.map snd
+
 #endif
