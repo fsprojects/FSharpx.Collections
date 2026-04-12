@@ -535,6 +535,18 @@ module PersistentVectorTests =
                   Expect.equal "findIndex" 1 (PersistentVector.findIndex (fun x -> x = 20) v)
               }
 
+              test "findIndex throws KeyNotFoundException when not found" {
+                  let v = PersistentVector.ofSeq [ 1; 2; 3 ]
+
+                  Expect.throws "findIndex not found" (fun () -> PersistentVector.findIndex (fun x -> x = 99) v |> ignore)
+              }
+
+              test "findIndex throws KeyNotFoundException on empty vector" {
+                  Expect.throws "findIndex empty" (fun () ->
+                      PersistentVector.findIndex (fun _ -> true) PersistentVector.empty<int>
+                      |> ignore)
+              }
+
               test "tryFindIndex returns Some index when found" {
                   let v = PersistentVector.ofSeq [ 10; 20; 30 ]
                   Expect.equal "tryFindIndex" (Some 2) (PersistentVector.tryFindIndex (fun x -> x = 30) v)

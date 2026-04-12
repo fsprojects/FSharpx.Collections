@@ -623,21 +623,6 @@ module PersistentVector =
 
         ret.persistent()
 
-    let findIndex (f: 'T -> bool) (vector: PersistentVector<'T>) =
-        let mutable result = -1
-        let mutable i = 0
-
-        while result = -1 && i < vector.Length do
-            if f vector.[i] then
-                result <- i
-
-            i <- i + 1
-
-        if result = -1 then
-            raise(System.Collections.Generic.KeyNotFoundException("An index satisfying the predicate was not found in the collection."))
-        else
-            result
-
     let tryFindIndex (f: 'T -> bool) (vector: PersistentVector<'T>) =
         let mutable result = -1
         let mutable i = 0
@@ -649,6 +634,11 @@ module PersistentVector =
             i <- i + 1
 
         if result = -1 then None else Some result
+
+    let findIndex (f: 'T -> bool) (vector: PersistentVector<'T>) =
+        match tryFindIndex f vector with
+        | Some i -> i
+        | None -> raise(System.Collections.Generic.KeyNotFoundException("An index satisfying the predicate was not found in the collection"))
 
     let find (f: 'T -> bool) (vector: PersistentVector<'T>) =
         vector.[findIndex f vector]
