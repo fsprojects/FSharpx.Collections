@@ -634,7 +634,7 @@ module PersistentVector =
             i <- i + 1
 
         if result = -1 then
-            raise(System.Collections.Generic.KeyNotFoundException("An element satisfying the predicate was not found in the collection."))
+            raise(System.Collections.Generic.KeyNotFoundException("An index satisfying the predicate was not found in the collection."))
         else
             result
 
