@@ -114,6 +114,9 @@ module LazyList =
     let consDelayed x l =
         lzy(fun () -> (consc x (lzy(fun () -> (force(l()))))))
 
+    let consLazy x (l: Lazy<LazyList<'T>>) =
+        notlazy(CellCons(x, lzy(fun () -> force l.Value)))
+
     let uncons(s: LazyList<'T>) = s.Uncons
 
     let tryUncons(s: LazyList<'T>) =
@@ -183,6 +186,27 @@ module LazyList =
         match tryFind p s1 with
         | Some a -> a
         | None -> indexNotFound()
+
+    let rec exists p s =
+        match getCell s with
+        | CellCons(a, b) -> if p a then true else exists p b
+        | CellEmpty -> false
+
+    let rec forall p s =
+        match getCell s with
+        | CellCons(a, b) -> if not(p a) then false else forall p b
+        | CellEmpty -> true
+
+    let rec choose f s1 =
+        lzy(fun () -> choosec f s1)
+
+    and choosec f s1 =
+        match getCell s1 with
+        | CellCons(a, b) ->
+            match f a with
+            | Some v -> consc v (choose f b)
+            | None -> choosec f b
+        | CellEmpty -> CellEmpty
 
     let rec scan f acc s1 =
         lzy(fun () ->

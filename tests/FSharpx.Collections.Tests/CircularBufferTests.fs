@@ -84,7 +84,34 @@ module CircularBufferTests =
                   Expect.throwsT<System.InvalidOperationException> "" f
               }
 
-              ptest "Printing after multiple enqueue circles" {
+              test "fail on negative offset" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], -1, 2)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
+              test "fail on negative count" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], 0, -1)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
+              test "fail when offset + count exceeds array length" {
+                  let f =
+                      fun _ ->
+                          let circularBuffer = CircularBuffer<int> 5
+                          circularBuffer.Enqueue([| 1; 2; 3 |], 2, 3)
+
+                  Expect.throwsT<System.ArgumentException> "" f
+              }
+
+              test "Printing after multiple enqueue circles" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   circularBuffer.Enqueue [| 1; 2; 3; 4; 5 |]
@@ -96,7 +123,7 @@ module CircularBufferTests =
 
 
 
-              ptest "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
+              test "Printing from a queue 1..8 and dequeue 5, then enqueue 1..3 and dequeue 3, from array" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   circularBuffer.Enqueue([| 1; 2; 3; 4; 5 |])
@@ -106,7 +133,7 @@ module CircularBufferTests =
                   Expect.equal "buffer" [| 1; 2; 3 |] <| circularBuffer.Dequeue 3
               }
 
-              ptest "Consider a large array with various, incoming array segments" {
+              test "Consider a large array with various, incoming array segments" {
                   let circularBuffer = CircularBuffer<int> 5
 
                   let source =
