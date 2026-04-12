@@ -190,10 +190,12 @@ module Queue =
         List.iter f (List.rev q.rBack)
 
     ///O(n). Returns true if any element of the queue satisfies the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     let exists (predicate: 'T -> bool) (q: Queue<'T>) : bool =
         List.exists predicate q.front || List.exists predicate q.rBack
 
     ///O(n). Returns true if all elements of the queue satisfy the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     let forall (predicate: 'T -> bool) (q: Queue<'T>) : bool =
         List.forall predicate q.front && List.forall predicate q.rBack
 

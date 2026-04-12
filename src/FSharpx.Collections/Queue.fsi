@@ -107,9 +107,11 @@ module Queue =
     val iter: ('T -> unit) -> Queue<'T> -> unit
 
     ///O(n). Returns true if any element of the queue satisfies the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     val exists: ('T -> bool) -> Queue<'T> -> bool
 
     ///O(n). Returns true if all elements of the queue satisfy the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     val forall: ('T -> bool) -> Queue<'T> -> bool
 
     ///O(1) amortized, O(n) worst-case. Returns the first element and tail.

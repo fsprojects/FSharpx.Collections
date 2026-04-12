@@ -159,9 +159,11 @@ module Deque =
     val iter: ('T -> unit) -> Deque<'T> -> unit
 
     ///O(n). Returns true if any element of the deque satisfies the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     val exists: ('T -> bool) -> Deque<'T> -> bool
 
     ///O(n). Returns true if all elements of the deque satisfy the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
     val forall: ('T -> bool) -> Deque<'T> -> bool
 
     ///O(1) amortized, O(n), worst case. Returns option first element and tail.
