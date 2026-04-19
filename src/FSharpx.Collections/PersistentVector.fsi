@@ -118,6 +118,36 @@ module PersistentVector =
     /// O(log32(m,n)). Returns option value at the indices.
     val inline tryNthNth: int -> int -> PersistentVector<PersistentVector<'T>> -> 'T option
 
+    /// O(n). Returns a new vector containing only elements for which the supplied function returns Some.
+    val choose: ('T -> 'T1 option) -> PersistentVector<'T> -> PersistentVector<'T1>
+
+    /// O(n). Returns true if the given predicate returns true for some element in the vector.
+    val exists: ('T -> bool) -> PersistentVector<'T> -> bool
+
+    /// O(n). Returns a new vector containing only the elements of the supplied vector for which the given predicate returns true.
+    val filter: ('T -> bool) -> PersistentVector<'T> -> PersistentVector<'T>
+
+    /// O(n). Returns the index of the first element in the vector that satisfies the given predicate. Raises KeyNotFoundException if not found.
+    val findIndex: ('T -> bool) -> PersistentVector<'T> -> int
+
+    /// O(n). Returns the first element in the vector that satisfies the given predicate. Raises KeyNotFoundException if not found.
+    val find: ('T -> bool) -> PersistentVector<'T> -> 'T
+
+    /// O(n). Returns true if the given predicate returns true for all elements in the vector.
+    val forall: ('T -> bool) -> PersistentVector<'T> -> bool
+
+    /// O(1) for all practical purposes; really O(log32n). Returns the first element in the vector. Raises ArgumentException if the vector is empty.
+    val inline head: PersistentVector<'T> -> 'T
+
+    /// O(n). Applies the given function to each element of the vector.
+    val iter: ('T -> unit) -> PersistentVector<'T> -> unit
+
+    /// O(n). Applies the given function to each element of the vector, passing the index as the first argument.
+    val iteri: (int -> 'T -> unit) -> PersistentVector<'T> -> unit
+
+    /// O(n). Returns a new vector from the supplied list.
+    val ofList: 'T list -> PersistentVector<'T>
+
     /// O(n). Returns a vector of the seq.
     val ofSeq: seq<'T> -> PersistentVector<'T>
 
@@ -131,8 +161,23 @@ module PersistentVector =
     /// `rangedIterator 0 count` is the same as toSeq
     val rangedIterator: int -> int -> PersistentVector<'T> -> seq<'T>
 
+    /// O(n). Returns the elements of the vector as an array.
+    val toArray: PersistentVector<'T> -> 'T[]
+
+    /// O(n). Returns the elements of the vector as a list.
+    val toList: PersistentVector<'T> -> 'T list
+
     /// O(n). Views the given vector as a sequence.
     val inline toSeq: PersistentVector<'T> -> seq<'T>
+
+    /// O(n). Returns the index of the first element in the vector that satisfies the given predicate, or None if not found.
+    val tryFindIndex: ('T -> bool) -> PersistentVector<'T> -> int option
+
+    /// O(n). Returns the first element in the vector that satisfies the given predicate, or None if not found.
+    val tryFind: ('T -> bool) -> PersistentVector<'T> -> 'T option
+
+    /// O(1) for all practical purposes; really O(log32n). Returns option first element in the vector.
+    val inline tryHead: PersistentVector<'T> -> 'T option
 
     /// O(1) for all practical purposes; really O(log32n). Returns tuple last element and vector without last item
     val inline unconj: PersistentVector<'T> -> PersistentVector<'T> * 'T
