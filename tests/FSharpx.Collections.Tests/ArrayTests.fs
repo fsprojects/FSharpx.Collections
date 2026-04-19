@@ -51,4 +51,67 @@ module ArrayTests =
 
                   Expect.equal "expect arrays equal" expected
                   <| Array.centralMovingAverage 3 data
+              }
+
+              test "nth returns element at index" { Expect.equal "nth" 3 (Array.nth 2 [| 1; 2; 3; 4; 5 |]) }
+
+              test "setAt mutates element at index and returns array" {
+                  let a = [| 1; 2; 3 |]
+                  let result = Array.setAt 1 99 a
+                  Expect.equal "setAt value" 99 result.[1]
+                  Expect.isTrue "setAt same ref" (obj.ReferenceEquals(a, result))
+              }
+
+              test "findExactlyOne returns the sole matching element" {
+                  Expect.equal "findExactlyOne" 3 (Array.findExactlyOne ((=) 3) [| 1; 2; 3; 4; 5 |])
+              }
+
+              test "findExactlyOne throws when no element matches" {
+                  Expect.throwsT<System.ArgumentException> "findExactlyOne no match"
+                  <| fun () -> Array.findExactlyOne ((=) 99) [| 1; 2; 3 |] |> ignore
+              }
+
+              test "centralMovingAverageOfOption handles None entries" {
+                  let a = [| Some 1.0; None; Some 3.0 |]
+                  let result = Array.centralMovingAverageOfOption 1 a
+                  Expect.equal "centralMovingAverageOfOption" [| None; None; None |] result
+              }
+
+              test "centralMovingAverageOfOption all Some" {
+                  let a = [| Some 1.0; Some 2.0; Some 3.0 |]
+                  let result = Array.centralMovingAverageOfOption 1 a
+                  Expect.equal "centralMovingAverageOfOption all Some" [| Some 1.5; Some 2.0; Some 2.5 |] result
+              }
+
+              test "catOptions extracts Some values from array of options" {
+                  Expect.equal "catOptions" [| 1; 3 |] (Array.catOptions [| Some 1; None; Some 3; None |])
+              }
+
+              test "choice1s extracts Choice1Of2 values" {
+                  let xs = [| Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" |]
+                  Expect.equal "choice1s" [| 1; 2 |] (Array.choice1s xs)
+              }
+
+              test "choice2s extracts Choice2Of2 values" {
+                  let xs = [| Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" |]
+                  Expect.equal "choice2s" [| "a"; "b" |] (Array.choice2s xs)
+              }
+
+              test "partitionChoices separates Choice1Of2 and Choice2Of2" {
+                  let xs = [| Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" |]
+                  let c1s, c2s = Array.partitionChoices xs
+                  Expect.equal "partitionChoices c1s" [| 1; 2 |] c1s
+                  Expect.equal "partitionChoices c2s" [| "a"; "b" |] c2s
+              }
+
+              test "equalsWith returns true for element-wise equal arrays" {
+                  Expect.isTrue "equalsWith true" (Array.equalsWith (=) [| 1; 2; 3 |] [| 1; 2; 3 |])
+              }
+
+              test "equalsWith returns false for unequal arrays" {
+                  Expect.isFalse "equalsWith false" (Array.equalsWith (=) [| 1; 2; 3 |] [| 1; 2; 4 |])
+              }
+
+              test "equalsWith returns false for arrays of different length" {
+                  Expect.isFalse "equalsWith length" (Array.equalsWith (=) [| 1; 2 |] [| 1; 2; 3 |])
               } ]

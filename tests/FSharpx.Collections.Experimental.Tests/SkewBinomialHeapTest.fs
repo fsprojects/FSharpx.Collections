@@ -191,20 +191,6 @@ module SkewBinomialHeapTest =
         }
 
 
-    //@@@@@@@@@@@@@@@@@@@
-    let iComparableGen() : Gen<IComparable> =
-        gen {
-            let! t =
-                Arb.generate
-                |> Gen.filter(fun x ->
-                    match x :> obj with
-                    | :? System.IComparable -> true
-                    | _ -> false)
-
-            return t :> System.IComparable
-        }
-    //|> Arb.fromGen
-
     let genDesc d =
         match d with
         | Some v -> Gen.constant v
@@ -213,7 +199,8 @@ module SkewBinomialHeapTest =
     let emptyOnly d =
         gen {
             let! desc = genDesc d
-            let! s = Gen.listOf(Arb.generate<'T>)
+            let! n = Gen.choose(0, 12)
+            let! s = Gen.listOfLength n Arb.generate<int>
 
             return
                 { Heap =
@@ -227,7 +214,8 @@ module SkewBinomialHeapTest =
         gen {
             let! desc = genDesc d
             let! t = Gen.elements [ true; false ]
-            let! s = Gen.nonEmptyListOf <| iComparableGen()
+            let! n = Gen.length1thru12
+            let! s = Gen.listOfLength n Arb.generate<int>
 
             let! ndel =
                 if t then
@@ -302,7 +290,7 @@ module SkewBinomialHeapTest =
                   (Prop.forAll(Arb.fromGen heapStringGen)
                    <| fun (heap, orig) -> heap |> SkewBinomialHeap.toSeq |> Seq.toList = sortList heap orig)
 
-              ptestPropertyWithConfig
+              testPropertyWithConfig
                   config10k
                   "toList returns the same as toSeq |> List.ofSeq"
                   (Prop.forAll(comparableAndComparable())
@@ -535,7 +523,7 @@ module SkewBinomialHeapTest =
               //            |> SkewBinomialHeap.toList
               //            |> Expect.equal "" (orig1 |> List.append orig2 |> sortList heap1))
 
-              ptestPropertyWithConfig
+              testPropertyWithConfig
                   config10k
                   "merge throws when both heaps have diferent ordering"
                   (Prop.forAll(differentOrdered())
@@ -592,7 +580,7 @@ module SkewBinomialHeapTest =
               ////Maybe the distribution of the hash should be checked
               ////to avoid bad hashes, I don't know if that should be done as part of unit testPropertyWithConfig config10king
 
-              ptestPropertyWithConfig
+              testPropertyWithConfig
                   config10k
                   "Equality reflexivity"
                   (Prop.forAll(comparableAndComparable())

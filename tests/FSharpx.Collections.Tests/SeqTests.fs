@@ -156,7 +156,9 @@ module SeqTests =
                   |> Expect.sequenceEqual "tail" (List.toSeq [ 2; 3; 4 ])
               }
 
-              ptest "I should not be able to get the tail of a empty sequence" { Expect.throwsT<_> "empty tail" (fun () -> Seq.tail [] |> ignore) }
+              test "I should not be able to get the tail of an empty sequence" {
+                  Expect.throwsT<System.ArgumentException> "empty tail" (fun () -> Seq.tail [] |> Seq.toList |> ignore)
+              }
 
               test "I should be able to get the tail of a empty sequence without a fail" {
                   Seq.tailNoFail [] |> Expect.sequenceEqual "tailNoFail" Seq.empty
@@ -244,4 +246,168 @@ module SeqTests =
                   Expect.sequenceEqual "" a (a |> Seq.intersperse ',')
               }
 
-              testPropertyWithConfig config10k "I should interperse always 2n-1 elements" intersperse ]
+              testPropertyWithConfig config10k "I should interperse always 2n-1 elements" intersperse
+
+              test "span should split sequence at predicate boundary" {
+                  let before, after = Seq.span (fun x -> x < 5.0) data
+                  Expect.sequenceEqual "before" [ 1.; 2.; 3.; 4. ] (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [ 5.; 6.; 7.; 8.; 9.; 10. ] (after |> Seq.toList)
+              }
+
+              test "span on empty sequence yields two empty sequences" {
+                  let before, after = Seq.span (fun (x: float) -> x < 5.0) Seq.empty
+                  Expect.sequenceEqual "before" [] (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [] (after |> Seq.toList)
+              }
+
+              test "span where predicate is always true returns whole sequence and empty" {
+                  let before, after = Seq.span (fun x -> x < 100.0) data
+                  Expect.sequenceEqual "before" data (before |> Seq.toList)
+                  Expect.sequenceEqual "after" [] (after |> Seq.toList)
+              }
+
+              test "groupNeighboursBy groups consecutive equal elements" {
+                  let input = [ 1; 1; 2; 2; 2; 1; 3 ]
+                  let groups = Seq.groupNeighboursBy id input |> Seq.toList
+                  let keys = groups |> List.map fst
+                  let values = groups |> List.map(snd >> Seq.toList)
+                  Expect.equal "keys" [ 1; 2; 1; 3 ] keys
+                  Expect.equal "groups" [ [ 1; 1 ]; [ 2; 2; 2 ]; [ 1 ]; [ 3 ] ] values
+              }
+
+              test "groupNeighboursBy on empty sequence returns empty" {
+                  let groups = Seq.groupNeighboursBy id (Seq.empty<int>) |> Seq.toList
+                  Expect.equal "empty groups" [] groups
+              }
+
+              test "groupNeighboursBy with projection" {
+                  let input = [ "a1"; "a2"; "b1"; "b2"; "a3" ]
+
+                  let groups = Seq.groupNeighboursBy (fun (s: string) -> s.[0]) input |> Seq.toList
+
+                  let keys = groups |> List.map fst
+                  let values = groups |> List.map(snd >> Seq.toList)
+                  Expect.equal "keys" [ 'a'; 'b'; 'a' ] keys
+                  Expect.equal "groups" [ [ "a1"; "a2" ]; [ "b1"; "b2" ]; [ "a3" ] ] values
+              }
+
+              test "choice1s extracts only Choice1Of2 values" {
+                  let input: Choice<int, string> list =
+                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  let result = Seq.choice1s input |> Seq.toList
+                  Expect.equal "choice1s" [ 1; 2 ] result
+              }
+
+              test "choice2s extracts Choice2Of2 values from sequence" {
+                  let input: Choice<int, string> list =
+                      [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  let result = Seq.choice2s input |> Seq.toList
+                  Expect.equal "choice2s" [ "a"; "b" ] result
+              }
+
+              test "partitionChoices with empty input returns empty sequences" {
+                  let input: Choice<int, string> list = []
+
+                  let lefts, rights = Seq.partitionChoices input
+                  Expect.equal "lefts empty" [] (lefts |> Seq.toList)
+                  Expect.equal "rights empty" [] (rights |> Seq.toList)
+              }
+
+              test "equalsWith returns false for sequences of different lengths" {
+                  Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2 ] [ 1; 2; 3 ])
+              }
+
+              test "cons prepends an element to a seq" {
+                  Seq.cons 0 [ 1; 2; 3 ]
+                  |> Expect.sequenceEqual "cons" (List.toSeq [ 0; 1; 2; 3 ])
+              }
+
+              test "unCons returns None for empty seq" { Seq.unCons Seq.empty<int> |> Expect.isNone "unCons" }
+
+              test "unCons returns Some (head, tail) for non-empty seq" {
+                  match Seq.unCons [ 1; 2; 3 ] with
+                  | Some(head, tail) ->
+                      Expect.equal "unCons head" 1 head
+                      Expect.sequenceEqual "unCons tail" [ 2; 3 ] tail
+                  | None -> failwith "Expected Some"
+              }
+
+              test "findExactlyOne returns the single matching element" {
+                  Expect.equal "findExactlyOne" 3 (Seq.findExactlyOne ((=) 3) [ 1; 2; 3; 4; 5 ])
+              }
+
+              test "findExactlyOne throws when no element matches" {
+                  Expect.throws "findExactlyOne should throw when there are no matching elements" (fun () ->
+                      Seq.findExactlyOne ((=) 42) [ 1; 2; 3 ] |> ignore)
+              }
+
+              test "findExactlyOne throws when multiple elements match" {
+                  Expect.throws "findExactlyOne should throw when there are multiple matching elements" (fun () ->
+                      Seq.findExactlyOne (fun x -> x % 2 = 0) [ 1; 2; 3; 4 ] |> ignore)
+              }
+
+              test "catOptions extracts Some values from a seq of options" {
+                  let opts = [ Some 1; None; Some 2; None; Some 3 ]
+
+                  Seq.catOptions opts
+                  |> Expect.sequenceEqual "catOptions" (List.toSeq [ 1; 2; 3 ])
+              }
+
+              test "catOptions returns empty seq when all are None" {
+                  let opts: int option list = [ None; None ]
+
+                  Seq.catOptions opts
+                  |> Expect.sequenceEqual "catOptions empty" Seq.empty
+              }
+
+              test "choice1s extracts Choice1Of2 values" {
+                  let choices = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  Seq.choice1s choices
+                  |> Expect.sequenceEqual "choice1s" (List.toSeq [ 1; 2 ])
+              }
+
+              test "choice2s extracts Choice2Of2 values" {
+                  let choices = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+
+                  Seq.choice2s choices
+                  |> Expect.sequenceEqual "choice2s" (List.toSeq [ "a"; "b" ])
+              }
+
+              test "partitionChoices splits into two seqs" {
+                  let choices = [ Choice1Of2 1; Choice2Of2 "a"; Choice1Of2 2; Choice2Of2 "b" ]
+                  let c1s, c2s = Seq.partitionChoices choices
+                  Expect.sequenceEqual "partitionChoices c1s" (List.toSeq [ 1; 2 ]) c1s
+                  Expect.sequenceEqual "partitionChoices c2s" (List.toSeq [ "a"; "b" ]) c2s
+              }
+
+              test "equalsWith returns true for equal seqs" { Expect.isTrue "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 3 ]) }
+
+              test "equalsWith returns false for unequal seqs" { Expect.isFalse "equalsWith" (Seq.equalsWith (=) [ 1; 2; 3 ] [ 1; 2; 4 ]) }
+
+              test "equalsWith returns true for empty seqs" {
+                  Expect.isTrue "equalsWith empty" (Seq.equalsWith (=) (Seq.empty<int>) (Seq.empty<int>))
+              }
+
+              test "groupNeighboursBy groups consecutive equal-key elements" {
+                  let input = [ 1; 1; 2; 2; 1; 1 ]
+                  let result = Seq.groupNeighboursBy id input |> Seq.toList
+                  let keys = result |> List.map fst
+                  Expect.equal "groupNeighboursBy keys" [ 1; 2; 1 ] keys
+                  let groups = result |> List.map(snd >> Seq.toList)
+                  Expect.equal "groupNeighboursBy groups" [ [ 1; 1 ]; [ 2; 2 ]; [ 1; 1 ] ] groups
+              }
+
+              test "groupNeighboursBy on empty seq gives empty result" {
+                  Seq.groupNeighboursBy id (Seq.empty<int>)
+                  |> Seq.isEmpty
+                  |> Expect.isTrue "groupNeighboursBy empty"
+              }
+
+              test "groupNeighboursBy on singleton gives one group" {
+                  let result = Seq.groupNeighboursBy id [ 42 ] |> Seq.toList
+                  Expect.equal "groupNeighboursBy singleton" 1 result.Length
+                  Expect.equal "groupNeighboursBy singleton key" 42 (fst result.[0])
+              } ]

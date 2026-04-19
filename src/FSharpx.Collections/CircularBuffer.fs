@@ -48,16 +48,30 @@ type CircularBuffer<'T>(bufferSize: int) =
         dequeued
 
     member this.Enqueue(value: _[], offset, count) =
+        if isNull value then
+            invalidArg "value" "value must not be null."
+
+        if offset < 0 then
+            invalidArg "offset" "offset must not be negative."
+
+        if count < 0 then
+            invalidArg "count" "count must not be negative."
+
+        if offset + count > value.Length then
+            invalidArg "count" "offset and count exceed the length of the source array."
+
         if count > bufferSize then
             invalidOp "Requested count is too large."
 
         let mutable offset = offset
 
-        head <- (head + 1) % bufferSize
+        let startPos = (head + 1) % bufferSize
 
-        for x, y in nextBuffer head count do
+        for x, y in nextBuffer startPos count do
             Array.blit value offset buffer x y
             offset <- offset + y
+
+        head <- (head + count) % bufferSize
 
         if length = bufferSize then
             tail <- (tail + count) % bufferSize

@@ -261,3 +261,21 @@ module DList =
         match l.Length with
         | 0 -> DList(0, Nil)
         | _ -> DList(l.Length - 1, dlistData)
+
+    let map (f: 'T -> 'U) (l: DList<'T>) : DList<'U> =
+        foldBack (fun x acc -> cons (f x) acc) l empty
+
+    let filter (predicate: 'T -> bool) (l: DList<'T>) : DList<'T> =
+        foldBack (fun x acc -> if predicate x then cons x acc else acc) l empty
+
+    let inline iter (action: 'T -> unit) (l: DList<'T>) : unit =
+        Seq.iter action l
+
+    let inline exists (predicate: 'T -> bool) (l: DList<'T>) : bool =
+        Seq.exists predicate l
+
+    let inline forall (predicate: 'T -> bool) (l: DList<'T>) : bool =
+        Seq.forall predicate l
+
+    let inline toArray(l: DList<'T>) : 'T[] =
+        Seq.toArray l

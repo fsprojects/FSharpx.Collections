@@ -1256,6 +1256,11 @@ module DequeTests =
                   Expect.equal "filter order" [ 1; 3; 5 ] (Deque.filter (fun x -> x % 2 <> 0) q |> Deque.toList)
               }
 
+              test "filter returns empty deque when no elements match" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "filter empty" (Deque.filter (fun _ -> false) q |> Deque.isEmpty)
+              }
+
               test "iter visits each element in FIFO order" {
                   let q = Deque.ofSeq [ 1; 2; 3 ]
                   let result = System.Collections.Generic.List<int>()
