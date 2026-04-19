@@ -1223,9 +1223,9 @@ module DequeTests =
                   (Prop.forAll(Arb.fromGen intGensStart2.[2])
                    <| fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev))
 
-              test "toList preserves FIFO order" {
+              test "toList preserves front-to-back order" {
                   let q = Deque.ofSeq [ 1; 2; 3; 4; 5 ]
-                  Expect.equal "toList" [ 1; 2; 3; 4; 5 ] (Deque.toList q)
+                  Expect.equal "toList preserves front-to-back order" [ 1; 2; 3; 4; 5 ] (Deque.toList q)
               }
 
               test "toList empty deque" { Expect.equal "toList empty" [] (Deque.toList Deque.empty) }

@@ -244,11 +244,11 @@ module Deque =
     let inline toSeq(q: Deque<'T>) =
         q :> seq<'T>
 
-    ///O(n). Returns a list of the deque elements in FIFO order.
+    ///O(n). Returns a list of the deque elements in front-to-back (head-to-last) order.
     let toList(q: Deque<'T>) : 'T list =
         q.front @ List.rev q.rBack
 
-    ///O(n). Returns an array of the deque elements in FIFO order.
+    ///O(n). Returns an array of the deque elements in front-to-back (head-to-last) order.
     let toArray(q: Deque<'T>) : 'T[] =
         Array.ofSeq q
 

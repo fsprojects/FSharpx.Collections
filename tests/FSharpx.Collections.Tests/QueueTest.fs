@@ -330,6 +330,12 @@ module QueueTests =
                   Expect.equal "toArray" [| 1; 2; 3 |] (Queue.toArray q)
               }
 
+              test "toArray preserves FIFO order across front/rBack boundary" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ] |> Queue.conj 4 |> Queue.conj 5
+                  Expect.equal "toArray front/rBack" [| 1; 2; 3; 4; 5 |] (Queue.toArray q)
+              }
+
+              test "toArray empty queue" { Expect.equal "toArray empty" [||] (Queue.toArray Queue.empty) }
               test "map transforms elements" {
                   let q = Queue.ofSeq [ 1; 2; 3 ]
                   Expect.equal "map" [ 2; 4; 6 ] (Queue.map ((*) 2) q |> Queue.toList)
