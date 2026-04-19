@@ -1231,8 +1231,8 @@ module DequeTests =
               test "toList empty deque" { Expect.equal "toList empty" [] (Deque.toList Deque.empty) }
 
               test "toArray preserves FIFO order" {
-                  let q = Deque.ofSeq [ 1; 2; 3 ]
-                  Expect.equal "toArray" [| 1; 2; 3 |] (Deque.toArray q)
+                  let q = Deque.ofSeq [ 1; 2; 3 ] |> Deque.conj 4 |> Deque.conj 5
+                  Expect.equal "toArray" [| 1; 2; 3; 4; 5 |] (Deque.toArray q)
               }
 
               test "map transforms elements" {
