@@ -397,4 +397,9 @@ module QueueTests =
               test "forall returns false when some elements do not satisfy predicate" {
                   let q = Queue.ofSeq [ 2; 3; 6 ]
                   Expect.isFalse "forall false" (Queue.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns true for empty queue" {
+                  let q = Queue.empty
+                  Expect.isTrue "forall empty" (Queue.forall (fun x -> x % 2 = 0) q)
               } ]
