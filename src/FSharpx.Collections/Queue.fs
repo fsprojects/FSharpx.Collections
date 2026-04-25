@@ -163,11 +163,13 @@ module Queue =
                 i <- i + 1)
             q.front
 
+        let mutable j = q.Length - 1
+
         List.iter
             (fun x ->
-                arr.[i] <- x
-                i <- i + 1)
-            (List.rev q.rBack)
+                arr.[j] <- x
+                j <- j - 1)
+            q.rBack
 
         arr
 
