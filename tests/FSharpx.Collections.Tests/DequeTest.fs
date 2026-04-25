@@ -1285,6 +1285,10 @@ module DequeTests =
                   Expect.isFalse "exists false" (Deque.exists ((=) 99) q)
               }
 
+              test "exists returns false on empty deque" {
+                  let q = Deque.empty
+                  Expect.isFalse "exists empty" (Deque.exists ((=) 1) q)
+              }
               test "forall returns true when all elements satisfy predicate" {
                   let q = Deque.ofSeq [ 2; 4; 6 ]
                   Expect.isTrue "forall" (Deque.forall (fun x -> x % 2 = 0) q)
