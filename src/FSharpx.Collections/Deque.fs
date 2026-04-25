@@ -250,8 +250,20 @@ module Deque =
 
     ///O(n). Returns an array of the deque elements in front-to-back (head-to-last) order.
     let toArray(q: Deque<'T>) : 'T[] =
-        Array.ofSeq q
+        let result = Array.zeroCreate q.Length
+        let mutable i = 0
 
+        for x in q.front do
+            result.[i] <- x
+            i <- i + 1
+
+        let mutable j = q.Length - 1
+
+        for x in q.rBack do
+            result.[j] <- x
+            j <- j - 1
+
+        result
     ///O(n). Returns a new deque whose elements are the results of applying the given function to each element.
     let map (f: 'T -> 'U) (q: Deque<'T>) : Deque<'U> =
         Deque<'U>(List.map f q.front, List.map f q.rBack)
