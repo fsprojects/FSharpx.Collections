@@ -97,24 +97,16 @@ type CircularBuffer<'T>(bufferSize: int) =
     member this.Enqueue(value) =
         this.Enqueue([| value |], 0, 1)
 
-    member this.GetEnumerator() =
-        let rec loop() =
-            seq {
-                if length > 0 then
-                    yield this.Dequeue(1).[0]
-
-                yield! loop()
-            }
-
-        loop().GetEnumerator()
+    member this.GetEnumerator() : IEnumerator<'T> =
+        (seq { for i in 0 .. length - 1 -> buffer.[(tail + i) % bufferSize] }).GetEnumerator()
 
     interface IEnumerable<'T> with
-        member this.GetEnumerator() =
-            (this :> IEnumerable<'T>).GetEnumerator()
+        member this.GetEnumerator() : IEnumerator<'T> =
+            this.GetEnumerator()
 
     interface IEnumerable with
-        member this.GetEnumerator() =
-            (this :> IEnumerable).GetEnumerator()
+        member this.GetEnumerator() : IEnumerator =
+            (this.GetEnumerator() :> IEnumerator)
 
     interface IReadOnlyCollection<'T> with
         member this.Count = this.Count
