@@ -264,6 +264,7 @@ module Deque =
             j <- j - 1
 
         result
+
     ///O(n). Returns a new deque whose elements are the results of applying the given function to each element.
     let map (f: 'T -> 'U) (q: Deque<'T>) : Deque<'U> =
         Deque<'U>(List.map f q.front, List.map f q.rBack)
