@@ -1297,4 +1297,9 @@ module DequeTests =
               test "forall returns false when some elements do not" {
                   let q = Deque.ofSeq [ 2; 3; 6 ]
                   Expect.isFalse "forall false" (Deque.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns true for empty deque" {
+                  let q = Deque.empty
+                  Expect.isTrue "forall empty" (Deque.forall (fun x -> x % 2 = 0) q)
               } ]
