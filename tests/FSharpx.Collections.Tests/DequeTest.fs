@@ -1230,17 +1230,19 @@ module DequeTests =
 
               test "toList empty deque" { Expect.equal "toList empty" [] (Deque.toList Deque.empty) }
 
-              test "toArray preserves FIFO order" {
+              test "toArray preserves front-to-back order" {
                   let q = Deque.ofSeq [ 1; 2; 3 ] |> Deque.conj 4 |> Deque.conj 5
                   Expect.equal "toArray" [| 1; 2; 3; 4; 5 |] (Deque.toArray q)
               }
+
+              test "toArray empty deque" { Expect.equal "toArray empty" [||] (Deque.toArray Deque.empty) }
 
               test "map transforms elements" {
                   let q = Deque.ofSeq [ 1; 2; 3 ]
                   Expect.equal "map" [ 2; 4; 6 ] (Deque.map ((*) 2) q |> Deque.toList)
               }
 
-              test "map preserves FIFO order" {
+              test "map preserves front-to-back order" {
                   let q = Deque.ofSeq [ "a"; "b"; "c" ] |> Deque.conj "d" |> Deque.conj "e"
 
                   Expect.equal "map order" [ "A"; "B"; "C"; "D"; "E" ] (Deque.map (fun (s: string) -> s.ToUpper()) q |> Deque.toList)
@@ -1256,12 +1258,17 @@ module DequeTests =
                   Expect.equal "filter order" [ 1; 3; 5 ] (Deque.filter (fun x -> x % 2 <> 0) q |> Deque.toList)
               }
 
+              test "filter preserves front-to-back order across front/rBack" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ] |> Deque.conj 4 |> Deque.conj 5
+                  Expect.equal "filter front/rBack" [ 2; 4 ] (Deque.filter (fun x -> x % 2 = 0) q |> Deque.toList)
+              }
+
               test "filter returns empty deque when no elements match" {
                   let q = Deque.ofSeq [ 1; 2; 3 ]
                   Expect.isTrue "filter empty" (Deque.filter (fun _ -> false) q |> Deque.isEmpty)
               }
 
-              test "iter visits each element in FIFO order" {
+              test "iter visits each element in front-to-back order" {
                   let q = Deque.ofSeq [ 1; 2; 3 ]
                   let result = System.Collections.Generic.List<int>()
                   Deque.iter result.Add q

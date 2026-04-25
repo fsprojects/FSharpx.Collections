@@ -362,6 +362,12 @@ module QueueTests =
                   Expect.isTrue "filter all out" (Queue.filter (fun _ -> false) q |> Queue.isEmpty)
               }
 
+              test "filter rebuilds front when all front elements are filtered out" {
+                  // front=[1;3], rBack=[4;2] — filtering for evens empties front, so List.rev rBack becomes new front
+                  let q = Queue.ofSeq [ 1; 3 ] |> Queue.conj 2 |> Queue.conj 4
+                  Expect.equal "filter front rebuild" [ 2; 4 ] (Queue.filter (fun x -> x % 2 = 0) q |> Queue.toList)
+              }
+
               test "iter visits each element in FIFO order" {
                   let q = Queue.ofSeq [ 1; 2; 3 ]
                   let result = System.Collections.Generic.List<int>()
