@@ -385,6 +385,10 @@ module QueueTests =
                   Expect.isFalse "exists false" (Queue.exists ((=) 99) q)
               }
 
+              test "exists returns false on empty queue" {
+                  let q = Queue.empty
+                  Expect.isFalse "exists empty" (Queue.exists ((=) 1) q)
+              }
               test "forall returns true when all elements satisfy predicate" {
                   let q = Queue.ofSeq [ 2; 4; 6 ]
                   Expect.isTrue "forall" (Queue.forall (fun x -> x % 2 = 0) q)
