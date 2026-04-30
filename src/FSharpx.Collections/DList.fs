@@ -279,3 +279,54 @@ module DList =
 
     let inline toArray(l: DList<'T>) : 'T[] =
         Seq.toArray l
+
+    ///O(n). Build a DList from the given list.
+    let inline ofList(l: 'T list) : DList<'T> = ofSeq l
+
+    ///O(n). Build a DList from the given array.
+    let inline ofArray(a: 'T array) : DList<'T> = ofSeq a
+
+    ///O(n), worst case. Returns the first element for which the given function returns <c>Some</c>.
+    let tryFind (predicate: 'T -> bool) (l: DList<'T>) : 'T option =
+        Seq.tryFind predicate l
+
+    ///O(n), worst case. Returns the first element for which the given function returns <c>true</c>.
+    /// Raises <c>KeyNotFoundException</c> if no such element exists.
+    let find (predicate: 'T -> bool) (l: DList<'T>) : 'T =
+        Seq.find predicate l
+
+    ///O(n). Applies the given function to each element and returns a DList of the values returned
+    /// by the function where the function returned <c>Some</c>.
+    let choose (mapping: 'T -> 'U option) (l: DList<'T>) : DList<'U> =
+        foldBack
+            (fun x acc ->
+                match mapping x with
+                | Some v -> cons v acc
+                | None -> acc)
+            l
+            empty
+
+    ///O(n). For each element, applies the given function to produce a DList, then concatenates all results.
+    let collect (mapping: 'T -> DList<'U>) (l: DList<'T>) : DList<'U> =
+        foldBack (fun x acc -> append (mapping x) acc) l empty
+
+    ///O(n). Splits the DList into two DLists: the first contains elements for which the predicate
+    /// returns <c>true</c>; the second contains those for which it returns <c>false</c>.
+    let partition (predicate: 'T -> bool) (l: DList<'T>) : DList<'T> * DList<'T> =
+        foldBack (fun x (yes, no) -> if predicate x then cons x yes, no else yes, cons x no) l (empty, empty)
+
+    ///O(n log n). Returns a new DList sorted using the default comparison.
+    let sort(l: DList<'T>) : DList<'T> =
+        l |> toArray |> Array.sort |> ofArray
+
+    ///O(n log n). Returns a new DList sorted using the given comparison function.
+    let sortWith (comparer: 'T -> 'T -> int) (l: DList<'T>) : DList<'T> =
+        l |> toArray |> Array.sortWith comparer |> ofArray
+
+    ///O(n log n). Returns a new DList sorted by the given projection.
+    let sortBy (projection: 'T -> 'Key) (l: DList<'T>) : DList<'T> =
+        l |> toArray |> Array.sortBy projection |> ofArray
+
+    ///O(n). Returns the DList in reversed order.
+    let rev(l: DList<'T>) : DList<'T> =
+        fold (fun acc x -> cons x acc) empty l
