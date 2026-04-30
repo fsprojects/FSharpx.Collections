@@ -165,3 +165,83 @@ module NonEmptyList =
     [<CompiledName("MinBy")>]
     let minBy projection list =
         List.minBy projection list.List
+
+    /// O(n). Returns the largest element of the non-empty list.
+    [<CompiledName("Max")>]
+    let max list =
+        List.max list.List
+
+    /// O(n). Returns the smallest element of the non-empty list.
+    [<CompiledName("Min")>]
+    let min list =
+        List.min list.List
+
+    /// O(n). Applies a function to each element of the collection, threading an accumulator argument.
+    [<CompiledName("Fold")>]
+    let fold (folder: 'State -> 'T -> 'State) (state: 'State) (list: NonEmptyList<'T>) =
+        List.fold folder state list.List
+
+    /// O(n). Applies a function to each element of the collection from right to left, threading an accumulator argument.
+    [<CompiledName("FoldBack")>]
+    let foldBack (folder: 'T -> 'State -> 'State) (list: NonEmptyList<'T>) (state: 'State) =
+        List.foldBack folder list.List state
+
+    /// O(n), worst case. Returns the first element for which the given function returns <c>Some</c>.
+    [<CompiledName("TryFind")>]
+    let tryFind (predicate: 'T -> bool) (list: NonEmptyList<'T>) =
+        List.tryFind predicate list.List
+
+    /// O(n), worst case. Returns the first element for which the given function returns <c>true</c>.
+    /// Raises <c>KeyNotFoundException</c> if no such element exists.
+    [<CompiledName("Find")>]
+    let find (predicate: 'T -> bool) (list: NonEmptyList<'T>) =
+        List.find predicate list.List
+
+    /// O(n). Returns a new list containing only the elements for which the given predicate returns <c>true</c>.
+    /// The result may be empty, so a plain <c>'T list</c> is returned.
+    [<CompiledName("Filter")>]
+    let filter (predicate: 'T -> bool) (list: NonEmptyList<'T>) : 'T list =
+        List.filter predicate list.List
+
+    /// O(n). Applies the given function to each element and returns a list of the values returned by
+    /// the function where the function returned <c>Some</c>. The result may be empty.
+    [<CompiledName("Choose")>]
+    let choose (mapping: 'T -> 'U option) (list: NonEmptyList<'T>) : 'U list =
+        List.choose mapping list.List
+
+    /// O(n). Splits the collection into two lists; the first containing elements for which the given
+    /// predicate returns <c>true</c>, the second for which it returns <c>false</c>. Both parts may be empty.
+    [<CompiledName("Partition")>]
+    let partition (predicate: 'T -> bool) (list: NonEmptyList<'T>) : 'T list * 'T list =
+        List.partition predicate list.List
+
+    /// O(n). Returns a NonEmptyList of each element paired with its index.
+    [<CompiledName("Indexed")>]
+    let indexed(list: NonEmptyList<'T>) : NonEmptyList<int * 'T> =
+        { List = List.indexed list.List }
+
+    /// O(n). Splits a NonEmptyList of pairs into a pair of NonEmptyLists.
+    [<CompiledName("Unzip")>]
+    let unzip(list: NonEmptyList<'T1 * 'T2>) : NonEmptyList<'T1> * NonEmptyList<'T2> =
+        let a, b = List.unzip list.List
+        { List = a }, { List = b }
+
+    /// O(n). Returns a list of each element and its successor. The result may be empty for a singleton list.
+    [<CompiledName("Pairwise")>]
+    let pairwise(list: NonEmptyList<'T>) : ('T * 'T) list =
+        List.pairwise list.List
+
+    /// O(n). Returns a NonEmptyList of states by threading an accumulator through the list.
+    /// The result always contains at least the initial state followed by the intermediate states.
+    [<CompiledName("Scan")>]
+    let scan (folder: 'State -> 'T -> 'State) (state: 'State) (list: NonEmptyList<'T>) : NonEmptyList<'State> =
+        { List = List.scan folder state list.List }
+
+    /// O(n). Applies a key-generating function to each element and yields a NonEmptyList of
+    /// unique keys together with a NonEmptyList of all elements that match each key.
+    [<CompiledName("GroupBy")>]
+    let groupBy (projection: 'T -> 'Key) (list: NonEmptyList<'T>) : NonEmptyList<'Key * NonEmptyList<'T>> =
+        { List =
+            list.List
+            |> List.groupBy projection
+            |> List.map(fun (k, vs) -> k, { List = vs }) }

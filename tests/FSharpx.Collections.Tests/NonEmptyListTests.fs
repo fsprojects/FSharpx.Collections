@@ -402,4 +402,175 @@ module NonEmptyListTests =
                   config10k
                   "minBy with negation projection returns maximum element"
                   (Prop.forAll(neListOfInt())
-                   <| fun nel -> NonEmptyList.minBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.max)) ]
+                   <| fun nel -> NonEmptyList.minBy (fun x -> -x) nel = (nel |> NonEmptyList.toList |> List.max))
+
+              testPropertyWithConfig
+                  config10k
+                  "max returns maximum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.max nel = (nel |> NonEmptyList.toList |> List.max))
+
+              testPropertyWithConfig
+                  config10k
+                  "min returns minimum element"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel -> NonEmptyList.min nel = (nel |> NonEmptyList.toList |> List.min))
+
+              testPropertyWithConfig
+                  config10k
+                  "fold behaves like List.fold"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let actual = NonEmptyList.fold (+) 0 nel
+                       let expected = nel |> NonEmptyList.toList |> List.fold (+) 0
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "foldBack behaves like List.foldBack"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let actual = NonEmptyList.foldBack (fun x acc -> x - acc) nel 0
+
+                       let expected =
+                           nel |> NonEmptyList.toList |> List.foldBack(fun x acc -> x - acc) <| 0
+
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "tryFind returns Some when element exists"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+                       let predicate x = x % 2 = 0
+                       NonEmptyList.tryFind predicate nel = List.tryFind predicate list)
+
+              testPropertyWithConfig config10k "find returns element when it exists"
+              <| fun (xs: int list) ->
+                  if xs.IsEmpty then
+                      true
+                  else
+                      let nel = NonEmptyList.create xs.Head xs.Tail
+                      let target = xs.Head
+
+                      NonEmptyList.find (fun x -> x = target) nel = List.find (fun x -> x = target) xs
+
+              testPropertyWithConfig config10k "find raises KeyNotFoundException when element not found"
+              <| fun (xs: int list) ->
+                  if xs.IsEmpty then
+                      true
+                  else
+                      let nel = NonEmptyList.create xs.Head xs.Tail
+                      let sentinel = System.Int32.MinValue
+
+                      if List.contains sentinel xs then
+                          true
+                      else
+                          Expect.throwsT<System.Collections.Generic.KeyNotFoundException> "should raise" (fun () ->
+                              NonEmptyList.find (fun x -> x = sentinel) nel |> ignore)
+
+                          true
+
+              testPropertyWithConfig
+                  config10k
+                  "filter returns subset as plain list"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let predicate x = x % 2 = 0
+                       let actual = NonEmptyList.filter predicate nel
+                       let expected = nel |> NonEmptyList.toList |> List.filter predicate
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "choose returns mapped subset as plain list"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let mapping x =
+                           if x % 2 = 0 then Some(x * 2) else None
+
+                       let actual = NonEmptyList.choose mapping nel
+                       let expected = nel |> NonEmptyList.toList |> List.choose mapping
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "partition splits into two plain lists"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let predicate x = x % 2 = 0
+                       let trueList, falseList = NonEmptyList.partition predicate nel
+
+                       let expectedTrue, expectedFalse =
+                           nel |> NonEmptyList.toList |> List.partition predicate
+
+                       trueList = expectedTrue && falseList = expectedFalse)
+
+              testPropertyWithConfig
+                  config10k
+                  "indexed pairs each element with its index"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let actual = NonEmptyList.indexed nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.indexed
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "unzip splits into two NonEmptyLists"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel ->
+                       let pairs = NonEmptyList.map (fun x -> x, x) nel
+                       let a, b = NonEmptyList.unzip pairs
+
+                       NonEmptyList.toList a = NonEmptyList.toList nel
+                       && NonEmptyList.toList b = NonEmptyList.toList nel)
+
+              testPropertyWithConfig
+                  config10k
+                  "pairwise returns adjacent pairs as plain list"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let actual = NonEmptyList.pairwise nel
+                       let expected = nel |> NonEmptyList.toList |> List.pairwise
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "scan produces intermediate accumulator states"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let actual = NonEmptyList.scan (+) 0 nel |> NonEmptyList.toList
+                       let expected = nel |> NonEmptyList.toList |> List.scan (+) 0
+                       actual = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "scan result is always non-empty"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel -> NonEmptyList.scan (fun _ _ -> 0) 0 nel |> NonEmptyList.length > 0)
+
+              testPropertyWithConfig
+                  config10k
+                  "groupBy groups elements by key"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let projection x = x % 3
+                       let groups = NonEmptyList.groupBy projection nel
+
+                       // verify all original elements appear in exactly one group
+                       let flattened =
+                           groups
+                           |> NonEmptyList.toList
+                           |> List.collect(fun (_, vs) -> NonEmptyList.toList vs)
+                           |> List.sort
+
+                       let expected = nel |> NonEmptyList.toList |> List.sort
+                       flattened = expected)
+
+              testPropertyWithConfig
+                  config10k
+                  "groupBy result is always non-empty"
+                  (Prop.forAll(NonEmptyListGen.NonEmptyList())
+                   <| fun nel -> NonEmptyList.groupBy id nel |> NonEmptyList.length > 0) ]
