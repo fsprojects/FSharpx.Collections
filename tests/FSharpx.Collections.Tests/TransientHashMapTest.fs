@@ -67,7 +67,7 @@ module TransientHashMapTests =
               }
 
               //https://github.com/fsprojects/FSharpx.Collections/issues/85
-              ptest "can add None value to empty map" {
+              test "can add None value to empty map" {
                   let x = TransientHashMap<string, string option>.Empty()
 
                   Expect.isTrue
