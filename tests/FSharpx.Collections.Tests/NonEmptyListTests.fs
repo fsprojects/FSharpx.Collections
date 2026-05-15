@@ -439,7 +439,7 @@ module NonEmptyListTests =
 
               testPropertyWithConfig
                   config10k
-                  "tryFind returns Some when element exists"
+                  "tryFind behaves like List.tryFind"
                   (Prop.forAll(neListOfInt())
                    <| fun nel ->
                        let list = NonEmptyList.toList nel
