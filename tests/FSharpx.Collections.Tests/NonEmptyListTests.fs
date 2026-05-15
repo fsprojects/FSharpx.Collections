@@ -446,6 +446,39 @@ module NonEmptyListTests =
                        let predicate x = x % 2 = 0
                        NonEmptyList.tryFind predicate nel = List.tryFind predicate list)
 
+              testPropertyWithConfig
+                  config10k
+                  "tryPick behaves like List.tryPick"
+                  (Prop.forAll(neListOfInt())
+                   <| fun nel ->
+                       let list = NonEmptyList.toList nel
+
+                       let chooser x =
+                           if x % 2 = 0 then Some(x * 2) else None
+
+                       NonEmptyList.tryPick chooser nel = List.tryPick chooser list)
+
+              testPropertyWithConfig config10k "pick returns chosen value when it exists"
+              <| fun (xs: int list) ->
+                  if xs.IsEmpty then
+                      true
+                  else
+                      let nel = NonEmptyList.create xs.Head xs.Tail
+
+                      NonEmptyList.pick Some nel = List.pick Some xs
+
+              testPropertyWithConfig config10k "pick raises KeyNotFoundException when no element is picked"
+              <| fun (xs: int list) ->
+                  if xs.IsEmpty then
+                      true
+                  else
+                      let nel = NonEmptyList.create xs.Head xs.Tail
+
+                      Expect.throwsT<System.Collections.Generic.KeyNotFoundException> "should raise" (fun () ->
+                          NonEmptyList.pick (fun _ -> None) nel |> ignore)
+
+                      true
+
               testPropertyWithConfig config10k "find returns element when it exists"
               <| fun (xs: int list) ->
                   if xs.IsEmpty then

@@ -186,10 +186,24 @@ module NonEmptyList =
     let foldBack (folder: 'T -> 'State -> 'State) (list: NonEmptyList<'T>) (state: 'State) =
         List.foldBack folder list.List state
 
-    /// O(n), worst case. Returns the first element for which the given function returns <c>Some</c>.
+    /// O(n), worst case. Returns the first element for which the given predicate returns <c>true</c>.
+    /// Returns <c>Some x</c> if such an element exists, otherwise <c>None</c>.
     [<CompiledName("TryFind")>]
     let tryFind (predicate: 'T -> bool) (list: NonEmptyList<'T>) =
         List.tryFind predicate list.List
+
+    /// O(n), worst case. Applies the given chooser to each element and returns the first result where
+    /// the chooser returns <c>Some</c>. Returns <c>None</c> if no element matches.
+    [<CompiledName("TryPick")>]
+    let tryPick (chooser: 'T -> 'U option) (list: NonEmptyList<'T>) : 'U option =
+        List.tryPick chooser list.List
+
+    /// O(n), worst case. Applies the given chooser to each element and returns the first result where
+    /// the chooser returns <c>Some</c>.
+    /// Raises <c>KeyNotFoundException</c> if no such element exists.
+    [<CompiledName("Pick")>]
+    let pick (chooser: 'T -> 'U option) (list: NonEmptyList<'T>) : 'U =
+        List.pick chooser list.List
 
     /// O(n), worst case. Returns the first element for which the given function returns <c>true</c>.
     /// Raises <c>KeyNotFoundException</c> if no such element exists.
