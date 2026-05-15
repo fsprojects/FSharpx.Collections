@@ -13,6 +13,7 @@ type internal INode =
     abstract member assoc: Thread ref * int * int * obj * obj * Box -> INode
     abstract member find: int * int * obj -> obj
     abstract member tryFind: int * int * obj -> obj option
+    abstract member containsKey: int * int * obj -> bool
     abstract member without: int * int * obj -> INode
     abstract member without: Thread ref * int * int * obj * Box -> INode
     abstract member nodeSeq: unit -> (obj * obj) seq
@@ -220,6 +221,10 @@ and private HashCollisionNode(thread, hashCollisionKey, count', array': obj[]) =
             else
                 None
 
+        member this.containsKey(shift, hash, key) =
+            let idx = this.findIndex(key)
+            idx >= 0 && key = this.array.[idx]
+
         member this.without(shift, hashKey, key) =
             let idx = this.findIndex(key)
 
@@ -345,6 +350,13 @@ and private ArrayNode(thread, count', array': INode[]) =
             else
                 node.tryFind(shift + 5, hash, key)
 
+        member this.containsKey(shift, hash, key) =
+            let idx = mask(hash, shift)
+            let node = this.array.[idx]
+
+            node <> Unchecked.defaultof<INode>
+            && node.containsKey(shift + 5, hash, key)
+
         member this.without(shift, hashKey, key) =
             let idx = mask(hashKey, shift)
             let node = this.array.[idx]
@@ -469,6 +481,21 @@ and private BitmapIndexedNode(thread, bitmap', array': obj[]) =
                     Some valOrNode
                 else
                     None
+
+        member this.containsKey(shift, hash, key) =
+            let bit = bitpos(hash, shift)
+
+            if this.bitmap &&& bit = 0 then
+                false
+            else
+                let idx' = index(this.bitmap, bit) * 2
+                let keyOrNull = this.array.[idx']
+                let valOrNode = this.array.[idx' + 1]
+
+                if keyOrNull = null then
+                    (valOrNode :?> INode).containsKey(shift + 5, hash, key)
+                else
+                    key = keyOrNull
 
         member this.assoc(shift, hashKey, key, value, addedLeaf) =
             let bit = bitpos(hashKey, shift)
@@ -698,7 +725,7 @@ type internal TransientHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equalit
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.find(0, hash(key), key) <> null
+        else this.root.containsKey(0, hash(key), key)
 
     member this.Add(key: 'T, value: 'S) =
         if key = Unchecked.defaultof<'T> then
@@ -793,7 +820,7 @@ and PersistentHashMap<[<EqualityConditionalOn>] 'T, 'S when 'T: equality and 'S:
     member this.ContainsKey(key: 'T) =
         if key = Unchecked.defaultof<'T> then this.hasNull
         else if this.root = Unchecked.defaultof<INode> then false
-        else this.root.find(0, hash(key), key) <> null
+        else this.root.containsKey(0, hash(key), key)
 
     static member ofSeq(items: ('T * 'S) seq) =
         let mutable ret = TransientHashMap<'T, 'S>.Empty()
@@ -928,5 +955,76 @@ module PersistentHashMap =
             ret <- ret.Add(key, f value)
 
         ret.persistent()
+
+    ///O(log32n), returns the value option for the given key.
+    let tryFind key (map: PersistentHashMap<'T, 'S>) =
+        if map.ContainsKey key then Some map.[key] else None
+
+    ///O(n). Returns a new HashMap containing only the entries for which the predicate returns true.
+    let filter (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S> =
+        let mutable ret = TransientHashMap<'T, 'S>.Empty()
+
+        for (key, value) in map do
+            if predicate key value then
+                ret <- ret.Add(key, value)
+
+        ret.persistent()
+
+    ///O(n). Applies the supplied function to each element of the HashMap.
+    let iter (action: 'T -> 'S -> unit) (map: PersistentHashMap<'T, 'S>) =
+        for (key, value) in map do
+            action key value
+
+    ///O(n). Applies a function to each entry of the HashMap, threading an accumulator argument.
+    let fold (folder: 'State -> 'T -> 'S -> 'State) (state: 'State) (map: PersistentHashMap<'T, 'S>) =
+        let mutable acc = state
+
+        for (key, value) in map do
+            acc <- folder acc key value
+
+        acc
+
+    ///O(n). Returns true if any entry satisfies the predicate.
+    let exists (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.exists(fun (k, v) -> predicate k v)
+
+    ///O(n). Returns true if all entries satisfy the predicate.
+    let forall (predicate: 'T -> 'S -> bool) (map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.forall(fun (k, v) -> predicate k v)
+
+    ///O(n). Builds a new HashMap whose entries are the results of applying the given function to each entry. Entries for which the function returns None are excluded.
+    let choose (chooser: 'T -> 'S -> 'S1 option) (map: PersistentHashMap<'T, 'S>) : PersistentHashMap<'T, 'S1> =
+        let mutable ret = TransientHashMap<'T, 'S1>.Empty()
+
+        for (key, value) in map do
+            match chooser key value with
+            | Some v -> ret <- ret.Add(key, v)
+            | None -> ()
+
+        ret.persistent()
+
+    ///O(n). Returns a list of all key-value pairs in the HashMap.
+    let toList(map: PersistentHashMap<'T, 'S>) =
+        [ for kv in map -> kv ]
+
+    ///O(n). Returns an array of all key-value pairs in the HashMap.
+    let toArray(map: PersistentHashMap<'T, 'S>) =
+        [| for kv in map -> kv |]
+
+    ///O(n). Creates a HashMap from a list of key-value pairs.
+    let ofList(items: ('T * 'S) list) =
+        PersistentHashMap<'T, 'S>.ofSeq items
+
+    ///O(n). Creates a HashMap from an array of key-value pairs.
+    let ofArray(items: ('T * 'S) array) =
+        PersistentHashMap<'T, 'S>.ofSeq items
+
+    ///O(n). Returns a sequence of all keys in the HashMap.
+    let keys(map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.map fst
+
+    ///O(n). Returns a sequence of all values in the HashMap.
+    let values(map: PersistentHashMap<'T, 'S>) =
+        map |> Seq.map snd
 
 #endif

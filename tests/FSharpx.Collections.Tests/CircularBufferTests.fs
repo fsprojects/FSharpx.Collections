@@ -320,4 +320,54 @@ module CircularBufferTests =
               //|> Async.Start
               //// [/snippet]
               //printfn "CircularStream.AsyncWrite(array) tests passed in %d ms" stopwatch.ElapsedMilliseconds
-              ]
+
+              test "Enqueue(array, offset) 2-arg overload enqueues from offset to end" {
+                  let circularBuffer = CircularBuffer<int> 5
+                  circularBuffer.Enqueue([| 10; 20; 30; 40; 50 |], 2)
+                  Expect.equal "count" 3 <| circularBuffer.Count
+                  Expect.equal "dequeued" [| 30; 40; 50 |] <| circularBuffer.Dequeue 3
+              }
+
+              test "Seq.toList is non-destructive: buffer is unchanged after enumeration" {
+                  let circularBuffer = CircularBuffer<int> 5
+                  circularBuffer.Enqueue(1)
+                  circularBuffer.Enqueue(2)
+                  circularBuffer.Enqueue(3)
+                  let asList = Seq.toList circularBuffer
+                  Expect.equal "seq contents" [ 1; 2; 3 ] asList
+                  Expect.equal "count unchanged" 3 <| circularBuffer.Count
+              }
+
+              test "for-in loop enumerates elements in FIFO order" {
+                  let circularBuffer = CircularBuffer<int> 5
+                  circularBuffer.Enqueue [| 10; 20; 30 |]
+                  let mutable result = []
+
+                  for x in circularBuffer do
+                      result <- result @ [ x ]
+
+                  Expect.equal "for-in" [ 10; 20; 30 ] result
+              }
+
+              test "Seq.toList on wrapped-around buffer preserves FIFO order" {
+                  let circularBuffer = CircularBuffer<int> 4
+                  circularBuffer.Enqueue [| 1; 2; 3; 4 |]
+                  circularBuffer.Dequeue 2 |> ignore
+                  circularBuffer.Enqueue [| 5; 6 |]
+                  // Internal state: head has wrapped; FIFO order should be [3;4;5;6]
+                  Expect.equal "wrapped seq" [ 3; 4; 5; 6 ] (Seq.toList circularBuffer)
+              }
+
+              test "Seq.toList on empty buffer returns empty list" {
+                  let circularBuffer = CircularBuffer<int> 5
+                  Expect.equal "empty seq" [] (Seq.toList circularBuffer)
+              }
+
+              test "IReadOnlyCollection Count matches after wrap" {
+                  let circularBuffer = CircularBuffer<int> 3
+                  circularBuffer.Enqueue [| 1; 2; 3 |]
+                  circularBuffer.Dequeue 1 |> ignore
+                  circularBuffer.Enqueue(4)
+                  let irc = circularBuffer :> System.Collections.Generic.IReadOnlyCollection<int>
+                  Expect.equal "IReadOnlyCollection.Count" 3 irc.Count
+              } ]
