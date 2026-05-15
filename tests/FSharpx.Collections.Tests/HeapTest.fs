@@ -482,4 +482,100 @@ module HeapTests =
                   (Prop.forAll(Arb.fromGen intGensStart2.[5])
                    <| fun (h, l) ->
                        let x, tl = h.Uncons()
-                       x = l.Head && tl.Length = (l.Length - 1)) ]
+                       x = l.Head && tl.Length = (l.Length - 1))
+
+              test "toList ascending returns sorted list" {
+                  let h = Heap.ofSeq false [ 3; 1; 4; 1; 5; 9; 2; 6 ]
+                  Expect.equal "toList asc" [ 1; 1; 2; 3; 4; 5; 6; 9 ] (Heap.toList h)
+              }
+
+              test "toList descending returns reverse-sorted list" {
+                  let h = Heap.ofSeq true [ 3; 1; 4; 1; 5; 9; 2; 6 ]
+                  Expect.equal "toList desc" [ 9; 6; 5; 4; 3; 2; 1; 1 ] (Heap.toList h)
+              }
+
+              test "toArray ascending returns sorted array" {
+                  let h = Heap.ofSeq false [ 5; 3; 1; 4; 2 ]
+                  Expect.equal "toArray asc" [| 1; 2; 3; 4; 5 |] (Heap.toArray h)
+              }
+
+              test "ofList round-trips through toList" {
+                  let xs = [ 7; 3; 5; 1; 9; 2; 4; 8; 6 ]
+                  let h = Heap.ofList false xs
+                  Expect.equal "ofList round-trip" (List.sort xs) (Heap.toList h)
+              }
+
+              test "ofArray round-trips through toArray" {
+                  let xs = [| 7; 3; 5; 1; 9; 2; 4; 8; 6 |]
+                  let h = Heap.ofArray false xs
+                  Expect.equal "ofArray round-trip" (Array.sort xs) (Heap.toArray h)
+              }
+
+              test "fold accumulates in sorted order" {
+                  let h = Heap.ofSeq false [ 3; 1; 2 ]
+                  let result = Heap.fold (fun acc x -> acc @ [ x ]) [] h
+                  Expect.equal "fold ascending" [ 1; 2; 3 ] result
+              }
+
+              test "iter visits elements in sorted order" {
+                  let h = Heap.ofSeq false [ 3; 1; 2 ]
+                  let mutable result = []
+                  Heap.iter (fun x -> result <- result @ [ x ]) h
+                  Expect.equal "iter ascending" [ 1; 2; 3 ] result
+              }
+
+              test "exists returns true when predicate matches" {
+                  let h = Heap.ofSeq false [ 1; 2; 3; 4; 5 ]
+                  Expect.isTrue "exists" (Heap.exists (fun x -> x = 3) h)
+              }
+
+              test "exists returns false when predicate does not match" {
+                  let h = Heap.ofSeq false [ 1; 2; 3; 4; 5 ]
+                  Expect.isFalse "exists" (Heap.exists (fun x -> x = 6) h)
+              }
+
+              test "forall returns true when all match" {
+                  let h = Heap.ofSeq false [ 2; 4; 6; 8 ]
+                  Expect.isTrue "forall" (Heap.forall (fun x -> x % 2 = 0) h)
+              }
+
+              test "forall returns false when some do not match" {
+                  let h = Heap.ofSeq false [ 2; 3; 4 ]
+                  Expect.isFalse "forall" (Heap.forall (fun x -> x % 2 = 0) h)
+              }
+
+              test "map transforms elements" {
+                  let h = Heap.ofSeq false [ 1; 2; 3; 4; 5 ]
+                  let mapped = Heap.map (fun x -> x * 2) h
+                  Expect.equal "map" [ 2; 4; 6; 8; 10 ] (Heap.toList mapped)
+              }
+
+              test "map preserves sort direction" {
+                  let h = Heap.ofSeq true [ 1; 2; 3 ]
+                  let mapped = Heap.map (fun x -> x * 10) h
+                  Expect.equal "map desc" [ 30; 20; 10 ] (Heap.toList mapped)
+              }
+
+              test "filter keeps only matching elements" {
+                  let h = Heap.ofSeq false [ 1; 2; 3; 4; 5; 6 ]
+                  let filtered = Heap.filter (fun x -> x % 2 = 0) h
+                  Expect.equal "filter" [ 2; 4; 6 ] (Heap.toList filtered)
+              }
+
+              test "filter empty heap returns empty heap" {
+                  let h = Heap.empty false
+                  let filtered = Heap.filter (fun x -> x > 0) h
+                  Expect.isTrue "filter empty" (Heap.isEmpty filtered)
+              }
+
+              test "choose keeps Some values" {
+                  let h = Heap.ofSeq false [ 1; 2; 3; 4; 5 ]
+                  let chosen = Heap.choose (fun x -> if x % 2 = 0 then Some(x * 10) else None) h
+                  Expect.equal "choose" [ 20; 40 ] (Heap.toList chosen)
+              }
+
+              test "choose all None returns empty heap" {
+                  let h = Heap.ofSeq false [ 1; 3; 5 ]
+                  let chosen = Heap.choose (fun _ -> None) h
+                  Expect.isTrue "choose none" (Heap.isEmpty chosen)
+              } ]

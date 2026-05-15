@@ -335,6 +335,50 @@ module Heap =
     let inline tryUncons(xs: Heap<'T>) =
         xs.TryUncons()
 
+    ///O(n). Returns a sorted list of all elements.
+    let inline toList(xs: Heap<'T>) =
+        xs |> toSeq |> Seq.toList
+
+    ///O(n). Returns a sorted array of all elements.
+    let inline toArray(xs: Heap<'T>) =
+        xs |> toSeq |> Seq.toArray
+
+    ///O(n log n). Returns heap from a list.
+    let inline ofList isDescending (xs: 'T list) =
+        ofSeq isDescending xs
+
+    ///O(n log n). Returns heap from an array.
+    let inline ofArray isDescending (xs: 'T array) =
+        ofSeq isDescending xs
+
+    ///O(n). Applies a function to each element in sorted order, threading an accumulator.
+    let inline fold (f: 'State -> 'T -> 'State) (state: 'State) (xs: Heap<'T>) =
+        xs |> toSeq |> Seq.fold f state
+
+    ///O(n). Applies a function to each element in sorted order.
+    let inline iter (f: 'T -> unit) (xs: Heap<'T>) =
+        xs |> toSeq |> Seq.iter f
+
+    ///O(n). Returns true if any element satisfies the predicate.
+    let inline exists (f: 'T -> bool) (xs: Heap<'T>) =
+        xs |> toSeq |> Seq.exists f
+
+    ///O(n). Returns true if all elements satisfy the predicate.
+    let inline forall (f: 'T -> bool) (xs: Heap<'T>) =
+        xs |> toSeq |> Seq.forall f
+
+    ///O(n log n). Returns a new heap with elements mapped by the function, preserving sort direction.
+    let inline map (f: 'T -> 'U) (xs: Heap<'T>) : Heap<'U> =
+        xs |> toSeq |> Seq.map f |> ofSeq(isDescending xs)
+
+    ///O(n log n). Returns a new heap containing only elements satisfying the predicate.
+    let inline filter (f: 'T -> bool) (xs: Heap<'T>) =
+        xs |> toSeq |> Seq.filter f |> ofSeq(isDescending xs)
+
+    ///O(n log n). Applies an option-returning function to each element; returns a new heap of the Some values.
+    let inline choose (f: 'T -> 'U option) (xs: Heap<'T>) : Heap<'U> =
+        xs |> toSeq |> Seq.choose f |> ofSeq(isDescending xs)
+
 [<RequireQualifiedAccess>]
 module PriorityQueue =
     ///O(1). Returns a empty queue, with indicated ordering.
