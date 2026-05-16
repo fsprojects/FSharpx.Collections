@@ -143,5 +143,28 @@ module Deque =
     ///O(n). Views the given deque as a sequence.
     val inline toSeq: Deque<'T> -> seq<'T>
 
+    ///O(n). Returns a list of the deque elements in front-to-back (head-to-last) order.
+    val toList: Deque<'T> -> 'T list
+
+    ///O(n). Returns an array of the deque elements in front-to-back (head-to-last) order.
+    val toArray: Deque<'T> -> 'T[]
+
+    ///O(n). Returns a new deque whose elements are the results of applying the given function to each element.
+    val map: ('T -> 'U) -> Deque<'T> -> Deque<'U>
+
+    ///O(n). Returns a new deque containing only the elements for which the given predicate returns true.
+    val filter: ('T -> bool) -> Deque<'T> -> Deque<'T>
+
+    ///O(n). Applies the given function to each element of the deque.
+    val iter: ('T -> unit) -> Deque<'T> -> unit
+
+    ///O(n). Returns true if any element of the deque satisfies the given predicate.
+    ///Note: elements are not necessarily checked in front-to-back (enumeration) order; the internal rear list is checked in reverse order.
+    val exists: ('T -> bool) -> Deque<'T> -> bool
+
+    ///O(n). Returns true if all elements of the deque satisfy the given predicate.
+    ///Note: elements are not necessarily checked in front-to-back (enumeration) order; the internal rear list is checked in reverse order.
+    val forall: ('T -> bool) -> Deque<'T> -> bool
+
     ///O(1) amortized, O(n), worst case. Returns option first element and tail.
     val inline tryUncons: Deque<'T> -> ('T * Deque<'T>) option
