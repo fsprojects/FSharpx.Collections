@@ -244,5 +244,49 @@ module Deque =
     let inline toSeq(q: Deque<'T>) =
         q :> seq<'T>
 
+    ///O(n). Returns a list of the deque elements in front-to-back (head-to-last) order.
+    let toList(q: Deque<'T>) : 'T list =
+        q.front @ List.rev q.rBack
+
+    ///O(n). Returns an array of the deque elements in front-to-back (head-to-last) order.
+    let toArray(q: Deque<'T>) : 'T[] =
+        let result = Array.zeroCreate q.Length
+        let mutable i = 0
+
+        for x in q.front do
+            result.[i] <- x
+            i <- i + 1
+
+        let mutable j = q.Length - 1
+
+        for x in q.rBack do
+            result.[j] <- x
+            j <- j - 1
+
+        result
+
+    ///O(n). Returns a new deque whose elements are the results of applying the given function to each element.
+    let map (f: 'T -> 'U) (q: Deque<'T>) : Deque<'U> =
+        Deque<'U>(List.map f q.front, List.map f q.rBack)
+
+    ///O(n). Returns a new deque containing only the elements of the original for which the given predicate returns true.
+    let filter (predicate: 'T -> bool) (q: Deque<'T>) : Deque<'T> =
+        Deque<'T>(List.filter predicate q.front, List.filter predicate q.rBack)
+
+    ///O(n). Applies the given function to each element of the deque.
+    let iter (f: 'T -> unit) (q: Deque<'T>) =
+        List.iter f q.front
+        List.iter f (List.rev q.rBack)
+
+    ///O(n). Returns true if any element of the deque satisfies the given predicate.
+    ///Note: elements are not necessarily checked in front-to-back (enumeration) order; the internal rear list is checked in reverse order.
+    let exists (predicate: 'T -> bool) (q: Deque<'T>) : bool =
+        List.exists predicate q.front || List.exists predicate q.rBack
+
+    ///O(n). Returns true if all elements of the deque satisfy the given predicate.
+    ///Note: elements are not necessarily checked in front-to-back (enumeration) order; the internal rear list is checked in reverse order.
+    let forall (predicate: 'T -> bool) (q: Deque<'T>) : bool =
+        List.forall predicate q.front && List.forall predicate q.rBack
+
     let inline tryUnconj(q: Deque<'T>) =
         q.TryUnconj

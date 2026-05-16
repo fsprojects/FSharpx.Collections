@@ -1221,4 +1221,85 @@ module DequeTests =
                   config10k
                   "get Deque.initial from deque safely 2"
                   (Prop.forAll(Arb.fromGen intGensStart2.[2])
-                   <| fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev)) ]
+                   <| fun (q, l) -> List.ofSeq q.TryInitial.Value = (List.rev l |> List.tail |> List.rev))
+
+              test "toList preserves front-to-back order" {
+                  let q = Deque.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "toList preserves front-to-back order" [ 1; 2; 3; 4; 5 ] (Deque.toList q)
+              }
+
+              test "toList empty deque" { Expect.equal "toList empty" [] (Deque.toList Deque.empty) }
+
+              test "toArray preserves front-to-back order" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ] |> Deque.conj 4 |> Deque.conj 5
+                  Expect.equal "toArray" [| 1; 2; 3; 4; 5 |] (Deque.toArray q)
+              }
+
+              test "toArray empty deque" { Expect.equal "toArray empty" [||] (Deque.toArray Deque.empty) }
+
+              test "map transforms elements" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "map" [ 2; 4; 6 ] (Deque.map ((*) 2) q |> Deque.toList)
+              }
+
+              test "map preserves front-to-back order" {
+                  let q = Deque.ofSeq [ "a"; "b"; "c" ] |> Deque.conj "d" |> Deque.conj "e"
+
+                  Expect.equal "map order" [ "A"; "B"; "C"; "D"; "E" ] (Deque.map (fun (s: string) -> s.ToUpper()) q |> Deque.toList)
+              }
+
+              test "filter keeps matching elements" {
+                  let q = Deque.ofSeq [ 1; 2; 3; 4; 5; 6 ]
+                  Expect.equal "filter even" [ 2; 4; 6 ] (Deque.filter (fun x -> x % 2 = 0) q |> Deque.toList)
+              }
+
+              test "filter preserves order" {
+                  let q = Deque.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "filter order" [ 1; 3; 5 ] (Deque.filter (fun x -> x % 2 <> 0) q |> Deque.toList)
+              }
+
+              test "filter preserves front-to-back order across front/rBack" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ] |> Deque.conj 4 |> Deque.conj 5
+                  Expect.equal "filter front/rBack" [ 2; 4 ] (Deque.filter (fun x -> x % 2 = 0) q |> Deque.toList)
+              }
+
+              test "filter returns empty deque when no elements match" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "filter empty" (Deque.filter (fun _ -> false) q |> Deque.isEmpty)
+              }
+
+              test "iter visits each element in front-to-back order" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  let result = System.Collections.Generic.List<int>()
+                  Deque.iter result.Add q
+                  Expect.equal "iter order" [ 1; 2; 3 ] (List.ofSeq result)
+              }
+
+              test "exists returns true when element satisfies predicate" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "exists" (Deque.exists ((=) 2) q)
+              }
+
+              test "exists returns false when no element satisfies predicate" {
+                  let q = Deque.ofSeq [ 1; 2; 3 ]
+                  Expect.isFalse "exists false" (Deque.exists ((=) 99) q)
+              }
+
+              test "exists returns false on empty deque" {
+                  let q = Deque.empty
+                  Expect.isFalse "exists empty" (Deque.exists ((=) 1) q)
+              }
+              test "forall returns true when all elements satisfy predicate" {
+                  let q = Deque.ofSeq [ 2; 4; 6 ]
+                  Expect.isTrue "forall" (Deque.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns false when some elements do not" {
+                  let q = Deque.ofSeq [ 2; 3; 6 ]
+                  Expect.isFalse "forall false" (Deque.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns true for empty deque" {
+                  let q = Deque.empty
+                  Expect.isTrue "forall empty" (Deque.forall (fun x -> x % 2 = 0) q)
+              } ]

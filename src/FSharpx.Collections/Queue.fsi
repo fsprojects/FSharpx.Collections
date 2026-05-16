@@ -91,6 +91,29 @@ module Queue =
     ///O(n). Views the given queue as a sequence.
     val inline toSeq: Queue<'T> -> seq<'T>
 
+    ///O(n). Returns a list of the queue elements in FIFO order.
+    val toList: Queue<'T> -> 'T list
+
+    ///O(n). Returns an array of the queue elements in FIFO order.
+    val toArray: Queue<'T> -> 'T[]
+
+    ///O(n). Returns a new queue whose elements are the results of applying the given function to each element.
+    val map: ('T -> 'U) -> Queue<'T> -> Queue<'U>
+
+    ///O(n). Returns a new queue containing only the elements for which the given predicate returns true.
+    val filter: ('T -> bool) -> Queue<'T> -> Queue<'T>
+
+    ///O(n). Applies the given function to each element of the queue.
+    val iter: ('T -> unit) -> Queue<'T> -> unit
+
+    ///O(n). Returns true if any element of the queue satisfies the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
+    val exists: ('T -> bool) -> Queue<'T> -> bool
+
+    ///O(n). Returns true if all elements of the queue satisfy the given predicate.
+    ///Note: elements are not necessarily checked in FIFO order; the internal rear list is checked in reverse (LIFO) order.
+    val forall: ('T -> bool) -> Queue<'T> -> bool
+
     ///O(1) amortized, O(n) worst-case. Returns the first element and tail.
     val inline uncons: Queue<'T> -> 'T * Queue<'T>
 

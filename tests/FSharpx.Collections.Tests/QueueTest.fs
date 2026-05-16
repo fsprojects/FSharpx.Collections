@@ -316,4 +316,90 @@ module QueueTests =
                   config10k
                   "ofList build and serialize"
                   (Prop.forAll(Arb.fromGen queueOfListGen)
-                   <| fun (q, l) -> q |> Seq.toList = l) ]
+                   <| fun (q, l) -> q |> Seq.toList = l)
+
+              test "toList preserves FIFO order" {
+                  let q = Queue.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "toList" [ 1; 2; 3; 4; 5 ] (Queue.toList q)
+              }
+
+              test "toList empty queue" { Expect.equal "toList empty" [] (Queue.toList Queue.empty) }
+
+              test "toArray preserves FIFO order" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "toArray" [| 1; 2; 3 |] (Queue.toArray q)
+              }
+
+              test "toArray preserves FIFO order across front/rBack boundary" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ] |> Queue.conj 4 |> Queue.conj 5
+                  Expect.equal "toArray front/rBack" [| 1; 2; 3; 4; 5 |] (Queue.toArray q)
+              }
+
+              test "toArray empty queue" { Expect.equal "toArray empty" [||] (Queue.toArray Queue.empty) }
+              test "map transforms elements" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  Expect.equal "map" [ 2; 4; 6 ] (Queue.map ((*) 2) q |> Queue.toList)
+              }
+
+              test "map preserves FIFO order across front/rBack boundary" {
+                  let q = Queue.ofSeq [ "a"; "b"; "c" ] |> Queue.conj "d" |> Queue.conj "e"
+
+                  Expect.equal "map order" [ "A"; "B"; "C"; "D"; "E" ] (Queue.map (fun (s: string) -> s.ToUpper()) q |> Queue.toList)
+              }
+
+              test "filter keeps matching elements" {
+                  let q = Queue.ofSeq [ 1; 2; 3; 4; 5; 6 ]
+                  Expect.equal "filter even" [ 2; 4; 6 ] (Queue.filter (fun x -> x % 2 = 0) q |> Queue.toList)
+              }
+
+              test "filter preserves order" {
+                  let q = Queue.ofSeq [ 1; 2; 3; 4; 5 ]
+                  Expect.equal "filter preserves order" [ 1; 3; 5 ] (Queue.filter (fun x -> x % 2 <> 0) q |> Queue.toList)
+              }
+
+              test "filter all out gives empty" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "filter all out" (Queue.filter (fun _ -> false) q |> Queue.isEmpty)
+              }
+
+              test "filter rebuilds front when all front elements are filtered out" {
+                  // front=[1;3], rBack=[4;2] — filtering for evens empties front, so List.rev rBack becomes new front
+                  let q = Queue.ofSeq [ 1; 3 ] |> Queue.conj 2 |> Queue.conj 4
+                  Expect.equal "filter front rebuild" [ 2; 4 ] (Queue.filter (fun x -> x % 2 = 0) q |> Queue.toList)
+              }
+
+              test "iter visits each element in FIFO order" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  let result = System.Collections.Generic.List<int>()
+                  Queue.iter result.Add q
+                  Expect.equal "iter order" [ 1; 2; 3 ] (List.ofSeq result)
+              }
+
+              test "exists returns true when element satisfies predicate" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  Expect.isTrue "exists" (Queue.exists ((=) 2) q)
+              }
+
+              test "exists returns false when no element satisfies predicate" {
+                  let q = Queue.ofSeq [ 1; 2; 3 ]
+                  Expect.isFalse "exists false" (Queue.exists ((=) 99) q)
+              }
+
+              test "exists returns false on empty queue" {
+                  let q = Queue.empty
+                  Expect.isFalse "exists empty" (Queue.exists ((=) 1) q)
+              }
+              test "forall returns true when all elements satisfy predicate" {
+                  let q = Queue.ofSeq [ 2; 4; 6 ]
+                  Expect.isTrue "forall" (Queue.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns false when some elements do not satisfy predicate" {
+                  let q = Queue.ofSeq [ 2; 3; 6 ]
+                  Expect.isFalse "forall false" (Queue.forall (fun x -> x % 2 = 0) q)
+              }
+
+              test "forall returns true for empty queue" {
+                  let q = Queue.empty
+                  Expect.isTrue "forall empty" (Queue.forall (fun x -> x % 2 = 0) q)
+              } ]
