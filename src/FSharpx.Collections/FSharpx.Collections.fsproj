@@ -25,6 +25,7 @@
     <Compile Include="Infrastructure.fs" />
     <Compile Include="LazyList.fsi" />
     <Compile Include="LazyList.fs" />
+    <Compile Include="LazyListOperators.fs" />
     <Compile Include="ResizeArray.fsi" />
     <Compile Include="ResizeArray.fs" />
     <Compile Include="Collections.fs" />
