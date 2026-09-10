@@ -1,7 +1,7 @@
 framework: netstandard2.0, net8.0
 source https://api.nuget.org/v3/index.json
 
-nuget FSharp.Core >= 4.3.4 lowest_matching:true
+nuget FSharp.Core >= 8.0.403 lowest_matching:true
 nuget Expecto
 nuget Expecto.FsCheck
 nuget FsCheck

@@ -74,6 +74,32 @@ module SeqTests =
                   | _ -> failwith "Unreachable"
               }
 
+              test "If I trySkip and I don't have a head, I should return None" { Seq.empty<float> |> Seq.trySkip 1 |> Expect.isNone "trySkip1" }
+
+              test "If I trySkip1 a non-empty seq, I should return just tail" {
+                  let data = [ 1; 2; 3 ]
+                  let actual = data |> Seq.trySkip 1
+                  Expect.isSome "trySkip1" actual
+
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip1" [ 2; 3 ] subSeq
+                  | _ -> failwith "Unreachable"
+              }
+
+              test "If I trySkip2 a non-empty seq, I should return just last" {
+                  let data = [ 1; 2; 3 ]
+                  let actual = data |> Seq.trySkip 2
+                  Expect.isSome "trySkip2" actual
+
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip2" [ 3 ] subSeq
+                  | _ -> failwith "Unreachable"
+              }
+
+              test "If I trySkip2 and seq only contains 1 element, I should return None" {
+                  seq { yield 1 } |> Seq.trySkip 2 |> Expect.isNone "trySkip2"
+              }
+
               test "I should be a to split a seq at an index" {
                   let (a, b) = Seq.splitAt 5 data
                   Expect.sequenceEqual "splitAt" (List.toSeq [ 1.; 2.; 3.; 4.; 5. ]) a
@@ -138,9 +164,11 @@ module SeqTests =
 
               test "I should get some if try to get a index inside the seq" { Seq.tryNth 2 data |> Expect.equal "tryNth" (Some(3.)) }
 
-              test "I should get none when trySkip past the end of the seq" { Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty }
+              test "I should get empty seq when skipNoFail past the end of the seq" {
+                  Seq.skipNoFail 20 data |> Expect.sequenceEqual "skipNoFail" Seq.empty
+              }
 
-              test "I should get Some when trySkip" {
+              test "I should get Some when skipNoFail" {
                   Seq.skipNoFail 5 data
                   |> Expect.sequenceEqual "skipNoFail" (List.toSeq [ 6.; 7.; 8.; 9.; 10. ])
               }
