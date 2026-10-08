@@ -9,7 +9,7 @@ NUGET
       FsCheck (>= 2.14)
     FsCheck (2.16.6)
       FSharp.Core (>= 4.2.3)
-    FSharp.Core (4.3.4)
+    FSharp.Core (8.0.403)
     Microsoft.CodeCoverage (18.0.1) - restriction: || (== net8.0) (&& (== netstandard2.0) (>= net462)) (&& (== netstandard2.0) (>= net8.0))
     Microsoft.NET.Test.Sdk (18.0.1)
       Microsoft.CodeCoverage (>= 18.0.1) - restriction: || (== net8.0) (&& (== netstandard2.0) (>= net462)) (&& (== netstandard2.0) (>= net8.0))
