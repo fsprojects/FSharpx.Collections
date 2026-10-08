@@ -19,4 +19,19 @@ let tests =
               let xs = xs |> LazyList.tail |> LazyList.tail
 
               Expect.equal (LazyList.tryHead xs) (Some 3) "should reach third element"
+          }
+
+          test "@@ head" {
+              let tail = lazy (LazyList.ofList [ 2; 3 ])
+              Expect.equal (LazyList.head(1 @@ tail)) 1 "@@ head"
+          }
+
+          test "@@ toList" {
+              let tail = lazy (LazyList.ofList [ 2; 3 ])
+              Expect.equal (LazyList.toList(1 @@ tail)) [ 1; 2; 3 ] "@@ toList"
+          }
+
+          test "@@ infinite" {
+              let rec ones: LazyList<int> = 1 @@ lazy ones
+              Expect.equal (LazyList.take 5 ones |> LazyList.toList) [ 1; 1; 1; 1; 1 ] "@@ infinite"
           } ]
