@@ -348,6 +348,37 @@ module LazyList =
                   Expect.equal "consLazy infinite" [ 1; 1; 1; 1; 1 ] (LazyList.take 5 ones |> LazyList.toList)
               }
 
+              test "@@ head" {
+                  let tail = lazy (LazyList.ofList [ 2; 3 ])
+                  Expect.equal "@@ head" 1 (LazyList.head(1 @@ tail))
+              }
+
+              test "@@ toList" {
+                  let tail = lazy (LazyList.ofList [ 2; 3 ])
+                  Expect.equal "@@ toList" [ 1; 2; 3 ] (LazyList.toList(1 @@ tail))
+              }
+
+              test "@@ lazy divergence" {
+                  // tail is not evaluated unless the tail is consumed
+                  let mutable tailForced = false
+
+                  let tail =
+                      lazy
+                          (tailForced <- true
+                           LazyList.ofList [ 2; 3 ])
+
+                  let ll = 1 @@ tail
+                  Expect.isFalse "@@ divergence: construction should not force the tail" tailForced
+                  let _ = LazyList.head ll
+                  Expect.isFalse "@@ divergence: head should not force the tail" tailForced
+              }
+
+              test "@@ infinite" {
+                  // build ones = 1 :: 1 :: ... using @@ operator
+                  let rec ones: LazyList<int> = 1 @@ lazy ones
+                  Expect.equal "@@ infinite" [ 1; 1; 1; 1; 1 ] (LazyList.take 5 ones |> LazyList.toList)
+              }
+
               test "takedrop" {
                   Expect.equal "takedrop" [ 4; 5; 6 ]
                   <| LazyList.toList(LazyList.take 3 (LazyList.skip 4 nats))
