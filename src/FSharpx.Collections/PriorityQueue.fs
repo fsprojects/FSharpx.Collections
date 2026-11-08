@@ -62,20 +62,21 @@ type Heap<'T when 'T: comparison>(isDescending: bool, length: int, data: HeapDat
         | :? Heap<'T> as y -> (this :> System.IEquatable<Heap<'T>>).Equals(y)
         | _ -> false
 
-    static member private merge isDescending newLength (h1: HeapData<'T>) (h2: HeapData<'T>) : Heap<'T> =
+    // Merge two HeapData values without allocating a new Heap wrapper.
+    static member private mergeData (isDescending: bool) (h1: HeapData<'T>) (h2: HeapData<'T>) : HeapData<'T> =
         match h1, h2 with
-        | E, h -> Heap(isDescending, newLength, h)
-        | h, E -> Heap(isDescending, newLength, h)
+        | E, h -> h
+        | h, E -> h
         | T(x, xs), T(y, ys) ->
             if isDescending then
-                if x <= y then
-                    Heap(isDescending, newLength, T(y, h1 :: ys))
-                else
-                    Heap(isDescending, newLength, T(x, h2 :: xs))
+                if x <= y then T(y, h1 :: ys) else T(x, h2 :: xs)
             else if x <= y then
-                Heap(isDescending, newLength, T(x, h2 :: xs))
+                T(x, h2 :: xs)
             else
-                Heap(isDescending, newLength, T(y, h1 :: ys))
+                T(y, h1 :: ys)
+
+    static member private merge isDescending newLength (h1: HeapData<'T>) (h2: HeapData<'T>) : Heap<'T> =
+        Heap(isDescending, newLength, Heap.mergeData isDescending h1 h2)
 
     //http://lorgonblog.wordpress.com/2008/04/06/catamorphisms-part-two
     static member private foldHeap nodeF leafV (h: list<HeapData<'T>>) =
@@ -91,28 +92,35 @@ type Heap<'T when 'T: comparison>(isDescending: bool, length: int, data: HeapDat
         (Heap.foldHeap (fun x l r acc -> l(x :: (r acc))) (fun acc -> acc) h) []
 
     static member internal ofSeq (isDescending: bool) (s: seq<'T>) : Heap<'T> =
-        if Seq.isEmpty s then
+        let arr = Array.ofSeq s
+        let n = arr.Length
+
+        if n = 0 then
             Heap(isDescending, 0, E)
         else
-            let len, h' =
-                Seq.fold
-                    (fun (lnth, (h: 'T HeapData)) x ->
-                        match h with
-                        | E -> 1, T(x, [])
-                        | T(y, ys) ->
-                            if isDescending then
-                                if x <= y then
-                                    (lnth + 1), T(y, T(x, []) :: ys)
-                                else
-                                    (lnth + 1), T(x, T(y, ys) :: [])
-                            else if x <= y then
-                                (lnth + 1), T(x, T(y, ys) :: [])
-                            else
-                                (lnth + 1), T(y, T(x, []) :: ys))
-                    (0, E)
-                    s
+            // Bottom-up heap construction: start with n singleton heaps and repeatedly
+            // merge adjacent pairs. This produces a balanced tree so that the first
+            // Tail() call costs O(log n) rather than O(n) (which the previous sequential-
+            // insert approach could incur on sorted input).
+            let merge = Heap.mergeData isDescending
+            let mutable heaps: HeapData<'T> array = Array.map (fun x -> T(x, [])) arr
 
-            Heap(isDescending, len, h')
+            while heaps.Length > 1 do
+                let pairCount = heaps.Length / 2
+                let hasOdd = heaps.Length % 2 = 1
+                let newLen = pairCount + (if hasOdd then 1 else 0)
+
+                let next: HeapData<'T> array = Array.zeroCreate newLen
+
+                for i in 0 .. pairCount - 1 do
+                    next.[i] <- merge heaps.[2 * i] heaps.[2 * i + 1]
+
+                if hasOdd then
+                    next.[newLen - 1] <- heaps.[heaps.Length - 1]
+
+                heaps <- next
+
+            Heap(isDescending, n, heaps.[0])
 
     ///O(1) worst case. Returns the min or max element.
     member this.Head =
@@ -165,22 +173,11 @@ type Heap<'T when 'T: comparison>(isDescending: bool, length: int, data: HeapDat
 
     ///O(log n) amortized time. Returns a new heap of the elements trailing the head.
     member this.Tail() =
-
-        let mergeData (h1: HeapData<'T>) (h2: HeapData<'T>) : HeapData<'T> =
-            match h1, h2 with
-            | E, h -> h
-            | h, E -> h
-            | T(x, xs), T(y, ys) ->
-                if isDescending then
-                    if x <= y then T(y, h1 :: ys) else T(x, h2 :: xs)
-                else if x <= y then
-                    T(x, h2 :: xs)
-                else
-                    T(y, h1 :: ys)
-
         match data with
         | E -> raise(new System.Exception("Heap is empty"))
         | T(x, xs) ->
+            let mergeData = Heap.mergeData isDescending
+
             let combinePairs state item =
                 match state with
                 | Some p, l -> (None, (mergeData item p) :: l)

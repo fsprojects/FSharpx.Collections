@@ -494,4 +494,90 @@ module DListTests =
                   config10k
                   "DList.toArray matches Seq.toArray 0"
                   (Prop.forAll(Arb.fromGen intGensStart1.[0])
-                   <| fun (q, l) -> DList.toArray q = Array.ofList l) ]
+                   <| fun (q, l) -> DList.toArray q = Array.ofList l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.ofList round-trips with toList"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (_, l) -> DList.ofList l |> DList.toList = l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.ofArray round-trips with toArray"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (_, l) -> DList.ofArray(Array.ofList l) |> DList.toArray = Array.ofList l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.tryFind matches List.tryFind"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.tryFind (fun x -> x % 3 = 0) q = List.tryFind (fun x -> x % 3 = 0) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.find matches List.find when element exists"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) ->
+                       match List.tryFind (fun x -> x % 2 = 0) l with
+                       | Some expected -> DList.find (fun x -> x % 2 = 0) q = expected
+                       | None -> true)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.choose matches List.choose"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) ->
+                       let mapping x =
+                           if x % 2 = 0 then Some(x * 2) else None
+
+                       DList.choose mapping q |> DList.toList = List.choose mapping l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.collect matches List.collect"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) ->
+                       let mapping x =
+                           DList.ofList [ x; x * 2 ]
+
+                       DList.collect mapping q |> DList.toList = List.collect (fun x -> [ x; x * 2 ]) l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.partition splits correctly"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) ->
+                       let trueD, falseD = DList.partition (fun x -> x % 2 = 0) q
+                       let trueL, falseL = List.partition (fun x -> x % 2 = 0) l
+                       DList.toList trueD = trueL && DList.toList falseD = falseL)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.sort matches List.sort"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.sort q |> DList.toList = List.sort l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.sortWith compare matches List.sort"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.sortWith compare q |> DList.toList = List.sort l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.sortBy id matches List.sort"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.sortBy id q |> DList.toList = List.sort l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.rev reverses the list"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, l) -> DList.rev q |> DList.toList = List.rev l)
+
+              testPropertyWithConfig
+                  config10k
+                  "DList.rev . DList.rev = id"
+                  (Prop.forAll(Arb.fromGen intGensStart1.[0])
+                   <| fun (q, _) -> DList.rev(DList.rev q) |> DList.toList = DList.toList q) ]

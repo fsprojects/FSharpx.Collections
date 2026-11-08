@@ -121,3 +121,37 @@ module DList =
 
     ///O(n). Returns an array of the DList elements.
     val inline toArray: DList<'T> -> 'T[]
+
+    ///O(n). Build a DList from the given list.
+    val inline ofList: list<'T> -> DList<'T>
+
+    ///O(n). Build a DList from the given array.
+    val inline ofArray: 'T[] -> DList<'T>
+
+    ///O(n), worst case. Returns the first element for which the given function returns Some.
+    val tryFind: ('T -> bool) -> DList<'T> -> 'T option
+
+    ///O(n), worst case. Returns the first element for which the given function returns true.
+    /// Raises KeyNotFoundException if no such element exists.
+    val find: ('T -> bool) -> DList<'T> -> 'T
+
+    ///O(n). Returns a DList of the values v where the mapping function returns Some(v).
+    val choose: ('T -> 'U option) -> DList<'T> -> DList<'U>
+
+    ///O(n). For each element, applies the mapping to produce a DList, then concatenates all results.
+    val collect: ('T -> DList<'U>) -> DList<'T> -> DList<'U>
+
+    ///O(n). Splits the DList into two DLists on the predicate: true elements first, false elements second.
+    val partition: ('T -> bool) -> DList<'T> -> DList<'T> * DList<'T>
+
+    ///O(n log n). Returns a new DList sorted using the default comparison.
+    val sort: DList<'T> -> DList<'T> when 'T: comparison
+
+    ///O(n log n). Returns a new DList sorted using the given comparison function.
+    val sortWith: ('T -> 'T -> int) -> DList<'T> -> DList<'T>
+
+    ///O(n log n). Returns a new DList sorted by the given projection.
+    val sortBy: ('T -> 'Key) -> DList<'T> -> DList<'T> when 'Key: comparison
+
+    ///O(n). Returns the DList in reversed order.
+    val rev: DList<'T> -> DList<'T>
