@@ -1,10 +1,4 @@
 <Project>
-  <PropertyGroup>
-    <WarnOn>
-      $(WarnOn)
-      ;FS3569
-    </WarnOn>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' != 'Debug' ">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
