@@ -120,6 +120,16 @@ module SeqTests =
                   | _ -> failwith "Unreachable"
               }
 
+              test "If I trySkip3 on a length3 seq, I should return Some seq.empty" {
+                  let data = [ 1; 2; 3 ]
+                  let actual = data |> Seq.trySkip 3
+                  Expect.isSome "trySkip3" actual
+
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip3" [] subSeq
+                  | _ -> failwith "Unreachable"
+              }
+
               test "I should be a to split a seq at an index" {
                   let (a, b) = Seq.splitAt 5 data
                   Expect.sequenceEqual "splitAt" (List.toSeq [ 1.; 2.; 3.; 4.; 5. ]) a
