@@ -53,7 +53,7 @@ Common targets:
 | `RunTestsFable` | Run Fable/JavaScript tests (requires Node + Yarn)             |
 | `CheckFormat`   | Check formatting with Fantomas (fails if files need changes)  |
 | `Format`        | Format all source files with Fantomas                         |
-| `All`           | Full pipeline: Clean → AssemblyInfo → CheckFormat → Build → RunTests → RunTestsFable → CINuGet → GenerateDocs |
+| `All`           | Full pipeline: Clean → AssemblyInfo → Build → RunTests → RunTestsFable → CheckFormat → CINuGet → GenerateDocs |
 | `NuGet`         | Pack NuGet packages into `bin/`                               |
 
 To run only the .NET build and tests (skipping Fable and docs):
