@@ -212,10 +212,10 @@ Target.create "All" ignore
 
 "Clean"
 ==> "AssemblyInfo"
-==> "CheckFormat"
 ==> "Build"
 ==> "RunTests"
 ==> "RunTestsFable"
+==> "CheckFormat"
 ==> "CINuGet"
 ==> "GenerateDocs"
 ==> "All"

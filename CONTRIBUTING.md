@@ -34,9 +34,10 @@ the relevant .NET and Fable checks:
 ```bash
 dotnet tool restore
 dotnet paket restore
-./build.sh CheckFormat
+./build.sh Build
 ./build.sh RunTests
 ./build.sh RunTestsFable
+./build.sh CheckFormat
 ```
 
 [AGENTS.md]: AGENTS.md
