@@ -81,7 +81,10 @@ module Seq =
     let splitAt n seq =
         (Seq.take n seq, Seq.skip n seq)
 
+    (* TODO: enable the following attrib when we can upgrade FSharp.Core dependency to v8.0.403 or newer:
     [<TailCall>]
+       -> and enable FS3569 via `<WarnOn>$(WarnOn);FS3569</WarnOn>` inside a Directory.Build.props
+    *)
     let rec private trySkipInner<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
         if count < 1 then
             None
