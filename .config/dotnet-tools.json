@@ -3,14 +3,14 @@
   "isRoot": true,
   "tools": {
     "paket": {
-      "version": "9.0.2",
+      "version": "12.0.0",
       "commands": [
         "paket"
       ],
       "rollForward": false
     },
     "fsdocs-tool": {
-      "version": "14.0.1",
+      "version": "22.2.0",
       "commands": [
         "fsdocs"
       ],

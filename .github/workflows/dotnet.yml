@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        dotnet: [8.0.416]
+        dotnet: [10.0.403]
         node: ['24']
     runs-on: ${{ matrix.os }}
 

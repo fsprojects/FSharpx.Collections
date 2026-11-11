@@ -79,7 +79,7 @@ Target.create "Build" (fun _ ->
 // Run the unit tests using test runner
 
 Target.create "RunTests" (fun _ ->
-    !!"tests/**/bin/Release/net8.0/*Tests.dll"
+    !!"tests/**/bin/Release/net10.0/*Tests.dll"
     |> Expecto.run(fun x ->
         { x with
             Parallel = true

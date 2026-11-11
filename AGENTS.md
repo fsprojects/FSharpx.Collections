@@ -4,7 +4,7 @@ This file describes how to build, test, format, and contribute to FSharpx.Collec
 
 ## Prerequisites
 
-- [.NET SDK 8.0](https://dotnet.microsoft.com/download) (version specified in `global.json`)
+- [.NET SDK 10.0](https://dotnet.microsoft.com/download) (version specified in `global.json`)
 - [Node.js](https://nodejs.org/) (v24+) — required for the Fable/JavaScript tests
 - [Yarn](https://yarnpkg.com/) — required for the Fable tests
 
