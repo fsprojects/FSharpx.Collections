@@ -100,6 +100,26 @@ module SeqTests =
                   seq { yield 1 } |> Seq.trySkip 2 |> Expect.isNone "trySkip2"
               }
 
+              test "If I trySkip0, I should return same seq" {
+                  let data = [ 1; 2; 3 ]
+                  let actual = data |> Seq.trySkip 0
+                  Expect.isSome "trySkip0" actual
+
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip0" [ 1; 2; 3 ] subSeq
+                  | _ -> failwith "Unreachable"
+              }
+
+              test "If I trySkip<0, I should return same seq" {
+                  let data = [ 1; 2; 3 ]
+                  let actual = data |> Seq.trySkip -1
+                  Expect.isSome "trySkip<0" actual
+
+                  match actual with
+                  | Some subSeq -> Expect.sequenceEqual "trySkip<0" [ 1; 2; 3 ] subSeq
+                  | _ -> failwith "Unreachable"
+              }
+
               test "I should be a to split a seq at an index" {
                   let (a, b) = Seq.splitAt 5 data
                   Expect.sequenceEqual "splitAt" (List.toSeq [ 1.; 2.; 3.; 4.; 5. ]) a
