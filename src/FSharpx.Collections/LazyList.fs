@@ -128,13 +128,13 @@ module LazyList =
             | None -> CellEmpty
             | Some(x, z) -> CellCons(x, unfold f z))
 
-    let rec append l1 l2 =
-        lzy(fun () -> (appendc l1 l2))
+    let rec append l1 source =
+        lzy(fun () -> (appendc l1 source))
 
-    and appendc l1 l2 =
+    and appendc l1 source =
         match getCell l1 with
-        | CellEmpty -> force l2
-        | CellCons(a, b) -> consc a (append b l2)
+        | CellEmpty -> force source
+        | CellCons(a, b) -> consc a (append b source)
 
     let delayed f =
         lzy(fun () -> (getCell(f())))
@@ -142,16 +142,16 @@ module LazyList =
     let repeat x =
         let rec s = cons x (delayed(fun () -> s)) in s
 
-    let rec map f s =
+    let rec map mapping source =
         lzy(fun () ->
-            match getCell s with
+            match getCell source with
             | CellEmpty -> CellEmpty
-            | CellCons(a, b) -> consc (f a) (map f b))
+            | CellCons(a, b) -> consc (mapping a) (map mapping b))
 
-    let rec map2 f s1 s2 =
+    let rec map2 mapping s1 s2 =
         lzy(fun () ->
             match getCell s1, getCell s2 with
-            | CellCons(a1, b1), CellCons(a2, b2) -> consc (f a1 a2) (map2 f b1 b2)
+            | CellCons(a1, b1), CellCons(a2, b2) -> consc (mapping a1 a2) (map2 mapping b1 b2)
             | _ -> CellEmpty)
 
     let rec zip s1 s2 =
@@ -166,52 +166,56 @@ module LazyList =
             | CellCons(a, b) -> appendc a (concat b)
             | CellEmpty -> CellEmpty)
 
-    let rec filter p s1 =
-        lzy(fun () -> filterc p s1)
+    let rec filter predicate source =
+        lzy(fun () -> filterc predicate source)
 
-    and filterc p s1 =
-        match getCell s1 with
-        | CellCons(a, b) -> if p a then consc a (filter p b) else filterc p b
+    and filterc predicate source =
+        match getCell source with
+        | CellCons(a, b) ->
+            if predicate a then
+                consc a (filter predicate b)
+            else
+                filterc predicate b
         | CellEmpty -> CellEmpty
 
-    let rec tryFind p s1 =
-        match getCell s1 with
-        | CellCons(a, b) -> if p a then Some a else tryFind p b
+    let rec tryFind predicate source =
+        match getCell source with
+        | CellCons(a, b) -> if predicate a then Some a else tryFind predicate b
         | CellEmpty -> None
 
     let indexNotFound() =
         raise(new System.Collections.Generic.KeyNotFoundException("An index satisfying the predicate was not found in the collection"))
 
-    let find p s1 =
-        match tryFind p s1 with
+    let find predicate source =
+        match tryFind predicate source with
         | Some a -> a
         | None -> indexNotFound()
 
-    let rec exists p s =
-        match getCell s with
-        | CellCons(a, b) -> if p a then true else exists p b
+    let rec exists predicate source =
+        match getCell source with
+        | CellCons(a, b) -> if predicate a then true else exists predicate b
         | CellEmpty -> false
 
-    let rec forall p s =
-        match getCell s with
-        | CellCons(a, b) -> if not(p a) then false else forall p b
+    let rec forall predicate source =
+        match getCell source with
+        | CellCons(a, b) -> if not(predicate a) then false else forall predicate b
         | CellEmpty -> true
 
-    let rec choose f s1 =
-        lzy(fun () -> choosec f s1)
+    let rec choose mapping source =
+        lzy(fun () -> choosec mapping source)
 
-    and choosec f s1 =
-        match getCell s1 with
+    and choosec mapping source =
+        match getCell source with
         | CellCons(a, b) ->
-            match f a with
-            | Some v -> consc v (choose f b)
-            | None -> choosec f b
+            match mapping a with
+            | Some v -> consc v (choose mapping b)
+            | None -> choosec mapping b
         | CellEmpty -> CellEmpty
 
-    let rec scan f acc s1 =
+    let rec scan folder acc source =
         lzy(fun () ->
-            match getCell s1 with
-            | CellCons(a, b) -> let acc' = f acc a in consc acc (scan f acc' b)
+            match getCell source with
+            | CellCons(a, b) -> let acc' = folder acc a in consc acc (scan folder acc' b)
             | CellEmpty -> consc acc empty)
 
     let head(s: LazyList<'T>) = s.Head
@@ -224,61 +228,61 @@ module LazyList =
 
     let isEmpty(s: LazyList<'T>) = s.IsEmpty
 
-    let rec take n s =
+    let rec take count source =
         lzy(fun () ->
-            if n < 0 then
-                invalidArg "n" "the number must not be negative"
-            elif n = 0 then
+            if count < 0 then
+                invalidArg "count" "the number must not be negative"
+            elif count = 0 then
                 CellEmpty
             else
-                match getCell s with
-                | CellCons(a, s) -> consc a (take (n - 1) s)
-                | CellEmpty -> invalidArg "n" "not enough items in the list")
+                match getCell source with
+                | CellCons(a, s) -> consc a (take (count - 1) s)
+                | CellEmpty -> invalidArg "count" "not enough items in the list")
 
-    let rec tryTake n s =
-        if n < 0 then
+    let rec tryTake count source =
+        if count < 0 then
             None
-        elif n = 0 then
+        elif count = 0 then
             Some empty
         else
-            match getCell s with
+            match getCell source with
             | CellCons(a, s) ->
                 Some(
                     consDelayed a (fun () ->
-                        match (tryTake (n - 1) s) with
+                        match (tryTake (count - 1) s) with
                         | Some x -> x
                         | None -> empty)
                 )
             | CellEmpty -> None
 
-    let rec skipc n s =
-        if n = 0 then
-            force s
+    let rec skipc count source =
+        if count = 0 then
+            force source
         else
-            match getCell s with
-            | CellCons(_, s) -> skipc (n - 1) s
-            | CellEmpty -> invalidArg "n" "not enough items in the list"
+            match getCell source with
+            | CellCons(_, s) -> skipc (count - 1) s
+            | CellEmpty -> invalidArg "count" "not enough items in the list"
 
-    let rec skip n s =
+    let rec skip count source =
         lzy(fun () ->
-            if n < 0 then
-                invalidArg "n" "the value must not be negative"
+            if count < 0 then
+                invalidArg "count" "the value must not be negative"
             else
-                skipc n s)
+                skipc count source)
 
-    let rec skipcOpt n s =
-        if n = 0 then
-            Some s
+    let rec skipcOpt count source =
+        if count = 0 then
+            Some source
         else
-            match getCell s with
+            match getCell source with
             | CellCons(_, s) ->
-                match (skipcOpt (n - 1) s) with
+                match (skipcOpt (count - 1) s) with
                 | Some x -> Some x
                 | None -> None
             | CellEmpty -> None
 
-    let rec trySkip n s =
-        if n < 0 then None else skipcOpt n s
+    let rec trySkip count source =
+        if count < 0 then None else skipcOpt count source
 
     let fold f s l =
         let rec loop s l =
@@ -314,12 +318,12 @@ module LazyList =
 
         loop s []
 
-    let rec iter f s =
-        match getCell s with
+    let rec iter action list =
+        match getCell list with
         | CellEmpty -> ()
         | CellCons(h, t) ->
-            f h
-            iter f t
+            action h
+            iter action t
 
     let rec copyFrom i a =
         lzy(fun () ->
@@ -346,8 +350,8 @@ module LazyList =
         | CellEmpty -> n
         | CellCons(_, b) -> lengthAux (n + 1) b
 
-    let length(s: LazyList<'T>) =
-        s.Length()
+    let length(list: LazyList<'T>) =
+        list.Length()
 
     let toSeq(s: LazyList<'T>) =
         (s :> IEnumerable<_>)
@@ -377,15 +381,15 @@ module LazyList =
 
         revAux r empty
 
-    let rec drop n xs =
-        if n < 0 then
-            invalidArg "n" "n was negative"
-        elif n > 0 then
-            match xs with
-            | Cons(_, xs') -> drop (n - 1) xs'
+    let rec drop count source =
+        if count < 0 then
+            invalidArg "count" "count was negative"
+        elif count > 0 then
+            match source with
+            | Cons(_, xs') -> drop (count - 1) xs'
             | Nil -> empty
         else
-            xs
+            source
 
     let split (ll: LazyList<'T>) n =
         let rec loop z (leftL: 'T list) (ll': LazyList<'T>) =
