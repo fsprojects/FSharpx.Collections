@@ -130,6 +130,12 @@ module SeqTests =
                   | _ -> failwith "Unreachable"
               }
 
+              test "trySkip returns an empty sequence after skipping all stream bytes" {
+                  use stream = new IO.MemoryStream([| 1uy; 2uy |])
+                  let actual = stream |> Seq.ofStreamByByte |> Seq.trySkip 2 |> Option.map Seq.toList
+                  Expect.equal "the two stream bytes can be skipped" (Some []) actual
+              }
+
               test "I should be a to split a seq at an index" {
                   let (a, b) = Seq.splitAt 5 data
                   Expect.sequenceEqual "splitAt" (List.toSeq [ 1.; 2.; 3.; 4.; 5. ]) a
