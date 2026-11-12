@@ -136,6 +136,21 @@ module SeqTests =
                   Expect.equal "the two stream bytes can be skipped" (Some []) actual
               }
 
+              test "trySkip reads each skipped element only once" {
+                  let mutable reads = 0
+
+                  let source =
+                      seq {
+                          for i in 1..10 do
+                              reads <- reads + 1
+                              yield i
+                      }
+
+                  let result = Seq.trySkip 4 source
+                  Expect.isSome "the source has enough elements" result
+                  Expect.equal "only the four skipped elements are read" 4 reads
+              }
+
               test "I should be a to split a seq at an index" {
                   let (a, b) = Seq.splitAt 5 data
                   Expect.sequenceEqual "splitAt" (List.toSeq [ 1.; 2.; 3.; 4.; 5. ]) a
