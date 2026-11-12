@@ -73,9 +73,23 @@ module Seq =
 
     /// The same as Seq.tryHead but also returning the tail alongside the head (in a tuple)
     let tryHeadTail<'T>(sequence: seq<'T>) : Option<'T * seq<'T>> =
-        match Seq.tryHead sequence with
-        | None -> None
-        | Some head -> Some(head, Seq.tail sequence)
+        let e = sequence.GetEnumerator()
+
+        if e.MoveNext() then
+            let head = e.Current
+
+            let tail =
+                seq {
+                    use e = e
+
+                    while e.MoveNext() do
+                        yield e.Current
+                }
+
+            Some(head, tail)
+        else
+            e.Dispose()
+            None
 
     /// Splits a sequences at the given index
     let splitAt n seq =
