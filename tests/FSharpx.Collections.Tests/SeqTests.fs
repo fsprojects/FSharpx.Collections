@@ -62,6 +62,19 @@ module SeqTests =
                   Seq.empty<float> |> Seq.tryHeadTail |> Expect.isNone "tryHeadTail"
               }
 
+              test "tryHeadTail on a byte stream returns head and all remaining bytes in tail" {
+                  use stream = new IO.MemoryStream([| 1uy; 2uy; 3uy |])
+                  let actual = stream |> Seq.ofStreamByByte |> Seq.tryHeadTail
+                  Expect.isSome "tryHeadTail with byte stream" actual
+
+                  match actual with
+                  | Some(head, tail) ->
+                      Expect.equal "head is first byte" 1 head
+                      let tailList = Seq.toList tail
+                      Expect.equal "tail contains remaining bytes" [ 2; 3 ] tailList
+                  | _ -> failwith "Unreachable"
+              }
+
               test "If I tryHeadTail a non-empty seq, I should return both head and tail" {
                   let data = [ 1; 2; 3 ]
                   let actual = data |> Seq.tryHeadTail
