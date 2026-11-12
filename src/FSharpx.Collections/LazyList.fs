@@ -142,11 +142,11 @@ module LazyList =
     let repeat x =
         let rec s = cons x (delayed(fun () -> s)) in s
 
-    let rec map mapping source =
+    let rec map f source =
         lzy(fun () ->
             match getCell source with
             | CellEmpty -> CellEmpty
-            | CellCons(a, b) -> consc (mapping a) (map mapping b))
+            | CellCons(a, b) -> consc (f a) (map f b))
 
     let rec map2 mapping s1 s2 =
         lzy(fun () ->
