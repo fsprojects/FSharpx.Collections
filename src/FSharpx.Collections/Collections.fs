@@ -81,25 +81,30 @@ module Seq =
     let splitAt n seq =
         (Seq.take n seq, Seq.skip n seq)
 
-    (* TODO: enable the following attrib when we can upgrade FSharp.Core dependency to v8.0.403 or newer:
-    [<TailCall>]
-       -> and enable FS3569 via `<WarnOn>$(WarnOn);FS3569</WarnOn>` inside a Directory.Build.props
-    *)
-    let rec private trySkipInner<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
-        if count < 1 then
-            None
-        else
-            match tryHeadTail source with
-            | None -> None
-            | Some(head, tail) ->
-                if count = 1 then
-                    Some tail
-                else
-                    trySkipInner (count - 1) tail
-
     /// The same as Seq.skip except will return None if not enough elements to skip
     let trySkip<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
-        if count < 1 then Some source else trySkipInner count source
+        if count < 1 then
+            Some source
+        else
+            let e = source.GetEnumerator()
+            let mutable i = count
+            let mutable success = true
+
+            while i > 0 && success do
+                if e.MoveNext() then i <- i - 1 else success <- false
+
+            if success then
+                Some(
+                    seq {
+                        use e = e
+
+                        while e.MoveNext() do
+                            yield e.Current
+                    }
+                )
+            else
+                e.Dispose()
+                None
 
     /// Splits a sequences up to the point where the predicate holds
     let span predicate source =
