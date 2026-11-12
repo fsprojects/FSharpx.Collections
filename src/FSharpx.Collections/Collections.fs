@@ -81,6 +81,31 @@ module Seq =
     let splitAt n seq =
         (Seq.take n seq, Seq.skip n seq)
 
+    /// The same as Seq.skip except will return None if not enough elements to skip
+    let trySkip<'T> (count: int) (source: seq<'T>) : Option<seq<'T>> =
+        if count < 1 then
+            Some source
+        else
+            let e = source.GetEnumerator()
+            let mutable i = count
+            let mutable success = true
+
+            while i > 0 && success do
+                if e.MoveNext() then i <- i - 1 else success <- false
+
+            if success then
+                Some(
+                    seq {
+                        use e = e
+
+                        while e.MoveNext() do
+                            yield e.Current
+                    }
+                )
+            else
+                e.Dispose()
+                None
+
     /// Splits a sequences up to the point where the predicate holds
     let span predicate source =
         (Seq.takeWhile predicate source, Seq.skipWhile predicate source)
